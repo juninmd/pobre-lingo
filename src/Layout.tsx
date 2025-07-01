@@ -172,8 +172,8 @@ export default function Layout() {
                   <DropdownMenuItem onClick={() => setTheme("dark")}>
                     Dark
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("duolingo")}>
-                    Duolingo
+                  <DropdownMenuItem onClick={() => setTheme("pobre-lingo")}>
+                    PobreLingo
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

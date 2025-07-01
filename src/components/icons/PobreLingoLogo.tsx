@@ -23,7 +23,7 @@ const PobreLingoLogo: FC<PobreLingoLogoProps> = ({ className, iconSize = 'h-8 w-
         <path d="m12 6-2 5 2 5"></path>
         <path d="m17 6-2 5 2 5"></path>
       </svg>
-      <span className="ml-2 font-headline text-2xl font-bold text-primary">
+      <span className="ml-2 font-headline text-2xl font-bold text-primary-foreground dark:text-primary">
         Pobre<span className="text-accent">Lingo</span>
       </span>
     </div>

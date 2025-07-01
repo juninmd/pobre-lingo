@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 
-type Theme = "dark" | "light" | "duolingo"
+type Theme = "dark" | "light" | "pobre-lingo"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -33,10 +33,10 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
 
-    root.classList.remove("light", "dark", "duolingo")
+    root.classList.remove("light", "dark", "pobre-lingo")
 
-    if (theme === "duolingo") {
-      root.setAttribute("data-theme", "duolingo")
+    if (theme === "pobre-lingo") {
+      root.setAttribute("data-theme", "pobre-lingo")
       root.classList.add("light") // or dark depending on base
     } else {
       root.removeAttribute("data-theme")

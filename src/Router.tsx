@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
 import DictionaryPage from './pages/DictionaryPage';
-import ProgressPage from './pages/ProgressPage';
+import DashboardPage from './pages/DashboardPage';
 import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page';
 import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ProgressPage />,
+        element: <DashboardPage />,
       },
       {
         path: 'dictionary',
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'progress',
-        element: <ProgressPage />,
+        element: <DashboardPage />,
       },
       {
         path: 'exercises/find-incorrect-words',

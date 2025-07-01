@@ -3,12 +3,17 @@
 import { Flame } from 'lucide-react';
 import { useLearningStreak } from '@/hooks/useLearningStreak';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils'; // Importar cn
 
-export function LearningStreakDisplay() {
+interface LearningStreakDisplayProps {
+  className?: string;
+}
+
+export function LearningStreakDisplay({ className }: LearningStreakDisplayProps) {
   const { streak } = useLearningStreak();
 
   return (
-    <Card className="bg-card shadow-lg">
+    <Card className={cn("bg-card shadow-lg", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-card-foreground">Sequência de Aprendizado</CardTitle>
         <Flame className="h-5 w-5 text-accent" />

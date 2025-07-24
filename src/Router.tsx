@@ -7,8 +7,6 @@ import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
 import SentenceOrderingPage from './pages/exercises/sentence-ordering/page';
 import GlossaryPage from './pages/glossary/page';
-import QuizGeneratorPage from './pages/quiz-generator/page';
-import SentenceCheckerPage from './pages/sentence-checker/page';
 import RulesPage from './pages/rules/page';
 import CategoryPage from './pages/rules/[categoryId]/page';
 import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
@@ -49,14 +47,6 @@ const router = createBrowserRouter([
       {
         path: 'glossary',
         element: <GlossaryPage />,
-      },
-      {
-        path: 'quiz-generator',
-        element: <QuizGeneratorPage />,
-      },
-      {
-        path: 'sentence-checker',
-        element: <SentenceCheckerPage />,
       },
       {
         path: 'rules',

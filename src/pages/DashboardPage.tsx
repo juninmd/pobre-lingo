@@ -127,13 +127,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-
-      {/* Botão de Ação Principal */}
-      <div className="text-center pt-4">
-        <Button size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300">
-          <Link to="/quiz-generator">Começar um Novo Exercício</Link>
-        </Button>
-      </div>
     </div>
   );
 }

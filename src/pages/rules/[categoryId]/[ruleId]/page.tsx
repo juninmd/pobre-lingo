@@ -1,18 +1,27 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { getRuleById } from '@/lib/grammarRules';
+import { getRuleById, getCategoryById } from '@/lib/grammarRules';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
 
 export default function RulePage() {
-  const { ruleId } = useParams<{ ruleId: string }>();
+  const { categoryId, ruleId } = useParams<{ categoryId: string; ruleId: string }>();
   const navigate = useNavigate();
+
+  const category = getCategoryById(categoryId!);
   const rule = getRuleById(ruleId!);
 
-  if (!rule) {
-    return <div>Regra não encontrada</div>;
+  if (!category || !rule) {
+    return <div>Regra ou Categoria não encontrada</div>;
   }
+
+  const rulesInThisCategory = category.rules;
+  const currentRuleIndex = rulesInThisCategory.findIndex(r => r.id === ruleId);
+  const totalRules = rulesInThisCategory.length;
+
+  const previousRuleId = currentRuleIndex > 0 ? rulesInThisCategory[currentRuleIndex - 1].id : undefined;
+  const nextRuleId = currentRuleIndex < totalRules - 1 ? rulesInThisCategory[currentRuleIndex + 1].id : undefined;
 
   return (
     <div className="space-y-6">
@@ -63,6 +72,28 @@ export default function RulePage() {
           )}
         </CardContent>
       </Card>
+
+      <div className="flex justify-between items-center mt-6">
+        {previousRuleId ? (
+          <Button onClick={() => navigate(`/rules/${categoryId}/${previousRuleId}`)} variant="outline">
+            <ArrowLeft className="h-4 w-4 mr-2" /> Regra Anterior
+          </Button>
+        ) : (
+          <div />
+        )}
+        {currentRuleIndex !== undefined && totalRules !== undefined && (
+          <span className="text-sm text-muted-foreground">
+            Regra {currentRuleIndex + 1} de {totalRules}
+          </span>
+        )}
+        {nextRuleId ? (
+          <Button onClick={() => navigate(`/rules/${categoryId}/${nextRuleId}`)} variant="outline">
+            Próxima Regra <ArrowRight className="h-4 w-4 ml-2" />
+          </Button>
+        ) : (
+          <div />
+        )}
+      </div>
     </div>
   );
 }

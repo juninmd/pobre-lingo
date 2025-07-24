@@ -12,16 +12,7 @@ export default function DashboardPage() {
   const totalExercises = 50;
   const learningProgress = (exercisesCompleted / totalExercises) * 100;
 
-  const recentActivities = [
-    { id: 1, type: "Exercício", description: "Completou 'Ordenar Frases'", date: "2 horas atrás" },
-    { id: 2, type: "Regra", description: "Revisou 'Concordância Verbal'", date: "1 dia atrás" },
-    { id: 3, type: "Quiz", description: "Fez um Quiz Personalizado", date: "3 dias atrás" },
-  ];
-
-  const recommendedExercises = [
-    { id: 1, title: "Identificar Frases Complexas", link: "/exercises/sentence-identification" },
-    { id: 2, title: "Compreensão de Notícias Avançada", link: "/exercises/news-comprehension" },
-  ];
+  
 
   return (
     <div className="space-y-8 p-4 md:p-6 lg:p-8">
@@ -73,65 +64,12 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* Seções Adicionais */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Atividade Recente */}
-        <Card className="shadow-md">
-          <CardHeader>
-            <CardTitle>Atividade Recente</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {recentActivities.length > 0 ? (
-              <ul className="space-y-3">
-                {recentActivities.map((activity) => (
-                  <li key={activity.id} className="flex items-center space-x-3">
-                    {activity.type === "Exercício" && <ListChecks className="h-5 w-5 text-primary" />}
-                    {activity.type === "Regra" && <BookOpen className="h-5 w-5 text-primary" />}
-                    {activity.type === "Quiz" && <Wand2 className="h-5 w-5 text-primary" />}
-                    <div>
-                      <p className="font-medium">{activity.description}</p>
-                      <p className="text-sm text-muted-foreground">{activity.date}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-muted-foreground">Nenhuma atividade recente.</p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Recomendações de Exercícios */}
-        <Card className="shadow-md">
-          <CardHeader>
-            <CardTitle>Recomendações para Você</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {recommendedExercises.length > 0 ? (
-              <ul className="space-y-3">
-                {recommendedExercises.map((exercise) => (
-                  <li key={exercise.id} className="flex items-center space-x-3">
-                    <Lightbulb className="h-5 w-5 text-accent" />
-                    <div>
-                      <p className="font-medium">{exercise.title}</p>
-                      <Button asChild variant="link" className="p-0 h-auto text-sm">
-                        <Link to={exercise.link}>Começar agora</Link>
-                      </Button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-muted-foreground">Nenhuma recomendação no momento.</p>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+      
 
       {/* Botão de Ação Principal */}
       <div className="text-center pt-4">
         <Button size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300">
-          <Link to="/quiz-generator">Começar um Novo Exercício</Link>
+          <Link to="/exercises/quiz-generator">Começar um Novo Exercício</Link>
         </Button>
       </div>
     </div>

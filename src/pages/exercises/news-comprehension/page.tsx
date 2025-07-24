@@ -5,8 +5,11 @@ import { useState } from 'react';
 export default function NewsComprehensionPage() {
   const [selectedExercise, setSelectedExercise] = useState<any>(null);
 
+  // Função para finalizar o exercício e voltar para a lista
+  const handleComplete = () => setSelectedExercise(null);
+
   if (selectedExercise) {
-    return <NewsComprehension exercise={selectedExercise} onBackToList={() => setSelectedExercise(null)} />;
+    return <NewsComprehension exercise={selectedExercise} onComplete={handleComplete} />;
   }
 
   return (

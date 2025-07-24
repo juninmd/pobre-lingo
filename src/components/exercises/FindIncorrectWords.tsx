@@ -17,27 +17,21 @@ interface FeedbackDetail {
   correctText?: string;
 }
 
-export function FindIncorrectWords() {
-  const [currentExercise, setCurrentExercise] = useState<FindIncorrectWordsExercise | null>(null);
+export function FindIncorrectWords({ exercise, onComplete }: { exercise: FindIncorrectWordsExercise; onComplete: () => void; }) {
   const [selectedTokenIds, setSelectedTokenIds] = useState<string[]>([]);
   const [feedbackDetails, setFeedbackDetails] = useState<Record<string, FeedbackDetail>>({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [showExplanations, setShowExplanations] = useState(false);
   const { toast } = useToast();
 
-  const loadNewExercise = useCallback(() => {
-    const randomIndex = Math.floor(Math.random() * findIncorrectWordsExercises.length);
-    const exercise = findIncorrectWordsExercises[randomIndex];
-    setCurrentExercise(exercise);
-    setSelectedTokenIds([]);
-    setShowFeedback(false);
-    setFeedbackDetails({});
-    setShowExplanations(false);
-  }, []);
-
   useEffect(() => {
-    loadNewExercise();
-  }, [loadNewExercise]);
+    if (exercise) {
+      setSelectedTokenIds([]);
+      setFeedbackDetails({});
+      setShowFeedback(false);
+      setShowExplanations(false);
+    }
+  }, [exercise]);
 
   const handleTokenClick = (tokenId: string) => {
     if (showFeedback) return; // Don't allow selection changes after checking
@@ -48,14 +42,14 @@ export function FindIncorrectWords() {
   };
 
   const handleSubmit = () => {
-    if (!currentExercise) return;
+    if (!exercise) return;
 
     let correctIdentifications = 0;
     let missedErrors = 0;
     let wrongSelections = 0;
     const newFeedbackDetails: Record<string, FeedbackDetail> = {};
 
-    currentExercise.tokens.forEach(token => {
+    exercise.tokens.forEach(token => {
       const isSelected = selectedTokenIds.includes(token.id);
       if (token.isError) {
         if (isSelected) {
@@ -85,12 +79,19 @@ export function FindIncorrectWords() {
     setShowFeedback(true);
     setShowExplanations(false); // Reset explanation visibility on new check
 
-    const totalErrors = currentExercise.tokens.filter(t => t.isError).length;
+    const totalErrors = exercise.tokens.filter(t => t.isError).length;
     toast({
       title: "Resultado da Verificação",
       description: `Você identificou ${correctIdentifications} de ${totalErrors} erros. ${wrongSelections > 0 ? `${wrongSelections} palavras corretas foram selecionadas indevidamente.` : ''}`,
       duration: 5000,
     });
+
+    // Determine if the exercise is considered 'complete'
+    // For simplicity, let's say it's complete if all errors are correctly identified
+    // or if the user has submitted their attempt.
+    if (correctIdentifications === totalErrors && wrongSelections === 0) {
+      onComplete();
+    }
   };
 
   const getButtonVariant = (token: WordToken): "secondary" | "outline" | "destructive" => {
@@ -121,26 +122,26 @@ export function FindIncorrectWords() {
   }
 
 
-  if (!currentExercise) {
+  if (!exercise) {
     return <p>Carregando exercício...</p>;
   }
 
-  const totalErrorsInExercise = currentExercise.tokens.filter(t => t.isError).length;
+  const totalErrorsInExercise = exercise.tokens.filter(t => t.isError).length;
 
   return (
     <Card className="w-full max-w-3xl mx-auto shadow-xl bg-card">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-primary flex items-center">
-          <SearchX className="mr-2 h-6 w-6" /> {currentExercise.title_pt}
+          <SearchX className="mr-2 h-6 w-6" /> {exercise.title_pt}
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          {currentExercise.instructions_pt}
-          <br /> <Badge variant="secondary" className="mt-1">{currentExercise.topic} - {currentExercise.difficulty}</Badge>
+          {exercise.instructions_pt}
+          <br /> <Badge variant="secondary" className="mt-1">{exercise.topic} - {exercise.difficulty}</Badge>
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="p-4 border rounded-md bg-background/50 mb-6">
-          {currentExercise.tokens.map((token) => (
+          {exercise.tokens.map((token) => (
             <Button
               key={token.id}
               variant={getButtonVariant(token)}
@@ -164,13 +165,13 @@ export function FindIncorrectWords() {
               </Button>
             </div>
             <div className="space-y-3">
-              {currentExercise.tokens.map(token => {
+              {exercise.tokens.map(token => {
                 const feedback = feedbackDetails[token.id];
                 if (!feedback) return null;
 
                 let alertVariant: "default" | "destructive" = "default";
                 let alertTitle = "";
-                let descriptionElements: JSX.Element[] = [];
+                const descriptionElements: JSX.Element[] = [];
 
                 if (feedback.status === 'correct_identification') {
                   alertVariant = "default";
@@ -230,9 +231,7 @@ export function FindIncorrectWords() {
         <Button onClick={handleSubmit} disabled={showFeedback || selectedTokenIds.length === 0} className="bg-accent hover:bg-accent/90 text-accent-foreground">
           Verificar Respostas
         </Button>
-        <Button onClick={loadNewExercise} variant="secondary">
-          <RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
-        </Button>
+        
       </CardFooter>
     </Card>
   );

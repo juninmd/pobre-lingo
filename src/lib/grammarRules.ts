@@ -1,4 +1,3 @@
-
 export interface GrammarExample {
   sentence_en: string;
   translation_pt?: string; // Optional translation for clarity
@@ -116,7 +115,9 @@ export const grammarCategories: GrammarCategory[] = [
           { sentence_en: 'She has lived here for five years.', translation_pt: 'Ela mora aqui há cinco anos.' },
           { sentence_en: 'Have you ever been to Japan?', translation_pt: 'Você já esteve no Japão?' },
           { sentence_en: 'We have finished our homework.', translation_pt: 'Nós terminamos nossa lição de casa. (O resultado é que está pronta agora)' },
-          { sentence_en: 'He has lost his keys.', translation_pt: 'Ele perdeu as chaves. (Ele não as tem agora)' }
+          { sentence_en: 'He has lost his keys.', translation_pt: 'Ele perdeu as chaves. (Ele não as tem agora)' },
+          { sentence_en: 'They have just left.', translation_pt: 'Eles acabaram de sair.' },
+          { sentence_en: 'I haven\'t eaten breakfast yet.', translation_pt: 'Eu não tomei café da manhã ainda.' },
         ],
         tags: ['intermediário', 'passado', 'presente', 'perfeito'],
         common_mistakes_pt: `Usar o Past Simple em vez do Present Perfect para experiências de vida ou ações com relevância no presente sem tempo definido:<br />*Ex: I saw that movie.* (Correto, mas indica um tempo específico implícito ou explícito) vs *I have seen that movie.* (Indica que a experiência de ter visto é o importante).<br /><br />Usar a forma do Past Simple em vez do Particípio Passado para verbos irregulares:<br />*Ex: I have went there.* (Incorreto) -&gt; *I have gone there.* (Correto)`,
@@ -152,7 +153,22 @@ export const grammarCategories: GrammarCategory[] = [
           { sentence_en: 'We are going to have a party on Saturday.', translation_pt: 'Nós vamos dar uma festa no sábado.' }
         ],
         tags: ['básico', 'futuro', 'planos'],
-        common_mistakes_pt: `Esquecer o verbo "<code>to be</code>" (am/is/are) antes de "<code>going to</code>":<br />*Ex: I going to travel.* (Incorreto) -&gt; *I am going to travel.* (Correto)<br /><br />Omitir "<code>to</code>" depois de "<code>going</code>":<br />*Ex: She is going visit her friend.* (Incorreto) -&gt; *She is going to visit her friend.* (Correto)`,
+        common_mistakes_pt: `Esquecer o verbo "<code>to be</code>" (am/is/are) antes de "<code>going to</code>":<br />*Ex: I going to travel.* (Incorreto) -> *I am going to travel.* (Correto)<br /><br />Omitir "<code>to</code>" depois de "<code>going</code>":<br />*Ex: She is going visit her friend.* (Incorreto) -> *She is going to visit her friend.* (Correto)`,
+      },
+      {
+        id: 'future-continuous',
+        title_pt: 'Future Continuous',
+        title_en: 'Future Continuous',
+        explanation_pt: 'O Future Continuous (will be + verbo com -ing) é usado para descrever ações que estarão em progresso em um momento específico no futuro.',
+        structure_format_pt: '<strong>Afirmativa:</strong> Sujeito + <code>will be</code> + <strong>Verbo</strong><code>-ing</code> ✅<br /><strong>Negativa:</strong> Sujeito + <code>will not be</code> + <strong>Verbo</strong><code>-ing</code> ❌<br /><strong>Interrogativa:</strong> <code>Will</code> + Sujeito + <code>be</code> + <strong>Verbo</strong><code>-ing</code>? ❓',
+        structure_format_en: '<strong>Affirmative:</strong> Subject + <code>will be</code> + <strong>Verb</strong><code>-ing</code> ✅<br /><strong>Negative:</strong> Subject + <code>will not be</code> + <strong>Verb</strong><code>-ing</code> ❌<br /><strong>Interrogative:</strong> <code>Will</code> + Subject + <code>be</code> + <strong>Verb</strong><code>-ing</code>? ❓',
+        examples: [
+          { sentence_en: 'This time tomorrow, I will be flying to New York.', translation_pt: 'Amanhã a esta hora, estarei voando para Nova York.' },
+          { sentence_en: 'Don\'t call me at 9 PM, I will be watching a movie.', translation_pt: 'Não me ligue às 21h, eu estarei assistindo a um filme.' },
+          { sentence_en: 'Will you be working when I arrive?', translation_pt: 'Você estará trabalhando quando eu chegar?' },
+        ],
+        tags: ['intermediário', 'futuro', 'contínuo'],
+        common_mistakes_pt: 'Esquecer o "be" depois de "will":<br />*Ex: I will working tomorrow.* (Incorreto) -> *I will be working tomorrow.* (Correto)',
       },
       {
         id: 'modal-verbs',
@@ -246,7 +262,7 @@ export const grammarCategories: GrammarCategory[] = [
           { sentence_en: 'A person, two people.', translation_pt: 'Uma pessoa, duas pessoas. (irregular)' }
         ],
         tags: ['básico', 'substantivos', 'plural'],
-        common_mistakes_pt: `Pluralizar incorretamente substantivos irregulares:<br />*Ex: childs* (Incorreto) -&gt; *children* (Correto)<br />*Ex: mans* (Incorreto) -&gt; *men* (Correto)<br />*Ex: tooths* (Incorreto) -&gt; *teeth* (Correto)<br /><br />Confundir regras de plural para substantivos terminados em <code>-y</code>:<br />*Ex: boy -&gt; boies* (Incorreto) -&gt; *boys* (Correto, pois é vogal + y)<br />*Ex: party -&gt; partys* (Incorreto) -&gt; *parties* (Correto, pois é consoante + y)`,
+        common_mistakes_pt: `Pluralizar incorretamente substantivos irregulares:<br />*Ex: childs* (Incorreto) -&gt; *children* (Correto)<br />*Ex: mans* (Incorreto) -&gt; *men* (Correto)<br />*Ex: tooths* (Incorreto) -&gt; *teeth* (Correto)<br /><br />Confundir regras de plural para substantivos terminados em <code>-y</code>:<br />*Ex: boy -&gt; boies* (Incorreto) -&gt; *boys* (Correto)<br />*Ex: party -&gt; partys* (Incorreto) -&gt; *parties* (Correto, pois é consoante + y)`,
       },
     ],
   },
@@ -355,7 +371,7 @@ export const grammarCategories: GrammarCategory[] = [
         id: 'prepositions-of-time',
         title_pt: 'Preposições de Tempo (in, on, at)',
         title_en: 'Prepositions of Time (in, on, at)',
-        explanation_pt: `"In" é usado para partes do dia (in the morning - exceto "at night"), meses, anos, estações, séculos e longos períodos (in August, in 2023, in summer). "On" é usado para dias da semana e datas específicas (on Monday, on July 4th). "At" é usado para horas específicas, feriados e certas expressões de tempo (at 3 o\'clock, at Christmas, at night, at the weekend [UK]).`,
+        explanation_pt: `"In" é usado para partes do dia (in the morning - exceto "at night"), meses, anos, estações, séculos e longos períodos (in August, in 2023, in summer). "On" é usado para dias da semana e datas específicas (on Monday, on July 4th). "At" é usado para horas específicas, feriados e certas expressões de tempo (at 3 o'clock, at Christmas, at night, at the weekend [UK]).`,
         examples: [
           { sentence_en: 'My birthday is in January.', translation_pt: 'Meu aniversário é em janeiro.' },
           { sentence_en: 'The meeting is on Friday.', translation_pt: 'A reunião é na sexta-feira.' },
@@ -526,8 +542,7 @@ export const grammarCategories: GrammarCategory[] = [
         title_pt: 'Perguntas (Frases Interrogativas)',
         title_en: 'Questions (Interrogative Sentences)',
         explanation_pt: `Perguntas de Sim/Não (Yes/No questions) geralmente começam com um verbo auxiliar (do, does, did, am, is, are, was, were, have, has, had, can, will, etc.) seguido pelo sujeito e o verbo principal na forma base (para do/does/did). Perguntas Wh- (Wh-questions) começam com uma palavra interrogativa (what, where, when, why, who, whom, whose, which, how) seguida pela estrutura de pergunta (auxiliar + sujeito + verbo), exceto quando a palavra Wh- é o sujeito da frase.`,
-        structure_format_pt: `<strong>Yes/No:</strong> Verbo Auxiliar + Sujeito + Verbo Principal (+ ...)? 🤔<br /><strong>Wh-Question:</strong> Palavra Wh- + Verbo Auxiliar + Sujeito + Verbo Principal (+ ...)? 🧐<br />(Exceção: Se Wh- é o sujeito: Palavra Wh- + Verbo Principal + ...?)`,
-        structure_format_en: `<strong>Yes/No:</strong> Auxiliary Verb + Subject + Main Verb (+ ...)? 🤔<br /><strong>Wh-Question:</strong> Wh- Word + Auxiliary Verb + Subject + Main Verb (+ ...)? 🧐<br />(Exception: If Wh- is the subject: Wh- Word + Main Verb + ...?)`,
+        structure_format_pt: `<strong>Yes/No:</strong> Verbo Auxiliar + Sujeito + Verbo Principal (+ ...)? 🤔<br /><strong>Wh-Question:</strong> Palavra Wh- + Verbo Auxiliar + Sujeito + Verbo Principal (+ ...)? 🧐<br />(Exceção: Se Wh- é o sujeito: Palavra Wh- Word + Main Verb + ...?)`,
         examples: [
           { sentence_en: 'Do you like ice cream?', translation_pt: 'Você gosta de sorvete? (Yes/No)' },
           { sentence_en: 'Is she coming to the party?', translation_pt: 'Ela vem para a festa? (Yes/No)' },
@@ -682,7 +697,7 @@ export const grammarCategories: GrammarCategory[] = [
           { sentence_en: 'The movie was released in MCMXCIX (nineteen ninety-nine).', translation_pt: 'O filme foi lançado em MCMXCIX (mil novecentos e noventa e nove).' }
         ],
         tags: ['básico', 'números', 'contagem', 'decimais', 'porcentagens', 'anos', 'frações', 'romanos'],
-        common_mistakes_pt: `Confundir a pronúncia e escrita de "<code>thirteen</code>" (13) com "<code>thirty</code>" (30), "<code>fourteen</code>" (14) com "<code>forty</code>" (40), etc.<br />Escrever "<code>fourty</code>" em vez de "<code>forty</code>".<br />Formação incorreta de números ordinais: *Ex: "twoend" em vez de "second", "threeird" em vez de "third", "fiveth" em vez de "fifth", "nineth" em vez de "ninth".*<br />Ler números decimais usando "<code>comma</code>" (vírgula) em vez de "<code>point</code>" (ponto): *Ex: Para 3.14, dizer "three comma one four" (Incorreto) -&gt; "three point one four" (Correto).*<br />Ao ler anos como 1905, dizer "nineteen five" (Incorreto) -&gt; "nineteen <code>oh</code>-five" (Correto).<br />Para porcentagens, esquecer de dizer "<code>percent</code>": *Ex: "It's twenty-five." (Incompleto se o contexto for porcentagem) -&gt; "It's twenty-five percent." (Correto).*<br />Para frações, usar o singular no denominador quando o numerador é maior que um: *Ex: "two third" (Incorreto) -&gt; "two thirds" (Correto).*<br /><strong>Números Romanos:</strong> Confundir a regra subtrativa. *Ex: Ler "IX" como onze (Incorreto) em vez de nove (Correto).* Repetir símbolos subtrativos ou V, L, D. *Ex: "VV" para 10 (Incorreto, use X).*`,
+        common_mistakes_pt: `Confundir a pronúncia e escrita de "<code>thirteen</code>" (13) com "<code>thirty</code>" (30), "<code>fourteen</code>" (14) com "<code>forty</code>" (40), etc.<br />Escrever "<code>fourty</code>" em vez de "<code>forty</code>".<br />Formação incorreta de números ordinais: *Ex: "twoend" em vez de "second", "threeird" em vez de "third", "fiveth" em vez de "fifth", "nineth" em vez de "ninth".*<br />Ler números decimais usando "<code>comma</code>" (vírgula) em vez de "<code>point</code>" (ponto): *Ex: Para 3.14, dizer "three comma one four" (Incorreto) -> "three point one four" (Correto).*<br />Ao ler anos como 1905, dizer "nineteen five" (Incorreto) -> "nineteen <code>oh</code>-five" (Correto).<br />Para porcentagens, esquecer de dizer "<code>percent</code>": *Ex: "It's twenty-five." (Incompleto se o contexto for porcentagem) -> "It's twenty-five percent." (Correto).*<br />Para frações, usar o singular no denominador quando o numerador é maior que um: *Ex: "two third" (Incorreto) -> "two thirds" (Correto).*<br /><strong>Números Romanos:</strong> Confundir a regra subtrativa. *Ex: Ler "IX" como onze (Incorreto) em vez de nove (Correto).* Repetir símbolos subtrativos ou V, L, D. *Ex: "VV" para 10 (Incorreto, use X).*`,
       },
       {
         id: 'telling-time',

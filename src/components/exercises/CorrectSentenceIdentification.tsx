@@ -8,28 +8,22 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label }
 from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckSquare, Languages, RefreshCw } from 'lucide-react';
+import { CheckSquare, Languages } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { correctSentenceIdentificationExercises, CorrectSentenceIdentificationExercise, CorrectSentenceIdentificationChoice } from '@/lib/exerciseData';
 import { useToast } from '@/hooks/use-toast';
 
-export function CorrectSentenceIdentification() {
-  const [currentExercise, setCurrentExercise] = useState<CorrectSentenceIdentificationExercise | null>(null);
+export function CorrectSentenceIdentification({ exercise, onComplete }: { exercise: CorrectSentenceIdentificationExercise; onComplete: () => void; }) {
   const [selectedChoices, setSelectedChoices] = useState<string[]>([]); // Store IDs of selected choices
   const [showFeedback, setShowFeedback] = useState(false);
   const { toast } = useToast();
 
-  const loadNewExercise = () => {
-    const randomIndex = Math.floor(Math.random() * correctSentenceIdentificationExercises.length);
-    const exercise = correctSentenceIdentificationExercises[randomIndex];
-    setCurrentExercise(exercise);
-    setSelectedChoices([]);
-    setShowFeedback(false);
-  };
-
   useEffect(() => {
-    loadNewExercise();
-  }, []);
+    if (exercise) {
+      setSelectedChoices([]);
+      setShowFeedback(false);
+    }
+  }, [exercise]);
 
   const handleCheckboxChange = (choiceId: string, checked: boolean) => {
     setSelectedChoices(prev =>
@@ -39,13 +33,13 @@ export function CorrectSentenceIdentification() {
   };
 
   const handleSubmit = () => {
-    if (!currentExercise || selectedChoices.length === 0) {
+    if (!exercise || selectedChoices.length === 0) {
         toast({ title: "Atenção", description: "Por favor, selecione ao menos uma opção.", variant: "default"});
         return;
-    };
+    }
     setShowFeedback(true);
     
-    const correctChoiceIds = currentExercise.choices.filter(c => c.isCorrect).map(c => c.id);
+    const correctChoiceIds = exercise.choices.filter(c => c.isCorrect).map(c => c.id);
     // Check if all selected choices are correct AND all correct choices are selected
     const isCompletelyCorrect = 
         selectedChoices.length === correctChoiceIds.length &&
@@ -55,17 +49,18 @@ export function CorrectSentenceIdentification() {
 
     if (isCompletelyCorrect) {
         toast({ title: "Correto!", description: "Você identificou a(s) frase(s) correta(s)!", className: "bg-green-500/20 border-green-500 text-green-700" });
+        onComplete();
     } else {
         toast({ title: "Incorreto!", description: "Verifique a explicação para entender melhor.", variant: "destructive" });
     }
   };
 
-  if (!currentExercise) {
+  if (!exercise) {
     return <p>Carregando exercício...</p>;
   }
 
-  const correctUserChoices = currentExercise.choices.filter(choice => selectedChoices.includes(choice.id) && choice.isCorrect);
-  const missedCorrectChoices = currentExercise.choices.filter(choice => !selectedChoices.includes(choice.id) && choice.isCorrect);
+  const correctUserChoices = exercise.choices.filter(choice => selectedChoices.includes(choice.id) && choice.isCorrect);
+  const missedCorrectChoices = exercise.choices.filter(choice => !selectedChoices.includes(choice.id) && choice.isCorrect);
 
 
   return (
@@ -75,13 +70,13 @@ export function CorrectSentenceIdentification() {
           <CheckSquare className="mr-2 h-6 w-6" /> Identifique a(s) Frase(s) Correta(s)
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          {currentExercise.prompt}
-          <br /> <Badge variant="secondary" className="mt-1">{currentExercise.topic} - {currentExercise.difficulty}</Badge>
+          {exercise.prompt}
+          <br /> <Badge variant="secondary" className="mt-1">{exercise.topic} - {exercise.difficulty}</Badge>
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {currentExercise.choices.map((choice: CorrectSentenceIdentificationChoice) => (
+          {exercise.choices.map((choice: CorrectSentenceIdentificationChoice) => (
             <div key={choice.id} className="flex items-start space-x-3 p-3 border rounded-md hover:bg-muted/50 transition-colors">
               <Checkbox
                 id={choice.id}
@@ -101,12 +96,12 @@ export function CorrectSentenceIdentification() {
           <Alert className="mt-6 bg-primary/10 border-primary/30">
             <AlertTitle className="font-semibold text-primary">Explicação Detalhada</AlertTitle>
             <AlertDescription className="text-foreground/80 space-y-2">
-              <p>{currentExercise.explanation}</p>
+              <p>{exercise.explanation}</p>
               
               <div>
                 <strong>Respostas corretas:</strong>
                 <ul className="list-disc list-inside ml-4 mt-1">
-                {currentExercise.choices.filter(c => c.isCorrect).map(c => (
+                {exercise.choices.filter(c => c.isCorrect).map(c => (
                     <li key={`correct-${c.id}`}>
                         {c.sentence}
                         {c.translation_pt && (
@@ -119,7 +114,7 @@ export function CorrectSentenceIdentification() {
                 </ul>
               </div>
 
-              {correctUserChoices.length > 0 && !currentExercise.choices.filter(c => c.isCorrect).every(correctChoice => selectedChoices.includes(correctChoice.id)) && (
+              {correctUserChoices.length > 0 && !exercise.choices.filter(c => c.isCorrect).every(correctChoice => selectedChoices.includes(correctChoice.id)) && (
                 <div className="text-green-600">
                   <strong>Você acertou em selecionar:</strong>
                   <ul className="list-disc list-inside ml-4 mt-1">
@@ -155,9 +150,7 @@ export function CorrectSentenceIdentification() {
         <Button onClick={handleSubmit} disabled={selectedChoices.length === 0 || showFeedback} className="bg-accent hover:bg-accent/90 text-accent-foreground">
           Verificar Resposta
         </Button>
-        <Button onClick={loadNewExercise} variant="secondary">
-          <RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
-        </Button>
+        
       </CardFooter>
     </Card>
   );

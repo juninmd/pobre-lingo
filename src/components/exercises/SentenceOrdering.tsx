@@ -1,11 +1,10 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, XCircle, Shuffle, RefreshCw, Languages } from 'lucide-react';
+import { CheckCircle, XCircle, Shuffle, Languages } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { sentenceOrderingExercises, SentenceOrderingExercise } from '@/lib/exerciseData';
 import { useToast } from '@/hooks/use-toast';
@@ -20,27 +19,21 @@ function shuffleArray<T>(array: T[]): T[] {
   return newArray;
 }
 
-export function SentenceOrdering() {
-  const [currentExercise, setCurrentExercise] = useState<SentenceOrderingExercise | null>(null);
+export function SentenceOrdering({ exercise, onComplete }: { exercise: SentenceOrderingExercise; onComplete: () => void; }) {
   const [shuffledWords, setShuffledWords] = useState<string[]>([]);
   const [orderedSentence, setOrderedSentence] = useState<string[]>([]);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showTranslation, setShowTranslation] = useState(false);
   const { toast } = useToast();
 
-  const loadNewExercise = () => {
-    const randomIndex = Math.floor(Math.random() * sentenceOrderingExercises.length);
-    const exercise = sentenceOrderingExercises[randomIndex];
-    setCurrentExercise(exercise);
-    setShuffledWords(shuffleArray(exercise.words));
-    setOrderedSentence([]);
-    setIsCorrect(null);
-    setShowTranslation(false);
-  };
-
   useEffect(() => {
-    loadNewExercise();
-  }, []);
+    if (exercise) {
+      setShuffledWords(shuffleArray(exercise.words));
+      setOrderedSentence([]);
+      setIsCorrect(null);
+      setShowTranslation(false);
+    }
+  }, [exercise]);
 
   const handleWordClick = (word: string, index: number) => {
     setOrderedSentence(prev => [...prev, word]);
@@ -57,15 +50,16 @@ export function SentenceOrdering() {
   };
 
   const handleCheckSentence = () => {
-    if (!currentExercise) return;
+    if (!exercise) return;
     const userAnswer = orderedSentence.join(' ').trim();
-    const correctAnswer = currentExercise.correctSentence.replace(/[.,!?]/g, '').trim();
+    const correctAnswer = exercise.correctSentence.replace(/[.,!?]/g, '').trim();
     const normalizedUserAnswer = userAnswer.replace(/[.,!?]/g, '').trim();
 
     if (normalizedUserAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       setIsCorrect(true);
       setShowTranslation(true);
       toast({ title: "Correto!", description: "Você acertou a ordem da frase!", className: "bg-green-500/20 border-green-500 text-green-700" });
+      onComplete();
     } else {
       setIsCorrect(false);
       setShowTranslation(false);
@@ -74,15 +68,15 @@ export function SentenceOrdering() {
   };
 
   const handleShowAnswer = () => {
-    if (!currentExercise) return;
-    setOrderedSentence(currentExercise.correctSentence.split(" "));
-    setShuffledWords([]); 
-    setIsCorrect(true); 
+    if (!exercise) return;
+    setOrderedSentence(exercise.correctSentence.split(" "));
+    setShuffledWords([]);
+    setIsCorrect(true);
     setShowTranslation(true);
-    toast({ title: "Resposta", description: `A resposta correta é: "${currentExercise.correctSentence}"` });
+    toast({ title: "Resposta", description: `A resposta correta é: "${exercise.correctSentence}"` });
   };
 
-  if (!currentExercise) {
+  if (!exercise) {
     return <p>Carregando exercício...</p>;
   }
 
@@ -94,7 +88,7 @@ export function SentenceOrdering() {
         </CardTitle>
         <CardDescription className="text-muted-foreground">
           Clique nas palavras na ordem correta para formar uma frase gramaticalmente correta.
-          <br /> <Badge variant="secondary" className="mt-1">{currentExercise.topic} - {currentExercise.difficulty}</Badge>
+          <br /> <Badge variant="secondary" className="mt-1">{exercise.topic} - {exercise.difficulty}</Badge>
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -135,14 +129,14 @@ export function SentenceOrdering() {
               {isCorrect ? 'Correto!' : 'Incorreto!'}
             </AlertTitle>
             <AlertDescription className="text-sm text-foreground/80">
-              {isCorrect 
-                ? `A frase "${currentExercise.correctSentence}" está correta!` 
-                : `Tente novamente. A resposta correta é: "${currentExercise.correctSentence}"`}
-              {showTranslation && currentExercise.translation_pt && (
+              {isCorrect
+                ? `A frase "${exercise.correctSentence}" está correta!`
+                : `Tente novamente. A resposta correta é: "${exercise.correctSentence}"`}
+              {showTranslation && exercise.translation_pt && (
                 <div className="mt-2 pt-2 border-t border-green-500/30">
                   <p className="flex items-center font-semibold text-green-700">
                     <Languages className="mr-2 h-4 w-4" />
-                    Tradução: <span className="italic ml-1 font-normal text-foreground/90">"{currentExercise.translation_pt}"</span>
+                    Tradução: <span className="italic ml-1 font-normal text-foreground/90">"{exercise.translation_pt}"</span>
                   </p>
                 </div>
               )}
@@ -159,9 +153,7 @@ export function SentenceOrdering() {
           Mostrar Resposta
         </Button>
         </div>
-        <Button onClick={loadNewExercise} variant="secondary">
-          <RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
-        </Button>
+
       </CardFooter>
     </Card>
   );

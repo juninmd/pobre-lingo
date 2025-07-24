@@ -22,7 +22,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
+  defaultTheme = "pobre-lingo",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {

@@ -6,8 +6,9 @@ import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page'
 import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
 import SentenceOrderingPage from './pages/exercises/sentence-ordering/page';
+import QuizGeneratorPage from './pages/exercises/quiz-generator/page';
+import QuizDisplayPage from './pages/exercises/quiz/page';
 import GlossaryPage from './pages/glossary/page';
-import QuizGeneratorPage from './pages/quiz-generator/page';
 import SentenceCheckerPage from './pages/sentence-checker/page';
 import RulesPage from './pages/rules/page';
 import CategoryPage from './pages/rules/[categoryId]/page';
@@ -47,12 +48,16 @@ const router = createBrowserRouter([
         element: <SentenceOrderingPage />,
       },
       {
-        path: 'glossary',
-        element: <GlossaryPage />,
+        path: 'exercises/quiz-generator',
+        element: <QuizGeneratorPage />,
       },
       {
-        path: 'quiz-generator',
-        element: <QuizGeneratorPage />,
+        path: 'exercises/quiz',
+        element: <QuizDisplayPage />,
+      },
+      {
+        path: 'glossary',
+        element: <GlossaryPage />,
       },
       {
         path: 'sentence-checker',

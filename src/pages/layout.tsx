@@ -41,7 +41,7 @@ const initialNavItems = [
   { href: '/glossary', label: 'Glossário', icon: BookText },
   { href: '/dictionary', label: 'Dicionário', icon: BookA },
   { href: '/sentence-checker', label: 'Verificador de Frases', icon: ScanLine },
-  { href: '/quiz-generator', label: 'Quiz Personalizado', icon: Wand2 },
+  { href: '/exercises/quiz-generator', label: 'Quiz Personalizado', icon: Wand2 },
   { href: '/exercises/sentence-ordering', label: 'Ordenar Frases', icon: ListChecks },
   { href: '/exercises/sentence-identification', label: 'Identificar Frases', icon: CheckSquare },
   { href: '/exercises/find-incorrect-words', label: 'Procurar Palavras Erradas', icon: SearchX },

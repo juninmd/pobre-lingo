@@ -17,7 +17,7 @@ interface FeedbackDetail {
   correctText?: string;
 }
 
-export function FindIncorrectWords({ exercise, onComplete }: { exercise: FindIncorrectWordsExercise; onComplete: () => void; }) {
+export function FindIncorrectWords({ exercise, onComplete, onNextExercise }: { exercise: FindIncorrectWordsExercise; onComplete: () => void; onNextExercise: () => void; }) {
   const [selectedTokenIds, setSelectedTokenIds] = useState<string[]>([]);
   const [feedbackDetails, setFeedbackDetails] = useState<Record<string, FeedbackDetail>>({});
   const [showFeedback, setShowFeedback] = useState(false);
@@ -196,18 +196,18 @@ export function FindIncorrectWords({ exercise, onComplete }: { exercise: FindInc
                 } else {
                     return null; // Should not happen if feedbackDetails is populated correctly
                 }
-                
+
                 // Only render Alert if there's an explanation to show or if it's a wrong selection/missed error
                 if ( (showExplanations && feedback.explanation) || feedback.status === 'wrong_selection' || feedback.status === 'missed_error' || (feedback.status === 'correct_identification' && showExplanations) ) {
                     return (
-                        <Alert key={token.id} variant={feedback.status === 'wrong_selection' || feedback.status === 'missed_error' ? 'destructive' : 'default'} 
-                               className={feedback.status === 'correct_identification' ? 'bg-green-500/10 border-green-500/30' : feedback.status === 'missed_error' || feedback.status === 'wrong_selection' ? 'bg-yellow-500/10 border-yellow-500/30' : ''}>
+                        <Alert key={token.id} variant={feedback.status === 'wrong_selection' || feedback.status === 'missed_error' ? 'destructive' : 'default'}
+                               className={feedback.status === 'correct_identification' ? 'bg-green-500/20 border-green-500' : feedback.status === 'missed_error' || feedback.status === 'wrong_selection' ? 'bg-red-500/20 border-red-500' : ''}>
                           <div className="flex items-center">
-                            {feedback.status === 'correct_identification' && <CheckCircle className="h-5 w-5 mr-2 text-green-600" />}
-                            {(feedback.status === 'missed_error' || feedback.status === 'wrong_selection') && <XCircle className="h-5 w-5 mr-2 text-yellow-600" />}
-                            <AlertTitle className={feedback.status === 'correct_identification' ? 'text-green-700' : 'text-yellow-700'}>{alertTitle}</AlertTitle>
+                            {feedback.status === 'correct_identification' && <CheckCircle className="h-5 w-5 mr-2 text-green-700" />}
+                            {(feedback.status === 'missed_error' || feedback.status === 'wrong_selection') && <XCircle className="h-5 w-5 mr-2 text-red-700" />}
+                            <AlertTitle className={feedback.status === 'correct_identification' ? 'text-green-900' : 'text-red-900'}>{alertTitle}</AlertTitle>
                           </div>
-                          <AlertDescription className="text-foreground/90 mt-1 pl-7">
+                          <AlertDescription className="text-gray-900 mt-1 pl-7">
                             {descriptionElements}
                           </AlertDescription>
                         </Alert>
@@ -217,10 +217,10 @@ export function FindIncorrectWords({ exercise, onComplete }: { exercise: FindInc
 
               })}
               {totalErrorsInExercise === 0 && Object.keys(feedbackDetails).every(k => feedbackDetails[k].status !== 'missed_error' && feedbackDetails[k].status !== 'wrong_selection') && (
-                <Alert className="bg-green-500/10 border-green-500/30">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                    <AlertTitle className="text-green-700">Parabéns!</AlertTitle>
-                    <AlertDescription>Não havia erros neste texto, ou você não selecionou nenhuma palavra incorretamente!</AlertDescription>
+                <Alert className="bg-green-500/20 border-green-500">
+                    <CheckCircle className="h-5 w-5 text-green-700" />
+                    <AlertTitle className="text-green-900">Parabéns!</AlertTitle>
+                    <AlertDescription className="text-gray-900">Não havia erros neste texto, ou você não selecionou nenhuma palavra incorretamente!</AlertDescription>
                 </Alert>
               )}
             </div>
@@ -231,10 +231,10 @@ export function FindIncorrectWords({ exercise, onComplete }: { exercise: FindInc
         <Button onClick={handleSubmit} disabled={showFeedback || selectedTokenIds.length === 0} className="bg-accent hover:bg-accent/90 text-accent-foreground">
           Verificar Respostas
         </Button>
-        
+        <Button onClick={onNextExercise} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+          Trocar exercício
+        </Button>
       </CardFooter>
     </Card>
   );
 }
-
-    

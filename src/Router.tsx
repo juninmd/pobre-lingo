@@ -9,7 +9,6 @@ import SentenceOrderingPage from './pages/exercises/sentence-ordering/page';
 import QuizGeneratorPage from './pages/exercises/quiz-generator/page';
 import QuizDisplayPage from './pages/exercises/quiz/page';
 import GlossaryPage from './pages/glossary/page';
-import SentenceCheckerPage from './pages/sentence-checker/page';
 import RulesPage from './pages/rules/page';
 import CategoryPage from './pages/rules/[categoryId]/page';
 import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
       {
         path: 'glossary',
         element: <GlossaryPage />,
-      },
-      {
-        path: 'sentence-checker',
-        element: <SentenceCheckerPage />,
       },
       {
         path: 'rules',

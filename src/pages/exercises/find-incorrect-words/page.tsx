@@ -1,9 +1,22 @@
+import { useState } from 'react';
 import { FindIncorrectWords } from '@/components/exercises/FindIncorrectWords';
+import { findIncorrectWordsExercises } from '@/lib/exerciseData';
 
 export default function FindIncorrectWordsPage() {
-  // Exemplo: pega o primeiro exercício e define um onComplete vazio
-  const { findIncorrectWordsExercises } = require('@/lib/exerciseData');
-  const exercise = findIncorrectWordsExercises[0];
+  const getRandomExercise = () =>
+    findIncorrectWordsExercises[Math.floor(Math.random() * findIncorrectWordsExercises.length)];
+
+  const [exercise, setExercise] = useState(getRandomExercise());
+
   const onComplete = () => {};
-  return <FindIncorrectWords exercise={exercise} onComplete={onComplete} />;
+
+  const handleNextExercise = () => {
+    setExercise(getRandomExercise());
+  };
+
+  return (
+    <div>
+      <FindIncorrectWords exercise={exercise} onComplete={onComplete} onNextExercise={handleNextExercise} />
+    </div>
+  );
 }

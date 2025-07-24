@@ -94,6 +94,12 @@ export function FindIncorrectWords({ exercise, onComplete, onNextExercise }: { e
     }
   };
 
+  const isCompletelyCorrect = showFeedback &&
+    exercise.tokens.filter(t => t.isError).length === 0 ?
+    selectedTokenIds.length === 0 : // If no errors, then no words should be selected
+    exercise.tokens.filter(t => t.isError).every(t => selectedTokenIds.includes(t.id)) &&
+    selectedTokenIds.every(id => exercise.tokens.find(t => t.id === id)?.isError);
+
   const getButtonVariant = (token: WordToken): "secondary" | "outline" | "destructive" => {
     if (!showFeedback) {
       return selectedTokenIds.includes(token.id) ? 'secondary' : 'outline';
@@ -231,9 +237,11 @@ export function FindIncorrectWords({ exercise, onComplete, onNextExercise }: { e
         <Button onClick={handleSubmit} disabled={showFeedback || selectedTokenIds.length === 0} className="bg-accent hover:bg-accent/90 text-accent-foreground">
           Verificar Respostas
         </Button>
-        <Button onClick={onNextExercise} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-          Trocar exercício
-        </Button>
+        {showFeedback && isCompletelyCorrect && (
+          <Button onClick={onNextExercise} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            Próximo Exercício
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

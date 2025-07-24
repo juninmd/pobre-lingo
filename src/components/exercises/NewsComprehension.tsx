@@ -16,9 +16,11 @@ import { PageContainer } from '@/components/common/PageContainer';
 
 
 interface ArticleQuestion {
-  question: string;
+  id: string;
+  questionText: string;
   options: string[];
   correctAnswer: string;
+  explanation: string;
 }
 
 interface NewsComprehensionExercise {
@@ -32,9 +34,10 @@ interface NewsComprehensionExercise {
 interface NewsComprehensionProps {
   exercise: NewsComprehensionExercise;
   onComplete: () => void;
+  onNextExercise: () => void;
 }
 
-export function NewsComprehension({ exercise, onComplete }: NewsComprehensionProps) {
+export function NewsComprehension({ exercise, onComplete, onNextExercise }: NewsComprehensionProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -110,7 +113,7 @@ export function NewsComprehension({ exercise, onComplete }: NewsComprehensionPro
 
           <div className="mt-6">
             <h4 className="text-lg font-medium mb-4">
-              Questão {currentQuestionIndex + 1} de {exercise.questions.length}: {currentQuestion.question}
+              Questão {currentQuestionIndex + 1} de {exercise.questions.length}: {currentQuestion.questionText}
             </h4>
             <RadioGroup onValueChange={setSelectedAnswer} value={selectedAnswer || ""} className="space-y-2">
               {shuffledOptions.map((option, index) => (
@@ -150,9 +153,13 @@ export function NewsComprehension({ exercise, onComplete }: NewsComprehensionPro
               {currentQuestionIndex < exercise.questions.length - 1 ? "Próxima Questão" : "Finalizar Exercício"}
             </Button>
           )}
+          {showFeedback && selectedAnswer === currentQuestion.correctAnswer && currentQuestionIndex === exercise.questions.length - 1 && (
+            <Button onClick={onNextExercise} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              Próximo Exercício
+            </Button>
+          )}
         </CardFooter>
       </Card>
     </PageContainer>
   );
 }
-

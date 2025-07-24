@@ -19,7 +19,7 @@ function shuffleArray<T>(array: T[]): T[] {
   return newArray;
 }
 
-export function SentenceOrdering({ exercise, onComplete }: { exercise: SentenceOrderingExercise; onComplete: () => void; }) {
+export function SentenceOrdering({ exercise, onComplete, onNextExercise }: { exercise: SentenceOrderingExercise; onComplete: () => void; onNextExercise: () => void; }) {
   const [shuffledWords, setShuffledWords] = useState<string[]>([]);
   const [orderedSentence, setOrderedSentence] = useState<string[]>([]);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -66,6 +66,8 @@ export function SentenceOrdering({ exercise, onComplete }: { exercise: SentenceO
       toast({ title: "Incorreto!", description: "Tente novamente ou veja a resposta.", variant: "destructive" });
     }
   };
+
+  const isCompletelyCorrect = isCorrect === true;
 
   const handleShowAnswer = () => {
     if (!exercise) return;
@@ -153,7 +155,11 @@ export function SentenceOrdering({ exercise, onComplete }: { exercise: SentenceO
           Mostrar Resposta
         </Button>
         </div>
-
+        {isCompletelyCorrect && (
+          <Button onClick={onNextExercise} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            Próximo Exercício
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

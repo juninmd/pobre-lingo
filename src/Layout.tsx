@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import {
   Home,
   BookOpen,
-  ScanLine,
   Wand2,
   ListChecks,
   CheckSquare,
   TrendingUp,
   Menu,
-  Settings,
   SearchX,
-  Sigma,
   BookText,
   BookA,
   FileText,
   Search as SearchIcon,
-  Palette,
   Sun,
   Moon
 } from 'lucide-react';
@@ -52,7 +48,6 @@ const initialNavItems = [
   { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
   { href: '/glossary', label: 'Glossário', icon: BookText },
   { href: '/dictionary', label: 'Dicionário', icon: BookA },
-  { href: '/sentence-checker', label: 'Verificador de Frases', icon: ScanLine },
   { href: '/exercises/quiz-generator', label: 'Quiz Personalizado', icon: Wand2 },
   { href: '/exercises/sentence-ordering', label: 'Ordenar Frases', icon: ListChecks },
   { href: '/exercises/sentence-identification', label: 'Identificar Frases', icon: CheckSquare },

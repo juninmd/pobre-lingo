@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { correctSentenceIdentificationExercises, CorrectSentenceIdentificationExercise, CorrectSentenceIdentificationChoice } from '@/lib/exerciseData';
 import { useToast } from '@/hooks/use-toast';
 
-export function CorrectSentenceIdentification({ exercise, onComplete }: { exercise: CorrectSentenceIdentificationExercise; onComplete: () => void; }) {
+export function CorrectSentenceIdentification({ exercise, onComplete, onNextExercise }: { exercise: CorrectSentenceIdentificationExercise; onComplete: () => void; onNextExercise: () => void; }) {
   const [selectedChoices, setSelectedChoices] = useState<string[]>([]); // Store IDs of selected choices
   const [showFeedback, setShowFeedback] = useState(false);
   const { toast } = useToast();
@@ -38,10 +38,10 @@ export function CorrectSentenceIdentification({ exercise, onComplete }: { exerci
         return;
     }
     setShowFeedback(true);
-    
+
     const correctChoiceIds = exercise.choices.filter(c => c.isCorrect).map(c => c.id);
     // Check if all selected choices are correct AND all correct choices are selected
-    const isCompletelyCorrect = 
+    const isCompletelyCorrect =
         selectedChoices.length === correctChoiceIds.length &&
         selectedChoices.every(id => correctChoiceIds.includes(id)) &&
         correctChoiceIds.every(id => selectedChoices.includes(id));
@@ -58,6 +58,11 @@ export function CorrectSentenceIdentification({ exercise, onComplete }: { exerci
   if (!exercise) {
     return <p>Carregando exercício...</p>;
   }
+
+  const isCompletelyCorrect = showFeedback && exercise &&
+    selectedChoices.length === exercise.choices.filter(c => c.isCorrect).length &&
+    selectedChoices.every(id => exercise.choices.filter(c => c.isCorrect).map(c => c.id).includes(id)) &&
+    exercise.choices.filter(c => c.isCorrect).every(c => selectedChoices.includes(c.id));
 
   const correctUserChoices = exercise.choices.filter(choice => selectedChoices.includes(choice.id) && choice.isCorrect);
   const missedCorrectChoices = exercise.choices.filter(choice => !selectedChoices.includes(choice.id) && choice.isCorrect);
@@ -97,7 +102,7 @@ export function CorrectSentenceIdentification({ exercise, onComplete }: { exerci
             <AlertTitle className="font-semibold text-primary">Explicação Detalhada</AlertTitle>
             <AlertDescription className="text-foreground/80 space-y-2">
               <p>{exercise.explanation}</p>
-              
+
               <div>
                 <strong>Respostas corretas:</strong>
                 <ul className="list-disc list-inside ml-4 mt-1">
@@ -122,7 +127,7 @@ export function CorrectSentenceIdentification({ exercise, onComplete }: { exerci
                   </ul>
                 </div>
               )}
-             
+
               {missedCorrectChoices.length > 0 && (
                 <div className="text-orange-600">
                   <strong>Você não selecionou estas frases corretas:</strong>
@@ -150,9 +155,12 @@ export function CorrectSentenceIdentification({ exercise, onComplete }: { exerci
         <Button onClick={handleSubmit} disabled={selectedChoices.length === 0 || showFeedback} className="bg-accent hover:bg-accent/90 text-accent-foreground">
           Verificar Resposta
         </Button>
-        
+        {showFeedback && isCompletelyCorrect && (
+          <Button onClick={onNextExercise} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            Próximo Exercício
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
 }
-

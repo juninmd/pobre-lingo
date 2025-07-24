@@ -1,28 +1,35 @@
 import { NewsComprehension } from '@/components/exercises/NewsComprehension';
-import { newsComprehensionExercises } from '@/lib/exerciseData';
 import { useState } from 'react';
+import { newsComprehensionExercises } from '@/lib/exerciseData';
 
 export default function NewsComprehensionPage() {
-  const [selectedExercise, setSelectedExercise] = useState<any>(null);
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+  const exercise = newsComprehensionExercises[currentExerciseIndex];
 
-  // Função para finalizar o exercício e voltar para a lista
-  const handleComplete = () => setSelectedExercise(null);
+  const handleComplete = () => {
+    // Lógica para quando o exercício é completado (pode ser incrementada no futuro)
+    console.log("Exercício de Compreensão de Notícias completado!");
+  };
 
-  if (selectedExercise) {
-    return <NewsComprehension exercise={selectedExercise} onComplete={handleComplete} />;
+  const handleNextExercise = () => {
+    if (currentExerciseIndex < newsComprehensionExercises.length - 1) {
+      setCurrentExerciseIndex(prevIndex => prevIndex + 1);
+    } else {
+      // Todos os exercícios foram concluídos
+      alert("Parabéns! Você completou todos os exercícios de Compreensão de Notícias.");
+      setCurrentExerciseIndex(0); // Reinicia para o primeiro exercício ou redireciona
+    }
+  };
+
+  if (!exercise) {
+    return <p>Carregando exercícios...</p>;
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Interpretação de Artigos</h1>
-      <div className="grid gap-4">
-        {newsComprehensionExercises.map((exercise) => (
-          <div key={exercise.id} className="p-4 border rounded-md cursor-pointer hover:bg-muted/50" onClick={() => setSelectedExercise(exercise)}>
-            <h2 className="text-lg font-semibold">{exercise.article.title}</h2>
-            <p className="text-sm text-muted-foreground">{exercise.article.source} - {exercise.article.date}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <NewsComprehension
+      exercise={exercise}
+      onComplete={handleComplete}
+      onNextExercise={handleNextExercise}
+    />
   );
 }

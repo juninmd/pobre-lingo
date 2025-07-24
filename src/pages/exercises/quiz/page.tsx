@@ -102,13 +102,19 @@ export default function QuizDisplayPage() {
   const renderExercise = () => {
     switch (exerciseType) {
       case 'sentence-ordering':
-        return <SentenceOrdering exercise={currentExercise} onComplete={handleNextQuestion} />;
+        return <SentenceOrdering exercise={currentExercise} onComplete={handleNextQuestion} onNextExercise={function (): void {
+          throw new Error('Function not implemented.');
+        } } />;
       case 'sentence-identification':
-        return <CorrectSentenceIdentification exercise={currentExercise} onComplete={handleNextQuestion} />;
+        return <CorrectSentenceIdentification exercise={currentExercise} onComplete={handleNextQuestion} onNextExercise={function (): void {
+          throw new Error('Function not implemented.');
+        } } />;
       case 'find-incorrect-words':
         return <FindIncorrectWords exercise={currentExercise} onComplete={handleNextQuestion} onNextExercise={handleReplaceCurrentExercise} />;
       case 'news-comprehension':
-        return <NewsComprehension exercise={currentExercise} onComplete={handleNextQuestion} />;
+        return <NewsComprehension exercise={currentExercise} onComplete={handleNextQuestion} onNextExercise={function (): void {
+          throw new Error('Function not implemented.');
+        } } />;
       default:
         return <p>Tipo de exercício desconhecido.</p>;
     }

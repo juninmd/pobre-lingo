@@ -10,6 +10,9 @@ import GlossaryPage from './pages/glossary/page';
 import RulesPage from './pages/rules/page';
 import CategoryPage from './pages/rules/[categoryId]/page';
 import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
+import CurriculumPage from './pages/curriculum/page';
+import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page';
+import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,18 @@ const router = createBrowserRouter([
       {
         path: 'dictionary',
         element: <DictionaryPage />,
+      },
+      {
+        path: 'curriculum',
+        element: <CurriculumPage />,
+      },
+      {
+        path: 'vocabulary/:moduleId/:lessonId',
+        element: <VocabularyLessonPage />,
+      },
+      {
+        path: 'quiz/:moduleId/:lessonId',
+        element: <QuizLessonPage />,
       },
       {
         path: 'progress',

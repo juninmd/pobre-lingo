@@ -1,4 +1,6 @@
 import { LearningStreakDisplay } from '@/components/streaks/LearningStreakDisplay';
+import { CurriculumProgressCard } from '@/components/curriculum/CurriculumProgressCard';
+import { AchievementsCard } from '@/components/curriculum/AchievementsCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -72,6 +74,12 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Card de Currículo/Jornada */}
+      <CurriculumProgressCard />
+
+      {/* Conquistas */}
+      <AchievementsCard />
 
       {/* Seções Adicionais */}
       <div className="grid gap-6 md:grid-cols-2">

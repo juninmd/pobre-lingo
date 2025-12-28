@@ -19,7 +19,8 @@ import {
   Search as SearchIcon,
   Palette,
   Sun,
-  Moon
+  Moon,
+  Map,
 } from 'lucide-react';
 import PobreLingoLogo from '@/components/icons/PobreLingoLogo';
 import {
@@ -49,6 +50,7 @@ import { useTheme } from './contexts/ThemeContext';
 
 const initialNavItems = [
   { href: '/', label: 'Início', icon: Home },
+  { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map },
   { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
   { href: '/glossary', label: 'Glossário', icon: BookText },
   { href: '/dictionary', label: 'Dicionário', icon: BookA },

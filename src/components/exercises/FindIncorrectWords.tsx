@@ -170,7 +170,7 @@ export function FindIncorrectWords() {
 
                 let alertVariant: "default" | "destructive" = "default";
                 let alertTitle = "";
-                let descriptionElements: JSX.Element[] = [];
+                let descriptionElements: React.ReactElement[] = [];
 
                 if (feedback.status === 'correct_identification') {
                   alertVariant = "default";
@@ -195,11 +195,11 @@ export function FindIncorrectWords() {
                 } else {
                     return null; // Should not happen if feedbackDetails is populated correctly
                 }
-                
+
                 // Only render Alert if there's an explanation to show or if it's a wrong selection/missed error
                 if ( (showExplanations && feedback.explanation) || feedback.status === 'wrong_selection' || feedback.status === 'missed_error' || (feedback.status === 'correct_identification' && showExplanations) ) {
                     return (
-                        <Alert key={token.id} variant={feedback.status === 'wrong_selection' || feedback.status === 'missed_error' ? 'destructive' : 'default'} 
+                        <Alert key={token.id} variant={feedback.status === 'wrong_selection' || feedback.status === 'missed_error' ? 'destructive' : 'default'}
                                className={feedback.status === 'correct_identification' ? 'bg-green-500/10 border-green-500/30' : feedback.status === 'missed_error' || feedback.status === 'wrong_selection' ? 'bg-yellow-500/10 border-yellow-500/30' : ''}>
                           <div className="flex items-center">
                             {feedback.status === 'correct_identification' && <CheckCircle className="h-5 w-5 mr-2 text-green-600" />}
@@ -238,4 +238,3 @@ export function FindIncorrectWords() {
   );
 }
 
-    

@@ -316,7 +316,7 @@ export default function CurriculumPage() {
 
                             <div className="flex-shrink-0">
                               {lesson.exerciseType ? (
-                                <Link to={`/exercises/${lesson.exerciseType}`}>
+                                <Link to={`/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`}>
                                   <Button size="sm" variant={lessonCompleted ? "outline" : "default"}>
                                     {lessonCompleted ? (
                                       <>
@@ -364,13 +364,13 @@ export default function CurriculumPage() {
                                   </Button>
                                 </Link>
                               ) : lesson.grammarRuleIds && lesson.grammarRuleIds.length > 0 ? (
-                                <Link to="/rules">
+                                <Link to={`/rules?module=${module.id}&lesson=${lesson.id}&ruleIds=${lesson.grammarRuleIds.join(',')}`}>
                                   <Button size="sm" variant={lessonCompleted ? "outline" : "default"}>
                                     {lessonCompleted ? "Revisar" : "Estudar"}
                                   </Button>
                                 </Link>
                               ) : lesson.type === 'reading' ? (
-                                <Link to="/exercises/news-comprehension">
+                                <Link to={`/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`}>
                                   <Button size="sm" variant={lessonCompleted ? "outline" : "default"}>
                                     {lessonCompleted ? (
                                       <>
@@ -386,7 +386,7 @@ export default function CurriculumPage() {
                                   </Button>
                                 </Link>
                               ) : (
-                                <Link to="/rules">
+                                <Link to={`/rules?module=${module.id}&lesson=${lesson.id}`}>
                                   <Button size="sm" variant={lessonCompleted ? "outline" : "default"}>
                                     {lessonCompleted ? "Revisar" : "Estudar"}
                                   </Button>

@@ -10,6 +10,8 @@ import { Badge } from '@/components/ui/badge';
 import { findIncorrectWordsExercises, FindIncorrectWordsExercise, WordToken } from '@/lib/exerciseData';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '../ui/separator';
+import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
+import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
 
 interface FeedbackDetail {
   status: 'correct_identification' | 'missed_error' | 'wrong_selection';
@@ -23,7 +25,11 @@ export function FindIncorrectWords() {
   const [feedbackDetails, setFeedbackDetails] = useState<Record<string, FeedbackDetail>>({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [showExplanations, setShowExplanations] = useState(false);
+  const [exercisesCompleted, setExercisesCompleted] = useState(0);
   const { toast } = useToast();
+  const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
+
+  const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
   const loadNewExercise = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * findIncorrectWordsExercises.length);
@@ -86,6 +92,12 @@ export function FindIncorrectWords() {
     setShowExplanations(false); // Reset explanation visibility on new check
 
     const totalErrors = currentExercise.tokens.filter(t => t.isError).length;
+
+    // Se encontrou todos os erros sem seleções erradas, conta como exercício completo
+    if (correctIdentifications === totalErrors && wrongSelections === 0) {
+      setExercisesCompleted(prev => prev + 1);
+    }
+
     toast({
       title: "Resultado da Verificação",
       description: `Você identificou ${correctIdentifications} de ${totalErrors} erros. ${wrongSelections > 0 ? `${wrongSelections} palavras corretas foram selecionadas indevidamente.` : ''}`,
@@ -128,6 +140,26 @@ export function FindIncorrectWords() {
   const totalErrorsInExercise = currentExercise.tokens.filter(t => t.isError).length;
 
   return (
+    <div className="space-y-6">
+      {/* Barra de progresso da lição (se vindo do currículo) */}
+      {isFromCurriculum && moduleId && lessonId && (
+        <LessonProgressBar
+          moduleId={moduleId}
+          lessonId={lessonId}
+          showCompleteButton={exercisesCompleted >= EXERCISES_TO_COMPLETE}
+        />
+      )}
+
+      {/* Contador de progresso do exercício */}
+      {isFromCurriculum && (
+        <div className="text-center text-sm text-muted-foreground">
+          Exercícios completados: {exercisesCompleted}/{EXERCISES_TO_COMPLETE}
+          {exercisesCompleted >= EXERCISES_TO_COMPLETE && (
+            <span className="ml-2 text-green-600 font-medium">✓ Você pode marcar como dominada!</span>
+          )}
+        </div>
+      )}
+
     <Card className="w-full max-w-3xl mx-auto shadow-xl bg-card">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-primary flex items-center">
@@ -235,6 +267,7 @@ export function FindIncorrectWords() {
         </Button>
       </CardFooter>
     </Card>
+    </div>
   );
 }
 

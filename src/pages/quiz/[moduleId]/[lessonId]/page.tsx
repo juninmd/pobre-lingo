@@ -11,6 +11,7 @@ import { curriculumData } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { CheckCircle2, XCircle, ArrowLeft, Trophy, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 
 interface QuizQuestion {
   question: string;
@@ -480,6 +481,14 @@ export default function QuizLessonPage() {
   return (
     <PageContainer>
       <div className="max-w-2xl mx-auto">
+        {/* Barra de Progresso da Jornada */}
+        <LessonProgressBar
+          moduleId={moduleId!}
+          lessonId={lessonId!}
+          showCompleteButton={false}
+          className="mb-6"
+        />
+
         {/* Header */}
         <div className="mb-6">
           <Button variant="ghost" onClick={() => navigate('/curriculum')} className="mb-4">

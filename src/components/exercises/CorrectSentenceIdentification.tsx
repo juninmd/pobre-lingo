@@ -12,12 +12,18 @@ import { CheckSquare, Languages, RefreshCw } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { correctSentenceIdentificationExercises, CorrectSentenceIdentificationExercise, CorrectSentenceIdentificationChoice } from '@/lib/exerciseData';
 import { useToast } from '@/hooks/use-toast';
+import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
+import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
 
 export function CorrectSentenceIdentification() {
   const [currentExercise, setCurrentExercise] = useState<CorrectSentenceIdentificationExercise | null>(null);
   const [selectedChoices, setSelectedChoices] = useState<string[]>([]); // Store IDs of selected choices
   const [showFeedback, setShowFeedback] = useState(false);
+  const [exercisesCompleted, setExercisesCompleted] = useState(0);
   const { toast } = useToast();
+  const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
+
+  const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
   const loadNewExercise = () => {
     const randomIndex = Math.floor(Math.random() * correctSentenceIdentificationExercises.length);
@@ -44,16 +50,17 @@ export function CorrectSentenceIdentification() {
         return;
     };
     setShowFeedback(true);
-    
+
     const correctChoiceIds = currentExercise.choices.filter(c => c.isCorrect).map(c => c.id);
     // Check if all selected choices are correct AND all correct choices are selected
-    const isCompletelyCorrect = 
+    const isCompletelyCorrect =
         selectedChoices.length === correctChoiceIds.length &&
         selectedChoices.every(id => correctChoiceIds.includes(id)) &&
         correctChoiceIds.every(id => selectedChoices.includes(id));
 
 
     if (isCompletelyCorrect) {
+        setExercisesCompleted(prev => prev + 1);
         toast({ title: "Correto!", description: "Você identificou a(s) frase(s) correta(s)!", className: "bg-green-500/20 border-green-500 text-green-700" });
     } else {
         toast({ title: "Incorreto!", description: "Verifique a explicação para entender melhor.", variant: "destructive" });
@@ -69,6 +76,26 @@ export function CorrectSentenceIdentification() {
 
 
   return (
+    <div className="space-y-6">
+      {/* Barra de progresso da lição (se vindo do currículo) */}
+      {isFromCurriculum && moduleId && lessonId && (
+        <LessonProgressBar
+          moduleId={moduleId}
+          lessonId={lessonId}
+          showCompleteButton={exercisesCompleted >= EXERCISES_TO_COMPLETE}
+        />
+      )}
+
+      {/* Contador de progresso do exercício */}
+      {isFromCurriculum && (
+        <div className="text-center text-sm text-muted-foreground">
+          Exercícios completados: {exercisesCompleted}/{EXERCISES_TO_COMPLETE}
+          {exercisesCompleted >= EXERCISES_TO_COMPLETE && (
+            <span className="ml-2 text-green-600 font-medium">✓ Você pode marcar como dominada!</span>
+          )}
+        </div>
+      )}
+
     <Card className="w-full max-w-2xl mx-auto shadow-xl bg-card">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-primary flex items-center">
@@ -102,7 +129,7 @@ export function CorrectSentenceIdentification() {
             <AlertTitle className="font-semibold text-primary">Explicação Detalhada</AlertTitle>
             <AlertDescription className="text-foreground/80 space-y-2">
               <p>{currentExercise.explanation}</p>
-              
+
               <div>
                 <strong>Respostas corretas:</strong>
                 <ul className="list-disc list-inside ml-4 mt-1">
@@ -127,7 +154,7 @@ export function CorrectSentenceIdentification() {
                   </ul>
                 </div>
               )}
-             
+
               {missedCorrectChoices.length > 0 && (
                 <div className="text-orange-600">
                   <strong>Você não selecionou estas frases corretas:</strong>
@@ -160,6 +187,7 @@ export function CorrectSentenceIdentification() {
         </Button>
       </CardFooter>
     </Card>
+    </div>
   );
 }
 

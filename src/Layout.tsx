@@ -21,6 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import PobreLingoLogo from '@/components/icons/PobreLingoLogo';
+import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
 import {
   SidebarProvider,
   Sidebar,
@@ -291,6 +292,7 @@ export default function Layout() {
           </footer>
         </SidebarInset>
       </SidebarProvider>
+      <PWAInstallPrompt />
       <Toaster />
     </div>
   );

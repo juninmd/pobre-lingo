@@ -9,6 +9,7 @@ import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, CheckCircle2, Star, ArrowRight, ArrowLeft, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 
 // Dados de vocabulário por tópico
 const vocabularyData: Record<string, { word: string; translation: string; example: string }[]> = {
@@ -246,6 +247,14 @@ export default function VocabularyLessonPage() {
   return (
     <PageContainer>
       <div className="max-w-4xl mx-auto">
+        {/* Barra de Progresso da Jornada */}
+        <LessonProgressBar
+          moduleId={moduleId!}
+          lessonId={lessonId!}
+          showCompleteButton={allWords.length > 0 && currentIndex === allWords.length - 1}
+          className="mb-6"
+        />
+
         {/* Header */}
         <div className="mb-6">
           <Button variant="ghost" onClick={() => navigate('/curriculum')} className="mb-4">

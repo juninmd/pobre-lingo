@@ -1,13 +1,22 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { getRuleById, getCategoryById } from '@/lib/grammarRules';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
 export default function RulePage() {
   const { categoryId, ruleId } = useParams<{ categoryId: string; ruleId: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { isLessonCompleted } = useCurriculumProgress();
+
+  // Parâmetros de currículo (se vindo da jornada de aprendizado)
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const isFromCurriculum = moduleId !== null && lessonId !== null;
 
   const category = getCategoryById(categoryId!);
   const rule = getRuleById(ruleId!);
@@ -23,8 +32,39 @@ export default function RulePage() {
   const previousRuleId = currentRuleIndex > 0 ? rulesInThisCategory[currentRuleIndex - 1].id : undefined;
   const nextRuleId = currentRuleIndex < totalRules - 1 ? rulesInThisCategory[currentRuleIndex + 1].id : undefined;
 
+  // Construir URL mantendo parâmetros do currículo
+  const buildRuleUrl = (newRuleId: string) => {
+    const baseUrl = `/rules/${categoryId}/${newRuleId}`;
+    if (isFromCurriculum) {
+      return `${baseUrl}?module=${moduleId}&lesson=${lessonId}`;
+    }
+    return baseUrl;
+  };
+
+  // Verificar se é a última regra (para habilitar marcar como dominada)
+  const isLastRule = currentRuleIndex === totalRules - 1;
+
   return (
     <div className="space-y-6">
+      {/* Barra de Progresso da Jornada (se vindo do currículo) */}
+      {isFromCurriculum && moduleId && lessonId && (
+        <LessonProgressBar
+          moduleId={moduleId}
+          lessonId={lessonId}
+          showCompleteButton={isLastRule}
+        />
+      )}
+
+      {/* Indicador de progresso das regras */}
+      {isFromCurriculum && (
+        <div className="text-center text-sm text-muted-foreground">
+          Regra {currentRuleIndex + 1} de {totalRules}
+          {isLastRule && (
+            <span className="ml-2 text-green-600 font-medium">✓ Última regra! Você pode marcar como dominada.</span>
+          )}
+        </div>
+      )}
+
       <Button variant="outline" onClick={() => navigate(-1)} className="flex items-center gap-2">
         <ArrowLeft className="h-4 w-4" /> Voltar
       </Button>
@@ -75,7 +115,7 @@ export default function RulePage() {
 
       <div className="flex justify-between items-center mt-6">
         {previousRuleId ? (
-          <Button onClick={() => navigate(`/rules/${categoryId}/${previousRuleId}`)} variant="outline">
+          <Button onClick={() => navigate(buildRuleUrl(previousRuleId))} variant="outline">
             <ArrowLeft className="h-4 w-4 mr-2" /> Regra Anterior
           </Button>
         ) : (
@@ -87,7 +127,7 @@ export default function RulePage() {
           </span>
         )}
         {nextRuleId ? (
-          <Button onClick={() => navigate(`/rules/${categoryId}/${nextRuleId}`)} variant="outline">
+          <Button onClick={() => navigate(buildRuleUrl(nextRuleId))} variant="outline">
             Próxima Regra <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         ) : (

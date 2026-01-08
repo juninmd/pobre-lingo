@@ -5,28 +5,69 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
-import { curriculumData } from '@/lib/curriculumData';
+import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
 import {
   ArrowRight,
   CheckCircle2,
-  Lock,
   Star,
   TrendingUp,
   Clock,
   Award,
+  Play,
+  BookOpen,
+  Target,
+  Trophy,
+  Flame,
 } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+const lessonTypeConfig = {
+  grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-100' },
+  vocabulary: { label: 'Vocabulário', icon: Star, color: 'text-purple-600', bgColor: 'bg-purple-100' },
+  exercise: { label: 'Exercício', icon: Target, color: 'text-green-600', bgColor: 'bg-green-100' },
+  reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
+  quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
+};
+
+function getLessonLink(module: Module, lesson: Lesson): string {
+  if (lesson.exerciseType) {
+    return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
+  }
+  if (lesson.type === 'vocabulary') {
+    return `/vocabulary/${module.id}/${lesson.id}`;
+  }
+  if (lesson.type === 'quiz') {
+    return `/quiz/${module.id}/${lesson.id}`;
+  }
+  if (lesson.type === 'grammar' && lesson.grammarRuleIds?.length) {
+    return `/rules?module=${module.id}&lesson=${lesson.id}&ruleIds=${lesson.grammarRuleIds.join(',')}`;
+  }
+  if (lesson.type === 'reading') {
+    return `/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`;
+  }
+  return `/rules?module=${module.id}&lesson=${lesson.id}`;
+}
+
 export function CurriculumProgressCard() {
-  const { isModuleUnlocked, getModuleProgress, getOverallProgress, totalXP, userLevel } = useCurriculumProgress();
+  const { isModuleUnlocked, getModuleProgress, getOverallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
   const overallProgress = getOverallProgress();
 
-  // Encontrar o próximo módulo não completo
-  const nextModule = curriculumData.modules.find(module => {
-    const progress = getModuleProgress(module.id);
-    return isModuleUnlocked(module) && progress.completionPercentage < 100;
-  });
+  // Encontrar a próxima lição não completada
+  const findNextLesson = (): { module: Module; lesson: Lesson; lessonIndex: number } | null => {
+    for (const module of curriculumData.modules) {
+      if (!isModuleUnlocked(module)) continue;
+      for (let i = 0; i < module.lessons.length; i++) {
+        const lesson = module.lessons[i];
+        if (!isLessonCompleted(module.id, lesson.id)) {
+          return { module, lesson, lessonIndex: i };
+        }
+      }
+    }
+    return null;
+  };
+
+  const nextLesson = findNextLesson();
 
   // Módulos por dificuldade
   const basicModules = curriculumData.modules.filter(m => m.difficulty === 'basico');
@@ -145,39 +186,48 @@ export function CurriculumProgressCard() {
           </div>
         </div>
 
-        {/* Próximo Módulo */}
-        {nextModule && (
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+        {/* Próxima Lição */}
+        {nextLesson && (
+          <div className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/5 rounded-lg border border-primary/20">
             <div className="flex items-start gap-3">
               <div className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0",
-                nextModule.color,
-                "text-white"
+                lessonTypeConfig[nextLesson.lesson.type].bgColor
               )}>
                 {React.createElement(
-                  (LucideIcons as any)[nextModule.icon] || Award,
-                  { className: "h-5 w-5" }
+                  lessonTypeConfig[nextLesson.lesson.type].icon,
+                  { className: cn("h-5 w-5", lessonTypeConfig[nextLesson.lesson.type].color) }
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h4 className="font-semibold text-sm">Continue Aprendendo</h4>
-                  <Badge variant="outline" className="text-xs">
-                    {nextModule.difficulty === 'basico' ? 'Básico' :
-                     nextModule.difficulty === 'intermediario' ? 'Intermediário' : 'Avançado'}
+                  <h4 className="font-semibold text-sm flex items-center gap-1">
+                    <Flame className="h-4 w-4 text-orange-500" />
+                    Continue Aprendendo
+                  </h4>
+                </div>
+                <p className="font-medium text-sm mb-1">{nextLesson.lesson.title_pt}</p>
+                <p className="text-xs text-muted-foreground mb-2">
+                  {nextLesson.module.title_pt} • Lição {nextLesson.lessonIndex + 1} de {nextLesson.module.lessons.length}
+                </p>
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {nextLesson.lesson.estimatedMinutes} min
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Star className="h-3 w-3 text-yellow-500" />
+                    +{nextLesson.lesson.xpReward} XP
+                  </span>
+                  <Badge variant="outline" className="text-[10px]">
+                    {lessonTypeConfig[nextLesson.lesson.type].label}
                   </Badge>
                 </div>
-                <p className="text-sm mb-2">{nextModule.title_pt}</p>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3" />
-                    {getModuleProgress(nextModule.id).lessonsCompleted}/{getModuleProgress(nextModule.id).totalLessons} lições
-                  </span>
-                </div>
-                <Link to="/curriculum">
+                <Link to={getLessonLink(nextLesson.module, nextLesson.lesson)}>
                   <Button size="sm" className="w-full">
-                    <TrendingUp className="h-4 w-4 mr-2" />
-                    Continuar Módulo
+                    <Play className="h-4 w-4 mr-2" />
+                    Começar Lição
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
@@ -187,7 +237,7 @@ export function CurriculumProgressCard() {
 
         {/* Mensagem de Motivação */}
         {overallProgress.completedLessons === 0 && (
-          <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+          <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 rounded-lg border border-green-200 dark:border-green-800">
             <Award className="h-8 w-8 text-green-600 mx-auto mb-2" />
             <h4 className="font-semibold mb-1">Comece Sua Jornada!</h4>
             <p className="text-sm text-muted-foreground mb-3">
@@ -196,6 +246,23 @@ export function CurriculumProgressCard() {
             <Link to="/curriculum">
               <Button size="sm" className="w-full">
                 Iniciar Agora
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        )}
+
+        {/* Jornada Completa */}
+        {!nextLesson && overallProgress.completedLessons > 0 && (
+          <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 rounded-lg border border-yellow-200 dark:border-yellow-700">
+            <Trophy className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
+            <h4 className="font-semibold mb-1">🎉 Parabéns!</h4>
+            <p className="text-sm text-muted-foreground mb-3">
+              Você completou toda a jornada de aprendizado!
+            </p>
+            <Link to="/curriculum">
+              <Button size="sm" variant="outline" className="w-full">
+                Ver Conquistas
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>

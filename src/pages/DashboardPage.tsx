@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Link } from 'react-router-dom';
-import { Award, BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2 } from 'lucide-react';
+import { PageHeader } from '@/components/common/PageHeader';
+import { PageContainer } from '@/components/common/PageContainer';
+import { Home, BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function DashboardPage() {
   // Dados mock para demonstração
@@ -26,28 +28,27 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-8 p-4 md:p-6 lg:p-8">
-      {/* Seção de Boas-vindas */}
-      <Card className="shadow-lg border-none bg-gradient-to-r from-primary to-accent text-primary-foreground">
-        <CardContent className="p-6 flex flex-col md:flex-row items-center justify-between">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">Bem-vindo(a), {userName}!</h2>
-            <p className="text-lg opacity-90">Continue sua jornada de aprendizado e alcance a fluência.</p>
-          </div>
-          <Award className="h-16 w-16 md:h-20 md:w-20 mt-4 md:mt-0 opacity-80" />
-        </CardContent>
-      </Card>
+    <PageContainer>
+      {/* Header padronizado */}
+      <PageHeader
+        title="Bem-vindo(a)!"
+        description="Continue sua jornada de aprendizado e alcance a fluência no inglês."
+        icon={Home}
+        iconClassName="text-primary"
+      />
 
       {/* Grid de Estatísticas Principais */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <LearningStreakDisplay className="shadow-md" />
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">
+        <LearningStreakDisplay className="border" />
 
-        <Card className="shadow-md">
+        <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200 dark:from-blue-950/30 dark:to-blue-900/20 dark:border-blue-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Exercícios Concluídos
             </CardTitle>
-            <CheckSquare className="h-4 w-4 text-muted-foreground" />
+            <div className="p-2 rounded-lg bg-blue-200 dark:bg-blue-800">
+              <CheckSquare className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{exercisesCompleted} / {totalExercises}</div>
@@ -58,12 +59,14 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-md">
+        <Card className="bg-gradient-to-br from-green-50 to-green-100/50 border-green-200 dark:from-green-950/30 dark:to-green-900/20 dark:border-green-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Progresso Geral
             </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <div className="p-2 rounded-lg bg-green-200 dark:bg-green-800">
+              <TrendingUp className="h-4 w-4 text-green-700 dark:text-green-300" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{learningProgress.toFixed(0)}%</div>
@@ -76,17 +79,24 @@ export default function DashboardPage() {
       </div>
 
       {/* Card de Currículo/Jornada */}
-      <CurriculumProgressCard />
+      <div className="mb-8">
+        <CurriculumProgressCard />
+      </div>
 
       {/* Conquistas */}
-      <AchievementsCard />
+      <div className="mb-8">
+        <AchievementsCard />
+      </div>
 
       {/* Seções Adicionais */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         {/* Atividade Recente */}
-        <Card className="shadow-md">
+        <Card>
           <CardHeader>
-            <CardTitle>Atividade Recente</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-purple-500" />
+              Atividade Recente
+            </CardTitle>
           </CardHeader>
           <CardContent>
             {recentActivities.length > 0 ? (
@@ -110,9 +120,12 @@ export default function DashboardPage() {
         </Card>
 
         {/* Recomendações de Exercícios */}
-        <Card className="shadow-md">
+        <Card>
           <CardHeader>
-            <CardTitle>Recomendações para Você</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Lightbulb className="h-5 w-5 text-yellow-500" />
+              Recomendações para Você
+            </CardTitle>
           </CardHeader>
           <CardContent>
             {recommendedExercises.length > 0 ? (
@@ -135,6 +148,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </PageContainer>
   );
 }

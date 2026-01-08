@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { PageHeader } from '@/components/common/PageHeader';
+import { PageContainer } from '@/components/common/PageContainer';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Newspaper, Clock, ChevronRight } from 'lucide-react';
 
 export default function NewsComprehensionPage() {
   const [selectedExercise, setSelectedExercise] = useState<any>(null);
@@ -24,13 +29,15 @@ export default function NewsComprehensionPage() {
 
   if (selectedExercise) {
     return (
-      <div className="space-y-6">
+      <PageContainer>
         {isFromCurriculum && moduleId && lessonId && (
-          <LessonProgressBar
-            moduleId={moduleId}
-            lessonId={lessonId}
-            showCompleteButton={quizCompleted}
-          />
+          <div className="mb-6">
+            <LessonProgressBar
+              moduleId={moduleId}
+              lessonId={lessonId}
+              showCompleteButton={quizCompleted}
+            />
+          </div>
         )}
         <NewsComprehension
           exercise={selectedExercise}
@@ -40,31 +47,61 @@ export default function NewsComprehensionPage() {
           }}
           onQuizComplete={handleQuizComplete}
         />
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <PageContainer>
       {isFromCurriculum && moduleId && lessonId && (
-        <LessonProgressBar
-          moduleId={moduleId}
-          lessonId={lessonId}
-          showCompleteButton={false}
-        />
-      )}
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Interpretação de Artigos</h1>
-        <p className="text-muted-foreground mb-6">Escolha um artigo para praticar leitura e interpretação de texto em inglês.</p>
-        <div className="grid gap-4">
-          {newsComprehensionExercises.map((exercise) => (
-            <div key={exercise.id} className="p-4 border rounded-md cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => setSelectedExercise(exercise)}>
-              <h2 className="text-lg font-semibold">{exercise.article.title}</h2>
-              <p className="text-sm text-muted-foreground">{exercise.article.source} - {exercise.article.date}</p>
-            </div>
-          ))}
+        <div className="mb-6">
+          <LessonProgressBar
+            moduleId={moduleId}
+            lessonId={lessonId}
+            showCompleteButton={false}
+          />
         </div>
+      )}
+
+      <PageHeader
+        title="Interpretação de Artigos"
+        description="Pratique leitura e compreensão de texto em inglês com artigos reais."
+        icon={Newspaper}
+        iconClassName="text-cyan-500"
+      >
+        <Badge variant="secondary">
+          {newsComprehensionExercises.length} artigos disponíveis
+        </Badge>
+      </PageHeader>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {newsComprehensionExercises.map((exercise) => (
+          <Card
+            key={exercise.id}
+            className="cursor-pointer hover:shadow-md hover:border-primary/30 transition-all group"
+            onClick={() => setSelectedExercise(exercise)}
+          >
+            <CardContent className="p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold group-hover:text-primary transition-colors mb-2">
+                    {exercise.article.title}
+                  </h2>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <span>{exercise.article.source}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {exercise.article.date}
+                    </span>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
-    </div>
+    </PageContainer>
   );
 }

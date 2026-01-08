@@ -1,9 +1,12 @@
 import { grammarCategories, getCategoryById, getRuleById } from '@/lib/grammarRules';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
+import { PageHeader } from '@/components/common/PageHeader';
+import { PageContainer } from '@/components/common/PageContainer';
 import { useEffect } from 'react';
-import { BookOpen, ChevronRight } from 'lucide-react';
+import { BookOpen, ChevronRight, GraduationCap, Sparkles } from 'lucide-react';
 
 export default function RulesPage() {
   const [searchParams] = useSearchParams();
@@ -38,24 +41,40 @@ export default function RulesPage() {
     : grammarCategories;
 
   return (
-    <div className="space-y-6">
+    <PageContainer>
       {/* Barra de Progresso da Jornada (se vindo do currículo) */}
       {isFromCurriculum && moduleId && lessonId && (
-        <LessonProgressBar
-          moduleId={moduleId}
-          lessonId={lessonId}
-          showCompleteButton={false}
-        />
+        <div className="mb-6">
+          <LessonProgressBar
+            moduleId={moduleId}
+            lessonId={lessonId}
+            showCompleteButton={false}
+          />
+        </div>
       )}
 
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Regras Gramaticais</h1>
-        <p className="text-muted-foreground mb-6">
-          {isFromCurriculum
+      <PageHeader
+        title="Regras Gramaticais"
+        description={
+          isFromCurriculum
             ? 'Estude as regras abaixo para completar esta lição.'
-            : 'Explore todas as regras gramaticais do inglês organizadas por categorias.'}
-        </p>
-      </div>
+            : 'Explore todas as regras gramaticais do inglês organizadas por categorias.'
+        }
+        icon={GraduationCap}
+        iconClassName="text-blue-500"
+      >
+        {!isFromCurriculum && (
+          <div className="flex items-center gap-2 mt-2">
+            <Badge variant="secondary" className="flex items-center gap-1">
+              <BookOpen className="h-3 w-3" />
+              {grammarCategories.length} categorias
+            </Badge>
+            <Badge variant="outline">
+              {grammarCategories.reduce((acc, cat) => acc + cat.rules.length, 0)} regras
+            </Badge>
+          </div>
+        )}
+      </PageHeader>
 
       <div className="grid gap-4 md:grid-cols-2">
         {displayCategories.map((category) => {
@@ -65,38 +84,41 @@ export default function RulesPage() {
             : category.rules;
 
           return (
-            <Card key={category.id} className="hover:bg-muted/50 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-primary" />
+            <Card key={category.id} className="hover:shadow-md transition-all hover:border-primary/30">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <BookOpen className="h-4 w-4 text-primary" />
+                  </div>
                   {category.name_pt}
                 </CardTitle>
                 <CardDescription>{category.description_pt}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {rulesToShow.slice(0, 5).map((rule) => (
                     <Link
                       key={rule.id}
                       to={`/rules/${category.id}/${rule.id}${isFromCurriculum ? `?module=${moduleId}&lesson=${lessonId}` : ''}`}
-                      className="flex items-center justify-between p-2 rounded-md hover:bg-muted transition-colors"
+                      className="flex items-center justify-between p-2.5 rounded-lg hover:bg-muted transition-colors group"
                     >
-                      <span className="text-sm">{rule.title_pt}</span>
-                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-sm group-hover:text-primary transition-colors">{rule.title_pt}</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     </Link>
                   ))}
                   {rulesToShow.length > 5 && (
                     <Link
                       to={`/rules/${category.id}${isFromCurriculum ? `?module=${moduleId}&lesson=${lessonId}` : ''}`}
-                      className="text-sm text-primary hover:underline block mt-2"
+                      className="flex items-center gap-1 text-sm text-primary hover:underline pt-2"
                     >
-                      Ver todas as {rulesToShow.length} regras →
+                      <Sparkles className="h-3 w-3" />
+                      Ver todas as {rulesToShow.length} regras
                     </Link>
                   )}
                   {rulesToShow.length === 0 && (
                     <Link
                       to={`/rules/${category.id}`}
-                      className="text-sm text-muted-foreground"
+                      className="text-sm text-muted-foreground hover:text-primary"
                     >
                       Ver categoria →
                     </Link>
@@ -107,6 +129,6 @@ export default function RulesPage() {
           );
         })}
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -3,9 +3,10 @@ import { getRuleById, getCategoryById } from '@/lib/grammarRules';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, XCircle, BookOpen } from 'lucide-react';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { PageContainer } from '@/components/common/PageContainer';
 
 export default function RulePage() {
   const { categoryId, ruleId } = useParams<{ categoryId: string; ruleId: string }>();
@@ -22,7 +23,16 @@ export default function RulePage() {
   const rule = getRuleById(ruleId!);
 
   if (!category || !rule) {
-    return <div>Regra ou Categoria não encontrada</div>;
+    return (
+      <PageContainer>
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">Regra ou Categoria não encontrada</p>
+          <Button variant="outline" onClick={() => navigate('/rules')} className="mt-4">
+            <ArrowLeft className="h-4 w-4 mr-2" /> Voltar para Regras
+          </Button>
+        </div>
+      </PageContainer>
+    );
   }
 
   const rulesInThisCategory = category.rules;
@@ -45,29 +55,30 @@ export default function RulePage() {
   const isLastRule = currentRuleIndex === totalRules - 1;
 
   return (
-    <div className="space-y-6">
-      {/* Barra de Progresso da Jornada (se vindo do currículo) */}
-      {isFromCurriculum && moduleId && lessonId && (
-        <LessonProgressBar
-          moduleId={moduleId}
-          lessonId={lessonId}
-          showCompleteButton={isLastRule}
-        />
-      )}
+    <PageContainer>
+      <div className="space-y-6">
+        {/* Barra de Progresso da Jornada (se vindo do currículo) */}
+        {isFromCurriculum && moduleId && lessonId && (
+          <LessonProgressBar
+            moduleId={moduleId}
+            lessonId={lessonId}
+            showCompleteButton={isLastRule}
+          />
+        )}
 
-      {/* Indicador de progresso das regras */}
-      {isFromCurriculum && (
-        <div className="text-center text-sm text-muted-foreground">
-          Regra {currentRuleIndex + 1} de {totalRules}
-          {isLastRule && (
-            <span className="ml-2 text-green-600 font-medium">✓ Última regra! Você pode marcar como dominada.</span>
-          )}
-        </div>
-      )}
+        {/* Indicador de progresso das regras */}
+        {isFromCurriculum && (
+          <div className="text-center text-sm text-muted-foreground">
+            Regra {currentRuleIndex + 1} de {totalRules}
+            {isLastRule && (
+              <span className="ml-2 text-green-600 font-medium">✓ Última regra! Você pode marcar como dominada.</span>
+            )}
+          </div>
+        )}
 
-      <Button variant="outline" onClick={() => navigate(-1)} className="flex items-center gap-2">
-        <ArrowLeft className="h-4 w-4" /> Voltar
-      </Button>
+        <Button variant="outline" onClick={() => navigate(-1)} className="flex items-center gap-2">
+          <ArrowLeft className="h-4 w-4" /> Voltar
+        </Button>
       <Card>
         <CardHeader>
           <CardTitle>{rule.title_pt}</CardTitle>
@@ -134,6 +145,7 @@ export default function RulePage() {
           <div />
         )}
       </div>
-    </div>
+      </div>
+    </PageContainer>
   );
 }

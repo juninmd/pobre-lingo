@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Map, BookOpen, User, Sparkles } from 'lucide-react';
+import { Home, Map, User, Sparkles, Headphones } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {
@@ -9,7 +9,7 @@ export function MobileNav() {
   const navItems = [
     { href: '/', label: 'Início', icon: Home },
     { href: '/curriculum', label: 'Aprender', icon: Map },
-    { href: '/exercises/matching-pairs', label: 'Praticar', icon: Sparkles }, // New game direct link
+    { href: '/exercises/listening', label: 'Escuta', icon: Headphones },
     { href: '/progress', label: 'Perfil', icon: User },
   ];
 

@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-import { Globe } from 'lucide-react';
+import { Globe, Headphones } from 'lucide-react';
 
 const lessonTypeConfig = {
   grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-100' },
@@ -28,6 +28,7 @@ const lessonTypeConfig = {
   reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
   culture: { label: 'Cultura', icon: Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
+  listening: { label: 'Escuta', icon: Headphones, color: 'text-indigo-600', bgColor: 'bg-indigo-100' },
 };
 
 export function NextLessonCard() {

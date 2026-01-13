@@ -236,7 +236,7 @@ export default function Layout() {
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen pb-24 md:pb-0">
+        <SidebarInset className="flex flex-col min-h-screen pb-20 md:pb-0">
           <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-4 border-b bg-background px-4 md:px-6">
             <div className="flex items-center gap-3">
               <div className="hidden md:block">

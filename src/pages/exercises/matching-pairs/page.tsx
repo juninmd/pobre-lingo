@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useGamification } from '@/contexts/GamificationContext';
 import { matchingPairsExercises, MatchingPairsExercise } from '@/lib/exerciseData';
 import { cn } from '@/lib/utils';
+import { triggerConfetti } from '@/lib/confetti';
 import { Heart, Trophy, RefreshCw, ArrowLeft } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 
@@ -134,6 +135,7 @@ export default function MatchingPairsPage() {
     setIsCompleted(true);
     addGem(10);
     addStreak();
+    triggerConfetti();
   };
 
   if (!exercise) return <div>Carregando...</div>;

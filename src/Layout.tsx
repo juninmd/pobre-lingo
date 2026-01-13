@@ -49,6 +49,9 @@ import {
 import { useTheme } from './contexts/ThemeContext';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { MobileNav } from './components/layout/MobileNav';
+import { useGamification } from './contexts/GamificationContext';
+import { Heart, Diamond } from 'lucide-react';
 
 // Agrupamento de navegação por categorias
 const navGroups = [
@@ -210,6 +213,7 @@ function NavMenu() {
 
 export default function Layout() {
   const { theme, setTheme } = useTheme();
+  const { hearts, gems } = useGamification();
   const location = useLocation();
 
   // Determinar título da página atual
@@ -224,19 +228,26 @@ export default function Layout() {
   return (
     <div className="font-body antialiased min-h-screen">
       <SidebarProvider defaultOpen>
-        <Sidebar collapsible="icon" variant="sidebar" side="left" className="border-r border-sidebar-border">
+        {/* Sidebar only visible on md and up */}
+        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden md:flex border-r border-sidebar-border">
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen">
+        <SidebarInset className="flex flex-col min-h-screen pb-16 md:pb-0">
           <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-4 border-b bg-background px-4 md:px-6">
             <div className="flex items-center gap-3">
-              <SidebarTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Menu className="h-4 w-4" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </SidebarTrigger>
+              <div className="hidden md:block">
+                <SidebarTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <Menu className="h-4 w-4" />
+                    <span className="sr-only">Toggle menu</span>
+                  </Button>
+                </SidebarTrigger>
+              </div>
+
+              <div className="md:hidden">
+                 <PobreLingoLogo className="h-8 w-8" />
+              </div>
 
               <Separator orientation="vertical" className="h-5 hidden md:block" />
 
@@ -250,7 +261,21 @@ export default function Layout() {
 
             <div className="flex-1" />
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 md:gap-4 mr-2">
+              {/* Gamification Stats */}
+              <div className="flex items-center gap-4 text-sm font-medium">
+                <div className="flex items-center gap-1.5 text-red-500">
+                   <Heart className="h-4 w-4 fill-current" />
+                   <span>{hearts}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-blue-500">
+                   <Diamond className="h-4 w-4 fill-current" />
+                   <span>{gems}</span>
+                </div>
+              </div>
+
+              <Separator orientation="vertical" className="h-5" />
+
               {/* Theme Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -285,13 +310,15 @@ export default function Layout() {
             </div>
           </main>
 
-          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0">
+          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden md:block">
             <span>© {new Date().getFullYear()} PobreLingo</span>
             <span className="mx-2">•</span>
             <span className="hidden sm:inline">Feito com ❤️ para aprendizes de português</span>
           </footer>
         </SidebarInset>
       </SidebarProvider>
+
+      <MobileNav />
       <PWAInstallPrompt />
       <Toaster />
     </div>

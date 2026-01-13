@@ -64,6 +64,19 @@ export interface NewsComprehensionExercise {
   topic: string; // e.g., "Current Events", "Technology"
   difficulty: 'easy' | 'medium' | 'hard';
 }
+
+export interface MatchingPair {
+  id: string;
+  word: string;
+  translation: string;
+}
+
+export interface MatchingPairsExercise {
+  id: string;
+  pairs: MatchingPair[];
+  topic: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
 // --- End News Comprehension Exercise ---
 
 
@@ -488,6 +501,35 @@ const placeholderQuestion = {
   correctAnswer: "Option A",
   explanation: "This is the correct answer because of reasons X, Y, and Z mentioned in the text."
 };
+
+export const matchingPairsExercises: MatchingPairsExercise[] = [
+  {
+    id: 'mpe1',
+    topic: 'Basic Vocabulary',
+    difficulty: 'easy',
+    pairs: [
+      { id: 'p1', word: 'Hello', translation: 'Olá' },
+      { id: 'p2', word: 'Goodbye', translation: 'Adeus' },
+      { id: 'p3', word: 'Thank you', translation: 'Obrigado' },
+      { id: 'p4', word: 'Please', translation: 'Por favor' },
+      { id: 'p5', word: 'Yes', translation: 'Sim' },
+      { id: 'p6', word: 'No', translation: 'Não' }
+    ]
+  },
+  {
+    id: 'mpe2',
+    topic: 'Food',
+    difficulty: 'easy',
+    pairs: [
+      { id: 'p1', word: 'Water', translation: 'Água' },
+      { id: 'p2', word: 'Bread', translation: 'Pão' },
+      { id: 'p3', word: 'Milk', translation: 'Leite' },
+      { id: 'p4', word: 'Cheese', translation: 'Queijo' },
+      { id: 'p5', word: 'Coffee', translation: 'Café' },
+      { id: 'p6', word: 'Tea', translation: 'Chá' }
+    ]
+  }
+];
 
 export const newsComprehensionExercises: NewsComprehensionExercise[] = [
   {

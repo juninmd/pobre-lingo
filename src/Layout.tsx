@@ -236,8 +236,8 @@ export default function Layout() {
         </Sidebar>
 
         <SidebarInset className="flex flex-col min-h-screen pb-32 lg:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-4 border-b bg-background px-4 md:px-6">
-            <div className="flex items-center gap-3">
+          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background px-4 md:px-6">
+            <div className="flex items-center gap-3 min-w-0">
               <div className="hidden lg:block">
                 <SidebarTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-8 w-8">
@@ -247,14 +247,14 @@ export default function Layout() {
                 </SidebarTrigger>
               </div>
 
-              <div className="lg:hidden">
+              <div className="lg:hidden flex-shrink-0">
                  <Pobrelingo width={32} height={32} />
               </div>
 
               <Separator orientation="vertical" className="h-5 hidden lg:block" />
 
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-4 w-4 text-primary hidden sm:block" />
+              <div className="flex items-center gap-2 min-w-0">
+                <GraduationCap className="h-4 w-4 text-primary hidden sm:block flex-shrink-0" />
                 <h1 className="font-semibold text-sm md:text-base truncate">
                   {getCurrentPageTitle()}
                 </h1>

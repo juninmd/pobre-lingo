@@ -594,22 +594,32 @@ export const curriculumData: LearningPath = {
 };
 
 // Função auxiliar para obter estatísticas do currículo
-export function getCurriculumStats() {
-  const modules = curriculumData.modules;
+export function getCurriculumStats(data: LearningPath = curriculumData) {
+  const modules = data.modules;
   const totalModules = modules.length;
-  const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
-  const totalXP = modules.reduce(
-    (sum, module) => sum + module.lessons.reduce((lessonSum, lesson) => lessonSum + lesson.xpReward, 0),
-    0
-  );
-  const totalMinutes = modules.reduce(
-    (sum, module) => sum + module.lessons.reduce((lessonSum, lesson) => lessonSum + lesson.estimatedMinutes, 0),
-    0
-  );
 
-  const basicModules = modules.filter(m => m.difficulty === 'basico').length;
-  const intermediateModules = modules.filter(m => m.difficulty === 'intermediario').length;
-  const advancedModules = modules.filter(m => m.difficulty === 'avancado').length;
+  let totalLessons = 0;
+  let totalXP = 0;
+  let totalMinutes = 0;
+  let basicModules = 0;
+  let intermediateModules = 0;
+  let advancedModules = 0;
+
+  for (const module of modules) {
+    if (module.difficulty === 'basico') basicModules++;
+    else if (module.difficulty === 'intermediario') intermediateModules++;
+    else if (module.difficulty === 'avancado') advancedModules++;
+
+    const lessons = module.lessons;
+    const lessonCount = lessons.length;
+    totalLessons += lessonCount;
+
+    for (let i = 0; i < lessonCount; i++) {
+      const lesson = lessons[i];
+      totalXP += lesson.xpReward;
+      totalMinutes += lesson.estimatedMinutes;
+    }
+  }
 
   return {
     totalModules,

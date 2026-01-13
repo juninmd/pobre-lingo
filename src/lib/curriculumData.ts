@@ -14,7 +14,7 @@ export interface Lesson {
   xpReward: number;
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
-  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs';
+  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening';
   vocabularyTopics?: string[];
   order: number;
 }
@@ -113,6 +113,17 @@ export const curriculumData: LearningPath = {
           order: 5,
         },
         {
+          id: 'foundations-listening',
+          title_pt: 'Prática: Escuta',
+          title_en: 'Practice: Listening',
+          description_pt: 'Treine seu ouvido com frases simples',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 6,
+        },
+        {
           id: 'foundations-quiz',
           title_pt: 'Quiz: Fundamentos',
           title_en: 'Quiz: Foundations',
@@ -120,7 +131,7 @@ export const curriculumData: LearningPath = {
           type: 'quiz',
           estimatedMinutes: 10,
           xpReward: 150,
-          order: 6,
+          order: 7,
         },
       ],
     },
@@ -281,6 +292,53 @@ export const curriculumData: LearningPath = {
       ],
     },
 
+    // ========== TRAVEL & BASICS ==========
+    {
+      id: 'travel-basics',
+      title_pt: 'Inglês para Viagem',
+      title_en: 'Travel English',
+      description_pt: 'Vocabulário e frases essenciais para viajar',
+      difficulty: 'basico',
+      icon: 'Plane',
+      color: 'bg-cyan-500',
+      order: 4,
+      prerequisites: ['past-present'],
+      lessons: [
+        {
+          id: 'airport-vocabulary',
+          title_pt: 'No Aeroporto',
+          title_en: 'At the Airport',
+          description_pt: 'Check-in, segurança e embarque',
+          type: 'vocabulary',
+          estimatedMinutes: 20,
+          xpReward: 80,
+          vocabularyTopics: ['airport', 'travel-documents'],
+          order: 1,
+        },
+        {
+          id: 'hotel-checkin',
+          title_pt: 'No Hotel',
+          title_en: 'At the Hotel',
+          description_pt: 'Fazendo check-in e pedindo serviços',
+          type: 'vocabulary',
+          estimatedMinutes: 20,
+          xpReward: 80,
+          vocabularyTopics: ['hotel'],
+          order: 2,
+        },
+        {
+          id: 'directions',
+          title_pt: 'Pedindo Informações',
+          title_en: 'Asking for Directions',
+          description_pt: 'Como chegar onde você quer',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 3,
+        }
+      ]
+    },
     // ========== NÍVEL INTERMEDIÁRIO ==========
     {
       id: 'perfect-tenses',
@@ -461,6 +519,54 @@ export const curriculumData: LearningPath = {
           order: 4,
         },
       ],
+    },
+
+    // ========== BUSINESS ENGLISH ==========
+    {
+      id: 'business-english',
+      title_pt: 'Inglês para Negócios',
+      title_en: 'Business English',
+      description_pt: 'Vocabulário e situações do mundo corporativo',
+      difficulty: 'intermediario',
+      icon: 'Briefcase',
+      color: 'bg-slate-500',
+      order: 7,
+      prerequisites: ['passive-voice'],
+      lessons: [
+        {
+          id: 'emails',
+          title_pt: 'Emails Profissionais',
+          title_en: 'Professional Emails',
+          description_pt: 'Como escrever emails formais',
+          type: 'vocabulary',
+          estimatedMinutes: 25,
+          xpReward: 100,
+          vocabularyTopics: ['business-writing'],
+          order: 1,
+        },
+        {
+          id: 'meetings',
+          title_pt: 'Reuniões',
+          title_en: 'Meetings',
+          description_pt: 'Vocabulário para participar de reuniões',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 2,
+        },
+        {
+          id: 'presentations',
+          title_pt: 'Apresentações',
+          title_en: 'Presentations',
+          description_pt: 'Dicas para apresentar em inglês',
+          type: 'reading',
+          estimatedMinutes: 30,
+          xpReward: 120,
+          exerciseType: 'news-comprehension',
+          order: 3,
+        }
+      ]
     },
 
     // ========== NÍVEL AVANÇADO ==========

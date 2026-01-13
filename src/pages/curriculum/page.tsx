@@ -60,6 +60,7 @@ const lessonTypeConfig = {
   reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
   culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
+  listening: { label: 'Escuta', icon: LucideIcons.Headphones, color: 'text-indigo-600', bgColor: 'bg-indigo-100' },
 };
 
 // Função para construir link de lição

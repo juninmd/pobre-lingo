@@ -1,6 +1,7 @@
 import { LearningStreakDisplay } from '@/components/streaks/LearningStreakDisplay';
 import { CurriculumProgressCard } from '@/components/curriculum/CurriculumProgressCard';
 import { AchievementsCard } from '@/components/curriculum/AchievementsCard';
+import { DailyTipCard } from '@/components/common/DailyTipCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -36,6 +37,11 @@ export default function DashboardPage() {
         icon={Home}
         iconClassName="text-primary"
       />
+
+      {/* Dica do Dia */}
+      <div className="mb-6">
+        <DailyTipCard />
+      </div>
 
       {/* Grid de Estatísticas Principais */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">

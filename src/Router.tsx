@@ -14,6 +14,7 @@ import CurriculumPage from './pages/curriculum/page';
 import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page';
 import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
 import MatchingPairsPage from './pages/exercises/matching-pairs/page';
+import ListeningPage from './pages/exercises/listening/page';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/matching-pairs',
         element: <MatchingPairsPage />,
+      },
+      {
+        path: 'exercises/listening',
+        element: <ListeningPage />,
       },
       {
         path: 'glossary',

@@ -6,10 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Link } from 'react-router-dom';
-import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
-import { Home, BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2, Sparkles } from 'lucide-react';
+import { MascotGreeting } from '@/components/mascot/MascotGreeting';
 
 export default function DashboardPage() {
   // Integração com o progresso real
@@ -36,13 +36,10 @@ export default function DashboardPage() {
 
   return (
     <PageContainer>
-      {/* Header padronizado */}
-      <PageHeader
-        title="Bem-vindo(a)!"
-        description="Continue sua jornada de aprendizado e alcance a fluência no inglês."
-        icon={Home}
-        iconClassName="text-primary"
-      />
+      {/* Mascote Greeting - Atraente para crianças */}
+      <div className="mb-8">
+        <MascotGreeting userName={userName.split(' ')[0]} />
+      </div>
 
       {/* Dica do Dia */}
       <div className="mb-6">

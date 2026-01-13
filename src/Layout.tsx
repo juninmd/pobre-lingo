@@ -21,6 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import PobreLingoLogo from '@/components/icons/PobreLingoLogo';
+import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
 import {
   SidebarProvider,
@@ -113,7 +114,9 @@ function NavMenu() {
     <>
       <SidebarHeader className="p-3 border-b border-sidebar-border/50">
         <div className="flex items-center gap-3">
-          <PobreLingoLogo className="h-8 w-8 flex-shrink-0" />
+          <div className="relative">
+            <Pobrelingo width={32} height={32} className="flex-shrink-0" emotion="winking" />
+          </div>
           {!isCollapsed && (
             <div className="flex flex-col min-w-0">
               <span className="font-bold text-sm text-sidebar-foreground truncate">PobreLingo</span>
@@ -246,7 +249,7 @@ export default function Layout() {
               </div>
 
               <div className="md:hidden">
-                 <PobreLingoLogo className="h-8 w-8" />
+                 <Pobrelingo width={32} height={32} />
               </div>
 
               <Separator orientation="vertical" className="h-5 hidden md:block" />

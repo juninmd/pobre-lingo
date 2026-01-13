@@ -25,7 +25,7 @@ export function AchievementsCard() {
       description: 'Complete sua primeira lição',
       icon: <Star className="h-6 w-6" />,
       unlocked: progress.completedLessons > 0,
-      color: 'text-yellow-600',
+      color: 'text-yellow-600 dark:text-yellow-400',
     },
     {
       id: 'beginner',
@@ -33,7 +33,7 @@ export function AchievementsCard() {
       description: 'Complete o primeiro módulo',
       icon: <Target className="h-6 w-6" />,
       unlocked: progress.completedModules > 0,
-      color: 'text-green-600',
+      color: 'text-green-600 dark:text-green-400',
     },
     {
       id: 'dedicated',
@@ -41,7 +41,7 @@ export function AchievementsCard() {
       description: 'Alcance o nível 5',
       icon: <Flame className="h-6 w-6" />,
       unlocked: userLevel >= 5,
-      color: 'text-orange-600',
+      color: 'text-orange-600 dark:text-orange-400',
     },
     {
       id: 'advanced',
@@ -49,7 +49,7 @@ export function AchievementsCard() {
       description: 'Complete 50% do currículo',
       icon: <Award className="h-6 w-6" />,
       unlocked: progress.overallPercentage >= 50,
-      color: 'text-blue-600',
+      color: 'text-blue-600 dark:text-blue-400',
     },
     {
       id: 'expert',
@@ -57,7 +57,7 @@ export function AchievementsCard() {
       description: 'Alcance o nível 10',
       icon: <Zap className="h-6 w-6" />,
       unlocked: userLevel >= 10,
-      color: 'text-purple-600',
+      color: 'text-purple-600 dark:text-purple-400',
     },
     {
       id: 'master',
@@ -65,7 +65,7 @@ export function AchievementsCard() {
       description: 'Complete todo o currículo',
       icon: <Crown className="h-6 w-6" />,
       unlocked: progress.overallPercentage === 100,
-      color: 'text-yellow-700',
+      color: 'text-yellow-700 dark:text-yellow-500',
     },
     {
       id: 'xp-500',
@@ -73,7 +73,7 @@ export function AchievementsCard() {
       description: 'Ganhe 500 XP',
       icon: <Medal className="h-6 w-6" />,
       unlocked: totalXP >= 500,
-      color: 'text-cyan-600',
+      color: 'text-cyan-600 dark:text-cyan-400',
     },
     {
       id: 'xp-1000',
@@ -81,7 +81,7 @@ export function AchievementsCard() {
       description: 'Ganhe 1000 XP',
       icon: <Trophy className="h-6 w-6" />,
       unlocked: totalXP >= 1000,
-      color: 'text-red-600',
+      color: 'text-red-600 dark:text-red-400',
     },
   ];
 
@@ -103,23 +103,25 @@ export function AchievementsCard() {
               className={cn(
                 "relative p-4 rounded-lg border-2 transition-all",
                 achievement.unlocked
-                  ? "bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-300 shadow-md"
-                  : "bg-gray-50 border-gray-200 opacity-60"
+                  ? "bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 border-yellow-300 dark:border-yellow-800 shadow-md"
+                  : "bg-gray-50 dark:bg-muted/20 border-gray-200 dark:border-muted/50 opacity-60"
               )}
             >
               <div className="text-center">
                 <div className={cn(
                   "mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-2",
-                  achievement.unlocked ? "bg-white shadow-sm" : "bg-gray-100"
+                  achievement.unlocked
+                    ? "bg-white dark:bg-background/50 shadow-sm"
+                    : "bg-gray-100 dark:bg-muted/50"
                 )}>
-                  <div className={achievement.unlocked ? achievement.color : "text-gray-400"}>
+                  <div className={achievement.unlocked ? achievement.color : "text-gray-400 dark:text-gray-500"}>
                     {achievement.icon}
                   </div>
                 </div>
                 <h4 className="font-semibold text-sm mb-1">{achievement.title}</h4>
                 <p className="text-xs text-muted-foreground">{achievement.description}</p>
                 {achievement.unlocked && (
-                  <Badge variant="outline" className="mt-2 text-xs">
+                  <Badge variant="outline" className="mt-2 text-xs border-yellow-500/50 text-yellow-700 dark:text-yellow-400">
                     <Trophy className="h-3 w-3 mr-1" />
                     Desbloqueada
                   </Badge>

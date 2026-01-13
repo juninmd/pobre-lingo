@@ -2,7 +2,7 @@
 // Define a estrutura de aprendizado do básico ao avançado
 
 export type DifficultyLevel = 'basico' | 'intermediario' | 'avancado';
-export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz';
+export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz' | 'culture';
 
 export interface Lesson {
   id: string;
@@ -14,7 +14,7 @@ export interface Lesson {
   xpReward: number;
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
-  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension';
+  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs';
   vocabularyTopics?: string[];
   order: number;
 }
@@ -91,6 +91,17 @@ export const curriculumData: LearningPath = {
           order: 3,
         },
         {
+          id: 'basic-pairs',
+          title_pt: 'Jogar: Pares de Palavras',
+          title_en: 'Play: Word Pairs',
+          description_pt: 'Combine palavras e significados (Jogo)',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          exerciseType: 'matching-pairs',
+          order: 4,
+        },
+        {
           id: 'simple-sentences-practice',
           title_pt: 'Prática: Frases Simples',
           title_en: 'Practice: Simple Sentences',
@@ -99,7 +110,7 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 15,
           xpReward: 100,
           exerciseType: 'sentence-ordering',
-          order: 4,
+          order: 5,
         },
         {
           id: 'foundations-quiz',
@@ -109,9 +120,42 @@ export const curriculumData: LearningPath = {
           type: 'quiz',
           estimatedMinutes: 10,
           xpReward: 150,
-          order: 5,
+          order: 6,
         },
       ],
+    },
+    {
+      id: 'culture-tips-basic',
+      title_pt: 'Dicas Culturais & Normas',
+      title_en: 'Culture Tips & Norms',
+      description_pt: 'Entenda como os nativos realmente pensam e agem',
+      difficulty: 'basico',
+      icon: 'Globe',
+      color: 'bg-teal-500',
+      order: 2,
+      lessons: [
+         {
+          id: 'tipping-culture',
+          title_pt: 'Cultura de Gorjetas',
+          title_en: 'Tipping Culture',
+          description_pt: 'Como funcionam as gorjetas nos EUA e UK',
+          type: 'culture',
+          estimatedMinutes: 10,
+          xpReward: 50,
+          order: 1,
+        },
+        {
+          id: 'politeness-levels',
+          title_pt: 'Níveis de Polidez',
+          title_en: 'Levels of Politeness',
+          description_pt: 'Como ser educado em inglês (Please, Thank you, Sorry)',
+          type: 'vocabulary',
+          estimatedMinutes: 15,
+          xpReward: 75,
+          vocabularyTopics: ['politeness'],
+          order: 2,
+        }
+      ]
     },
     {
       id: 'daily-conversations',
@@ -121,7 +165,7 @@ export const curriculumData: LearningPath = {
       difficulty: 'basico',
       icon: 'MessageCircle',
       color: 'bg-green-500',
-      order: 2,
+      order: 3,
       prerequisites: ['foundations'],
       lessons: [
         {

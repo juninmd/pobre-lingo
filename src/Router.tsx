@@ -13,6 +13,7 @@ import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
 import CurriculumPage from './pages/curriculum/page';
 import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page';
 import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
+import MatchingPairsPage from './pages/exercises/matching-pairs/page';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/sentence-ordering',
         element: <SentenceOrderingPage />,
+      },
+      {
+        path: 'exercises/matching-pairs',
+        element: <MatchingPairsPage />,
       },
       {
         path: 'glossary',

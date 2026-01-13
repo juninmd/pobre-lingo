@@ -6,13 +6,13 @@ import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
 const STUDIED_RULES_KEY = 'pobrelingo_studied_rules';
 
 export function useStudiedRules() {
-  const [studiedRuleIds, setStudiedRuleIds] = useState<string[]>([]);
-
-  useEffect(() => {
-    // Load studied IDs from localStorage on mount
-    const storedIds = getLocalStorageItem<string[]>(STUDIED_RULES_KEY, []);
-    setStudiedRuleIds(storedIds);
-  }, []);
+  const [studiedRuleIds, setStudiedRuleIds] = useState<string[]>(() => {
+    // Load studied IDs from localStorage on mount (lazy initialization)
+    if (typeof window !== 'undefined') {
+       return getLocalStorageItem<string[]>(STUDIED_RULES_KEY, []);
+    }
+    return [];
+  });
 
   const markAsStudied = useCallback((ruleId: string) => {
     setStudiedRuleIds(prevIds => {

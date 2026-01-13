@@ -11,6 +11,7 @@ import { sentenceOrderingExercises, SentenceOrderingExercise } from '@/lib/exerc
 import { useToast } from '@/hooks/use-toast';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
+import { triggerConfetti } from '@/lib/confetti';
 
 // Utility to shuffle an array
 function shuffleArray<T>(array: T[]): T[] {
@@ -71,7 +72,13 @@ export function SentenceOrdering() {
     if (normalizedUserAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
       setIsCorrect(true);
       setShowTranslation(true);
-      setExercisesCompleted(prev => prev + 1);
+      setExercisesCompleted(prev => {
+        const newValue = prev + 1;
+        if (newValue === EXERCISES_TO_COMPLETE) {
+            triggerConfetti();
+        }
+        return newValue;
+      });
       toast({ title: "Correto!", description: "Você acertou a ordem da frase!", className: "bg-green-500/20 border-green-500 text-green-700" });
     } else {
       setIsCorrect(false);

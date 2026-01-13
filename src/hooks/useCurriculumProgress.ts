@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
 import { curriculumData, Module, Lesson } from '@/lib/curriculumData';
 
@@ -39,6 +39,10 @@ export function useCurriculumProgress() {
   const [completedLessons, setCompletedLessons] = useState<LessonProgress[]>([]);
   const [totalXP, setTotalXP] = useState(0);
   const [userLevel, setUserLevel] = useState(1);
+
+  const completedLessonsSet = useMemo(() => {
+    return new Set(completedLessons.map(l => `${l.moduleId}:${l.lessonId}`));
+  }, [completedLessons]);
 
   // Carregar progresso do localStorage
   useEffect(() => {
@@ -95,10 +99,8 @@ export function useCurriculumProgress() {
 
   // Verificar se uma lição está concluída
   const isLessonCompleted = useCallback((moduleId: string, lessonId: string) => {
-    return completedLessons.some(
-      l => l.moduleId === moduleId && l.lessonId === lessonId
-    );
-  }, [completedLessons]);
+    return completedLessonsSet.has(`${moduleId}:${lessonId}`);
+  }, [completedLessonsSet]);
 
   // Verificar se um módulo está desbloqueado
   const isModuleUnlocked = useCallback((module: Module) => {

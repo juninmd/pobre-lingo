@@ -3,18 +3,32 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { useState } from 'react';
+import { useState, useMemo, useDeferredValue } from 'react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
 import { BookText, Search, Volume2 } from 'lucide-react';
 
 export default function DictionaryPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const deferredSearchTerm = useDeferredValue(searchTerm);
 
-  const filteredEntries = dictionaryEntries.filter(entry =>
-    entry.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    entry.translation_pt.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Pre-compute lowercase values for faster filtering
+  // This is memoized so it's only calculated once (since dictionaryEntries is static)
+  const preparedEntries = useMemo(() => {
+    return dictionaryEntries.map(entry => ({
+      ...entry,
+      wordLower: entry.word.toLowerCase(),
+      translationLower: entry.translation_pt.toLowerCase()
+    }));
+  }, []);
+
+  const filteredEntries = useMemo(() => {
+    const termLower = deferredSearchTerm.toLowerCase();
+    return preparedEntries.filter(entry =>
+      entry.wordLower.includes(termLower) ||
+      entry.translationLower.includes(termLower)
+    );
+  }, [deferredSearchTerm, preparedEntries]);
 
   const speak = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);

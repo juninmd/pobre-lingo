@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
 import { curriculumData, Module, Lesson } from '@/lib/curriculumData';
 
+// Otimização: Mapa para busca O(1) de módulos
+const moduleMap = new Map(curriculumData.modules.map(m => [m.id, m]));
+
 const PROGRESS_STORAGE_KEY = 'pobrelingo_curriculum_progress';
 const XP_STORAGE_KEY = 'pobrelingo_total_xp';
 const LEVEL_STORAGE_KEY = 'pobrelingo_user_level';
@@ -106,7 +109,7 @@ export function useCurriculumProgress() {
 
     // Verificar se todos os pré-requisitos estão completos
     return module.prerequisites.every(prereqId => {
-      const prereqModule = curriculumData.modules.find(m => m.id === prereqId);
+      const prereqModule = moduleMap.get(prereqId);
       if (!prereqModule) return false;
 
       const moduleProgress = getModuleProgress(prereqId);
@@ -116,7 +119,7 @@ export function useCurriculumProgress() {
 
   // Obter progresso de um módulo específico
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {
-    const module = curriculumData.modules.find(m => m.id === moduleId);
+    const module = moduleMap.get(moduleId);
     if (!module) {
       return {
         moduleId,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import {
@@ -20,7 +20,6 @@ import {
   GraduationCap,
   X,
 } from 'lucide-react';
-import PobreLingoLogo from '@/components/icons/PobreLingoLogo';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
 import {
@@ -215,7 +214,7 @@ function NavMenu() {
 }
 
 export default function Layout() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const { hearts, gems } = useGamification();
   const location = useLocation();
 
@@ -231,15 +230,15 @@ export default function Layout() {
   return (
     <div className="font-body antialiased min-h-screen">
       <SidebarProvider defaultOpen>
-        {/* Sidebar only visible on md and up */}
-        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden md:flex border-r border-sidebar-border">
+        {/* Sidebar only visible on lg and up */}
+        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-sidebar-border">
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen pb-24 md:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-4 border-b bg-background px-4 md:px-6">
-            <div className="flex items-center gap-3">
-              <div className="hidden md:block">
+        <SidebarInset className="flex flex-col min-h-screen pb-32 lg:pb-0">
+          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background px-4 md:px-6">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="hidden lg:block">
                 <SidebarTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-8 w-8">
                     <Menu className="h-4 w-4" />
@@ -248,14 +247,14 @@ export default function Layout() {
                 </SidebarTrigger>
               </div>
 
-              <div className="md:hidden">
+              <div className="lg:hidden flex-shrink-0">
                  <Pobrelingo width={32} height={32} />
               </div>
 
-              <Separator orientation="vertical" className="h-5 hidden md:block" />
+              <Separator orientation="vertical" className="h-5 hidden lg:block" />
 
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-4 w-4 text-primary hidden sm:block" />
+              <div className="flex items-center gap-2 min-w-0">
+                <GraduationCap className="h-4 w-4 text-primary hidden sm:block flex-shrink-0" />
                 <h1 className="font-semibold text-sm md:text-base truncate">
                   {getCurrentPageTitle()}
                 </h1>
@@ -313,7 +312,7 @@ export default function Layout() {
             </div>
           </main>
 
-          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden md:block">
+          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden lg:block">
             <span>© {new Date().getFullYear()} PobreLingo</span>
             <span className="mx-2">•</span>
             <span className="hidden sm:inline">Feito com ❤️ para aprendizes de português</span>

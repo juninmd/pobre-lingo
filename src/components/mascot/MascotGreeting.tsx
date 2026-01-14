@@ -1,17 +1,19 @@
 import React from 'react';
 import { Pobrelingo } from './Pobrelingo';
 import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface MascotGreetingProps {
   message?: string;
   userName?: string;
+  className?: string;
 }
 
-export function MascotGreeting({ message, userName }: MascotGreetingProps) {
+export function MascotGreeting({ message, userName, className }: MascotGreetingProps) {
   const greeting = message || (userName ? `Oi, ${userName}! Pronto para aprender?` : "Oi! Pronto para aprender?");
 
   return (
-    <Card className="bg-gradient-to-r from-green-50 to-emerald-100 border-green-200 dark:from-green-950/40 dark:to-emerald-900/40 dark:border-green-800 overflow-hidden relative">
+    <Card className={cn("bg-gradient-to-r from-green-50 to-emerald-100 border-green-200 dark:from-green-950/40 dark:to-emerald-900/40 dark:border-green-800 overflow-hidden relative", className)}>
       <CardContent className="p-6 flex items-center gap-6 relative z-10">
         <div className="flex-shrink-0 animate-bounce-slow">
           <Pobrelingo width={120} height={120} emotion="excited" />

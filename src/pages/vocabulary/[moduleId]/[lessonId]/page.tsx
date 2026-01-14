@@ -254,6 +254,13 @@ export default function VocabularyLessonPage() {
     if (!currentWord) return;
 
     const text = getTextToSpeak(currentWord.word);
+
+    // Check if SpeechSynthesisUtterance is available
+    if (typeof SpeechSynthesisUtterance === 'undefined') {
+        console.error('SpeechSynthesisUtterance is not defined');
+        return;
+    }
+
     const utterance = new SpeechSynthesisUtterance(text);
 
     // Tentar usar voz em inglês
@@ -264,7 +271,6 @@ export default function VocabularyLessonPage() {
     }
 
     utterance.rate = 0.8; // Um pouco mais lento para clareza
-
     window.speechSynthesis.speak(utterance);
   };
 

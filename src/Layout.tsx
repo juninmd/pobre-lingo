@@ -83,6 +83,7 @@ const navGroups = [
     title: 'Progresso',
     items: [
       { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
+      { href: '/proficiency', label: 'Teste de Proficiência', icon: GraduationCap },
     ]
   },
 ];

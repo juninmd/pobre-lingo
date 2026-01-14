@@ -10,7 +10,7 @@ export function MobileNav() {
     { href: '/', label: 'Início', icon: Home },
     { href: '/curriculum', label: 'Aprender', icon: Map },
     { href: '/exercises/listening', label: 'Escuta', icon: Headphones },
-    { href: '/progress', label: 'Perfil', icon: User },
+    { href: '/proficiency', label: 'Proficiência', icon: User },
   ];
 
   return (

@@ -15,6 +15,7 @@ import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page'
 import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
 import MatchingPairsPage from './pages/exercises/matching-pairs/page';
 import ListeningPage from './pages/exercises/listening/page';
+import ProficiencyTestPage from './pages/ProficiencyTestPage';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: 'progress',
         element: <DashboardPage />,
+      },
+      {
+        path: 'proficiency',
+        element: <ProficiencyTestPage />,
       },
       {
         path: 'exercises/find-incorrect-words',

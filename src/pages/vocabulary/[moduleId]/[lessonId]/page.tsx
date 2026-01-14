@@ -237,6 +237,37 @@ export default function VocabularyLessonPage() {
     setMastered(prev => new Set(prev).add(currentIndex));
   };
 
+  const getTextToSpeak = (word: string) => {
+    // Para sons como "/æ/ (cat)", falar "cat"
+    if (word.startsWith('/') && word.includes('(')) {
+      const match = word.match(/\(([^)]+)\)/);
+      return match ? match[1] : word;
+    }
+    // Para letras como "A (ei)", falar "A"
+    if (word.includes('(')) {
+      return word.split('(')[0].trim();
+    }
+    return word;
+  };
+
+  const handleSpeak = () => {
+    if (!currentWord) return;
+
+    const text = getTextToSpeak(currentWord.word);
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    // Tentar usar voz em inglês
+    const voices = window.speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) {
+      utterance.voice = enVoice;
+    }
+
+    utterance.rate = 0.8; // Um pouco mais lento para clareza
+
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleComplete = () => {
     if (!completed) {
       completeLesson(moduleId!, lessonId!, lesson.xpReward);
@@ -310,7 +341,7 @@ export default function VocabularyLessonPage() {
                 {/* Palavra em Inglês */}
                 <div className="text-center p-8 bg-blue-50 rounded-lg">
                   <h2 className="text-4xl font-bold mb-4">{currentWord.word}</h2>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" onClick={handleSpeak}>
                     <Volume2 className="h-5 w-5" />
                   </Button>
                 </div>

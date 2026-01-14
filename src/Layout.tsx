@@ -50,8 +50,6 @@ import { useTheme } from './contexts/ThemeContext';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MobileNav } from './components/layout/MobileNav';
-import { useGamification } from './contexts/GamificationContext';
-import { Heart, Diamond } from 'lucide-react';
 
 // Agrupamento de navegação por categorias
 const navGroups = [
@@ -215,7 +213,6 @@ function NavMenu() {
 
 export default function Layout() {
   const { setTheme } = useTheme();
-  const { hearts, gems } = useGamification();
   const location = useLocation();
 
   // Determinar título da página atual
@@ -264,20 +261,6 @@ export default function Layout() {
             <div className="flex-1" />
 
             <div className="flex items-center gap-2 md:gap-4 mr-2">
-              {/* Gamification Stats */}
-              <div className="flex items-center gap-4 text-sm font-medium">
-                <div className="flex items-center gap-1.5 text-red-500">
-                   <Heart className="h-4 w-4 fill-current" />
-                   <span>{hearts}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-blue-500">
-                   <Diamond className="h-4 w-4 fill-current" />
-                   <span>{gems}</span>
-                </div>
-              </div>
-
-              <Separator orientation="vertical" className="h-5" />
-
               {/* Theme Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

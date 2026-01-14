@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// Deprecated: This context is being phased out in favor of specific hooks (e.g. useLearningStreak)
+// and the removal of "lives/gems" mechanics.
 interface GamificationContextType {
   hearts: number;
   maxHearts: number;
@@ -14,47 +16,34 @@ interface GamificationContextType {
 const GamificationContext = createContext<GamificationContextType | undefined>(undefined);
 
 export function GamificationProvider({ children }: { children: React.ReactNode }) {
-  const [hearts, setHearts] = useState<number>(5);
-  const maxHearts = 5;
-  const [gems, setGems] = useState<number>(0);
   const [streak, setStreak] = useState<number>(0);
 
-  // Load from localStorage on mount
+  // Hearts and Gems are now mocked/disabled
+  const hearts = 5;
+  const maxHearts = 5;
+  const gems = 0;
+
   useEffect(() => {
-    const storedHearts = localStorage.getItem('pl_hearts');
-    const storedGems = localStorage.getItem('pl_gems');
+    // We can still try to load the legacy streak if needed, but for now we default to 0
+    // or we could sync with useLearningStreak storage if we wanted deep integration.
     const storedStreak = localStorage.getItem('pl_streak');
-    const lastHeartLoss = localStorage.getItem('pl_last_heart_loss');
-
-    if (storedHearts) setHearts(parseInt(storedHearts));
-    if (storedGems) setGems(parseInt(storedGems));
     if (storedStreak) setStreak(parseInt(storedStreak));
-
-    // Simple refill logic: if it's been more than 24h (mock), refill.
-    // For now, let's just default to 5 if nothing stored or valid.
-    if (!storedHearts) setHearts(5);
   }, []);
 
-  // Save to localStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem('pl_hearts', hearts.toString());
-    localStorage.setItem('pl_gems', gems.toString());
     localStorage.setItem('pl_streak', streak.toString());
-  }, [hearts, gems, streak]);
+  }, [streak]);
 
   const loseHeart = () => {
-    if (hearts > 0) {
-      setHearts(prev => prev - 1);
-      localStorage.setItem('pl_last_heart_loss', Date.now().toString());
-    }
+    // No-op: Punishments removed
   };
 
   const refillHearts = () => {
-    setHearts(maxHearts);
+    // No-op
   };
 
-  const addGem = (amount: number) => {
-    setGems(prev => prev + amount);
+  const addGem = (_amount: number) => {
+    // No-op: Currency removed
   };
 
   const addStreak = () => {

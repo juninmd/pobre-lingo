@@ -2,9 +2,25 @@
 > pobre-lingo@0.1.0 dev /app
 > vite
 
-Port 5173 is in use, trying another one...
 
-  VITE v7.3.1  ready in 834 ms
+  VITE v7.3.1  ready in 273 ms
 
-  ➜  Local:   http://localhost:5174/
+  ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
+(node:6462) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1768397705447 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+1:35:07 PM [vite] (client) hmr update /src/globals.css
+1:35:10 PM [vite] (client) hmr update /src/globals.css
+1:35:10 PM [vite] (client) hmr update /src/globals.css
+
+PWA v1.2.0
+mode      generateSW
+precache  2 entries (0.12 KiB)
+files generated
+  dev-dist/sw.js
+  dev-dist/workbox-35c88359.js
+1:42:34 PM [vite] (client) page reload src/main.tsx

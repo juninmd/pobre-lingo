@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useGamification } from '@/contexts/GamificationContext';
 import { matchingPairsExercises, MatchingPairsExercise } from '@/lib/exerciseData';
 import { cn } from '@/lib/utils';
 import { triggerConfetti } from '@/lib/confetti';
-import { Heart, Trophy, RefreshCw, ArrowLeft } from 'lucide-react';
+import { Trophy, RefreshCw, ArrowLeft } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 interface CardState {
@@ -20,7 +19,6 @@ interface CardState {
 export default function MatchingPairsPage() {
   const [searchParams] = useSearchParams();
   const exerciseId = searchParams.get('id');
-  const { hearts, loseHeart, addGem, addStreak } = useGamification();
   const [exercise, setExercise] = useState<MatchingPairsExercise | null>(null);
   const [cards, setCards] = useState<CardState[]>([]);
   const [selectedCards, setSelectedCards] = useState<CardState[]>([]);
@@ -61,15 +59,14 @@ export default function MatchingPairsPage() {
       : matchingPairsExercises[Math.floor(Math.random() * matchingPairsExercises.length)];
 
     if (currentExercise) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setExercise(currentExercise);
       initializeGame(currentExercise);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exerciseId]);
 
   const handleCardClick = (card: CardState) => {
     if (isProcessing || card.status === 'matched' || card.status === 'selected') return;
-    if (hearts <= 0) return;
 
     const newCards = [...cards];
     const cardIndex = newCards.findIndex(c => c.id === card.id);
@@ -106,7 +103,6 @@ export default function MatchingPairsPage() {
         } else {
           next[idx1].status = 'error';
           next[idx2].status = 'error';
-          loseHeart();
         }
         return next;
       });
@@ -134,8 +130,6 @@ export default function MatchingPairsPage() {
 
   const handleWin = () => {
     setIsCompleted(true);
-    addGem(10);
-    addStreak();
     triggerConfetti();
   };
 
@@ -148,10 +142,6 @@ export default function MatchingPairsPage() {
           <ArrowLeft className="mr-2 h-4 w-4" />
           Voltar
         </Link>
-        <div className="flex items-center gap-2">
-           <Heart className={cn("h-6 w-6 fill-red-500 text-red-500", hearts === 0 && "animate-pulse")} />
-           <span className="font-bold text-lg">{hearts}</span>
-        </div>
       </div>
 
       <Card className="max-w-2xl mx-auto">
@@ -163,22 +153,13 @@ export default function MatchingPairsPage() {
           <CardDescription>Combine as palavras em inglês com suas traduções.</CardDescription>
         </CardHeader>
         <CardContent>
-          {hearts <= 0 ? (
-            <div className="text-center py-10">
-               <Heart className="h-16 w-16 mx-auto text-gray-300 mb-4" />
-               <h3 className="text-xl font-bold mb-2">Sem vidas!</h3>
-               <p className="text-muted-foreground mb-6">Você perdeu todas as suas vidas. Espere recarregar ou pratique outras lições.</p>
-               <Button asChild>
-                 <Link to="/curriculum">Voltar ao menu</Link>
-               </Button>
-            </div>
-          ) : isCompleted ? (
+          {isCompleted ? (
             <div className="text-center py-10">
                <div className="h-20 w-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                  <Trophy className="h-10 w-10 text-yellow-600" />
                </div>
                <h3 className="text-2xl font-bold mb-2">Parabéns!</h3>
-               <p className="text-muted-foreground mb-6">Você completou o exercício e ganhou 10 gemas!</p>
+               <p className="text-muted-foreground mb-6">Você completou o exercício!</p>
                <div className="flex justify-center gap-4">
                  <Button onClick={() => window.location.reload()} variant="outline">
                     <RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente

@@ -102,6 +102,20 @@ export function useCurriculumProgress() {
     return completedLessonsSet.has(`${moduleId}:${lessonId}`);
   }, [completedLessonsSet]);
 
+  // Helper para calcular porcentagem de conclusão sem dependências circulares
+  const getModuleCompletionStats = useCallback((module: Module) => {
+    const totalLessons = module.lessons.length;
+    const lessonsCompleted = module.lessons.filter(lesson =>
+      isLessonCompleted(module.id, lesson.id)
+    ).length;
+
+    const completionPercentage = totalLessons > 0
+      ? Math.round((lessonsCompleted / totalLessons) * 100)
+      : 0;
+
+    return { lessonsCompleted, totalLessons, completionPercentage };
+  }, [isLessonCompleted]);
+
   // Verificar se um módulo está desbloqueado
   const isModuleUnlocked = useCallback((module: Module) => {
     // Primeiro módulo sempre desbloqueado
@@ -114,12 +128,12 @@ export function useCurriculumProgress() {
       const prereqModule = moduleMap.get(prereqId);
       if (!prereqModule) return false;
 
-      const moduleProgress = getModuleProgress(prereqId);
-      return moduleProgress.completionPercentage === 100;
+      const { completionPercentage } = getModuleCompletionStats(prereqModule);
+      return completionPercentage === 100;
     });
-  }, [completedLessons]);
+  }, [getModuleCompletionStats]);
 
-  // Obter progresso de um módulo específico
+  // Obter progresso completo de um módulo específico
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {
     const module = moduleMap.get(moduleId);
     if (!module) {
@@ -132,14 +146,7 @@ export function useCurriculumProgress() {
       };
     }
 
-    const totalLessons = module.lessons.length;
-    const lessonsCompleted = module.lessons.filter(lesson =>
-      isLessonCompleted(moduleId, lesson.id)
-    ).length;
-
-    const completionPercentage = totalLessons > 0
-      ? Math.round((lessonsCompleted / totalLessons) * 100)
-      : 0;
+    const { lessonsCompleted, totalLessons, completionPercentage } = getModuleCompletionStats(module);
 
     const completedLessonsData = completedLessons.filter(l => l.moduleId === moduleId);
     const startedAt = completedLessonsData.length > 0
@@ -158,7 +165,7 @@ export function useCurriculumProgress() {
       totalLessons,
       completionPercentage,
     };
-  }, [completedLessons, isLessonCompleted, isModuleUnlocked]);
+  }, [completedLessons, getModuleCompletionStats, isModuleUnlocked]);
 
   // Obter estatísticas gerais
   const getOverallProgress = useCallback(() => {
@@ -174,8 +181,8 @@ export function useCurriculumProgress() {
 
     const unlockedModules = curriculumData.modules.filter(m => isModuleUnlocked(m)).length;
     const completedModules = curriculumData.modules.filter(m => {
-      const progress = getModuleProgress(m.id);
-      return progress.completionPercentage === 100;
+      const { completionPercentage } = getModuleCompletionStats(m);
+      return completionPercentage === 100;
     }).length;
 
     return {
@@ -189,7 +196,7 @@ export function useCurriculumProgress() {
       userLevel,
       xpToNextLevel: (userLevel * 100) - totalXP,
     };
-  }, [completedLessons, totalXP, userLevel, isModuleUnlocked, getModuleProgress]);
+  }, [completedLessons, totalXP, userLevel, isModuleUnlocked, getModuleCompletionStats]);
 
   // Resetar progresso (para testes)
   const resetProgress = useCallback(() => {

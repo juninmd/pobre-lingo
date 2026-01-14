@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
-import { Home, BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2, Sparkles } from 'lucide-react';
+import { Home, BookOpen, Lightbulb, TrendingUp, CheckSquare, ListChecks, Wand2, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function DashboardPage() {
   // Integração com o progresso real
@@ -19,6 +19,9 @@ export default function DashboardPage() {
   const exercisesCompleted = progressStats.completedLessons;
   const totalExercises = progressStats.totalLessons;
   const learningProgress = progressStats.overallPercentage;
+
+  // Dados mock para demonstração
+  const userName = "Usuário PobreLingo";
 
   const recentActivities = [
     { id: 1, type: "Exercício", description: "Completou 'Ordenar Frases'", date: "2 horas atrás" },

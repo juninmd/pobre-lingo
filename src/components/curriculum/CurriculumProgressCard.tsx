@@ -103,7 +103,7 @@ export function CurriculumProgressCard() {
           <div className="space-y-1">
             <p className="text-sm text-muted-foreground">Nível</p>
             <p className="text-2xl font-bold flex items-center gap-1">
-              <Star className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+              <Star className="h-5 w-5 text-yellow-600" />
               {userLevel}
             </p>
           </div>
@@ -203,7 +203,7 @@ export function CurriculumProgressCard() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <h4 className="font-semibold text-sm flex items-center gap-1">
-                    <Flame className="h-4 w-4 text-orange-500 dark:text-orange-400" />
+                    <Flame className="h-4 w-4 text-orange-500" />
                     Continue Aprendendo
                   </h4>
                 </div>
@@ -217,7 +217,7 @@ export function CurriculumProgressCard() {
                     {nextLesson.lesson.estimatedMinutes} min
                   </span>
                   <span className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-yellow-500 dark:text-yellow-400" />
+                    <Star className="h-3 w-3 text-yellow-500" />
                     +{nextLesson.lesson.xpReward} XP
                   </span>
                   <Badge variant="outline" className="text-[10px]">
@@ -239,7 +239,7 @@ export function CurriculumProgressCard() {
         {/* Mensagem de Motivação */}
         {overallProgress.completedLessons === 0 && (
           <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 rounded-lg border border-green-200 dark:border-green-800">
-            <Award className="h-8 w-8 text-green-600 dark:text-green-400 mx-auto mb-2" />
+            <Award className="h-8 w-8 text-green-600 mx-auto mb-2" />
             <h4 className="font-semibold mb-1">Comece Sua Jornada!</h4>
             <p className="text-sm text-muted-foreground mb-3">
               Aprenda inglês do básico ao avançado com um currículo estruturado
@@ -256,7 +256,7 @@ export function CurriculumProgressCard() {
         {/* Jornada Completa */}
         {!nextLesson && overallProgress.completedLessons > 0 && (
           <div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 rounded-lg border border-yellow-200 dark:border-yellow-700">
-            <Trophy className="h-8 w-8 text-yellow-600 dark:text-yellow-400 mx-auto mb-2" />
+            <Trophy className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
             <h4 className="font-semibold mb-1">🎉 Parabéns!</h4>
             <p className="text-sm text-muted-foreground mb-3">
               Você completou toda a jornada de aprendizado!

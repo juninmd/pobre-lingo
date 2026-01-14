@@ -35,21 +35,21 @@ const difficultyConfig = {
     color: 'bg-green-500',
     textColor: 'text-green-600 dark:text-green-400',
     borderColor: 'border-green-500',
-    bgLight: 'bg-green-50 dark:bg-green-950/30',
+    bgLight: 'bg-green-50 dark:bg-green-950/20',
   },
   intermediario: {
     label: 'Intermediário',
     color: 'bg-orange-500',
     textColor: 'text-orange-600 dark:text-orange-400',
     borderColor: 'border-orange-500',
-    bgLight: 'bg-orange-50 dark:bg-orange-950/30',
+    bgLight: 'bg-orange-50 dark:bg-orange-950/20',
   },
   avancado: {
     label: 'Avançado',
     color: 'bg-red-500',
     textColor: 'text-red-600 dark:text-red-400',
     borderColor: 'border-red-500',
-    bgLight: 'bg-red-50 dark:bg-red-950/30',
+    bgLight: 'bg-red-50 dark:bg-red-950/20',
   },
 };
 
@@ -112,7 +112,6 @@ export default function CurriculumPage() {
         break;
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -355,8 +354,8 @@ export default function CurriculumPage() {
                               lessonCompleted
                                 ? "bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800"
                                 : isNextLesson
-                                  ? "bg-primary/5 border-primary hover:bg-primary/10 ring-1 ring-primary/30"
-                                  : "bg-background hover:bg-muted/50 border-border"
+                                  ? "bg-primary/5 dark:bg-primary/10 border-primary hover:bg-primary/10 dark:hover:bg-primary/20 ring-1 ring-primary/30"
+                                  : "bg-background dark:bg-card hover:bg-muted/50 dark:hover:bg-muted/20 border-border"
                             )}
                           >
                             {/* Status icon */}

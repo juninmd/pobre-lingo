@@ -47,6 +47,10 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet }: Mo
   // Calculate horizontal offset for the "path" look
   const offset = Math.sin(index * 0.8) * 60;
 
+  // Pass offset to parent or handled by parent?
+  // Actually, we can just calculate it here for style, but for the SVG line we need it in the parent.
+  // We'll keep this for the individual node positioning.
+
   const baseColor = module.color.replace('bg-', '');
 
   let ringColor = 'ring-muted';
@@ -160,8 +164,26 @@ interface UnitSectionProps {
 function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, completedLessonsSet }: UnitSectionProps) {
   const unitColor = modules[0]?.color || 'bg-primary';
 
+  // Calculate coordinates for SVG path
+  const NODE_HEIGHT = 140; // Approximate height including margin
+  const CENTER_X = 200; // Assuming 400px wide container, or relative
+
+  // We'll use a relative coordinate system for the SVG
+  // The container is flex-col items-center, so x=0 is center.
+
+  const getCoordinates = (index: number) => {
+    const x = Math.sin(index * 0.8) * 60;
+    const y = index * 104 + 50; // 104 matches the vertical spacing roughly (h-24 + mt-2 + padding), 50 is initial offset
+    return { x, y };
+  };
+
+  const pathData = modules.map((_, index) => {
+    const { x, y } = getCoordinates(index);
+    return `${index === 0 ? 'M' : 'L'} ${x + 200} ${y}`;
+  }).join(' ');
+
   return (
-    <div className="w-full mb-8">
+    <div className="w-full mb-8 relative">
       <div className={cn(
         "sticky top-0 z-30 py-4 px-4 mb-8 flex items-center justify-between rounded-b-xl shadow-sm border-b backdrop-blur-xl transition-colors",
         unitColor.replace('bg-', 'bg-opacity-10 dark:bg-opacity-20 border-')
@@ -173,17 +195,48 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
         <GuidebookModal unit={unit} />
       </div>
 
-      <div className="flex flex-col items-center space-y-2 relative pb-8">
-        {modules.map((module, idx) => (
-          <ModuleNode
-            key={module.id}
-            module={module}
-            index={idx}
-            status={getModuleStatus(module.id)}
-            progress={getModuleProgressValue(module.id)}
-            completedLessonsSet={completedLessonsSet}
-          />
-        ))}
+      <div className="relative w-full max-w-[400px] mx-auto">
+        {/* SVG Path Background */}
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible">
+           <defs>
+             <linearGradient id={`grad-${unit.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+               <stop offset="0%" stopColor="currentColor" stopOpacity="0.1" className="text-primary" />
+               <stop offset="100%" stopColor="currentColor" stopOpacity="0.5" className="text-primary" />
+             </linearGradient>
+           </defs>
+           <path
+             d={pathData}
+             fill="none"
+             stroke="currentColor"
+             strokeWidth="12"
+             className="text-muted-foreground/20"
+             strokeLinecap="round"
+             strokeLinejoin="round"
+           />
+           <path
+             d={pathData}
+             fill="none"
+             stroke="currentColor"
+             strokeWidth="6"
+             className="text-muted/30"
+             strokeDasharray="12 12"
+             strokeLinecap="round"
+             strokeLinejoin="round"
+           />
+        </svg>
+
+        <div className="flex flex-col items-center space-y-2 relative z-10">
+          {modules.map((module, idx) => (
+            <ModuleNode
+              key={module.id}
+              module={module}
+              index={idx}
+              status={getModuleStatus(module.id)}
+              progress={getModuleProgressValue(module.id)}
+              completedLessonsSet={completedLessonsSet}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

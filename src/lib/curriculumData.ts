@@ -59,21 +59,29 @@ const units: Unit[] = [
     order: 1,
     difficulty: 'basico',
     guidebookContent: `
-# Bem-vindo ao Inglês!
+# Bem-vindo ao Inglês! 🚀
 
-Nesta unidade, você vai dar os primeiros passos. Aqui estão algumas dicas importantes:
+Parabéns por começar sua jornada! Nesta primeira unidade, vamos construir a base do seu conhecimento.
 
 ### 1. O Alfabeto e Pronúncia
-O inglês tem sons que não existem em português. Preste atenção ao som do "TH" (língua entre os dentes) e ao "R" (enrolado, caipira).
+O inglês tem sons únicos.
+* **TH**: Coloque a ponta da língua entre os dentes e sopre (como em *think* e *the*).
+* **R**: O "R" do inglês é enrolado, como o "R" caipira de "porta" (ex: *car*, *red*).
+* **H**: No início das palavras, o "H" tem som de "R" fraco (ex: *house* soa como "rause").
 
-### 2. O Verbo "To Be"
-Ele significa **ser** ou **estar**.
-* I am (Eu sou/estou)
-* You are (Você é/está)
-* He/She/It is (Ele/Ela é/está)
+### 2. O Poderoso Verbo "To Be"
+Ele é o verbo mais importante e significa **ser** ou **estar**.
+* **I am** (Eu sou / Eu estou)
+* **You are** (Você é / Você está)
+* **He/She/It is** (Ele/Ela/Isso é ou está)
 
-### Dica de Ouro
-Não tente traduzir tudo ao pé da letra. Preste atenção em como as frases são montadas!
+### 3. Cognatos (Amigos Falsos e Verdadeiros)
+Muitas palavras são parecidas com o português!
+* **Verdadeiros**: *Banana*, *Music*, *Future*, *Different*.
+* **Falsos**: *Push* (empurrar, não puxar!), *Lunch* (almoço, não lanche!).
+
+### Dica de Ouro 💡
+Não tenha medo de errar! O erro faz parte do aprendizado. Tente imitar os sons que você ouve nos exercícios de áudio.
     `
   },
   {
@@ -83,22 +91,27 @@ Não tente traduzir tudo ao pé da letra. Preste atenção em como as frases sã
     order: 2,
     difficulty: 'basico',
     guidebookContent: `
-# Cultura e Educação
+# Cultura e Educação 🤝
 
-Os falantes de inglês valorizam muito a educação ("politeness").
+Nos países de língua inglesa, a polidez é essencial. Ser direto demais pode soar rude.
 
 ### Palavras Mágicas
-* **Please**: Por favor (use sempre!)
-* **Thank you**: Obrigado(a)
-* **Sorry**: Desculpe
-* **Excuse me**: Com licença
+Use estas palavras o tempo todo:
+* **Please**: Por favor.
+* **Thank you**: Obrigado(a).
+* **Sorry**: Desculpe (para pedir perdão).
+* **Excuse me**: Com licença (para chamar atenção ou passar).
 
-### Saudações
-* **Hi/Hello**: Oi/Olá
-* **Good Morning**: Bom dia
-* **How are you?**: Como vai você?
+### Small Talk (Conversa Fiada)
+É comum conversar sobre o clima ou assuntos leves com estranhos.
+* "Nice weather today, isn't it?" (Tempo bom hoje, não é?)
 
-**Regra:** Em inglês, o sujeito é obrigatório. Não diga "Is raining" (Está chovendo), diga "**It** is raining".
+### Regra de Ouro: O Sujeito Obrigatório 👑
+Em português, dizemos "Fui ao mercado" (sujeito oculto). Em inglês, **sempre** precisamos dizer quem fez a ação.
+* Errado: Went to the market.
+* Certo: **I** went to the market.
+
+**Atenção:** "Está chovendo" vira "**It** is raining". O **It** é o sujeito neutro para coisas, animais e clima.
     `
   },
   {

@@ -19,6 +19,7 @@ import ProficiencyTestPage from './pages/ProficiencyTestPage';
 import ArcadePage from './pages/ArcadePage';
 import SpeedMatchPage from './pages/games/SpeedMatchPage';
 import WordScramblePage from './pages/games/WordScramblePage';
+import FlashcardsPage from './pages/games/FlashcardsPage';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: 'games/word-scramble',
         element: <WordScramblePage />,
+      },
+      {
+        path: 'games/flashcards',
+        element: <FlashcardsPage />,
       },
       {
         path: 'dictionary',

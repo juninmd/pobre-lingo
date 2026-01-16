@@ -3,10 +3,21 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trophy, Zap, Headphones, Brain } from 'lucide-react';
+import { Trophy, Zap, Headphones, Brain, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const games = [
+  {
+    id: 'flashcards',
+    title: 'Flashcards',
+    description: 'Memorize vocabulário com cartões interativos. Ótimo para revisão!',
+    icon: GraduationCap,
+    color: 'text-green-500',
+    bgColor: 'bg-green-500/10',
+    href: '/games/flashcards',
+    difficulty: 'Easy',
+    xp: '10 XP / Card'
+  },
   {
     id: 'speed-match',
     title: 'Speed Match',

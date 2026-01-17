@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
@@ -103,14 +103,14 @@ export function AchievementsCard() {
               className={cn(
                 "relative p-4 rounded-lg border-2 transition-all",
                 achievement.unlocked
-                  ? "bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-300 shadow-md"
-                  : "bg-gray-50 border-gray-200 opacity-60"
+                  ? "bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-yellow-300 dark:border-yellow-700 shadow-md"
+                  : "bg-gray-50 dark:bg-muted/20 border-gray-200 dark:border-border opacity-60"
               )}
             >
               <div className="text-center">
                 <div className={cn(
                   "mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-2",
-                  achievement.unlocked ? "bg-white shadow-sm" : "bg-gray-100"
+                  achievement.unlocked ? "bg-white dark:bg-card shadow-sm" : "bg-gray-100 dark:bg-muted"
                 )}>
                   <div className={achievement.unlocked ? achievement.color : "text-gray-400"}>
                     {achievement.icon}

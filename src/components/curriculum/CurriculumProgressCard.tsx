@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,12 +23,12 @@ import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const lessonTypeConfig = {
-  grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-100' },
-  vocabulary: { label: 'Vocabulário', icon: Star, color: 'text-purple-600', bgColor: 'bg-purple-100' },
-  exercise: { label: 'Exercício', icon: Target, color: 'text-green-600', bgColor: 'bg-green-100' },
-  reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
-  quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
-  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
+  grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600 dark:text-blue-400', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
+  vocabulary: { label: 'Vocabulário', icon: Star, color: 'text-purple-600 dark:text-purple-400', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+  exercise: { label: 'Exercício', icon: Target, color: 'text-green-600 dark:text-green-400', bgColor: 'bg-green-100 dark:bg-green-900/30' },
+  reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600 dark:text-cyan-400', bgColor: 'bg-cyan-100 dark:bg-cyan-900/30' },
+  quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600 dark:text-yellow-400', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30' },
+  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600 dark:text-teal-400', bgColor: 'bg-teal-100 dark:bg-teal-900/30' },
 };
 
 function getLessonLink(module: Module, lesson: Lesson): string {

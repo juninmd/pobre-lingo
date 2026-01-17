@@ -14,7 +14,7 @@ export default function NewsComprehensionPage() {
   const [selectedExercise, setSelectedExercise] = useState<any>(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [searchParams] = useSearchParams();
-  const { completeLesson, isLessonCompleted } = useCurriculumProgress();
+  const { } = useCurriculumProgress();
 
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');

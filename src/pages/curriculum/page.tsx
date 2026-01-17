@@ -33,34 +33,34 @@ const difficultyConfig = {
   basico: {
     label: 'Básico',
     color: 'bg-green-500',
-    textColor: 'text-green-600',
+    textColor: 'text-green-600 dark:text-green-400',
     borderColor: 'border-green-500',
-    bgLight: 'bg-green-50',
+    bgLight: 'bg-green-50 dark:bg-green-950/20',
   },
   intermediario: {
     label: 'Intermediário',
     color: 'bg-orange-500',
-    textColor: 'text-orange-600',
+    textColor: 'text-orange-600 dark:text-orange-400',
     borderColor: 'border-orange-500',
-    bgLight: 'bg-orange-50',
+    bgLight: 'bg-orange-50 dark:bg-orange-950/20',
   },
   avancado: {
     label: 'Avançado',
     color: 'bg-red-500',
-    textColor: 'text-red-600',
+    textColor: 'text-red-600 dark:text-red-400',
     borderColor: 'border-red-500',
-    bgLight: 'bg-red-50',
+    bgLight: 'bg-red-50 dark:bg-red-950/20',
   },
 };
 
 const lessonTypeConfig = {
-  grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-100' },
-  vocabulary: { label: 'Vocabulário', icon: Star, color: 'text-purple-600', bgColor: 'bg-purple-100' },
-  exercise: { label: 'Exercício', icon: Target, color: 'text-green-600', bgColor: 'bg-green-100' },
-  reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
-  quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
-  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
-  listening: { label: 'Escuta', icon: LucideIcons.Headphones, color: 'text-indigo-600', bgColor: 'bg-indigo-100' },
+  grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600 dark:text-blue-400', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
+  vocabulary: { label: 'Vocabulário', icon: Star, color: 'text-purple-600 dark:text-purple-400', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+  exercise: { label: 'Exercício', icon: Target, color: 'text-green-600 dark:text-green-400', bgColor: 'bg-green-100 dark:bg-green-900/30' },
+  reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600 dark:text-cyan-400', bgColor: 'bg-cyan-100 dark:bg-cyan-900/30' },
+  quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600 dark:text-yellow-400', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30' },
+  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600 dark:text-teal-400', bgColor: 'bg-teal-100 dark:bg-teal-900/30' },
+  listening: { label: 'Escuta', icon: LucideIcons.Headphones, color: 'text-indigo-600 dark:text-indigo-400', bgColor: 'bg-indigo-100 dark:bg-indigo-900/30' },
 };
 
 // Função para construir link de lição
@@ -353,8 +353,8 @@ export default function CurriculumPage() {
                               lessonCompleted
                                 ? "bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800"
                                 : isNextLesson
-                                  ? "bg-primary/5 border-primary hover:bg-primary/10 ring-1 ring-primary/30"
-                                  : "bg-background hover:bg-muted/50 border-border"
+                                  ? "bg-primary/5 dark:bg-primary/10 border-primary hover:bg-primary/10 dark:hover:bg-primary/20 ring-1 ring-primary/30"
+                                  : "bg-background dark:bg-card hover:bg-muted/50 dark:hover:bg-muted/20 border-border"
                             )}
                           >
                             {/* Status icon */}

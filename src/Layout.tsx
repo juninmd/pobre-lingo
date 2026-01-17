@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import {
@@ -19,6 +19,7 @@ import {
   Sparkles,
   GraduationCap,
   X,
+  Gamepad2,
 } from 'lucide-react';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
@@ -49,6 +50,7 @@ import {
 import { useTheme } from './contexts/ThemeContext';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { GlobalSearch, GlobalSearchTrigger } from '@/components/common/GlobalSearch';
 import { MobileNav } from './components/layout/MobileNav';
 import { useGamification } from './contexts/GamificationContext';
 import { Heart, Diamond } from 'lucide-react';
@@ -60,13 +62,13 @@ const navGroups = [
     items: [
       { href: '/', label: 'Início', icon: Home },
       { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map, badge: 'Novo' },
+      { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },
   {
     title: 'Referência',
     items: [
       { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
-      { href: '/glossary', label: 'Glossário', icon: BookText },
       { href: '/dictionary', label: 'Dicionário', icon: BookA },
     ]
   },
@@ -83,6 +85,7 @@ const navGroups = [
     title: 'Progresso',
     items: [
       { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
+      { href: '/proficiency', label: 'Teste de Proficiência', icon: GraduationCap },
     ]
   },
 ];
@@ -217,6 +220,20 @@ export default function Layout() {
   const { setTheme } = useTheme();
   const { hearts, gems } = useGamification();
   const location = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Determinar título da página atual
   const getCurrentPageTitle = () => {
@@ -261,7 +278,10 @@ export default function Layout() {
               </div>
             </div>
 
-            <div className="flex-1" />
+            <div className="flex-1 flex justify-center">
+              {/* Barra de Pesquisa Global */}
+              <GlobalSearchTrigger onClick={() => setSearchOpen(true)} />
+            </div>
 
             <div className="flex items-center gap-2 md:gap-4 mr-2">
               {/* Gamification Stats */}
@@ -319,7 +339,7 @@ export default function Layout() {
           </footer>
         </SidebarInset>
       </SidebarProvider>
-
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <MobileNav />
       <PWAInstallPrompt />
       <Toaster />

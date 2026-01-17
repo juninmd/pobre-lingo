@@ -15,8 +15,8 @@ interface Achievement {
 }
 
 export function AchievementsCard() {
-  const { getOverallProgress, totalXP, userLevel } = useCurriculumProgress();
-  const progress = getOverallProgress();
+  const { overallProgress, totalXP, userLevel } = useCurriculumProgress();
+  const progress = overallProgress;
 
   const achievements: Achievement[] = [
     {

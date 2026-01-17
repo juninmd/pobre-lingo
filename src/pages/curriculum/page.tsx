@@ -89,12 +89,11 @@ export default function CurriculumPage() {
     userLevel,
     isModuleUnlocked,
     getModuleProgress,
-    getOverallProgress,
+    overallProgress,
     isLessonCompleted,
   } = useCurriculumProgress();
 
   const stats = getCurriculumStats();
-  const overallProgress = getOverallProgress();
   const [selectedDifficulty, setSelectedDifficulty] = React.useState<DifficultyLevel | 'all'>('all');
   const [expandedModule, setExpandedModule] = React.useState<string | null>(null);
 

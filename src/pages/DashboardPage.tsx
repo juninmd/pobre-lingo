@@ -13,8 +13,8 @@ import { MascotGreeting } from '@/components/mascot/MascotGreeting';
 
 export default function DashboardPage() {
   // Integração com o progresso real
-  const { getOverallProgress } = useCurriculumProgress();
-  const progressStats = getOverallProgress();
+  const { overallProgress } = useCurriculumProgress();
+  const progressStats = overallProgress;
 
   const exercisesCompleted = progressStats.completedLessons;
   const totalExercises = progressStats.totalLessons;

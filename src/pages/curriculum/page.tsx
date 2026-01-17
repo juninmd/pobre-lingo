@@ -59,6 +59,8 @@ const lessonTypeConfig = {
   exercise: { label: 'Exercício', icon: Target, color: 'text-green-600', bgColor: 'bg-green-100' },
   reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
+  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
+  listening: { label: 'Escuta', icon: LucideIcons.Headphones, color: 'text-indigo-600', bgColor: 'bg-indigo-100' },
 };
 
 // Função para construir link de lição
@@ -115,16 +117,16 @@ export default function CurriculumPage() {
   return (
     <PageContainer>
       {/* Header com gradiente */}
-      <div className="relative mb-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border overflow-hidden">
+      <div className="relative mb-8 p-4 md:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border overflow-hidden">
         <div className="absolute top-0 right-0 opacity-10">
-          <GraduationCap className="h-40 w-40 text-primary" />
+          <GraduationCap className="h-24 w-24 md:h-40 md:w-40 text-primary" />
         </div>
         <div className="relative">
-          <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
-            <Flame className="h-10 w-10 text-orange-500" />
+          <h1 className="text-2xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+            <Flame className="h-8 w-8 md:h-10 md:w-10 text-orange-500" />
             Jornada de Aprendizado
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base md:text-lg">
             Sua trilha personalizada para dominar o inglês, passo a passo.
           </p>
         </div>
@@ -237,7 +239,7 @@ export default function CurriculumPage() {
               {moduleIndex < filteredModules.length - 1 && (
                 <div
                   className={cn(
-                    "absolute left-6 top-[4.5rem] h-[calc(100%-1rem)] w-0.5",
+                    "absolute left-6 top-[4.5rem] h-[calc(100%-1rem)] w-0.5 z-0",
                     isCompleted ? "bg-green-400" : "bg-gray-200 dark:bg-gray-700"
                   )}
                 />

@@ -2,7 +2,7 @@
 // Define a estrutura de aprendizado do básico ao avançado
 
 export type DifficultyLevel = 'basico' | 'intermediario' | 'avancado';
-export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz';
+export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz' | 'culture';
 
 export interface Lesson {
   id: string;
@@ -14,7 +14,7 @@ export interface Lesson {
   xpReward: number;
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
-  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension';
+  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening';
   vocabularyTopics?: string[];
   order: number;
 }
@@ -30,6 +30,16 @@ export interface Module {
   lessons: Lesson[];
   prerequisites?: string[]; // IDs de módulos anteriores necessários
   order: number;
+  unitId: string; // Link to the Unit
+}
+
+export interface Unit {
+  id: string;
+  title: string;
+  description: string;
+  guidebookContent: string; // Markdown content for tips/rules
+  order: number;
+  difficulty: DifficultyLevel;
 }
 
 export interface LearningPath {
@@ -37,18 +47,207 @@ export interface LearningPath {
   name_pt: string;
   name_en: string;
   description_pt: string;
+  units: Unit[];
   modules: Module[];
 }
+
+const units: Unit[] = [
+  {
+    id: 'unit-1',
+    title: 'Unidade 1: Primeiros Passos',
+    description: 'Comece sua jornada com o básico do inglês.',
+    order: 1,
+    difficulty: 'basico',
+    guidebookContent: `
+# Bem-vindo ao Inglês! 🚀
+
+Parabéns por começar sua jornada! Nesta primeira unidade, vamos construir a base do seu conhecimento.
+
+### 1. O Alfabeto e Pronúncia
+O inglês tem sons únicos.
+* **TH**: Coloque a ponta da língua entre os dentes e sopre (como em *think* e *the*).
+* **R**: O "R" do inglês é enrolado, como o "R" caipira de "porta" (ex: *car*, *red*).
+* **H**: No início das palavras, o "H" tem som de "R" fraco (ex: *house* soa como "rause").
+
+### 2. O Poderoso Verbo "To Be"
+Ele é o verbo mais importante e significa **ser** ou **estar**.
+* **I am** (Eu sou / Eu estou)
+* **You are** (Você é / Você está)
+* **He/She/It is** (Ele/Ela/Isso é ou está)
+
+### 3. Cognatos (Amigos Falsos e Verdadeiros)
+Muitas palavras são parecidas com o português!
+* **Verdadeiros**: *Banana*, *Music*, *Future*, *Different*.
+* **Falsos**: *Push* (empurrar, não puxar!), *Lunch* (almoço, não lanche!).
+
+### Dica de Ouro 💡
+Não tenha medo de errar! O erro faz parte do aprendizado. Tente imitar os sons que você ouve nos exercícios de áudio.
+    `
+  },
+  {
+    id: 'unit-2',
+    title: 'Unidade 2: Conversas do Dia a Dia',
+    description: 'Aprenda a cumprimentar e ser educado.',
+    order: 2,
+    difficulty: 'basico',
+    guidebookContent: `
+# Cultura e Educação 🤝
+
+Nos países de língua inglesa, a polidez é essencial. Ser direto demais pode soar rude.
+
+### Palavras Mágicas
+Use estas palavras o tempo todo:
+* **Please**: Por favor.
+* **Thank you**: Obrigado(a).
+* **Sorry**: Desculpe (para pedir perdão).
+* **Excuse me**: Com licença (para chamar atenção ou passar).
+
+### Small Talk (Conversa Fiada)
+É comum conversar sobre o clima ou assuntos leves com estranhos.
+* "Nice weather today, isn't it?" (Tempo bom hoje, não é?)
+
+### Regra de Ouro: O Sujeito Obrigatório 👑
+Em português, dizemos "Fui ao mercado" (sujeito oculto). Em inglês, **sempre** precisamos dizer quem fez a ação.
+* Errado: Went to the market.
+* Certo: **I** went to the market.
+
+**Atenção:** "Está chovendo" vira "**It** is raining". O **It** é o sujeito neutro para coisas, animais e clima.
+    `
+  },
+  {
+    id: 'unit-3',
+    title: 'Unidade 3: Falando do Passado',
+    description: 'Conte histórias e descreva ações.',
+    order: 3,
+    difficulty: 'basico',
+    guidebookContent: `
+# Passado e Presente
+
+### Present Continuous
+Usamos para coisas que estão acontecendo **agora**.
+* I **am studying** English. (Estou estudando inglês)
+
+### Simple Past
+Para coisas que já acabaram.
+* I **visited** London last year. (Visitei Londres ano passado)
+
+**Atenção aos Verbos Irregulares!**
+Muitos verbos mudam completamente no passado (Go -> Went, Eat -> Ate).
+    `
+  },
+  {
+    id: 'unit-4',
+    title: 'Unidade 4: Viagem e Aventura',
+    description: 'Prepare-se para explorar o mundo.',
+    order: 4,
+    difficulty: 'basico',
+    guidebookContent: `
+# Inglês para Viagem
+
+Quando viajar, frases curtas e diretas ajudam muito.
+
+### No Aeroporto
+* **Boarding Pass**: Cartão de embarque
+* **Gate**: Portão
+* **Customs**: Alfândega
+
+### Pedindo Informações
+Comece com "Excuse me, where is...?" (Com licença, onde fica...?).
+    `
+  },
+  {
+    id: 'unit-5',
+    title: 'Unidade 5: Conexões Temporais',
+    description: 'Domine os tempos perfeitos.',
+    order: 5,
+    difficulty: 'intermediario',
+    guidebookContent: `
+# Present Perfect
+
+Este é o tempo verbal mais difícil para brasileiros, mas você consegue!
+
+Usamos o **Present Perfect** (Have + Verbo no Particípio) quando:
+1. A ação aconteceu no passado, mas não dizemos **quando**.
+   * I **have visited** Paris. (Eu visitei Paris - em algum momento da vida).
+2. A ação começou no passado e continua até hoje.
+   * I **have lived** here for 10 years.
+
+**Dica:** Se você disser o tempo exato (ex: ontem, ano passado), use o Simple Past, não o Present Perfect.
+    `
+  },
+  {
+    id: 'unit-6',
+    title: 'Unidade 6: Possibilidades',
+    description: 'O que aconteceria se...?',
+    order: 6,
+    difficulty: 'intermediario',
+    guidebookContent: `
+# Conditionals (Condicionais)
+
+### Zero Conditional (Fatos)
+* If you heat water, it boils. (Se esquentar água, ferve).
+
+### First Conditional (Provável)
+* If it rains, I will stay home. (Se chover, ficarei em casa).
+
+### Second Conditional (Imaginário)
+* If I won the lottery, I would travel. (Se eu ganhasse na loteria, viajaria).
+    `
+  },
+  {
+    id: 'unit-7',
+    title: 'Unidade 7: Estilo Formal',
+    description: 'Aprenda a Voz Passiva e Inglês de Negócios.',
+    order: 7,
+    difficulty: 'intermediario',
+    guidebookContent: `
+# Voz Passiva e Formalidade
+
+A **Voz Passiva** é muito usada em notícias e textos formais para focar na ação, não em quem fez.
+* Active: The architect built the house.
+* Passive: The house **was built** by the architect.
+
+### Business English
+Em emails, seja direto mas polido.
+* "I look forward to hearing from you" (Aguardo seu retorno).
+    `
+  },
+  {
+    id: 'unit-8',
+    title: 'Unidade 8: Rumo à Fluência',
+    description: 'Gramática avançada e expressões nativas.',
+    order: 8,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Nível Avançado
+
+### Phrasal Verbs
+Verbos que mudam de sentido com uma preposição.
+* **Give up**: Desistir
+* **Run out**: Esgotar
+* **Look forward to**: Esperar ansiosamente
+
+### Expressões Idiomáticas (Idioms)
+* **Piece of cake**: Muito fácil
+* **Break a leg**: Boa sorte
+
+Para ser fluente, você precisa entender essas expressões que não fazem sentido literal!
+    `
+  }
+];
 
 export const curriculumData: LearningPath = {
   id: 'english-mastery',
   name_pt: 'Jornada de Domínio do Inglês',
   name_en: 'English Mastery Journey',
   description_pt: 'Um caminho estruturado do básico ao avançado para dominar o inglês',
+  units: units,
   modules: [
     // ========== NÍVEL BÁSICO ==========
+    // Unit 1
     {
       id: 'foundations',
+      unitId: 'unit-1',
       title_pt: 'Fundamentos do Inglês',
       title_en: 'English Foundations',
       description_pt: 'Comece sua jornada com os conceitos fundamentais da língua inglesa',
@@ -91,6 +290,17 @@ export const curriculumData: LearningPath = {
           order: 3,
         },
         {
+          id: 'basic-pairs',
+          title_pt: 'Jogar: Pares de Palavras',
+          title_en: 'Play: Word Pairs',
+          description_pt: 'Combine palavras e significados (Jogo)',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          exerciseType: 'matching-pairs',
+          order: 4,
+        },
+        {
           id: 'simple-sentences-practice',
           title_pt: 'Prática: Frases Simples',
           title_en: 'Practice: Simple Sentences',
@@ -99,7 +309,18 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 15,
           xpReward: 100,
           exerciseType: 'sentence-ordering',
-          order: 4,
+          order: 5,
+        },
+        {
+          id: 'foundations-listening',
+          title_pt: 'Prática: Escuta',
+          title_en: 'Practice: Listening',
+          description_pt: 'Treine seu ouvido com frases simples',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 6,
         },
         {
           id: 'foundations-quiz',
@@ -109,19 +330,55 @@ export const curriculumData: LearningPath = {
           type: 'quiz',
           estimatedMinutes: 10,
           xpReward: 150,
-          order: 5,
+          order: 7,
         },
       ],
     },
+    // Unit 2
+    {
+      id: 'culture-tips-basic',
+      unitId: 'unit-2',
+      title_pt: 'Dicas Culturais & Normas',
+      title_en: 'Culture Tips & Norms',
+      description_pt: 'Entenda como os nativos realmente pensam e agem',
+      difficulty: 'basico',
+      icon: 'Globe',
+      color: 'bg-teal-500',
+      order: 2,
+      lessons: [
+         {
+          id: 'tipping-culture',
+          title_pt: 'Cultura de Gorjetas',
+          title_en: 'Tipping Culture',
+          description_pt: 'Como funcionam as gorjetas nos EUA e UK',
+          type: 'culture',
+          estimatedMinutes: 10,
+          xpReward: 50,
+          order: 1,
+        },
+        {
+          id: 'politeness-levels',
+          title_pt: 'Níveis de Polidez',
+          title_en: 'Levels of Politeness',
+          description_pt: 'Como ser educado em inglês (Please, Thank you, Sorry)',
+          type: 'vocabulary',
+          estimatedMinutes: 15,
+          xpReward: 75,
+          vocabularyTopics: ['politeness'],
+          order: 2,
+        }
+      ]
+    },
     {
       id: 'daily-conversations',
+      unitId: 'unit-2',
       title_pt: 'Conversações do Dia a Dia',
       title_en: 'Daily Conversations',
       description_pt: 'Aprenda a se comunicar em situações cotidianas',
       difficulty: 'basico',
       icon: 'MessageCircle',
       color: 'bg-green-500',
-      order: 2,
+      order: 3,
       prerequisites: ['foundations'],
       lessons: [
         {
@@ -169,8 +426,10 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    // Unit 3
     {
       id: 'past-present',
+      unitId: 'unit-3',
       title_pt: 'Passado e Presente',
       title_en: 'Past and Present',
       description_pt: 'Domine os tempos verbais essenciais',
@@ -237,9 +496,60 @@ export const curriculumData: LearningPath = {
       ],
     },
 
+    // ========== TRAVEL & BASICS ==========
+    // Unit 4
+    {
+      id: 'travel-basics',
+      unitId: 'unit-4',
+      title_pt: 'Inglês para Viagem',
+      title_en: 'Travel English',
+      description_pt: 'Vocabulário e frases essenciais para viajar',
+      difficulty: 'basico',
+      icon: 'Plane',
+      color: 'bg-cyan-500',
+      order: 4,
+      prerequisites: ['past-present'],
+      lessons: [
+        {
+          id: 'airport-vocabulary',
+          title_pt: 'No Aeroporto',
+          title_en: 'At the Airport',
+          description_pt: 'Check-in, segurança e embarque',
+          type: 'vocabulary',
+          estimatedMinutes: 20,
+          xpReward: 80,
+          vocabularyTopics: ['airport', 'travel-documents'],
+          order: 1,
+        },
+        {
+          id: 'hotel-checkin',
+          title_pt: 'No Hotel',
+          title_en: 'At the Hotel',
+          description_pt: 'Fazendo check-in e pedindo serviços',
+          type: 'vocabulary',
+          estimatedMinutes: 20,
+          xpReward: 80,
+          vocabularyTopics: ['hotel'],
+          order: 2,
+        },
+        {
+          id: 'directions',
+          title_pt: 'Pedindo Informações',
+          title_en: 'Asking for Directions',
+          description_pt: 'Como chegar onde você quer',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 3,
+        }
+      ]
+    },
     // ========== NÍVEL INTERMEDIÁRIO ==========
+    // Unit 5
     {
       id: 'perfect-tenses',
+      unitId: 'unit-5',
       title_pt: 'Tempos Perfeitos',
       title_en: 'Perfect Tenses',
       description_pt: 'Avance com os tempos verbais perfeitos',
@@ -305,8 +615,10 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    // Unit 6
     {
       id: 'conditionals',
+      unitId: 'unit-6',
       title_pt: 'Condicionais',
       title_en: 'Conditionals',
       description_pt: 'Expresse possibilidades e hipóteses',
@@ -362,8 +674,10 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    // Unit 7
     {
       id: 'passive-voice',
+      unitId: 'unit-7',
       title_pt: 'Voz Passiva',
       title_en: 'Passive Voice',
       description_pt: 'Aprenda a usar a voz passiva em diferentes contextos',
@@ -418,10 +732,59 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    {
+      id: 'business-english',
+      unitId: 'unit-7',
+      title_pt: 'Inglês para Negócios',
+      title_en: 'Business English',
+      description_pt: 'Vocabulário e situações do mundo corporativo',
+      difficulty: 'intermediario',
+      icon: 'Briefcase',
+      color: 'bg-slate-500',
+      order: 7,
+      prerequisites: ['passive-voice'],
+      lessons: [
+        {
+          id: 'emails',
+          title_pt: 'Emails Profissionais',
+          title_en: 'Professional Emails',
+          description_pt: 'Como escrever emails formais',
+          type: 'vocabulary',
+          estimatedMinutes: 25,
+          xpReward: 100,
+          vocabularyTopics: ['business-writing'],
+          order: 1,
+        },
+        {
+          id: 'meetings',
+          title_pt: 'Reuniões',
+          title_en: 'Meetings',
+          description_pt: 'Vocabulário para participar de reuniões',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 100,
+          exerciseType: 'listening',
+          order: 2,
+        },
+        {
+          id: 'presentations',
+          title_pt: 'Apresentações',
+          title_en: 'Presentations',
+          description_pt: 'Dicas para apresentar em inglês',
+          type: 'reading',
+          estimatedMinutes: 30,
+          xpReward: 120,
+          exerciseType: 'news-comprehension',
+          order: 3,
+        }
+      ]
+    },
 
     // ========== NÍVEL AVANÇADO ==========
+    // Unit 8
     {
       id: 'advanced-grammar',
+      unitId: 'unit-8',
       title_pt: 'Gramática Avançada',
       title_en: 'Advanced Grammar',
       description_pt: 'Estruturas gramaticais complexas e sofisticadas',
@@ -479,6 +842,7 @@ export const curriculumData: LearningPath = {
     },
     {
       id: 'idiomatic-expressions',
+      unitId: 'unit-8',
       title_pt: 'Expressões Idiomáticas',
       title_en: 'Idiomatic Expressions',
       description_pt: 'Fale como um nativo com expressões idiomáticas',
@@ -536,6 +900,7 @@ export const curriculumData: LearningPath = {
     },
     {
       id: 'advanced-reading',
+      unitId: 'unit-8',
       title_pt: 'Leitura Avançada',
       title_en: 'Advanced Reading',
       description_pt: 'Compreenda textos complexos e literários',
@@ -594,22 +959,32 @@ export const curriculumData: LearningPath = {
 };
 
 // Função auxiliar para obter estatísticas do currículo
-export function getCurriculumStats() {
-  const modules = curriculumData.modules;
+export function getCurriculumStats(data: LearningPath = curriculumData) {
+  const modules = data.modules;
   const totalModules = modules.length;
-  const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
-  const totalXP = modules.reduce(
-    (sum, module) => sum + module.lessons.reduce((lessonSum, lesson) => lessonSum + lesson.xpReward, 0),
-    0
-  );
-  const totalMinutes = modules.reduce(
-    (sum, module) => sum + module.lessons.reduce((lessonSum, lesson) => lessonSum + lesson.estimatedMinutes, 0),
-    0
-  );
 
-  const basicModules = modules.filter(m => m.difficulty === 'basico').length;
-  const intermediateModules = modules.filter(m => m.difficulty === 'intermediario').length;
-  const advancedModules = modules.filter(m => m.difficulty === 'avancado').length;
+  let totalLessons = 0;
+  let totalXP = 0;
+  let totalMinutes = 0;
+  let basicModules = 0;
+  let intermediateModules = 0;
+  let advancedModules = 0;
+
+  for (const module of modules) {
+    if (module.difficulty === 'basico') basicModules++;
+    else if (module.difficulty === 'intermediario') intermediateModules++;
+    else if (module.difficulty === 'avancado') advancedModules++;
+
+    const lessons = module.lessons;
+    const lessonCount = lessons.length;
+    totalLessons += lessonCount;
+
+    for (let i = 0; i < lessonCount; i++) {
+      const lesson = lessons[i];
+      totalXP += lesson.xpReward;
+      totalMinutes += lesson.estimatedMinutes;
+    }
+  }
 
   return {
     totalModules,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,6 +28,7 @@ const lessonTypeConfig = {
   exercise: { label: 'Exercício', icon: Target, color: 'text-green-600', bgColor: 'bg-green-100' },
   reading: { label: 'Leitura', icon: BookOpen, color: 'text-cyan-600', bgColor: 'bg-cyan-100' },
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
+  culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
 };
 
 function getLessonLink(module: Module, lesson: Lesson): string {
@@ -51,7 +52,7 @@ function getLessonLink(module: Module, lesson: Lesson): string {
 
 export function CurriculumProgressCard() {
   const { isModuleUnlocked, getModuleProgress, getOverallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
-  const overallProgress = getOverallProgress();
+  const overallProgress = useMemo(() => getOverallProgress(), [getOverallProgress]);
 
   // Encontrar a próxima lição não completada
   const findNextLesson = (): { module: Module; lesson: Lesson; lessonIndex: number } | null => {

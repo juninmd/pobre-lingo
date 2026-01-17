@@ -40,7 +40,9 @@ export function usePWAInstall(): UsePWAInstallReturn {
     const dismissedAt = getLocalStorageItem<number>(STORAGE_KEY, 0);
     if (dismissedAt) {
       const daysSinceDismiss = (Date.now() - dismissedAt) / (1000 * 60 * 60 * 24);
-      setWasPromptDismissed(daysSinceDismiss < DISMISS_DURATION_DAYS);
+      if (daysSinceDismiss < DISMISS_DURATION_DAYS) {
+        setWasPromptDismissed(true);
+      }
     }
 
     // Listen for the beforeinstallprompt event

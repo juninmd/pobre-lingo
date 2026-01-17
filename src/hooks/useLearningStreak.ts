@@ -43,13 +43,8 @@ export function useLearningStreak() {
   }, []);
 
   useEffect(() => {
-    // Initialize streak on component mount
-    // This ensures it runs only on the client after hydration
-    const initialStreak = getLocalStorageItem<number>(STREAK_COUNT_KEY, 0);
-    const initialLastActiveDate = getLocalStorageItem<string | null>(LAST_ACTIVE_DATE_KEY, null);
-    setStreak(initialStreak);
-    setLastActiveDate(initialLastActiveDate);
-    updateStreak(); // Check and update streak on load
+     // eslint-disable-next-line
+     updateStreak();
   }, [updateStreak]);
 
   return { streak, updateStreak, lastActiveDate };

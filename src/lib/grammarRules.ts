@@ -734,12 +734,15 @@ export const grammarCategories: GrammarCategory[] = [
   },
 ];
 
-export const getRuleById = (ruleId: string): GrammarRule | undefined => {
-  for (const category of grammarCategories) {
-    const rule = category.rules.find(r => r.id === ruleId);
-    if (rule) return rule;
+const rulesMap: Record<string, GrammarRule> = {};
+for (const category of grammarCategories) {
+  for (const rule of category.rules) {
+    rulesMap[rule.id] = rule;
   }
-  return undefined;
+}
+
+export const getRuleById = (ruleId: string): GrammarRule | undefined => {
+  return rulesMap[ruleId];
 };
 
 export const getCategoryById = (categoryId: string): GrammarCategory | undefined => {

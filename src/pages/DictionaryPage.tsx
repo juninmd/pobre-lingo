@@ -1,20 +1,73 @@
 import { dictionaryEntries } from '@/lib/dictionaryData';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { useState } from 'react';
+import { useState, useMemo, useDeferredValue, useEffect, useRef } from 'react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
 import { BookText, Search, Volume2 } from 'lucide-react';
 
+const ITEMS_PER_PAGE = 20;
+
 export default function DictionaryPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [prevSearchTerm, setPrevSearchTerm] = useState(deferredSearchTerm);
+  const observerTarget = useRef<HTMLDivElement>(null);
 
-  const filteredEntries = dictionaryEntries.filter(entry =>
-    entry.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    entry.translation_pt.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Pre-compute lowercase values for faster filtering
+  // This is memoized so it's only calculated once (since dictionaryEntries is static)
+  const preparedEntries = useMemo(() => {
+    return dictionaryEntries
+      .map(entry => ({
+        ...entry,
+        wordLower: entry.word.toLowerCase(),
+        translationLower: entry.translation_pt.toLowerCase()
+      }))
+      .sort((a, b) => a.wordLower.localeCompare(b.wordLower));
+  }, []);
+
+  const filteredEntries = useMemo(() => {
+    const termLower = deferredSearchTerm.toLowerCase();
+    return preparedEntries.filter(entry =>
+      entry.wordLower.includes(termLower) ||
+      entry.translationLower.includes(termLower)
+    );
+  }, [deferredSearchTerm, preparedEntries]);
+
+  // Reset visible count when search term changes (Render-time update pattern)
+  if (deferredSearchTerm !== prevSearchTerm) {
+    setPrevSearchTerm(deferredSearchTerm);
+    setVisibleCount(ITEMS_PER_PAGE);
+  }
+
+  const visibleEntries = useMemo(() => {
+    return filteredEntries.slice(0, visibleCount);
+  }, [filteredEntries, visibleCount]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCount < filteredEntries.length) {
+          setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, filteredEntries.length));
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentTarget = observerTarget.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
+    }
+
+    return () => {
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
+      }
+    };
+  }, [visibleCount, filteredEntries.length]);
 
   const speak = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
@@ -51,7 +104,7 @@ export default function DictionaryPage() {
 
       <ScrollArea className="h-[calc(100vh-20rem)]">
         <div className="grid gap-4 md:grid-cols-2 pr-4">
-          {filteredEntries.map((entry) => (
+          {visibleEntries.map((entry) => (
             <Card key={entry.id} className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
@@ -88,6 +141,11 @@ export default function DictionaryPage() {
               </CardContent>
             </Card>
           ))}
+
+          {/* Sentinel for IntersectionObserver */}
+          {visibleCount < filteredEntries.length && (
+            <div ref={observerTarget} className="h-4 w-full col-span-full" />
+          )}
         </div>
       </ScrollArea>
     </PageContainer>

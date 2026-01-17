@@ -227,7 +227,7 @@ export function useCurriculumProgress() {
   }, [completedLessons, getModuleCompletionStats, isModuleUnlocked]);
 
   // Obter estatísticas gerais
-  const getOverallProgress = useCallback(() => {
+  const overallProgress = useMemo(() => {
     const totalModules = curriculumData.modules.length;
     const totalLessons = curriculumData.modules.reduce(
       (sum, module) => sum + module.lessons.length,
@@ -281,7 +281,7 @@ export function useCurriculumProgress() {
     isLessonCompleted,
     isModuleUnlocked,
     getModuleProgress,
-    getOverallProgress,
+    overallProgress,
     resetProgress,
   };
 }

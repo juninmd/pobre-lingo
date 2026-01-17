@@ -27,18 +27,6 @@ export default function MatchingPairsPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  useEffect(() => {
-    // Select an exercise (random or specific)
-    const currentExercise = exerciseId
-      ? matchingPairsExercises.find(e => e.id === exerciseId)
-      : matchingPairsExercises[Math.floor(Math.random() * matchingPairsExercises.length)];
-
-    if (currentExercise) {
-      setExercise(currentExercise);
-      initializeGame(currentExercise);
-    }
-  }, [exerciseId]);
-
   const initializeGame = (ex: MatchingPairsExercise) => {
     // Create card items from pairs
     const newCards: CardState[] = [];
@@ -65,6 +53,19 @@ export default function MatchingPairsPage() {
     setIsCompleted(false);
     setIsProcessing(false);
   };
+
+  useEffect(() => {
+    // Select an exercise (random or specific)
+    const currentExercise = exerciseId
+      ? matchingPairsExercises.find(e => e.id === exerciseId)
+      : matchingPairsExercises[Math.floor(Math.random() * matchingPairsExercises.length)];
+
+    if (currentExercise) {
+      setExercise(currentExercise);
+      initializeGame(currentExercise);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exerciseId]);
 
   const handleCardClick = (card: CardState) => {
     if (isProcessing || card.status === 'matched' || card.status === 'selected') return;

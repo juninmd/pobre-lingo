@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
@@ -15,8 +15,8 @@ interface Achievement {
 }
 
 export function AchievementsCard() {
-  const { overallProgress, totalXP, userLevel } = useCurriculumProgress();
-  const progress = overallProgress;
+  const { getOverallProgress, totalXP, userLevel } = useCurriculumProgress();
+  const progress = useMemo(() => getOverallProgress(), [getOverallProgress]);
 
   const achievements: Achievement[] = [
     {

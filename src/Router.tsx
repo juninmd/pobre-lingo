@@ -15,6 +15,12 @@ import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page'
 import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
 import MatchingPairsPage from './pages/exercises/matching-pairs/page';
 import ListeningPage from './pages/exercises/listening/page';
+import ProficiencyTestPage from './pages/ProficiencyTestPage';
+import ArcadePage from './pages/ArcadePage';
+import SpeedMatchPage from './pages/games/SpeedMatchPage';
+import WordScramblePage from './pages/games/WordScramblePage';
+import FlashcardsPage from './pages/games/FlashcardsPage';
+import WordSearchPage from './pages/games/WordSearchPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +30,26 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardPage />,
+      },
+      {
+        path: 'arcade',
+        element: <ArcadePage />,
+      },
+      {
+        path: 'games/speed-match',
+        element: <SpeedMatchPage />,
+      },
+      {
+        path: 'games/word-scramble',
+        element: <WordScramblePage />,
+      },
+      {
+        path: 'games/flashcards',
+        element: <FlashcardsPage />,
+      },
+      {
+        path: 'games/word-search',
+        element: <WordSearchPage />,
       },
       {
         path: 'dictionary',
@@ -44,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: 'progress',
         element: <DashboardPage />,
+      },
+      {
+        path: 'proficiency',
+        element: <ProficiencyTestPage />,
       },
       {
         path: 'exercises/find-incorrect-words',

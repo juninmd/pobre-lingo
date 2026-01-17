@@ -19,6 +19,7 @@ import {
   Sparkles,
   GraduationCap,
   X,
+  Gamepad2,
 } from 'lucide-react';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
@@ -60,6 +61,7 @@ const navGroups = [
     items: [
       { href: '/', label: 'Início', icon: Home },
       { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map, badge: 'Novo' },
+      { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },
   {
@@ -83,6 +85,7 @@ const navGroups = [
     title: 'Progresso',
     items: [
       { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
+      { href: '/proficiency', label: 'Teste de Proficiência', icon: GraduationCap },
     ]
   },
 ];

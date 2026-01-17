@@ -68,7 +68,6 @@ const navGroups = [
     title: 'Referência',
     items: [
       { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
-      { href: '/glossary', label: 'Glossário', icon: BookText },
       { href: '/dictionary', label: 'Dicionário', icon: BookA },
     ]
   },

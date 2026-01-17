@@ -20,11 +20,13 @@ export default function DictionaryPage() {
   // Pre-compute lowercase values for faster filtering
   // This is memoized so it's only calculated once (since dictionaryEntries is static)
   const preparedEntries = useMemo(() => {
-    return dictionaryEntries.map(entry => ({
-      ...entry,
-      wordLower: entry.word.toLowerCase(),
-      translationLower: entry.translation_pt.toLowerCase()
-    }));
+    return dictionaryEntries
+      .map(entry => ({
+        ...entry,
+        wordLower: entry.word.toLowerCase(),
+        translationLower: entry.translation_pt.toLowerCase()
+      }))
+      .sort((a, b) => a.wordLower.localeCompare(b.wordLower));
   }, []);
 
   const filteredEntries = useMemo(() => {

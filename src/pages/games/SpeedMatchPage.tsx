@@ -83,7 +83,7 @@ export default function SpeedMatchPage() {
     } else if (timeLeft === 0 && isPlaying) {
       endGame();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [isPlaying, timeLeft, endGame]);
 
   const handleCardClick = (id: string) => {

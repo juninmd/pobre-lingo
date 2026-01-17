@@ -49,6 +49,7 @@ import {
 import { useTheme } from './contexts/ThemeContext';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { GlobalSearch, GlobalSearchTrigger } from '@/components/common/GlobalSearch';
 
 // Agrupamento de navegação por categorias
 const navGroups = [
@@ -211,6 +212,20 @@ function NavMenu() {
 export default function Layout() {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Determinar título da página atual
   const getCurrentPageTitle = () => {
@@ -248,7 +263,10 @@ export default function Layout() {
               </div>
             </div>
 
-            <div className="flex-1" />
+            <div className="flex-1 flex justify-center">
+              {/* Barra de Pesquisa Global */}
+              <GlobalSearchTrigger onClick={() => setSearchOpen(true)} />
+            </div>
 
             <div className="flex items-center gap-2">
               {/* Theme Switcher */}
@@ -292,6 +310,7 @@ export default function Layout() {
           </footer>
         </SidebarInset>
       </SidebarProvider>
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <PWAInstallPrompt />
       <Toaster />
     </div>

@@ -51,8 +51,7 @@ function getLessonLink(module: Module, lesson: Lesson): string {
 }
 
 export function CurriculumProgressCard() {
-  const { isModuleUnlocked, getModuleProgress, getOverallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
-  const overallProgress = useMemo(() => getOverallProgress(), [getOverallProgress]);
+  const { isModuleUnlocked, getModuleProgress, overallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
 
   // Encontrar a próxima lição não completada
   const findNextLesson = (): { module: Module; lesson: Lesson; lessonIndex: number } | null => {

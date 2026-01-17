@@ -9,8 +9,8 @@ export default function DashboardPage() {
   const userName = "Usuário"; // Could come from auth context
 
   // Integração com o progresso real
-  const { getOverallProgress } = useCurriculumProgress();
-  const progressStats = useMemo(() => getOverallProgress(), [getOverallProgress]);
+  const { overallProgress } = useCurriculumProgress();
+  const progressStats = overallProgress;
 
   const exercisesCompleted = progressStats.completedLessons;
 

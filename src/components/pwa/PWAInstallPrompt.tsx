@@ -18,7 +18,7 @@ export const PWAInstallPrompt: FC<PWAInstallPromptProps> = ({ className }) => {
   // Show iOS instructions
   if (isIOS && !isInstalled) {
     return (
-      <Card className={cn('fixed bottom-4 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg md:left-auto md:right-4 md:w-96', className)}>
+      <Card className={cn('fixed bottom-20 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96', className)}>
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
             <div className="rounded-full bg-primary/10 p-2">
@@ -53,7 +53,7 @@ export const PWAInstallPrompt: FC<PWAInstallPromptProps> = ({ className }) => {
   if (!isInstallable) return null;
 
   return (
-    <Card className={cn('fixed bottom-4 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg md:left-auto md:right-4 md:w-96', className)}>
+    <Card className={cn('fixed bottom-20 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96', className)}>
       <CardContent className="p-4">
         <div className="flex items-start gap-3">
           <div className="rounded-full bg-primary/10 p-2">

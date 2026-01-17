@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -52,7 +52,7 @@ function getLessonLink(module: Module, lesson: Lesson): string {
 
 export function CurriculumProgressCard() {
   const { isModuleUnlocked, getModuleProgress, getOverallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
-  const overallProgress = getOverallProgress();
+  const overallProgress = useMemo(() => getOverallProgress(), [getOverallProgress]);
 
   // Encontrar a próxima lição não completada
   const findNextLesson = (): { module: Module; lesson: Lesson; lessonIndex: number } | null => {

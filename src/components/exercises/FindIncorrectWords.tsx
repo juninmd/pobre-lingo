@@ -202,7 +202,7 @@ export function FindIncorrectWords() {
 
                 let alertVariant: "default" | "destructive" = "default";
                 let alertTitle = "";
-                let descriptionElements: React.ReactElement[] = [];
+                const descriptionElements: React.ReactElement[] = [];
 
                 if (feedback.status === 'correct_identification') {
                   alertVariant = "default";

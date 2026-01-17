@@ -105,3 +105,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}

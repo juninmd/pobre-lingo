@@ -19,8 +19,9 @@ import {
   Sparkles,
   GraduationCap,
   X,
+  Gamepad2,
 } from 'lucide-react';
-import PobreLingoLogo from '@/components/icons/PobreLingoLogo';
+import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
 import {
   SidebarProvider,
@@ -49,6 +50,7 @@ import {
 import { useTheme } from './contexts/ThemeContext';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { GlobalSearch, GlobalSearchTrigger } from '@/components/common/GlobalSearch';
 import { MobileNav } from './components/layout/MobileNav';
 import { useGamification } from './contexts/GamificationContext';
 import { Heart, Diamond } from 'lucide-react';
@@ -60,13 +62,13 @@ const navGroups = [
     items: [
       { href: '/', label: 'Início', icon: Home },
       { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map, badge: 'Novo' },
+      { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },
   {
     title: 'Referência',
     items: [
       { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
-      { href: '/glossary', label: 'Glossário', icon: BookText },
       { href: '/dictionary', label: 'Dicionário', icon: BookA },
     ]
   },
@@ -83,6 +85,7 @@ const navGroups = [
     title: 'Progresso',
     items: [
       { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
+      { href: '/proficiency', label: 'Teste de Proficiência', icon: GraduationCap },
     ]
   },
 ];
@@ -113,7 +116,9 @@ function NavMenu() {
     <>
       <SidebarHeader className="p-3 border-b border-sidebar-border/50">
         <div className="flex items-center gap-3">
-          <PobreLingoLogo className="h-8 w-8 flex-shrink-0" />
+          <div className="relative">
+            <Pobrelingo width={32} height={32} className="flex-shrink-0" emotion="winking" />
+          </div>
           {!isCollapsed && (
             <div className="flex flex-col min-w-0">
               <span className="font-bold text-sm text-sidebar-foreground truncate">PobreLingo</span>
@@ -212,9 +217,23 @@ function NavMenu() {
 }
 
 export default function Layout() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const { hearts, gems } = useGamification();
   const location = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Determinar título da página atual
   const getCurrentPageTitle = () => {
@@ -228,15 +247,15 @@ export default function Layout() {
   return (
     <div className="font-body antialiased min-h-screen">
       <SidebarProvider defaultOpen>
-        {/* Sidebar only visible on md and up */}
-        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden md:flex border-r border-sidebar-border">
+        {/* Sidebar only visible on lg and up */}
+        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-sidebar-border">
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen pb-24 md:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-4 border-b bg-background px-4 md:px-6">
-            <div className="flex items-center gap-3">
-              <div className="hidden md:block">
+        <SidebarInset className="flex flex-col min-h-screen pb-32 lg:pb-0">
+          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background px-4 md:px-6">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="hidden lg:block">
                 <SidebarTrigger asChild>
                   <Button variant="ghost" size="icon" className="h-8 w-8">
                     <Menu className="h-4 w-4" />
@@ -245,21 +264,24 @@ export default function Layout() {
                 </SidebarTrigger>
               </div>
 
-              <div className="md:hidden">
-                 <PobreLingoLogo className="h-8 w-8" />
+              <div className="lg:hidden flex-shrink-0">
+                 <Pobrelingo width={32} height={32} />
               </div>
 
-              <Separator orientation="vertical" className="h-5 hidden md:block" />
+              <Separator orientation="vertical" className="h-5 hidden lg:block" />
 
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-4 w-4 text-primary hidden sm:block" />
+              <div className="flex items-center gap-2 min-w-0">
+                <GraduationCap className="h-4 w-4 text-primary hidden sm:block flex-shrink-0" />
                 <h1 className="font-semibold text-sm md:text-base truncate">
                   {getCurrentPageTitle()}
                 </h1>
               </div>
             </div>
 
-            <div className="flex-1" />
+            <div className="flex-1 flex justify-center">
+              {/* Barra de Pesquisa Global */}
+              <GlobalSearchTrigger onClick={() => setSearchOpen(true)} />
+            </div>
 
             <div className="flex items-center gap-2 md:gap-4 mr-2">
               {/* Gamification Stats */}
@@ -310,14 +332,14 @@ export default function Layout() {
             </div>
           </main>
 
-          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden md:block">
+          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden lg:block">
             <span>© {new Date().getFullYear()} PobreLingo</span>
             <span className="mx-2">•</span>
             <span className="hidden sm:inline">Feito com ❤️ para aprendizes de português</span>
           </footer>
         </SidebarInset>
       </SidebarProvider>
-
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <MobileNav />
       <PWAInstallPrompt />
       <Toaster />

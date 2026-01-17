@@ -64,7 +64,7 @@ export default function MatchingPairsPage() {
       setExercise(currentExercise);
       initializeGame(currentExercise);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [exerciseId]);
 
   const handleCardClick = (card: CardState) => {

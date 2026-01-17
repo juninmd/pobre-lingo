@@ -6,7 +6,6 @@ import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page'
 import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
 import SentenceOrderingPage from './pages/exercises/sentence-ordering/page';
-import GlossaryPage from './pages/glossary/page';
 import RulesPage from './pages/rules/page';
 import CategoryPage from './pages/rules/[categoryId]/page';
 import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
@@ -98,10 +97,6 @@ const router = createBrowserRouter([
       {
         path: 'exercises/listening',
         element: <ListeningPage />,
-      },
-      {
-        path: 'glossary',
-        element: <GlossaryPage />,
       },
       {
         path: 'rules',

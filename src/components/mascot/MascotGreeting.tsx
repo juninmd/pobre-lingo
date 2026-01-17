@@ -44,7 +44,7 @@ export function MascotGreeting({ message, userName, className }: MascotGreetingP
                 <span>Nível {level}</span>
                 <span>{Math.floor(xpInCurrentLevel)} / {xpRequiredForNextLevel} XP</span>
               </div>
-              <Progress value={progressPercent} className="h-2 bg-green-200 dark:bg-green-900/50" indicatorClassName="bg-green-500" />
+              <Progress value={progressPercent} className="h-2 bg-green-200 dark:bg-green-900/50 [&>div]:bg-green-500" />
             </div>
 
             {/* Speech bubble tail */}

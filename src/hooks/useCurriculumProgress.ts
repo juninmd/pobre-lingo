@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
 import { curriculumData, Module, Lesson } from '@/lib/curriculumData';
+import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 // Otimização: Mapa para busca O(1) de módulos
 const moduleMap = new Map(curriculumData.modules.map(m => [m.id, m]));
@@ -8,6 +9,8 @@ const moduleMap = new Map(curriculumData.modules.map(m => [m.id, m]));
 const PROGRESS_STORAGE_KEY = 'pobrelingo_curriculum_progress';
 const XP_STORAGE_KEY = 'pobrelingo_total_xp';
 const LEVEL_STORAGE_KEY = 'pobrelingo_user_level';
+const STREAK_STORAGE_KEY = 'pobrelingo_streak';
+const LAST_ACTIVITY_DATE_KEY = 'pobrelingo_last_activity_date';
 
 export interface LessonProgress {
   lessonId: string;
@@ -39,6 +42,8 @@ export function useCurriculumProgress() {
   const [completedLessons, setCompletedLessons] = useState<LessonProgress[]>([]);
   const [totalXP, setTotalXP] = useState(0);
   const [userLevel, setUserLevel] = useState(1);
+  const [streak, setStreak] = useState(0);
+  const [lastActivityDate, setLastActivityDate] = useState<string | null>(null);
 
   const completedLessonsSet = useMemo(() => {
     return new Set(completedLessons.map(l => `${l.moduleId}:${l.lessonId}`));
@@ -49,16 +54,67 @@ export function useCurriculumProgress() {
     const savedProgress = getLocalStorageItem<LessonProgress[]>(PROGRESS_STORAGE_KEY, []);
     const savedXP = getLocalStorageItem<number>(XP_STORAGE_KEY, 0);
     const savedLevel = getLocalStorageItem<number>(LEVEL_STORAGE_KEY, 1);
+    const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
+    const savedLastDate = getLocalStorageItem<string | null>(LAST_ACTIVITY_DATE_KEY, null);
 
     setCompletedLessons(savedProgress);
     setTotalXP(savedXP);
     setUserLevel(savedLevel);
+
+    // Check for broken streak on load
+    if (savedLastDate) {
+      const daysDiff = differenceInCalendarDays(new Date(), parseISO(savedLastDate));
+      if (daysDiff > 1) {
+        setStreak(0); // Streak broken
+        setLocalStorageItem(STREAK_STORAGE_KEY, 0);
+      } else {
+        setStreak(savedStreak);
+        setLastActivityDate(savedLastDate);
+      }
+    } else {
+      setStreak(savedStreak);
+    }
   }, []);
 
   // Calcular nível baseado em XP (100 XP por nível)
   const calculateLevel = useCallback((xp: number) => {
     return Math.floor(xp / 100) + 1;
   }, []);
+
+  // Update streak logic
+  const updateStreak = useCallback(() => {
+    const today = new Date().toISOString();
+
+    if (!lastActivityDate) {
+      setStreak(1);
+      setLastActivityDate(today);
+      setLocalStorageItem(STREAK_STORAGE_KEY, 1);
+      setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
+      return 1;
+    }
+
+    const daysDiff = differenceInCalendarDays(new Date(), parseISO(lastActivityDate));
+
+    if (daysDiff === 0) {
+      // Already active today, streak doesn't change
+      return streak;
+    } else if (daysDiff === 1) {
+      // Consecutive day
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      setLastActivityDate(today);
+      setLocalStorageItem(STREAK_STORAGE_KEY, newStreak);
+      setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
+      return newStreak;
+    } else {
+      // Streak broken
+      setStreak(1);
+      setLastActivityDate(today);
+      setLocalStorageItem(STREAK_STORAGE_KEY, 1);
+      setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
+      return 1;
+    }
+  }, [streak, lastActivityDate]);
 
   // Marcar lição como concluída
   const completeLesson = useCallback((moduleId: string, lessonId: string, xpReward: number) => {
@@ -93,9 +149,12 @@ export function useCurriculumProgress() {
       setUserLevel(newLevel);
       setLocalStorageItem(LEVEL_STORAGE_KEY, newLevel);
 
+      // Atualizar Streak
+      updateStreak();
+
       return updated;
     });
-  }, [totalXP, calculateLevel]);
+  }, [totalXP, calculateLevel, updateStreak]);
 
   // Verificar se uma lição está concluída
   const isLessonCompleted = useCallback((moduleId: string, lessonId: string) => {
@@ -195,23 +254,29 @@ export function useCurriculumProgress() {
       totalXP,
       userLevel,
       xpToNextLevel: (userLevel * 100) - totalXP,
+      streak,
     };
-  }, [completedLessons, totalXP, userLevel, isModuleUnlocked, getModuleCompletionStats]);
+  }, [completedLessons, totalXP, userLevel, isModuleUnlocked, getModuleCompletionStats, streak]);
 
   // Resetar progresso (para testes)
   const resetProgress = useCallback(() => {
     setCompletedLessons([]);
     setTotalXP(0);
     setUserLevel(1);
+    setStreak(0);
+    setLastActivityDate(null);
     setLocalStorageItem(PROGRESS_STORAGE_KEY, []);
     setLocalStorageItem(XP_STORAGE_KEY, 0);
     setLocalStorageItem(LEVEL_STORAGE_KEY, 1);
+    setLocalStorageItem(STREAK_STORAGE_KEY, 0);
+    setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, null);
   }, []);
 
   return {
     completedLessons,
     totalXP,
     userLevel,
+    streak,
     completeLesson,
     isLessonCompleted,
     isModuleUnlocked,

@@ -5,7 +5,7 @@ import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { GuidebookModal } from './GuidebookModal';
 import { cn } from '@/lib/utils';
 import * as LucideIcons from 'lucide-react';
-import { Check, Lock, Star, Play } from 'lucide-react';
+import { Check, Lock, Star, ChevronDown, Trophy } from 'lucide-react';
 
 // Helper to get icon component dynamically
 const getIcon = (name: string) => {
@@ -13,7 +13,7 @@ const getIcon = (name: string) => {
   return LucideIcons[name] || LucideIcons.HelpCircle;
 };
 
-// Helper to construct lesson links (duplicated from CurriculumPage for now)
+// Helper to construct lesson links
 function getLessonLink(module: Module, lesson: Lesson): string {
   if (lesson.exerciseType) {
     return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
@@ -39,32 +39,33 @@ interface ModuleNodeProps {
   status: 'locked' | 'active' | 'completed';
   progress: number;
   completedLessonsSet: Set<string>;
+  totalInUnit: number;
 }
 
-function ModuleNode({ module, index, status, progress, completedLessonsSet }: ModuleNodeProps) {
+function ModuleNode({ module, index, status, progress, completedLessonsSet, totalInUnit }: ModuleNodeProps) {
   const Icon = getIcon(module.icon);
 
-  // Calculate horizontal offset for the "path" look
-  const offset = Math.sin(index * 0.8) * 60;
-
-  // Pass offset to parent or handled by parent?
-  // Actually, we can just calculate it here for style, but for the SVG line we need it in the parent.
-  // We'll keep this for the individual node positioning.
+  // Responsive Zigzag: tighter on mobile (50px)
+  const isLast = index === totalInUnit - 1;
+  const offset = isLast ? 0 : Math.sin(index * 0.7) * 50;
 
   const baseColor = module.color.replace('bg-', '');
 
   let ringColor = 'ring-muted';
   let bgColor = 'bg-muted';
   let iconColor = 'text-muted-foreground';
+  let shadowClass = '';
 
   if (status === 'completed') {
     bgColor = module.color;
     ringColor = `ring-${baseColor}`;
     iconColor = 'text-white';
+    shadowClass = `shadow-lg shadow-${baseColor}/40`;
   } else if (status === 'active') {
     bgColor = module.color;
     ringColor = `ring-${baseColor}`;
     iconColor = 'text-white';
+    shadowClass = `shadow-xl shadow-${baseColor}/50 ring-4 ring-${baseColor}/20`;
   }
 
   // Determine the link to the next lesson
@@ -75,16 +76,26 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet }: Mo
 
   return (
     <div
-      className="relative flex flex-col items-center z-10 my-2"
+      className="relative flex flex-col items-center z-10 my-3 transition-transform duration-500 ease-in-out"
       style={{ transform: `translateX(${offset}px)` }}
     >
+      {/* "Start Here" Floating Tooltip with Bounce Animation */}
+      {status === 'active' && progress === 0 && (
+          <div className="absolute -top-12 z-50 animate-bounce">
+              <div className="bg-white dark:bg-zinc-800 text-primary text-xs font-bold px-3 py-1.5 rounded-xl shadow-lg border border-primary/20 uppercase tracking-wider flex flex-col items-center">
+                  COMEÇAR
+                  <div className="w-2 h-2 bg-white dark:bg-zinc-800 border-r border-b border-primary/20 rotate-45 absolute -bottom-1"></div>
+              </div>
+          </div>
+      )}
+
       <Link
         to={status !== 'locked' ? targetLink : '#'}
         className={cn(
-          "relative flex items-center justify-center w-24 h-24 rounded-full border-b-[6px] transition-all duration-200",
+          "relative flex items-center justify-center w-[5.5rem] h-[5.5rem] rounded-full border-b-[6px] transition-all duration-200 group",
           status === 'locked'
-            ? "bg-muted border-muted-foreground/20 cursor-not-allowed grayscale"
-            : `${bgColor} border-black/20 cursor-pointer hover:scale-105 active:border-b-0 active:translate-y-1.5 shadow-xl`
+            ? "bg-muted border-muted-foreground/20 cursor-not-allowed grayscale opacity-80"
+            : `${bgColor} border-black/20 cursor-pointer hover:scale-110 active:border-b-0 active:translate-y-1.5 ${shadowClass}`
         )}
       >
         {/* Progress Circular Overlay for Active Module */}
@@ -99,7 +110,7 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet }: Mo
               cy="50"
             />
             <circle
-              className="text-yellow-400 stroke-current drop-shadow-md"
+              className="text-white/90 stroke-current drop-shadow-md"
               strokeWidth="8"
               strokeDasharray={276}
               strokeDashoffset={276 - (276 * progress) / 100}
@@ -113,42 +124,40 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet }: Mo
         )}
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center">
+        <div className="relative z-10 flex flex-col items-center justify-center transition-transform duration-200 group-hover:-translate-y-1">
           {status === 'completed' ? (
-             <Check className="w-10 h-10 text-white stroke-[4]" />
+             <Check className="w-10 h-10 text-white stroke-[4] drop-shadow-md" />
           ) : status === 'locked' ? (
              <Lock className="w-8 h-8 text-muted-foreground/50" />
           ) : (
-             <Icon className={cn("w-10 h-10", iconColor)} />
+             <Icon className={cn("w-10 h-10 drop-shadow-sm", iconColor)} />
           )}
         </div>
 
-        {/* Stars decoration for completed */}
-        {status === 'completed' && (
-          <div className="absolute 0 -right-2 bg-yellow-400 text-yellow-900 rounded-full p-1.5 border-4 border-background shadow-sm z-20">
-            <Star className="w-4 h-4 fill-current" />
-          </div>
+        {/* Shine effect for active/completed */}
+        {status !== 'locked' && (
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
         )}
 
-        {/* Start bubble for active */}
-        {status === 'active' && progress === 0 && (
-            <div className="absolute -top-3 -right-3 animate-bounce">
-                <div className="bg-white dark:bg-zinc-800 text-primary text-[10px] font-bold px-2 py-1 rounded-full shadow-md border border-primary/20 uppercase">
-                    Start
-                </div>
-            </div>
+        {/* Stars decoration for completed */}
+        {status === 'completed' && (
+          <div className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 rounded-full p-1.5 border-2 border-background shadow-sm z-20 animate-in zoom-in duration-300">
+            <Star className="w-3 h-3 fill-current" />
+          </div>
         )}
       </Link>
 
       {/* Label */}
-      <div className="mt-3">
-        <span className={cn(
-          "text-sm font-bold block text-center max-w-[120px] leading-tight drop-shadow-sm",
-          status === 'locked' ? "text-muted-foreground" : "text-foreground"
-        )}>
-          {module.title_pt}
-        </span>
-      </div>
+      {status !== 'locked' && (
+        <div className="mt-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <span className={cn(
+            "text-sm font-bold block text-center max-w-[140px] leading-tight drop-shadow-sm bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md",
+            "text-foreground"
+          )}>
+            {module.title_pt}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -163,17 +172,15 @@ interface UnitSectionProps {
 
 function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, completedLessonsSet }: UnitSectionProps) {
   const unitColor = modules[0]?.color || 'bg-primary';
+  const isLocked = modules.every(m => getModuleStatus(m.id) === 'locked');
 
   // Calculate coordinates for SVG path
-  const NODE_HEIGHT = 140; // Approximate height including margin
-  const CENTER_X = 200; // Assuming 400px wide container, or relative
-
-  // We'll use a relative coordinate system for the SVG
-  // The container is flex-col items-center, so x=0 is center.
-
   const getCoordinates = (index: number) => {
-    const x = Math.sin(index * 0.8) * 60;
-    const y = index * 104 + 50; // 104 matches the vertical spacing roughly (h-24 + mt-2 + padding), 50 is initial offset
+    // If it's the last one, center it (looks like a finish line)
+    if (index === modules.length - 1) return { x: 0, y: index * 120 + 50 };
+
+    const x = Math.sin(index * 0.7) * 50;
+    const y = index * 120 + 50;
     return { x, y };
   };
 
@@ -183,19 +190,25 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
   }).join(' ');
 
   return (
-    <div className="w-full mb-8 relative">
+    <div className={cn("w-full mb-8 relative", isLocked && "opacity-60 grayscale")}>
       <div className={cn(
-        "sticky top-0 z-30 py-4 px-4 mb-8 flex items-center justify-between rounded-b-xl shadow-sm border-b backdrop-blur-xl transition-colors",
-        unitColor.replace('bg-', 'bg-opacity-10 dark:bg-opacity-20 border-')
-      )}>
+        "sticky top-0 z-30 py-4 px-4 mb-8 flex items-center justify-between rounded-b-2xl shadow-sm border-b backdrop-blur-md transition-all duration-300",
+        unitColor.replace('bg-', 'bg-opacity-90 dark:bg-opacity-90 border-'),
+        isLocked ? "bg-muted border-muted-foreground/20" : "bg-background/80"
+      )} style={{
+          backgroundColor: isLocked ? undefined : undefined, // Tailwind handles it but style fallback if needed
+      }}>
         <div className="flex flex-col">
-          <h2 className="text-lg font-extrabold text-foreground uppercase tracking-wider">{unit.title}</h2>
+          <h2 className="text-lg font-extrabold text-foreground uppercase tracking-wider flex items-center gap-2">
+            {unit.title}
+            {unit.difficulty === 'avancado' && <Trophy className="w-4 h-4 text-yellow-500" />}
+          </h2>
           <p className="text-xs text-muted-foreground/80 line-clamp-1 font-medium">{unit.description}</p>
         </div>
         <GuidebookModal unit={unit} />
       </div>
 
-      <div className="relative w-full max-w-[400px] mx-auto">
+      <div className="relative w-full max-w-[400px] mx-auto min-h-[200px]">
         {/* SVG Path Background */}
         <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible">
            <defs>
@@ -208,29 +221,31 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
              d={pathData}
              fill="none"
              stroke="currentColor"
-             strokeWidth="12"
-             className="text-muted-foreground/20"
+             strokeWidth="10"
+             className={cn("text-muted-foreground/10", !isLocked && "text-primary/10")}
              strokeLinecap="round"
              strokeLinejoin="round"
            />
+           {/* Dotted path on top */}
            <path
              d={pathData}
              fill="none"
              stroke="currentColor"
-             strokeWidth="6"
-             className="text-muted/30"
-             strokeDasharray="12 12"
+             strokeWidth="4"
+             className={cn("text-muted/40", !isLocked && "text-primary/20")}
+             strokeDasharray="8 12"
              strokeLinecap="round"
              strokeLinejoin="round"
            />
         </svg>
 
-        <div className="flex flex-col items-center space-y-2 relative z-10">
+        <div className="flex flex-col items-center space-y-2 relative z-10 pb-12">
           {modules.map((module, idx) => (
             <ModuleNode
               key={module.id}
               module={module}
               index={idx}
+              totalInUnit={modules.length}
               status={getModuleStatus(module.id)}
               progress={getModuleProgressValue(module.id)}
               completedLessonsSet={completedLessonsSet}
@@ -243,7 +258,7 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
 }
 
 export function LearningPath() {
-  const { isModuleUnlocked, getModuleProgress, completedLessons } = useCurriculumProgress();
+  const { getModuleProgress, completedLessons } = useCurriculumProgress();
 
   const completedLessonsSet = React.useMemo(() => {
     return new Set(completedLessons.map(l => `${l.moduleId}:${l.lessonId}`));
@@ -268,7 +283,7 @@ export function LearningPath() {
   });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen">
+    <div className="w-full max-w-md mx-auto min-h-screen pb-24">
       {unitsWithModules.map(unit => (
         <UnitSection
           key={unit.id}
@@ -279,9 +294,6 @@ export function LearningPath() {
           completedLessonsSet={completedLessonsSet}
         />
       ))}
-
-      {/* Footer spacer */}
-      <div className="h-32" />
     </div>
   );
 }

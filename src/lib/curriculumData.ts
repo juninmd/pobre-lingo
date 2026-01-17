@@ -732,17 +732,6 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
-
-    // ========== BUSINESS ENGLISH ==========
-    // Unit 7 (Merged for simplicity or Unit 8? Let's use Unit 7 as per plan I wrote in thought or 8?)
-    // In code I used unit-7 for Passive Voice. So Business is unit-7 (wait, plan said Unit 8: Negócios)
-    // Adjusting to unit-7 (Voz Passiva) and unit-8 (Business/Advanced)
-    // Actually, I put Unit 7 as Passive Voice above.
-    // So Business is Unit 7? No, let's make it Unit 7 too (part of Formal Style) or Unit 8.
-    // The previous structure had business as order 7.
-    // Let's make it Unit 7 (Formal Style) or separate Unit 8?
-    // My units array has Unit 7: Estilo Formal. Unit 8: Rumo à Fluência.
-    // I will put Business English in Unit 7 (Formal Style).
     {
       id: 'business-english',
       unitId: 'unit-7',

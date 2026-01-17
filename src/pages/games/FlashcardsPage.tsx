@@ -154,7 +154,7 @@ export default function FlashcardsPage() {
               variant="outline"
               size="lg"
               className="h-16 text-lg border-red-200 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30"
-              onClick={(e) => { e.stopPropagation(); handleResponse(false); }}
+              onClick={(e: React.MouseEvent) => { e.stopPropagation(); handleResponse(false); }}
             >
               <X className="mr-2 h-6 w-6" />
               Ainda não
@@ -162,7 +162,7 @@ export default function FlashcardsPage() {
             <Button
               size="lg"
               className="h-16 text-lg bg-green-600 hover:bg-green-700"
-              onClick={(e) => { e.stopPropagation(); handleResponse(true); }}
+              onClick={(e: React.MouseEvent) => { e.stopPropagation(); handleResponse(true); }}
             >
               <Check className="mr-2 h-6 w-6" />
               Já sei!

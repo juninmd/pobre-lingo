@@ -3,10 +3,21 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trophy, Zap, Headphones, Brain, GraduationCap } from 'lucide-react';
+import { Trophy, Zap, Headphones, Brain, GraduationCap, Search } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const games = [
+  {
+    id: 'word-search',
+    title: 'Caça Palavras',
+    description: 'Encontre as palavras escondidas na grade antes do tempo acabar!',
+    icon: Search,
+    color: 'text-pink-500',
+    bgColor: 'bg-pink-500/10',
+    href: '/games/word-search',
+    difficulty: 'Medium',
+    xp: '100 XP'
+  },
   {
     id: 'flashcards',
     title: 'Flashcards',

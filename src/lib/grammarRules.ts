@@ -732,6 +732,47 @@ export const grammarCategories: GrammarCategory[] = [
       },
     ],
   },
+  {
+    id: 'linguagem-informal',
+    name_pt: 'Linguagem Informal e Gírias',
+    name_en: 'Informal Language and Slang',
+    description_pt: 'Entenda como os nativos falam no dia a dia, incluindo gírias e contrações.',
+    icon: 'MessageCircle',
+    rules: [
+      {
+        id: 'informal-contractions',
+        title_pt: 'Contrações Informais (Gonna, Wanna, Gotta)',
+        title_en: 'Informal Contractions (Gonna, Wanna, Gotta)',
+        explanation_pt: `Na fala rápida e informal, muitas palavras se juntam. Estas formas NÃO devem ser usadas em escrita formal (emails de trabalho, provas), mas são essenciais para entender filmes, músicas e nativos.`,
+        structure_format_pt: `<strong>Going to</strong> -> <code>Gonna</code><br /><strong>Want to</strong> -> <code>Wanna</code><br /><strong>Got to</strong> -> <code>Gotta</code><br /><strong>Let me</strong> -> <code>Lemme</code><br /><strong>Give me</strong> -> <code>Gimme</code>`,
+        structure_format_en: `<strong>Going to</strong> -> <code>Gonna</code><br /><strong>Want to</strong> -> <code>Wanna</code><br /><strong>Got to</strong> -> <code>Gotta</code><br /><strong>Let me</strong> -> <code>Lemme</code><br /><strong>Give me</strong> -> <code>Gimme</code>`,
+        examples: [
+          { sentence_en: 'I\'m gonna study later.', translation_pt: 'Eu vou estudar mais tarde. (I am going to study)' },
+          { sentence_en: 'I wanna go home.', translation_pt: 'Eu quero ir para casa. (I want to go)' },
+          { sentence_en: 'I gotta go.', translation_pt: 'Eu tenho que ir. (I have got to go)' },
+          { sentence_en: 'Gimme five minutes.', translation_pt: 'Me dá cinco minutos. (Give me)' },
+          { sentence_en: 'Lemme help you.', translation_pt: 'Deixa eu te ajudar. (Let me)' },
+        ],
+        tags: ['avançado', 'informal', 'fala'],
+        common_mistakes_pt: `Usar essas formas em escrita formal.<br /><br />Usar "<code>wanna</code>" com terceira pessoa (she/he/it):<br />*Ex: She wanna go.* (Incorreto) -> *She wants to go.* (Correto - "wanna" não carrega o "s")`,
+      },
+      {
+        id: 'slang-internet',
+        title_pt: 'Gírias de Internet (Internet Slang)',
+        title_en: 'Internet Slang',
+        explanation_pt: `A internet tem sua própria linguagem, cheia de abreviações e acrônimos.`,
+        examples: [
+          { sentence_en: 'LOL (Laughing Out Loud)', translation_pt: 'Rindo muito alto (usado para algo engraçado)' },
+          { sentence_en: 'BRB (Be Right Back)', translation_pt: 'Volto já' },
+          { sentence_en: 'IDK (I Don\'t Know)', translation_pt: 'Eu não sei' },
+          { sentence_en: 'TBH (To Be Honest)', translation_pt: 'Para ser honesto' },
+          { sentence_en: 'IMO (In My Opinion)', translation_pt: 'Na minha opinião' },
+        ],
+        tags: ['avançado', 'internet', 'vocabulario'],
+        common_mistakes_pt: `Usar essas siglas na fala (embora "LOL" e "OMG" sejam às vezes falados, a maioria é apenas escrita).`,
+      },
+    ],
+  }
 ];
 
 const rulesMap: Record<string, GrammarRule> = {};

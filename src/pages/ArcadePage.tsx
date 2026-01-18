@@ -52,6 +52,17 @@ const games = [
     xp: '75 XP'
   },
   {
+    id: 'sentence-rush',
+    title: 'Sentence Rush',
+    description: 'Monte frases contra o tempo! Quanto mais rápido, mais pontos.',
+    icon: Zap,
+    color: 'text-red-500',
+    bgColor: 'bg-red-500/10',
+    href: '/games/sentence-rush',
+    difficulty: 'Hard',
+    xp: 'Max 500 XP'
+  },
+  {
     id: 'listening-challenge',
     title: 'Desafio de Escuta',
     description: 'Treine seus ouvidos com frases faladas por nativos (ou robôs).',

@@ -24,14 +24,17 @@ export function MobileNav() {
               key={item.href}
               to={item.href}
               className={cn(
-                "flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors",
+                "relative flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300",
                 isActive
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary font-bold -translate-y-1"
+                  : "text-muted-foreground hover:text-foreground active:scale-95"
               )}
             >
-              <item.icon className={cn("h-6 w-6", isActive && "fill-current/20")} />
-              <span className="text-[11px] uppercase tracking-wide">{item.label}</span>
+              {isActive && (
+                <div className="absolute top-0 w-12 h-1 rounded-b-full bg-primary animate-in fade-in zoom-in duration-300" />
+              )}
+              <item.icon className={cn("h-6 w-6 transition-transform duration-300", isActive && "scale-110 fill-current/20 drop-shadow-sm")} />
+              <span className="text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
             </Link>
           );
         })}

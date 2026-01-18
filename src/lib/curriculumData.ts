@@ -233,6 +233,36 @@ Verbos que mudam de sentido com uma preposição.
 
 Para ser fluente, você precisa entender essas expressões que não fazem sentido literal!
     `
+  },
+  {
+    id: 'unit-9',
+    title: 'Unidade 9: Domínio e Gírias',
+    description: 'Fale como um nativo: gírias, contrações e internet.',
+    order: 9,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Inglês da Vida Real 🗣️
+
+Parabéns por chegar até aqui! Agora vamos deixar o "inglês de livro" de lado e aprender como as pessoas realmente falam.
+
+### Contrações Informais
+Nativos adoram encurtar palavras.
+* **Gonna** (Going to): Vou...
+* **Wanna** (Want to): Quero...
+* **Gotta** (Got to): Tenho que...
+
+**Exemplo:**
+* Formal: "I am going to buy a car."
+* Real: "I'm gonna buy a car."
+
+### Internet Slang 📱
+* **LOL**: Rindo muito (Laughing Out Loud).
+* **IDK**: Não sei (I Don't Know).
+* **TBH**: Para ser honesto (To Be Honest).
+
+### Dica Final 🏆
+A fluência não é saber todas as palavras, mas conseguir se comunicar sem medo e entender o contexto. Assista filmes sem legenda, ouça podcasts e continue praticando no PobreLingo!
+    `
   }
 ];
 
@@ -955,6 +985,89 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    // ========== Unit 9 ==========
+    {
+      id: 'native-speech',
+      unitId: 'unit-9',
+      title_pt: 'Fala Nativa',
+      title_en: 'Native Speech',
+      description_pt: 'Entenda como os nativos realmente falam (Gonna, Wanna)',
+      difficulty: 'avancado',
+      icon: 'Mic',
+      color: 'bg-rose-500',
+      order: 10,
+      prerequisites: ['advanced-reading'],
+      lessons: [
+        {
+          id: 'informal-contractions-lesson',
+          title_pt: 'Contrações Informais',
+          title_en: 'Informal Contractions',
+          description_pt: 'Aprenda Gonna, Wanna, Gotta e mais',
+          type: 'grammar',
+          estimatedMinutes: 20,
+          xpReward: 150,
+          grammarRuleIds: ['informal-contractions'],
+          order: 1,
+        },
+        {
+          id: 'listening-native-speed',
+          title_pt: 'Listening: Velocidade Real',
+          title_en: 'Listening: Real Speed',
+          description_pt: 'Tente entender frases faladas rapidamente',
+          type: 'exercise',
+          estimatedMinutes: 25,
+          xpReward: 200,
+          exerciseType: 'listening',
+          order: 2,
+        },
+      ]
+    },
+    {
+      id: 'internet-culture',
+      unitId: 'unit-9',
+      title_pt: 'Cultura da Internet',
+      title_en: 'Internet Culture',
+      description_pt: 'Gírias e abreviações do mundo digital',
+      difficulty: 'avancado',
+      icon: 'Smartphone',
+      color: 'bg-indigo-600',
+      order: 11,
+      prerequisites: ['native-speech'],
+      lessons: [
+        {
+          id: 'internet-slang-lesson',
+          title_pt: 'Gírias de Internet',
+          title_en: 'Internet Slang',
+          description_pt: 'LOL, BRB, IDK e outras siglas',
+          type: 'grammar',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          grammarRuleIds: ['slang-internet'],
+          order: 1,
+        },
+        {
+          id: 'social-media-reading',
+          title_pt: 'Lendo Redes Sociais',
+          title_en: 'Reading Social Media',
+          description_pt: 'Interprete posts e comentários reais',
+          type: 'reading',
+          estimatedMinutes: 20,
+          xpReward: 150,
+          exerciseType: 'news-comprehension',
+          order: 2,
+        },
+        {
+          id: 'ultimate-challenge',
+          title_pt: 'Desafio Supremo',
+          title_en: 'Ultimate Challenge',
+          description_pt: 'O teste final para se tornar um mestre PobreLingo',
+          type: 'quiz',
+          estimatedMinutes: 60,
+          xpReward: 1000,
+          order: 3,
+        }
+      ]
+    }
   ],
 };
 

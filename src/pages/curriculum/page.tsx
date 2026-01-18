@@ -25,6 +25,7 @@ import {
   ChevronRight,
   Sparkles,
   GraduationCap,
+  Mic,
 } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -61,6 +62,7 @@ const lessonTypeConfig = {
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600 dark:text-yellow-400', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30' },
   culture: { label: 'Cultura', icon: LucideIcons.Globe, color: 'text-teal-600 dark:text-teal-400', bgColor: 'bg-teal-100 dark:bg-teal-900/30' },
   listening: { label: 'Escuta', icon: LucideIcons.Headphones, color: 'text-indigo-600 dark:text-indigo-400', bgColor: 'bg-indigo-100 dark:bg-indigo-900/30' },
+  speaking: { label: 'Fala', icon: Mic, color: 'text-rose-600 dark:text-rose-400', bgColor: 'bg-rose-100 dark:bg-rose-900/30' },
 };
 
 // Função para construir link de lição
@@ -68,7 +70,7 @@ function getLessonLink(module: Module, lesson: Lesson): string {
   if (lesson.exerciseType) {
     return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
   }
-  if (lesson.type === 'vocabulary') {
+  if (lesson.type === 'vocabulary' || lesson.type === 'speaking') {
     return `/vocabulary/${module.id}/${lesson.id}`;
   }
   if (lesson.type === 'quiz') {

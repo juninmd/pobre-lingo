@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-import { Globe, Headphones } from 'lucide-react';
+import { Globe, Headphones, Mic } from 'lucide-react';
 
 const lessonTypeConfig = {
   grammar: { label: 'Gramática', icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-100' },
@@ -29,6 +29,7 @@ const lessonTypeConfig = {
   quiz: { label: 'Quiz', icon: Trophy, color: 'text-yellow-600', bgColor: 'bg-yellow-100' },
   culture: { label: 'Cultura', icon: Globe, color: 'text-teal-600', bgColor: 'bg-teal-100' },
   listening: { label: 'Escuta', icon: Headphones, color: 'text-indigo-600', bgColor: 'bg-indigo-100' },
+  speaking: { label: 'Fala', icon: Mic, color: 'text-rose-600', bgColor: 'bg-rose-100' },
 };
 
 export function NextLessonCard() {
@@ -93,7 +94,7 @@ export function NextLessonCard() {
     if (lesson.exerciseType) {
       return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
     }
-    if (lesson.type === 'vocabulary') {
+    if (lesson.type === 'vocabulary' || lesson.type === 'speaking') {
       return `/vocabulary/${module.id}/${lesson.id}`;
     }
     if (lesson.type === 'quiz') {

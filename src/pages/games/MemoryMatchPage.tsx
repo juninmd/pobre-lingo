@@ -1,0 +1,215 @@
+import React, { useState, useEffect } from 'react';
+import { PageContainer } from '@/components/common/PageContainer';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { dictionaryEntries } from '@/lib/dictionaryData';
+import { Shuffle, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import confetti from 'canvas-confetti';
+
+interface MemoryCard {
+  id: string; // unique id for the card instance
+  wordId: string; // to identify the pair
+  content: string;
+  type: 'en' | 'pt';
+  isFlipped: boolean;
+  isMatched: boolean;
+}
+
+const GAME_SIZE = 8; // pairs
+
+export default function MemoryMatchPage() {
+  const [cards, setCards] = useState<MemoryCard[]>([]);
+  const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
+  const [matches, setMatches] = useState(0);
+  const [moves, setMoves] = useState(0);
+  const [gameWon, setGameWon] = useState(false);
+
+  useEffect(() => {
+    startNewGame();
+  }, []);
+
+  const startNewGame = () => {
+    // Select random words
+    const shuffledDictionary = [...dictionaryEntries].sort(() => 0.5 - Math.random());
+    const selectedWords = shuffledDictionary.slice(0, GAME_SIZE);
+
+    const gameCards: MemoryCard[] = [];
+
+    selectedWords.forEach((word) => {
+      // English card
+      gameCards.push({
+        id: `${word.id}-en`,
+        wordId: word.id,
+        content: word.word,
+        type: 'en',
+        isFlipped: false,
+        isMatched: false,
+      });
+      // Portuguese card
+      gameCards.push({
+        id: `${word.id}-pt`,
+        wordId: word.id,
+        content: word.translation_pt,
+        type: 'pt',
+        isFlipped: false,
+        isMatched: false,
+      });
+    });
+
+    // Shuffle cards
+    const shuffledCards = gameCards.sort(() => 0.5 - Math.random());
+
+    setCards(shuffledCards);
+    setFlippedIndices([]);
+    setMatches(0);
+    setMoves(0);
+    setGameWon(false);
+  };
+
+  const handleCardClick = (index: number) => {
+    // Prevent clicking if game won, card already flipped/matched, or 2 cards already flipped
+    if (gameWon || cards[index].isFlipped || cards[index].isMatched || flippedIndices.length >= 2) {
+      return;
+    }
+
+    const newCards = [...cards];
+    newCards[index].isFlipped = true;
+    setCards(newCards);
+
+    const newFlippedIndices = [...flippedIndices, index];
+    setFlippedIndices(newFlippedIndices);
+
+    if (newFlippedIndices.length === 2) {
+      setMoves((prev) => prev + 1);
+      checkForMatch(newFlippedIndices, newCards);
+    }
+  };
+
+  const checkForMatch = (indices: number[], currentCards: MemoryCard[]) => {
+    const [index1, index2] = indices;
+    const card1 = currentCards[index1];
+    const card2 = currentCards[index2];
+
+    if (card1.wordId === card2.wordId) {
+      // Match found
+      setTimeout(() => {
+        const newCards = [...currentCards];
+        newCards[index1].isMatched = true;
+        newCards[index2].isMatched = true;
+        setCards(newCards);
+        setFlippedIndices([]);
+        setMatches((prev) => {
+          const newMatches = prev + 1;
+          if (newMatches === GAME_SIZE) {
+            handleWin();
+          }
+          return newMatches;
+        });
+      }, 500);
+    } else {
+      // No match
+      setTimeout(() => {
+        const newCards = [...currentCards];
+        newCards[index1].isFlipped = false;
+        newCards[index2].isFlipped = false;
+        setCards(newCards);
+        setFlippedIndices([]);
+      }, 1000);
+    }
+  };
+
+  const handleWin = () => {
+    setGameWon(true);
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#22c55e', '#eab308', '#3b82f6']
+    });
+  };
+
+  return (
+    <PageContainer>
+      <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
+        <div className="w-full flex items-center justify-between">
+          <Button variant="ghost" asChild>
+            <Link to="/arcade" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Voltar
+            </Link>
+          </Button>
+          <div className="flex items-center gap-4">
+            <div className="text-sm font-medium text-muted-foreground">Movimentos: {moves}</div>
+            <Button onClick={startNewGame} variant="outline" size="sm" className="gap-2">
+              <RefreshCw className="h-4 w-4" />
+              Reiniciar
+            </Button>
+          </div>
+        </div>
+
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight text-primary">Jogo da Memória</h1>
+          <p className="text-muted-foreground">Encontre os pares entre Inglês e Português</p>
+        </div>
+
+        {gameWon && (
+          <Card className="w-full max-w-md p-6 bg-green-500/10 border-green-500/50 text-center animate-in zoom-in duration-300">
+            <div className="flex flex-col items-center gap-4">
+              <div className="p-3 bg-green-500 rounded-full text-white">
+                <Trophy className="h-8 w-8" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-green-700 dark:text-green-300">Parabéns!</h3>
+                <p className="text-green-600 dark:text-green-400">Você completou o jogo em {moves} movimentos.</p>
+              </div>
+              <Button onClick={startNewGame} className="w-full bg-green-600 hover:bg-green-700">
+                Jogar Novamente
+              </Button>
+            </div>
+          </Card>
+        )}
+
+        <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-3 w-full max-w-2xl perspective-1000">
+          {cards.map((card, index) => (
+            <div
+              key={card.id}
+              onClick={() => handleCardClick(index)}
+              className={`
+                aspect-[3/4] cursor-pointer transition-all duration-300 transform preserve-3d relative
+                ${card.isFlipped || card.isMatched ? 'rotate-y-180' : ''}
+                ${card.isMatched ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+              `}
+              // Note: opacity-0 for matched cards creates a "disappearing" effect.
+              // If we want them to stay visible but dimmed, we can use opacity-50.
+              // Let's use opacity-50 and grayscale for a better "collected" feel.
+              style={{
+                 transformStyle: 'preserve-3d',
+                 transform: (card.isFlipped || card.isMatched) ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                 opacity: card.isMatched ? 0.6 : 1
+              }}
+            >
+              {/* Front of card (Hidden state) */}
+              <div className="absolute inset-0 w-full h-full backface-hidden bg-primary/10 border-2 border-primary/20 rounded-xl flex items-center justify-center hover:bg-primary/20 transition-colors shadow-sm">
+                <Shuffle className="h-8 w-8 text-primary/40" />
+              </div>
+
+              {/* Back of card (Revealed state) */}
+              <div
+                className={`
+                  absolute inset-0 w-full h-full backface-hidden rounded-xl flex items-center justify-center p-2 text-center shadow-md border-2
+                  ${card.type === 'en' ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-100' : 'bg-green-50 border-green-200 text-green-700 dark:bg-green-900/30 dark:border-green-700 dark:text-green-100'}
+                `}
+                style={{ transform: 'rotateY(180deg)' }}
+              >
+                <span className="font-semibold text-sm sm:text-base break-words leading-tight select-none">
+                  {card.content}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </PageContainer>
+  );
+}

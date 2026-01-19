@@ -3,10 +3,21 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trophy, Zap, Headphones, Brain, GraduationCap, Search } from 'lucide-react';
+import { Trophy, Zap, Headphones, Brain, GraduationCap, Search, Grid } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const games = [
+  {
+    id: 'memory-match',
+    title: 'Jogo da Memória',
+    description: 'Encontre os pares de palavras entre inglês e português.',
+    icon: Grid,
+    color: 'text-indigo-500',
+    bgColor: 'bg-indigo-500/10',
+    href: '/games/memory-match',
+    difficulty: 'Easy',
+    xp: '150 XP'
+  },
   {
     id: 'word-search',
     title: 'Caça Palavras',

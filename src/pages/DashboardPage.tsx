@@ -48,7 +48,7 @@ export default function DashboardPage() {
 
         {/* Right Sidebar (Desktop Only) */}
         <div className="hidden lg:flex flex-col w-[350px] gap-6 order-1 lg:order-2 sticky top-6 h-fit pt-4">
-            <LearningStreakDisplay variant="full" />
+            <LearningStreakDisplay variant="default" />
             <DailyQuestsWidget />
         </div>
 

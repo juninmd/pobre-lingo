@@ -1,13 +1,11 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { getRuleById, getCategoryById } from '@/lib/grammarRules';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Separator } from '@/components/ui/separator';
 import {
   ArrowLeft,
-  ArrowRight,
   BookOpen,
   Volume2,
   AlertTriangle,
@@ -18,11 +16,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Tag,
-  BookMarked,
   Circle
 } from 'lucide-react';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
-import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { useStudiedRules } from '@/hooks/useStudiedRules';
 import { PageContainer } from '@/components/common/PageContainer';
 import { cn } from '@/lib/utils';
@@ -32,7 +28,6 @@ export default function RulePage() {
   const { categoryId, ruleId } = useParams<{ categoryId: string; ruleId: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { isLessonCompleted } = useCurriculumProgress();
   const { isStudied, toggleStudied } = useStudiedRules();
   const [showTranslations, setShowTranslations] = useState(true);
 

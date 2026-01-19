@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { getCategoryById } from '@/lib/grammarRules';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { BookOpenText, ChevronRight, ArrowLeft, BookOpen, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';

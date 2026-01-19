@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
+import { curriculumData } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, CheckCircle2, Star, ArrowRight, ArrowLeft, Volume2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 
 // Dados de vocabulário por tópico

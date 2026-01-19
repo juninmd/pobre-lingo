@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Button } from '@/components/ui/button';
 import { dictionaryEntries } from '@/lib/dictionaryData';
-import { Gamepad2, Timer, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
+import { Gamepad2, Timer, RefreshCw, Trophy } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { triggerConfetti } from '@/lib/confetti';

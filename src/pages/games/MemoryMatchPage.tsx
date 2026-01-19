@@ -21,13 +21,8 @@ const GAME_SIZE = 8; // pairs
 export default function MemoryMatchPage() {
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
-  const [matches, setMatches] = useState(0);
   const [moves, setMoves] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-
-  useEffect(() => {
-    startNewGame();
-  }, []);
 
   const startNewGame = () => {
     // Select random words
@@ -62,10 +57,13 @@ export default function MemoryMatchPage() {
 
     setCards(shuffledCards);
     setFlippedIndices([]);
-    setMatches(0);
     setMoves(0);
     setGameWon(false);
   };
+
+  useEffect(() => {
+    startNewGame();
+  }, []);
 
   const handleCardClick = (index: number) => {
     // Prevent clicking if game won, card already flipped/matched, or 2 cards already flipped
@@ -99,13 +97,12 @@ export default function MemoryMatchPage() {
         newCards[index2].isMatched = true;
         setCards(newCards);
         setFlippedIndices([]);
-        setMatches((prev) => {
-          const newMatches = prev + 1;
-          if (newMatches === GAME_SIZE) {
+
+        // Check for win condition based on cards
+        const allMatched = newCards.every(c => c.isMatched);
+        if (allMatched) {
             handleWin();
-          }
-          return newMatches;
-        });
+        }
       }, 500);
     } else {
       // No match

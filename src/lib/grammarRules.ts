@@ -772,6 +772,47 @@ export const grammarCategories: GrammarCategory[] = [
         common_mistakes_pt: `Usar essas siglas na fala (embora "LOL" e "OMG" sejam às vezes falados, a maioria é apenas escrita).`,
       },
     ],
+  },
+  {
+    id: 'gramatica-avancada-2',
+    name_pt: 'Gramática Avançada II',
+    name_en: 'Advanced Grammar II',
+    description_pt: 'Estruturas sofisticadas para atingir a fluência.',
+    icon: 'Brain',
+    rules: [
+      {
+        id: 'inversion-emphasis',
+        title_pt: 'Inversão para Ênfase',
+        title_en: 'Inversion for Emphasis',
+        explanation_pt: `Em inglês formal e literário, podemos inverter a ordem do sujeito e do verbo auxiliar após certos advérbios negativos ou restritivos (never, rarely, seldom, hardly, no sooner, etc.) para dar ênfase dramática ou retórica.`,
+        structure_format_pt: `<strong>Advérbio Negativo</strong> + <strong>Auxiliar</strong> + <strong>Sujeito</strong> + <strong>Verbo Principal</strong>...`,
+        structure_format_en: `<strong>Negative Adverb</strong> + <strong>Auxiliary</strong> + <strong>Subject</strong> + <strong>Main Verb</strong>...`,
+        examples: [
+          { sentence_en: 'Never have I seen such a beautiful sunset.', translation_pt: 'Nunca vi um pôr do sol tão bonito.' },
+          { sentence_en: 'Rarely does he visit us anymore.', translation_pt: 'Raramente ele nos visita agora.' },
+          { sentence_en: 'Not only is she smart, but she is also kind.', translation_pt: 'Ela não apenas é inteligente, mas também é gentil.' },
+          { sentence_en: 'Under no circumstances should you open this door.', translation_pt: 'Em hipótese alguma você deve abrir esta porta.' },
+        ],
+        tags: ['avançado', 'inversão', 'ênfase'],
+        common_mistakes_pt: `Esquecer de inverter o sujeito e auxiliar.<br />*Ex: Never I have seen...* (Incorreto na inversão) -> *Never have I seen...* (Correto)<br />Usar em conversas informais casuais (pode soar muito dramático ou arcaico).`,
+      },
+      {
+        id: 'subjunctive-mood',
+        title_pt: 'Modo Subjuntivo',
+        title_en: 'Subjunctive Mood',
+        explanation_pt: `O modo subjuntivo é usado para explorar condições hipotéticas ou expressar desejos, comandos, ou sugestões. É comum após verbos como suggest, recommend, insist, demand. A forma do verbo é a "base form" (infinitivo sem to), mesmo para he/she/it.`,
+        structure_format_pt: `Sujeito + (suggest/insist/recommend) + that + Sujeito + <strong>Verbo (Forma Base)</strong>`,
+        structure_format_en: `Subject + (suggest/insist/recommend) + that + Subject + <strong>Verb (Base Form)</strong>`,
+        examples: [
+          { sentence_en: 'I suggest that he study more.', translation_pt: 'Eu sugiro que ele estude mais. (Note: "study", não "studies")' },
+          { sentence_en: 'It is important that she be on time.', translation_pt: 'É importante que ela esteja na hora. (Note: "be", não "is")' },
+          { sentence_en: 'The doctor recommended that he stop smoking.', translation_pt: 'O médico recomendou que ele parasse de fumar.' },
+          { sentence_en: 'I insist that you come with us.', translation_pt: 'Eu insisto que você venha conosco.' },
+        ],
+        tags: ['avançado', 'subjuntivo', 'formal'],
+        common_mistakes_pt: `Conjugar o verbo na terceira pessoa do singular.<br />*Ex: I suggest that he goes.* (Comum na fala informal, mas tecnicamente incorreto no subjuntivo formal) -> *I suggest that he go.* (Correto formalmente)`,
+      },
+    ],
   }
 ];
 

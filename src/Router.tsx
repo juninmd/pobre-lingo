@@ -21,6 +21,7 @@ import WordScramblePage from './pages/games/WordScramblePage';
 import FlashcardsPage from './pages/games/FlashcardsPage';
 import WordSearchPage from './pages/games/WordSearchPage';
 import SentenceRushPage from './pages/games/SentenceRushPage';
+import MemoryMatchPage from './pages/games/MemoryMatchPage';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'games/speed-match',
         element: <SpeedMatchPage />,
+      },
+      {
+        path: 'games/memory-match',
+        element: <MemoryMatchPage />,
       },
       {
         path: 'games/word-scramble',

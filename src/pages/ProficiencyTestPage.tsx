@@ -6,11 +6,14 @@ import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { proficiencyQuestions, ProficiencyQuestion } from '@/lib/proficiencyQuestions';
-import { CheckCircle2, AlertCircle, RefreshCw, Trophy, ArrowRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle, RefreshCw, Trophy, ArrowRight, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { AchievementsList } from '@/components/gamification/AchievementsList';
+import { useGamification } from '@/contexts/GamificationContext';
 
 export default function ProficiencyTestPage() {
+  const { level: userLevelNum, xp, streak, gems } = useGamification();
   const [started, setStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -67,18 +70,39 @@ export default function ProficiencyTestPage() {
   if (!started) {
     return (
       <PageContainer>
-        <div className="max-w-2xl mx-auto space-y-6">
+        <div className="max-w-2xl mx-auto space-y-8">
+
+          {/* Profile Header */}
+          <div className="flex items-center gap-4 bg-card p-6 rounded-xl border shadow-sm">
+             <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
+                <User className="w-10 h-10 text-primary" />
+             </div>
+             <div>
+                <h2 className="text-2xl font-bold">Aprendiz PobreLingo</h2>
+                <p className="text-muted-foreground">Nível {userLevelNum}</p>
+                <div className="flex gap-4 mt-2 text-sm font-medium">
+                   <div className="flex items-center gap-1 text-yellow-600">
+                      <Trophy className="w-4 h-4" /> {xp} XP
+                   </div>
+                   <div className="flex items-center gap-1 text-orange-600">
+                      <span className="w-4 h-4 flex items-center justify-center font-bold">🔥</span> {streak} dias
+                   </div>
+                </div>
+             </div>
+          </div>
+
+          <AchievementsList />
+
           <Card className="text-center p-8">
             <CardHeader>
               <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4">
                 <Trophy className="w-12 h-12 text-primary" />
               </div>
-              <CardTitle className="text-2xl">Descubra seu Nível de Inglês</CardTitle>
+              <CardTitle className="text-2xl">Teste de Proficiência</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                Este teste contém 100 questões que abrangem gramática, vocabulário e compreensão.
-                Ao final, você receberá uma avaliação do seu nível de proficiência (Básico, Intermediário ou Avançado).
+                Faça este teste para avaliar seu nível real de inglês (Básico, Intermediário ou Avançado).
               </p>
               <div className="flex justify-center gap-8 text-sm font-medium text-muted-foreground">
                 <div className="flex flex-col items-center">

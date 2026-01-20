@@ -3,10 +3,21 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trophy, Zap, Headphones, Brain, GraduationCap, Search } from 'lucide-react';
+import { Trophy, Zap, Headphones, Brain, GraduationCap, Search, Grid } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const games = [
+  {
+    id: 'memory-match',
+    title: 'Jogo da Memória',
+    description: 'Encontre os pares de palavras entre inglês e português.',
+    icon: Grid,
+    color: 'text-indigo-500',
+    bgColor: 'bg-indigo-500/10',
+    href: '/games/memory-match',
+    difficulty: 'Easy',
+    xp: '150 XP'
+  },
   {
     id: 'word-search',
     title: 'Caça Palavras',
@@ -50,6 +61,17 @@ const games = [
     href: '/games/word-scramble',
     difficulty: 'Medium',
     xp: '75 XP'
+  },
+  {
+    id: 'sentence-rush',
+    title: 'Sentence Rush',
+    description: 'Monte frases contra o tempo! Quanto mais rápido, mais pontos.',
+    icon: Zap,
+    color: 'text-red-500',
+    bgColor: 'bg-red-500/10',
+    href: '/games/sentence-rush',
+    difficulty: 'Hard',
+    xp: 'Max 500 XP'
   },
   {
     id: 'listening-challenge',

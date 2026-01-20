@@ -234,6 +234,66 @@ Verbos que mudam de sentido com uma preposição.
 
 Para ser fluente, você precisa entender essas expressões que não fazem sentido literal!
     `
+  },
+  {
+    id: 'unit-9',
+    title: 'Unidade 9: Domínio e Gírias',
+    description: 'Fale como um nativo: gírias, contrações e internet.',
+    order: 9,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Inglês da Vida Real 🗣️
+
+Parabéns por chegar até aqui! Agora vamos deixar o "inglês de livro" de lado e aprender como as pessoas realmente falam.
+
+### Contrações Informais
+Nativos adoram encurtar palavras.
+* **Gonna** (Going to): Vou...
+* **Wanna** (Want to): Quero...
+* **Gotta** (Got to): Tenho que...
+
+**Exemplo:**
+* Formal: "I am going to buy a car."
+* Real: "I'm gonna buy a car."
+
+### Internet Slang 📱
+* **LOL**: Rindo muito (Laughing Out Loud).
+* **IDK**: Não sei (I Don't Know).
+* **TBH**: Para ser honesto (To Be Honest).
+
+### Dica Final 🏆
+A fluência não é saber todas as palavras, mas conseguir se comunicar sem medo e entender o contexto. Assista filmes sem legenda, ouça podcasts e continue praticando no PobreLingo!
+    `
+  },
+  {
+    id: 'unit-10',
+    title: 'Unidade 10: Fluência Profissional',
+    description: 'Domine a arte da retórica e formalidade.',
+    order: 10,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Fluência Profissional 💼
+
+Bem-vindo ao nível de mestre! Aqui vamos refinar seu inglês para situações formais e profissionais.
+
+### Subjuntivo (Subjunctive Mood)
+Usado para sugerir, insistir ou demandar algo.
+* **I suggest that he study more.** (Não "studies")
+* **It is essential that she be here.** (Não "is")
+
+### Inversão para Ênfase
+Para dar um tom dramático ou muito formal, invertemos o sujeito e o auxiliar.
+* Normal: I have never seen such beauty.
+* Inversão: **Never have I seen** such beauty.
+
+### Vocabulário de Debate
+* **Therefore**: Portanto
+* **However**: Contudo
+* **Furthermore**: Além disso
+* **In conclusion**: Em conclusão
+
+Use essas palavras para conectar suas ideias de forma lógica e sofisticada.
+    `
   }
 ];
 
@@ -967,13 +1027,13 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
-    // New Module in Unit 8 for Speaking
+    // ========== Unit 9 ==========
     {
-      id: 'fluency-bootcamp',
-      unitId: 'unit-8',
-      title_pt: 'Bootcamp de Fluência',
-      title_en: 'Fluency Bootcamp',
-      description_pt: 'Desafie sua pronúncia e fale como um nativo',
+      id: 'native-speech',
+      unitId: 'unit-9',
+      title_pt: 'Fala Nativa',
+      title_en: 'Native Speech',
+      description_pt: 'Entenda como os nativos realmente falam (Gonna, Wanna)',
       difficulty: 'avancado',
       icon: 'Mic',
       color: 'bg-rose-500',
@@ -981,18 +1041,133 @@ export const curriculumData: LearningPath = {
       prerequisites: ['advanced-reading'],
       lessons: [
         {
-          id: 'fluency-challenge-1',
-          title_pt: 'Desafio de Fluência',
-          title_en: 'Fluency Challenge',
-          description_pt: 'Pronuncie frases complexas e trava-línguas',
-          type: 'speaking',
-          estimatedMinutes: 30,
-          xpReward: 250,
-          speakingTopics: ['fluency-challenge', 'business-talk'],
+          id: 'informal-contractions-lesson',
+          title_pt: 'Contrações Informais',
+          title_en: 'Informal Contractions',
+          description_pt: 'Aprenda Gonna, Wanna, Gotta e mais',
+          type: 'grammar',
+          estimatedMinutes: 20,
+          xpReward: 150,
+          grammarRuleIds: ['informal-contractions'],
           order: 1,
+        },
+        {
+          id: 'listening-native-speed',
+          title_pt: 'Listening: Velocidade Real',
+          title_en: 'Listening: Real Speed',
+          description_pt: 'Tente entender frases faladas rapidamente',
+          type: 'exercise',
+          estimatedMinutes: 25,
+          xpReward: 200,
+          exerciseType: 'listening',
+          order: 2,
+        },
+      ]
+    },
+    {
+      id: 'internet-culture',
+      unitId: 'unit-9',
+      title_pt: 'Cultura da Internet',
+      title_en: 'Internet Culture',
+      description_pt: 'Gírias e abreviações do mundo digital',
+      difficulty: 'avancado',
+      icon: 'Smartphone',
+      color: 'bg-indigo-600',
+      order: 11,
+      prerequisites: ['native-speech'],
+      lessons: [
+        {
+          id: 'internet-slang-lesson',
+          title_pt: 'Gírias de Internet',
+          title_en: 'Internet Slang',
+          description_pt: 'LOL, BRB, IDK e outras siglas',
+          type: 'grammar',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          grammarRuleIds: ['slang-internet'],
+          order: 1,
+        },
+        {
+          id: 'social-media-reading',
+          title_pt: 'Lendo Redes Sociais',
+          title_en: 'Reading Social Media',
+          description_pt: 'Interprete posts e comentários reais',
+          type: 'reading',
+          estimatedMinutes: 20,
+          xpReward: 150,
+          exerciseType: 'news-comprehension',
+          order: 2,
+        },
+        {
+          id: 'ultimate-challenge',
+          title_pt: 'Desafio Supremo',
+          title_en: 'Ultimate Challenge',
+          description_pt: 'O teste final para se tornar um mestre PobreLingo',
+          type: 'quiz',
+          estimatedMinutes: 60,
+          xpReward: 1000,
+          order: 3,
         }
       ]
     },
+    // ========== Unit 10 ==========
+    {
+      id: 'professional-fluency',
+      unitId: 'unit-10',
+      title_pt: 'Fluência Profissional',
+      title_en: 'Professional Fluency',
+      description_pt: 'Domine estruturas formais e nuance para o ambiente de trabalho e acadêmico.',
+      difficulty: 'avancado',
+      icon: 'Briefcase',
+      color: 'bg-emerald-600',
+      order: 12,
+      prerequisites: ['internet-culture'],
+      lessons: [
+        {
+          id: 'subjunctive-lesson',
+          title_pt: 'Modo Subjuntivo',
+          title_en: 'Subjunctive Mood',
+          description_pt: 'Aprenda a fazer sugestões e demandas formais',
+          type: 'grammar',
+          estimatedMinutes: 25,
+          xpReward: 150,
+          grammarRuleIds: ['subjunctive-mood'],
+          order: 1,
+        },
+        {
+          id: 'inversion-lesson',
+          title_pt: 'Inversão para Ênfase',
+          title_en: 'Inversion for Emphasis',
+          description_pt: 'Estruturas sofisticadas para discursos e escrita',
+          type: 'grammar',
+          estimatedMinutes: 25,
+          xpReward: 150,
+          grammarRuleIds: ['inversion-emphasis'],
+          order: 2,
+        },
+        {
+          id: 'debate-vocabulary',
+          title_pt: 'Vocabulário de Debate',
+          title_en: 'Debate Vocabulary',
+          description_pt: 'Palavras para argumentar e persuadir',
+          type: 'vocabulary',
+          estimatedMinutes: 30,
+          xpReward: 150,
+          vocabularyTopics: ['debate', 'persuasion'],
+          order: 3,
+        },
+        {
+          id: 'fluency-challenge',
+          title_pt: 'Desafio de Fluência',
+          title_en: 'Fluency Challenge',
+          description_pt: 'Prove que você é fluente',
+          type: 'quiz',
+          estimatedMinutes: 45,
+          xpReward: 1000,
+          order: 4,
+        }
+      ]
+    }
   ],
 };
 

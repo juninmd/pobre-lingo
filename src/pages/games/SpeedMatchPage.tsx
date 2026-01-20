@@ -51,7 +51,7 @@ export default function MatchMadnessPage() {
     const gameCards: Pair[] = [];
     selectedWords.forEach(w => {
       gameCards.push({ id: `word-${w.id}`, text: w.word, pairId: w.id, type: 'word', matched: false });
-      gameCards.push({ id: `trans-${w.id}`, text: w.translation, pairId: w.id, type: 'translation', matched: false });
+      gameCards.push({ id: `trans-${w.id}`, text: w.translation_pt, pairId: w.id, type: 'translation', matched: false });
     });
 
     return gameCards.sort(() => 0.5 - Math.random());

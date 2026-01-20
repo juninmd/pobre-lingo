@@ -42,14 +42,14 @@ const games = [
   },
   {
     id: 'speed-match',
-    title: 'Speed Match',
-    description: 'Combine palavras o mais rápido que puder! Corra contra o relógio.',
+    title: 'Match Madness',
+    description: 'Desafio frenético! Combine pares, acumule combos e sobreviva ao tempo.',
     icon: Zap,
-    color: 'text-yellow-500',
-    bgColor: 'bg-yellow-500/10',
+    color: 'text-orange-500',
+    bgColor: 'bg-orange-500/10',
     href: '/games/speed-match',
-    difficulty: 'Easy',
-    xp: '50 XP'
+    difficulty: 'Hard',
+    xp: 'Max 1000 XP'
   },
   {
     id: 'word-scramble',

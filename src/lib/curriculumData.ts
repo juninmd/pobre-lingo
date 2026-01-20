@@ -2,7 +2,7 @@
 // Define a estrutura de aprendizado do básico ao avançado
 
 export type DifficultyLevel = 'basico' | 'intermediario' | 'avancado';
-export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz' | 'culture';
+export type ModuleType = 'grammar' | 'vocabulary' | 'exercise' | 'reading' | 'quiz' | 'culture' | 'speaking';
 
 export interface Lesson {
   id: string;
@@ -16,6 +16,7 @@ export interface Lesson {
   grammarRuleIds?: string[]; // IDs de regras gramaticais
   exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening';
   vocabularyTopics?: string[];
+  speakingTopics?: string[];
   order: number;
 }
 
@@ -350,6 +351,17 @@ export const curriculumData: LearningPath = {
           order: 3,
         },
         {
+          id: 'pronunciation-intro',
+          title_pt: 'Pronúncia: Básico',
+          title_en: 'Pronunciation: Basics',
+          description_pt: 'Treine sua fala com frases simples',
+          type: 'speaking',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          speakingTopics: ['pronunciation-basics'],
+          order: 4,
+        },
+        {
           id: 'basic-pairs',
           title_pt: 'Jogar: Pares de Palavras',
           title_en: 'Play: Word Pairs',
@@ -369,7 +381,7 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 15,
           xpReward: 100,
           exerciseType: 'sentence-ordering',
-          order: 5,
+          order: 6,
         },
         {
           id: 'foundations-listening',
@@ -380,7 +392,7 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 10,
           xpReward: 100,
           exerciseType: 'listening',
-          order: 6,
+          order: 7,
         },
         {
           id: 'foundations-quiz',
@@ -390,7 +402,7 @@ export const curriculumData: LearningPath = {
           type: 'quiz',
           estimatedMinutes: 10,
           xpReward: 150,
-          order: 7,
+          order: 8,
         },
       ],
     },

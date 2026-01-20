@@ -1,13 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 import { MascotGreeting } from '@/components/mascot/MascotGreeting';
 import { LearningPath } from '@/components/curriculum/LearningPath';
 import { LearningStreakDisplay } from '@/components/streaks/LearningStreakDisplay';
 import { DailyQuestsWidget } from '@/components/dashboard/DailyQuestsWidget';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { SurpriseModal } from '@/components/common/SurpriseModal';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Flame, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function DashboardPage() {
   const userName = "Usuário"; // Could come from auth context
+  const [showSurprise, setShowSurprise] = useState(false);
 
   // Integração com o progresso real
   const { overallProgress } = useCurriculumProgress();

@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
+import { curriculumData } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, CheckCircle2, Star, ArrowRight, ArrowLeft, Volume2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
+import { SpeakingExercise } from '@/components/exercises/SpeakingExercise';
+import { speakingData } from '@/lib/speakingData';
 
 // Dados de vocabulário por tópico
 const vocabularyData: Record<string, { word: string; translation: string; example: string }[]> = {
@@ -214,6 +215,8 @@ export default function VocabularyLessonPage() {
   // Obter palavras de vocabulário
   const topics = lesson.vocabularyTopics || [];
   const allWords = topics.flatMap(topic => vocabularyData[topic] || []);
+  const speakingTopics = lesson.speakingTopics || [];
+  const speakingPhrases = speakingTopics.flatMap(topic => speakingData[topic] || []);
 
   const currentWord = allWords[currentIndex];
   const progress = ((currentIndex + 1) / allWords.length) * 100;
@@ -280,6 +283,44 @@ export default function VocabularyLessonPage() {
     }
     navigate('/curriculum');
   };
+
+  if (lesson.type === 'speaking') {
+     return (
+       <PageContainer>
+         <div className="max-w-4xl mx-auto">
+           {/* Barra de Progresso da Jornada */}
+            <LessonProgressBar
+              moduleId={moduleId!}
+              lessonId={lessonId!}
+              showCompleteButton={false}
+              className="mb-6"
+            />
+            {/* Header */}
+            <div className="mb-6">
+              <Button variant="ghost" onClick={() => navigate('/curriculum')} className="mb-4">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Voltar para o Currículo
+              </Button>
+              <div className="flex items-center justify-between mb-2">
+                <h1 className="text-3xl font-bold">{lesson.title_pt}</h1>
+                 {completed && (
+                  <Badge className="bg-green-500">
+                    <CheckCircle2 className="h-4 w-4 mr-1" />
+                    Completo
+                  </Badge>
+                )}
+              </div>
+              <p className="text-muted-foreground">{lesson.description_pt}</p>
+            </div>
+
+            <SpeakingExercise
+              phrases={speakingPhrases}
+              onComplete={handleComplete}
+            />
+         </div>
+       </PageContainer>
+     );
+  }
 
   return (
     <PageContainer>

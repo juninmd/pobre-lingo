@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import confetti from 'canvas-confetti';
 import { dictionaryEntries } from '@/lib/dictionaryData';
+import { calculateMultiplier, calculateScore, calculateTimeBonus } from '@/lib/gameLogic';
 
 interface Pair {
   id: string;
@@ -150,15 +151,11 @@ export default function MatchMadnessPage() {
     setStreak(newStreak);
     setMaxStreak(Math.max(newStreak, maxStreak));
 
-    let newMult = 1;
-    if (newStreak >= 5) newMult = 2;
-    if (newStreak >= 10) newMult = 3;
-    if (newStreak >= 20) newMult = 4;
+    const newMult = calculateMultiplier(newStreak);
     setMultiplier(newMult);
 
-    const points = 10 * newMult;
-    setScore(s => s + points);
-    setTimeLeft(t => Math.min(t + 2, 60)); // +2 seconds per match
+    setScore(s => calculateScore(s, newStreak));
+    setTimeLeft(t => calculateTimeBonus(true, t));
 
     // 2. Mark cards as matched
     setCards(prev => prev.map(c =>
@@ -181,7 +178,7 @@ export default function MatchMadnessPage() {
     setMultiplier(1);
 
     // 2. Penalty
-    setTimeLeft(t => Math.max(t - 3, 0));
+    setTimeLeft(t => calculateTimeBonus(false, t));
 
     // 3. Visual Error State
     setCards(prev => prev.map(c =>

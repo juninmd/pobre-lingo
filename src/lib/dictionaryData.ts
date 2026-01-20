@@ -7,6 +7,7 @@ export interface DictionaryEntry {
   translation_pt: string;
   example_sentence_en?: string;
   example_sentence_pt?: string;
+  category?: 'noun' | 'verb' | 'adjective' | 'adverb' | 'expression';
 }
 
 export const dictionaryEntries: DictionaryEntry[] = [
@@ -1081,4 +1082,84 @@ export const dictionaryEntries: DictionaryEntry[] = [
     example_sentence_en: 'She is very smart.',
     example_sentence_pt: 'Ela é muito inteligente.',
   },
+  // --- NEW ENTRIES FOR GAME VARIETY ---
+  // VERBS
+  { id: 'v1', word: 'run', translation_pt: 'correr', meaning_en: 'Move fast on foot.', phonetic_transcription_en: '/rʌn/', category: 'verb' },
+  { id: 'v2', word: 'walk', translation_pt: 'andar', meaning_en: 'Move at a regular pace.', phonetic_transcription_en: '/wɔːk/', category: 'verb' },
+  { id: 'v3', word: 'speak', translation_pt: 'falar', meaning_en: 'Say something.', phonetic_transcription_en: '/spiːk/', category: 'verb' },
+  { id: 'v4', word: 'listen', translation_pt: 'escutar', meaning_en: 'Give attention to sound.', phonetic_transcription_en: '/ˈlɪsən/', category: 'verb' },
+  { id: 'v5', word: 'write', translation_pt: 'escrever', meaning_en: 'Mark symbols on a surface.', phonetic_transcription_en: '/raɪt/', category: 'verb' },
+  { id: 'v6', word: 'read', translation_pt: 'ler', meaning_en: 'Look at and comprehend meaning.', phonetic_transcription_en: '/riːd/', category: 'verb' },
+  { id: 'v7', word: 'sleep', translation_pt: 'dormir', meaning_en: 'Rest with eyes closed.', phonetic_transcription_en: '/sliːp/', category: 'verb' },
+  { id: 'v8', word: 'study', translation_pt: 'estudar', meaning_en: 'Devote time to acquiring knowledge.', phonetic_transcription_en: '/ˈstʌdi/', category: 'verb' },
+  { id: 'v9', word: 'work', translation_pt: 'trabalhar', meaning_en: 'Engage in physical or mental activity.', phonetic_transcription_en: '/wɜːrk/', category: 'verb' },
+  { id: 'v10', word: 'travel', translation_pt: 'viajar', meaning_en: 'Make a journey.', phonetic_transcription_en: '/ˈtrævl/', category: 'verb' },
+  { id: 'v11', word: 'buy', translation_pt: 'comprar', meaning_en: 'Obtain in exchange for payment.', phonetic_transcription_en: '/baɪ/', category: 'verb' },
+  { id: 'v12', word: 'sell', translation_pt: 'vender', meaning_en: 'Give in exchange for money.', phonetic_transcription_en: '/sel/', category: 'verb' },
+  { id: 'v13', word: 'open', translation_pt: 'abrir', meaning_en: 'Allow access.', phonetic_transcription_en: '/ˈəʊpən/', category: 'verb' },
+  { id: 'v14', word: 'close', translation_pt: 'fechar', meaning_en: 'Cover an opening.', phonetic_transcription_en: '/kloʊz/', category: 'verb' },
+  { id: 'v15', word: 'think', translation_pt: 'pensar', meaning_en: 'Have a particular opinion.', phonetic_transcription_en: '/θɪŋk/', category: 'verb' },
+
+  // NOUNS (Objects/Places)
+  { id: 'n1', word: 'car', translation_pt: 'carro', meaning_en: 'Road vehicle.', phonetic_transcription_en: '/kɑːr/', category: 'noun' },
+  { id: 'n2', word: 'bicycle', translation_pt: 'bicicleta', meaning_en: 'Two-wheeled vehicle.', phonetic_transcription_en: '/ˈbaɪsɪkl/', category: 'noun' },
+  { id: 'n3', word: 'door', translation_pt: 'porta', meaning_en: 'Entry to a room.', phonetic_transcription_en: '/dɔːr/', category: 'noun' },
+  { id: 'n4', word: 'window', translation_pt: 'janela', meaning_en: 'Opening in a wall.', phonetic_transcription_en: '/ˈwɪndoʊ/', category: 'noun' },
+  { id: 'n5', word: 'table', translation_pt: 'mesa', meaning_en: 'Piece of furniture.', phonetic_transcription_en: '/ˈteɪbl/', category: 'noun' },
+  { id: 'n6', word: 'chair', translation_pt: 'cadeira', meaning_en: 'Seat with a back.', phonetic_transcription_en: '/tʃɛər/', category: 'noun' },
+  { id: 'n7', word: 'computer', translation_pt: 'computador', meaning_en: 'Electronic device.', phonetic_transcription_en: '/kəmˈpjuːtər/', category: 'noun' },
+  { id: 'n8', word: 'phone', translation_pt: 'telefone', meaning_en: 'Communication device.', phonetic_transcription_en: '/foʊn/', category: 'noun' },
+  { id: 'n9', word: 'city', translation_pt: 'cidade', meaning_en: 'Large human settlement.', phonetic_transcription_en: '/ˈsɪti/', category: 'noun' },
+  { id: 'n10', word: 'country', translation_pt: 'país', meaning_en: 'Nation.', phonetic_transcription_en: '/ˈkʌntri/', category: 'noun' },
+  { id: 'n11', word: 'river', translation_pt: 'rio', meaning_en: 'Natural stream of water.', phonetic_transcription_en: '/ˈrɪvər/', category: 'noun' },
+  { id: 'n12', word: 'mountain', translation_pt: 'montanha', meaning_en: 'Large natural elevation.', phonetic_transcription_en: '/ˈmaʊntn/', category: 'noun' },
+  { id: 'n13', word: 'beach', translation_pt: 'praia', meaning_en: 'Sands along a shore.', phonetic_transcription_en: '/biːtʃ/', category: 'noun' },
+  { id: 'n14', word: 'sun', translation_pt: 'sol', meaning_en: 'Star around which earth orbits.', phonetic_transcription_en: '/sʌn/', category: 'noun' },
+  { id: 'n15', word: 'moon', translation_pt: 'lua', meaning_en: 'Natural satellite of earth.', phonetic_transcription_en: '/muːn/', category: 'noun' },
+
+  // ADJECTIVES
+  { id: 'adj1', word: 'big', translation_pt: 'grande', meaning_en: 'Considerable size.', phonetic_transcription_en: '/bɪɡ/', category: 'adjective' },
+  { id: 'adj2', word: 'small', translation_pt: 'pequeno', meaning_en: 'Not big.', phonetic_transcription_en: '/smɔːl/', category: 'adjective' },
+  { id: 'adj3', word: 'hot', translation_pt: 'quente', meaning_en: 'High temperature.', phonetic_transcription_en: '/hɒt/', category: 'adjective' },
+  { id: 'adj4', word: 'cold', translation_pt: 'frio', meaning_en: 'Low temperature.', phonetic_transcription_en: '/koʊld/', category: 'adjective' },
+  { id: 'adj5', word: 'fast', translation_pt: 'rápido', meaning_en: 'Moving at high speed.', phonetic_transcription_en: '/fæst/', category: 'adjective' },
+  { id: 'adj6', word: 'slow', translation_pt: 'lento', meaning_en: 'Moving at low speed.', phonetic_transcription_en: '/sloʊ/', category: 'adjective' },
+  { id: 'adj7', word: 'beautiful', translation_pt: 'bonito(a)', meaning_en: 'Pleasing to the eye.', phonetic_transcription_en: '/ˈbjuːtɪfl/', category: 'adjective' },
+  { id: 'adj8', word: 'ugly', translation_pt: 'feio(a)', meaning_en: 'Unpleasant to look at.', phonetic_transcription_en: '/ˈʌɡli/', category: 'adjective' },
+  { id: 'adj9', word: 'expensive', translation_pt: 'caro', meaning_en: 'Costing a lot of money.', phonetic_transcription_en: '/ɪkˈspensɪv/', category: 'adjective' },
+  { id: 'adj10', word: 'cheap', translation_pt: 'barato', meaning_en: 'Low in price.', phonetic_transcription_en: '/tʃiːp/', category: 'adjective' },
+  { id: 'adj11', word: 'easy', translation_pt: 'fácil', meaning_en: 'Not difficult.', phonetic_transcription_en: '/ˈiːzi/', category: 'adjective' },
+  { id: 'adj12', word: 'difficult', translation_pt: 'difícil', meaning_en: 'Needing much effort.', phonetic_transcription_en: '/ˈdɪfɪkəlt/', category: 'adjective' },
+  { id: 'adj13', word: 'new', translation_pt: 'novo', meaning_en: 'Not existing before.', phonetic_transcription_en: '/njuː/', category: 'adjective' },
+  { id: 'adj14', word: 'old', translation_pt: 'velho', meaning_en: 'Having lived for a long time.', phonetic_transcription_en: '/oʊld/', category: 'adjective' },
+  { id: 'adj15', word: 'good', translation_pt: 'bom', meaning_en: 'To be desired.', phonetic_transcription_en: '/ɡʊd/', category: 'adjective' },
+
+  // DAYS & TIME
+  { id: 't1', word: 'today', translation_pt: 'hoje', meaning_en: 'This present day.', phonetic_transcription_en: '/təˈdeɪ/', category: 'adverb' },
+  { id: 't2', word: 'tomorrow', translation_pt: 'amanhã', meaning_en: 'The day after today.', phonetic_transcription_en: '/təˈmɒroʊ/', category: 'adverb' },
+  { id: 't3', word: 'yesterday', translation_pt: 'ontem', meaning_en: 'The day before today.', phonetic_transcription_en: '/ˈjestərdeɪ/', category: 'adverb' },
+  { id: 't4', word: 'always', translation_pt: 'sempre', meaning_en: 'At all times.', phonetic_transcription_en: '/ˈɔːlweɪz/', category: 'adverb' },
+  { id: 't5', word: 'never', translation_pt: 'nunca', meaning_en: 'At no time.', phonetic_transcription_en: '/ˈnevər/', category: 'adverb' },
+
+  // ANIMALS
+  { id: 'an1', word: 'bird', translation_pt: 'pássaro', meaning_en: 'Feathered animal.', phonetic_transcription_en: '/bɜːrd/', category: 'noun' },
+  { id: 'an2', word: 'fish', translation_pt: 'peixe', meaning_en: 'Aquatic animal.', phonetic_transcription_en: '/fɪʃ/', category: 'noun' },
+  { id: 'an3', word: 'horse', translation_pt: 'cavalo', meaning_en: 'Large mammal.', phonetic_transcription_en: '/hɔːrs/', category: 'noun' },
+  { id: 'an4', word: 'cow', translation_pt: 'vaca', meaning_en: 'Farm animal.', phonetic_transcription_en: '/kaʊ/', category: 'noun' },
+  { id: 'an5', word: 'chicken', translation_pt: 'frango/galinha', meaning_en: 'Domestic fowl.', phonetic_transcription_en: '/ˈtʃɪkɪn/', category: 'noun' },
+
+  // FOOD
+  { id: 'f1', word: 'bread', translation_pt: 'pão', meaning_en: 'Food made of flour.', phonetic_transcription_en: '/bred/', category: 'noun' },
+  { id: 'f2', word: 'milk', translation_pt: 'leite', meaning_en: 'White liquid from mammals.', phonetic_transcription_en: '/mɪlk/', category: 'noun' },
+  { id: 'f3', word: 'coffee', translation_pt: 'café', meaning_en: 'Hot drink.', phonetic_transcription_en: '/ˈkɒfi/', category: 'noun' },
+  { id: 'f4', word: 'apple', translation_pt: 'maçã', meaning_en: 'Red or green fruit.', phonetic_transcription_en: '/ˈæpl/', category: 'noun' },
+  { id: 'f5', word: 'sugar', translation_pt: 'açúcar', meaning_en: 'Sweet substance.', phonetic_transcription_en: '/ˈʃʊɡər/', category: 'noun' },
+
+  // COLORS
+  { id: 'c1', word: 'red', translation_pt: 'vermelho', meaning_en: 'Color of blood.', phonetic_transcription_en: '/red/', category: 'adjective' },
+  { id: 'c2', word: 'blue', translation_pt: 'azul', meaning_en: 'Color of sky.', phonetic_transcription_en: '/bluː/', category: 'adjective' },
+  { id: 'c3', word: 'green', translation_pt: 'verde', meaning_en: 'Color of grass.', phonetic_transcription_en: '/ɡriːn/', category: 'adjective' },
+  { id: 'c4', word: 'yellow', translation_pt: 'amarelo', meaning_en: 'Color of sun.', phonetic_transcription_en: '/ˈjeloʊ/', category: 'adjective' },
+  { id: 'c5', word: 'black', translation_pt: 'preto', meaning_en: 'Darkest color.', phonetic_transcription_en: '/blæk/', category: 'adjective' },
+  { id: 'c6', word: 'white', translation_pt: 'branco', meaning_en: 'Color of snow.', phonetic_transcription_en: '/waɪt/', category: 'adjective' }
 ];

@@ -5,7 +5,7 @@ import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { GuidebookModal } from './GuidebookModal';
 import { cn } from '@/lib/utils';
 import * as LucideIcons from 'lucide-react';
-import { Check, Lock, Star, ChevronDown, Trophy } from 'lucide-react';
+import { Check, Lock, Star, Trophy, Flag } from 'lucide-react';
 
 // Helper to get icon component dynamically
 const getIcon = (name: string) => {
@@ -81,7 +81,7 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet, tota
     >
       {/* "Start Here" Floating Tooltip with Bounce Animation */}
       {status === 'active' && progress === 0 && (
-          <div className="absolute -top-12 z-50 animate-bounce">
+          <div className="absolute -top-14 z-50 animate-bounce">
               <div className="bg-white dark:bg-zinc-800 text-primary text-xs font-bold px-3 py-1.5 rounded-xl shadow-lg border border-primary/20 uppercase tracking-wider flex flex-col items-center">
                   COMEÇAR
                   <div className="w-2 h-2 bg-white dark:bg-zinc-800 border-r border-b border-primary/20 rotate-45 absolute -bottom-1"></div>
@@ -151,7 +151,7 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet, tota
       {status !== 'locked' && (
         <div className="mt-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
           <span className={cn(
-            "text-sm font-bold block text-center max-w-[140px] leading-tight drop-shadow-sm bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md",
+            "text-sm font-bold block text-center max-w-[140px] leading-tight drop-shadow-sm bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md border border-white/10",
             "text-foreground"
           )}>
             {module.title_pt}
@@ -174,6 +174,10 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
   const unitColor = modules[0]?.color || 'bg-primary';
   const isLocked = modules.every(m => getModuleStatus(m.id) === 'locked');
 
+  // Calculate Unit Progress
+  const completedInUnit = modules.filter(m => getModuleStatus(m.id) === 'completed').length;
+  const progressPercent = Math.round((completedInUnit / modules.length) * 100);
+
   // Calculate coordinates for SVG path
   const getCoordinates = (index: number) => {
     // If it's the last one, center it (looks like a finish line)
@@ -190,22 +194,35 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
   }).join(' ');
 
   return (
-    <div className={cn("w-full mb-8 relative", isLocked && "opacity-60 grayscale")}>
+    <div className={cn("w-full mb-8 relative", isLocked && "opacity-60 grayscale transition-opacity duration-500")}>
+
+      {/* Sticky Unit Header */}
       <div className={cn(
-        "sticky top-0 z-30 py-4 px-4 mb-8 flex items-center justify-between rounded-b-2xl shadow-sm border-b backdrop-blur-md transition-all duration-300",
-        unitColor.replace('bg-', 'bg-opacity-90 dark:bg-opacity-90 border-'),
-        isLocked ? "bg-muted border-muted-foreground/20" : "bg-background/80"
-      )} style={{
-          backgroundColor: isLocked ? undefined : undefined, // Tailwind handles it but style fallback if needed
-      }}>
-        <div className="flex flex-col">
-          <h2 className="text-lg font-extrabold text-foreground uppercase tracking-wider flex items-center gap-2">
-            {unit.title}
-            {unit.difficulty === 'avancado' && <Trophy className="w-4 h-4 text-yellow-500" />}
-          </h2>
-          <p className="text-xs text-muted-foreground/80 line-clamp-1 font-medium">{unit.description}</p>
+        "sticky top-0 z-30 mb-8 flex flex-col rounded-b-3xl shadow-lg transition-all duration-300 overflow-hidden",
+        isLocked ? "bg-muted text-muted-foreground" : `${unitColor} text-white`
+      )}>
+        <div className="p-4 flex items-center justify-between">
+            <div className="flex flex-col gap-1">
+                <h2 className="text-xl font-black uppercase tracking-wider flex items-center gap-2 drop-shadow-sm">
+                    {unit.title}
+                    {unit.difficulty === 'avancado' && <Trophy className="w-5 h-5 text-yellow-300 fill-current animate-pulse" />}
+                </h2>
+                <p className={cn("text-xs font-medium line-clamp-1 opacity-90", isLocked ? "text-muted-foreground" : "text-white/90")}>
+                    {unit.description}
+                </p>
+            </div>
+            <GuidebookModal unit={unit} />
         </div>
-        <GuidebookModal unit={unit} />
+
+        {/* Progress Bar in Header */}
+        {!isLocked && (
+            <div className="w-full bg-black/20 h-2">
+                <div
+                    className="h-full bg-white/40 transition-all duration-1000 ease-out"
+                    style={{ width: `${progressPercent}%` }}
+                />
+            </div>
+        )}
       </div>
 
       <div className="relative w-full max-w-[400px] mx-auto min-h-[200px]">
@@ -221,8 +238,8 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
              d={pathData}
              fill="none"
              stroke="currentColor"
-             strokeWidth="10"
-             className={cn("text-muted-foreground/10", !isLocked && "text-primary/10")}
+             strokeWidth="12"
+             className={cn("text-muted-foreground/10", !isLocked && "text-primary/20")}
              strokeLinecap="round"
              strokeLinejoin="round"
            />
@@ -232,8 +249,8 @@ function UnitSection({ unit, modules, getModuleStatus, getModuleProgressValue, c
              fill="none"
              stroke="currentColor"
              strokeWidth="4"
-             className={cn("text-muted/40", !isLocked && "text-primary/20")}
-             strokeDasharray="8 12"
+             className={cn("text-muted/40", !isLocked && "text-primary/30")}
+             strokeDasharray="10 15"
              strokeLinecap="round"
              strokeLinejoin="round"
            />
@@ -283,8 +300,16 @@ export function LearningPath() {
   });
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-screen pb-24">
-      {unitsWithModules.map(unit => (
+    <div className="w-full max-w-md mx-auto min-h-screen pb-32">
+      {/* Global Header */}
+      <div className="mb-6 flex items-center justify-between px-4">
+        <div className="flex items-center gap-2">
+            <Flag className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Caminho de Aprendizado</span>
+        </div>
+      </div>
+
+      {unitsWithModules.map((unit, idx) => (
         <UnitSection
           key={unit.id}
           unit={unit}

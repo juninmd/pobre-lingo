@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -11,8 +12,8 @@ export default defineConfig({
       manifest: {
         name: 'PobreLingo - Aprenda Português',
         short_name: 'PobreLingo',
-        description: 'Aplicativo para aprender português com gramática, exercícios interativos e dicionário',
-        theme_color: '#16a34a',
+        description: 'Aplicativo grátis e infinito para aprender português',
+        theme_color: '#22c55e', // Updated to match the new mascot color (green-500)
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
@@ -82,5 +83,10 @@ export default defineConfig({
     alias: {
       '@': '/src',
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
   },
 });

@@ -12,7 +12,7 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
   { id: 'first_steps', title: 'Primeiros Passos', description: 'Ganhe seus primeiros 50 XP.', icon: 'Footprints' },
   { id: 'streak_3', title: 'Em Chamas', description: 'Alcance uma ofensiva de 3 dias.', icon: 'Flame' },
   { id: 'streak_7', title: 'Hábito Formado', description: 'Alcance uma ofensiva de 7 dias.', icon: 'CalendarCheck' },
-  { id: 'rich', title: 'Acumulador', description: 'Junte 100 gemas.', icon: 'Gem' },
+  { id: 'rich', title: 'Acumulador', description: 'Junte 100 PobreCoins.', icon: 'Coins' },
   { id: 'scholar', title: 'Estudioso', description: 'Chegue ao Nível 5.', icon: 'GraduationCap' },
   { id: 'master', title: 'Mestre', description: 'Chegue ao Nível 10.', icon: 'Crown' },
 ];
@@ -20,7 +20,7 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
 interface GamificationContextType {
   hearts: number;
   maxHearts: number;
-  gems: number;
+  gems: number; // Internally gems, displayed as PobreCoins
   streak: number;
   xp: number;
   level: number;
@@ -39,8 +39,10 @@ interface GamificationContextType {
 const GamificationContext = createContext<GamificationContextType | undefined>(undefined);
 
 export function GamificationProvider({ children }: { children: React.ReactNode }) {
-  const [hearts, setHearts] = useState<number>(5);
-  const maxHearts = 5;
+  // Infinite hearts: we keep the state for compatibility but logic won't decrease it
+  const [hearts, setHearts] = useState<number>(Infinity);
+  const maxHearts = Infinity;
+
   const [gems, setGems] = useState<number>(0);
   const [streak, setStreak] = useState<number>(0);
   const [xp, setXp] = useState<number>(0);
@@ -48,39 +50,32 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
 
   // Derived state for level
   // Formula: Level = floor(sqrt(xp / 100)) + 1
-  // XP 0 -> Lvl 1
-  // XP 100 -> Lvl 2
-  // XP 400 -> Lvl 3
-  // XP 900 -> Lvl 4
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;
 
   // Load from localStorage on mount
   useEffect(() => {
-    const storedHearts = localStorage.getItem('pl_hearts');
+    // Hearts are infinite now, so we ignore stored hearts or set to Infinity
     const storedGems = localStorage.getItem('pl_gems');
     const storedStreak = localStorage.getItem('pl_streak');
     const storedXp = localStorage.getItem('pl_xp');
     const storedAchievements = localStorage.getItem('pl_achievements');
 
-    if (storedHearts) setHearts(parseInt(storedHearts));
     if (storedGems) setGems(parseInt(storedGems));
     if (storedStreak) setStreak(parseInt(storedStreak));
     if (storedXp) setXp(parseInt(storedXp));
     if (storedAchievements) setUnlockedAchievements(JSON.parse(storedAchievements));
 
-    // Simple refill logic: if it's been more than 24h (mock), refill.
-    // For now, let's just default to 5 if nothing stored or valid.
-    if (!storedHearts) setHearts(5);
+    setHearts(Infinity);
   }, []);
 
   // Save to localStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem('pl_hearts', hearts.toString());
     localStorage.setItem('pl_gems', gems.toString());
     localStorage.setItem('pl_streak', streak.toString());
     localStorage.setItem('pl_xp', xp.toString());
     localStorage.setItem('pl_achievements', JSON.stringify(unlockedAchievements));
-  }, [hearts, gems, streak, xp, unlockedAchievements]);
+    // We don't save hearts anymore
+  }, [gems, streak, xp, unlockedAchievements]);
 
   // Check auto-unlocks based on stats
   useEffect(() => {
@@ -95,21 +90,16 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
 
      if (newUnlocks.length > 0) {
          setUnlockedAchievements(prev => [...prev, ...newUnlocks]);
-         // Could trigger a toast here if we had access to it,
-         // but contexts shouldn't ideally trigger UI side effects directly without a callback.
-         // For now, we rely on the UI to show the "New" state.
      }
   }, [xp, streak, gems, level, unlockedAchievements]);
 
   const loseHeart = () => {
-    if (hearts > 0) {
-      setHearts(prev => prev - 1);
-      localStorage.setItem('pl_last_heart_loss', Date.now().toString());
-    }
+    // Infinite lives: do nothing
+    // User requested: "as pessoas podem errar a vontade"
   };
 
   const refillHearts = () => {
-    setHearts(maxHearts);
+    setHearts(Infinity);
   };
 
   const addGem = (amount: number) => {
@@ -118,6 +108,8 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
 
   const addStreak = () => {
      setStreak(prev => prev + 1);
+     // Daily reward for streak: 10 PobreCoins
+     addGem(10);
   };
 
   const addXp = (amount: number) => {

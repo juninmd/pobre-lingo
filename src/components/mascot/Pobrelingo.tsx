@@ -15,77 +15,94 @@ export function Pobrelingo({
   emotion = 'happy'
 }: PobrelingoProps) {
 
-  // Base colors
-  const skinColor = "#4ade80"; // green-400 equivalent
-  const skinDark = "#22c55e"; // green-500
-  const bellyColor = "#bbf7d0"; // green-200
+  // New Design: A cute, round, friendly green blob/bird character
+  // More modern and "kawaii" style
+
+  const mainColor = "#22c55e"; // Green 500
+  const highlightColor = "#4ade80"; // Green 400
+  const shadowColor = "#15803d"; // Green 700
+  const cheekColor = "#fca5a5"; // Red 300
 
   return (
-    <div className={cn("inline-block", className)} style={{ width, height }}>
+    <div className={cn("inline-block drop-shadow-sm transition-transform hover:scale-105 duration-300", className)} style={{ width, height }}>
       <svg
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Body - Round shape with slight wobble */}
+        <defs>
+          <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={highlightColor} />
+            <stop offset="100%" stopColor={mainColor} />
+          </linearGradient>
+        </defs>
+
+        {/* Body - Soft round shape */}
         <path
           d="M100 20
-             C 150 20, 180 50, 180 100
-             C 180 150, 150 185, 100 185
-             C 50 185, 20 150, 20 100
-             C 20 50, 50 20, 100 20 Z"
-          fill={skinColor}
-          stroke={skinDark}
-          strokeWidth="4"
+             C 160 20, 190 60, 190 110
+             C 190 170, 150 190, 100 190
+             C 50 190, 10 170, 10 110
+             C 10 60, 40 20, 100 20 Z"
+          fill="url(#bodyGradient)"
+          stroke={shadowColor}
+          strokeWidth="3"
         />
 
-        {/* Belly Patch */}
-        <ellipse cx="100" cy="140" rx="40" ry="25" fill={bellyColor} opacity="0.6" />
+        {/* Belly - Lighter patch */}
+        <path
+          d="M100 120
+             Q 150 120, 150 160
+             Q 150 185, 100 185
+             Q 50 185, 50 160
+             Q 50 120, 100 120 Z"
+          fill="#dcfce7"
+          opacity="0.8"
+        />
 
-        {/* Ears */}
-        <path d="M40 50 C 30 30, 50 10, 70 40" fill={skinColor} stroke={skinDark} strokeWidth="4" />
-        <path d="M160 50 C 170 30, 150 10, 130 40" fill={skinColor} stroke={skinDark} strokeWidth="4" />
+        {/* Hair / Feathers on top */}
+        <path d="M85 25 Q 90 5, 100 20" fill="none" stroke={shadowColor} strokeWidth="4" strokeLinecap="round" />
+        <path d="M100 20 Q 110 0, 120 25" fill="none" stroke={shadowColor} strokeWidth="4" strokeLinecap="round" />
 
-        {/* Eyes Background */}
-        <circle cx="70" cy="90" r="15" fill="white" stroke={skinDark} strokeWidth="2" />
-        <circle cx="130" cy="90" r="15" fill="white" stroke={skinDark} strokeWidth="2" />
+        {/* Eyes - Big and cute */}
+        <g transform="translate(0, 5)">
+            {/* Left Eye */}
+            <circle cx="70" cy="90" r="18" fill="white" stroke={shadowColor} strokeWidth="2" />
+            <circle cx="70" cy="90" r="8" fill="#1e293b" />
+            <circle cx="73" cy="87" r="3" fill="white" />
 
-        {/* Pupils - Dynamic based on emotion */}
-        {emotion === 'winking' ? (
-           <>
-             <circle cx="70" cy="90" r="6" fill="black" />
-             <path d="M120 90 Q 130 80, 140 90" fill="none" stroke="black" strokeWidth="3" />
-           </>
-        ) : (
-           <>
-             <circle cx="70" cy="90" r="6" fill="black" />
-             <circle cx="130" cy="90" r="6" fill="black" />
-             {/* Sparkle in eyes */}
-             <circle cx="73" cy="87" r="2" fill="white" />
-             <circle cx="133" cy="87" r="2" fill="white" />
-           </>
-        )}
-
-        {/* Mouth - Dynamic based on emotion */}
-        {emotion === 'happy' && (
-          <path d="M80 120 Q 100 140, 120 120" fill="none" stroke="black" strokeWidth="3" strokeLinecap="round" />
-        )}
-        {emotion === 'excited' && (
-          <path d="M80 120 Q 100 150, 120 120 Z" fill="#ef4444" stroke="black" strokeWidth="2" />
-        )}
-        {emotion === 'neutral' && (
-          <path d="M85 130 L 115 130" fill="none" stroke="black" strokeWidth="3" strokeLinecap="round" />
-        )}
+            {/* Right Eye */}
+            {emotion === 'winking' ? (
+                <path d="M112 90 Q 130 80, 148 90" fill="none" stroke="#1e293b" strokeWidth="4" strokeLinecap="round" />
+            ) : (
+                <>
+                <circle cx="130" cy="90" r="18" fill="white" stroke={shadowColor} strokeWidth="2" />
+                <circle cx="130" cy="90" r="8" fill="#1e293b" />
+                <circle cx="133" cy="87" r="3" fill="white" />
+                </>
+            )}
+        </g>
 
         {/* Cheeks */}
-        <circle cx="60" cy="110" r="8" fill="#fca5a5" opacity="0.6" />
-        <circle cx="140" cy="110" r="8" fill="#fca5a5" opacity="0.6" />
+        <circle cx="55" cy="115" r="10" fill={cheekColor} opacity="0.6" />
+        <circle cx="145" cy="115" r="10" fill={cheekColor} opacity="0.6" />
 
-        {/* Patch (The "Pobre" element - a little sewn patch) */}
-        <rect x="140" y="140" width="20" height="20" rx="2" fill="#fcd34d" stroke="#d97706" strokeWidth="1" transform="rotate(15 150 150)" />
-        <line x1="145" y1="142" x2="145" y2="158" stroke="#d97706" strokeWidth="1" transform="rotate(15 150 150)" />
-        <line x1="155" y1="142" x2="155" y2="158" stroke="#d97706" strokeWidth="1" transform="rotate(15 150 150)" />
-        <line x1="142" y1="150" x2="158" y2="150" stroke="#d97706" strokeWidth="1" transform="rotate(15 150 150)" />
+        {/* Beak / Mouth */}
+        <g transform="translate(0, 10)">
+            {emotion === 'happy' && (
+                <path d="M90 115 Q 100 125, 110 115" fill="none" stroke="#f59e0b" strokeWidth="4" strokeLinecap="round" />
+            )}
+            {emotion === 'excited' && (
+                <path d="M90 115 Q 100 135, 110 115" fill="#f59e0b" stroke="#d97706" strokeWidth="2" />
+            )}
+            {emotion === 'neutral' && (
+                <line x1="90" y1="115" x2="110" y2="115" stroke="#f59e0b" strokeWidth="4" strokeLinecap="round" />
+            )}
+        </g>
+
+        {/* The "Pobre" Element: A tiny bandage instead of a patch, slightly more subtle */}
+        <rect x="150" y="60" width="20" height="10" rx="2" fill="#fcd34d" stroke="#d97706" strokeWidth="1" transform="rotate(-15 160 65)" />
+        <circle cx="160" cy="65" r="1" fill="#d97706" transform="rotate(-15 160 65)" />
 
       </svg>
     </div>

@@ -285,6 +285,27 @@ export default function RulePage() {
                 </Card>
               </section>
             )}
+
+            {/* Prática */}
+            <section className="pt-4">
+              <Card className="bg-primary/5 border-primary/20">
+                <CardContent className="p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="space-y-1 text-center sm:text-left">
+                    <h3 className="text-lg font-bold text-primary">Hora de Praticar!</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Fixe o conteúdo aprendido com exercícios práticos.
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() => navigate(`/exercises/sentence-ordering?fromRule=${rule.id}`)}
+                    className="w-full sm:w-auto font-bold shadow-md hover:scale-105 transition-transform"
+                  >
+                    <Puzzle className="mr-2 h-4 w-4" />
+                    Praticar Agora
+                  </Button>
+                </CardContent>
+              </Card>
+            </section>
           </CardContent>
         </Card>
 

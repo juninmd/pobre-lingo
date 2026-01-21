@@ -95,7 +95,7 @@ export default function CurriculumPage() {
     isLessonCompleted,
   } = useCurriculumProgress();
 
-  const stats = getCurriculumStats();
+  const stats = React.useMemo(() => getCurriculumStats(), []);
   const [selectedDifficulty, setSelectedDifficulty] = React.useState<DifficultyLevel | 'all'>('all');
   const [expandedModule, setExpandedModule] = React.useState<string | null>(null);
 

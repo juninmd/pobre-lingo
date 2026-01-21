@@ -25,6 +25,9 @@ interface GamificationContextType {
   xp: number;
   level: number;
   unlockedAchievements: string[];
+  setHearts: React.Dispatch<React.SetStateAction<number>>;
+  setGems: React.Dispatch<React.SetStateAction<number>>;
+  setStreak: React.Dispatch<React.SetStateAction<number>>;
   loseHeart: () => void;
   refillHearts: () => void;
   addGem: (amount: number) => void;
@@ -136,6 +139,9 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
       xp,
       level,
       unlockedAchievements,
+      setHearts,
+      setGems,
+      setStreak,
       loseHeart,
       refillHearts,
       addGem,

@@ -14,7 +14,7 @@ export interface Lesson {
   xpReward: number;
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
-  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening';
+  exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening' | 'conversation';
   vocabularyTopics?: string[];
   speakingTopics?: string[];
   order: number;
@@ -479,11 +479,11 @@ export const curriculumData: LearningPath = {
           id: 'conversation-practice',
           title_pt: 'Prática: Diálogos',
           title_en: 'Practice: Dialogues',
-          description_pt: 'Identifique frases corretas em conversações',
+          description_pt: 'Pratique uma conversa real com o PobreLingo',
           type: 'exercise',
           estimatedMinutes: 20,
           xpReward: 125,
-          exerciseType: 'sentence-identification',
+          exerciseType: 'conversation',
           order: 3,
         },
         {

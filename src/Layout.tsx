@@ -20,6 +20,7 @@ import {
   GraduationCap,
   X,
   Gamepad2,
+  ShoppingBag,
 } from 'lucide-react';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
@@ -62,6 +63,7 @@ const navGroups = [
     items: [
       { href: '/', label: 'Início', icon: Home },
       { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map, badge: 'Novo' },
+      { href: '/shop', label: 'Loja', icon: ShoppingBag },
       { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },

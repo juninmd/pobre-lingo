@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Map, User, Gamepad2 } from 'lucide-react';
+import { Home, Compass, Gamepad2, Trophy, User, ShoppingBag, Map } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {
@@ -8,8 +8,9 @@ export function MobileNav() {
 
   const navItems = [
     { href: '/', label: 'Início', icon: Home },
-    { href: '/curriculum', label: 'Aprender', icon: Map },
+    { href: '/curriculum', label: 'Jornada', icon: Compass },
     { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
+    { href: '/shop', label: 'Loja', icon: ShoppingBag },
     { href: '/proficiency', label: 'Perfil', icon: User },
   ];
 

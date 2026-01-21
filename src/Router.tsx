@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
 import DictionaryPage from './pages/DictionaryPage';
 import DashboardPage from './pages/DashboardPage';
+import ShopPage from './pages/ShopPage';
 import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page';
 import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
@@ -22,6 +23,7 @@ import FlashcardsPage from './pages/games/FlashcardsPage';
 import WordSearchPage from './pages/games/WordSearchPage';
 import SentenceRushPage from './pages/games/SentenceRushPage';
 import MemoryMatchPage from './pages/games/MemoryMatchPage';
+import ConversationPage from './pages/exercises/conversation/page';
 
 const router = createBrowserRouter([
   {
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
         element: <DashboardPage />,
       },
       {
+        path: 'shop',
+        element: <ShopPage />,
+      },
+      {
         path: 'proficiency',
         element: <ProficiencyTestPage />,
       },
@@ -107,6 +113,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/listening',
         element: <ListeningPage />,
+      },
+      {
+        path: 'exercises/conversation',
+        element: <ConversationPage />,
       },
       {
         path: 'rules',

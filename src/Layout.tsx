@@ -21,6 +21,7 @@ import {
   X,
   Gamepad2,
   ShoppingBag,
+  Coins,
 } from 'lucide-react';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
@@ -54,7 +55,6 @@ import { Separator } from '@/components/ui/separator';
 import { GlobalSearch, GlobalSearchTrigger } from '@/components/common/GlobalSearch';
 import { MobileNav } from './components/layout/MobileNav';
 import { useGamification } from './contexts/GamificationContext';
-import { Heart, Diamond } from 'lucide-react';
 
 // Agrupamento de navegação por categorias
 const navGroups = [
@@ -62,7 +62,7 @@ const navGroups = [
     title: 'Principal',
     items: [
       { href: '/', label: 'Início', icon: Home },
-      { href: '/curriculum', label: 'Jornada de Aprendizado', icon: Map, badge: 'Novo' },
+      { href: '/curriculum', label: 'Jornada', icon: Map },
       { href: '/shop', label: 'Loja', icon: ShoppingBag },
       { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
@@ -70,7 +70,7 @@ const navGroups = [
   {
     title: 'Referência',
     items: [
-      { href: '/rules', label: 'Regras Gramaticais', icon: BookOpen },
+      { href: '/rules', label: 'Regras', icon: BookOpen },
       { href: '/dictionary', label: 'Dicionário', icon: BookA },
     ]
   },
@@ -87,7 +87,7 @@ const navGroups = [
     title: 'Progresso',
     items: [
       { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
-      { href: '/proficiency', label: 'Teste de Proficiência', icon: GraduationCap },
+      { href: '/proficiency', label: 'Teste de Nível', icon: GraduationCap },
     ]
   },
 ];
@@ -119,25 +119,25 @@ function NavMenu() {
       <SidebarHeader className="p-3 border-b border-sidebar-border/50">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Pobrelingo width={32} height={32} className="flex-shrink-0" emotion="winking" />
+            <Pobrelingo width={36} height={36} className="flex-shrink-0" emotion="happy" />
           </div>
           {!isCollapsed && (
             <div className="flex flex-col min-w-0">
-              <span className="font-bold text-sm text-sidebar-foreground truncate">PobreLingo</span>
-              <span className="text-[10px] text-sidebar-foreground/70">Aprenda Português</span>
+              <span className="font-bold text-base text-sidebar-foreground truncate tracking-tight">PobreLingo</span>
+              <span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider">Aprenda Grátis</span>
             </div>
           )}
         </div>
 
         {!isCollapsed && (
-          <div className="mt-3 relative">
+          <div className="mt-4 relative">
             <SearchIcon className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-sidebar-foreground/50" />
             <SidebarInput
               type="search"
-              placeholder="Pesquisar..."
+              placeholder="Buscar..."
               value={sidebarSearchTerm}
               onChange={(e) => setSidebarSearchTerm(e.target.value)}
-              className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground"
+              className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground rounded-lg"
             />
             {sidebarSearchTerm && (
               <button
@@ -156,7 +156,7 @@ function NavMenu() {
           {filteredGroups.map((group, groupIndex) => (
             <div key={group.title} className={groupIndex > 0 ? 'mt-4' : ''}>
               {!isCollapsed && (
-                <h3 className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">
+                <h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40">
                   {group.title}
                 </h3>
               )}
@@ -169,20 +169,20 @@ function NavMenu() {
                         asChild
                         isActive={isActive}
                         tooltip={{ content: item.label, side: 'right', align: 'center' }}
-                        className={`justify-start h-9 transition-all duration-200 ${
+                        className={`justify-start h-10 transition-all duration-200 rounded-lg group ${
                           isActive
-                            ? 'bg-sidebar-primary text-sidebar-primary-foreground font-medium shadow-sm'
-                            : 'hover:bg-sidebar-accent/50'
+                            ? 'bg-primary/10 text-primary font-semibold shadow-sm'
+                            : 'hover:bg-sidebar-accent/50 text-sidebar-foreground/80'
                         }`}
                         onClick={handleLinkClick}
                       >
                         <Link to={item.href} className="flex items-center gap-3">
-                          <item.icon className={`h-4 w-4 flex-shrink-0 ${isActive ? '' : 'opacity-80'}`} />
+                          <item.icon className={`h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110 ${isActive ? 'text-primary' : ''}`} />
                           {!isCollapsed && (
                             <span className="truncate text-sm">{item.label}</span>
                           )}
                           {!isCollapsed && item.badge && (
-                            <Badge variant="secondary" className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent text-accent-foreground">
+                            <Badge variant="secondary" className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0">
                               {item.badge}
                             </Badge>
                           )}
@@ -207,8 +207,8 @@ function NavMenu() {
         {!isCollapsed ? (
           <LearningStreakDisplay variant="compact" />
         ) : (
-          <div className="flex justify-center">
-            <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+          <div className="flex justify-center py-2">
+            <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center animate-pulse">
               <Sparkles className="h-4 w-4 text-accent" />
             </div>
           </div>
@@ -220,7 +220,7 @@ function NavMenu() {
 
 export default function Layout() {
   const { setTheme } = useTheme();
-  const { hearts, gems } = useGamification();
+  const { gems } = useGamification();
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -247,19 +247,19 @@ export default function Layout() {
   };
 
   return (
-    <div className="font-body antialiased min-h-screen">
+    <div className="font-body antialiased min-h-screen bg-background text-foreground">
       <SidebarProvider defaultOpen>
         {/* Sidebar only visible on lg and up */}
-        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-sidebar-border">
+        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-border/40">
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen pb-32 lg:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background px-4 md:px-6">
+        <SidebarInset className="flex flex-col min-h-screen pb-24 lg:pb-0">
+          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/95 backdrop-blur-sm px-4 md:px-6">
             <div className="flex items-center gap-3 min-w-0">
               <div className="hidden lg:block">
                 <SidebarTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
                     <Menu className="h-4 w-4" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
@@ -270,10 +270,12 @@ export default function Layout() {
                  <Pobrelingo width={32} height={32} />
               </div>
 
-              <Separator orientation="vertical" className="h-5 hidden lg:block" />
+              <Separator orientation="vertical" className="h-5 hidden lg:block bg-border/60" />
 
               <div className="flex items-center gap-2 min-w-0">
-                <GraduationCap className="h-4 w-4 text-primary hidden sm:block flex-shrink-0" />
+                <div className="hidden sm:flex items-center justify-center w-6 h-6 rounded-md bg-primary/10">
+                   <GraduationCap className="h-3.5 w-3.5 text-primary" />
+                </div>
                 <h1 className="font-semibold text-sm md:text-base truncate">
                   {getCurrentPageTitle()}
                 </h1>
@@ -285,25 +287,23 @@ export default function Layout() {
               <GlobalSearchTrigger onClick={() => setSearchOpen(true)} />
             </div>
 
-            <div className="flex items-center gap-2 md:gap-4 mr-2">
+            <div className="flex items-center gap-2 md:gap-4 mr-1">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-4 text-sm font-medium">
-                <div className="flex items-center gap-1.5 text-red-500">
-                   <Heart className="h-4 w-4 fill-current" />
-                   <span>{hearts}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-blue-500">
-                   <Diamond className="h-4 w-4 fill-current" />
+              <div className="flex items-center gap-3 text-sm font-medium">
+                {/* Hearts removed as per request for infinite lives */}
+
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20" title="PobreCoins">
+                   <Coins className="h-4 w-4 fill-current" />
                    <span>{gems}</span>
                 </div>
               </div>
 
-              <Separator orientation="vertical" className="h-5" />
+              <Separator orientation="vertical" className="h-5 bg-border/60" />
 
               {/* Theme Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
                     <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                     <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     <span className="sr-only">Alternar tema</span>
@@ -328,17 +328,11 @@ export default function Layout() {
             </div>
           </header>
 
-          <main className="flex-1 overflow-auto">
-            <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl">
+          <main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">
+            <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
               <Outlet />
             </div>
           </main>
-
-          <footer className="border-t py-3 px-4 text-center text-xs text-muted-foreground bg-background shrink-0 hidden lg:block">
-            <span>© {new Date().getFullYear()} PobreLingo</span>
-            <span className="mx-2">•</span>
-            <span className="hidden sm:inline">Feito com ❤️ para aprendizes de português</span>
-          </footer>
         </SidebarInset>
       </SidebarProvider>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />

@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
 import DictionaryPage from './pages/DictionaryPage';
 import DashboardPage from './pages/DashboardPage';
-import ShopPage from './pages/ShopPage';
 import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page';
 import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
 import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
@@ -81,10 +80,6 @@ const router = createBrowserRouter([
       {
         path: 'progress',
         element: <DashboardPage />,
-      },
-      {
-        path: 'shop',
-        element: <ShopPage />,
       },
       {
         path: 'proficiency',

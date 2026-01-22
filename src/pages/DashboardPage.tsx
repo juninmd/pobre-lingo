@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 import { MascotGreeting } from '@/components/mascot/MascotGreeting';
-import { CurriculumList } from '@/components/dashboard/CurriculumList';
-import { LearningStreakDisplay } from '@/components/streaks/LearningStreakDisplay';
+import { LearningPath } from '@/components/dashboard/LearningPath';
 import { DailyQuestsWidget } from '@/components/dashboard/DailyQuestsWidget';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -86,14 +85,14 @@ export default function DashboardPage() {
 
       <div className="grid lg:grid-cols-3 gap-8">
 
-        {/* Left Column: Curriculum Grid */}
+        {/* Left Column: Learning Path */}
         <div className="lg:col-span-2 space-y-8">
           <section>
              <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <BookOpen className="w-6 h-6 text-primary" />
-              Seu Currículo
+              Trilha de Aprendizado
             </h2>
-             <CurriculumList />
+             <LearningPath />
           </section>
         </div>
 

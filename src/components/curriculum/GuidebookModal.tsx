@@ -18,9 +18,10 @@ import { Separator } from '@/components/ui/separator';
 
 interface GuidebookModalProps {
   unit: Unit;
+  trigger?: React.ReactNode;
 }
 
-export function GuidebookModal({ unit }: GuidebookModalProps) {
+export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
   // Find all modules for this unit
   const unitModules = curriculumData.modules.filter(m => m.unitId === unit.id);
 
@@ -81,11 +82,13 @@ export function GuidebookModal({ unit }: GuidebookModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2 border-primary/20 hover:bg-primary/5 hover:text-primary uppercase tracking-wide font-bold text-xs h-9">
-          <BookOpen className="h-4 w-4" />
-          <span className="hidden sm:inline">Guia da Unidade</span>
-          <span className="sm:hidden">Guia</span>
-        </Button>
+        {trigger || (
+          <Button variant="outline" size="sm" className="gap-2 border-primary/20 hover:bg-primary/5 hover:text-primary uppercase tracking-wide font-bold text-xs h-9">
+            <BookOpen className="h-4 w-4" />
+            <span className="hidden sm:inline">Guia da Unidade</span>
+            <span className="sm:hidden">Guia</span>
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="max-w-3xl max-h-[85vh] flex flex-col bg-card">
         <DialogHeader>

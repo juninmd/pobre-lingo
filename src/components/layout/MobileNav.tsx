@@ -8,7 +8,7 @@ export function MobileNav() {
 
   const navItems = [
     { href: '/', label: 'Início', icon: Home },
-    { href: '/curriculum', label: 'Jornada', icon: Compass },
+    { href: '/curriculum', label: 'Módulos', icon: Compass },
     { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
     { href: '/shop', label: 'Loja', icon: ShoppingBag },
     { href: '/proficiency', label: 'Perfil', icon: User },

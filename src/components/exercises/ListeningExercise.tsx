@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,46 +8,7 @@ import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-
-interface ListeningPhrase {
-  text: string;
-  translation: string;
-  options: string[]; // Options for multiple choice (if we do that mode)
-  difficulty: 'easy' | 'medium' | 'hard';
-}
-
-const phrases: ListeningPhrase[] = [
-  {
-    text: "Hello, how are you today?",
-    translation: "Olá, como você está hoje?",
-    options: ["Hello, who are you today?", "Hello, how are you today?", "Hello, where are you today?"],
-    difficulty: 'easy'
-  },
-  {
-    text: "I would like a cup of coffee.",
-    translation: "Eu gostaria de uma xícara de café.",
-    options: ["I would like a cup of coffee.", "I like a cup of coffee.", "I want a cup of tea."],
-    difficulty: 'easy'
-  },
-  {
-    text: "Where is the nearest subway station?",
-    translation: "Onde fica a estação de metrô mais próxima?",
-    options: ["Where is the nearest bus station?", "Where is the nearest subway station?", "When is the subway coming?"],
-    difficulty: 'medium'
-  },
-  {
-    text: "It's important to practice every day.",
-    translation: "É importante praticar todos os dias.",
-    options: ["It's important to play every day.", "It's important to practice every day.", "It's nice to practice every day."],
-    difficulty: 'medium'
-  },
-  {
-    text: "The weather is beautiful this time of year.",
-    translation: "O tempo está lindo nesta época do ano.",
-    options: ["The weather is bad this time of year.", "The weather is beautiful this time of year.", "The water is beautiful this time of year."],
-    difficulty: 'hard'
-  }
-];
+import { listeningExercises, ListeningPhrase } from '@/lib/exerciseData';
 
 export function ListeningExercise() {
   const [currentPhrase, setCurrentPhrase] = useState<ListeningPhrase | null>(null);
@@ -61,8 +21,9 @@ export function ListeningExercise() {
   const EXERCISES_TO_COMPLETE = 3;
 
   const loadNewPhrase = () => {
-    const randomIndex = Math.floor(Math.random() * phrases.length);
-    setCurrentPhrase(phrases[randomIndex]);
+    // Ideally, filter by difficulty based on unit, but for now random from all is fine
+    const randomIndex = Math.floor(Math.random() * listeningExercises.length);
+    setCurrentPhrase(listeningExercises[randomIndex]);
     setSelectedOption(null);
     setIsCorrect(null);
   };

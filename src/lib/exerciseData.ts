@@ -77,7 +77,15 @@ export interface MatchingPairsExercise {
   topic: string;
   difficulty: 'easy' | 'medium' | 'hard';
 }
-// --- End News Comprehension Exercise ---
+
+export interface ListeningPhrase {
+  text: string;
+  translation: string;
+  options: string[];
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
+// --- End Interfaces ---
 
 
 export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
@@ -492,15 +500,77 @@ export const findIncorrectWordsExercises: FindIncorrectWordsExercise[] = [
     topic: "Travel, Spelling, Common Mistakes",
     difficulty: 'medium',
   },
+  {
+    id: 'fiw3',
+    title_pt: "Confusão de Tempos Verbais",
+    instructions_pt: "Identifique os erros nos tempos verbais neste texto.",
+    tokens: [
+      { id: 'fiw3_t1', text: "Yesterday," },
+      { id: 'fiw3_t2', text: "I" },
+      { id: 'fiw3_t3', text: "go" , isError: true, correctText: "went", explanation: "Passado incorreto. 'Yesterday' requer o Past Simple 'went'." },
+      { id: 'fiw3_t4', text: "to" },
+      { id: 'fiw3_t5', text: "the" },
+      { id: 'fiw3_t6', text: "market." },
+      { id: 'fiw3_t7', text: "I" },
+      { id: 'fiw3_t8', text: "am" , isError: true, correctText: "was", explanation: "Inconsistência de tempo. A narrativa está no passado, então 'am' deveria ser 'was'." },
+      { id: 'fiw3_t9', text: "buying" },
+      { id: 'fiw3_t10', text: "apples" },
+      { id: 'fiw3_t11', text: "when" },
+      { id: 'fiw3_t12', text: "I" },
+      { id: 'fiw3_t13', text: "see" , isError: true, correctText: "saw", explanation: "Sequência no passado. 'See' deve ser 'saw'." },
+      { id: 'fiw3_t14', text: "my" },
+      { id: 'fiw3_t15', text: "friend." },
+    ],
+    topic: "Verb Tenses",
+    difficulty: 'medium',
+  },
+  {
+    id: 'fiw4',
+    title_pt: "Erros Condicionais",
+    instructions_pt: "Encontre os erros nas frases condicionais.",
+    tokens: [
+      { id: 'fiw4_t1', text: "If" },
+      { id: 'fiw4_t2', text: "I" },
+      { id: 'fiw4_t3', text: "will" , isError: true, correctText: "delete", explanation: "Na oração 'If', não usamos 'will'. O correto é 'If I see her'." },
+      { id: 'fiw4_t4', text: "see" },
+      { id: 'fiw4_t5', text: "her," },
+      { id: 'fiw4_t6', text: "I" },
+      { id: 'fiw4_t7', text: "will" },
+      { id: 'fiw4_t8', text: "tell" },
+      { id: 'fiw4_t9', text: "her." },
+      { id: 'fiw4_t10', text: "If" },
+      { id: 'fiw4_t11', text: "I" },
+      { id: 'fiw4_t12', text: "was" , isError: true, correctText: "were", explanation: "No Second Conditional, usamos 'were' para todas as pessoas (subjuntivo)." },
+      { id: 'fiw4_t13', text: "you," },
+      { id: 'fiw4_t14', text: "I" },
+      { id: 'fiw4_t15', text: "would" },
+      { id: 'fiw4_t16', text: "go." },
+    ],
+    topic: "Conditionals",
+    difficulty: 'medium',
+  },
+  {
+    id: 'fiw5',
+    title_pt: "Gramática Avançada",
+    instructions_pt: "Identifique erros sutis de gramática avançada.",
+    tokens: [
+      { id: 'fiw5_t1', text: "Never" },
+      { id: 'fiw5_t2', text: "I" },
+      { id: 'fiw5_t3', text: "have" , isError: true, correctText: "have I", explanation: "Inversão necessária após 'Never' no início da frase." },
+      { id: 'fiw5_t4', text: "seen" },
+      { id: 'fiw5_t5', text: "such" },
+      { id: 'fiw5_t6', text: "mess." },
+      { id: 'fiw5_t7', text: "She" },
+      { id: 'fiw5_t8', text: "suggested" },
+      { id: 'fiw5_t9', text: "that" },
+      { id: 'fiw5_t10', text: "he" },
+      { id: 'fiw5_t11', text: "goes" , isError: true, correctText: "go", explanation: "Subjuntivo. Após 'suggested that', usamos a forma base do verbo." },
+      { id: 'fiw5_t12', text: "home." },
+    ],
+    topic: "Advanced Grammar",
+    difficulty: 'hard',
+  }
 ];
-
-const placeholderQuestion = {
-  id: 'q1',
-  questionText: "What is the main idea of the article?",
-  options: ["Option A", "Option B", "Option C", "Option D"],
-  correctAnswer: "Option A",
-  explanation: "This is the correct answer because of reasons X, Y, and Z mentioned in the text."
-};
 
 export const matchingPairsExercises: MatchingPairsExercise[] = [
   {
@@ -584,22 +654,119 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
     topic: "Local News, Environment",
     difficulty: 'medium',
   },
-  // Adding 9 more placeholder exercises
-  ...Array.from({ length: 9 }, (_, i) => ({
-    id: `nce${i + 2}`,
+  {
+    id: 'nce2',
     article: {
-      id: `news${i + 2}`,
-      title: `Tech Advances in 202${i + 5}`,
-      source: "Tech Today",
-      date: `November 1${i}, 2024`,
-      content: `<p>A new breakthrough in AI was announced today, promising to revolutionize how we interact with technology. This new AI, named 'Innovator X', can learn from small datasets. Experts believe this will accelerate research in many fields.</p><p>The lead scientist, Dr. Ada Byron, mentioned, 'Innovator X could solve problems we haven't even imagined yet.' The development took five years and involved a global team of researchers. Further applications are being explored in medicine and environmental science.</p>`
+      id: 'news2',
+      title: "The Future of AI in Education",
+      source: "Tech Daily",
+      date: "November 01, 2024",
+      content: "<p>Artificial Intelligence (AI) is rapidly transforming the educational landscape. From personalized learning paths to automated grading, AI tools are becoming indispensable in modern classrooms.</p><p>Dr. Smith, an ed-tech researcher, argues that 'AI allows teachers to focus more on mentorship and less on administrative tasks.' However, critics warn about data privacy and the loss of human connection.</p>"
     },
     questions: [
-      { ...placeholderQuestion, id: `nce${i + 2}_q1`, questionText: `What is 'Innovator X'?`, options: ["A new car", "A new AI", "A new planet", "A new movie"], correctAnswer: "A new AI", explanation: "The article clearly states 'Innovator X' is a new AI." },
-      { ...placeholderQuestion, id: `nce${i + 2}_q2`, questionText: `What is a key feature of 'Innovator X'?`, options: ["It's very large", "It learns from small datasets", "It only works in English", "It was built by one person"], correctAnswer: "It learns from small datasets", explanation: "The text says 'Innovator X' can learn from small datasets." },
-      { ...placeholderQuestion, id: `nce${i + 2}_q3`, questionText: `Who is the lead scientist mentioned?`, options: ["Dr. Alan Turing", "Dr. Marie Curie", "Dr. Ada Byron", "Dr. Albert Einstein"], correctAnswer: "Dr. Ada Byron", explanation: "Dr. Ada Byron is mentioned as the lead scientist." }
+      { id: 'nce2_q1', questionText: "What is the main topic?", options: ["AI in Healthcare", "AI in Education", "Space Travel", "Cooking"], correctAnswer: "AI in Education", explanation: "The title and text discuss AI in education." },
+      { id: 'nce2_q2', questionText: "According to Dr. Smith, what does AI allow teachers to do?", options: ["Sleep more", "Focus on mentorship", "Quit their jobs", "Learn coding"], correctAnswer: "Focus on mentorship", explanation: "Dr. Smith says AI allows teachers to focus more on mentorship." }
     ],
-    topic: "Technology, AI",
-    difficulty: (i % 2 === 0 ? 'medium' : 'hard') as 'easy' | 'medium' | 'hard',
-  }))
+    topic: "Technology",
+    difficulty: 'medium',
+  },
+  {
+    id: 'nce3',
+    article: {
+      id: 'news3',
+      title: "Literary Classics: A Review",
+      source: "Bookworm Weekly",
+      date: "November 05, 2024",
+      content: "<p>Why do we still read Jane Austen? Her keen observation of social mores and her biting irony remain relevant today. In 'Pride and Prejudice', Austen explores the tension between individual desire and social responsibility.</p>"
+    },
+    questions: [
+      { id: 'nce3_q1', questionText: "Who is the author mentioned?", options: ["Jane Austen", "Charles Dickens", "Mark Twain", "JK Rowling"], correctAnswer: "Jane Austen", explanation: "The text discusses Jane Austen." },
+      { id: 'nce3_q2', questionText: "What does the text say about her irony?", options: ["It is outdated", "It is biting and relevant", "It is boring", "It is nonexistent"], correctAnswer: "It is biting and relevant", explanation: "The text mentions her 'biting irony remain relevant today'." }
+    ],
+    topic: "Literary",
+    difficulty: 'hard',
+  },
+  {
+    id: 'nce4',
+    article: {
+      id: 'news4',
+      title: "Social Media Trends 2024",
+      source: "Digital Buzz",
+      date: "November 10, 2024",
+      content: "<p>Short-form video content continues to dominate platforms. Influencers are shifting towards 'authentic' behind-the-scenes content rather than polished productions. Engagement rates are higher for unedited clips.</p>"
+    },
+    questions: [
+      { id: 'nce4_q1', questionText: "What content dominates?", options: ["Long essays", "Short-form video", "Audio books", "Static images"], correctAnswer: "Short-form video", explanation: "The text says 'Short-form video content continues to dominate'." },
+      { id: 'nce4_q2', questionText: "What are influencers shifting towards?", options: ["Polished productions", "Authentic content", "TV commercials", "Radio ads"], correctAnswer: "Authentic content", explanation: "Influencers are shifting towards 'authentic' content." }
+    ],
+    topic: "Social Media",
+    difficulty: 'medium',
+  },
+  {
+    id: 'nce5',
+    article: {
+      id: 'news5',
+      title: "The Study of Quantum Mechanics",
+      source: "Science Today",
+      date: "November 12, 2024",
+      content: "<p>Quantum entanglement remains one of the most puzzling phenomena in physics. Einstein famously called it 'spooky action at a distance'. Recent experiments have closed significant loopholes in Bell's inequalities.</p>"
+    },
+    questions: [
+      { id: 'nce5_q1', questionText: "What did Einstein call entanglement?", options: ["Spooky action at a distance", "A happy accident", "Simple physics", "Impossible"], correctAnswer: "Spooky action at a distance", explanation: "The text quotes Einstein calling it 'spooky action at a distance'." },
+      { id: 'nce5_q2', questionText: "What have recent experiments done?", options: ["Disproved physics", "Closed loopholes", "Opened doors", "Nothing"], correctAnswer: "Closed loopholes", explanation: "Experiments have 'closed significant loopholes'." }
+    ],
+    topic: "Academic",
+    difficulty: 'hard',
+  }
+];
+
+export const listeningExercises: ListeningPhrase[] = [
+  {
+    text: "Hello, how are you today?",
+    translation: "Olá, como você está hoje?",
+    options: ["Hello, who are you today?", "Hello, how are you today?", "Hello, where are you today?"],
+    difficulty: 'easy'
+  },
+  {
+    text: "I would like a cup of coffee.",
+    translation: "Eu gostaria de uma xícara de café.",
+    options: ["I would like a cup of coffee.", "I like a cup of coffee.", "I want a cup of tea."],
+    difficulty: 'easy'
+  },
+  {
+    text: "Where is the nearest subway station?",
+    translation: "Onde fica a estação de metrô mais próxima?",
+    options: ["Where is the nearest bus station?", "Where is the nearest subway station?", "When is the subway coming?"],
+    difficulty: 'medium'
+  },
+  {
+    text: "It's important to practice every day.",
+    translation: "É importante praticar todos os dias.",
+    options: ["It's important to play every day.", "It's important to practice every day.", "It's nice to practice every day."],
+    difficulty: 'medium'
+  },
+  {
+    text: "The weather is beautiful this time of year.",
+    translation: "O tempo está lindo nesta época do ano.",
+    options: ["The weather is bad this time of year.", "The weather is beautiful this time of year.", "The water is beautiful this time of year."],
+    difficulty: 'hard'
+  },
+  {
+    text: "Could you please repeat that?",
+    translation: "Você poderia repetir isso, por favor?",
+    options: ["Could you please repeat that?", "Can you say that?", "Please stop talking."],
+    difficulty: 'easy'
+  },
+  {
+    text: "I am looking for a pharmacy.",
+    translation: "Estou procurando uma farmácia.",
+    options: ["I am looking for a farm.", "I am looking for a pharmacy.", "I am looking for a party."],
+    difficulty: 'medium'
+  },
+  {
+    text: "The meeting has been rescheduled for tomorrow.",
+    translation: "A reunião foi remarcada para amanhã.",
+    options: ["The meeting is cancelled.", "The meeting has been rescheduled for tomorrow.", "The meeting is today."],
+    difficulty: 'hard'
+  }
 ];

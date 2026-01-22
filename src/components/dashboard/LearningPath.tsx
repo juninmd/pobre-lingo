@@ -43,9 +43,9 @@ function UnitSection({
   unit: Unit,
   modules: Module[],
   getModuleProgress: (id: string) => any,
-  isModuleUnlocked: (id: string) => boolean
+  isModuleUnlocked: (module: Module) => boolean
 }) {
-  const isUnitLocked = modules.every(m => !isModuleUnlocked(m.id) && m.order > 1);
+  const isUnitLocked = modules.every(m => !isModuleUnlocked(m) && m.order > 1);
 
   // Background color based on difficulty
   const unitColor =
@@ -83,7 +83,7 @@ function UnitSection({
       <div className="relative flex flex-col items-center space-y-4">
         {modules.map((module, index) => {
           const progress = getModuleProgress(module.id);
-          const isLocked = !isModuleUnlocked(module.id);
+          const isLocked = !isModuleUnlocked(module);
           const isCompleted = progress.completionPercentage >= 100;
 
           // Calculate horizontal offset for the "snake" path

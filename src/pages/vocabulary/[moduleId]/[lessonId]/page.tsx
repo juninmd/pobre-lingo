@@ -14,26 +14,12 @@ import { speakingData } from '@/lib/speakingData';
 import { SentenceOrdering } from '@/components/exercises/SentenceOrdering';
 import { FindIncorrectWords } from '@/components/exercises/FindIncorrectWords';
 import { NewsComprehension } from '@/components/exercises/NewsComprehension';
+import ConversationExercise from '@/components/exercises/ConversationExercise';
+import { ListeningExercise } from '@/components/exercises/ListeningExercise';
 import { newsComprehensionExercises } from '@/lib/exerciseData';
 import { GrammarLessonView } from '@/components/curriculum/GrammarLessonView';
 import { CultureLessonView } from '@/components/curriculum/CultureLessonView';
 import { QuizView } from '@/components/curriculum/QuizView';
-import MatchingPairsPage from '@/pages/exercises/matching-pairs/page';
-// Note: Importing page as component. Ideally should be refactored to src/components/exercises/MatchingPairs.tsx
-// But for now we use it as is since it is self-contained.
-// However, the page component expects URL params for ID.
-// We might need to wrap it or adjust it.
-// Wait, MatchingPairsPage reads searchParams. Let's rely on that or default behavior.
-// Actually, MatchingPairsPage renders a PageContainer which duplicates our container.
-// We should probably just link to it? No, user wants it "implemented".
-// Let's refactor MatchingPairsPage logic later if needed, but for now we will conditionally render it.
-// Issue: MatchingPairsPage has PageContainer and back buttons.
-// Let's render a custom wrapper for MatchingPairs that uses the logic or just iframe it (bad practice).
-// Better: We see MatchingPairsPage exports default.
-// I will assume for this "LessonPage" unifying, I should probably render specific components.
-
-// Let's create a wrapper for MatchingPairs inside this file or assume we can reuse logic.
-// MatchingPairsPage uses `matchingPairsExercises` from lib.
 
 import { matchingPairsExercises } from '@/lib/exerciseData';
 import { cn } from '@/lib/utils';
@@ -453,32 +439,10 @@ export default function LessonPage() {
                 return <MatchingPairsGame onComplete={handleComplete} />;
             }
             if (lesson.exerciseType === 'conversation') {
-                // Assuming ConversationExercise exists and handles itself or we import it
-                // We didn't import it in the top block, let's fix that if it exists
-                // For now, if we lack the component, show placeholder or generic
-                // I recall seeing ConversationExercise.tsx in file list.
-                // But I didn't import it. I'll rely on a dynamic import or just not handle it if I forgot import?
-                // Wait, I should add import. I can't edit imports now without rewriting file.
-                // I will assume the imports I added in `write_file` are sufficient.
-                // I did NOT import ConversationExercise in the write_file call above.
-                // I need to add it.
-                return (
-                    <div className="text-center p-8">
-                        <p className="mb-4">Exercício de Conversação (Simulado)</p>
-                        <Button onClick={handleComplete}>Concluir</Button>
-                    </div>
-                );
+                return <ConversationExercise />;
             }
              if (lesson.exerciseType === 'listening') {
-                // Placeholder for Listening
-                 return (
-                    <div className="text-center p-8">
-                        <Volume2 className="w-16 h-16 mx-auto mb-4 text-primary" />
-                        <h2 className="text-xl font-bold mb-4">Exercício de Escuta</h2>
-                        <p className="mb-4 text-muted-foreground">Ouça e repita as frases (Funcionalidade em desenvolvimento).</p>
-                        <Button onClick={handleComplete}>Concluir Lição</Button>
-                    </div>
-                );
+                 return <ListeningExercise />;
             }
             return <div className="p-4">Tipo de exercício não suportado: {lesson.exerciseType}</div>;
 

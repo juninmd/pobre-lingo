@@ -32,8 +32,7 @@ export function CurriculumList() {
   const getStatus = (moduleId: string) => {
     const progress = getModuleProgress(moduleId);
     if (progress.completionPercentage === 100) return 'completed';
-    if (progress.unlocked) return 'active';
-    return 'locked';
+    return 'active';
   };
 
   const getProgressVal = (moduleId: string) => {
@@ -44,10 +43,9 @@ export function CurriculumList() {
     <div className="space-y-12 max-w-4xl mx-auto pb-12">
       {curriculumData.units.map((unit) => {
         const unitModules = curriculumData.modules.filter(m => m.unitId === unit.id);
-        const isUnitLocked = unitModules.every(m => getStatus(m.id) === 'locked');
 
         return (
-          <div key={unit.id} className={cn("space-y-4", isUnitLocked && "opacity-60 grayscale")}>
+          <div key={unit.id} className="space-y-4">
 
             {/* Unit Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card p-6 rounded-xl border shadow-sm relative overflow-hidden">
@@ -91,22 +89,19 @@ export function CurriculumList() {
                 return (
                   <Link
                     key={module.id}
-                    to={status !== 'locked' ? link : '#'}
+                    to={link}
                     className={cn(
                       "group relative flex flex-col justify-between p-5 h-full rounded-xl border bg-card transition-all duration-200",
-                      status === 'locked'
-                        ? "cursor-not-allowed opacity-70 bg-muted/50 border-muted"
-                        : "hover:border-primary/50 hover:shadow-md cursor-pointer"
+                      "hover:border-primary/50 hover:shadow-md cursor-pointer"
                     )}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className={cn(
                         "p-3 rounded-lg transition-colors",
                         status === 'completed' ? "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400" :
-                        status === 'active' ? "bg-primary/10 text-primary" :
-                        "bg-muted text-muted-foreground"
+                        "bg-primary/10 text-primary"
                       )}>
-                        {status === 'locked' ? <Lock className="w-6 h-6" /> : <Icon className="w-6 h-6" />}
+                        <Icon className="w-6 h-6" />
                       </div>
 
                       {status === 'completed' && (
@@ -118,9 +113,7 @@ export function CurriculumList() {
 
                     <div className="space-y-3">
                       <div>
-                        <h3 className={cn("font-bold text-lg leading-tight group-hover:text-primary transition-colors",
-                           status === 'locked' && "text-muted-foreground"
-                        )}>
+                        <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors">
                           {module.title_pt}
                         </h3>
                         <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
@@ -128,15 +121,13 @@ export function CurriculumList() {
                         </p>
                       </div>
 
-                      {status !== 'locked' && (
-                        <div className="space-y-1.5">
-                          <div className="flex justify-between text-xs font-medium text-muted-foreground">
-                            <span>Progresso</span>
-                            <span>{Math.round(progress)}%</span>
-                          </div>
-                          <Progress value={progress} className="h-2" />
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between text-xs font-medium text-muted-foreground">
+                          <span>Progresso</span>
+                          <span>{Math.round(progress)}%</span>
                         </div>
-                      )}
+                        <Progress value={progress} className="h-2" />
+                      </div>
 
                       {status === 'active' && progress === 0 && (
                         <div className="inline-flex items-center text-xs font-bold text-primary uppercase tracking-wider">

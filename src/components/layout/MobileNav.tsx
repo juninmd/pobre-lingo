@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Gamepad2, User } from 'lucide-react';
+import { Home, Compass, Gamepad2, Trophy, User, Map } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {

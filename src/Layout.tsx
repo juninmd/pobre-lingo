@@ -20,7 +20,6 @@ import {
   GraduationCap,
   X,
   Gamepad2,
-  ShoppingBag,
   Coins,
 } from 'lucide-react';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';

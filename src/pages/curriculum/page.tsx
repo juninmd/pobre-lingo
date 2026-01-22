@@ -106,7 +106,6 @@ export default function CurriculumPage() {
   // Auto-expandir o módulo em progresso
   React.useEffect(() => {
     for (const module of curriculumData.modules) {
-      if (!isModuleUnlocked(module)) continue;
       const progress = getModuleProgress(module.id);
       if (progress.completionPercentage > 0 && progress.completionPercentage < 100) {
         setExpandedModule(module.id);
@@ -227,7 +226,8 @@ export default function CurriculumPage() {
       <div className="space-y-4">
         {filteredModules.map((module, moduleIndex) => {
           const progress = getModuleProgress(module.id);
-          const isUnlocked = isModuleUnlocked(module);
+          // Unlock everything by default for interaction, but keep visual logic clean
+          const isUnlocked = true;
           const isCompleted = progress.completionPercentage === 100;
           const isInProgress = progress.completionPercentage > 0 && !isCompleted;
           const diffConfig = difficultyConfig[module.difficulty];
@@ -250,12 +250,11 @@ export default function CurriculumPage() {
               <Card
                 className={cn(
                   "relative transition-all duration-300 cursor-pointer hover:shadow-md",
-                  !isUnlocked && "opacity-50 cursor-not-allowed",
                   isCompleted && "border-green-400 bg-green-50/50 dark:bg-green-950/20",
                   isInProgress && "border-primary ring-2 ring-primary/20",
                   isExpanded && "shadow-lg"
                 )}
-                onClick={() => isUnlocked && setExpandedModule(isExpanded ? null : module.id)}
+                onClick={() => setExpandedModule(isExpanded ? null : module.id)}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-start gap-4">
@@ -265,18 +264,14 @@ export default function CurriculumPage() {
                         "flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 transition-transform",
                         isCompleted
                           ? "bg-green-500 text-white"
-                          : isUnlocked
-                            ? `${diffConfig.color} text-white`
-                            : "bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400",
+                          : `${diffConfig.color} text-white`,
                         isInProgress && "animate-pulse"
                       )}
                     >
                       {isCompleted ? (
                         <CheckCircle2 className="h-6 w-6" />
-                      ) : isUnlocked ? (
-                        <IconComponent className="h-6 w-6" />
                       ) : (
-                        <Lock className="h-5 w-5" />
+                        <IconComponent className="h-6 w-6" />
                       )}
                     </div>
 
@@ -302,37 +297,26 @@ export default function CurriculumPage() {
                       <CardDescription className="line-clamp-1">{module.description_pt}</CardDescription>
 
                       {/* Barra de progresso inline */}
-                      {isUnlocked && (
-                        <div className="mt-3 flex items-center gap-3">
-                          <Progress value={progress.completionPercentage} className="h-2 flex-1" />
-                          <span className="text-sm font-medium w-16 text-right">
-                            {progress.lessonsCompleted}/{progress.totalLessons}
-                          </span>
-                        </div>
-                      )}
-
-                      {!isUnlocked && (
-                        <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                          <Lock className="h-4 w-4" />
-                          Complete os módulos anteriores
-                        </div>
-                      )}
+                      <div className="mt-3 flex items-center gap-3">
+                        <Progress value={progress.completionPercentage} className="h-2 flex-1" />
+                        <span className="text-sm font-medium w-16 text-right">
+                          {progress.lessonsCompleted}/{progress.totalLessons}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Seta de expansão */}
-                    {isUnlocked && (
-                      <ChevronRight
-                        className={cn(
-                          "h-5 w-5 text-muted-foreground transition-transform",
-                          isExpanded && "rotate-90"
-                        )}
-                      />
-                    )}
+                    <ChevronRight
+                      className={cn(
+                        "h-5 w-5 text-muted-foreground transition-transform",
+                        isExpanded && "rotate-90"
+                      )}
+                    />
                   </div>
                 </CardHeader>
 
                 {/* Lições expandidas */}
-                {isUnlocked && isExpanded && (
+                {isExpanded && (
                   <CardContent className="pt-0">
                     <div className="space-y-2 pl-16">
                       {module.lessons.map((lesson, lessonIndex) => {

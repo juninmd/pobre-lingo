@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
+import { getLessonLink } from '@/lib/routes';
 import { CheckCircle2, Star, BookOpen, ArrowRight, Trophy, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -60,39 +61,22 @@ export function LessonProgressBar({
     }
   };
 
-  const getNextLessonLink = (): string | null => {
+  const getNextLink = (): string | null => {
     if (!module) return null;
 
     if (nextLesson) {
-      // Determinar o link baseado no tipo de lição
-      if (nextLesson.exerciseType) {
-        return `/exercises/${nextLesson.exerciseType}?module=${moduleId}&lesson=${nextLesson.id}`;
-      }
-      if (nextLesson.type === 'vocabulary') {
-        return `/vocabulary/${moduleId}/${nextLesson.id}`;
-      }
-      if (nextLesson.type === 'quiz') {
-        return `/quiz/${moduleId}/${nextLesson.id}`;
-      }
-      if (nextLesson.type === 'grammar' && nextLesson.grammarRuleIds?.length) {
-        return `/rules?module=${moduleId}&lesson=${nextLesson.id}`;
-      }
-      if (nextLesson.type === 'reading') {
-        return `/exercises/news-comprehension?module=${moduleId}&lesson=${nextLesson.id}`;
-      }
+      return getLessonLink(module, nextLesson);
     }
 
-    // Se módulo completo, ir para próximo módulo
-    if (nextModule) {
-      return '/curriculum';
-    }
-
-    return '/curriculum';
+    // Se módulo completo, ir para próximo módulo (ou dashboard)
+    return '/';
   };
 
   if (!module || !lesson) {
     return null;
   }
+
+  const nextLink = getNextLink();
 
   return (
     <Card className={cn("bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20", className)}>
@@ -150,22 +134,22 @@ export function LessonProgressBar({
 
               {isCompleted && (
                 <>
-                  {getNextLessonLink() && getNextLessonLink() !== '/curriculum' ? (
-                    <Link to={getNextLessonLink()!}>
+                  {nextLink && nextLink !== '/' ? (
+                    <Link to={nextLink}>
                       <Button variant="default">
                         Próxima Lição
                         <ArrowRight className="h-4 w-4 ml-2" />
                       </Button>
                     </Link>
                   ) : moduleProgress.completionPercentage === 100 ? (
-                    <Link to="/curriculum">
+                    <Link to="/">
                       <Button variant="default" className="bg-yellow-600 hover:bg-yellow-700">
                         <Trophy className="h-4 w-4 mr-2" />
                         Módulo Completo!
                       </Button>
                     </Link>
                   ) : (
-                    <Link to="/curriculum">
+                    <Link to="/">
                       <Button variant="outline">
                         Ver Jornada
                         <ArrowRight className="h-4 w-4 ml-2" />

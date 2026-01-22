@@ -12,6 +12,8 @@ export default function SentenceOrderingPage() {
         description="Arraste as palavras para formar frases corretas em inglês."
         icon={Shuffle}
         iconClassName="text-purple-500"
+        backLink="/"
+        backLabel="Voltar ao Início"
       >
         <Badge variant="secondary">
           Clique nas palavras na ordem correta

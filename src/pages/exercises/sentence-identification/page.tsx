@@ -12,6 +12,8 @@ export default function SentenceIdentificationPage() {
         description="Selecione as frases que estão gramaticalmente corretas."
         icon={CheckSquare}
         iconClassName="text-green-500"
+        backLink="/"
+        backLabel="Voltar ao Início"
       >
         <Badge variant="secondary">
           Marque todas as opções corretas

@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { curriculumData, Unit, Module } from '@/lib/curriculumData';
+import { curriculumData, Unit, Module, Lesson } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { cn } from '@/lib/utils';
 import { GuidebookModal } from '@/components/curriculum/GuidebookModal';
-import { Star, Check, Lock, Trophy } from 'lucide-react';
+import { Star, Check, Lock, Trophy, Gamepad2, ScrollText, Play } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getLessonLink } from '@/lib/routes';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Helper to get icon component dynamically
 const getIcon = (name: string) => {
@@ -17,7 +18,7 @@ const getIcon = (name: string) => {
 };
 
 export function LearningPath() {
-  const { getModuleProgress, isModuleUnlocked } = useCurriculumProgress();
+  const { getModuleProgress, isModuleUnlocked, isLessonCompleted } = useCurriculumProgress();
 
   return (
     <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-12 pb-24">
@@ -28,6 +29,7 @@ export function LearningPath() {
           modules={curriculumData.modules.filter(m => m.unitId === unit.id)}
           getModuleProgress={getModuleProgress}
           isModuleUnlocked={isModuleUnlocked}
+          isLessonCompleted={isLessonCompleted}
         />
       ))}
     </div>
@@ -38,12 +40,14 @@ function UnitSection({
   unit,
   modules,
   getModuleProgress,
-  isModuleUnlocked
+  isModuleUnlocked,
+  isLessonCompleted
 }: {
   unit: Unit,
   modules: Module[],
   getModuleProgress: (id: string) => any,
-  isModuleUnlocked: (module: Module) => boolean
+  isModuleUnlocked: (module: Module) => boolean,
+  isLessonCompleted: (moduleId: string, lessonId: string) => boolean
 }) {
   const isUnitLocked = modules.every(m => !isModuleUnlocked(m) && m.order > 1);
 
@@ -95,19 +99,21 @@ function UnitSection({
           // Determine colors based on status
           let nodeColor = module.color || 'bg-gray-400';
           if (isLocked) nodeColor = 'bg-gray-200 dark:bg-gray-800';
-          else if (isCompleted) nodeColor = 'bg-yellow-400'; // Gold for completed
+          else if (isCompleted) nodeColor = 'bg-yellow-400 border-yellow-500'; // Gold for completed
 
           // Determine the link for the next lesson to do
-          const nextLessonIndex = module.lessons.findIndex(l => {
-             // In a real app, we check if lesson is completed.
-             // Here we just check if the module is started.
-             // Simplification: Link to the first lesson if not fully complete, or the last one if complete.
-             // Ideally we use getModuleProgress to find the specific next lesson.
-             // For this path view, let's link to the *first* lesson for now, or use a helper to find next.
-             return true;
-          });
+          const firstIncompleteLesson = module.lessons.find(l => !isLessonCompleted(module.id, l.id));
+          const targetLesson = firstIncompleteLesson || module.lessons[module.lessons.length - 1];
+          const lessonLink = isLocked ? '#' : getLessonLink(module, targetLesson);
 
-          const lessonLink = isLocked ? '#' : getLessonLink(module, module.lessons[0]);
+          // Determine badge icon for next lesson type
+          let BadgeIcon = null;
+          if (!isLocked && !isCompleted && targetLesson) {
+             if (targetLesson.type === 'quiz') BadgeIcon = Trophy;
+             else if (targetLesson.exerciseType === 'matching-pairs' || targetLesson.exerciseType === 'sentence-ordering') BadgeIcon = Gamepad2;
+             else if (targetLesson.type === 'grammar') BadgeIcon = ScrollText;
+             else if (targetLesson.type === 'speaking') BadgeIcon = LucideIcons.Mic;
+          }
 
           return (
             <div
@@ -152,9 +158,16 @@ function UnitSection({
                     )}
                  </div>
 
+                 {/* Status Badge (Game, Quiz, etc) */}
+                 {BadgeIcon && (
+                   <div className="absolute -top-2 -right-2 bg-white text-primary p-1.5 rounded-full shadow-md border animate-bounce">
+                     <BadgeIcon className="w-4 h-4" />
+                   </div>
+                 )}
+
                  {/* Floating Label (Tooltip-ish) */}
                  <div className={cn(
-                   "absolute -bottom-10 whitespace-nowrap px-3 py-1 bg-background border rounded-lg text-xs font-bold shadow-sm transition-opacity",
+                   "absolute -bottom-10 whitespace-nowrap px-3 py-1 bg-background border rounded-lg text-xs font-bold shadow-sm transition-opacity z-20",
                    isLocked ? "opacity-0" : "opacity-100"
                  )}>
                    {module.title_pt}

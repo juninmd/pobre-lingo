@@ -88,6 +88,14 @@ export default function RulePage() {
   // Verificar se é a última regra (para habilitar marcar como dominada)
   const isLastRule = currentRuleIndex === totalRules - 1;
 
+  const handleBack = () => {
+    if (isFromCurriculum) {
+      navigate('/');
+    } else {
+      navigate(`/rules/${categoryId}`);
+    }
+  };
+
   return (
     <PageContainer>
       <div className="max-w-4xl mx-auto space-y-6">
@@ -102,8 +110,9 @@ export default function RulePage() {
 
         {/* Header com navegação e progresso */}
         <div className="flex items-center justify-between gap-4">
-          <Button variant="ghost" size="sm" onClick={() => navigate(`/rules/${categoryId}`)} className="flex items-center gap-2">
-            <ArrowLeft className="h-4 w-4" /> Voltar
+          <Button variant="ghost" size="sm" onClick={handleBack} className="flex items-center gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            {isFromCurriculum ? 'Voltar ao Início' : 'Voltar'}
           </Button>
 
           <div className="flex-1 max-w-xs">
@@ -352,7 +361,7 @@ export default function RulePage() {
               </Button>
             ) : (
               <Button
-                onClick={() => navigate(`/rules/${categoryId}`)}
+                onClick={handleBack}
                 variant="default"
                 className="flex items-center gap-2"
               >

@@ -144,7 +144,7 @@ export default function MatchingPairsPage() {
   return (
     <PageContainer>
       <div className="mb-6 flex items-center justify-between">
-        <Link to="/curriculum" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+        <Link to="/" className="flex items-center text-sm text-muted-foreground hover:text-primary">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Voltar
         </Link>
@@ -169,7 +169,7 @@ export default function MatchingPairsPage() {
                <h3 className="text-xl font-bold mb-2">Sem vidas!</h3>
                <p className="text-muted-foreground mb-6">Você perdeu todas as suas vidas. Espere recarregar ou pratique outras lições.</p>
                <Button asChild>
-                 <Link to="/curriculum">Voltar ao menu</Link>
+                 <Link to="/">Voltar ao início</Link>
                </Button>
             </div>
           ) : isCompleted ? (
@@ -184,7 +184,7 @@ export default function MatchingPairsPage() {
                     <RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente
                  </Button>
                  <Button asChild>
-                   <Link to="/curriculum">Continuar</Link>
+                   <Link to="/">Continuar</Link>
                  </Button>
                </div>
             </div>

@@ -62,6 +62,8 @@ export default function RulesPage() {
         }
         icon={GraduationCap}
         iconClassName="text-blue-500"
+        backLink="/"
+        backLabel="Voltar ao Início"
       >
         {!isFromCurriculum && (
           <div className="flex items-center gap-2 mt-2">

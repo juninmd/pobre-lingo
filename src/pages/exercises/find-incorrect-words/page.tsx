@@ -12,6 +12,8 @@ export default function FindIncorrectWordsPage() {
         description="Identifique os erros gramaticais clicando nas palavras incorretas."
         icon={SearchX}
         iconClassName="text-red-500"
+        backLink="/"
+        backLabel="Voltar ao Início"
       >
         <Badge variant="secondary">
           Clique nas palavras com erros

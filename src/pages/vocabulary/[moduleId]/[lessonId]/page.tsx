@@ -110,7 +110,7 @@ const vocabularyData: Record<string, { word: string; translation: string; exampl
     { word: 'Goodbye', translation: 'Adeus', example: 'Goodbye! See you later.' },
     { word: 'See you', translation: 'Até logo', example: 'See you tomorrow!' },
     { word: 'How are you?', translation: 'Como você está?', example: 'Hi! How are you today?' },
-    { word: "I'm fine", translation: 'Estou bem', example: "I'm fine, thank you!" },
+    { word: 'I\'m fine', translation: 'Estou bem', example: 'I\'m fine, thank you!' },
     { word: 'Thank you', translation: 'Obrigado(a)', example: 'Thank you very much!' },
   ],
   numbers: [
@@ -397,8 +397,8 @@ export default function LessonPage() {
             <CardTitle>Lição não encontrada</CardTitle>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => navigate('/curriculum')}>
-              Voltar para o Currículo
+            <Button onClick={() => navigate('/')}>
+              Voltar para o Início
             </Button>
           </CardContent>
         </Card>
@@ -667,9 +667,9 @@ export default function LessonPage() {
 
         {/* Header Comum */}
         <div className="mb-6">
-          <Button variant="ghost" onClick={() => navigate('/curriculum')} className="mb-4">
+          <Button variant="ghost" onClick={() => navigate('/')} className="mb-4">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Voltar para o Currículo
+            Voltar para o Início
           </Button>
           <div className="flex items-center justify-between mb-2">
             <h1 className="text-3xl font-bold">{lesson.title_pt}</h1>

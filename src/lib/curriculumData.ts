@@ -614,6 +614,16 @@ export const curriculumData: LearningPath = {
           xpReward: 100,
           exerciseType: 'listening',
           order: 3,
+        },
+        {
+          id: 'travel-etiquette',
+          title_pt: 'Etiqueta de Viagem',
+          title_en: 'Travel Etiquette',
+          description_pt: 'Regras sociais e gorjetas no exterior',
+          type: 'culture',
+          estimatedMinutes: 15,
+          xpReward: 100,
+          order: 4,
         }
       ]
     },

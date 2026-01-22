@@ -30,15 +30,13 @@ export default function CategoryPage() {
 
   return (
     <PageContainer>
-      <Button variant="outline" onClick={() => navigate(-1)} className="mb-6 flex items-center gap-2">
-        <ArrowLeft className="h-4 w-4" /> Voltar
-      </Button>
-
       <PageHeader
         title={category.name_pt}
         description={category.description_pt}
         icon={BookOpen}
         iconClassName="text-blue-500"
+        backLink="/rules"
+        backLabel="Voltar para Categorias"
       >
         <Badge variant="secondary">
           {category.rules.length} {category.rules.length === 1 ? 'regra' : 'regras'}

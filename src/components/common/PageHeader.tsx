@@ -1,6 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 interface PageHeaderProps {
   title: string;
@@ -9,6 +11,8 @@ interface PageHeaderProps {
   iconClassName?: string;
   children?: React.ReactNode;
   className?: string;
+  backLink?: string;
+  backLabel?: string;
 }
 
 export function PageHeader({
@@ -18,6 +22,8 @@ export function PageHeader({
   iconClassName,
   children,
   className,
+  backLink,
+  backLabel = "Voltar",
 }: PageHeaderProps) {
   return (
     <div className={cn(
@@ -32,6 +38,15 @@ export function PageHeader({
       )}
 
       <div className="relative">
+        {backLink && (
+          <Button variant="ghost" size="sm" className="mb-4 pl-0 hover:pl-2 transition-all" asChild>
+            <Link to={backLink}>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              {backLabel}
+            </Link>
+          </Button>
+        )}
+
         <h1 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
           {Icon && <Icon className={cn("h-8 w-8 md:h-10 md:w-10", iconClassName)} />}
           {title}

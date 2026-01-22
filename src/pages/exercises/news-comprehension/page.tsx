@@ -68,6 +68,8 @@ export default function NewsComprehensionPage() {
         description="Pratique leitura e compreensão de texto em inglês com artigos reais."
         icon={Newspaper}
         iconClassName="text-cyan-500"
+        backLink="/"
+        backLabel="Voltar ao Início"
       >
         <Badge variant="secondary">
           {newsComprehensionExercises.length} artigos disponíveis

@@ -177,20 +177,9 @@ export function useCurriculumProgress() {
 
   // Verificar se um módulo está desbloqueado
   const isModuleUnlocked = useCallback((module: Module) => {
-    // Primeiro módulo sempre desbloqueado
-    if (!module.prerequisites || module.prerequisites.length === 0) {
-      return true;
-    }
-
-    // Verificar se todos os pré-requisitos estão completos
-    return module.prerequisites.every(prereqId => {
-      const prereqModule = moduleMap.get(prereqId);
-      if (!prereqModule) return false;
-
-      const { completionPercentage } = getModuleCompletionStats(prereqModule);
-      return completionPercentage === 100;
-    });
-  }, [getModuleCompletionStats]);
+    // Agora todos os módulos estão desbloqueados por padrão a pedido do usuário
+    return true;
+  }, []);
 
   // Obter progresso completo de um módulo específico
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {

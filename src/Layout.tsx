@@ -63,7 +63,6 @@ const navGroups = [
     items: [
       { href: '/', label: 'Início', icon: Home },
       { href: '/curriculum', label: 'Jornada', icon: Map },
-      { href: '/shop', label: 'Loja', icon: ShoppingBag },
       { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },

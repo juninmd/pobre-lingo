@@ -88,10 +88,6 @@ export default function DashboardPage() {
         {/* Left Column: Learning Path */}
         <div className="lg:col-span-2 space-y-8">
           <section>
-             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <BookOpen className="w-6 h-6 text-primary" />
-              Trilha de Aprendizado
-            </h2>
              <LearningPath />
           </section>
         </div>

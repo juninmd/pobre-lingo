@@ -3,10 +3,21 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '@/components/common/PageContainer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trophy, Zap, Headphones, Brain, GraduationCap, Search, Grid } from 'lucide-react';
+import { Trophy, Zap, Headphones, Brain, GraduationCap, Search, Grid, AlertCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const games = [
+  {
+    id: 'hangman',
+    title: 'Forca',
+    description: 'O clássico jogo da forca. Adivinhe a palavra antes de perder todas as vidas!',
+    icon: AlertCircle,
+    color: 'text-rose-500',
+    bgColor: 'bg-rose-500/10',
+    href: '/games/hangman',
+    difficulty: 'Medium',
+    xp: '20 XP / Win'
+  },
   {
     id: 'memory-match',
     title: 'Jogo da Memória',
@@ -133,14 +144,6 @@ export default function ArcadePage() {
           ))}
         </div>
 
-        {/* Leaderboard Teaser */}
-        <div className="mt-8 bg-muted/30 rounded-xl p-6 border border-dashed border-muted-foreground/30 flex flex-col items-center justify-center text-center">
-            <Trophy className="h-12 w-12 text-muted-foreground/20 mb-4" />
-            <h3 className="text-lg font-semibold text-muted-foreground">Placar de Líderes em Breve</h3>
-            <p className="text-sm text-muted-foreground/70 max-w-md">
-                Continue praticando para subir no ranking quando ele for lançado!
-            </p>
-        </div>
       </div>
     </PageContainer>
   );

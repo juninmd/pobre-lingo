@@ -10,6 +10,7 @@ export function MobileNav() {
     { href: '/', label: 'Início', icon: Home },
     { href: '/curriculum', label: 'Módulos', icon: Compass },
     { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
+    { href: '/leaderboard', label: 'Ranking', icon: Trophy },
     { href: '/proficiency', label: 'Perfil', icon: User },
   ];
 

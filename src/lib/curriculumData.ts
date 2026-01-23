@@ -41,6 +41,7 @@ export interface Unit {
   guidebookContent: string; // Markdown content for tips/rules
   order: number;
   difficulty: DifficultyLevel;
+  sectionTitle?: string; // Optional: Defines if this unit starts a new section
 }
 
 export interface LearningPath {
@@ -59,6 +60,7 @@ const units: Unit[] = [
     description: 'Comece sua jornada com o básico do inglês.',
     order: 1,
     difficulty: 'basico',
+    sectionTitle: 'Seção 1: O Início da Jornada',
     guidebookContent: `
 # Bem-vindo ao Inglês! 🚀
 
@@ -122,18 +124,30 @@ Em português, dizemos "Fui ao mercado" (sujeito oculto). Em inglês, **sempre**
     order: 3,
     difficulty: 'basico',
     guidebookContent: `
-# Passado e Presente
+# Passado e Presente ⏳
 
-### Present Continuous
-Usamos para coisas que estão acontecendo **agora**.
-* I **am studying** English. (Estou estudando inglês)
+Para contar histórias, você precisa dominar o passado.
 
-### Simple Past
-Para coisas que já acabaram.
-* I **visited** London last year. (Visitei Londres ano passado)
+### Simple Past (Passado Simples)
+Usado para ações que **já acabaram** e têm um tempo definido.
+* I **watched** TV yesterday. (Eu assisti TV ontem).
+* She **went** to the park. (Ela foi ao parque).
 
-**Atenção aos Verbos Irregulares!**
-Muitos verbos mudam completamente no passado (Go -> Went, Eat -> Ate).
+### Verbos Regulares (-ed)
+A maioria dos verbos ganha **-ed** no final.
+* Work -> Work**ed**
+* Play -> Play**ed**
+
+### Verbos Irregulares 🚨
+Estes não seguem regras! Você precisa memorizá-los.
+* Go -> **Went**
+* Eat -> **Ate**
+* Have -> **Had**
+
+### Present Continuous (Gerúndio)
+Para o que está acontecendo **agora**.
+* Verb To Be + Verbo com **-ing**.
+* I **am eating**. (Estou comendo).
     `
   },
   {
@@ -142,18 +156,24 @@ Muitos verbos mudam completamente no passado (Go -> Went, Eat -> Ate).
     description: 'Prepare-se para explorar o mundo.',
     order: 4,
     difficulty: 'basico',
+    sectionTitle: 'Seção 2: Expandindo Horizontes',
     guidebookContent: `
-# Inglês para Viagem
+# Inglês para Viagem ✈️
 
-Quando viajar, frases curtas e diretas ajudam muito.
+Viajar fica muito mais fácil quando você sabe o básico.
 
-### No Aeroporto
+### Vocabulário Essencial
+* **Passport**: Passaporte
 * **Boarding Pass**: Cartão de embarque
-* **Gate**: Portão
+* **Baggage Claim**: Restituição de bagagem (onde pega as malas)
 * **Customs**: Alfândega
 
-### Pedindo Informações
-Comece com "Excuse me, where is...?" (Com licença, onde fica...?).
+### No Restaurante 🍽️
+* "I would like..." (Eu gostaria de...) - Muito mais educado que "I want".
+* "Check, please." (A conta, por favor).
+
+### Dica de Pronúncia
+Em inglês, o "H" de "Hotel" é pronunciado (como "R"), mas o "H" de "Hour" é mudo!
     `
   },
   {
@@ -163,17 +183,22 @@ Comece com "Excuse me, where is...?" (Com licença, onde fica...?).
     order: 5,
     difficulty: 'intermediario',
     guidebookContent: `
-# Present Perfect
+# O Temido Present Perfect 😱
 
-Este é o tempo verbal mais difícil para brasileiros, mas você consegue!
+Calma! Ele não é um bicho de sete cabeças. O segredo é entender a **conexão** com o presente.
 
-Usamos o **Present Perfect** (Have + Verbo no Particípio) quando:
-1. A ação aconteceu no passado, mas não dizemos **quando**.
-   * I **have visited** Paris. (Eu visitei Paris - em algum momento da vida).
-2. A ação começou no passado e continua até hoje.
-   * I **have lived** here for 10 years.
+### Quando usar?
+1. **Experiências de Vida:** Coisas que você fez, não importa quando.
+   * "I **have been** to Disney." (Eu já fui pra Disney).
+2. **Mudanças ao Longo do Tempo:**
+   * "Your English **has improved**." (Seu inglês melhorou).
+3. **Ações Recentes (com 'Just'):**
+   * "I **have just** eaten." (Acabei de comer).
 
-**Dica:** Se você disser o tempo exato (ex: ontem, ano passado), use o Simple Past, não o Present Perfect.
+### Estrutura
+* Sujeito + **Have/Has** + Verbo no **Particípio**.
+* I **have finished**.
+* She **has arrived**.
     `
   },
   {
@@ -183,16 +208,23 @@ Usamos o **Present Perfect** (Have + Verbo no Particípio) quando:
     order: 6,
     difficulty: 'intermediario',
     guidebookContent: `
-# Conditionals (Condicionais)
+# Condicionais (Os "Se...") 🤔
 
-### Zero Conditional (Fatos)
-* If you heat water, it boils. (Se esquentar água, ferve).
+Usamos condicionais para falar de causas e consequências.
 
-### First Conditional (Provável)
-* If it rains, I will stay home. (Se chover, ficarei em casa).
+### Zero Conditional: Fatos
+* "If you heat ice, it melts." (Se esquentar gelo, derrete).
+* Estrutura: Presente + Presente.
 
-### Second Conditional (Imaginário)
-* If I won the lottery, I would travel. (Se eu ganhasse na loteria, viajaria).
+### First Conditional: Planos Reais
+* "If it rains, I will stay home." (Se chover, ficarei em casa).
+* Estrutura: Presente + Futuro (Will).
+
+### Second Conditional: Sonhos e Hipóteses
+* "If I were rich, I would buy an island." (Se eu fosse rico, compraria uma ilha).
+* Estrutura: Passado + Would.
+
+**Nota Curiosa:** No Second Conditional, usamos "If I **were**" mesmo para I/He/She/It. É mais formal e correto!
     `
   },
   {
@@ -201,16 +233,24 @@ Usamos o **Present Perfect** (Have + Verbo no Particípio) quando:
     description: 'Aprenda a Voz Passiva e Inglês de Negócios.',
     order: 7,
     difficulty: 'intermediario',
+    sectionTitle: 'Seção 3: Rumo à Proficiência',
     guidebookContent: `
-# Voz Passiva e Formalidade
+# Voz Passiva 🎭
 
-A **Voz Passiva** é muito usada em notícias e textos formais para focar na ação, não em quem fez.
-* Active: The architect built the house.
-* Passive: The house **was built** by the architect.
+Na voz passiva, o foco é na **ação** ou no **objeto**, não em quem fez.
 
-### Business English
-Em emails, seja direto mas polido.
-* "I look forward to hearing from you" (Aguardo seu retorno).
+* Ativa: "Somebody cleaned the room." (Alguém limpou o quarto).
+* Passiva: "The room **was cleaned**." (O quarto foi limpo).
+
+Usamos muito em notícias, relatórios e crimes ("The bank was robbed!").
+
+# Inglês Corporativo (Business English) 💼
+* **ASAP**: As Soon As Possible (O mais rápido possível).
+* **FYI**: For Your Information (Para sua informação).
+* **Meeting**: Reunião.
+* **Deadline**: Prazo final.
+
+Em emails, evite gírias. Use "Dear Mr./Ms." e termine com "Sincerely" ou "Best regards".
     `
   },
   {
@@ -220,19 +260,22 @@ Em emails, seja direto mas polido.
     order: 8,
     difficulty: 'avancado',
     guidebookContent: `
-# Nível Avançado
+# Phrasal Verbs & Idioms 🤯
 
-### Phrasal Verbs
-Verbos que mudam de sentido com uma preposição.
-* **Give up**: Desistir
-* **Run out**: Esgotar
-* **Look forward to**: Esperar ansiosamente
+Para soar nativo, você precisa dessas expressões que não se traduzem ao pé da letra.
 
-### Expressões Idiomáticas (Idioms)
-* **Piece of cake**: Muito fácil
-* **Break a leg**: Boa sorte
+### Phrasal Verbs Comuns
+* **Give up**: Desistir.
+* **Look forward to**: Esperar ansiosamente por algo.
+* **Run out of**: Ficar sem (algo). "We ran out of coffee!"
 
-Para ser fluente, você precisa entender essas expressões que não fazem sentido literal!
+### Idioms (Expressões)
+* **Piece of cake**: Algo muito fácil (Moleza).
+* **Break a leg**: Boa sorte (usado em teatro/apresentações).
+* **Cost an arm and a leg**: Custar muito caro (Os olhos da cara).
+* **Under the weather**: Sentindo-se mal/doente.
+
+**Conselho:** Não tente decorar listas gigantes. Aprenda em contexto!
     `
   },
   {
@@ -242,27 +285,25 @@ Para ser fluente, você precisa entender essas expressões que não fazem sentid
     order: 9,
     difficulty: 'avancado',
     guidebookContent: `
-# Inglês da Vida Real 🗣️
+# Inglês Real e Informal 😎
 
-Parabéns por chegar até aqui! Agora vamos deixar o "inglês de livro" de lado e aprender como as pessoas realmente falam.
+Na rua e na internet, o inglês é diferente do livro.
 
-### Contrações Informais
-Nativos adoram encurtar palavras.
-* **Gonna** (Going to): Vou...
-* **Wanna** (Want to): Quero...
-* **Gotta** (Got to): Tenho que...
+### Reduções (Connected Speech)
+* **Gonna** (Going to)
+* **Wanna** (Want to)
+* **Gotta** (Got to / Have to)
+* **Dunno** (Don't know)
 
-**Exemplo:**
-* Formal: "I am going to buy a car."
-* Real: "I'm gonna buy a car."
+Exemplo: "I dunno what I'm gonna do." (Não sei o que vou fazer).
 
-### Internet Slang 📱
-* **LOL**: Rindo muito (Laughing Out Loud).
-* **IDK**: Não sei (I Don't Know).
-* **TBH**: Para ser honesto (To Be Honest).
+### Gírias de Internet
+* **LOL**: Laughing Out Loud (Rindo muito).
+* **BRB**: Be Right Back (Já volto).
+* **IMO**: In My Opinion (Na minha opinião).
+* **DM**: Direct Message (Mensagem direta).
 
-### Dica Final 🏆
-A fluência não é saber todas as palavras, mas conseguir se comunicar sem medo e entender o contexto. Assista filmes sem legenda, ouça podcasts e continue praticando no PobreLingo!
+Use isso com amigos, nunca com o chefe!
     `
   },
   {
@@ -271,28 +312,28 @@ A fluência não é saber todas as palavras, mas conseguir se comunicar sem medo
     description: 'Domine a arte da retórica e formalidade.',
     order: 10,
     difficulty: 'avancado',
+    sectionTitle: 'Seção 4: Maestria',
     guidebookContent: `
-# Fluência Profissional 💼
+# Nível Mestre: Sofisticação 🎩
 
-Bem-vindo ao nível de mestre! Aqui vamos refinar seu inglês para situações formais e profissionais.
+Para debates, ensaios acadêmicos ou discursos, você precisa de ferramentas avançadas.
 
-### Subjuntivo (Subjunctive Mood)
-Usado para sugerir, insistir ou demandar algo.
-* **I suggest that he study more.** (Não "studies")
-* **It is essential that she be here.** (Não "is")
+### Inversão Enfática
+Em vez de dizer "I have never seen such a thing", diga:
+* "**Never have I seen** such a thing."
+Isso soa poético e dramático.
 
-### Inversão para Ênfase
-Para dar um tom dramático ou muito formal, invertemos o sujeito e o auxiliar.
-* Normal: I have never seen such beauty.
-* Inversão: **Never have I seen** such beauty.
+### O Subjuntivo
+Em inglês, o subjuntivo é sutil, mas importante em situações formais.
+* "I suggest that he **be** present." (Sugiro que ele esteja presente).
+Note que usamos "be", não "is".
 
-### Vocabulário de Debate
-* **Therefore**: Portanto
-* **However**: Contudo
-* **Furthermore**: Além disso
-* **In conclusion**: Em conclusão
+### Conectivos de Elite
+* **Nevertheless**: No entanto/Mesmo assim.
+* **Furthermore**: Além disso (formal).
+* **Conversely**: Por outro lado.
 
-Use essas palavras para conectar suas ideias de forma lógica e sofisticada.
+Parabéns! Você tem as ferramentas para se expressar em qualquer nível. Continue praticando! 🏆
     `
   }
 ];

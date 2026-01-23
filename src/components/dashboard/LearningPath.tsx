@@ -23,14 +23,22 @@ export function LearningPath() {
   return (
     <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-12 pb-24">
       {curriculumData.units.map((unit, unitIndex) => (
-        <UnitSection
-          key={unit.id}
-          unit={unit}
-          modules={curriculumData.modules.filter(m => m.unitId === unit.id)}
-          getModuleProgress={getModuleProgress}
-          isModuleUnlocked={isModuleUnlocked}
-          isLessonCompleted={isLessonCompleted}
-        />
+        <React.Fragment key={unit.id}>
+          {unit.sectionTitle && (
+            <div className="w-full text-center py-6 border-b border-t bg-muted/30 mb-8 mt-8 first:mt-0">
+              <h3 className="text-xl font-extrabold uppercase tracking-widest text-muted-foreground">
+                {unit.sectionTitle}
+              </h3>
+            </div>
+          )}
+          <UnitSection
+            unit={unit}
+            modules={curriculumData.modules.filter((m) => m.unitId === unit.id)}
+            getModuleProgress={getModuleProgress}
+            isModuleUnlocked={isModuleUnlocked}
+            isLessonCompleted={isLessonCompleted}
+          />
+        </React.Fragment>
       ))}
     </div>
   );

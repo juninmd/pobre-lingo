@@ -22,6 +22,8 @@ import FlashcardsPage from './pages/games/FlashcardsPage';
 import WordSearchPage from './pages/games/WordSearchPage';
 import SentenceRushPage from './pages/games/SentenceRushPage';
 import MemoryMatchPage from './pages/games/MemoryMatchPage';
+import HangmanPage from './pages/games/HangmanPage';
+import LeaderboardPage from './pages/LeaderboardPage';
 import ConversationPage from './pages/exercises/conversation/page';
 
 const router = createBrowserRouter([
@@ -62,8 +64,16 @@ const router = createBrowserRouter([
         element: <SentenceRushPage />,
       },
       {
+        path: 'games/hangman',
+        element: <HangmanPage />,
+      },
+      {
         path: 'dictionary',
         element: <DictionaryPage />,
+      },
+      {
+        path: 'leaderboard',
+        element: <LeaderboardPage />,
       },
       {
         path: 'curriculum',

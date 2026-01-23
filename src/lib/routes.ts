@@ -1,29 +1,39 @@
 import { Module, Lesson } from './curriculumData';
 
 export function getLessonLink(module: Module, lesson: Lesson): string {
+  // 1. Explicit Exercise Type
   if (lesson.exerciseType) {
     return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
   }
+
+  // 2. Vocabulary & Speaking
   if (lesson.type === 'vocabulary' || lesson.type === 'speaking') {
     return `/vocabulary/${module.id}/${lesson.id}`;
   }
+
+  // 3. Quiz
   if (lesson.type === 'quiz') {
     return `/quiz/${module.id}/${lesson.id}`;
   }
-  if (lesson.type === 'grammar' && lesson.grammarRuleIds?.length) {
-    return `/rules?module=${module.id}&lesson=${lesson.id}&ruleIds=${lesson.grammarRuleIds.join(',')}`;
-  }
-  if (lesson.type === 'reading') {
-    return `/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`;
-  }
-  if (lesson.type === 'culture') {
-      // For now, mapping culture to rules page or a specific page if it exists.
-      // Based on Router, there isn't a specific /culture route.
-      // Usually culture tips are just reading/modal.
-      // Let's assume it uses the Rules page or we need to check Router.
-      return `/rules?module=${module.id}&lesson=${lesson.id}`;
+
+  // 4. Grammar
+  if (lesson.type === 'grammar') {
+    // If it has specific rules, link to them. Otherwise, fallback to rules page.
+    if (lesson.grammarRuleIds?.length) {
+      return `/rules?module=${module.id}&lesson=${lesson.id}&ruleIds=${lesson.grammarRuleIds.join(',')}`;
+    }
+    // Fallback: If no specific rules, maybe it's a general grammar lesson.
+    // Ideally, every grammar lesson should have ids.
+    return `/rules?module=${module.id}&lesson=${lesson.id}`;
   }
 
-  // Default fallback
-  return `/rules?module=${module.id}&lesson=${lesson.id}`;
+  // 5. Reading & Culture
+  // Culture lessons are often reading-based. If no explicit exercise type is set,
+  // treat them as 'news-comprehension' (generic reading) or similar.
+  if (lesson.type === 'reading' || lesson.type === 'culture') {
+    return `/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`;
+  }
+
+  // Default fallback for unknown types
+  return `/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`;
 }

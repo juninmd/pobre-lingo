@@ -27,7 +27,8 @@ function generateCompetitors(baseXp: number) {
       id: `comp-${index}`,
       name,
       xp: randomXp,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name.replace(' ', '')}`
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name.replace(' ', '')}`,
+      isMe: false
     };
   });
 }

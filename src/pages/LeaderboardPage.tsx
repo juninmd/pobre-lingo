@@ -1,23 +1,44 @@
 import React, { useMemo } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Trophy, Medal, Crown } from 'lucide-react';
 import { useGamification } from '@/contexts/GamificationContext';
 import { cn } from '@/lib/utils';
 
-// Mock Data for other users
-const MOCK_USERS = [
-  { id: 'u1', name: 'Maria Silva', xp: 2850, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maria' },
-  { id: 'u2', name: 'João Santos', xp: 2400, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Joao' },
-  { id: 'u3', name: 'Ana Costa', xp: 1950, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ana' },
-  { id: 'u4', name: 'Pedro Oliveira', xp: 1500, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Pedro' },
-  { id: 'u5', name: 'Lucas Ferreira', xp: 1200, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas' },
-  { id: 'u6', name: 'Carla Souza', xp: 900, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carla' },
-  { id: 'u7', name: 'Marcos Lima', xp: 600, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcos' },
-  { id: 'u8', name: 'Julia Pereira', xp: 300, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Julia' },
-  { id: 'u9', name: 'Roberto Alves', xp: 100, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Roberto' },
-];
+// Helper to generate consistent procedural competitors based on a seed
+// In a real app, this would come from a backend.
+function generateCompetitors(baseXp: number) {
+  const names = [
+    'Maria Silva', 'João Santos', 'Ana Costa', 'Pedro Oliveira',
+    'Lucas Ferreira', 'Carla Souza', 'Marcos Lima', 'Julia Pereira', 'Roberto Alves'
+  ];
+
+  // Use current date as seed for "weekly" leaderboard stability
+  const today = new Date();
+  const seed = today.getFullYear() * 100 + getWeekNumber(today);
+
+  return names.map((name, index) => {
+    // Pseudo-random generation based on seed and index
+    const randomFactor = Math.sin(seed + index) * 10000;
+    const randomXp = Math.floor((Math.abs(randomFactor) % 3000) + 500); // Random XP between 500 and 3500
+
+    return {
+      id: `comp-${index}`,
+      name,
+      xp: randomXp,
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name.replace(' ', '')}`
+    };
+  });
+}
+
+function getWeekNumber(d: Date) {
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    const weekNo = Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+    return weekNo;
+}
 
 export default function LeaderboardPage() {
   const { xp } = useGamification();
@@ -31,13 +52,15 @@ export default function LeaderboardPage() {
       isMe: true
     };
 
+    // Generate competitors dynamically
+    const competitors = generateCompetitors(xp);
+
     // Combine and sort
-    const allUsers = [...MOCK_USERS, currentUser].sort((a, b) => b.xp - a.xp);
-    return allUsers;
+    const allUsers = [...competitors, currentUser].sort((a, b) => b.xp - a.xp);
+    return allUsers.slice(0, 10); // Top 10
   }, [xp]);
 
   // Determine League based on top user
-  // This is just visual flavor
   const leagueName = "Divisão Diamante";
 
   return (

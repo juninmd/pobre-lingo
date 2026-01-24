@@ -25,16 +25,16 @@ export function MobileNav() {
               key={item.href}
               to={item.href}
               className={cn(
-                "relative flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300",
+                "relative flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-300 touch-manipulation select-none",
                 isActive
-                  ? "text-primary font-bold -translate-y-1"
-                  : "text-muted-foreground hover:text-foreground active:scale-95"
+                  ? "text-primary font-bold -translate-y-1 scale-105"
+                  : "text-muted-foreground hover:text-primary active:scale-90"
               )}
             >
               {isActive && (
-                <div className="absolute top-0 w-12 h-1 rounded-b-full bg-primary animate-in fade-in zoom-in duration-300" />
+                <div className="absolute top-0 w-12 h-1 rounded-b-full bg-primary animate-in fade-in zoom-in duration-300 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
               )}
-              <item.icon className={cn("h-6 w-6 transition-transform duration-300", isActive && "scale-110 fill-current/20 drop-shadow-sm")} />
+              <item.icon className={cn("h-6 w-6 transition-transform duration-300", isActive && "scale-110 fill-current/20 drop-shadow-sm animate-bounce-short")} />
               <span className="text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
             </Link>
           );

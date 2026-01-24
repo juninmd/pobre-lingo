@@ -15,6 +15,7 @@ export interface Lesson {
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
   exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening' | 'conversation';
+  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush';
   vocabularyTopics?: string[];
   speakingTopics?: string[];
   order: number;
@@ -542,6 +543,78 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    {
+      id: 'unit2-game-hangman',
+      unitId: 'unit-2',
+      title_pt: 'Desafio: Forca',
+      title_en: 'Challenge: Hangman',
+      description_pt: 'Salve o Pobrelingo!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-green-600',
+      order: 4,
+      lessons: [
+        {
+          id: 'unit2-hangman-lesson',
+          title_pt: 'Jogo da Forca',
+          title_en: 'Hangman',
+          description_pt: 'Adivinhe as palavras.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          gameType: 'hangman',
+          order: 1
+        }
+      ]
+    },
+    {
+      id: 'unit4-game-sentencerush',
+      unitId: 'unit-4',
+      title_pt: 'Desafio: Frases Rápidas',
+      title_en: 'Challenge: Sentence Rush',
+      description_pt: 'Monte frases contra o tempo!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-cyan-600',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit4-sentencerush-lesson',
+          title_pt: 'Corrida de Frases',
+          title_en: 'Sentence Rush',
+          description_pt: 'Seja rápido!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 150,
+          gameType: 'sentence-rush',
+          order: 1
+        }
+      ]
+    },
+    {
+      id: 'foundations-game-module',
+      unitId: 'unit-1',
+      title_pt: 'Desafio: Flashcards',
+      title_en: 'Challenge: Flashcards',
+      description_pt: 'Teste sua memória!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-yellow-500',
+      order: 2,
+      lessons: [
+        {
+          id: 'foundations-flashcards-lesson',
+          title_pt: 'Flashcards',
+          title_en: 'Flashcards',
+          description_pt: 'Memorize as palavras.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 50,
+          gameType: 'flashcards',
+          order: 1
+        }
+      ]
+    },
     // Unit 2
     {
       id: 'culture-tips-basic',
@@ -633,6 +706,54 @@ export const curriculumData: LearningPath = {
           order: 4,
         },
       ],
+    },
+    {
+      id: 'unit5-game-flashcards',
+      unitId: 'unit-5',
+      title_pt: 'Desafio: Flashcards',
+      title_en: 'Challenge: Flashcards',
+      description_pt: 'Vocabulário Avançado',
+      difficulty: 'intermediario',
+      icon: 'Gamepad2',
+      color: 'bg-orange-600',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit5-flashcards-lesson',
+          title_pt: 'Flashcards',
+          title_en: 'Flashcards',
+          description_pt: 'Memorize verbos.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          gameType: 'flashcards',
+          order: 1
+        }
+      ]
+    },
+    {
+      id: 'unit3-game-wordsearch',
+      unitId: 'unit-3',
+      title_pt: 'Desafio: Caça-Palavras',
+      title_en: 'Challenge: Word Search',
+      description_pt: 'Encontre os verbos!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-purple-600',
+      order: 4,
+      lessons: [
+        {
+          id: 'unit3-wordsearch-lesson',
+          title_pt: 'Caça-Palavras',
+          title_en: 'Word Search',
+          description_pt: 'Encontre as palavras escondidas.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          gameType: 'word-search',
+          order: 1
+        }
+      ]
     },
     // Unit 3
     {
@@ -937,6 +1058,30 @@ export const curriculumData: LearningPath = {
           exerciseType: 'sentence-ordering',
           order: 3,
         },
+    {
+      id: 'unit7-game-wordsearch',
+      unitId: 'unit-7',
+      title_pt: 'Desafio: Caça-Palavras',
+      title_en: 'Challenge: Word Search',
+      description_pt: 'Vocabulário de Negócios',
+      difficulty: 'intermediario',
+      icon: 'Gamepad2',
+      color: 'bg-slate-600',
+      order: 3,
+      lessons: [
+        {
+          id: 'unit7-wordsearch-lesson',
+          title_pt: 'Caça-Palavras',
+          title_en: 'Word Search',
+          description_pt: 'Encontre as palavras.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          gameType: 'word-search',
+          order: 1
+        }
+      ]
+    },
         {
           id: 'passive-reading',
           title_pt: 'Leitura: Textos Formais',
@@ -1045,6 +1190,30 @@ export const curriculumData: LearningPath = {
           grammarRuleIds: ['relative-clauses'],
           order: 3,
         },
+    {
+      id: 'unit8-game-sentencerush',
+      unitId: 'unit-8',
+      title_pt: 'Desafio: Frases Rápidas',
+      title_en: 'Challenge: Sentence Rush',
+      description_pt: 'Gramática Avançada',
+      difficulty: 'avancado',
+      icon: 'Gamepad2',
+      color: 'bg-red-600',
+      order: 3,
+      lessons: [
+        {
+          id: 'unit8-sentencerush-lesson',
+          title_pt: 'Corrida de Frases',
+          title_en: 'Sentence Rush',
+          description_pt: 'Seja rápido!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'sentence-rush',
+          order: 1
+        }
+      ]
+    },
         {
           id: 'advanced-grammar-practice',
           title_pt: 'Prática: Gramática Avançada',

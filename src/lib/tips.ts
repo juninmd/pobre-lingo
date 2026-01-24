@@ -52,5 +52,10 @@ export const TIPS = [
   'Comemore suas pequenas vitórias!',
   'Se não entendeu, pergunte "Could you repeat that, please?".',
   'Inglês é uma língua de ritmo. Tente sentir a "batida" da frase.',
-  'Divirta-se! O aprendizado é mais rápido quando você gosta do processo.'
+  'Divirta-se! O aprendizado é mais rápido quando você gosta do processo.',
+  'Mude a língua dos seus jogos favoritos para inglês.',
+  'Tente escrever um diário simples em inglês todos os dias.',
+  'Use post-its pela casa com o nome dos objetos em inglês.',
+  'Assista vídeos de "unboxing" ou tutoriais no YouTube em inglês.',
+  'Participe de comunidades online (Reddit, Discord) em inglês.'
 ];

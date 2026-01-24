@@ -9,6 +9,8 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { useGamification } from '@/contexts/GamificationContext';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const MAX_LIVES = 6;
 
@@ -18,6 +20,11 @@ const WORD_POOL = dictionaryEntries.filter(
 );
 
 export default function HangmanPage() {
+  const [searchParams] = useSearchParams();
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const { completeLesson } = useCurriculumProgress();
+
   const { addXp, addGem } = useGamification();
   const { toast } = useToast();
   const [currentEntry, setCurrentEntry] = useState(WORD_POOL[0]);
@@ -62,6 +69,10 @@ export default function HangmanPage() {
         description: `Você acertou: ${currentEntry.word}`,
         className: "bg-green-500 text-white border-none"
       });
+
+      if (moduleId && lessonId) {
+        completeLesson(moduleId, lessonId, 120);
+      }
     }
 
     if (lives <= 0) {
@@ -151,9 +162,16 @@ export default function HangmanPage() {
 
                  {/* Game Over Actions */}
                  {status !== 'playing' && (
-                    <Button onClick={startNewGame} size="lg" className="w-full animate-in fade-in zoom-in">
-                        <RefreshCw className="mr-2 w-5 h-5" /> Jogar Novamente
-                    </Button>
+                    <div className="flex flex-col gap-2 w-full animate-in fade-in zoom-in">
+                        <Button onClick={startNewGame} size="lg" className="w-full">
+                            <RefreshCw className="mr-2 w-5 h-5" /> Jogar Novamente
+                        </Button>
+                        <Link to={moduleId && lessonId ? '/' : '/arcade'} className="w-full">
+                            <Button variant="outline" className="w-full">
+                                {moduleId && lessonId ? 'Voltar ao Mapa' : 'Sair'}
+                            </Button>
+                        </Link>
+                    </div>
                 )}
             </div>
         </div>

@@ -1,6 +1,11 @@
 import { Module, Lesson } from './curriculumData';
 
 export function getLessonLink(module: Module, lesson: Lesson): string {
+  // 0. Game Type (Highest Priority)
+  if (lesson.gameType) {
+    return `/games/${lesson.gameType}?module=${module.id}&lesson=${lesson.id}`;
+  }
+
   // 1. Explicit Exercise Type
   if (lesson.exerciseType) {
     return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;

@@ -4,11 +4,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { dictionaryEntries } from '@/lib/dictionaryData';
 import { useGamification } from '@/contexts/GamificationContext';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { ArrowLeft, Check, X, GraduationCap, PartyPopper } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { triggerConfetti } from '@/lib/confetti';
 
 export default function FlashcardsPage() {
+  const [searchParams] = useSearchParams();
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const { completeLesson } = useCurriculumProgress();
+
   const { addXp, addStreak } = useGamification();
   const [deck, setDeck] = useState<typeof dictionaryEntries>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,6 +62,9 @@ export default function FlashcardsPage() {
     if (finalKnownCount >= 5) {
       triggerConfetti();
     }
+    if (moduleId && lessonId) {
+      completeLesson(moduleId, lessonId, finalKnownCount * 10);
+    }
   };
 
   const currentCard = deck[currentIndex];
@@ -67,10 +76,10 @@ export default function FlashcardsPage() {
       <div className="max-w-2xl mx-auto flex flex-col min-h-[80vh]">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <Link to="/arcade">
+          <Link to={moduleId && lessonId ? '/' : '/arcade'}>
             <Button variant="ghost" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
-              Sair
+              {moduleId && lessonId ? 'Voltar ao Mapa' : 'Sair'}
             </Button>
           </Link>
           <div className="flex items-center gap-2 text-primary font-bold">
@@ -100,8 +109,8 @@ export default function FlashcardsPage() {
                   </p>
                 </div>
                 <div className="pt-4 flex justify-center gap-4">
-                  <Link to="/arcade">
-                    <Button variant="outline">Voltar ao Menu</Button>
+                  <Link to={moduleId && lessonId ? '/' : '/arcade'}>
+                    <Button variant="outline">{moduleId && lessonId ? 'Voltar ao Mapa' : 'Voltar ao Menu'}</Button>
                   </Link>
                   <Button onClick={startNewGame}>Praticar Novamente</Button>
                 </div>

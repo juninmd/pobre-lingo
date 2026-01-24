@@ -627,7 +627,7 @@ export const curriculumData: LearningPath = {
       color: 'bg-teal-500',
       order: 2,
       lessons: [
-         {
+        {
           id: 'tipping-culture',
           title_pt: 'Cultura de Gorjetas',
           title_en: 'Tipping Culture',
@@ -1058,6 +1058,20 @@ export const curriculumData: LearningPath = {
           exerciseType: 'sentence-ordering',
           order: 3,
         },
+
+        {
+          id: 'passive-reading',
+          title_pt: 'Leitura: Textos Formais',
+          title_en: 'Reading: Formal Texts',
+          description_pt: 'Leia textos que usam voz passiva',
+          type: 'reading',
+          estimatedMinutes: 25,
+          xpReward: 150,
+          exerciseType: 'news-comprehension',
+          order: 4,
+        },
+      ],
+    },
     {
       id: 'unit7-game-wordsearch',
       unitId: 'unit-7',
@@ -1081,19 +1095,6 @@ export const curriculumData: LearningPath = {
           order: 1
         }
       ]
-    },
-        {
-          id: 'passive-reading',
-          title_pt: 'Leitura: Textos Formais',
-          title_en: 'Reading: Formal Texts',
-          description_pt: 'Leia textos que usam voz passiva',
-          type: 'reading',
-          estimatedMinutes: 25,
-          xpReward: 150,
-          exerciseType: 'news-comprehension',
-          order: 4,
-        },
-      ],
     },
     {
       id: 'business-english',
@@ -1190,6 +1191,20 @@ export const curriculumData: LearningPath = {
           grammarRuleIds: ['relative-clauses'],
           order: 3,
         },
+
+        {
+          id: 'advanced-grammar-practice',
+          title_pt: 'Prática: Gramática Avançada',
+          title_en: 'Practice: Advanced Grammar',
+          description_pt: 'Exercícios complexos de gramática',
+          type: 'exercise',
+          estimatedMinutes: 40,
+          xpReward: 225,
+          exerciseType: 'find-incorrect-words',
+          order: 4,
+        },
+      ],
+    },
     {
       id: 'unit8-game-sentencerush',
       unitId: 'unit-8',
@@ -1213,19 +1228,6 @@ export const curriculumData: LearningPath = {
           order: 1
         }
       ]
-    },
-        {
-          id: 'advanced-grammar-practice',
-          title_pt: 'Prática: Gramática Avançada',
-          title_en: 'Practice: Advanced Grammar',
-          description_pt: 'Exercícios complexos de gramática',
-          type: 'exercise',
-          estimatedMinutes: 40,
-          xpReward: 225,
-          exerciseType: 'find-incorrect-words',
-          order: 4,
-        },
-      ],
     },
     {
       id: 'idiomatic-expressions',

@@ -1195,4 +1195,12 @@ export const dictionaryEntries: DictionaryEntry[] = [
   { id: 'idiom3', word: 'cut corners', translation_pt: 'fazer nas coxas (cortar caminho)', meaning_en: 'Do something perfunctorily so as to save time or money.', category: 'expression' },
   { id: 'idiom4', word: 'hit the sack', translation_pt: 'ir dormir', meaning_en: 'Go to bed.', category: 'expression' },
   { id: 'idiom5', word: 'miss the boat', translation_pt: 'perder o bonde/oportunidade', meaning_en: 'Miss an opportunity.', category: 'expression' },
+
+  // SLANG & TECH
+  { id: 'slang1', word: 'ghosting', translation_pt: 'dar vácuo (sumir)', meaning_en: 'Ending a relationship by cutting off all communication without explanation.', category: 'expression' },
+  { id: 'slang2', word: 'tea', translation_pt: 'fofoca (a verdade)', meaning_en: 'Gossip or personal information.', category: 'noun' },
+  { id: 'slang3', word: 'salty', translation_pt: 'irritado/amargo', meaning_en: 'Being upset, angry, or bitter.', category: 'adjective' },
+  { id: 'tech1', word: 'algorithm', translation_pt: 'algoritmo', meaning_en: 'A process or set of rules to be followed in calculations.', category: 'noun' },
+  { id: 'tech2', word: 'cloud', translation_pt: 'nuvem (internet)', meaning_en: 'Network of remote servers hosted on the Internet.', category: 'noun' },
+  { id: 'tech3', word: 'bug', translation_pt: 'erro (software)', meaning_en: 'An error, flaw or fault in a computer program.', category: 'noun' },
 ];

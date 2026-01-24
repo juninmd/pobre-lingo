@@ -7,7 +7,8 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import confetti from 'canvas-confetti';
 import { sentenceOrderingExercises } from '@/lib/exerciseData';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
 function shuffleArray<T>(array: T[]): T[] {
   const newArray = [...array];
@@ -19,6 +20,11 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 export default function SentenceRushPage() {
+  const [searchParams] = useSearchParams();
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const { completeLesson } = useCurriculumProgress();
+
   const { toast } = useToast();
   const [timeLeft, setTimeLeft] = useState(60);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -121,6 +127,9 @@ export default function SentenceRushPage() {
       setGameOver(true);
       if (score > 50 || completedAll) {
           confetti();
+          if (moduleId && lessonId) {
+             completeLesson(moduleId, lessonId, Math.max(score, 50));
+          }
       }
   };
 
@@ -243,7 +252,7 @@ export default function SentenceRushPage() {
                             <RefreshCw className="mr-2" /> Jogar Novamente
                         </Button>
                         <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                            <Link to="/arcade">Voltar ao Arcade</Link>
+                            <Link to={moduleId && lessonId ? '/' : '/arcade'}>{moduleId && lessonId ? 'Voltar ao Mapa' : 'Voltar ao Arcade'}</Link>
                         </Button>
                     </div>
                 </Card>

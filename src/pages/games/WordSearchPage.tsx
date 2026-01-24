@@ -4,10 +4,11 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Button } from '@/components/ui/button';
 import { dictionaryEntries } from '@/lib/dictionaryData';
 import { Gamepad2, Timer, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { triggerConfetti } from '@/lib/confetti';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
 // --- Game Logic ---
 
@@ -93,6 +94,11 @@ function generateGrid(wordsToPlace: string[]) {
 
 export default function WordSearchPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const { completeLesson } = useCurriculumProgress();
+
   const [grid, setGrid] = useState<string[][]>([]);
   const [words, setWords] = useState<string[]>([]); // Original words
   const [locations, setLocations] = useState<WordLocation[]>([]);
@@ -145,8 +151,11 @@ export default function WordSearchPage() {
     if (words.length > 0 && foundWords.size === words.length) {
       setGameWon(true);
       triggerConfetti();
+      if (moduleId && lessonId) {
+        completeLesson(moduleId, lessonId, 100);
+      }
     }
-  }, [foundWords, words]);
+  }, [foundWords, words, moduleId, lessonId, completeLesson]);
 
   // Selection Logic
   const handleCellClick = (r: number, c: number) => {
@@ -276,7 +285,9 @@ export default function WordSearchPage() {
                     <h2 className="text-4xl font-black mb-2 uppercase">{gameWon ? 'Vitória!' : 'Tempo Esgotado!'}</h2>
                     <p className="text-muted-foreground mb-6">Você encontrou {foundWords.size} de {words.length} palavras.</p>
                     <div className="flex gap-4">
-                        <Button onClick={() => navigate('/arcade')} variant="outline">Sair</Button>
+                        <Button onClick={() => navigate(moduleId && lessonId ? '/' : '/arcade')} variant="outline">
+                            {moduleId && lessonId ? 'Voltar ao Mapa' : 'Sair'}
+                        </Button>
                         <Button onClick={startNewGame} size="lg" className="gap-2">
                             <RefreshCw className="w-5 h-5" /> Jogar Novamente
                         </Button>

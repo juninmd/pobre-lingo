@@ -166,6 +166,7 @@ function UnitSection({
           if (!isLocked && !isCompleted && targetLesson) {
              if (targetLesson.type === 'quiz') BadgeIcon = Trophy;
              else if (targetLesson.exerciseType === 'matching-pairs' || targetLesson.exerciseType === 'sentence-ordering') BadgeIcon = Gamepad2;
+             else if (targetLesson.gameType) BadgeIcon = Gamepad2;
              else if (targetLesson.type === 'grammar') BadgeIcon = ScrollText;
              else if (targetLesson.type === 'speaking') BadgeIcon = Mic;
           }

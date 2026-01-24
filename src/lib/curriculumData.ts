@@ -335,6 +335,101 @@ Note que usamos "be", não "is".
 
 Parabéns! Você tem as ferramentas para se expressar em qualquer nível. Continue praticando! 🏆
     `
+  },
+  {
+    id: 'unit-11',
+    title: 'Unidade 11: Maestria da Nuance',
+    description: 'Use adjetivos precisos e descreva com detalhes.',
+    order: 11,
+    difficulty: 'avancado',
+    sectionTitle: 'Seção 5: Fluência Total',
+    guidebookContent: `
+# O Poder da Precisão 🎯
+
+Em níveis avançados, a diferença está nos detalhes.
+
+### Adjetivos Precisos
+Em vez de usar "very", use palavras mais fortes:
+* Very happy -> **Elated / Thrilled**
+* Very sad -> **Devastated**
+* Very big -> **Massive / Colossal**
+* Very small -> **Tiny / Miniscule**
+
+### Nuances de Significado
+* **Economic** (econômico, barato) vs **Economical** (econômico, que economiza).
+* **Sensible** (sensato) vs **Sensitive** (sensível).
+
+Dominar essas diferenças mostra que você tem controle total sobre o idioma.
+    `
+  },
+  {
+    id: 'unit-12',
+    title: 'Unidade 12: Retórica Profissional',
+    description: 'Argumentação, debate e persuasão.',
+    order: 12,
+    difficulty: 'avancado',
+    guidebookContent: `
+# A Arte de Convencer 🗣️
+
+Para persuadir, você precisa de estrutura e vocabulário específico.
+
+### Estruturando Argumentos
+* **To begin with...** (Para começar...)
+* **Furthermore...** (Além disso...)
+* **On the other hand...** (Por outro lado...)
+* **In conclusion...** (Em conclusão...)
+
+### Discordando Educadamente
+* "I see your point, however..." (Entendo seu ponto, contudo...)
+* "I beg to differ." (Ouso discordar - formal).
+* "That's not entirely true." (Isso não é totalmente verdade).
+
+Use essas estruturas para manter o debate civilizado e produtivo.
+    `
+  },
+  {
+    id: 'unit-13',
+    title: 'Unidade 13: Imersão Cultural',
+    description: 'Humor, sarcasmo e expressões complexas.',
+    order: 13,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Além das Palavras 🎭
+
+Entender humor e sarcasmo é o teste final de fluência.
+
+### Sarcasmo em Inglês
+Muitas vezes, o tom de voz diz o oposto da frase.
+* "Oh, great." (Pode significar "Que terrível" dependendo do tom).
+* "Thanks a lot." (Muitas vezes usado ironicamente).
+
+### Idiomas Culturais
+* **To play devil's advocate**: Discutir o lado oposto só para testar o argumento.
+* **To sit on the fence**: Não tomar partido, ficar indeciso.
+* **The elephant in the room**: Um problema óbvio que ninguém quer discutir.
+
+Preste atenção ao contexto!
+    `
+  },
+  {
+    id: 'unit-14',
+    title: 'Unidade 14: O Desafio Final',
+    description: 'O teste definitivo de proficiência C2.',
+    order: 14,
+    difficulty: 'avancado',
+    sectionTitle: 'Seção 6: O Mestre PobreLingo',
+    guidebookContent: `
+# O Topo da Montanha 🏔️
+
+Você chegou ao final. Aqui testamos tudo.
+
+### Conselhos Finais
+1. **Consistência**: A fluência se perde se não for usada.
+2. **Imersão**: Leia livros, assista filmes sem legenda.
+3. **Curiosidade**: Nunca pare de aprender novas palavras.
+
+Você agora é parte da elite do PobreLingo. Vá e conquiste o mundo!
+    `
   }
 ];
 
@@ -1216,6 +1311,193 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 45,
           xpReward: 1000,
           order: 4,
+        }
+      ]
+    },
+    // ========== Unit 11 ==========
+    {
+      id: 'nuance-mastery',
+      unitId: 'unit-11',
+      title_pt: 'Maestria da Nuance',
+      title_en: 'Nuance Mastery',
+      description_pt: 'Vocabulário preciso e descrições detalhadas',
+      difficulty: 'avancado',
+      icon: 'Feather',
+      color: 'bg-fuchsia-600',
+      order: 13,
+      prerequisites: ['professional-fluency'],
+      lessons: [
+        {
+          id: 'advanced-adjectives',
+          title_pt: 'Adjetivos Sofisticados',
+          title_en: 'Sophisticated Adjectives',
+          description_pt: 'Pragmático, efêmero, meticuloso...',
+          type: 'vocabulary',
+          estimatedMinutes: 30,
+          xpReward: 200,
+          vocabularyTopics: ['advanced-adjectives'], // Needs mapping in exerciseData potentially, but dictionary is enough for standard exercises
+          order: 1,
+        },
+        {
+          id: 'descriptive-writing',
+          title_pt: 'Escrita Descritiva',
+          title_en: 'Descriptive Writing',
+          description_pt: 'Melhore seus textos com detalhes',
+          type: 'reading',
+          estimatedMinutes: 35,
+          xpReward: 200,
+          exerciseType: 'news-comprehension',
+          order: 2,
+        },
+        {
+          id: 'nuance-quiz',
+          title_pt: 'Quiz de Nuance',
+          title_en: 'Nuance Quiz',
+          description_pt: 'Teste sua precisão',
+          type: 'quiz',
+          estimatedMinutes: 25,
+          xpReward: 250,
+          order: 3,
+        }
+      ]
+    },
+    // ========== Unit 12 ==========
+    {
+      id: 'rhetoric-debate',
+      unitId: 'unit-12',
+      title_pt: 'Retórica e Debate',
+      title_en: 'Rhetoric and Debate',
+      description_pt: 'Argumentação lógica e persuasão',
+      difficulty: 'avancado',
+      icon: 'Mic2',
+      color: 'bg-violet-700',
+      order: 14,
+      prerequisites: ['nuance-mastery'],
+      lessons: [
+        {
+          id: 'persuasive-language',
+          title_pt: 'Linguagem Persuasiva',
+          title_en: 'Persuasive Language',
+          description_pt: 'Palavras que convencem',
+          type: 'vocabulary',
+          estimatedMinutes: 30,
+          xpReward: 200,
+          order: 1,
+        },
+        {
+          id: 'debate-structure',
+          title_pt: 'Estrutura de Debate',
+          title_en: 'Debate Structure',
+          description_pt: 'Como organizar seus argumentos',
+          type: 'grammar',
+          estimatedMinutes: 30,
+          xpReward: 200,
+          grammarRuleIds: ['inversion-emphasis'], // Reusing relevant rules
+          order: 2,
+        },
+        {
+          id: 'logical-connectors',
+          title_pt: 'Conectivos Lógicos',
+          title_en: 'Logical Connectors',
+          description_pt: 'Portanto, contudo, todavia...',
+          type: 'exercise',
+          estimatedMinutes: 25,
+          xpReward: 200,
+          exerciseType: 'sentence-ordering',
+          order: 3,
+        }
+      ]
+    },
+    // ========== Unit 13 ==========
+    {
+      id: 'cultural-immersion',
+      unitId: 'unit-13',
+      title_pt: 'Imersão Cultural',
+      title_en: 'Cultural Immersion',
+      description_pt: 'Humor, ironia e referências culturais',
+      difficulty: 'avancado',
+      icon: 'Mask',
+      color: 'bg-pink-700',
+      order: 15,
+      prerequisites: ['rhetoric-debate'],
+      lessons: [
+        {
+          id: 'sarcasm-irony',
+          title_pt: 'Sarcasmo e Ironia',
+          title_en: 'Sarcasm and Irony',
+          description_pt: 'Detectando o tom invisível',
+          type: 'reading',
+          estimatedMinutes: 30,
+          xpReward: 200,
+          exerciseType: 'news-comprehension',
+          order: 1,
+        },
+        {
+          id: 'complex-idioms',
+          title_pt: 'Idiomas Complexos',
+          title_en: 'Complex Idioms',
+          description_pt: 'Expressões que confundem até nativos',
+          type: 'vocabulary',
+          estimatedMinutes: 35,
+          xpReward: 200,
+          vocabularyTopics: ['idioms-common'], // Using existing pool for now
+          order: 2,
+        },
+        {
+          id: 'cultural-quiz',
+          title_pt: 'Quiz Cultural',
+          title_en: 'Cultural Quiz',
+          description_pt: 'Você entende a cultura?',
+          type: 'quiz',
+          estimatedMinutes: 30,
+          xpReward: 300,
+          order: 3,
+        }
+      ]
+    },
+    // ========== Unit 14 ==========
+    {
+      id: 'final-mastery',
+      unitId: 'unit-14',
+      title_pt: 'O Mestre PobreLingo',
+      title_en: 'The PobreLingo Master',
+      description_pt: 'O teste final. Apenas para os fortes.',
+      difficulty: 'avancado',
+      icon: 'Crown',
+      color: 'bg-amber-500',
+      order: 16,
+      prerequisites: ['cultural-immersion'],
+      lessons: [
+        {
+          id: 'c2-vocabulary',
+          title_pt: 'Vocabulário C2',
+          title_en: 'C2 Vocabulary',
+          description_pt: 'Palavras raras e acadêmicas',
+          type: 'vocabulary',
+          estimatedMinutes: 40,
+          xpReward: 300,
+          order: 1,
+        },
+        {
+          id: 'master-reading',
+          title_pt: 'Leitura de Mestre',
+          title_en: 'Master Reading',
+          description_pt: 'Compreensão de textos densos',
+          type: 'reading',
+          estimatedMinutes: 45,
+          xpReward: 300,
+          exerciseType: 'news-comprehension',
+          order: 2,
+        },
+        {
+          id: 'the-final-boss',
+          title_pt: 'O CHEFÃO FINAL',
+          title_en: 'THE FINAL BOSS',
+          description_pt: 'Zere o curso e ganhe sua coroa',
+          type: 'quiz',
+          estimatedMinutes: 90,
+          xpReward: 5000,
+          order: 3,
         }
       ]
     }

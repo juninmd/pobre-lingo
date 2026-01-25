@@ -77,6 +77,7 @@ function UnitSection({
     if (pathPoints.length < 2) return '';
 
     // Construct a smooth curve
+    // We assume a coordinate system width of 320px, so center is 160
     let d = `M ${160 + pathPoints[0].x} ${pathPoints[0].y}`;
     for (let i = 0; i < pathPoints.length - 1; i++) {
         const current = pathPoints[i];
@@ -93,6 +94,8 @@ function UnitSection({
     return d;
   }, [pathPoints]);
 
+  const totalHeight = modules.length * nodeHeight;
+
   return (
     <div className={cn("w-full relative", isUnitLocked && "opacity-70 grayscale")}>
 
@@ -101,24 +104,28 @@ function UnitSection({
         "sticky top-24 z-30 mb-12 mx-4 rounded-2xl p-4 text-white shadow-xl border-b-[6px] transition-transform hover:scale-[1.02]",
         unitColor
       )}>
-        <div className="flex justify-between items-start">
-          <div>
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex-1">
             <h2 className="font-extrabold text-xl tracking-tight">{unit.title}</h2>
-            <p className="text-white/90 text-sm mt-1 leading-snug font-medium">{unit.description}</p>
+            <p className="text-white/90 text-sm mt-1 leading-snug font-medium line-clamp-2">{unit.description}</p>
           </div>
           <GuidebookModal unit={unit} trigger={
-            <Button size="icon" variant="ghost" className="text-white hover:bg-white/20 h-10 w-10">
-              <LucideIcons.BookOpen className="w-6 h-6" />
+            <Button variant="ghost" className="text-white hover:bg-white/20 h-12 w-12 rounded-full shrink-0">
+              <LucideIcons.BookOpen className="w-8 h-8" />
             </Button>
           }/>
         </div>
       </div>
 
-      {/* Container for Nodes and Path */}
-      <div className="relative flex flex-col items-center" style={{ minHeight: modules.length * nodeHeight }}>
+      {/* Container for Nodes and Path - Constrained to 320px to match SVG coordinates */}
+      <div className="relative flex flex-col items-center mx-auto w-full max-w-[320px]" style={{ minHeight: totalHeight }}>
 
         {/* SVG Path Background */}
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible">
+        <svg
+            className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible"
+            viewBox={`0 0 320 ${totalHeight}`}
+            preserveAspectRatio="xMidYMin meet"
+        >
             <path
                 d={svgPath}
                 fill="none"
@@ -135,8 +142,9 @@ function UnitSection({
           const isCompleted = progress.completionPercentage >= 100;
           const isBoss = index === modules.length - 1; // Last module is BOSS
 
-          // Calculate horizontal offset
-          const xOffset = Math.sin((index / 2) * Math.PI) * 70;
+          // Calculate horizontal offset percentage (70px / 320px base width = 21.875%)
+          // This ensures nodes align with the SVG which scales with viewBox
+          const xOffsetPct = Math.sin((index / 2) * Math.PI) * 21.875;
 
           const Icon = isBoss ? Crown : getIcon(module.icon);
 
@@ -181,7 +189,7 @@ function UnitSection({
               key={module.id}
               className="absolute flex justify-center w-full"
               style={{
-                  transform: `translateX(${xOffset}px)`,
+                  transform: `translateX(${xOffsetPct}%)`,
                   top: `${index * nodeHeight}px`
               }}
             >

@@ -7,6 +7,7 @@ import { ArrowLeft, Send, CheckCircle, XCircle, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
+import { SCENARIOS, ConversationOption, ConversationStep } from '@/lib/conversationData';
 
 interface Message {
   id: string;
@@ -16,85 +17,21 @@ interface Message {
   audio?: boolean;
 }
 
-interface ConversationOption {
-  id: string;
-  text_en: string;
-  text_pt: string;
-  isCorrect: boolean;
-  feedback?: string;
-}
-
-interface ConversationStep {
-  id: string;
-  mascotMessage: string;
-  options: ConversationOption[];
-}
-
-// Scenarios based on modules
-const SCENARIOS: Record<string, ConversationStep[]> = {
-  'default': [
-    {
-      id: 'step1',
-      mascotMessage: "Hello! My name is Pobrelingo. What is your name?",
-      options: [
-        { id: 'opt1', text_en: "I am fine, thanks.", text_pt: "Estou bem, obrigado.", isCorrect: false, feedback: "I asked for your name!" },
-        { id: 'opt2', text_en: "My name is [Name].", text_pt: "Meu nome é [Nome].", isCorrect: true },
-        { id: 'opt3', text_en: "Goodbye!", text_pt: "Tchau!", isCorrect: false, feedback: "We just started!" },
-      ]
-    },
-    {
-      id: 'step2',
-      mascotMessage: "Nice to meet you! How are you today?",
-      options: [
-        { id: 'opt1', text_en: "I am very happy!", text_pt: "Estou muito feliz!", isCorrect: true },
-        { id: 'opt2', text_en: "Yes, I am.", text_pt: "Sim, eu sou.", isCorrect: false, feedback: "That doesn't answer 'how' you are." },
-        { id: 'opt3', text_en: "Blue.", text_pt: "Azul.", isCorrect: false },
-      ]
-    },
-    {
-      id: 'step3',
-      mascotMessage: "That is great! Are you ready to learn English?",
-      options: [
-        { id: 'opt1', text_en: "No, I want to sleep.", text_pt: "Não, quero dormir.", isCorrect: false, feedback: "Come on, it will be fun!" },
-        { id: 'opt2', text_en: "Yes, let's go!", text_pt: "Sim, vamos lá!", isCorrect: true },
-      ]
-    }
-  ],
-  'daily-conversations': [
-    {
-      id: 'c1',
-      mascotMessage: "Hi there! Welcome to the coffee shop. What can I get for you?",
-      options: [
-        { id: 'o1', text_en: "I am a student.", text_pt: "Eu sou um estudante.", isCorrect: false, feedback: "The barista asked for your order." },
-        { id: 'o2', text_en: "I would like a coffee, please.", text_pt: "Eu gostaria de um café, por favor.", isCorrect: true },
-        { id: 'o3', text_en: "Where is the bathroom?", text_pt: "Onde fica o banheiro?", isCorrect: false, feedback: "Maybe order first?" },
-      ]
-    },
-    {
-      id: 'c2',
-      mascotMessage: "Sure thing! Do you want milk and sugar with that?",
-      options: [
-        { id: 'o1', text_en: "Yes, please.", text_pt: "Sim, por favor.", isCorrect: true },
-        { id: 'o2', text_en: "No, I like dogs.", text_pt: "Não, eu gosto de cachorros.", isCorrect: false, feedback: "Unrelated!" },
-        { id: 'o3', text_en: "It is five dollars.", text_pt: "São cinco dólares.", isCorrect: false },
-      ]
-    },
-    {
-      id: 'c3',
-      mascotMessage: "Here you go. Have a nice day!",
-      options: [
-        { id: 'o1', text_en: "You too, thanks!", text_pt: "Você também, obrigado!", isCorrect: true },
-        { id: 'o2', text_en: "I am sorry.", text_pt: "Desculpe.", isCorrect: false },
-      ]
-    }
-  ]
+// Map modules/lessons to scenarios
+const SCENARIO_MAP: Record<string, string> = {
+  'daily-conversations': 'daily-conversations',
+  'airport-checkin-sim': 'airport-checkin',
+  'job-interview-sim': 'job-interview',
+  'job-interview-sim-mid': 'job-interview',
+  'ordering-food-sim': 'ordering-food',
+  'conversation-practice': 'daily-conversations'
 };
 
 export default function ConversationExercise() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const moduleId = searchParams.get('module');
-  const lessonId = searchParams.get('lesson');
+  const moduleId = searchParams.get('module') || '';
+  const lessonId = searchParams.get('lesson') || '';
   const { completeLesson } = useCurriculumProgress();
 
   const [history, setHistory] = useState<Message[]>([]);
@@ -102,7 +39,9 @@ export default function ConversationExercise() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [typing, setTyping] = useState(false);
 
-  const steps = SCENARIOS[moduleId === 'daily-conversations' ? 'daily-conversations' : 'default'] || SCENARIOS['default'];
+  // Determine scenario
+  const scenarioKey = SCENARIO_MAP[lessonId] || SCENARIO_MAP[moduleId] || 'default';
+  const steps = SCENARIOS[scenarioKey] || SCENARIOS['default'];
   const currentStep = steps[currentStepIndex];
   const chatEndRef = useRef<HTMLDivElement>(null);
 

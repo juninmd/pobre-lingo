@@ -431,6 +431,28 @@ Você chegou ao final. Aqui testamos tudo.
 
 Você agora é parte da elite do PobreLingo. Vá e conquiste o mundo!
     `
+  },
+  {
+    id: 'unit-15',
+    title: 'Unidade 15: Business Mastery',
+    description: 'Domine o inglês corporativo global.',
+    order: 15,
+    difficulty: 'avancado',
+    guidebookContent: `
+# Business Mastery 💼
+
+Bem-vindo ao nível executivo.
+
+### Negociações
+* **To reach a consensus**: Chegar a um consenso.
+* **Win-win situation**: Situação onde todos ganham.
+* **To drive a hard bargain**: Negociar com firmeza.
+
+### Liderança
+* **To spearhead**: Liderar (um projeto).
+* **To delegate**: Delegar tarefas.
+* **To empower**: Empoderar a equipe.
+    `
   }
 ];
 
@@ -542,6 +564,30 @@ export const curriculumData: LearningPath = {
           order: 8,
         },
       ],
+    },
+    {
+      id: 'ordering-food-module',
+      unitId: 'unit-2',
+      title_pt: 'Simulação: Restaurante',
+      title_en: 'Simulation: Restaurant',
+      description_pt: 'Peça sua comida',
+      difficulty: 'basico',
+      icon: 'MessageCircle',
+      color: 'bg-green-600',
+      order: 3,
+      lessons: [
+        {
+          id: 'ordering-food-sim',
+          title_pt: 'Pedindo Comida',
+          title_en: 'Ordering Food',
+          description_pt: 'Não passe fome!',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 150,
+          exerciseType: 'conversation',
+          order: 1
+        }
+      ]
     },
     {
       id: 'unit2-game-hangman',
@@ -884,6 +930,30 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    {
+      id: 'travel-conversation-module',
+      unitId: 'unit-4',
+      title_pt: 'Simulação: Aeroporto',
+      title_en: 'Simulation: Airport',
+      description_pt: 'Pratique o check-in',
+      difficulty: 'basico',
+      icon: 'MessageCircle',
+      color: 'bg-cyan-600',
+      order: 4,
+      lessons: [
+        {
+          id: 'airport-checkin-sim',
+          title_pt: 'Check-in no Aeroporto',
+          title_en: 'Airport Check-in',
+          description_pt: 'Fale com o agente',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 150,
+          exerciseType: 'conversation',
+          order: 1
+        }
+      ]
+    },
     // ========== NÍVEL INTERMEDIÁRIO ==========
     // Unit 5
     {
@@ -1013,6 +1083,30 @@ export const curriculumData: LearningPath = {
         },
       ],
     },
+    {
+      id: 'unit6-game-wordsearch',
+      unitId: 'unit-6',
+      title_pt: 'Desafio: Caça-Palavras',
+      title_en: 'Challenge: Word Search',
+      description_pt: 'Encontre as palavras condicionais',
+      difficulty: 'intermediario',
+      icon: 'Gamepad2',
+      color: 'bg-cyan-600',
+      order: 3,
+      lessons: [
+        {
+          id: 'unit6-wordsearch-lesson',
+          title_pt: 'Caça-Palavras',
+          title_en: 'Word Search',
+          description_pt: 'Divirta-se!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 150,
+          gameType: 'word-search',
+          order: 1
+        }
+      ]
+    },
     // Unit 7
     {
       id: 'passive-voice',
@@ -1140,6 +1234,30 @@ export const curriculumData: LearningPath = {
           xpReward: 120,
           exerciseType: 'news-comprehension',
           order: 3,
+        }
+      ]
+    },
+    {
+      id: 'job-interview-module',
+      unitId: 'unit-7',
+      title_pt: 'Simulação: Entrevista',
+      title_en: 'Simulation: Job Interview',
+      description_pt: 'Pratique para sua entrevista',
+      difficulty: 'intermediario',
+      icon: 'Briefcase',
+      color: 'bg-slate-700',
+      order: 8,
+      lessons: [
+        {
+          id: 'job-interview-sim-mid',
+          title_pt: 'Entrevista de Emprego',
+          title_en: 'Job Interview',
+          description_pt: 'Responda com confiança',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 200,
+          exerciseType: 'conversation',
+          order: 1
         }
       ]
     },
@@ -1379,6 +1497,30 @@ export const curriculumData: LearningPath = {
           exerciseType: 'listening',
           order: 2,
         },
+      ]
+    },
+    {
+      id: 'unit9-game-sentencerush',
+      unitId: 'unit-9',
+      title_pt: 'Desafio: Frases Rápidas',
+      title_en: 'Challenge: Sentence Rush',
+      description_pt: 'Velocidade Nativa!',
+      difficulty: 'avancado',
+      icon: 'Gamepad2',
+      color: 'bg-rose-600',
+      order: 3,
+      lessons: [
+        {
+          id: 'unit9-sentencerush-lesson',
+          title_pt: 'Corrida de Frases',
+          title_en: 'Sentence Rush',
+          description_pt: 'Seja rápido como um nativo!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'sentence-rush',
+          order: 1
+        }
       ]
     },
     {
@@ -1668,6 +1810,54 @@ export const curriculumData: LearningPath = {
           type: 'quiz',
           estimatedMinutes: 90,
           xpReward: 5000,
+          order: 3,
+        }
+      ]
+    },
+    // ========== Unit 15 ==========
+    {
+      id: 'business-mastery-module',
+      unitId: 'unit-15',
+      title_pt: 'Mestrado em Negócios',
+      title_en: 'Business Mastery',
+      description_pt: 'Lidere reuniões e negociações',
+      difficulty: 'avancado',
+      icon: 'Briefcase',
+      color: 'bg-emerald-700',
+      order: 17,
+      prerequisites: ['final-mastery'],
+      lessons: [
+        {
+          id: 'negotiations',
+          title_pt: 'Negociações Avançadas',
+          title_en: 'Advanced Negotiations',
+          description_pt: 'Como ganhar um debate de negócios',
+          type: 'vocabulary',
+          estimatedMinutes: 30,
+          xpReward: 250,
+          vocabularyTopics: ['business-negotiation'],
+          order: 1,
+        },
+        {
+          id: 'leadership-vocab',
+          title_pt: 'Vocabulário de Liderança',
+          title_en: 'Leadership Vocabulary',
+          description_pt: 'Palavras de um CEO',
+          type: 'vocabulary',
+          estimatedMinutes: 30,
+          xpReward: 250,
+          vocabularyTopics: ['leadership'],
+          order: 2,
+        },
+        {
+          id: 'job-interview-sim',
+          title_pt: 'Simulação: Entrevista',
+          title_en: 'Simulation: Job Interview',
+          description_pt: 'Consiga o emprego dos sonhos',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 300,
+          exerciseType: 'conversation',
           order: 3,
         }
       ]

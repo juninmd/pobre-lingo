@@ -3,7 +3,7 @@ import { PageContainer } from '@/components/common/PageContainer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { Brain, RefreshCw, CheckCircle2, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Brain, RefreshCw, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Trophy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';

@@ -39,7 +39,6 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "firebase": "^12.7.0",
-    "logrocket": "^11.0.0",
     "lucide-react": "^0.562.0",
     "patch-package": "^8.0.1",
     "react": "^19.2.3",

@@ -3,9 +3,10 @@ import { PageContainer } from '@/components/common/PageContainer';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { dictionaryEntries } from '@/lib/dictionaryData';
-import { Shuffle, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Shuffle, RefreshCw, Trophy, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
 interface MemoryCard {
   id: string; // unique id for the card instance
@@ -19,6 +20,12 @@ interface MemoryCard {
 const GAME_SIZE = 8; // pairs
 
 export default function MemoryMatchPage() {
+  const [searchParams] = useSearchParams();
+  const moduleId = searchParams.get('module');
+  const lessonId = searchParams.get('lesson');
+  const { completeLesson } = useCurriculumProgress();
+  const navigate = useNavigate();
+
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [matches, setMatches] = useState(0);
@@ -127,6 +134,15 @@ export default function MemoryMatchPage() {
       origin: { y: 0.6 },
       colors: ['#22c55e', '#eab308', '#3b82f6']
     });
+
+    if (moduleId && lessonId) {
+      // Auto complete or let them click continue. Let's do instant complete but wait for user to click "Continue"
+      completeLesson(moduleId, lessonId, 100);
+    }
+  };
+
+  const handleContinue = () => {
+      navigate('/');
   };
 
   return (
@@ -134,9 +150,9 @@ export default function MemoryMatchPage() {
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
         <div className="w-full flex items-center justify-between">
           <Button variant="ghost" asChild>
-            <Link to="/arcade" className="gap-2">
+            <Link to={moduleId ? "/" : "/arcade"} className="gap-2">
               <ArrowLeft className="h-4 w-4" />
-              Voltar
+              {moduleId ? "Voltar ao Mapa" : "Voltar"}
             </Link>
           </Button>
           <div className="flex items-center gap-4">
@@ -163,9 +179,16 @@ export default function MemoryMatchPage() {
                 <h3 className="text-2xl font-bold text-green-700 dark:text-green-300">Parabéns!</h3>
                 <p className="text-green-600 dark:text-green-400">Você completou o jogo em {moves} movimentos.</p>
               </div>
-              <Button onClick={startNewGame} className="w-full bg-green-600 hover:bg-green-700">
-                Jogar Novamente
-              </Button>
+
+              {moduleId && lessonId ? (
+                <Button onClick={handleContinue} className="w-full bg-green-600 hover:bg-green-700 gap-2" size="lg">
+                    Continuar <ArrowRight className="w-4 h-4" />
+                </Button>
+              ) : (
+                <Button onClick={startNewGame} className="w-full bg-green-600 hover:bg-green-700">
+                    Jogar Novamente
+                </Button>
+              )}
             </div>
           </Card>
         )}
@@ -175,14 +198,12 @@ export default function MemoryMatchPage() {
             <div
               key={card.id}
               onClick={() => handleCardClick(index)}
+              data-pair-id={card.wordId}
               className={`
                 aspect-[3/4] cursor-pointer transition-all duration-300 transform preserve-3d relative
                 ${card.isFlipped || card.isMatched ? 'rotate-y-180' : ''}
                 ${card.isMatched ? 'opacity-0 pointer-events-none' : 'opacity-100'}
               `}
-              // Note: opacity-0 for matched cards creates a "disappearing" effect.
-              // If we want them to stay visible but dimmed, we can use opacity-50.
-              // Let's use opacity-50 and grayscale for a better "collected" feel.
               style={{
                  transformStyle: 'preserve-3d',
                  transform: (card.isFlipped || card.isMatched) ? 'rotateY(180deg)' : 'rotateY(0deg)',

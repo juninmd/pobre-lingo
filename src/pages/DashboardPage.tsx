@@ -44,7 +44,7 @@ export default function DashboardPage() {
         <Card className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 border-orange-200/60 transition-all hover:scale-105">
            <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
               <div className="p-2 bg-orange-100 dark:bg-orange-900/50 rounded-full">
-                <Flame className={cn("w-5 h-5 text-orange-600", overallProgress.streak > 0 && "animate-pulse")} />
+                <Flame className={cn("w-5 h-5 text-orange-600", overallProgress.streak > 0 && "animate-bounce")} />
               </div>
               <div>
                 <span className="text-2xl font-bold block">{overallProgress.streak}</span>

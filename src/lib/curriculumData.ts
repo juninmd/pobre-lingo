@@ -15,7 +15,7 @@ export interface Lesson {
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
   exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening' | 'conversation';
-  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush';
+  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush' | 'memory-match' | 'word-scramble';
   vocabularyTopics?: string[];
   speakingTopics?: string[];
   order: number;
@@ -590,6 +590,30 @@ export const curriculumData: LearningPath = {
       ]
     },
     {
+      id: 'unit3-game-memory',
+      unitId: 'unit-3',
+      title_pt: 'Desafio: Memória',
+      title_en: 'Challenge: Memory Match',
+      description_pt: 'Encontre os pares!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-purple-700',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit3-memory-lesson',
+          title_pt: 'Jogo da Memória',
+          title_en: 'Memory Match',
+          description_pt: 'Exercite sua mente.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 100,
+          gameType: 'memory-match',
+          order: 1
+        }
+      ]
+    },
+    {
       id: 'unit2-game-hangman',
       unitId: 'unit-2',
       title_pt: 'Desafio: Forca',
@@ -609,6 +633,30 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 10,
           xpReward: 100,
           gameType: 'hangman',
+          order: 1
+        }
+      ]
+    },
+    {
+      id: 'unit5-game-scramble',
+      unitId: 'unit-5',
+      title_pt: 'Desafio: Embaralhado',
+      title_en: 'Challenge: Word Scramble',
+      description_pt: 'Organize as letras!',
+      difficulty: 'intermediario',
+      icon: 'Gamepad2',
+      color: 'bg-orange-700',
+      order: 6,
+      lessons: [
+        {
+          id: 'unit5-scramble-lesson',
+          title_pt: 'Word Scramble',
+          title_en: 'Word Scramble',
+          description_pt: 'Desembaralhe as palavras.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 150,
+          gameType: 'word-scramble',
           order: 1
         }
       ]

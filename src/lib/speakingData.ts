@@ -36,5 +36,26 @@ export const speakingData: Record<string, SpeakingPhrase[]> = {
     { phrase: 'I have been studying English for five years', translation: 'Eu tenho estudado inglês por cinco anos' },
     { phrase: 'If I had known, I would have come earlier', translation: 'Se eu soubesse, teria vindo mais cedo' },
     { phrase: 'Although it was raining, we went for a walk', translation: 'Embora estivesse chovendo, fomos caminhar' }
+  ],
+  'debate-openers': [
+    { phrase: 'I see your point, however, I must disagree.', translation: 'Entendo seu ponto, contudo, devo discordar.' },
+    { phrase: 'From my perspective, this is not the case.', translation: 'Da minha perspectiva, este não é o caso.' },
+    { phrase: 'Let me play devil\'s advocate for a moment.', translation: 'Deixe-me fazer o advogado do diabo por um momento.' },
+    { phrase: 'There are two sides to every story.', translation: 'Existem dois lados para toda história.' },
+    { phrase: 'I am convinced that we can find a solution.', translation: 'Estou convencido de que podemos encontrar uma solução.' }
+  ],
+  'presentation-phrases': [
+    { phrase: 'Good morning ladies and gentlemen.', translation: 'Bom dia senhoras e senhores.' },
+    { phrase: 'Today I would like to talk about our progress.', translation: 'Hoje eu gostaria de falar sobre nosso progresso.' },
+    { phrase: 'Let\'s move on to the next slide.', translation: 'Vamos passar para o próximo slide.' },
+    { phrase: 'To sum up, we have achieved our goals.', translation: 'Para resumir, nós alcançamos nossos objetivos.' },
+    { phrase: 'Does anyone have any questions?', translation: 'Alguém tem alguma pergunta?' }
+  ],
+  'complex-shadowing': [
+    { phrase: 'It was the weather that caused the delay, not the traffic.', translation: 'Foi o clima que causou o atraso, não o trânsito.' },
+    { phrase: 'Never have I witnessed such a display of incompetence.', translation: 'Nunca testemunhei tamanha demonstração de incompetência.' },
+    { phrase: 'Had I known you were coming, I would have baked a cake.', translation: 'Se eu soubesse que você viria, teria feito um bolo.' },
+    { phrase: 'By the time you read this, I will have left the country.', translation: 'Quando você ler isso, eu já terei deixado o país.' },
+    { phrase: 'Not only is he intelligent, but he is also hardworking.', translation: 'Ele não é apenas inteligente, mas também trabalhador.' }
   ]
 };

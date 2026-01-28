@@ -1282,6 +1282,17 @@ export const curriculumData: LearningPath = {
           xpReward: 120,
           exerciseType: 'news-comprehension',
           order: 3,
+        },
+        {
+          id: 'presentation-speaking',
+          title_pt: 'Discurso: Apresentações',
+          title_en: 'Speaking: Presentations',
+          description_pt: 'Treine frases para apresentações profissionais',
+          type: 'speaking',
+          estimatedMinutes: 20,
+          xpReward: 150,
+          speakingTopics: ['presentation-phrases'],
+          order: 4,
         }
       ]
     },
@@ -1766,6 +1777,17 @@ export const curriculumData: LearningPath = {
           xpReward: 200,
           exerciseType: 'sentence-ordering',
           order: 3,
+        },
+        {
+          id: 'debate-speaking',
+          title_pt: 'Discurso: Debate',
+          title_en: 'Speaking: Debate',
+          description_pt: 'Pratique argumentação oral',
+          type: 'speaking',
+          estimatedMinutes: 25,
+          xpReward: 175,
+          speakingTopics: ['debate-openers'],
+          order: 4,
         }
       ]
     },
@@ -1837,6 +1859,7 @@ export const curriculumData: LearningPath = {
           type: 'vocabulary',
           estimatedMinutes: 40,
           xpReward: 300,
+          vocabularyTopics: ['c2-vocabulary'],
           order: 1,
         },
         {
@@ -1859,6 +1882,17 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 90,
           xpReward: 5000,
           order: 3,
+        },
+        {
+          id: 'shadowing-challenge',
+          title_pt: 'Desafio de Shadowing',
+          title_en: 'Shadowing Challenge',
+          description_pt: 'Repita frases complexas como um nativo',
+          type: 'speaking',
+          estimatedMinutes: 30,
+          xpReward: 250,
+          speakingTopics: ['complex-shadowing'],
+          order: 4,
         }
       ]
     },

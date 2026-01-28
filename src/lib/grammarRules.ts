@@ -813,6 +813,73 @@ export const grammarCategories: GrammarCategory[] = [
         common_mistakes_pt: `Conjugar o verbo na terceira pessoa do singular.<br />*Ex: I suggest that he goes.* (Comum na fala informal, mas tecnicamente incorreto no subjuntivo formal) -> *I suggest that he go.* (Correto formalmente)`,
       },
     ],
+  },
+  {
+    id: 'fluency-grammar',
+    name_pt: 'Gramática da Fluência',
+    name_en: 'Fluency Grammar',
+    description_pt: 'Estruturas de elite para atingir o nível C2 de proficiência.',
+    icon: 'Sparkles',
+    rules: [
+      {
+        id: 'mixed-conditionals',
+        title_pt: 'Mixed Conditionals',
+        title_en: 'Mixed Conditionals',
+        explanation_pt: `As Mixed Conditionals misturam tempos verbais de diferentes tipos de condicionais (geralmente a 2ª e a 3ª) para expressar situações onde o tempo da condição é diferente do tempo do resultado.`,
+        structure_format_pt: `<strong>Passado Irreal (3rd) + Presente Irreal (2nd):</strong> Se algo tivesse acontecido no passado, o presente seria diferente.<br /><strong>Presente Irreal (2nd) + Passado Irreal (3rd):</strong> Se algo fosse verdade agora (estado permanente), o passado teria sido diferente.`,
+        structure_format_en: `<strong>Past Unreal (3rd) + Present Unreal (2nd):</strong> If something had happened in the past, the present would be different.<br /><strong>Present Unreal (2nd) + Past Unreal (3rd):</strong> If something were true now (state), the past would have been different.`,
+        examples: [
+          { sentence_en: 'If I had studied harder (past), I would have a better job now (present).', translation_pt: 'Se eu tivesse estudado mais, eu teria um emprego melhor agora.' },
+          { sentence_en: 'If I were fluent in English (present state), I would have got the job (past result).', translation_pt: 'Se eu fosse fluente em inglês, eu teria conseguido o emprego.' },
+        ],
+        tags: ['avançado', 'condicionais', 'mixed'],
+        common_mistakes_pt: `Não misturar os tempos corretamente e usar apenas a 3ª ou 2ª condicional pura quando a situação exige tempos diferentes.`,
+      },
+      {
+        id: 'cleft-sentences',
+        title_pt: 'Cleft Sentences (Frases Clivadas)',
+        title_en: 'Cleft Sentences',
+        explanation_pt: `Cleft sentences são usadas para conectar o que já é entendido com o que é novo, dando foco a uma parte específica da frase. Elas "dividem" (cleft) a frase em duas partes.`,
+        structure_format_pt: `<strong>It Cleft:</strong> It + be + [FOCO] + that/who...<br /><strong>Wh- Cleft:</strong> What + [sujeito + verbo] + be + [FOCO]`,
+        structure_format_en: `<strong>It Cleft:</strong> It + be + [FOCUS] + that/who...<br /><strong>Wh- Cleft:</strong> What + [subject + verb] + be + [FOCUS]`,
+        examples: [
+          { sentence_en: 'It was John who broke the window.', translation_pt: 'Foi o John que quebrou a janela. (Foco em John)' },
+          { sentence_en: 'What I need is a coffee.', translation_pt: 'O que eu preciso é de um café. (Foco em café)' },
+          { sentence_en: 'It is in London that they live.', translation_pt: 'É em Londres que eles moram.' },
+        ],
+        tags: ['avançado', 'ênfase', 'estrutura'],
+        common_mistakes_pt: `Esquecer o verbo "to be" ou usar o pronome relativo errado.`,
+      },
+      {
+        id: 'participle-clauses',
+        title_pt: 'Participle Clauses',
+        title_en: 'Participle Clauses',
+        explanation_pt: `Orações participiais usam particípios presentes (-ing) ou passados (-ed/3ª coluna) para encurtar orações e torná-las mais fluidas. São muito comuns na escrita formal e literária.`,
+        structure_format_pt: `<strong>Present Participle (-ing):</strong> Para ações simultâneas ou ativas.<br /><strong>Past Participle (-ed):</strong> Para ações passivas or resultados.`,
+        structure_format_en: `<strong>Present Participle (-ing):</strong> For simultaneous or active actions.<br /><strong>Past Participle (-ed):</strong> For passive actions or results.`,
+        examples: [
+          { sentence_en: 'Walking down the street, I met an old friend.', translation_pt: 'Caminhando pela rua, encontrei um velho amigo. (Enquanto caminhava...)' },
+          { sentence_en: 'Shocked by the news, she couldn\'t speak.', translation_pt: 'Chocada com a notícia, ela não conseguia falar. (Porque estava chocada...)' },
+          { sentence_en: 'Having finished his work, he went home.', translation_pt: 'Tendo terminado seu trabalho, ele foi para casa. (Depois que terminou...)' },
+        ],
+        tags: ['avançado', 'estrutura', 'escrita'],
+        common_mistakes_pt: `Dangling Participle: Quando o sujeito da oração participial não é o mesmo da oração principal.<br />*Ex: Walking down the street, the trees were beautiful.* (Incorreto - As árvores estavam caminhando?) -> *Walking down the street, I saw beautiful trees.*`,
+      },
+      {
+        id: 'future-perfect-continuous',
+        title_pt: 'Future Perfect Continuous',
+        title_en: 'Future Perfect Continuous',
+        explanation_pt: `Usado para enfatizar a duração de uma ação que continuará até um ponto específico no futuro.`,
+        structure_format_pt: `Sujeito + <code>will have been</code> + <strong>Verbo-ing</strong>`,
+        structure_format_en: `Subject + <code>will have been</code> + <strong>Verb-ing</strong>`,
+        examples: [
+          { sentence_en: 'By next year, I will have been working here for 10 years.', translation_pt: 'No ano que vem, eu estarei trabalhando aqui há 10 anos.' },
+          { sentence_en: 'She will have been driving for 6 hours by the time she arrives.', translation_pt: 'Ela estará dirigindo há 6 horas quando chegar.' },
+        ],
+        tags: ['avançado', 'futuro', 'tempos'],
+        common_mistakes_pt: `Usar verbos de estado (stative verbs) que não aceitam forma contínua (ex: know, like, believe).`,
+      },
+    ]
   }
 ];
 

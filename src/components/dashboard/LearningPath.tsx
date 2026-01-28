@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { curriculumData, Unit, Module } from '@/lib/curriculumData';
+import { Link, useNavigate } from 'react-router-dom';
+import { curriculumData, Unit, Module, Lesson } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { cn } from '@/lib/utils';
 import { GuidebookModal } from '@/components/curriculum/GuidebookModal';
+import { LessonStartModal } from '@/components/curriculum/LessonStartModal';
 import { Star, Lock, Trophy, Gamepad2, ScrollText, Mic, Crown, Feather, Sparkles } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,9 +18,25 @@ const getIcon = (name: string) => {
 
 export function LearningPath() {
   const { getModuleProgress, isModuleUnlocked, isLessonCompleted } = useCurriculumProgress();
+  const navigate = useNavigate();
+  const [selectedLesson, setSelectedLesson] = React.useState<Lesson | null>(null);
+  const [startLink, setStartLink] = React.useState<string>('');
+  const [isStartModalOpen, setIsStartModalOpen] = React.useState(false);
+
+  const handleLessonStart = (lesson: Lesson, link: string) => {
+    setSelectedLesson(lesson);
+    setStartLink(link);
+    setIsStartModalOpen(true);
+  };
 
   return (
     <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-12 pb-32">
+      <LessonStartModal
+          isOpen={isStartModalOpen}
+          onClose={() => setIsStartModalOpen(false)}
+          onStart={() => { setIsStartModalOpen(false); navigate(startLink); }}
+          lesson={selectedLesson}
+      />
       {curriculumData.units.map((unit, unitIndex) => (
         <React.Fragment key={unit.id}>
           {unit.sectionTitle && (
@@ -35,6 +52,7 @@ export function LearningPath() {
             getModuleProgress={getModuleProgress}
             isModuleUnlocked={isModuleUnlocked}
             isLessonCompleted={isLessonCompleted}
+            onLessonStart={handleLessonStart}
           />
         </React.Fragment>
       ))}
@@ -47,13 +65,15 @@ function UnitSection({
   modules,
   getModuleProgress,
   isModuleUnlocked,
-  isLessonCompleted
+  isLessonCompleted,
+  onLessonStart
 }: {
   unit: Unit,
   modules: Module[],
   getModuleProgress: (id: string) => any,
   isModuleUnlocked: (module: Module) => boolean,
-  isLessonCompleted: (moduleId: string, lessonId: string) => boolean
+  isLessonCompleted: (moduleId: string, lessonId: string) => boolean,
+  onLessonStart: (lesson: Lesson, link: string) => void
 }) {
   const isUnitLocked = modules.every(m => !isModuleUnlocked(m) && m.order > 1);
 
@@ -195,6 +215,12 @@ function UnitSection({
             >
               <Link
                 to={lessonLink}
+                onClick={(e) => {
+                    if (!isLocked && targetLesson) {
+                        e.preventDefault();
+                        onLessonStart(targetLesson, lessonLink);
+                    }
+                }}
                 className={cn(
                   `relative z-10 flex items-center justify-center ${nodeSize} rounded-full ${borderSize} transition-all active:scale-95 active:border-b-0 active:translate-y-2`,
                   "shadow-xl",
@@ -232,9 +258,19 @@ function UnitSection({
                     )}
                  </div>
 
+                 {/* START Bubble for next lesson */}
+                 {!isLocked && !isCompleted && targetLesson && progress.completionPercentage === 0 && (
+                    <div className="absolute -top-16 left-1/2 -translate-x-1/2 animate-bounce z-20 pointer-events-none">
+                      <div className="bg-white text-primary px-4 py-2 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg border-b-4 border-gray-200">
+                        START
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 transform" />
+                      </div>
+                    </div>
+                 )}
+
                  {/* Status Badge (Game, Quiz, etc) */}
                  {BadgeIcon && (
-                   <div className="absolute -top-2 -right-2 bg-white text-primary p-2 rounded-full shadow-md border-2 border-primary/10 animate-bounce">
+                   <div className="absolute -top-2 -right-2 bg-white text-primary p-2 rounded-full shadow-md border-2 border-primary/10 animate-pulse">
                      <BadgeIcon className="w-5 h-5 fill-primary/10" />
                    </div>
                  )}

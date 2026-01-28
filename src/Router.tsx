@@ -23,7 +23,6 @@ import WordSearchPage from './pages/games/WordSearchPage';
 import SentenceRushPage from './pages/games/SentenceRushPage';
 import MemoryMatchPage from './pages/games/MemoryMatchPage';
 import HangmanPage from './pages/games/HangmanPage';
-import LeaderboardPage from './pages/LeaderboardPage';
 import ConversationPage from './pages/exercises/conversation/page';
 
 const router = createBrowserRouter([
@@ -70,10 +69,6 @@ const router = createBrowserRouter([
       {
         path: 'dictionary',
         element: <DictionaryPage />,
-      },
-      {
-        path: 'leaderboard',
-        element: <LeaderboardPage />,
       },
       {
         path: 'curriculum',

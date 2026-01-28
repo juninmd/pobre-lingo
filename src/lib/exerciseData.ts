@@ -770,3 +770,33 @@ export const listeningExercises: ListeningPhrase[] = [
     difficulty: 'hard'
   }
 ];
+
+export const listeningExercisesMap: Record<string, ListeningPhrase[]> = {
+  'foundations-listening': [
+     { text: "My name is John.", translation: "Meu nome é John.", options: ["My name is John.", "My name is Jane.", "I am tired."], difficulty: 'easy' },
+     { text: "Good morning.", translation: "Bom dia.", options: ["Good night.", "Good morning.", "Goodbye."], difficulty: 'easy' },
+     { text: "The book is on the table.", translation: "O livro está sobre a mesa.", options: ["The book is on the table.", "The pen is blue.", "The cat is black."], difficulty: 'easy' }
+  ],
+  'directions': [
+     { text: "Turn left at the corner.", translation: "Vire à esquerda na esquina.", options: ["Turn right.", "Turn left at the corner.", "Go straight."], difficulty: 'medium' },
+     { text: "It is across the street.", translation: "É do outro lado da rua.", options: ["It is across the street.", "It is next door.", "It is far away."], difficulty: 'medium' },
+     { text: "Go straight for two blocks.", translation: "Siga em frente por dois quarteirões.", options: ["Go back.", "Go straight for two blocks.", "Stop here."], difficulty: 'medium' }
+  ],
+  'meetings': [
+     { text: "Let's get down to business.", translation: "Vamos ao que interessa.", options: ["Let's have lunch.", "Let's get down to business.", "Let's go home."], difficulty: 'medium' },
+     { text: "I agree with your point.", translation: "Concordo com seu ponto.", options: ["I disagree.", "I agree with your point.", "I don't know."], difficulty: 'medium' },
+     { text: "What is the agenda for today?", translation: "Qual é a pauta de hoje?", options: ["What is for lunch?", "What is the agenda for today?", "Who are you?"], difficulty: 'medium' }
+  ],
+  'listening-native-speed': [
+     { text: "I'm gonna go to the store.", translation: "Eu vou à loja (informal).", options: ["I'm gonna go to the store.", "I will go to the store.", "I go store."], difficulty: 'hard' },
+     { text: "Wanna hang out later?", translation: "Quer sair mais tarde?", options: ["Do you want to hang out?", "Wanna hang out later?", "Will you hang out?"], difficulty: 'hard' },
+     { text: "I dunno what to do.", translation: "Não sei o que fazer.", options: ["I don't know what to do.", "I dunno what to do.", "I know what to do."], difficulty: 'hard' }
+  ]
+};
+
+export function getListeningExercisesForLesson(lessonId: string): ListeningPhrase[] {
+  if (listeningExercisesMap[lessonId]) {
+    return listeningExercisesMap[lessonId];
+  }
+  return listeningExercises;
+}

@@ -177,6 +177,31 @@ export const dictionaryEntries: DictionaryEntry[] = [
   { id: 'deb1', word: 'furthermore', translation_pt: 'além disso', meaning_en: 'In addition; more importantly.', example_sentence_en: 'Furthermore, we must consider the cost.', tags: ['debate'] },
   { id: 'deb2', word: 'however', translation_pt: 'contudo', meaning_en: 'Used to introduce a statement that contrasts with or contradicts something that has been said previously.', example_sentence_en: 'It is expensive; however, it is worth it.', tags: ['debate'] },
   { id: 'deb3', word: 'consequently', translation_pt: 'consequentemente', meaning_en: 'As a result.', example_sentence_en: 'He didn\'t study; consequently, he failed.', tags: ['debate'] },
+
+  // --- ECONOMICS & FINANCE (C1/C2) ---
+  { id: 'econ1', word: 'inflation', translation_pt: 'inflação', meaning_en: 'A general increase in prices and fall in the purchasing value of money.', example_sentence_en: 'Inflation has risen by 2% this year.', tags: ['economics', 'c2-vocabulary'] },
+  { id: 'econ2', word: 'asset', translation_pt: 'ativo', meaning_en: 'A useful or valuable thing, person, or quality.', example_sentence_en: 'Real estate is a safe asset.', tags: ['economics', 'business-negotiation'] },
+  { id: 'econ3', word: 'liability', translation_pt: 'passivo/responsabilidade', meaning_en: 'The state of being responsible for something, especially by law.', example_sentence_en: 'The company accepted liability for the accident.', tags: ['economics', 'business-negotiation'] },
+  { id: 'econ4', word: 'fiscal', translation_pt: 'fiscal', meaning_en: 'Relating to government revenue, especially taxes.', example_sentence_en: 'We need a strict fiscal policy.', tags: ['economics'] },
+  { id: 'econ5', word: 'subsidy', translation_pt: 'subsídio', meaning_en: 'A sum of money granted by the government or a public body to assist an industry or business.', example_sentence_en: 'Farming subsidies are essential.', tags: ['economics'] },
+
+  // --- ARTS & LITERATURE (C1/C2) ---
+  { id: 'art1', word: 'aesthetic', translation_pt: 'estético', meaning_en: 'Concerned with beauty or the appreciation of beauty.', example_sentence_en: 'The building has a modern aesthetic.', tags: ['arts', 'advanced-adjectives'] },
+  { id: 'art2', word: 'genre', translation_pt: 'gênero', meaning_en: 'A category of artistic composition, as in music or literature.', example_sentence_en: 'Sci-fi is my favorite genre.', tags: ['arts'] },
+  { id: 'art3', word: 'metaphor', translation_pt: 'metáfora', meaning_en: 'A figure of speech in which a word or phrase is applied to an object or action to which it is not literally applicable.', example_sentence_en: 'The curtain of night is a metaphor.', tags: ['arts', 'rhetoric'] },
+  { id: 'art4', word: 'abstract', translation_pt: 'abstrato', meaning_en: 'Existing in thought or as an idea but not having a physical or concrete existence.', example_sentence_en: 'Love is an abstract concept.', tags: ['arts', 'advanced-adjectives'] },
+
+  // --- PSYCHOLOGY & PHILOSOPHY (C1/C2) ---
+  { id: 'psy1', word: 'cognitive', translation_pt: 'cognitivo', meaning_en: 'Relating to the mental process of knowing, including awareness, perception, reasoning, and judgment.', example_sentence_en: 'Cognitive development in children.', tags: ['psychology', 'c2-vocabulary'] },
+  { id: 'psy2', word: 'bias', translation_pt: 'viés/preconceito', meaning_en: 'Prejudice in favor of or against one thing, person, or group.', example_sentence_en: 'We must avoid unconscious bias.', tags: ['psychology', 'debate'] },
+  { id: 'psy3', word: 'paradox', translation_pt: 'paradoxo', meaning_en: 'A seemingly absurd or self-contradictory statement or proposition that when investigated or explained may prove to be well founded.', example_sentence_en: 'The paradox of tolerance.', tags: ['psychology', 'rhetoric'] },
+  { id: 'psy4', word: 'altruism', translation_pt: 'altruísmo', meaning_en: 'The belief in or practice of disinterested and selfless concern for the well-being of others.', example_sentence_en: 'His altruism is inspiring.', tags: ['psychology'] },
+  { id: 'psy5', word: 'existential', translation_pt: 'existencial', meaning_en: 'Relating to existence.', example_sentence_en: 'He is having an existential crisis.', tags: ['philosophy', 'advanced-adjectives'] },
+
+  // --- LAW & POLITICS (C1/C2) ---
+  { id: 'law1', word: 'legislation', translation_pt: 'legislação', meaning_en: 'Laws, considered collectively.', example_sentence_en: 'New legislation was passed today.', tags: ['law', 'politics'] },
+  { id: 'law2', word: 'amendment', translation_pt: 'emenda', meaning_en: 'A minor change or addition designed to improve a text, piece of legislation, etc.', example_sentence_en: 'The First Amendment.', tags: ['law', 'politics'] },
+  { id: 'law3', word: 'sovereignty', translation_pt: 'soberania', meaning_en: 'Supreme power or authority.', example_sentence_en: 'National sovereignty must be respected.', tags: ['politics', 'c2-vocabulary'] },
 ];
 
 export const getWordsByTopic = (topic: string): DictionaryEntry[] => {

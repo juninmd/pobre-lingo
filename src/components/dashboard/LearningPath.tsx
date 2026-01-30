@@ -193,7 +193,7 @@ export function LearningPath() {
                   onClick={(e) => {
                       if (!isLocked && targetLesson) {
                           e.preventDefault();
-                          onLessonStart(targetLesson, lessonLink);
+                          handleLessonStart(targetLesson, lessonLink);
                       }
                   }}
                   className={cn(

@@ -15,7 +15,7 @@ export interface Lesson {
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
   exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening' | 'conversation';
-  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush' | 'memory-match' | 'word-scramble' | 'speed-match';
+  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush' | 'memory-match' | 'word-scramble' | 'speed-match' | 'bubble-pop';
   vocabularyTopics?: string[];
   speakingTopics?: string[];
   order: number;
@@ -780,6 +780,30 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 5,
           xpReward: 50,
           gameType: 'flashcards',
+          order: 1
+        }
+      ]
+    },
+    {
+      id: 'foundations-game-bubble',
+      unitId: 'unit-1',
+      title_pt: 'Desafio: Bolhas',
+      title_en: 'Challenge: Bubbles',
+      description_pt: 'Estoure as bolhas!',
+      difficulty: 'basico',
+      icon: 'Gamepad2',
+      color: 'bg-sky-500',
+      order: 3,
+      lessons: [
+        {
+          id: 'foundations-bubble-lesson',
+          title_pt: 'Bubble Pop',
+          title_en: 'Bubble Pop',
+          description_pt: 'Combine cores e números.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 100,
+          gameType: 'bubble-pop',
           order: 1
         }
       ]
@@ -1690,6 +1714,18 @@ export const curriculumData: LearningPath = {
           xpReward: 150,
           exerciseType: 'news-comprehension',
           order: 2,
+        },
+        {
+          id: 'internet-bubble-challenge',
+          title_pt: 'Desafio Viral: Bolhas',
+          title_en: 'Viral Challenge: Bubbles',
+          description_pt: 'Teste seu vocabulário de internet!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'bubble-pop',
+          vocabularyTopics: ['internet-slang'],
+          order: 3,
         },
         {
           id: 'ultimate-challenge',

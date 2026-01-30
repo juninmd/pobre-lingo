@@ -23,6 +23,7 @@ import WordSearchPage from './pages/games/WordSearchPage';
 import SentenceRushPage from './pages/games/SentenceRushPage';
 import MemoryMatchPage from './pages/games/MemoryMatchPage';
 import HangmanPage from './pages/games/HangmanPage';
+import BubblePopPage from './pages/games/BubblePopPage';
 import ConversationPage from './pages/exercises/conversation/page';
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: 'arcade',
         element: <ArcadePage />,
+      },
+      {
+        path: 'games/bubble-pop',
+        element: <BubblePopPage />,
       },
       {
         path: 'games/speed-match',

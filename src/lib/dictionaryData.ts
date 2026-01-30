@@ -202,6 +202,16 @@ export const dictionaryEntries: DictionaryEntry[] = [
   { id: 'law1', word: 'legislation', translation_pt: 'legislação', meaning_en: 'Laws, considered collectively.', example_sentence_en: 'New legislation was passed today.', tags: ['law', 'politics'] },
   { id: 'law2', word: 'amendment', translation_pt: 'emenda', meaning_en: 'A minor change or addition designed to improve a text, piece of legislation, etc.', example_sentence_en: 'The First Amendment.', tags: ['law', 'politics'] },
   { id: 'law3', word: 'sovereignty', translation_pt: 'soberania', meaning_en: 'Supreme power or authority.', example_sentence_en: 'National sovereignty must be respected.', tags: ['politics', 'c2-vocabulary'] },
+
+  // --- INTERNET & DIGITAL LIFE (New) ---
+  { id: 'net1', word: 'algorithm', translation_pt: 'algoritmo', meaning_en: 'A process or set of rules to be followed in calculations.', example_sentence_en: 'The social media algorithm shows what you like.', tags: ['internet-slang', 'technology'] },
+  { id: 'net2', word: 'viral', translation_pt: 'viral', meaning_en: 'An image or video that is circulated rapidly on the internet.', example_sentence_en: 'The video went viral overnight.', tags: ['internet-slang'] },
+  { id: 'net3', word: 'meme', translation_pt: 'meme', meaning_en: 'A humorous image or video spread rapidly by internet users.', example_sentence_en: 'That cat meme is hilarious.', tags: ['internet-slang'] },
+  { id: 'net4', word: 'clickbait', translation_pt: 'caça-cliques', meaning_en: 'Content whose main purpose is to attract attention and encourage visitors to click on a link.', example_sentence_en: 'Don\'t trust that headline, it\'s clickbait.', tags: ['internet-slang'] },
+  { id: 'net5', word: 'feed', translation_pt: 'feed/linha do tempo', meaning_en: 'A continuous stream of content updates.', example_sentence_en: 'Refresh your feed to see new posts.', tags: ['internet-slang'] },
+  { id: 'net6', word: 'troll', translation_pt: 'troll', meaning_en: 'A person who makes deliberately offensive or provocative posts online.', example_sentence_en: 'Don\'t feed the trolls.', tags: ['internet-slang'] },
+  { id: 'net7', word: 'influencer', translation_pt: 'influenciador', meaning_en: 'A person with the ability to influence potential buyers by promoting on social media.', example_sentence_en: 'She is a famous fashion influencer.', tags: ['internet-slang'] },
+  { id: 'net8', word: 'streaming', translation_pt: 'transmissão', meaning_en: 'A method of transmitting or receiving data over a computer network.', example_sentence_en: 'I am streaming the game live.', tags: ['internet-slang', 'technology'] },
 ];
 
 export const getWordsByTopic = (topic: string): DictionaryEntry[] => {

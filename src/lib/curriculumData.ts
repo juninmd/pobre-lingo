@@ -15,7 +15,7 @@ export interface Lesson {
   // Referências para conteúdo existente
   grammarRuleIds?: string[]; // IDs de regras gramaticais
   exerciseType?: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension' | 'matching-pairs' | 'listening' | 'conversation';
-  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush' | 'memory-match' | 'word-scramble';
+  gameType?: 'flashcards' | 'hangman' | 'word-search' | 'sentence-rush' | 'memory-match' | 'word-scramble' | 'speed-match';
   vocabularyTopics?: string[];
   speakingTopics?: string[];
   order: number;
@@ -589,6 +589,31 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    // NEW GAME: Speed Match in Unit 4 (Review)
+    {
+      id: 'unit4-game-speedmatch',
+      unitId: 'unit-4',
+      title_pt: 'Desafio: Speed Match',
+      title_en: 'Challenge: Speed Match',
+      description_pt: 'Combine rápido!',
+      difficulty: 'basico',
+      icon: 'Zap',
+      color: 'bg-yellow-600',
+      order: 6,
+      lessons: [
+        {
+          id: 'unit4-speedmatch-lesson',
+          title_pt: 'Speed Match',
+          title_en: 'Speed Match',
+          description_pt: 'Teste seus reflexos.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 200,
+          gameType: 'speed-match',
+          order: 1
+        }
+      ]
+    },
     {
       id: 'unit3-game-memory',
       unitId: 'unit-3',
@@ -613,6 +638,31 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    // NEW GAME: Speed Match in Unit 8 (Advanced Review)
+    {
+      id: 'unit8-game-speedmatch',
+      unitId: 'unit-8',
+      title_pt: 'Desafio: Speed Match',
+      title_en: 'Challenge: Speed Match',
+      description_pt: 'Vocabulário Avançado',
+      difficulty: 'avancado',
+      icon: 'Zap',
+      color: 'bg-red-700',
+      order: 6, // Placed after Idioms
+      lessons: [
+        {
+          id: 'unit8-speedmatch-lesson',
+          title_pt: 'Speed Match: Advanced',
+          title_en: 'Speed Match: Advanced',
+          description_pt: 'Teste seus reflexos com palavras difíceis.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 250,
+          gameType: 'speed-match',
+          order: 1
+        }
+      ]
+    },
     {
       id: 'unit2-game-hangman',
       unitId: 'unit-2',
@@ -633,6 +683,31 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 10,
           xpReward: 100,
           gameType: 'hangman',
+          order: 1
+        }
+      ]
+    },
+    // NEW GAME: Speed Match in Unit 12 (Mastery Review)
+    {
+      id: 'unit12-game-speedmatch',
+      unitId: 'unit-12',
+      title_pt: 'Desafio: Mestre da Velocidade',
+      title_en: 'Challenge: Speed Master',
+      description_pt: 'Nível C2!',
+      difficulty: 'avancado',
+      icon: 'Zap',
+      color: 'bg-violet-800',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit12-speedmatch-lesson',
+          title_pt: 'Speed Match: Elite',
+          title_en: 'Speed Match: Elite',
+          description_pt: 'Apenas para os mestres.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 500,
+          gameType: 'speed-match',
           order: 1
         }
       ]

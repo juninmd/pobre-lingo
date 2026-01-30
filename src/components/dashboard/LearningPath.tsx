@@ -152,6 +152,7 @@ function UnitSection({
                 stroke="currentColor"
                 strokeWidth="10"
                 strokeLinecap="round"
+                strokeDasharray="12 12"
                 className="text-muted-foreground/20 dark:text-muted/30"
             />
         </svg>
@@ -227,7 +228,7 @@ function UnitSection({
                   isLocked ? "cursor-not-allowed" : "cursor-pointer hover:scale-110 hover:brightness-110",
                   nodeColor,
                   borderColor,
-                  isBoss && !isLocked && !isCompleted ? "animate-pulse shadow-yellow-500/50" : ""
+                  isBoss && !isLocked && !isCompleted ? "animate-pulse shadow-yellow-500/50 ring-4 ring-yellow-400/30" : ""
                 )}
               >
                  {/* Inner Content */}

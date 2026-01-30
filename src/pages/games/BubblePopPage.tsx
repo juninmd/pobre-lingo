@@ -53,7 +53,7 @@ export default function BubblePopPage() {
   const [timeLeft, setTimeLeft] = useState(60);
   const [words, setWords] = useState<DictionaryEntry[]>([]);
 
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
 
   // Initialize Game
@@ -226,7 +226,7 @@ export default function BubblePopPage() {
   const handleWin = () => {
     setGameState('won');
     if (moduleId && lessonId) {
-        completeLesson(moduleId, lessonId);
+        completeLesson(moduleId, lessonId, lessonData?.xpReward || 50);
         addXp(lessonData?.xpReward || 50);
         addGem(10);
     }
@@ -237,7 +237,7 @@ export default function BubblePopPage() {
 
       {/* HUD */}
       <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-40 bg-white/10 backdrop-blur-md border-b border-white/20 text-white shadow-sm">
-        <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="hover:bg-white/20 text-white">
+        <Button variant="ghost" size="icon" onClick={() => navigate('/')} className="hover:bg-white/20 text-white">
           <ArrowLeft className="w-6 h-6" />
         </Button>
         <div className="flex items-center gap-4">
@@ -313,7 +313,7 @@ export default function BubblePopPage() {
            <div className="bg-white p-6 rounded-2xl text-center shadow-xl">
              <h2 className="text-xl font-bold mb-4">Pausado</h2>
              <div className="flex gap-4">
-               <Button variant="outline" onClick={() => navigate(-1)}>Sair</Button>
+               <Button variant="outline" onClick={() => navigate('/')}>Sair</Button>
                <Button onClick={() => setGameState('playing')}>Continuar</Button>
              </div>
            </div>
@@ -332,7 +332,7 @@ export default function BubblePopPage() {
                <Button size="lg" onClick={startGame} className="w-full">
                  <RefreshCw className="w-4 h-4 mr-2" /> Tentar de Novo
                </Button>
-               <Button variant="ghost" onClick={() => navigate(-1)}>Sair</Button>
+               <Button variant="ghost" onClick={() => navigate('/')}>Sair</Button>
              </div>
            </div>
         </div>
@@ -341,9 +341,8 @@ export default function BubblePopPage() {
       {/* Win Modal */}
       <LessonCompleteModal
         isOpen={gameState === 'won'}
-        onClose={() => navigate('/')}
+        onContinue={() => navigate('/')}
         xpEarned={lessonData?.xpReward || 50}
-        lessonTitle={lessonData?.title_pt || "Bubble Pop"}
       />
     </div>
   );

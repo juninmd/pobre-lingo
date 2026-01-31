@@ -589,6 +589,31 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    // NEW: Shopping Simulation in Unit 2
+    {
+      id: 'shopping-module',
+      unitId: 'unit-2',
+      title_pt: 'Simulação: Compras',
+      title_en: 'Simulation: Shopping',
+      description_pt: 'Compre roupas e negocie preços.',
+      difficulty: 'basico',
+      icon: 'ShoppingBag',
+      color: 'bg-emerald-500',
+      order: 4,
+      lessons: [
+        {
+          id: 'shopping-clothes',
+          title_pt: 'Comprando Roupas',
+          title_en: 'Buying Clothes',
+          description_pt: 'Escolha o tamanho certo.',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 150,
+          exerciseType: 'conversation',
+          order: 1
+        }
+      ]
+    },
     // NEW GAME: Speed Match in Unit 4 (Review)
     {
       id: 'unit4-game-speedmatch',
@@ -634,6 +659,31 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 10,
           xpReward: 100,
           gameType: 'memory-match',
+          order: 1
+        }
+      ]
+    },
+    // NEW: First Date (Social) in Unit 3
+    {
+      id: 'dating-sim-module',
+      unitId: 'unit-3',
+      title_pt: 'Simulação: Encontro',
+      title_en: 'Simulation: First Date',
+      description_pt: 'Converse e cause uma boa impressão.',
+      difficulty: 'basico',
+      icon: 'Heart',
+      color: 'bg-pink-600',
+      order: 6,
+      lessons: [
+        {
+          id: 'first-date',
+          title_pt: 'Primeiro Encontro',
+          title_en: 'First Date',
+          description_pt: 'Não seja estranho!',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 150,
+          exerciseType: 'conversation',
           order: 1
         }
       ]
@@ -1093,6 +1143,31 @@ export const curriculumData: LearningPath = {
           title_pt: 'Check-in no Aeroporto',
           title_en: 'Airport Check-in',
           description_pt: 'Fale com o agente',
+          type: 'exercise',
+          estimatedMinutes: 15,
+          xpReward: 150,
+          exerciseType: 'conversation',
+          order: 1
+        }
+      ]
+    },
+    // NEW: Doctor Appointment in Unit 4
+    {
+      id: 'doctor-module',
+      unitId: 'unit-4',
+      title_pt: 'Simulação: Médico',
+      title_en: 'Simulation: Doctor',
+      description_pt: 'Emergência médica no exterior.',
+      difficulty: 'basico',
+      icon: 'Activity',
+      color: 'bg-red-500',
+      order: 5,
+      lessons: [
+        {
+          id: 'doctor-appointment',
+          title_pt: 'Consulta Médica',
+          title_en: 'Doctor Appointment',
+          description_pt: 'Descreva seus sintomas.',
           type: 'exercise',
           estimatedMinutes: 15,
           xpReward: 150,
@@ -1797,6 +1872,31 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    // NEW: Unit 10 Boss - Word Scramble
+    {
+      id: 'unit10-game-scramble',
+      unitId: 'unit-10',
+      title_pt: 'Desafio: Embaralhado',
+      title_en: 'Challenge: Word Scramble',
+      description_pt: 'Ordene as palavras.',
+      difficulty: 'avancado',
+      icon: 'Gamepad2',
+      color: 'bg-emerald-700',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit10-scramble-lesson',
+          title_pt: 'Word Scramble',
+          title_en: 'Word Scramble',
+          description_pt: 'Desembaralhe as palavras.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'word-scramble',
+          order: 1
+        }
+      ]
+    },
     // ========== Unit 11 ==========
     {
       id: 'nuance-mastery',
@@ -1818,7 +1918,7 @@ export const curriculumData: LearningPath = {
           type: 'vocabulary',
           estimatedMinutes: 30,
           xpReward: 200,
-          vocabularyTopics: ['advanced-adjectives'], // Needs mapping in exerciseData potentially, but dictionary is enough for standard exercises
+          vocabularyTopics: ['advanced-adjectives'],
           order: 1,
         },
         {
@@ -1841,6 +1941,31 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 25,
           xpReward: 250,
           order: 3,
+        }
+      ]
+    },
+    // NEW: Unit 11 Boss - Speed Match
+    {
+      id: 'unit11-game-speedmatch',
+      unitId: 'unit-11',
+      title_pt: 'Desafio: Speed Match',
+      title_en: 'Challenge: Speed Match',
+      description_pt: 'Combine adjetivos complexos.',
+      difficulty: 'avancado',
+      icon: 'Zap',
+      color: 'bg-fuchsia-700',
+      order: 4,
+      lessons: [
+        {
+          id: 'unit11-speedmatch-lesson',
+          title_pt: 'Speed Match',
+          title_en: 'Speed Match',
+          description_pt: 'Teste seus reflexos.',
+          type: 'exercise',
+          estimatedMinutes: 5,
+          xpReward: 250,
+          gameType: 'speed-match',
+          order: 1
         }
       ]
     },
@@ -1875,7 +2000,7 @@ export const curriculumData: LearningPath = {
           type: 'grammar',
           estimatedMinutes: 30,
           xpReward: 200,
-          grammarRuleIds: ['inversion-emphasis'], // Reusing relevant rules
+          grammarRuleIds: ['inversion-emphasis'],
           order: 2,
         },
         {
@@ -1899,6 +2024,31 @@ export const curriculumData: LearningPath = {
           xpReward: 175,
           speakingTopics: ['debate-openers'],
           order: 4,
+        }
+      ]
+    },
+    // NEW: Debate Tech in Unit 12
+    {
+      id: 'debate-tech-module',
+      unitId: 'unit-12',
+      title_pt: 'Debate: Tecnologia',
+      title_en: 'Debate: Technology',
+      description_pt: 'Discuta sobre IA e o futuro.',
+      difficulty: 'avancado',
+      icon: 'Cpu',
+      color: 'bg-violet-600',
+      order: 5,
+      lessons: [
+        {
+          id: 'debate-tech',
+          title_pt: 'Debate sobre IA',
+          title_en: 'AI Debate',
+          description_pt: 'A tecnologia é perigosa?',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 250,
+          exerciseType: 'conversation',
+          order: 1
         }
       ]
     },
@@ -1934,7 +2084,7 @@ export const curriculumData: LearningPath = {
           type: 'vocabulary',
           estimatedMinutes: 35,
           xpReward: 200,
-          vocabularyTopics: ['idioms-common'], // Using existing pool for now
+          vocabularyTopics: ['idioms-common'],
           order: 2,
         },
         {
@@ -1946,6 +2096,31 @@ export const curriculumData: LearningPath = {
           estimatedMinutes: 30,
           xpReward: 300,
           order: 3,
+        }
+      ]
+    },
+    // NEW: Unit 13 Boss - Hangman
+    {
+      id: 'unit13-game-hangman',
+      unitId: 'unit-13',
+      title_pt: 'Desafio: Forca',
+      title_en: 'Challenge: Hangman',
+      description_pt: 'Expressões culturais.',
+      difficulty: 'avancado',
+      icon: 'Gamepad2',
+      color: 'bg-pink-800',
+      order: 4,
+      lessons: [
+        {
+          id: 'unit13-hangman-lesson',
+          title_pt: 'Jogo da Forca',
+          title_en: 'Hangman',
+          description_pt: 'Salve o Pobrelingo!',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'hangman',
+          order: 1
         }
       ]
     },
@@ -2007,6 +2182,31 @@ export const curriculumData: LearningPath = {
         }
       ]
     },
+    // NEW: Unit 14 Boss - Bubble Pop (Relax before final unit)
+    {
+      id: 'unit14-game-bubble',
+      unitId: 'unit-14',
+      title_pt: 'Desafio: Bolhas',
+      title_en: 'Challenge: Bubbles',
+      description_pt: 'Relaxe antes do fim.',
+      difficulty: 'avancado',
+      icon: 'Gamepad2',
+      color: 'bg-amber-600',
+      order: 5,
+      lessons: [
+        {
+          id: 'unit14-bubble-lesson',
+          title_pt: 'Bubble Pop',
+          title_en: 'Bubble Pop',
+          description_pt: 'Vocabulário C2.',
+          type: 'exercise',
+          estimatedMinutes: 10,
+          xpReward: 200,
+          gameType: 'bubble-pop',
+          order: 1
+        }
+      ]
+    },
     // ========== Unit 15 ==========
     {
       id: 'business-mastery-module',
@@ -2044,14 +2244,39 @@ export const curriculumData: LearningPath = {
         },
         {
           id: 'job-interview-sim',
-          title_pt: 'Simulação: Entrevista',
-          title_en: 'Simulation: Job Interview',
+          title_pt: 'Simulação: Entrevista Final',
+          title_en: 'Simulation: Final Interview',
           description_pt: 'Consiga o emprego dos sonhos',
           type: 'exercise',
           estimatedMinutes: 20,
           xpReward: 300,
           exerciseType: 'conversation',
           order: 3,
+        }
+      ]
+    },
+    // NEW: Business Negotiation Simulation in Unit 15
+    {
+      id: 'business-negotiation-module',
+      unitId: 'unit-15',
+      title_pt: 'Simulação: Negociação',
+      title_en: 'Simulation: Negotiation',
+      description_pt: 'Feche o contrato.',
+      difficulty: 'avancado',
+      icon: 'Handshake',
+      color: 'bg-emerald-800',
+      order: 4,
+      lessons: [
+        {
+          id: 'business-negotiation',
+          title_pt: 'Negociação de Contrato',
+          title_en: 'Contract Negotiation',
+          description_pt: 'Obtenha o melhor preço.',
+          type: 'exercise',
+          estimatedMinutes: 20,
+          xpReward: 500,
+          exerciseType: 'conversation',
+          order: 1
         }
       ]
     }

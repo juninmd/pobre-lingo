@@ -5,7 +5,7 @@ import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { cn } from '@/lib/utils';
 import { GuidebookModal } from '@/components/curriculum/GuidebookModal';
 import { LessonStartModal } from '@/components/curriculum/LessonStartModal';
-import { Star, Lock, Trophy, Gamepad2, ScrollText, Mic, Crown, Feather, Sparkles } from 'lucide-react';
+import { Star, Lock, Trophy, Gamepad2, ScrollText, Mic, Crown, Feather, Sparkles, Map } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getLessonLink } from '@/lib/routes';
@@ -37,20 +37,20 @@ export function LearningPath() {
   }, []);
 
   // 2. Calculate Geometry
-  const nodeHeight = 140; // Increased spacing for better header fit
-  const amplitude = 80;   // Curve width
+  const nodeHeight = 160; // Increased spacing for better visual separation
+  const amplitude = 90;   // Wider curve
   const center = 160;     // Center x of the viewBox (320px width)
 
   const pathPoints = useMemo(() => {
     return allModules.map((_, index) => {
-      // Sine wave pattern: x = center + sin(index) * amp
+      // Sine wave pattern
       const x = center + Math.sin((index / 1.5) * Math.PI) * amplitude;
-      const y = index * nodeHeight + 60; // Start with some padding
+      const y = index * nodeHeight + 80; // Start with padding
       return { x, y };
     });
   }, [allModules]);
 
-  const totalHeight = pathPoints.length * nodeHeight + 200;
+  const totalHeight = pathPoints.length * nodeHeight + 250;
 
   const svgPath = useMemo(() => {
     if (pathPoints.length < 2) return '';
@@ -60,7 +60,7 @@ export function LearningPath() {
         const current = pathPoints[i];
         const next = pathPoints[i + 1];
 
-        // Bezier control points
+        // Bezier control points for smooth curve
         const cp1x = current.x;
         const cp1y = current.y + nodeHeight * 0.5;
         const cp2x = next.x;
@@ -72,7 +72,7 @@ export function LearningPath() {
   }, [pathPoints]);
 
   return (
-    <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-12 pb-32 relative">
+    <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-12 pb-40 relative bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed">
       <LessonStartModal
           isOpen={isStartModalOpen}
           onClose={() => setIsStartModalOpen(false)}
@@ -83,18 +83,28 @@ export function LearningPath() {
       {/* Background Continuous Path */}
       <div className="absolute top-0 left-0 w-full pointer-events-none z-0" style={{ height: totalHeight, maxWidth: '320px' }}>
         <svg
-            className="w-full h-full overflow-visible"
+            className="w-full h-full overflow-visible drop-shadow-xl"
             viewBox={`0 0 320 ${totalHeight}`}
             preserveAspectRatio="xMidYMin meet"
         >
+            {/* Outline for better contrast */}
+            <path
+                d={svgPath}
+                fill="none"
+                stroke="white"
+                strokeWidth="24"
+                strokeLinecap="round"
+                className="opacity-20 dark:opacity-10"
+            />
+            {/* Main Path */}
             <path
                 d={svgPath}
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="12"
+                strokeWidth="16"
                 strokeLinecap="round"
-                strokeDasharray="16 16"
-                className="text-muted-foreground/20 dark:text-muted/30"
+                strokeDasharray="20 20"
+                className="text-border dark:text-muted/20"
             />
         </svg>
       </div>
@@ -114,24 +124,33 @@ export function LearningPath() {
 
           const Icon = isBoss ? Crown : getIcon(module.icon);
 
+          // Dynamic Colors
           let nodeColor = module.color || 'bg-gray-400';
           let borderColor = 'border-black/20';
+          let shadowColor = 'shadow-gray-400/50';
 
           if (isLocked) {
-             nodeColor = 'bg-gray-200 dark:bg-gray-800';
-             borderColor = 'border-gray-300 dark:border-gray-700';
+             nodeColor = 'bg-slate-200 dark:bg-slate-800';
+             borderColor = 'border-slate-300 dark:border-slate-700';
+             shadowColor = '';
           } else if (isCompleted) {
              nodeColor = 'bg-yellow-400';
              borderColor = 'border-yellow-600';
+             shadowColor = 'shadow-yellow-400/50';
           } else if (isBoss) {
              nodeColor = 'bg-amber-500';
              borderColor = 'border-amber-700';
+             shadowColor = 'shadow-amber-500/50';
+          } else {
+             // Use module specific color for active state
+             shadowColor = `shadow-${module.color.replace('bg-', '')}/50`;
           }
 
           const firstIncompleteLesson = module.lessons.find(l => !isLessonCompleted(module.id, l.id));
           const targetLesson = firstIncompleteLesson || module.lessons[module.lessons.length - 1];
           const lessonLink = isLocked ? '#' : getLessonLink(module, targetLesson);
 
+          // Badge logic
           let BadgeIcon = null;
           if (!isLocked && !isCompleted && targetLesson) {
              if (targetLesson.type === 'quiz') BadgeIcon = Trophy;
@@ -142,37 +161,47 @@ export function LearningPath() {
           }
           if (isBoss && !isLocked && !isCompleted) BadgeIcon = Sparkles;
 
-          const nodeSize = isBoss ? 'w-24 h-24' : 'w-20 h-20';
+          const nodeSize = isBoss ? 'w-28 h-28' : 'w-24 h-24';
           const borderSize = isBoss ? 'border-b-[10px]' : 'border-b-8';
 
           return (
             <React.Fragment key={module.id}>
-              {/* Unit Header if start of unit */}
+              {/* Unit Header (Signpost Style) */}
               {isFirstInUnit && unit && (
                 <div
-                  className="absolute w-full z-10 px-4"
-                  style={{ top: `${y - 100}px` }} // Position above the first node
+                  className="absolute w-full z-10 px-0 flex flex-col items-center"
+                  style={{ top: `${y - 120}px`, left: '50%', transform: 'translateX(-50%)', width: '360px' }}
                 >
                    {unit.sectionTitle && (
-                      <div className="w-full text-center py-4 mb-4 border-b border-t bg-background/50 backdrop-blur-sm">
-                        <h3 className="text-lg font-black uppercase tracking-widest text-primary/80 drop-shadow-sm">
+                      <div className="mb-4 bg-background/80 backdrop-blur-md px-6 py-2 rounded-full border border-border/50 shadow-sm">
+                        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-muted-foreground">
                           {unit.sectionTitle}
                         </h3>
                       </div>
                    )}
+
                    <div className={cn(
-                      "rounded-xl p-3 text-white shadow-lg border-b-4 flex justify-between items-center gap-3",
-                      unit.difficulty === 'basico' ? 'bg-green-500 border-green-600' :
-                      unit.difficulty === 'intermediario' ? 'bg-blue-500 border-blue-600' :
-                      'bg-purple-500 border-purple-600'
+                      "w-full rounded-2xl p-4 text-white shadow-xl border-b-8 flex justify-between items-center gap-4 relative overflow-hidden",
+                      unit.difficulty === 'basico' ? 'bg-gradient-to-r from-green-500 to-emerald-600 border-green-700' :
+                      unit.difficulty === 'intermediario' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 border-blue-700' :
+                      'bg-gradient-to-r from-purple-500 to-fuchsia-600 border-purple-700'
                    )}>
-                      <div className="flex-1 min-w-0">
-                        <h2 className="font-bold text-lg leading-tight truncate">{unit.title}</h2>
-                        <p className="text-white/80 text-xs truncate">{unit.description}</p>
+                      {/* Background Pattern on Header */}
+                      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')]"></div>
+
+                      <div className="flex-1 min-w-0 z-10">
+                        <div className="flex items-center gap-2 mb-1">
+                           <span className="bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                             Unidade {unit.order}
+                           </span>
+                        </div>
+                        <h2 className="font-extrabold text-xl leading-tight truncate drop-shadow-md">{unit.title}</h2>
+                        <p className="text-white/90 text-sm truncate mt-1 font-medium">{unit.description}</p>
                       </div>
+
                       <GuidebookModal unit={unit} trigger={
-                        <Button variant="ghost" className="text-white hover:bg-white/20 h-10 w-10 rounded-full shrink-0 p-0">
-                          <LucideIcons.BookOpen className="w-6 h-6" />
+                        <Button variant="ghost" className="relative z-10 text-white hover:bg-white/20 h-12 w-12 rounded-xl shrink-0 p-0 border-2 border-white/20 hover:border-white/50 transition-all hover:scale-105">
+                          <LucideIcons.BookOpen className="w-7 h-7" />
                         </Button>
                       }/>
                    </div>
@@ -184,8 +213,7 @@ export function LearningPath() {
                 className="absolute flex justify-center w-full pointer-events-auto"
                 style={{
                     top: `${y}px`,
-                    // We use left/transform for x positioning to align with SVG coordinate space
-                    left: `${x - 160}px` // x is 0..320, we need to center it relative to parent center
+                    left: `${x - 160}px`
                 }}
               >
                 <Link
@@ -197,59 +225,67 @@ export function LearningPath() {
                       }
                   }}
                   className={cn(
-                    `relative z-20 flex items-center justify-center ${nodeSize} rounded-full ${borderSize} transition-all active:scale-95 active:border-b-0 active:translate-y-2`,
+                    `relative z-20 flex items-center justify-center ${nodeSize} rounded-full ${borderSize} transition-all duration-300`,
                     "shadow-xl",
-                    isLocked ? "cursor-not-allowed" : "cursor-pointer hover:scale-110 hover:brightness-110",
+                    isLocked ? "cursor-not-allowed grayscale-[0.8] opacity-80" : "cursor-pointer hover:scale-110 active:scale-95 active:border-b-0 active:translate-y-2",
                     nodeColor,
                     borderColor,
-                    isBoss && !isLocked && !isCompleted ? "animate-pulse shadow-yellow-500/50 ring-4 ring-yellow-400/30" : ""
+                    shadowColor, // Apply colored shadow for glow effect
+                    isBoss && !isLocked && !isCompleted ? "animate-pulse ring-4 ring-yellow-400/50" : ""
                   )}
                 >
-                   <div className="relative">
+                   {/* Inner Highlight/Gloss */}
+                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-gradient-to-b from-white/30 to-transparent rounded-full pointer-events-none" />
+
+                   <div className="relative z-10">
                       {isCompleted ? (
-                        <Star className={cn("text-white fill-white animate-pulse", isBoss ? "w-10 h-10" : "w-8 h-8")} />
+                        <Star className={cn("text-white fill-white drop-shadow-md", isBoss ? "w-12 h-12" : "w-10 h-10")} />
                       ) : isLocked ? (
-                        <Lock className={cn("text-gray-400 dark:text-gray-600", isBoss ? "w-10 h-10" : "w-8 h-8")} />
+                        <Lock className={cn("text-white/50", isBoss ? "w-10 h-10" : "w-8 h-8")} />
                       ) : (
-                        <Icon className={cn("text-white drop-shadow-md", isBoss ? "w-10 h-10" : "w-8 h-8")} />
+                        <Icon className={cn("text-white drop-shadow-md filter", isBoss ? "w-12 h-12" : "w-10 h-10")} />
                       )}
 
+                      {/* Progress Ring */}
                       {!isLocked && !isCompleted && progress.completionPercentage > 0 && (
                         <svg className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] pointer-events-none rotate-[-90deg]">
                           <circle
-                            r={isBoss ? "46" : "38"}
+                            r={isBoss ? "54" : "46"}
                             cx="50%" cy="50%"
                             fill="transparent"
                             stroke="white"
-                            strokeWidth="5"
-                            strokeDasharray={isBoss ? "288" : "238"}
-                            strokeDashoffset={(isBoss ? 288 : 238) * (1 - progress.completionPercentage / 100)}
+                            strokeWidth="6"
+                            strokeDasharray={isBoss ? "340" : "290"}
+                            strokeDashoffset={(isBoss ? 340 : 290) * (1 - progress.completionPercentage / 100)}
                             strokeLinecap="round"
-                            className="opacity-60"
+                            className="opacity-70 drop-shadow-sm"
                           />
                         </svg>
                       )}
                    </div>
 
+                   {/* Start Bubble */}
                    {!isLocked && !isCompleted && targetLesson && progress.completionPercentage === 0 && (
-                      <div className="absolute -top-16 left-1/2 -translate-x-1/2 animate-bounce z-30 pointer-events-none">
-                        <div className="bg-white text-primary px-4 py-2 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg border-b-4 border-gray-200">
+                      <div className="absolute -top-20 left-1/2 -translate-x-1/2 animate-bounce z-30 pointer-events-none">
+                        <div className="bg-white text-primary px-5 py-2.5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl border-b-4 border-gray-200 transform hover:scale-110 transition-transform">
                           START
-                          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 transform" />
+                          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-b-4 border-r-4 border-gray-200" style={{ borderWidth: '0 4px 4px 0' }} />
                         </div>
                       </div>
                    )}
 
+                   {/* Floating Badge (e.g. Controller, Scroll) */}
                    {BadgeIcon && (
-                     <div className="absolute -top-2 -right-2 bg-white text-primary p-2 rounded-full shadow-md border-2 border-primary/10 animate-pulse">
-                       <BadgeIcon className="w-5 h-5 fill-primary/10" />
+                     <div className="absolute -top-1 -right-1 bg-white text-primary p-2.5 rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.2)] border-2 border-white/50 transform rotate-12">
+                       <BadgeIcon className="w-5 h-5 fill-primary/20" />
                      </div>
                    )}
 
+                   {/* Title Tooltip */}
                    <div className={cn(
-                     "absolute -bottom-10 whitespace-nowrap px-3 py-1 bg-background/90 backdrop-blur border rounded-lg text-[10px] font-bold shadow-sm transition-opacity z-20 pointer-events-none max-w-[120px] truncate",
-                     isLocked ? "opacity-0" : "opacity-100",
-                     isBoss ? "text-amber-600 scale-110" : "text-muted-foreground"
+                     "absolute -bottom-12 whitespace-nowrap px-3 py-1.5 bg-background/95 backdrop-blur-xl border border-white/20 rounded-xl text-[11px] font-bold shadow-lg transition-all z-10 pointer-events-none max-w-[140px] truncate flex items-center justify-center gap-1",
+                     isLocked ? "opacity-0 scale-90" : "opacity-100",
+                     isBoss ? "text-amber-600 scale-110 -bottom-14" : "text-foreground"
                    )}>
                      {module.title_pt}
                    </div>

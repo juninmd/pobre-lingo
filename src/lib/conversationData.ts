@@ -190,5 +190,101 @@ export const SCENARIOS: Record<string, ConversationStep[]> = {
         { id: 'dto22', text_en: "I hate fun.", text_pt: "Odeio diversão.", isCorrect: false, feedback: "Don't be a killjoy!" }
       ]
     }
+  ],
+  'doctor-appointment': [
+    {
+      id: 'doc1',
+      mascotMessage: "Hello. What seems to be the problem today?",
+      options: [
+        { id: 'dopt1', text_en: "I have a terrible headache.", text_pt: "Estou com uma dor de cabeça terrível.", isCorrect: true },
+        { id: 'dopt2', text_en: "I like hospitals.", text_pt: "Eu gosto de hospitais.", isCorrect: false, feedback: "Tell me your symptoms." },
+        { id: 'dopt3', text_en: "My car is broken.", text_pt: "Meu carro está quebrado.", isCorrect: false, feedback: "I am a doctor, not a mechanic!" }
+      ]
+    },
+    {
+      id: 'doc2',
+      mascotMessage: "I see. How long have you had this pain?",
+      options: [
+        { id: 'dopt21', text_en: "Since yesterday morning.", text_pt: "Desde ontem de manhã.", isCorrect: true },
+        { id: 'dopt22', text_en: "For 100 years.", text_pt: "Por 100 anos.", isCorrect: false, feedback: "That's impossible." }
+      ]
+    },
+    {
+      id: 'doc3',
+      mascotMessage: "Okay. Take this medicine twice a day.",
+      options: [
+        { id: 'dopt31', text_en: "Thank you, doctor.", text_pt: "Obrigado, doutor.", isCorrect: true }
+      ]
+    }
+  ],
+  'shopping-clothes': [
+    {
+      id: 'shop1',
+      mascotMessage: "Hi! Can I help you find anything?",
+      options: [
+        { id: 'sopt1', text_en: "I am looking for a pair of jeans.", text_pt: "Estou procurando um par de jeans.", isCorrect: true },
+        { id: 'sopt2', text_en: "I want a hamburger.", text_pt: "Quero um hambúrguer.", isCorrect: false, feedback: "This is a clothing store." }
+      ]
+    },
+    {
+      id: 'shop2',
+      mascotMessage: "Sure. What size do you wear?",
+      options: [
+        { id: 'sopt21', text_en: "I'm a medium.", text_pt: "Sou tamanho médio.", isCorrect: true },
+        { id: 'sopt22', text_en: "I am very tall.", text_pt: "Sou muito alto.", isCorrect: false, feedback: "I need a specific size like Small, Medium, or Large." }
+      ]
+    },
+    {
+      id: 'shop3',
+      mascotMessage: "Here you go. The fitting room is over there.",
+      options: [
+        { id: 'sopt31', text_en: "Thanks, I'll try them on.", text_pt: "Obrigado, vou provar.", isCorrect: true }
+      ]
+    }
+  ],
+  'business-negotiation': [
+    {
+      id: 'biz1',
+      mascotMessage: "We are interested in your product, but the price is too high.",
+      options: [
+        { id: 'bopt1', text_en: "We can offer a 10% discount for bulk orders.", text_pt: "Podemos oferecer 10% de desconto para pedidos grandes.", isCorrect: true },
+        { id: 'bopt2', text_en: "It is not high, you are poor.", text_pt: "Não é alto, você é pobre.", isCorrect: false, feedback: "That is extremely rude!" },
+        { id: 'bopt3', text_en: "Take it or leave it.", text_pt: "É pegar ou largar.", isCorrect: false, feedback: "Try to be more diplomatic." }
+      ]
+    },
+    {
+      id: 'biz2',
+      mascotMessage: "That sounds reasonable. What about the delivery time?",
+      options: [
+        { id: 'bopt21', text_en: "We can deliver within 3 business days.", text_pt: "Podemos entregar em 3 dias úteis.", isCorrect: true },
+        { id: 'bopt22', text_en: "Maybe next year.", text_pt: "Talvez ano que vem.", isCorrect: false, feedback: "Too slow." }
+      ]
+    },
+    {
+      id: 'biz3',
+      mascotMessage: "Excellent. I think we have a deal.",
+      options: [
+        { id: 'bopt31', text_en: "Great! I'll send the contract.", text_pt: "Ótimo! Enviarei o contrato.", isCorrect: true }
+      ]
+    }
+  ],
+  'debate-tech': [
+    {
+      id: 'tech1',
+      mascotMessage: "Do you believe Artificial Intelligence is dangerous for humanity?",
+      options: [
+        { id: 'topt1', text_en: "It depends on how we regulate it.", text_pt: "Depende de como a regulamentamos.", isCorrect: true },
+        { id: 'topt2', text_en: "Yes, robots will eat us.", text_pt: "Sim, robôs vão nos comer.", isCorrect: false, feedback: "A bit too dramatic, don't you think?" },
+        { id: 'topt3', text_en: "Computers are stupid.", text_pt: "Computadores são estúpidos.", isCorrect: false, feedback: "That's a weak argument." }
+      ]
+    },
+    {
+      id: 'tech2',
+      mascotMessage: "But what if it becomes smarter than us?",
+      options: [
+        { id: 'topt21', text_en: "We must ensure it aligns with human values.", text_pt: "Devemos garantir que se alinhe aos valores humanos.", isCorrect: true },
+        { id: 'topt22', text_en: "I will unplug it.", text_pt: "Eu vou tirar da tomada.", isCorrect: false, feedback: "It might be too late by then." }
+      ]
+    }
   ]
 };

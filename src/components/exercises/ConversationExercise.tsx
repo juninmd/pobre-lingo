@@ -24,7 +24,12 @@ const SCENARIO_MAP: Record<string, string> = {
   'job-interview-sim': 'job-interview',
   'job-interview-sim-mid': 'job-interview',
   'ordering-food-sim': 'ordering-food',
-  'conversation-practice': 'daily-conversations'
+  'conversation-practice': 'daily-conversations',
+  'doctor-appointment': 'doctor-appointment',
+  'shopping-clothes': 'shopping-clothes',
+  'business-negotiation': 'business-negotiation',
+  'debate-tech': 'debate-tech',
+  'dating-scenario': 'dating-scenario'
 };
 
 export default function ConversationExercise() {

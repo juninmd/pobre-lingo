@@ -49,6 +49,18 @@ export function useCurriculumProgress() {
     return new Set(completedLessons.map(l => `${l.moduleId}:${l.lessonId}`));
   }, [completedLessons]);
 
+  // Otimização: Mapa para buscar lições completas por módulo em O(1) em vez de O(N)
+  const completedLessonsByModule = useMemo(() => {
+    const map = new Map<string, LessonProgress[]>();
+    for (const lesson of completedLessons) {
+      if (!map.has(lesson.moduleId)) {
+        map.set(lesson.moduleId, []);
+      }
+      map.get(lesson.moduleId)!.push(lesson);
+    }
+    return map;
+  }, [completedLessons]);
+
   // Carregar progresso do localStorage
   useEffect(() => {
     const savedProgress = getLocalStorageItem<LessonProgress[]>(PROGRESS_STORAGE_KEY, []);
@@ -196,7 +208,8 @@ export function useCurriculumProgress() {
 
     const { lessonsCompleted, totalLessons, completionPercentage } = getModuleCompletionStats(module);
 
-    const completedLessonsData = completedLessons.filter(l => l.moduleId === moduleId);
+    // Otimização: Uso do mapa em vez de filter no array principal
+    const completedLessonsData = completedLessonsByModule.get(moduleId) || [];
     const startedAt = completedLessonsData.length > 0
       ? completedLessonsData[0].completedAt
       : undefined;
@@ -213,7 +226,7 @@ export function useCurriculumProgress() {
       totalLessons,
       completionPercentage,
     };
-  }, [completedLessons, getModuleCompletionStats, isModuleUnlocked]);
+  }, [completedLessonsByModule, getModuleCompletionStats, isModuleUnlocked]);
 
   // Obter estatísticas gerais
   const overallProgress = useMemo(() => {

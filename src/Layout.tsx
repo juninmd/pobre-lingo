@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Menu,
   SearchX,
-  BookText,
   BookA,
   FileText,
   Search as SearchIcon,

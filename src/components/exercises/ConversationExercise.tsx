@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Send, CheckCircle, XCircle, Volume2 } from 'lucide-react';
+import { ArrowLeft, Send, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
-import { SCENARIOS, ConversationOption, ConversationStep } from '@/lib/conversationData';
+import { SCENARIOS, ConversationOption } from '@/lib/conversationData';
 import { tts } from '@/lib/tts';
 
 interface Message {
@@ -51,6 +50,10 @@ export default function ConversationExercise() {
   const currentStep = steps[currentStepIndex];
   const chatEndRef = useRef<HTMLDivElement>(null);
 
+  const speak = (text: string) => {
+    tts.speak(text);
+  };
+
   // Initialize first message
   useEffect(() => {
     if (history.length === 0 && currentStep) {
@@ -72,10 +75,6 @@ export default function ConversationExercise() {
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history, typing]);
-
-  const speak = (text: string) => {
-    tts.speak(text);
-  };
 
   const handleOptionSelect = (option: ConversationOption) => {
     // 1. Add user message

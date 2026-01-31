@@ -13,8 +13,7 @@ import {
   TrendingUp,
   Map,
   SearchX,
-  ArrowRight,
-  Tag
+  ArrowRight
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -26,7 +25,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { grammarCategories, GrammarRule, GrammarCategory } from '@/lib/grammarRules';
+import { grammarCategories } from '@/lib/grammarRules';
 import { cn } from '@/lib/utils';
 
 // Tipo para resultados de pesquisa
@@ -127,6 +126,13 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
     }
   }, [open]);
 
+  // Selecionar resultado
+  const handleSelect = (result: SearchResult) => {
+    navigate(result.href);
+    onOpenChange(false);
+    setSearchTerm('');
+  };
+
   // Navegação por teclado
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -151,13 +157,6 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, filteredResults, selectedIndex]);
-
-  // Selecionar resultado
-  const handleSelect = (result: SearchResult) => {
-    navigate(result.href);
-    onOpenChange(false);
-    setSearchTerm('');
-  };
 
   // Agrupar resultados por tipo
   const groupedResults = useMemo(() => {

@@ -205,6 +205,22 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
   );
 }
 
+function ReadingLessonWrapper({ onComplete, navigate, xpReward, moduleId, lessonId, completeLesson }: { onComplete: () => void, navigate: any, xpReward: number, moduleId: string, lessonId: string, completeLesson: any }) {
+    const [article] = useState(() => newsComprehensionExercises[Math.floor(Math.random() * newsComprehensionExercises.length)]);
+
+    return (
+         <NewsComprehension
+            exercise={article}
+            onBackToList={() => navigate('/curriculum')}
+            onQuizComplete={() => {
+                completeLesson(moduleId, lessonId, xpReward);
+                // Optional: show success modal before navigating?
+                // NewsComprehension handles its own success view.
+            }}
+         />
+    );
+}
+
 // --------------------------------------------------------------------------------
 
 export default function LessonPage() {
@@ -249,7 +265,7 @@ export default function LessonPage() {
   // Render Logic based on Type
   const renderContent = () => {
     switch (lesson.type) {
-        case 'speaking':
+        case 'speaking': {
             const speakingTopics = lesson.speakingTopics || [];
             const speakingPhrases = speakingTopics.flatMap(topic => speakingData[topic] || []);
             return (
@@ -258,6 +274,7 @@ export default function LessonPage() {
                   onComplete={handleComplete}
                 />
             );
+        }
 
         case 'exercise':
             if (lesson.exerciseType === 'sentence-ordering') {
@@ -277,22 +294,19 @@ export default function LessonPage() {
             }
             return <div className="p-4">Tipo de exercício não suportado: {lesson.exerciseType}</div>;
 
-        case 'reading':
-             // Assuming NewsComprehension for reading
-             // We need to pick an article. exerciseData has newsComprehensionExercises
-             // Pick random or specific if we had ID.
-             const randomArticle = newsComprehensionExercises[Math.floor(Math.random() * newsComprehensionExercises.length)];
+        case 'reading': {
              return (
-                 <NewsComprehension
-                    exercise={randomArticle}
-                    onBackToList={() => navigate('/curriculum')}
-                    onQuizComplete={() => {
-                        completeLesson(moduleId!, lessonId!, lesson.xpReward);
-                        // Optional: show success modal before navigating?
-                        // NewsComprehension handles its own success view.
-                    }}
+                 <ReadingLessonWrapper
+                    key={lesson.id}
+                    onComplete={handleComplete}
+                    navigate={navigate}
+                    xpReward={lesson.xpReward}
+                    moduleId={moduleId!}
+                    lessonId={lessonId!}
+                    completeLesson={completeLesson}
                  />
              );
+        }
 
         case 'grammar':
             return (
@@ -322,7 +336,7 @@ export default function LessonPage() {
             );
 
         case 'vocabulary':
-        default:
+        default: {
              const topics = lesson.vocabularyTopics || [];
              // New Logic: Fetch from centralized dictionary
              const allWordsEntries = topics.flatMap(topic => getWordsByTopic(topic));
@@ -496,6 +510,7 @@ export default function LessonPage() {
                     </div>
                   </div>
              );
+        }
     }
   };
 

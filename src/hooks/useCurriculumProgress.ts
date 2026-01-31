@@ -39,42 +39,47 @@ export interface UserProgress {
 }
 
 export function useCurriculumProgress() {
-  const [completedLessons, setCompletedLessons] = useState<LessonProgress[]>([]);
-  const [totalXP, setTotalXP] = useState(0);
-  const [userLevel, setUserLevel] = useState(1);
-  const [streak, setStreak] = useState(0);
-  const [lastActivityDate, setLastActivityDate] = useState<string | null>(null);
+  const [completedLessons, setCompletedLessons] = useState<LessonProgress[]>(() => {
+    return getLocalStorageItem<LessonProgress[]>(PROGRESS_STORAGE_KEY, []);
+  });
+
+  const [totalXP, setTotalXP] = useState(() => {
+    return getLocalStorageItem<number>(XP_STORAGE_KEY, 0);
+  });
+
+  const [userLevel, setUserLevel] = useState(() => {
+    return getLocalStorageItem<number>(LEVEL_STORAGE_KEY, 1);
+  });
+
+  const [lastActivityDate, setLastActivityDate] = useState<string | null>(() => {
+    return getLocalStorageItem<string | null>(LAST_ACTIVITY_DATE_KEY, null);
+  });
+
+  const [streak, setStreak] = useState(() => {
+    const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
+    const savedLastDate = getLocalStorageItem<string | null>(LAST_ACTIVITY_DATE_KEY, null);
+
+    if (savedLastDate) {
+      const daysDiff = differenceInCalendarDays(new Date(), parseISO(savedLastDate));
+      if (daysDiff > 1) {
+        // Streak broken, we don't update storage here (side effect), but we return correct state
+        return 0;
+      }
+    }
+    return savedStreak;
+  });
+
+  // Sync broken streak to storage if needed
+  useEffect(() => {
+     const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
+     if (streak === 0 && savedStreak > 0) {
+        setLocalStorageItem(STREAK_STORAGE_KEY, 0);
+     }
+  }, [streak]);
 
   const completedLessonsSet = useMemo(() => {
     return new Set(completedLessons.map(l => `${l.moduleId}:${l.lessonId}`));
   }, [completedLessons]);
-
-  // Carregar progresso do localStorage
-  useEffect(() => {
-    const savedProgress = getLocalStorageItem<LessonProgress[]>(PROGRESS_STORAGE_KEY, []);
-    const savedXP = getLocalStorageItem<number>(XP_STORAGE_KEY, 0);
-    const savedLevel = getLocalStorageItem<number>(LEVEL_STORAGE_KEY, 1);
-    const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
-    const savedLastDate = getLocalStorageItem<string | null>(LAST_ACTIVITY_DATE_KEY, null);
-
-    setCompletedLessons(savedProgress);
-    setTotalXP(savedXP);
-    setUserLevel(savedLevel);
-
-    // Check for broken streak on load
-    if (savedLastDate) {
-      const daysDiff = differenceInCalendarDays(new Date(), parseISO(savedLastDate));
-      if (daysDiff > 1) {
-        setStreak(0); // Streak broken
-        setLocalStorageItem(STREAK_STORAGE_KEY, 0);
-      } else {
-        setStreak(savedStreak);
-        setLastActivityDate(savedLastDate);
-      }
-    } else {
-      setStreak(savedStreak);
-    }
-  }, []);
 
   // Calcular nível baseado em XP (100 XP por nível)
   const calculateLevel = useCallback((xp: number) => {

@@ -43,30 +43,33 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
   const [hearts, setHearts] = useState<number>(Infinity);
   const maxHearts = Infinity;
 
-  const [gems, setGems] = useState<number>(0);
-  const [streak, setStreak] = useState<number>(0);
-  const [xp, setXp] = useState<number>(0);
-  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
+  const [gems, setGems] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const stored = localStorage.getItem('pl_gems');
+    return stored ? parseInt(stored) : 0;
+  });
+
+  const [streak, setStreak] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const stored = localStorage.getItem('pl_streak');
+    return stored ? parseInt(stored) : 0;
+  });
+
+  const [xp, setXp] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const stored = localStorage.getItem('pl_xp');
+    return stored ? parseInt(stored) : 0;
+  });
+
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const stored = localStorage.getItem('pl_achievements');
+    return stored ? JSON.parse(stored) : [];
+  });
 
   // Derived state for level
   // Formula: Level = floor(sqrt(xp / 100)) + 1
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;
-
-  // Load from localStorage on mount
-  useEffect(() => {
-    // Hearts are infinite now, so we ignore stored hearts or set to Infinity
-    const storedGems = localStorage.getItem('pl_gems');
-    const storedStreak = localStorage.getItem('pl_streak');
-    const storedXp = localStorage.getItem('pl_xp');
-    const storedAchievements = localStorage.getItem('pl_achievements');
-
-    if (storedGems) setGems(parseInt(storedGems));
-    if (storedStreak) setStreak(parseInt(storedStreak));
-    if (storedXp) setXp(parseInt(storedXp));
-    if (storedAchievements) setUnlockedAchievements(JSON.parse(storedAchievements));
-
-    setHearts(Infinity);
-  }, []);
 
   // Save to localStorage whenever state changes
   useEffect(() => {

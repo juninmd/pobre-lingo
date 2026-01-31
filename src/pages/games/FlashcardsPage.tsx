@@ -22,11 +22,6 @@ export default function FlashcardsPage() {
   const [knownCount, setKnownCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
-  // Initialize deck with random 10 words
-  useEffect(() => {
-    startNewGame();
-  }, []);
-
   const startNewGame = () => {
     const shuffled = [...dictionaryEntries].sort(() => 0.5 - Math.random());
     setDeck(shuffled.slice(0, 10));
@@ -35,6 +30,11 @@ export default function FlashcardsPage() {
     setKnownCount(0);
     setIsFinished(false);
   };
+
+  // Initialize deck with random 10 words
+  useEffect(() => {
+    startNewGame();
+  }, []);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);

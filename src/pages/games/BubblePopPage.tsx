@@ -133,9 +133,10 @@ export default function BubblePopPage() {
   };
 
   // Game Loop
-  const animate = useCallback((time: number) => {
+  const animate = useCallback(function _animate(time: number) {
     if (gameState !== 'playing') return;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const delta = time - lastTimeRef.current;
     lastTimeRef.current = time;
 
@@ -152,7 +153,7 @@ export default function BubblePopPage() {
       return { ...b, x: newX, y: newY };
     }));
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    animationFrameRef.current = requestAnimationFrame(_animate);
   }, [gameState]);
 
   useEffect(() => {
@@ -179,6 +180,15 @@ export default function BubblePopPage() {
     }, 1000);
     return () => clearInterval(timer);
   }, [gameState]);
+
+  const handleWin = () => {
+    setGameState('won');
+    if (moduleId && lessonId) {
+        completeLesson(moduleId, lessonId, lessonData?.xpReward || 50);
+        addXp(lessonData?.xpReward || 50);
+        addGem(10);
+    }
+  };
 
   // Check Win
   useEffect(() => {
@@ -220,15 +230,6 @@ export default function BubblePopPage() {
           // Shake effect could be added here
           setSelectedBubbleId(null);
        }
-    }
-  };
-
-  const handleWin = () => {
-    setGameState('won');
-    if (moduleId && lessonId) {
-        completeLesson(moduleId, lessonId, lessonData?.xpReward || 50);
-        addXp(lessonData?.xpReward || 50);
-        addGem(10);
     }
   };
 

@@ -8,6 +8,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { getListeningExercisesForLesson } from '@/lib/exerciseData';
 import { LessonCompleteModal } from '@/components/curriculum/LessonCompleteModal';
+import { tts } from '@/lib/tts';
 
 export function ListeningExercise() {
   const [searchParams] = useSearchParams();
@@ -33,18 +34,7 @@ export function ListeningExercise() {
   const currentItem = exercises[currentIndex];
 
   const handleSpeak = () => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(currentItem.text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.8;
-      window.speechSynthesis.speak(utterance);
-    } else {
-      toast({
-        title: "Erro",
-        description: "Seu navegador não suporta síntese de voz.",
-        variant: "destructive"
-      });
-    }
+    tts.speak(currentItem.text, 'en-US', 0.8);
   };
 
   const handleCheck = () => {

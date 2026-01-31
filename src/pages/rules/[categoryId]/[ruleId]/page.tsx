@@ -27,6 +27,7 @@ import { useStudiedRules } from '@/hooks/useStudiedRules';
 import { PageContainer } from '@/components/common/PageContainer';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { tts } from '@/lib/tts';
 
 export default function RulePage() {
   const { categoryId, ruleId } = useParams<{ categoryId: string; ruleId: string }>();
@@ -46,10 +47,7 @@ export default function RulePage() {
 
   // Função para falar o texto em inglês
   const speak = (text: string) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.9;
-    speechSynthesis.speak(utterance);
+    tts.speak(text, 'en-US', 0.9);
   };
 
   if (!category || !rule) {

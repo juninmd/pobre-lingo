@@ -27,6 +27,7 @@ import { useGamification } from '@/contexts/GamificationContext';
 import { triggerConfetti } from '@/lib/confetti';
 import { Heart, Trophy, RefreshCw } from 'lucide-react';
 import { getWordsByTopic } from '@/lib/dictionaryData';
+import { tts } from '@/lib/tts';
 
 // Matching Pairs Component (Simplified for embedding)
 // --------------------------------------------------------------------------------
@@ -369,13 +370,7 @@ export default function LessonPage() {
               const handleSpeak = () => {
                 if (!currentWord) return;
                 const text = getTextToSpeak(currentWord.word);
-                if (typeof SpeechSynthesisUtterance === 'undefined') return;
-                const utterance = new SpeechSynthesisUtterance(text);
-                const voices = window.speechSynthesis.getVoices();
-                const enVoice = voices.find(v => v.lang.startsWith('en'));
-                if (enVoice) utterance.voice = enVoice;
-                utterance.rate = 0.8;
-                window.speechSynthesis.speak(utterance);
+                tts.speak(text, 'en-US', 0.8);
               };
 
              if (allWords.length === 0) {

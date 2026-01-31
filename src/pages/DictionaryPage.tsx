@@ -7,6 +7,7 @@ import { useState, useMemo, useDeferredValue, useEffect, useRef } from 'react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
 import { BookText, Search, Volume2 } from 'lucide-react';
+import { tts } from '@/lib/tts';
 
 const ITEMS_PER_PAGE = 20;
 
@@ -70,9 +71,7 @@ export default function DictionaryPage() {
   }, [visibleCount, filteredEntries.length]);
 
   const speak = (text: string) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    speechSynthesis.speak(utterance);
+    tts.speak(text);
   };
 
   return (

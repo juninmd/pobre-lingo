@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mic, Volume2, CheckCircle2, XCircle, RotateCcw } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { tts } from '@/lib/tts';
 
 interface SpeakingPhrase {
   phrase: string;
@@ -86,11 +87,7 @@ export function SpeakingExercise({ phrases, onComplete, onProgress }: SpeakingEx
   }, [currentIndex, currentPhrase.phrase, supported]);
 
   const playAudio = () => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(currentPhrase.phrase);
-      utterance.lang = 'en-US';
-      window.speechSynthesis.speak(utterance);
-    }
+    tts.speak(currentPhrase.phrase);
   };
 
   const startListening = () => {

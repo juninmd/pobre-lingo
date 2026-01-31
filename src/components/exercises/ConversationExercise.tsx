@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { SCENARIOS, ConversationOption, ConversationStep } from '@/lib/conversationData';
+import { tts } from '@/lib/tts';
 
 interface Message {
   id: string;
@@ -73,11 +74,7 @@ export default function ConversationExercise() {
   }, [history, typing]);
 
   const speak = (text: string) => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      window.speechSynthesis.speak(utterance);
-    }
+    tts.speak(text);
   };
 
   const handleOptionSelect = (option: ConversationOption) => {

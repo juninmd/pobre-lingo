@@ -161,22 +161,29 @@ export const dictionaryEntries: DictionaryEntry[] = [
   { id: 'adv_adj3', word: 'meticulous', translation_pt: 'meticuloso', meaning_en: 'Showing great attention to detail; very careful and precise.', example_sentence_en: 'He was meticulous about his appearance.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
   { id: 'adv_adj4', word: 'pragmatic', translation_pt: 'pragmático', meaning_en: 'Dealing with things sensibly and realistically.', example_sentence_en: 'We need a pragmatic solution to this crisis.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
   { id: 'adv_adj5', word: 'eloquent', translation_pt: 'eloquente', meaning_en: 'Fluent or persuasive in speaking or writing.', example_sentence_en: 'She made an eloquent speech.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
+  { id: 'adv_adj6', word: 'sublime', translation_pt: 'sublime', meaning_en: 'Of such excellence, grandeur, or beauty as to inspire great admiration or awe.', example_sentence_en: 'The view was sublime.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
+  { id: 'adv_adj7', word: 'arduous', translation_pt: 'árduo', meaning_en: 'Involving or requiring strenuous effort; difficult and tiring.', example_sentence_en: 'It was an arduous journey.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
+  { id: 'adv_adj8', word: 'esoteric', translation_pt: 'esotérico', meaning_en: 'Intended for or likely to be understood by only a small number of people with a specialized knowledge or interest.', example_sentence_en: 'Esoteric philosophical debates.', tags: ['advanced-adjectives', 'c2-vocabulary'] },
 
   // --- BUSINESS VOCABULARY ---
   { id: 'bus1', word: 'leverage', translation_pt: 'alavancar/aproveitar', meaning_en: 'Use (something) to maximum advantage.', example_sentence_en: 'We need to leverage our key resources.', tags: ['business-negotiation'] },
   { id: 'bus2', word: 'synergy', translation_pt: 'sinergia', meaning_en: 'The interaction of elements that when combined produce a total effect greater than the sum of the individual elements.', example_sentence_en: 'There is a lot of synergy between the two departments.', tags: ['business-negotiation'] },
   { id: 'bus3', word: 'consensus', translation_pt: 'consenso', meaning_en: 'General agreement.', example_sentence_en: 'We reached a consensus on the proposal.', tags: ['business-negotiation', 'debate'] },
   { id: 'bus4', word: 'stakeholder', translation_pt: 'parte interessada', meaning_en: 'A person with an interest or concern in something, especially a business.', example_sentence_en: 'We must consider the needs of all stakeholders.', tags: ['business-negotiation', 'leadership'] },
+  { id: 'bus5', word: 'revenue', translation_pt: 'receita', meaning_en: 'Income, especially when of a company or organization.', example_sentence_en: 'The company\'s revenue increased.', tags: ['business-negotiation'] },
+  { id: 'bus6', word: 'merger', translation_pt: 'fusão', meaning_en: 'A combination of two things, especially companies, into one.', example_sentence_en: 'The merger of the two banks.', tags: ['business-negotiation'] },
 
   // --- LEADERSHIP ---
   { id: 'lead1', word: 'empower', translation_pt: 'empoderar', meaning_en: 'Give (someone) the authority or power to do something.', example_sentence_en: 'We want to empower our employees to make decisions.', tags: ['leadership'] },
   { id: 'lead2', word: 'visionary', translation_pt: 'visionário', meaning_en: 'Thinking about or planning the future with imagination or wisdom.', example_sentence_en: 'He is a visionary leader.', tags: ['leadership'] },
   { id: 'lead3', word: 'delegate', translation_pt: 'delegar', meaning_en: 'Entrust (a task or responsibility) to another person.', example_sentence_en: 'A good manager knows how to delegate.', tags: ['leadership'] },
+  { id: 'lead4', word: 'innovate', translation_pt: 'inovar', meaning_en: 'Make changes in something established, especially by introducing new methods, ideas, or products.', example_sentence_en: 'We must innovate to stay ahead.', tags: ['leadership'] },
 
   // --- DEBATE ---
   { id: 'deb1', word: 'furthermore', translation_pt: 'além disso', meaning_en: 'In addition; more importantly.', example_sentence_en: 'Furthermore, we must consider the cost.', tags: ['debate'] },
   { id: 'deb2', word: 'however', translation_pt: 'contudo', meaning_en: 'Used to introduce a statement that contrasts with or contradicts something that has been said previously.', example_sentence_en: 'It is expensive; however, it is worth it.', tags: ['debate'] },
   { id: 'deb3', word: 'consequently', translation_pt: 'consequentemente', meaning_en: 'As a result.', example_sentence_en: 'He didn\'t study; consequently, he failed.', tags: ['debate'] },
+  { id: 'deb4', word: 'conversely', translation_pt: 'por outro lado', meaning_en: 'Introduces a statement or idea which reverses one that has just been made.', example_sentence_en: 'Some people love it; conversely, others hate it.', tags: ['debate'] },
 
   // --- ECONOMICS & FINANCE (C1/C2) ---
   { id: 'econ1', word: 'inflation', translation_pt: 'inflação', meaning_en: 'A general increase in prices and fall in the purchasing value of money.', example_sentence_en: 'Inflation has risen by 2% this year.', tags: ['economics', 'c2-vocabulary'] },
@@ -202,6 +209,7 @@ export const dictionaryEntries: DictionaryEntry[] = [
   { id: 'law1', word: 'legislation', translation_pt: 'legislação', meaning_en: 'Laws, considered collectively.', example_sentence_en: 'New legislation was passed today.', tags: ['law', 'politics'] },
   { id: 'law2', word: 'amendment', translation_pt: 'emenda', meaning_en: 'A minor change or addition designed to improve a text, piece of legislation, etc.', example_sentence_en: 'The First Amendment.', tags: ['law', 'politics'] },
   { id: 'law3', word: 'sovereignty', translation_pt: 'soberania', meaning_en: 'Supreme power or authority.', example_sentence_en: 'National sovereignty must be respected.', tags: ['politics', 'c2-vocabulary'] },
+  { id: 'law4', word: 'democracy', translation_pt: 'democracia', meaning_en: 'A system of government by the whole population or all the eligible members of a state.', example_sentence_en: 'We live in a democracy.', tags: ['politics'] },
 
   // --- INTERNET & DIGITAL LIFE (New) ---
   { id: 'net1', word: 'algorithm', translation_pt: 'algoritmo', meaning_en: 'A process or set of rules to be followed in calculations.', example_sentence_en: 'The social media algorithm shows what you like.', tags: ['internet-slang', 'technology'] },

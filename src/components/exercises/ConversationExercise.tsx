@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { SCENARIOS, ConversationOption, ConversationStep } from '@/lib/conversationData';
+import { tts } from '@/lib/tts';
 
 interface Message {
   id: string;
@@ -24,7 +25,12 @@ const SCENARIO_MAP: Record<string, string> = {
   'job-interview-sim': 'job-interview',
   'job-interview-sim-mid': 'job-interview',
   'ordering-food-sim': 'ordering-food',
-  'conversation-practice': 'daily-conversations'
+  'conversation-practice': 'daily-conversations',
+  'doctor-appointment': 'doctor-appointment',
+  'shopping-clothes': 'shopping-clothes',
+  'business-negotiation': 'business-negotiation',
+  'debate-tech': 'debate-tech',
+  'dating-scenario': 'dating-scenario'
 };
 
 export default function ConversationExercise() {
@@ -68,11 +74,7 @@ export default function ConversationExercise() {
   }, [history, typing]);
 
   const speak = (text: string) => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      window.speechSynthesis.speak(utterance);
-    }
+    tts.speak(text);
   };
 
   const handleOptionSelect = (option: ConversationOption) => {

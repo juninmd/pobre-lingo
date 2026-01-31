@@ -201,7 +201,8 @@ export function useCurriculumProgress() {
 
     const { lessonsCompleted, totalLessons, completionPercentage } = getModuleCompletionStats(module);
 
-    const completedLessonsData = completedLessons.filter(l => l.moduleId === moduleId);
+    // Otimização: Uso do mapa em vez de filter no array principal
+    const completedLessonsData = completedLessonsByModule.get(moduleId) || [];
     const startedAt = completedLessonsData.length > 0
       ? completedLessonsData[0].completedAt
       : undefined;
@@ -218,7 +219,7 @@ export function useCurriculumProgress() {
       totalLessons,
       completionPercentage,
     };
-  }, [completedLessons, getModuleCompletionStats, isModuleUnlocked]);
+  }, [completedLessonsByModule, getModuleCompletionStats, isModuleUnlocked]);
 
   // Obter estatísticas gerais
   const overallProgress = useMemo(() => {

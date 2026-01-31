@@ -9,8 +9,8 @@ import { Check, Lock, Star, Trophy, Flag } from 'lucide-react';
 
 // Helper to get icon component dynamically
 const getIcon = (name: string) => {
-  // @ts-ignore - Dynamic access to Lucide icons
-  return LucideIcons[name] || LucideIcons.HelpCircle;
+  const icons = LucideIcons as unknown as Record<string, React.ElementType>;
+  return icons[name] || LucideIcons.HelpCircle;
 };
 
 // Helper to construct lesson links
@@ -51,19 +51,16 @@ function ModuleNode({ module, index, status, progress, completedLessonsSet, tota
 
   const baseColor = module.color.replace('bg-', '');
 
-  let ringColor = 'ring-muted';
   let bgColor = 'bg-muted';
   let iconColor = 'text-muted-foreground';
   let shadowClass = '';
 
   if (status === 'completed') {
     bgColor = module.color;
-    ringColor = `ring-${baseColor}`;
     iconColor = 'text-white';
     shadowClass = `shadow-lg shadow-${baseColor}/40`;
   } else if (status === 'active') {
     bgColor = module.color;
-    ringColor = `ring-${baseColor}`;
     iconColor = 'text-white';
     shadowClass = `shadow-xl shadow-${baseColor}/50 ring-4 ring-${baseColor}/20`;
   }
@@ -309,7 +306,7 @@ export function LearningPath() {
         </div>
       </div>
 
-      {unitsWithModules.map((unit, idx) => (
+      {unitsWithModules.map((unit) => (
         <UnitSection
           key={unit.id}
           unit={unit}

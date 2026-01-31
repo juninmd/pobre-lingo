@@ -32,15 +32,13 @@ const tips = [
 ];
 
 export function DailyTipCard() {
-  const [tip, setTip] = useState(tips[0]);
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
+  const [tip] = useState(() => {
     // Pick a tip based on the day of the year so it's consistent for the day
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
     const tipIndex = dayOfYear % tips.length;
-    setTip(tips[tipIndex]);
-  }, []);
+    return tips[tipIndex];
+  });
+  const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;
 

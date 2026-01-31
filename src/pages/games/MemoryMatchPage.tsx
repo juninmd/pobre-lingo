@@ -32,10 +32,6 @@ export default function MemoryMatchPage() {
   const [moves, setMoves] = useState(0);
   const [gameWon, setGameWon] = useState(false);
 
-  useEffect(() => {
-    startNewGame();
-  }, []);
-
   const startNewGame = () => {
     // Select random words
     const shuffledDictionary = [...dictionaryEntries].sort(() => 0.5 - Math.random());
@@ -73,6 +69,10 @@ export default function MemoryMatchPage() {
     setMoves(0);
     setGameWon(false);
   };
+
+  useEffect(() => {
+    startNewGame();
+  }, []);
 
   const handleCardClick = (index: number) => {
     // Prevent clicking if game won, card already flipped/matched, or 2 cards already flipped

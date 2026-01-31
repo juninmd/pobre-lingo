@@ -1,17 +1,16 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, XCircle, RotateCcw, PartyPopper, FileText, Newspaper, ArrowLeft } from 'lucide-react';
+import { CheckCircle, XCircle, PartyPopper, FileText, Newspaper, ArrowLeft } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import type { NewsComprehensionExercise, ArticleQuestion } from '@/lib/exerciseData';
 import { PageContainer } from '@/components/common/PageContainer';
-import { SectionTitle } from '@/components/common/SectionTitle';
 
 interface NewsComprehensionProps {
   exercise: NewsComprehensionExercise;
@@ -25,30 +24,20 @@ export function NewsComprehension({ exercise, onBackToList, onQuizComplete }: Ne
   const [showFeedback, setShowFeedback] = useState(false);
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
-  const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
 
-  const currentQuestion: ArticleQuestion | undefined = exercise.questions[currentQuestionIndex];
-
-  // Reset state when exercise changes (e.g. user selects a new one from list)
-  useEffect(() => {
-    setCurrentQuestionIndex(0);
-    setSelectedAnswer(null);
-    setShowFeedback(false);
-    setScore(0);
-    setQuizFinished(false);
-  }, [exercise]);
-
-
-  useEffect(() => {
-    if (currentQuestion) {
-      const options = [...currentQuestion.options];
+  // Shuffle questions/options on mount/init
+  const [shuffledQuestions] = useState(() => {
+    return exercise.questions.map(q => {
+      const options = [...q.options];
       for (let i = options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [options[i], options[j]] = [options[j], options[i]];
       }
-      setShuffledOptions(options);
-    }
-  }, [currentQuestion]);
+      return { ...q, options };
+    });
+  });
+
+  const currentQuestion: ArticleQuestion | undefined = shuffledQuestions[currentQuestionIndex];
 
   const handleAnswerSubmit = () => {
     if (!selectedAnswer || !currentQuestion) return;
@@ -146,7 +135,7 @@ export function NewsComprehension({ exercise, onBackToList, onQuizComplete }: Ne
               onValueChange={setSelectedAnswer}
               disabled={showFeedback}
             >
-              {shuffledOptions.map((option, index) => (
+              {currentQuestion.options.map((option, index) => (
                 <div key={index} className="flex items-center space-x-2 my-2 p-3 border rounded-md hover:bg-muted/50 transition-colors">
                   <RadioGroupItem value={option} id={`option-${index}-${currentQuestion.id}`} />
                   <Label htmlFor={`option-${index}-${currentQuestion.id}`} className="text-base text-foreground cursor-pointer flex-1">

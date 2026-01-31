@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,9 +8,7 @@ import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { curriculumData, Lesson, Module } from '@/lib/curriculumData';
 import {
   ArrowRight,
-  CheckCircle2,
   Star,
-  TrendingUp,
   Clock,
   Award,
   Play,

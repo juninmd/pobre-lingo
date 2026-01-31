@@ -1,19 +1,19 @@
 import React, { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { curriculumData, Unit, Module, Lesson } from '@/lib/curriculumData';
+import { curriculumData, Lesson } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { cn } from '@/lib/utils';
 import { GuidebookModal } from '@/components/curriculum/GuidebookModal';
 import { LessonStartModal } from '@/components/curriculum/LessonStartModal';
-import { Star, Lock, Trophy, Gamepad2, ScrollText, Mic, Crown, Feather, Sparkles, Map } from 'lucide-react';
+import { Star, Lock, Trophy, Gamepad2, ScrollText, Mic, Crown, Sparkles } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getLessonLink } from '@/lib/routes';
 
 // Helper to get icon component dynamically
 const getIcon = (name: string) => {
-  // @ts-ignore
-  return LucideIcons[name] || LucideIcons.HelpCircle;
+  const icons = LucideIcons as unknown as Record<string, React.ElementType>;
+  return icons[name] || LucideIcons.HelpCircle;
 };
 
 export function LearningPath() {

@@ -3,6 +3,8 @@ import { Module, Lesson } from './curriculumData';
 export function getLessonLink(module: Module, lesson: Lesson): string {
   // 0. Game Type (Highest Priority)
   if (lesson.gameType) {
+    // Handle explicit game types that match route names
+    // Bubble Pop needs to be handled if its route matches the gameType string, which it does ('bubble-pop')
     return `/games/${lesson.gameType}?module=${module.id}&lesson=${lesson.id}`;
   }
 

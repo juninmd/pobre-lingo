@@ -99,9 +99,9 @@ export default function CurriculumPage() {
   const [selectedDifficulty, setSelectedDifficulty] = React.useState<DifficultyLevel | 'all'>('all');
   const [expandedModule, setExpandedModule] = React.useState<string | null>(null);
 
-  const filteredModules = React.useMemo(() => selectedDifficulty === 'all'
+  const filteredModules = selectedDifficulty === 'all'
     ? curriculumData.modules
-    : curriculumData.modules.filter(m => m.difficulty === selectedDifficulty), [selectedDifficulty]);
+    : curriculumData.modules.filter(m => m.difficulty === selectedDifficulty);
 
   // Auto-expandir o módulo em progresso
   React.useEffect(() => {

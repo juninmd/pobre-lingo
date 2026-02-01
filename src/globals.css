@@ -193,6 +193,15 @@
   .glass-button:hover::after {
     @apply opacity-100;
   }
+
+  .glass-button-surface {
+    @apply relative overflow-hidden backdrop-blur-md transition-all duration-300;
+  }
+
+  .glass-button-surface::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+  }
 }
 
 @layer base {

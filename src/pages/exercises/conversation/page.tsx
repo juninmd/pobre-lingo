@@ -7,12 +7,12 @@ export default function ConversationPage() {
   return (
     <PageContainer>
       <PageHeader
-        title="Conversation Practice"
-        description="Chat with Pobrelingo to improve your fluency"
+        title="Prática de Conversa"
+        description="Pratique situações reais e melhore sua fluência"
         icon={MessageCircle}
-        iconClassName="text-green-500"
+        iconClassName="text-gold"
         backLink="/"
-        backLabel="Back to Home"
+        backLabel="Voltar para Início"
       />
       <ConversationExercise />
     </PageContainer>

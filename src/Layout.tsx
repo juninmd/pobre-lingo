@@ -21,8 +21,9 @@ import {
   Gamepad2,
   Coins,
 } from 'lucide-react';
-import { Pobrelingo } from '@/components/mascot/Pobrelingo';
+
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
+import { cn } from '@/lib/utils';
 import {
   SidebarProvider,
   Sidebar,
@@ -53,14 +54,15 @@ import { Separator } from '@/components/ui/separator';
 import { GlobalSearch, GlobalSearchTrigger } from '@/components/common/GlobalSearch';
 import { MobileNav } from './components/layout/MobileNav';
 import { useGamification } from './contexts/GamificationContext';
+import { SEO } from './components/common/SEO';
+import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
 // Agrupamento de navegação por categorias
 const navGroups = [
   {
     title: 'Principal',
     items: [
-      { href: '/', label: 'Início', icon: Home },
-      { href: '/curriculum', label: 'Jornada', icon: Map },
+      { href: '/', label: 'Minha Jornada', icon: Map },
       { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
     ]
   },
@@ -81,9 +83,8 @@ const navGroups = [
     ]
   },
   {
-    title: 'Progresso',
+    title: 'Status',
     items: [
-      { href: '/progress', label: 'Meu Progresso', icon: TrendingUp },
       { href: '/proficiency', label: 'Teste de Nível', icon: GraduationCap },
     ]
   },
@@ -100,11 +101,11 @@ function NavMenu() {
 
   const filteredGroups = sidebarSearchTerm
     ? [{
-        title: 'Resultados',
-        items: allNavItems.filter(item =>
-          item.label.toLowerCase().includes(sidebarSearchTerm.toLowerCase())
-        )
-      }]
+      title: 'Resultados',
+      items: allNavItems.filter(item =>
+        item.label.toLowerCase().includes(sidebarSearchTerm.toLowerCase())
+      )
+    }]
     : navGroups;
 
   const handleLinkClick = () => {
@@ -115,12 +116,12 @@ function NavMenu() {
     <>
       <SidebarHeader className="p-3 border-b border-sidebar-border/50">
         <div className="flex items-center gap-3">
-          <div className="relative">
-            <Pobrelingo width={36} height={36} className="flex-shrink-0" emotion="happy" />
+          <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10">
+            <GraduationCap className="h-5 w-5 text-primary" />
           </div>
           {!isCollapsed && (
             <div className="flex flex-col min-w-0">
-              <span className="font-bold text-base text-sidebar-foreground truncate tracking-tight">PobreLingo</span>
+              <span className="font-bold text-base text-sidebar-foreground truncate tracking-tight [data-theme=pobre-lingo]:text-gold">PobreLingo</span>
               <span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider">Aprenda Grátis</span>
             </div>
           )}
@@ -165,16 +166,17 @@ function NavMenu() {
                       <SidebarMenuButton
                         asChild
                         isActive={isActive}
-                        tooltip={{ content: item.label, side: 'right', align: 'center' }}
-                        className={`justify-start h-10 transition-all duration-200 rounded-lg group ${
+                        tooltip={{ children: item.label }}
+                        className={cn(
+                          "justify-start h-10 transition-all duration-300 rounded-lg group",
                           isActive
-                            ? 'bg-primary/10 text-primary font-semibold shadow-sm'
-                            : 'hover:bg-sidebar-accent/50 text-sidebar-foreground/80'
-                        }`}
+                            ? "bg-primary/10 text-primary font-bold shadow-sm [data-theme=pobre-lingo]:sidebar-active"
+                            : "hover:bg-sidebar-accent/50 text-sidebar-foreground/80 hover:translate-x-1"
+                        )}
                         onClick={handleLinkClick}
                       >
                         <Link to={item.href} className="flex items-center gap-3">
-                          <item.icon className={`h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110 ${isActive ? 'text-primary' : ''}`} />
+                          <item.icon className={cn("h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110", isActive && "text-primary")} />
                           {!isCollapsed && (
                             <span className="truncate text-sm">{item.label}</span>
                           )}
@@ -218,6 +220,7 @@ function NavMenu() {
 export default function Layout() {
   const { setTheme } = useTheme();
   const { gems } = useGamification();
+  const { userLevel } = useCurriculumProgress();
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -245,6 +248,7 @@ export default function Layout() {
 
   return (
     <div className="font-body antialiased min-h-screen bg-background text-foreground">
+      <SEO />
       <SidebarProvider defaultOpen>
         {/* Sidebar only visible on lg and up */}
         <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-border/40">
@@ -252,7 +256,7 @@ export default function Layout() {
         </Sidebar>
 
         <SidebarInset className="flex flex-col min-h-screen pb-24 lg:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/95 backdrop-blur-sm px-4 md:px-6">
+          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-md px-4 md:px-6 glass">
             <div className="flex items-center gap-3 min-w-0">
               <div className="hidden lg:block">
                 <SidebarTrigger asChild>
@@ -263,15 +267,16 @@ export default function Layout() {
                 </SidebarTrigger>
               </div>
 
-              <div className="lg:hidden flex-shrink-0">
-                 <Pobrelingo width={32} height={32} />
+              <div className="lg:hidden flex-shrink-0 flex items-center gap-2">
+                <GraduationCap className="h-6 w-6 text-primary" />
+                <span className="font-bold text-sm tracking-tight [data-theme=pobre-lingo]:text-gold">PobreLingo</span>
               </div>
 
               <Separator orientation="vertical" className="h-5 hidden lg:block bg-border/60" />
 
               <div className="flex items-center gap-2 min-w-0">
                 <div className="hidden sm:flex items-center justify-center w-6 h-6 rounded-md bg-primary/10">
-                   <GraduationCap className="h-3.5 w-3.5 text-primary" />
+                  <GraduationCap className="h-3.5 w-3.5 text-primary" />
                 </div>
                 <h1 className="font-semibold text-sm md:text-base truncate">
                   {getCurrentPageTitle()}
@@ -286,12 +291,17 @@ export default function Layout() {
 
             <div className="flex items-center gap-2 md:gap-4 mr-1">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-3 text-sm font-medium">
-                {/* Hearts removed as per request for infinite lives */}
+              <div className="flex items-center gap-2 md:gap-3 text-sm font-bold">
+                {/* Level Badge */}
+                <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-sm" title="Nível">
+                  <GraduationCap className="h-4 w-4" />
+                  <span>Nível {userLevel}</span>
+                </div>
 
-                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20" title="PobreCoins">
-                   <Coins className="h-4 w-4 fill-current" />
-                   <span>{gems}</span>
+                {/* Gems / PobreCoins */}
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20 shadow-sm" title="PobreCoins">
+                  <Coins className="h-4 w-4 fill-current" />
+                  <span>{gems}</span>
                 </div>
               </div>
 

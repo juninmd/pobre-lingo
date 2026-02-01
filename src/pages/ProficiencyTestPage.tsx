@@ -74,21 +74,21 @@ export default function ProficiencyTestPage() {
 
           {/* Profile Header */}
           <div className="flex items-center gap-4 bg-card p-6 rounded-xl border shadow-sm">
-             <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
-                <User className="w-10 h-10 text-primary" />
-             </div>
-             <div>
-                <h2 className="text-2xl font-bold">Aprendiz PobreLingo</h2>
-                <p className="text-muted-foreground">Nível {userLevelNum}</p>
-                <div className="flex gap-4 mt-2 text-sm font-medium">
-                   <div className="flex items-center gap-1 text-yellow-600">
-                      <Trophy className="w-4 h-4" /> {xp} XP
-                   </div>
-                   <div className="flex items-center gap-1 text-orange-600">
-                      <span className="w-4 h-4 flex items-center justify-center font-bold">🔥</span> {streak} dias
-                   </div>
+            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
+              <User className="w-10 h-10 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">Aprendiz PobreLingo</h2>
+              <p className="text-muted-foreground">Nível {userLevelNum}</p>
+              <div className="flex gap-4 mt-2 text-sm font-medium">
+                <div className="flex items-center gap-1 text-yellow-600">
+                  <Trophy className="w-4 h-4" /> {xp} XP
                 </div>
-             </div>
+                <div className="flex items-center gap-1 text-orange-600">
+                  <span className="w-4 h-4 flex items-center justify-center font-bold">🔥</span> {streak} dias
+                </div>
+              </div>
+            </div>
           </div>
 
           <AchievementsList />
@@ -161,7 +161,7 @@ export default function ProficiencyTestPage() {
                 Refazer Teste
               </Button>
               <Button asChild>
-                <a href="/curriculum">Ir para o Curso</a>
+                <a href="/">Ir para o Curso</a>
               </Button>
             </CardFooter>
           </Card>

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import LogRocket from 'logrocket';
 import { Router } from './Router';
+import { HelmetProvider } from 'react-helmet-async';
 import './globals.css';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { GamificationProvider } from './contexts/GamificationContext';
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
       <GamificationProvider>
-        <Router />
+        <HelmetProvider>
+          <Router />
+        </HelmetProvider>
       </GamificationProvider>
     </ThemeProvider>
   </React.StrictMode>

@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SEO } from '@/components/common/SEO';
 
 const difficultyConfig = {
   basico: {
@@ -116,6 +117,7 @@ export default function CurriculumPage() {
 
   return (
     <PageContainer>
+      <SEO title="Jornada de Aprendizado" description="Sua trilha personalizada para dominar o inglês, do básico ao avançado." />
       {/* Header com gradiente */}
       <div className="relative mb-8 p-4 md:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border overflow-hidden">
         <div className="absolute top-0 right-0 opacity-10">

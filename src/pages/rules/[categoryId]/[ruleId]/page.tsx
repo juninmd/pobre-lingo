@@ -50,6 +50,13 @@ export default function RulePage() {
     tts.speak(text, 'en-US', 0.9);
   };
 
+  // Função para falar o texto em português
+  const speakPt = (text: string) => {
+    // Escovar o texto para remover notas entre parênteses
+    const cleanText = text.replace(/\(.*\)/g, '').trim();
+    tts.speak(cleanText, 'pt-BR', 1.0);
+  };
+
   if (!category || !rule) {
     return (
       <PageContainer>
@@ -256,9 +263,19 @@ export default function RulePage() {
                             </Button>
                           </div>
                           {showTranslations && example.translation_pt && (
-                            <p className="text-sm text-muted-foreground mt-1">
-                              → {example.translation_pt}
-                            </p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <p className="text-sm text-muted-foreground">
+                                → {example.translation_pt}
+                              </p>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                                onClick={() => speakPt(example.translation_pt!)}
+                              >
+                                <Volume2 className="h-3 w-3 text-muted-foreground" />
+                              </Button>
+                            </div>
                           )}
                           {example.notes_pt && (
                             <p className="text-xs text-muted-foreground/80 italic mt-2 pl-3 border-l-2 border-muted">

@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { Trophy, Star, TrendingUp, ArrowRight, Share2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Pobrelingo } from '@/components/mascot/Pobrelingo';
+
 import { triggerConfetti } from '@/lib/confetti';
 import { cn } from '@/lib/utils';
 
@@ -55,8 +55,10 @@ export function LessonCompletionDialog({
 
           {/* Mascot Animation */}
           <div className="mb-4 relative">
-             <div className="absolute inset-0 bg-yellow-400/20 blur-xl rounded-full animate-pulse" />
-             <Pobrelingo emotion="excited" width={140} height={140} className="drop-shadow-xl animate-bounce-slow" />
+            <div className="absolute inset-0 bg-yellow-400/20 blur-xl rounded-full animate-pulse" />
+            <div className="flex items-center justify-center w-24 h-24 rounded-full bg-yellow-100 shadow-lg">
+              <Trophy className="w-12 h-12 text-yellow-600 animate-bounce" />
+            </div>
           </div>
 
           <h2 className="text-3xl font-black text-green-600 dark:text-green-400 mb-2 text-center uppercase tracking-wide">
@@ -110,7 +112,10 @@ export function LessonCompletionDialog({
 
         <DialogFooter className="p-6 pt-0 flex-col gap-3 sm:gap-3 bg-background z-10">
           <Button
-            onClick={() => navigate('/curriculum')}
+            onClick={() => {
+              onClose();
+              navigate('/');
+            }}
             className="w-full h-12 text-lg font-bold uppercase tracking-wide shadow-lg hover:translate-y-0.5 active:translate-y-1 transition-all"
             size="lg"
           >

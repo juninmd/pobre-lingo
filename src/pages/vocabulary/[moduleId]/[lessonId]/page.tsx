@@ -157,68 +157,68 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
 
   return (
     <Card className="max-w-2xl mx-auto border-none shadow-none">
-        <CardHeader className="px-0">
-          <CardTitle className="flex items-center gap-2 text-xl">
-            <Trophy className="h-6 w-6 text-yellow-500" />
-            Par de Palavras: {exerciseTopic}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="px-0">
-          {isCompleted ? (
-            <div className="text-center py-10 bg-card border rounded-xl shadow-sm">
-               <div className="h-20 w-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                 <Trophy className="h-10 w-10 text-yellow-600" />
-               </div>
-               <h3 className="text-2xl font-bold mb-2">Excelente!</h3>
-               <p className="text-muted-foreground mb-6">Você completou o exercício.</p>
-               <div className="flex justify-center gap-4">
-                 <Button onClick={initializeGame} variant="outline">
-                    <RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente
-                 </Button>
-                 <Button onClick={onComplete}>
-                   Concluir Lição
-                 </Button>
-               </div>
+      <CardHeader className="px-0">
+        <CardTitle className="flex items-center gap-2 text-xl">
+          <Trophy className="h-6 w-6 text-yellow-500" />
+          Par de Palavras: {exerciseTopic}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="px-0">
+        {isCompleted ? (
+          <div className="text-center py-10 bg-card border rounded-xl shadow-sm">
+            <div className="h-20 w-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Trophy className="h-10 w-10 text-yellow-600" />
             </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {cards.map((card) => (
-                <button
-                  key={card.id}
-                  onClick={() => handleCardClick(card)}
-                  disabled={card.status === 'matched'}
-                  className={cn(
-                    "h-24 rounded-xl border-2 font-medium text-lg transition-all transform active:scale-95 flex items-center justify-center p-2 text-center shadow-sm",
-                    card.status === 'hidden' && "bg-card hover:border-primary/50",
-                    card.status === 'selected' && "border-primary bg-primary/10 scale-105 ring-2 ring-primary/20",
-                    card.status === 'matched' && "border-transparent bg-green-100 text-green-700 opacity-50 cursor-default",
-                    card.status === 'error' && "border-red-500 bg-red-50 text-red-700 animate-shake"
-                  )}
-                >
-                  {card.text}
-                </button>
-              ))}
+            <h3 className="text-2xl font-bold mb-2">Excelente!</h3>
+            <p className="text-muted-foreground mb-6">Você completou o exercício.</p>
+            <div className="flex justify-center gap-4">
+              <Button onClick={initializeGame} variant="outline">
+                <RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente
+              </Button>
+              <Button onClick={onComplete}>
+                Concluir Lição
+              </Button>
             </div>
-          )}
-        </CardContent>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {cards.map((card) => (
+              <button
+                key={card.id}
+                onClick={() => handleCardClick(card)}
+                disabled={card.status === 'matched'}
+                className={cn(
+                  "h-24 rounded-xl border-2 font-medium text-lg transition-all transform active:scale-95 flex items-center justify-center p-2 text-center shadow-sm",
+                  card.status === 'hidden' && "bg-card hover:border-primary/50",
+                  card.status === 'selected' && "border-primary bg-primary/10 scale-105 ring-2 ring-primary/20",
+                  card.status === 'matched' && "border-transparent bg-green-100 text-green-700 opacity-50 cursor-default",
+                  card.status === 'error' && "border-red-500 bg-red-50 text-red-700 animate-shake"
+                )}
+              >
+                {card.text}
+              </button>
+            ))}
+          </div>
+        )}
+      </CardContent>
     </Card>
   );
 }
 
 function ReadingLessonWrapper({ onComplete, navigate, xpReward, moduleId, lessonId, completeLesson }: { onComplete: () => void, navigate: any, xpReward: number, moduleId: string, lessonId: string, completeLesson: any }) {
-    const [article] = useState(() => newsComprehensionExercises[Math.floor(Math.random() * newsComprehensionExercises.length)]);
+  const [article] = useState(() => newsComprehensionExercises[Math.floor(Math.random() * newsComprehensionExercises.length)]);
 
-    return (
-         <NewsComprehension
-            exercise={article}
-            onBackToList={() => navigate('/curriculum')}
-            onQuizComplete={() => {
-                completeLesson(moduleId, lessonId, xpReward);
-                // Optional: show success modal before navigating?
-                // NewsComprehension handles its own success view.
-            }}
-         />
-    );
+  return (
+    <NewsComprehension
+      exercise={article}
+      onBackToList={() => navigate('/')}
+      onQuizComplete={() => {
+        completeLesson(moduleId, lessonId, xpReward);
+        // Optional: show success modal before navigating?
+        // NewsComprehension handles its own success view.
+      }}
+    />
+  );
 }
 
 // --------------------------------------------------------------------------------
@@ -258,259 +258,260 @@ export default function LessonPage() {
   const handleComplete = () => {
     if (!completed) {
       completeLesson(moduleId!, lessonId!, lesson.xpReward);
+      navigate('/', { replace: true });
     }
-    navigate('/curriculum');
+    navigate('/');
   };
 
   // Render Logic based on Type
   const renderContent = () => {
     switch (lesson.type) {
-        case 'speaking': {
-            const speakingTopics = lesson.speakingTopics || [];
-            const speakingPhrases = speakingTopics.flatMap(topic => speakingData[topic] || []);
-            return (
-                <SpeakingExercise
-                  phrases={speakingPhrases}
-                  onComplete={handleComplete}
-                />
-            );
+      case 'speaking': {
+        const speakingTopics = lesson.speakingTopics || [];
+        const speakingPhrases = speakingTopics.flatMap(topic => speakingData[topic] || []);
+        return (
+          <SpeakingExercise
+            phrases={speakingPhrases}
+            onComplete={handleComplete}
+          />
+        );
+      }
+
+      case 'exercise':
+        if (lesson.exerciseType === 'sentence-ordering') {
+          return <SentenceOrdering />;
+        }
+        if (lesson.exerciseType === 'find-incorrect-words') {
+          return <FindIncorrectWords />;
+        }
+        if (lesson.exerciseType === 'matching-pairs') {
+          return <MatchingPairsGame onComplete={handleComplete} />;
+        }
+        if (lesson.exerciseType === 'conversation') {
+          return <ConversationExercise />;
+        }
+        if (lesson.exerciseType === 'listening') {
+          return <ListeningExercise />;
+        }
+        return <div className="p-4">Tipo de exercício não suportado: {lesson.exerciseType}</div>;
+
+      case 'reading': {
+        return (
+          <ReadingLessonWrapper
+            key={lesson.id}
+            onComplete={handleComplete}
+            navigate={navigate}
+            xpReward={lesson.xpReward}
+            moduleId={moduleId!}
+            lessonId={lessonId!}
+            completeLesson={completeLesson}
+          />
+        );
+      }
+
+      case 'grammar':
+        return (
+          <GrammarLessonView
+            ruleIds={lesson.grammarRuleIds || []}
+            onComplete={handleComplete}
+            isCompleted={completed}
+          />
+        );
+
+      case 'culture':
+        return (
+          <CultureLessonView
+            lesson={lesson}
+            onComplete={handleComplete}
+            isCompleted={completed}
+          />
+        );
+
+      case 'quiz':
+        return (
+          <QuizView
+            lesson={lesson}
+            onComplete={handleComplete}
+            isCompleted={completed}
+          />
+        );
+
+      case 'vocabulary':
+      default: {
+        const topics = lesson.vocabularyTopics || [];
+        // New Logic: Fetch from centralized dictionary
+        const allWordsEntries = topics.flatMap(topic => getWordsByTopic(topic));
+
+        // Map to local format
+        const allWords = allWordsEntries.map(entry => ({
+          word: entry.word,
+          translation: entry.translation_pt,
+          example: entry.example_sentence_en || ''
+        }));
+
+        const currentWord = allWords[currentIndex];
+        const progress = allWords.length > 0 ? ((currentIndex + 1) / allWords.length) * 100 : 0;
+
+        // Helpers for vocab
+        const handleNext = () => {
+          if (currentIndex < allWords.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+            setShowTranslation(false);
+          }
+        };
+
+        const handlePrevious = () => {
+          if (currentIndex > 0) {
+            setCurrentIndex(prev => prev - 1);
+            setShowTranslation(false);
+          }
+        };
+
+        const handleMaster = () => {
+          setMastered(prev => new Set(prev).add(currentIndex));
+        };
+
+        const getTextToSpeak = (word: string) => {
+          if (word.startsWith('/') && word.includes('(')) {
+            const match = word.match(/\(([^)]+)\)/);
+            return match ? match[1] : word;
+          }
+          if (word.includes('(')) {
+            return word.split('(')[0].trim();
+          }
+          return word;
+        };
+
+        const handleSpeak = () => {
+          if (!currentWord) return;
+          const text = getTextToSpeak(currentWord.word);
+          tts.speak(text, 'en-US', 0.8);
+        };
+
+        if (allWords.length === 0) {
+          return (
+            <Card>
+              <CardContent className="p-8 text-center">
+                <p>Nenhuma palavra encontrada para este tópico.</p>
+                <Button onClick={() => navigate('/')} className="mt-4">
+                  Voltar
+                </Button>
+              </CardContent>
+            </Card>
+          );
         }
 
-        case 'exercise':
-            if (lesson.exerciseType === 'sentence-ordering') {
-                return <SentenceOrdering />;
-            }
-            if (lesson.exerciseType === 'find-incorrect-words') {
-                return <FindIncorrectWords />;
-            }
-            if (lesson.exerciseType === 'matching-pairs') {
-                return <MatchingPairsGame onComplete={handleComplete} />;
-            }
-            if (lesson.exerciseType === 'conversation') {
-                return <ConversationExercise />;
-            }
-             if (lesson.exerciseType === 'listening') {
-                 return <ListeningExercise />;
-            }
-            return <div className="p-4">Tipo de exercício não suportado: {lesson.exerciseType}</div>;
+        return (
+          <div className="max-w-4xl mx-auto">
+            {/* Progresso */}
+            <Card className="mb-6">
+              <CardContent className="pt-6">
+                <div className="flex justify-between text-sm mb-2">
+                  <span>Progresso</span>
+                  <span className="font-medium">
+                    {currentIndex + 1} / {allWords.length}
+                  </span>
+                </div>
+                <Progress value={progress} className="h-2" />
+                <div className="mt-2 text-sm text-muted-foreground">
+                  {mastered.size} palavras dominadas
+                </div>
+              </CardContent>
+            </Card>
 
-        case 'reading': {
-             return (
-                 <ReadingLessonWrapper
-                    key={lesson.id}
-                    onComplete={handleComplete}
-                    navigate={navigate}
-                    xpReward={lesson.xpReward}
-                    moduleId={moduleId!}
-                    lessonId={lessonId!}
-                    completeLesson={completeLesson}
-                 />
-             );
-        }
+            {/* Card de Vocabulário */}
+            {currentWord && (
+              <Card className="mb-6">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-2xl">Palavra {currentIndex + 1}</CardTitle>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowTranslation(!showTranslation)}
+                    >
+                      <BookOpen className="h-4 w-4 mr-2" />
+                      {showTranslation ? 'Ocultar' : 'Mostrar'} Tradução
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    {/* Palavra em Inglês */}
+                    <div className="text-center p-8 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                      <h2 className="text-4xl font-bold mb-4">{currentWord.word}</h2>
+                      <Button variant="ghost" size="sm" onClick={handleSpeak}>
+                        <Volume2 className="h-5 w-5" />
+                      </Button>
+                    </div>
 
-        case 'grammar':
-            return (
-                <GrammarLessonView
-                    ruleIds={lesson.grammarRuleIds || []}
-                    onComplete={handleComplete}
-                    isCompleted={completed}
-                />
-            );
-
-        case 'culture':
-             return (
-                 <CultureLessonView
-                    lesson={lesson}
-                    onComplete={handleComplete}
-                    isCompleted={completed}
-                 />
-             );
-
-        case 'quiz':
-            return (
-                <QuizView
-                    lesson={lesson}
-                    onComplete={handleComplete}
-                    isCompleted={completed}
-                />
-            );
-
-        case 'vocabulary':
-        default: {
-             const topics = lesson.vocabularyTopics || [];
-             // New Logic: Fetch from centralized dictionary
-             const allWordsEntries = topics.flatMap(topic => getWordsByTopic(topic));
-
-             // Map to local format
-             const allWords = allWordsEntries.map(entry => ({
-                 word: entry.word,
-                 translation: entry.translation_pt,
-                 example: entry.example_sentence_en || ''
-             }));
-
-             const currentWord = allWords[currentIndex];
-             const progress = allWords.length > 0 ? ((currentIndex + 1) / allWords.length) * 100 : 0;
-
-             // Helpers for vocab
-             const handleNext = () => {
-                if (currentIndex < allWords.length - 1) {
-                  setCurrentIndex(prev => prev + 1);
-                  setShowTranslation(false);
-                }
-              };
-
-              const handlePrevious = () => {
-                if (currentIndex > 0) {
-                  setCurrentIndex(prev => prev - 1);
-                  setShowTranslation(false);
-                }
-              };
-
-              const handleMaster = () => {
-                setMastered(prev => new Set(prev).add(currentIndex));
-              };
-
-              const getTextToSpeak = (word: string) => {
-                if (word.startsWith('/') && word.includes('(')) {
-                  const match = word.match(/\(([^)]+)\)/);
-                  return match ? match[1] : word;
-                }
-                if (word.includes('(')) {
-                  return word.split('(')[0].trim();
-                }
-                return word;
-              };
-
-              const handleSpeak = () => {
-                if (!currentWord) return;
-                const text = getTextToSpeak(currentWord.word);
-                tts.speak(text, 'en-US', 0.8);
-              };
-
-             if (allWords.length === 0) {
-                 return (
-                     <Card>
-                         <CardContent className="p-8 text-center">
-                             <p>Nenhuma palavra encontrada para este tópico.</p>
-                             <Button onClick={() => navigate('/curriculum')} className="mt-4">
-                                 Voltar
-                             </Button>
-                         </CardContent>
-                     </Card>
-                 );
-             }
-
-             return (
-                <div className="max-w-4xl mx-auto">
-                    {/* Progresso */}
-                    <Card className="mb-6">
-                      <CardContent className="pt-6">
-                        <div className="flex justify-between text-sm mb-2">
-                          <span>Progresso</span>
-                          <span className="font-medium">
-                            {currentIndex + 1} / {allWords.length}
-                          </span>
-                        </div>
-                        <Progress value={progress} className="h-2" />
-                        <div className="mt-2 text-sm text-muted-foreground">
-                          {mastered.size} palavras dominadas
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    {/* Card de Vocabulário */}
-                    {currentWord && (
-                      <Card className="mb-6">
-                        <CardHeader>
-                          <div className="flex items-center justify-between">
-                            <CardTitle className="text-2xl">Palavra {currentIndex + 1}</CardTitle>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setShowTranslation(!showTranslation)}
-                            >
-                              <BookOpen className="h-4 w-4 mr-2" />
-                              {showTranslation ? 'Ocultar' : 'Mostrar'} Tradução
-                            </Button>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-6">
-                            {/* Palavra em Inglês */}
-                            <div className="text-center p-8 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-                              <h2 className="text-4xl font-bold mb-4">{currentWord.word}</h2>
-                              <Button variant="ghost" size="sm" onClick={handleSpeak}>
-                                <Volume2 className="h-5 w-5" />
-                              </Button>
-                            </div>
-
-                            {/* Tradução */}
-                            {showTranslation && (
-                              <div className="text-center p-6 bg-green-50 dark:bg-green-950/20 rounded-lg border-2 border-green-200 dark:border-green-900">
-                                <p className="text-2xl font-semibold text-green-900 dark:text-green-300">
-                                  {currentWord.translation}
-                                </p>
-                              </div>
-                            )}
-
-                            {/* Exemplo */}
-                            <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                              <h3 className="font-semibold mb-2">Exemplo:</h3>
-                              <p className="text-lg italic">{currentWord.example}</p>
-                            </div>
-
-                            {/* Botão Dominar */}
-                            <div className="text-center">
-                              <Button
-                                onClick={handleMaster}
-                                disabled={mastered.has(currentIndex)}
-                                variant={mastered.has(currentIndex) ? "outline" : "default"}
-                              >
-                                {mastered.has(currentIndex) ? (
-                                  <>
-                                    <CheckCircle2 className="h-4 w-4 mr-2" />
-                                    Dominada
-                                  </>
-                                ) : (
-                                  <>
-                                    <Star className="h-4 w-4 mr-2" />
-                                    Marcar como Dominada
-                                  </>
-                                )}
-                              </Button>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                    {/* Tradução */}
+                    {showTranslation && (
+                      <div className="text-center p-6 bg-green-50 dark:bg-green-950/20 rounded-lg border-2 border-green-200 dark:border-green-900">
+                        <p className="text-2xl font-semibold text-green-900 dark:text-green-300">
+                          {currentWord.translation}
+                        </p>
+                      </div>
                     )}
 
-                    {/* Navegação */}
-                    <div className="flex justify-between items-center">
-                      <Button
-                        onClick={handlePrevious}
-                        disabled={currentIndex === 0}
-                        variant="outline"
-                      >
-                        <ArrowLeft className="h-4 w-4 mr-2" />
-                        Anterior
-                      </Button>
+                    {/* Exemplo */}
+                    <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <h3 className="font-semibold mb-2">Exemplo:</h3>
+                      <p className="text-lg italic">{currentWord.example}</p>
+                    </div>
 
-                      {currentIndex === allWords.length - 1 ? (
-                        <Button onClick={handleComplete} size="lg">
-                          <CheckCircle2 className="h-4 w-4 mr-2" />
-                          {completed ? 'Voltar ao Currículo' : 'Concluir Lição'}
-                          {!completed && ` (+${lesson.xpReward} XP)`}
-                        </Button>
-                      ) : (
-                        <Button onClick={handleNext}>
-                          Próxima
-                          <ArrowRight className="h-4 w-4 ml-2" />
-                        </Button>
-                      )}
+                    {/* Botão Dominar */}
+                    <div className="text-center">
+                      <Button
+                        onClick={handleMaster}
+                        disabled={mastered.has(currentIndex)}
+                        variant={mastered.has(currentIndex) ? "outline" : "default"}
+                      >
+                        {mastered.has(currentIndex) ? (
+                          <>
+                            <CheckCircle2 className="h-4 w-4 mr-2" />
+                            Dominada
+                          </>
+                        ) : (
+                          <>
+                            <Star className="h-4 w-4 mr-2" />
+                            Marcar como Dominada
+                          </>
+                        )}
+                      </Button>
                     </div>
                   </div>
-             );
-        }
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Navegação */}
+            <div className="flex justify-between items-center">
+              <Button
+                onClick={handlePrevious}
+                disabled={currentIndex === 0}
+                variant="outline"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Anterior
+              </Button>
+
+              {currentIndex === allWords.length - 1 ? (
+                <Button onClick={handleComplete} size="lg">
+                  <CheckCircle2 className="h-4 w-4 mr-2" />
+                  {completed ? 'Voltar ao Currículo' : 'Concluir Lição'}
+                  {!completed && ` (+${lesson.xpReward} XP)`}
+                </Button>
+              ) : (
+                <Button onClick={handleNext}>
+                  Próxima
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              )}
+            </div>
+          </div>
+        );
+      }
     }
   };
 

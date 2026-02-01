@@ -88,7 +88,7 @@ export function CurriculumProgressCard() {
               Progresso estruturado do básico ao avançado
             </CardDescription>
           </div>
-          <Link to="/curriculum">
+          <Link to="/">
             <Button variant="outline" size="sm">
               Ver Tudo
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -243,7 +243,7 @@ export function CurriculumProgressCard() {
             <p className="text-sm text-muted-foreground mb-3">
               Aprenda inglês do básico ao avançado com um currículo estruturado
             </p>
-            <Link to="/curriculum">
+            <Link to="/">
               <Button size="sm" className="w-full">
                 Iniciar Agora
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -260,7 +260,7 @@ export function CurriculumProgressCard() {
             <p className="text-sm text-muted-foreground mb-3">
               Você completou toda a jornada de aprendizado!
             </p>
-            <Link to="/curriculum">
+            <Link to="/">
               <Button size="sm" variant="outline" className="w-full">
                 Ver Conquistas
                 <ArrowRight className="ml-2 h-4 w-4" />

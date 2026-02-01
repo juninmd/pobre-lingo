@@ -275,7 +275,7 @@ export default function QuizLessonPage() {
             <CardTitle>Quiz não encontrado</CardTitle>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => navigate('/curriculum')}>
+            <Button onClick={() => navigate('/')}>
               Voltar para o Currículo
             </Button>
           </CardContent>
@@ -328,7 +328,7 @@ export default function QuizLessonPage() {
       completeLesson(moduleId!, lessonId!, lesson.xpReward);
       setQuizCompleted(true);
     } else {
-      navigate('/curriculum');
+      navigate('/', { replace: true });
     }
   };
 
@@ -374,7 +374,7 @@ export default function QuizLessonPage() {
               </div>
 
               <div className="flex gap-2">
-                <Button onClick={() => navigate('/curriculum')} className="flex-1">
+                <Button onClick={() => navigate('/')} className="flex-1">
                   Voltar ao Currículo
                 </Button>
                 <Button onClick={handleRetry} variant="outline" className="flex-1">
@@ -467,7 +467,7 @@ export default function QuizLessonPage() {
                     Tentar Novamente
                   </Button>
                 )}
-                <Button onClick={() => navigate('/curriculum')} variant="outline">
+                <Button onClick={() => navigate('/')} variant="outline">
                   Voltar ao Currículo
                 </Button>
               </div>
@@ -491,7 +491,7 @@ export default function QuizLessonPage() {
 
         {/* Header */}
         <div className="mb-6">
-          <Button variant="ghost" onClick={() => navigate('/curriculum')} className="mb-4">
+          <Button variant="ghost" onClick={() => navigate('/')} className="mb-4">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Voltar para o Currículo
           </Button>

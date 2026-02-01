@@ -3,28 +3,36 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White */
-    --foreground: 220 10% 15%; /* Dark Gray */
+    --background: 0 0% 100%;
+    /* White */
+    --foreground: 220 10% 15%;
+    /* Dark Gray */
     --card: 0 0% 100%;
     --card-foreground: 220 10% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 10% 15%;
-    --primary: 210 90% 50%; /* Vibrant Blue */
+    --primary: 210 90% 50%;
+    /* Vibrant Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 95%; /* Light Blue */
+    --secondary: 210 20% 95%;
+    /* Light Blue */
     --secondary-foreground: 210 90% 50%;
     --muted: 210 20% 95%;
     --muted-foreground: 220 10% 45%;
-    --accent: 150 75% 50%; /* Bright Green */
+    --accent: 150 75% 50%;
+    /* Bright Green */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 80% 60%; /* Red */
+    --destructive: 0 80% 60%;
+    /* Red */
     --destructive-foreground: 0 0% 100%;
     --border: 210 15% 90%;
     --input: 210 15% 90%;
     --ring: 210 90% 50%;
-    --radius: 0.75rem; /* Slightly more rounded */
+    --radius: 0.75rem;
+    /* Slightly more rounded */
 
-    --sidebar-background: 210 90% 50%; /* Vibrant Blue */
+    --sidebar-background: 210 90% 50%;
+    /* Vibrant Blue */
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 0 0% 100%;
     --sidebar-primary-foreground: 210 90% 50%;
@@ -35,27 +43,33 @@
   }
 
   .dark {
-    --background: 220 15% 10%; /* Dark Blue-Gray */
-    --foreground: 210 20% 95%; /* Light Gray */
+    --background: 220 15% 10%;
+    /* Dark Blue-Gray */
+    --foreground: 210 20% 95%;
+    /* Light Gray */
     --card: 220 15% 15%;
     --card-foreground: 210 20% 95%;
     --popover: 220 15% 15%;
     --popover-foreground: 210 20% 95%;
-    --primary: 210 90% 60%; /* Lighter Vibrant Blue */
+    --primary: 210 90% 60%;
+    /* Lighter Vibrant Blue */
     --primary-foreground: 220 15% 10%;
     --secondary: 220 15% 20%;
     --secondary-foreground: 210 20% 95%;
     --muted: 220 15% 20%;
     --muted-foreground: 210 10% 60%;
-    --accent: 150 75% 40%; /* Darker Bright Green */
+    --accent: 150 75% 40%;
+    /* Darker Bright Green */
     --accent-foreground: 220 15% 10%;
-    --destructive: 0 70% 40%; /* Darker Red */
+    --destructive: 0 70% 40%;
+    /* Darker Red */
     --destructive-foreground: 210 20% 95%;
     --border: 220 15% 25%;
     --input: 220 15% 25%;
     --ring: 210 90% 60%;
 
-    --sidebar-background: 220 20% 5%; /* Very Dark Blue-Gray */
+    --sidebar-background: 220 20% 5%;
+    /* Very Dark Blue-Gray */
     --sidebar-foreground: 210 20% 95%;
     --sidebar-primary: 210 90% 60%;
     --sidebar-primary-foreground: 220 20% 5%;
@@ -66,34 +80,118 @@
   }
 
   [data-theme="pobre-lingo"] {
-    --background: 210 40% 98%; /* almost white */
-    --foreground: 265 35% 25%; /* dark purple */
-    --card: 0 0% 100%;
-    --card-foreground: 265 35% 25%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 265 35% 25%;
-    --primary: 265 80% 60%; /* vibrant purple */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 265 20% 92%; /* light purple */
-    --secondary-foreground: 265 35% 25%;
-    --muted: 265 20% 92%;
-    --muted-foreground: 265 25% 55%;
-    --accent: 150 75% 55%; /* vibrant green */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 265 20% 85%;
-    --input: 265 20% 85%;
-    --ring: 265 80% 60%;
+    --background: 224 71% 4%;
+    /* Deep Slate Navy (#020617) */
+    --foreground: 210 40% 98%;
 
-    --sidebar-background: 265 35% 25%; /* dark purple */
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 150 75% 55%; /* vibrant green */
-    --sidebar-primary-foreground: 265 35% 25%;
-    --sidebar-accent: 265 30% 35%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 265 30% 35%;
-    --sidebar-ring: 150 75% 55%;
+    --card: 222 47% 11%;
+    /* Navy Card */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 43 70% 50%;
+    /* Richer Gold (#d97706) */
+    --primary-foreground: 224 71% 4%;
+
+    --secondary: 217 33% 13%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 13%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 43 70% 50%;
+    --accent-foreground: 224 71% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 43 70% 50%;
+
+    --sidebar-background: 224 71% 2%;
+    /* Even darker sidebar */
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 43 70% 50%;
+    --sidebar-primary-foreground: 224 71% 4%;
+    --sidebar-accent: 217 33% 12%;
+    --sidebar-accent-foreground: 43 70% 50%;
+    --sidebar-border: 217 33% 10%;
+    --sidebar-ring: 43 70% 50%;
+
+    --radius: 1.25rem;
+  }
+}
+
+@layer components {
+
+  /* Add a more luxurious background for PobreLingo */
+  [data-theme="pobre-lingo"] body {
+    background:
+      radial-gradient(circle at 0% 0%, hsla(217, 33%, 15%, 0.8) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, hsla(43, 70%, 5%, 0.5) 0%, transparent 50%),
+      hsl(224, 71%, 4%);
+    background-attachment: fixed;
+  }
+
+  /* Metallic Text */
+  .text-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-[#fde68a] via-[#fbbf24] to-[#92400e];
+  }
+
+  /* Improved Glassmorphism */
+  .glass {
+    @apply bg-background/60 backdrop-blur-2xl border-b border-white/5 shadow-2xl;
+  }
+
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-white/[0.08] shadow-2xl hover:shadow-primary/5 hover:bg-card/60 transition-all duration-500 hover:-translate-y-1.5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Refined shine effect */
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.01),
+        transparent);
+    transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-card:hover::before {
+    left: 100%;
+  }
+
+  /* Sidebar Active Highlight Metallic Effect */
+  [data-theme="pobre-lingo"] .sidebar-active {
+    background: linear-gradient(to bottom right, hsla(43, 70%, 50%, 0.2), hsla(43, 70%, 50%, 0.05));
+    border: 1px solid hsla(43, 70%, 50%, 0.3);
+    @apply shadow-lg shadow-primary/10;
+  }
+
+  .glass-button {
+    @apply relative overflow-hidden bg-primary text-primary-foreground shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] hover:brightness-110;
+  }
+
+  .glass-button::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .glass-button:hover::after {
+    @apply opacity-100;
   }
 }
 
@@ -101,8 +199,9 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-primary/30 selection:text-primary;
   }
 }
 
@@ -111,18 +210,37 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
 }
+
 .animate-shake {
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 @keyframes bounce-short {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-25%); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25%);
+  }
 }
+
 .animate-bounce-short {
   animation: bounce-short 0.5s ease-in-out;
 }

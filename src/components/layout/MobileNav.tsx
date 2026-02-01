@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Gamepad2, User } from 'lucide-react';
+import { Home, Compass, Gamepad2, User, BookOpen, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {
   const { pathname } = useLocation();
 
   const navItems = [
-    { href: '/', label: 'Início', icon: Home },
-    { href: '/curriculum', label: 'Módulos', icon: Compass },
+    { href: '/', label: 'Jornada', icon: Compass },
     { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
-    { href: '/proficiency', label: 'Perfil', icon: User },
+    { href: '/rules', label: 'Regras', icon: BookOpen },
+    { href: '/proficiency', label: 'Nível', icon: GraduationCap },
   ];
 
   return (
@@ -44,10 +44,10 @@ export function MobileNav() {
                     ? "bg-primary text-white shadow-lg shadow-primary/30 rotate-0"
                     : "bg-transparent text-muted-foreground group-hover:bg-muted group-hover:text-primary"
                 )}>
-                   <item.icon className={cn(
-                     "h-6 w-6 transition-transform duration-500",
-                     isActive && "scale-110"
-                   )} />
+                  <item.icon className={cn(
+                    "h-6 w-6 transition-transform duration-500",
+                    isActive && "scale-110"
+                  )} />
                 </div>
 
                 <span className={cn(

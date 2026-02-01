@@ -1,30 +1,42 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import React, { Suspense } from 'react';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Layout from './Layout';
-import DictionaryPage from './pages/DictionaryPage';
-import DashboardPage from './pages/DashboardPage';
-import FindIncorrectWordsPage from './pages/exercises/find-incorrect-words/page';
-import NewsComprehensionPage from './pages/exercises/news-comprehension/page';
-import SentenceIdentificationPage from './pages/exercises/sentence-identification/page';
-import SentenceOrderingPage from './pages/exercises/sentence-ordering/page';
-import RulesPage from './pages/rules/page';
-import CategoryPage from './pages/rules/[categoryId]/page';
-import RulePage from './pages/rules/[categoryId]/[ruleId]/page';
-import CurriculumPage from './pages/curriculum/page';
-import VocabularyLessonPage from './pages/vocabulary/[moduleId]/[lessonId]/page';
-import QuizLessonPage from './pages/quiz/[moduleId]/[lessonId]/page';
-import MatchingPairsPage from './pages/exercises/matching-pairs/page';
-import ListeningPage from './pages/exercises/listening/page';
-import ProficiencyTestPage from './pages/ProficiencyTestPage';
-import ArcadePage from './pages/ArcadePage';
-import SpeedMatchPage from './pages/games/SpeedMatchPage';
-import WordScramblePage from './pages/games/WordScramblePage';
-import FlashcardsPage from './pages/games/FlashcardsPage';
-import WordSearchPage from './pages/games/WordSearchPage';
-import SentenceRushPage from './pages/games/SentenceRushPage';
-import MemoryMatchPage from './pages/games/MemoryMatchPage';
-import HangmanPage from './pages/games/HangmanPage';
-import BubblePopPage from './pages/games/BubblePopPage';
-import ConversationPage from './pages/exercises/conversation/page';
+import { Loader2 } from 'lucide-react';
+
+// Lazy loading components
+const DictionaryPage = React.lazy(() => import('./pages/DictionaryPage'));
+const DashboardPage = React.lazy(() => import('./pages/DashboardPage'));
+const FindIncorrectWordsPage = React.lazy(() => import('./pages/exercises/find-incorrect-words/page'));
+const NewsComprehensionPage = React.lazy(() => import('./pages/exercises/news-comprehension/page'));
+const SentenceIdentificationPage = React.lazy(() => import('./pages/exercises/sentence-identification/page'));
+const SentenceOrderingPage = React.lazy(() => import('./pages/exercises/sentence-ordering/page'));
+const RulesPage = React.lazy(() => import('./pages/rules/page'));
+const CategoryPage = React.lazy(() => import('./pages/rules/[categoryId]/page'));
+const RulePage = React.lazy(() => import('./pages/rules/[categoryId]/[ruleId]/page'));
+const CurriculumPage = React.lazy(() => import('./pages/curriculum/page'));
+const VocabularyLessonPage = React.lazy(() => import('./pages/vocabulary/[moduleId]/[lessonId]/page'));
+const QuizLessonPage = React.lazy(() => import('./pages/quiz/[moduleId]/[lessonId]/page'));
+const MatchingPairsPage = React.lazy(() => import('./pages/exercises/matching-pairs/page'));
+const ListeningPage = React.lazy(() => import('./pages/exercises/listening/page'));
+const ProficiencyTestPage = React.lazy(() => import('./pages/ProficiencyTestPage'));
+const ArcadePage = React.lazy(() => import('./pages/ArcadePage'));
+const SpeedMatchPage = React.lazy(() => import('./pages/games/SpeedMatchPage'));
+const WordScramblePage = React.lazy(() => import('./pages/games/WordScramblePage'));
+const FlashcardsPage = React.lazy(() => import('./pages/games/FlashcardsPage'));
+const WordSearchPage = React.lazy(() => import('./pages/games/WordSearchPage'));
+const SentenceRushPage = React.lazy(() => import('./pages/games/SentenceRushPage'));
+const MemoryMatchPage = React.lazy(() => import('./pages/games/MemoryMatchPage'));
+const HangmanPage = React.lazy(() => import('./pages/games/HangmanPage'));
+const BubblePopPage = React.lazy(() => import('./pages/games/BubblePopPage'));
+const ConversationPage = React.lazy(() => import('./pages/exercises/conversation/page'));
+
+// Loading component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+  </div>
+);
 
 const router = createBrowserRouter([
   {
@@ -33,107 +45,107 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardPage />,
+        element: <Suspense fallback={<PageLoader />}><DashboardPage /></Suspense>,
       },
       {
         path: 'arcade',
-        element: <ArcadePage />,
+        element: <Suspense fallback={<PageLoader />}><ArcadePage /></Suspense>,
       },
       {
         path: 'games/bubble-pop',
-        element: <BubblePopPage />,
+        element: <Suspense fallback={<PageLoader />}><BubblePopPage /></Suspense>,
       },
       {
         path: 'games/speed-match',
-        element: <SpeedMatchPage />,
+        element: <Suspense fallback={<PageLoader />}><SpeedMatchPage /></Suspense>,
       },
       {
         path: 'games/memory-match',
-        element: <MemoryMatchPage />,
+        element: <Suspense fallback={<PageLoader />}><MemoryMatchPage /></Suspense>,
       },
       {
         path: 'games/word-scramble',
-        element: <WordScramblePage />,
+        element: <Suspense fallback={<PageLoader />}><WordScramblePage /></Suspense>,
       },
       {
         path: 'games/flashcards',
-        element: <FlashcardsPage />,
+        element: <Suspense fallback={<PageLoader />}><FlashcardsPage /></Suspense>,
       },
       {
         path: 'games/word-search',
-        element: <WordSearchPage />,
+        element: <Suspense fallback={<PageLoader />}><WordSearchPage /></Suspense>,
       },
       {
         path: 'games/sentence-rush',
-        element: <SentenceRushPage />,
+        element: <Suspense fallback={<PageLoader />}><SentenceRushPage /></Suspense>,
       },
       {
         path: 'games/hangman',
-        element: <HangmanPage />,
+        element: <Suspense fallback={<PageLoader />}><HangmanPage /></Suspense>,
       },
       {
         path: 'dictionary',
-        element: <DictionaryPage />,
+        element: <Suspense fallback={<PageLoader />}><DictionaryPage /></Suspense>,
       },
       {
         path: 'curriculum',
-        element: <CurriculumPage />,
+        element: <Navigate to="/" replace />,
       },
       {
         path: 'vocabulary/:moduleId/:lessonId',
-        element: <VocabularyLessonPage />,
+        element: <Suspense fallback={<PageLoader />}><VocabularyLessonPage /></Suspense>,
       },
       {
         path: 'quiz/:moduleId/:lessonId',
-        element: <QuizLessonPage />,
+        element: <Suspense fallback={<PageLoader />}><QuizLessonPage /></Suspense>,
       },
       {
         path: 'progress',
-        element: <DashboardPage />,
+        element: <Navigate to="/" replace />,
       },
       {
         path: 'proficiency',
-        element: <ProficiencyTestPage />,
+        element: <Suspense fallback={<PageLoader />}><ProficiencyTestPage /></Suspense>,
       },
       {
         path: 'exercises/find-incorrect-words',
-        element: <FindIncorrectWordsPage />,
+        element: <Suspense fallback={<PageLoader />}><FindIncorrectWordsPage /></Suspense>,
       },
       {
         path: 'exercises/news-comprehension',
-        element: <NewsComprehensionPage />,
+        element: <Suspense fallback={<PageLoader />}><NewsComprehensionPage /></Suspense>,
       },
       {
         path: 'exercises/sentence-identification',
-        element: <SentenceIdentificationPage />,
+        element: <Suspense fallback={<PageLoader />}><SentenceIdentificationPage /></Suspense>,
       },
       {
         path: 'exercises/sentence-ordering',
-        element: <SentenceOrderingPage />,
+        element: <Suspense fallback={<PageLoader />}><SentenceOrderingPage /></Suspense>,
       },
       {
         path: 'exercises/matching-pairs',
-        element: <MatchingPairsPage />,
+        element: <Suspense fallback={<PageLoader />}><MatchingPairsPage /></Suspense>,
       },
       {
         path: 'exercises/listening',
-        element: <ListeningPage />,
+        element: <Suspense fallback={<PageLoader />}><ListeningPage /></Suspense>,
       },
       {
         path: 'exercises/conversation',
-        element: <ConversationPage />,
+        element: <Suspense fallback={<PageLoader />}><ConversationPage /></Suspense>,
       },
       {
         path: 'rules',
-        element: <RulesPage />,
+        element: <Suspense fallback={<PageLoader />}><RulesPage /></Suspense>,
       },
       {
         path: 'rules/:categoryId',
-        element: <CategoryPage />,
+        element: <Suspense fallback={<PageLoader />}><CategoryPage /></Suspense>,
       },
       {
         path: 'rules/:categoryId/:ruleId',
-        element: <RulePage />,
+        element: <Suspense fallback={<PageLoader />}><RulePage /></Suspense>,
       },
     ],
   },

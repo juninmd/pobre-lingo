@@ -253,7 +253,7 @@ export default function Layout() {
           <NavMenu />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen pb-24 lg:pb-0">
+        <SidebarInset className="flex flex-col min-h-screen pb-32 sm:pb-28 lg:pb-0">
           <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className="hidden lg:block">

@@ -21,3 +21,4 @@ files generated
   dev-dist/sw.js
   dev-dist/workbox-ca84f546.js
 8:47:23 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+9:30:48 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx

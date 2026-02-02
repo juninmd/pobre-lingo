@@ -1,0 +1,20 @@
+--- src/pages/DictionaryPage.tsx
++++ src/pages/DictionaryPage.tsx
+@@ -129,13 +129,13 @@
+               </CardHeader>
+               <CardContent>
+-                <p className="text-sm text-foreground mb-2">{entry.meaning_en}</p>
++                <p className="text-sm text-foreground mb-2 leading-relaxed">{entry.meaning_en}</p>
+                 {entry.example_sentence_en && (
+-                  <div className="bg-muted/50 p-3 rounded-lg space-y-1">
+-                    <p className="text-xs text-foreground italic">"{entry.example_sentence_en}"</p>
++                  <div className="bg-muted/50 dark:bg-muted/30 p-2.5 sm:p-3 rounded-lg space-y-1">
++                    <p className="text-xs text-foreground italic leading-relaxed">"{entry.example_sentence_en}"</p>
+                     {entry.example_sentence_pt && (
+-                      <p className="text-xs text-muted-foreground">"{entry.example_sentence_pt}"</p>
++                      <p className="text-xs text-muted-foreground leading-relaxed">"{entry.example_sentence_pt}"</p>
+                     )}
+                   </div>
+                 )}
+ 
+ 

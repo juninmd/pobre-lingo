@@ -336,7 +336,7 @@ export default function Layout() {
           </header>
 
           <main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">
-            <div className="container mx-auto px-3 py-4 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
+            <div className="container mx-auto px-3 pt-6 pb-4 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
               <Outlet />
             </div>
           </main>

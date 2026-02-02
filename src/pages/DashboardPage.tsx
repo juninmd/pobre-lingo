@@ -42,7 +42,7 @@ export default function DashboardPage() {
               <Flame className={cn("w-6 h-6 sm:w-7 sm:h-7 text-orange-600 dark:text-orange-400", overallProgress.streak > 0 && "animate-bounce")} />
             </div>
             <div>
-              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent">{overallProgress.streak}</span>
+              <span className="text-3xl sm:text-4xl font-bold block text-orange-600 dark:text-orange-400 bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 bg-clip-text [.bg-clip-text_&]:text-transparent">{overallProgress.streak}</span>
               <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Dias Seguidos</span>
             </div>
           </CardContent>
@@ -54,7 +54,7 @@ export default function DashboardPage() {
               <Coins className="w-6 h-6 sm:w-7 sm:h-7 text-yellow-600 dark:text-yellow-400 fill-current" />
             </div>
             <div>
-              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-yellow-600 to-amber-600 dark:from-yellow-400 dark:to-amber-400 bg-clip-text text-transparent tabular-nums">{gems}</span>
+              <span className="text-3xl sm:text-4xl font-bold block text-yellow-600 dark:text-yellow-400 bg-gradient-to-br from-yellow-600 to-amber-600 dark:from-yellow-400 dark:to-amber-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums">{gems}</span>
               <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">PobreCoins</span>
             </div>
           </CardContent>
@@ -66,7 +66,7 @@ export default function DashboardPage() {
               <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent tabular-nums">{overallProgress.userLevel}</span>
+              <span className="text-3xl sm:text-4xl font-bold block text-blue-600 dark:text-blue-400 bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums">{overallProgress.userLevel}</span>
               <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Nível</span>
             </div>
           </CardContent>
@@ -78,7 +78,7 @@ export default function DashboardPage() {
               <Trophy className="w-6 h-6 sm:w-7 sm:h-7 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent tabular-nums">{overallProgress.overallPercentage}%</span>
+              <span className="text-3xl sm:text-4xl font-bold block text-green-600 dark:text-green-400 bg-gradient-to-br from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums">{overallProgress.overallPercentage}%</span>
               <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Completo</span>
             </div>
           </CardContent>

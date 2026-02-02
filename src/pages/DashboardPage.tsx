@@ -1,15 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 
-import { LearningPath } from '@/components/dashboard/LearningPath';
 import { DailyQuestsWidget } from '@/components/dashboard/DailyQuestsWidget';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Flame, Trophy, Star, GraduationCap, Lightbulb, BookOpen, Coins, RefreshCw } from 'lucide-react';
+import { Flame, Trophy, GraduationCap, Lightbulb, Coins, RefreshCw } from 'lucide-react';
 import { TIPS } from '@/lib/tips';
 import { useGamification } from '@/contexts/GamificationContext';
-import { LearningTimeline } from '@/components/dashboard/LearningTimeline';
+import { LearningTimeline } from '@/components/curriculum/LearningTimeline';
 import { cn } from '@/lib/utils';
 import { SEO } from '@/components/common/SEO';
 
@@ -87,7 +86,7 @@ export default function DashboardPage() {
 
       <div className="grid lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
 
-        {/* Left Column: Learning Path */}
+        {/* Left Column: Learning Timeline */}
         <div className="lg:col-span-2 space-y-3 sm:space-y-6 lg:space-y-8">
           <section>
             <LearningTimeline />

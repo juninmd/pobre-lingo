@@ -291,17 +291,17 @@ export default function Layout() {
 
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-1.5 sm:gap-2 text-sm font-semibold">
+              <div className="flex items-center gap-2 sm:gap-3 text-sm font-semibold">
                 {/* Level Badge */}
-                <div className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-sm hover:shadow-md transition-all" title="Nível">
+                <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 backdrop-blur-md shadow-sm ring-1 ring-blue-500/10 hover:ring-blue-500/30 transition-all" title="Nível">
                   <GraduationCap className="h-4 w-4" />
-                  <span className="font-bold">Nível {userLevel}</span>
+                  <span className="font-bold tracking-tight">Nível {userLevel}</span>
                 </div>
 
                 {/* Gems / PobreCoins */}
-                <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-gradient-to-br from-yellow-500/10 to-amber-600/5 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20 shadow-sm hover:shadow-md transition-all active:scale-95" title="PobreCoins">
-                  <Coins className="h-4 w-4 fill-current" />
-                  <span className="font-bold tabular-nums">{gems}</span>
+                <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 backdrop-blur-md shadow-sm ring-1 ring-amber-500/10 hover:ring-amber-500/30 transition-all active:scale-95 group cursor-default" title="PobreCoins">
+                  <Coins className="h-4 w-4 fill-current group-hover:animate-bounce" />
+                  <span className="font-bold tabular-nums tracking-tight">{gems}</span>
                 </div>
               </div>
 
@@ -343,7 +343,9 @@ export default function Layout() {
         </SidebarInset>
       </SidebarProvider>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-      <MobileNav />
+      <div className="lg:hidden">
+        <MobileNav />
+      </div>
       <PWAInstallPrompt />
       <Toaster />
     </div>

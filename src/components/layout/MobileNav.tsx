@@ -16,10 +16,13 @@ export function MobileNav() {
   return (
     <div
       className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] pointer-events-none"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 0.75rem)' }}
     >
-      <div className="mx-4 mb-4 pointer-events-auto">
-        <nav className="flex justify-around items-center h-20 px-2 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)] rounded-3xl ring-1 ring-black/5 dark:ring-white/10">
+      <div className="mx-3 mb-2 pointer-events-auto">
+        <nav className="flex justify-around items-center h-[4.5rem] px-1.5 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl border border-white/20 dark:border-zinc-700/40 shadow-[0_-2px_16px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_-2px_16px_rgba(0,0,0,0.3),0_8px_32px_rgba(0,0,0,0.4)] rounded-[1.75rem] ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:dark:bg-zinc-900/90">
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.02] to-transparent pointer-events-none" />
+          
           {navItems.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
 
@@ -28,31 +31,40 @@ export function MobileNav() {
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  "relative flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-500 touch-manipulation select-none group",
-                  isActive ? "-translate-y-1" : "hover:scale-105"
+                  "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 touch-manipulation select-none group active:scale-95",
+                  isActive ? "-translate-y-1.5" : "hover:scale-105 active:scale-95"
                 )}
               >
+                {/* Active indicator glow */}
                 {isActive && (
-                  <div className="absolute -top-14">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 blur-xl animate-pulse" />
+                  <div className="absolute -top-12 pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-primary/25 dark:bg-primary/20 blur-2xl animate-pulse" />
                   </div>
                 )}
 
+                {/* Icon container */}
                 <div className={cn(
-                  "relative flex items-center justify-center p-2.5 rounded-2xl transition-all duration-500",
+                  "relative flex items-center justify-center p-3 rounded-[1.125rem] transition-all duration-300 will-change-transform",
                   isActive
-                    ? "bg-primary text-white shadow-lg shadow-primary/30 rotate-0"
-                    : "bg-transparent text-muted-foreground group-hover:bg-muted group-hover:text-primary"
+                    ? "bg-gradient-to-br from-primary to-primary/90 text-white shadow-lg shadow-primary/40 dark:shadow-primary/30 scale-105"
+                    : "bg-transparent text-muted-foreground group-hover:bg-muted/80 group-hover:text-primary group-active:bg-muted"
                 )}>
+                  {/* Shimmer effect on active */}
+                  {isActive && (
+                    <div className="absolute inset-0 rounded-[1.125rem] bg-gradient-to-tr from-white/20 to-transparent opacity-50" />
+                  )}
                   <item.icon className={cn(
-                    "h-6 w-6 transition-transform duration-500",
-                    isActive && "scale-110"
+                    "h-[1.375rem] w-[1.375rem] transition-all duration-300 relative z-10",
+                    isActive && "scale-110 drop-shadow-sm"
                   )} />
                 </div>
 
+                {/* Label */}
                 <span className={cn(
-                  "text-[10px] font-bold tracking-wide transition-all duration-300",
-                  isActive ? "text-primary opacity-100 scale-105" : "text-muted-foreground opacity-70 group-hover:opacity-100"
+                  "text-[0.625rem] font-bold tracking-wide transition-all duration-300 tabular-nums",
+                  isActive 
+                    ? "text-primary dark:text-primary opacity-100 scale-105 translate-y-0.5" 
+                    : "text-muted-foreground/80 opacity-75 group-hover:opacity-100 group-hover:text-foreground"
                 )}>
                   {item.label}
                 </span>

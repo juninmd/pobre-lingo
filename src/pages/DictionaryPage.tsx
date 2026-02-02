@@ -82,12 +82,12 @@ export default function DictionaryPage() {
         icon={BookText}
         iconClassName="text-blue-500"
       >
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <div className="relative w-full sm:max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
           <Input
-            type="text"
+            type="search"
             placeholder="Buscar palavra ou tradução..."
-            className="pl-10 bg-background"
+            className="pl-10 h-11 sm:h-10 bg-background touch-target"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -95,45 +95,46 @@ export default function DictionaryPage() {
       </PageHeader>
 
       {/* Contador de resultados */}
-      <div className="mb-4 flex items-center gap-2">
-        <Badge variant="secondary">
+      <div className="mb-3 sm:mb-4 flex items-center gap-2">
+        <Badge variant="secondary" className="text-xs sm:text-sm">
           {filteredEntries.length} {filteredEntries.length === 1 ? 'palavra encontrada' : 'palavras encontradas'}
         </Badge>
       </div>
 
-      <ScrollArea className="h-[calc(100vh-20rem)]">
-        <div className="grid gap-4 md:grid-cols-2 pr-4">
+      <ScrollArea className="h-[calc(100vh-20rem)] smooth-scroll">
+        <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 pr-2 sm:pr-4">
           {visibleEntries.map((entry) => (
-            <Card key={entry.id} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      {entry.word}
+            <Card key={entry.id} className="glass-card hover:shadow-lg transition-all active:scale-[0.99] touch-manipulation">
+              <CardHeader className="pb-2 sm:pb-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0 flex-1">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <span className="truncate">{entry.word}</span>
                       <button
                         onClick={() => speak(entry.word)}
-                        className="text-primary hover:text-primary/80 transition-colors"
+                        className="text-primary hover:text-primary/80 transition-colors active:scale-95 flex-shrink-0 p-1.5 -m-1.5 rounded-lg hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target"
                         title="Ouvir pronúncia"
+                        aria-label="Ouvir pronúncia"
                       >
                         <Volume2 className="h-4 w-4" />
                       </button>
                     </CardTitle>
                     {entry.phonetic_transcription_en && (
-                      <span className="text-sm text-muted-foreground">{entry.phonetic_transcription_en}</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground">{entry.phonetic_transcription_en}</span>
                     )}
                   </div>
-                  <Badge variant="outline" className="text-primary">
+                  <Badge variant="outline" className="text-primary text-xs flex-shrink-0">
                     {entry.translation_pt}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-foreground mb-2">{entry.meaning_en}</p>
+                <p className="text-sm text-foreground mb-2 leading-relaxed">{entry.meaning_en}</p>
                 {entry.example_sentence_en && (
-                  <div className="bg-muted/50 p-3 rounded-lg space-y-1">
-                    <p className="text-xs text-foreground italic">“{entry.example_sentence_en}”</p>
+                  <div className="bg-muted/50 dark:bg-muted/30 p-2.5 sm:p-3 rounded-lg space-y-1">
+                    <p className="text-xs text-foreground italic leading-relaxed">“{entry.example_sentence_en}”</p>
                     {entry.example_sentence_pt && (
-                      <p className="text-xs text-muted-foreground">“{entry.example_sentence_pt}”</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">“{entry.example_sentence_pt}”</p>
                     )}
                   </div>
                 )}

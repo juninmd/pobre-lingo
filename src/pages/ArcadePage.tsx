@@ -100,41 +100,41 @@ const games = [
 export default function ArcadePage() {
   return (
     <PageContainer>
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Arcade</h1>
-            <p className="text-muted-foreground mt-1">
+      <div className="flex flex-col space-y-4 sm:space-y-6">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Arcade</h1>
+            <p className="text-muted-foreground text-sm sm:text-base mt-1">
               Divirta-se enquanto aprende com minigames rápidos!
             </p>
           </div>
-          <Trophy className="h-10 w-10 text-yellow-500 animate-pulse" />
+          <Trophy className="h-9 w-9 sm:h-10 sm:w-10 text-yellow-500 animate-pulse flex-shrink-0" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {games.map((game) => (
-            <Card key={game.id} className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 cursor-pointer group relative overflow-hidden">
-               <div className={`absolute top-0 right-0 p-3 rounded-bl-xl ${game.bgColor}`}>
-                  <game.icon className={`h-6 w-6 ${game.color}`} />
+            <Card key={game.id} className="glass-card hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 active:scale-[0.98] cursor-pointer group relative overflow-hidden touch-manipulation">
+               <div className={`absolute top-0 right-0 p-2.5 sm:p-3 rounded-bl-xl ${game.bgColor}`}>
+                  <game.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${game.color}`} />
                </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
+              <CardHeader className="pb-3 sm:pb-6">
+                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl pr-12">
                   {game.title}
                 </CardTitle>
-                <CardDescription className="line-clamp-2 min-h-[40px]">
+                <CardDescription className="line-clamp-2 text-sm min-h-[40px] sm:min-h-[48px]">
                   {game.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-between mb-4">
-                  <Badge variant="secondary" className="font-normal">
+                <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+                  <Badge variant="secondary" className="font-normal text-xs">
                     {game.difficulty}
                   </Badge>
-                  <Badge variant="outline" className="text-yellow-600 border-yellow-200 bg-yellow-50">
+                  <Badge variant="outline" className="text-yellow-600 dark:text-yellow-500 border-yellow-200 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/30 text-xs font-semibold">
                     +{game.xp}
                   </Badge>
                 </div>
-                <Button asChild className="w-full group-hover:scale-105 transition-transform" size="lg">
+                <Button asChild className="w-full group-hover:scale-[1.02] active:scale-95 transition-transform touch-target" size="lg">
                   <Link to={game.href}>
                     Jogar Agora
                   </Link>

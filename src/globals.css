@@ -147,7 +147,7 @@
   }
 
   .glass-card {
-    @apply bg-card/40 backdrop-blur-xl border border-white/[0.08] shadow-2xl hover:shadow-primary/5 hover:bg-card/60 transition-all duration-500 hover:-translate-y-1.5;
+    @apply bg-card/50 backdrop-blur-xl border border-white/[0.08] shadow-xl hover:shadow-2xl hover:shadow-primary/5 hover:bg-card/70 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98];
     position: relative;
     overflow: hidden;
   }
@@ -182,7 +182,7 @@
   }
 
   .glass-button {
-    @apply relative overflow-hidden bg-primary text-primary-foreground shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] hover:brightness-110;
+    @apply relative overflow-hidden bg-primary text-primary-foreground shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:brightness-110;
   }
 
   .glass-button::after {
@@ -201,6 +201,22 @@
   .glass-button-surface::before {
     content: "";
     @apply absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+  }
+  
+  /* Touch-friendly utilities */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Modern card stack effect */
+  .card-stack {
+    @apply shadow-[0_1px_2px_rgba(0,0,0,0.05),0_4px_8px_rgba(0,0,0,0.05),0_8px_16px_rgba(0,0,0,0.05)];
+  }
+  
+  /* Smooth scroll on mobile */
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 }
 

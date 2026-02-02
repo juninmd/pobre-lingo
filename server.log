@@ -20,3 +20,4 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-ca84f546.js
+8:47:23 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx

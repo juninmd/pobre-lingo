@@ -256,77 +256,79 @@ export default function Layout() {
         </Sidebar>
 
         <SidebarInset className="flex flex-col min-h-screen pb-24 lg:pb-0">
-          <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-md px-4 md:px-6 glass">
-            <div className="flex items-center gap-3 min-w-0">
+          <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className="hidden lg:block">
                 <SidebarTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                    <Menu className="h-4 w-4" />
+                  <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-colors">
+                    <Menu className="h-5 w-5" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
                 </SidebarTrigger>
               </div>
 
               <div className="lg:hidden flex-shrink-0 flex items-center gap-2">
-                <GraduationCap className="h-6 w-6 text-primary" />
-                <span className="font-bold text-sm tracking-tight [data-theme=pobre-lingo]:text-gold">PobreLingo</span>
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                </div>
+                <span className="font-bold text-base tracking-tight [data-theme=pobre-lingo]:text-gold">PobreLingo</span>
               </div>
 
-              <Separator orientation="vertical" className="h-5 hidden lg:block bg-border/60" />
+              <Separator orientation="vertical" className="h-6 hidden lg:block bg-border/60" />
 
-              <div className="flex items-center gap-2 min-w-0">
-                <div className="hidden sm:flex items-center justify-center w-6 h-6 rounded-md bg-primary/10">
-                  <GraduationCap className="h-3.5 w-3.5 text-primary" />
+              <div className="hidden sm:flex items-center gap-2 min-w-0">
+                <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10">
+                  <GraduationCap className="h-4 w-4 text-primary" />
                 </div>
-                <h1 className="font-semibold text-sm md:text-base truncate">
+                <h1 className="font-semibold text-base md:text-lg truncate">
                   {getCurrentPageTitle()}
                 </h1>
               </div>
             </div>
 
-            <div className="flex-1 flex justify-center">
+            <div className="flex-1 flex justify-center max-w-md mx-auto">
               {/* Barra de Pesquisa Global */}
               <GlobalSearchTrigger onClick={() => setSearchOpen(true)} />
             </div>
 
-            <div className="flex items-center gap-2 md:gap-4 mr-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-2 md:gap-3 text-sm font-bold">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-sm font-semibold">
                 {/* Level Badge */}
-                <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-sm" title="Nível">
+                <div className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-sm hover:shadow-md transition-all" title="Nível">
                   <GraduationCap className="h-4 w-4" />
-                  <span>Nível {userLevel}</span>
+                  <span className="font-bold">Nível {userLevel}</span>
                 </div>
 
                 {/* Gems / PobreCoins */}
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20 shadow-sm" title="PobreCoins">
+                <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-gradient-to-br from-yellow-500/10 to-amber-600/5 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20 shadow-sm hover:shadow-md transition-all active:scale-95" title="PobreCoins">
                   <Coins className="h-4 w-4 fill-current" />
-                  <span>{gems}</span>
+                  <span className="font-bold tabular-nums">{gems}</span>
                 </div>
               </div>
 
-              <Separator orientation="vertical" className="h-5 bg-border/60" />
+              <Separator orientation="vertical" className="h-6 bg-border/60 hidden sm:block" />
 
               {/* Theme Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                    <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95">
+                    <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     <span className="sr-only">Alternar tema</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
-                  <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2">
+                <DropdownMenuContent align="end" className="w-44">
+                  <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2 cursor-pointer">
                     <Sun className="h-4 w-4" />
                     <span>Claro</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2">
+                  <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2 cursor-pointer">
                     <Moon className="h-4 w-4" />
                     <span>Escuro</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setTheme("pobre-lingo")} className="gap-2">
+                  <DropdownMenuItem onClick={() => setTheme("pobre-lingo")} className="gap-2 cursor-pointer">
                     <Sparkles className="h-4 w-4" />
                     <span>PobreLingo</span>
                   </DropdownMenuItem>
@@ -336,7 +338,7 @@ export default function Layout() {
           </header>
 
           <main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">
-            <div className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
+            <div className="container mx-auto px-3 py-4 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
               <Outlet />
             </div>
           </main>

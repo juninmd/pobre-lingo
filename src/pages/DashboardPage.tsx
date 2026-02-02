@@ -29,84 +29,84 @@ export default function DashboardPage() {
   };
 
   return (
-    <PageContainer className="space-y-8 max-w-7xl mx-auto">
+    <PageContainer className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       <SEO title="Dashboard" description="Acompanhe seu progresso e continue sua jornada de aprendizado no PobreLingo." />
 
 
 
       {/* 2. Statistics Summary Cards */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="glass-card bg-gradient-to-br from-orange-50/50 to-red-50/50 dark:from-orange-950/20 dark:to-red-950/20 border-orange-200/60 transition-all hover:scale-105">
-          <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-            <div className="p-2 bg-orange-100 dark:bg-orange-900/50 rounded-full">
-              <Flame className={cn("w-5 h-5 text-orange-600", overallProgress.streak > 0 && "animate-bounce")} />
+      <section className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+        <Card className="glass-card bg-gradient-to-br from-orange-50/80 to-red-50/80 dark:from-orange-950/30 dark:to-red-950/30 border-orange-200/60 dark:border-orange-800/40 transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation">
+          <CardContent className="p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5">
+            <div className="p-2.5 bg-gradient-to-br from-orange-100 to-orange-200/80 dark:from-orange-900/60 dark:to-orange-800/50 rounded-2xl shadow-sm">
+              <Flame className={cn("w-6 h-6 sm:w-7 sm:h-7 text-orange-600 dark:text-orange-400", overallProgress.streak > 0 && "animate-bounce")} />
             </div>
             <div>
-              <span className="text-2xl font-bold block">{overallProgress.streak}</span>
-              <span className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Dias Seguidos</span>
+              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent">{overallProgress.streak}</span>
+              <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Dias Seguidos</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="glass-card bg-gradient-to-br from-yellow-50/50 to-amber-50/50 dark:from-yellow-950/20 dark:to-amber-950/20 border-yellow-200/60 transition-all hover:scale-105">
-          <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-            <div className="p-2 bg-yellow-100 dark:bg-yellow-900/50 rounded-full">
-              <Coins className="w-5 h-5 text-yellow-600" />
+        <Card className="glass-card bg-gradient-to-br from-yellow-50/80 to-amber-50/80 dark:from-yellow-950/30 dark:to-amber-950/30 border-yellow-200/60 dark:border-yellow-800/40 transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation">
+          <CardContent className="p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5">
+            <div className="p-2.5 bg-gradient-to-br from-yellow-100 to-yellow-200/80 dark:from-yellow-900/60 dark:to-yellow-800/50 rounded-2xl shadow-sm">
+              <Coins className="w-6 h-6 sm:w-7 sm:h-7 text-yellow-600 dark:text-yellow-400 fill-current" />
             </div>
             <div>
-              <span className="text-2xl font-bold block">{gems}</span>
-              <span className="text-xs text-muted-foreground uppercase font-bold tracking-wider">PobreCoins</span>
+              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-yellow-600 to-amber-600 dark:from-yellow-400 dark:to-amber-400 bg-clip-text text-transparent tabular-nums">{gems}</span>
+              <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">PobreCoins</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="glass-card bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200/60 transition-all hover:scale-105">
-          <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-            <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-full">
-              <GraduationCap className="w-5 h-5 text-blue-600" />
+        <Card className="glass-card bg-gradient-to-br from-blue-50/80 to-indigo-50/80 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-200/60 dark:border-blue-800/40 transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation">
+          <CardContent className="p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5">
+            <div className="p-2.5 bg-gradient-to-br from-blue-100 to-blue-200/80 dark:from-blue-900/60 dark:to-blue-800/50 rounded-2xl shadow-sm">
+              <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <span className="text-2xl font-bold block">{overallProgress.userLevel}</span>
-              <span className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Nível</span>
+              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent tabular-nums">{overallProgress.userLevel}</span>
+              <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Nível</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="glass-card bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-950/20 dark:to-emerald-950/20 border-green-200/60 transition-all hover:scale-105">
-          <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-            <div className="p-2 bg-green-100 dark:bg-green-900/50 rounded-full">
-              <Trophy className="w-5 h-5 text-green-600" />
+        <Card className="glass-card bg-gradient-to-br from-green-50/80 to-emerald-50/80 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200/60 dark:border-green-800/40 transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation">
+          <CardContent className="p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5">
+            <div className="p-2.5 bg-gradient-to-br from-green-100 to-green-200/80 dark:from-green-900/60 dark:to-green-800/50 rounded-2xl shadow-sm">
+              <Trophy className="w-6 h-6 sm:w-7 sm:h-7 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <span className="text-2xl font-bold block">{overallProgress.overallPercentage}%</span>
-              <span className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Completo</span>
+              <span className="text-3xl sm:text-4xl font-bold block bg-gradient-to-br from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent tabular-nums">{overallProgress.overallPercentage}%</span>
+              <span className="text-[0.625rem] sm:text-xs text-muted-foreground/80 uppercase font-bold tracking-wider mt-0.5 block">Completo</span>
             </div>
           </CardContent>
         </Card>
       </section>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
 
         {/* Left Column: Learning Path */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
           <section>
             <LearningTimeline />
           </section>
         </div>
 
         {/* Right Column: Quests & Tips */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Daily Quests */}
           <DailyQuestsWidget />
 
           {/* Tip of the Day */}
-          <Card className="glass-card bg-primary/5 border-primary/20 sticky top-24">
-            <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
-              <CardTitle className="text-lg flex items-center gap-2 text-primary">
-                <Lightbulb className="w-5 h-5" />
-                Dica do Dia
+          <Card className="glass-card bg-primary/5 border-primary/20 sticky top-20 sm:top-24">
+            <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-base sm:text-lg flex items-center gap-2 text-primary">
+                <Lightbulb className="w-5 h-5 flex-shrink-0" />
+                <span>Dica do Dia</span>
               </CardTitle>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-primary/70 hover:text-primary" onClick={refreshTip}>
+              <Button variant="ghost" size="icon" className="h-9 w-9 text-primary/70 hover:text-primary active:scale-95 transition-transform" onClick={refreshTip}>
                 <RefreshCw className="w-4 h-4" />
               </Button>
             </CardHeader>

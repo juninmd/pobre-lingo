@@ -1,13 +1,15 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, XCircle, Shuffle, RefreshCw, Languages } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { sentenceOrderingExercises, SentenceOrderingExercise } from '@/lib/exerciseData';
+import { getRuleById } from '@/lib/grammarRules';
 import { useToast } from '@/hooks/use-toast';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
@@ -24,6 +26,9 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 export function SentenceOrdering() {
+  const [searchParams] = useSearchParams();
+  const fromRule = searchParams.get('fromRule');
+
   const [currentExercise, setCurrentExercise] = useState<SentenceOrderingExercise | null>(null);
   const [shuffledWords, setShuffledWords] = useState<string[]>([]);
   const [orderedSentence, setOrderedSentence] = useState<string[]>([]);
@@ -35,19 +40,41 @@ export function SentenceOrdering() {
 
   const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
-  const loadNewExercise = () => {
-    const randomIndex = Math.floor(Math.random() * sentenceOrderingExercises.length);
-    const exercise = sentenceOrderingExercises[randomIndex];
+  const loadNewExercise = useCallback(() => {
+    let availableExercises = sentenceOrderingExercises;
+
+    // Filter by rule if provided
+    if (fromRule) {
+      const rule = getRuleById(fromRule);
+      if (rule) {
+        // Filter exercises that match the rule topic (partially or fully)
+        // We compare title_en (e.g. "Present Simple") with topic (e.g. "Present Simple")
+        const filtered = sentenceOrderingExercises.filter(ex =>
+          ex.topic.toLowerCase().includes(rule.title_en.toLowerCase()) ||
+          rule.title_en.toLowerCase().includes(ex.topic.toLowerCase())
+        );
+
+        if (filtered.length > 0) {
+          availableExercises = filtered;
+        } else {
+           // Fallback or notify? For now, we'll just use general pool but maybe log/toast
+           console.warn("No specific exercises found for rule:", rule.title_en);
+        }
+      }
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableExercises.length);
+    const exercise = availableExercises[randomIndex];
     setCurrentExercise(exercise);
     setShuffledWords(shuffleArray(exercise.words));
     setOrderedSentence([]);
     setIsCorrect(null);
     setShowTranslation(false);
-  };
+  }, [fromRule]);
 
   useEffect(() => {
     loadNewExercise();
-  }, []);
+  }, [loadNewExercise]);
 
   const handleWordClick = (word: string, index: number) => {
     setOrderedSentence(prev => [...prev, word]);

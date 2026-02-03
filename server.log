@@ -3,11 +3,11 @@
 > vite
 
 
-  VITE v7.3.1  ready in 592 ms
+  VITE v7.3.1  ready in 452 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-(node:4043) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1770021503144 is not specified and it doesn't parse as CommonJS.
+(node:6165) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1770109611127 is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to /app/package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -20,5 +20,4 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-ca84f546.js
-8:47:23 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
-9:30:48 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+11:05:37 AM [vite] (client) hmr update /src/globals.css

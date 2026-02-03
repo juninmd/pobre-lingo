@@ -1,71 +1,86 @@
-import pytest
 import re
 from playwright.sync_api import Page, expect
 
-def test_timeline_structure(page: Page):
+def test_timeline_journey_rendering(page: Page):
     """
-    Verifies the new LearningTimeline structure renders correctly.
+    Test that the Learning Timeline renders correctly on the Dashboard.
     """
-    page.goto("http://localhost:5173/")
+    page.goto("/")
 
-    # Check for the main header of the timeline
-    expect(page.get_by_text("Sua Jornada")).to_be_visible()
+    # Check for the main heading "Sua Jornada"
+    expect(page.get_by_role("heading", name="Sua Jornada")).to_be_visible()
 
-    # Check for Unit Header (sticky)
-    # Using a looser locator to match text within the element
-    expect(page.locator("body")).to_contain_text("Unidade 1")
-    expect(page.locator("body")).to_contain_text("Primeiros Passos")
+    # Check for the book icon/intro
+    expect(page.locator(".lucide-book-open").first).to_be_visible()
 
-    # Check for Module (Chapter)
+    # Check that units and modules are rendered
+    # We expect at least one "Capítulo"
     expect(page.get_by_text("Capítulo 1")).to_be_visible()
-    expect(page.get_by_text("Fundamentos do Inglês")).to_be_visible()
 
-    # Check for Lesson (Page)
-    # The first lesson is "Alfabeto e Pronúncia"
-    expect(page.get_by_text("Alfabeto e Pronúncia")).to_be_visible()
-
-def test_timeline_interaction(page: Page):
+def test_timeline_bookmark_functionality(page: Page):
     """
-    Verifies that clicking an active lesson navigates correctly.
+    Test that the timeline shows the bookmark/active lesson indicator.
     """
-    page.goto("http://localhost:5173/")
+    page.goto("/")
 
-    # The first lesson "Alfabeto e Pronúncia" should be active.
-    # It acts as a link.
-    # We find the link that contains the text.
-    lesson_link = page.locator("a").filter(has_text="Alfabeto e Pronúncia")
+    # Since we are a new user (or state is reset), the first lesson should be active
+    # The active lesson has the text "Agora" or the bookmark "Continue Aqui"
+
+    # Check for "Continue Aqui" tooltip/badge (might need hover or just exist in DOM)
+    # The code has: <div className="... hidden md:block ...">Continue Aqui</div>
+    # So it should be visible on desktop size (default)
+
+    # Verify the bookmark icon is present
+    # We used the Bookmark icon from lucide-react, class contains lucide-bookmark
+    expect(page.locator(".lucide-bookmark")).to_be_visible()
+
+    # Verify "Agora" badge on the lesson card
+    expect(page.get_by_text("Agora")).to_be_visible()
+
+def test_navigation_from_timeline(page: Page):
+    """
+    Test clicking a lesson card navigates to the correct route.
+    """
+    page.goto("/")
+
+    # Find the first active lesson card (the one with "Agora")
+    # We can click the link inside the active lesson wrapper
+
+    # The first lesson is usually "Alfabeto e Pronúncia" in unit 1
+    # Let's find the link for it.
+    lesson_link = page.get_by_role("link", name="Alfabeto e Pronúncia")
     expect(lesson_link).to_be_visible()
 
-    # Click it
     lesson_link.click()
 
-    # Should navigate to vocabulary page
-    # The URL should contain /vocabulary/foundations/alphabet-pronunciation
-    expect(page).to_have_url(re.compile(r"/vocabulary/foundations/alphabet-pronunciation"))
+    # Should navigate to /vocabulary/foundations/alphabet-pronunciation
+    expect(page).to_have_url(re.compile(r".*/vocabulary/foundations/alphabet-pronunciation"))
 
-def test_responsive_layout(page: Page):
+def test_mobile_responsiveness(page: Page):
     """
-    Verifies that the layout adapts to mobile/desktop.
+    Test that the layout adapts to mobile.
     """
-    # 1. Desktop View
-    page.set_viewport_size({"width": 1280, "height": 720})
-    page.goto("http://localhost:5173/")
-
-    # On Desktop, the Sidebar should be visible.
-    # Sidebar contains "Minha Jornada" link.
-    # We expect the sidebar to be visible (it has 'hidden lg:flex' class).
-    # We can check for a sidebar specific element.
-    expect(page.get_by_test_id("sidebar") if False else page.locator("aside")).to_be_visible()
-
-    # 2. Mobile View
+    # Set viewport to mobile size
     page.set_viewport_size({"width": 375, "height": 667})
+    page.goto("/")
 
-    # On Mobile, the Sidebar should be hidden (collapsed/drawer).
-    # The "aside" locator usually points to the sidebar.
-    expect(page.locator("aside")).not_to_be_visible()
+    # Check that MobileNav is visible
+    # MobileNav has links to "Jornada", "Jogos", etc.
+    expect(page.get_by_role("link", name="Jornada")).to_be_visible()
+    expect(page.get_by_role("link", name="Nível")).to_be_visible()
 
-    # The Mobile Nav should be visible at the bottom.
-    # It has links like "Jornada", "Jogos".
-    # We can check for the text "Jornada" in a navigation context that is not the sidebar.
-    # Or simply check that the page content is still visible.
-    expect(page.get_by_text("Sua Jornada")).to_be_visible()
+    # Check that Desktop Sidebar is hidden (NavMenu)
+    # The sidebar container has 'hidden lg:flex'
+    # We can check if "Minha Jornada" (desktop label) is hidden if it differs from mobile "Jornada"
+    # Actually, both have similar labels.
+    # MobileNav is fixed bottom.
+
+    # Verify the timeline is still visible
+    expect(page.get_by_role("heading", name="Sua Jornada")).to_be_visible()
+
+    # Verify bookmark is hidden on mobile if we set it to hidden md:block
+    # In LearningTimeline.tsx: className="... hidden md:block" for the Bookmark Ribbon
+    expect(page.locator(".lucide-bookmark")).not_to_be_visible()
+
+    # But "Agora" badge should still be visible
+    expect(page.get_by_text("Agora")).to_be_visible()

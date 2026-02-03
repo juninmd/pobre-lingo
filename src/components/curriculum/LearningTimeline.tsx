@@ -12,7 +12,8 @@ import {
   BookOpen,
   Trophy,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Bookmark
 } from 'lucide-react';
 
 // --- Helpers ---
@@ -129,20 +130,33 @@ function LessonCard({ module, lesson, status, index, isFirstActive }: LessonCard
   );
 
   const wrapperClass = cn(
-          "flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 bg-card/50 backdrop-blur-sm",
+          "flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 bg-card/50 backdrop-blur-md",
           status === 'locked' && "opacity-60 grayscale cursor-not-allowed border-dashed bg-muted/20",
           status === 'active' && "border-primary/50 shadow-lg shadow-primary/5 bg-gradient-to-r from-primary/5 to-transparent scale-[1.02] ring-1 ring-primary/20",
           status === 'completed' && "border-green-500/20 bg-green-500/5 hover:bg-green-500/10",
-          status !== 'locked' && "hover:border-primary/30 hover:shadow-md cursor-pointer"
+          status !== 'locked' && "hover:border-primary/30 hover:shadow-md cursor-pointer hover:bg-card/80"
         );
 
   return (
     <div ref={cardRef} className="relative pl-8 md:pl-0 py-2 group">
+
+      {/* Bookmark Ribbon for Active Lesson */}
+      {isFirstActive && (
+        <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-30 animate-in fade-in slide-in-from-left-4 duration-700 delay-300 hidden md:block">
+           <div className="relative group/bookmark cursor-help">
+             <Bookmark className="w-8 h-8 text-primary fill-primary drop-shadow-md animate-bounce-short" />
+             <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 bg-primary text-primary-foreground text-xs font-bold rounded shadow-lg opacity-0 group-hover/bookmark:opacity-100 transition-opacity whitespace-nowrap">
+               Continue Aqui
+             </div>
+           </div>
+        </div>
+      )}
+
       {/* Timeline Connector Dot */}
       <div className={cn(
         "absolute left-[-5px] md:left-[-5px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 transition-all duration-300 z-10",
         status === 'completed' ? "bg-green-500 border-green-500" :
-        status === 'active' ? "bg-primary border-primary animate-pulse shadow-[0_0_10px_rgba(var(--primary),0.5)]" :
+        status === 'active' ? "bg-primary border-primary animate-pulse shadow-[0_0_10px_rgba(var(--primary),0.5)] scale-125" :
         "bg-muted border-muted-foreground/30"
       )} />
 
@@ -168,15 +182,10 @@ interface ModuleSectionProps {
 function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }: ModuleSectionProps) {
   const Icon = getIcon(module.icon);
 
-  // Module is locked if previous module not done?
-  // Simplified logic: Module is active if any lesson inside is active or completed, OR if it's the very first one.
-  // Actually, we can check if the first lesson of this module is locked or not.
-  // But for the visualization, we just iterate lessons.
-
   return (
-    <div className="relative ml-4 md:ml-8 pb-12 last:pb-0">
+    <div className="relative ml-4 md:ml-8 pb-16 last:pb-0">
        {/* Chapter Header (Module) */}
-       <div className="flex items-center gap-4 mb-6 -ml-10 md:-ml-14 group">
+       <div className="flex items-center gap-4 mb-8 -ml-10 md:-ml-14 group">
           <div className={cn(
             "flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-lg border-4 border-background z-10 transition-transform hover:scale-110 duration-300",
             module.color,
@@ -198,15 +207,9 @@ function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }:
        </div>
 
        {/* Lessons List */}
-       <div className="space-y-4">
+       <div className="space-y-6 md:space-y-8">
           {module.lessons.map((lesson, idx) => {
              const isCompleted = completedLessonsSet.has(`${module.id}:${lesson.id}`);
-             // It's active if it's not completed, but the previous one IS completed (or it's the first one overall).
-             // However, to keep it simple with the set:
-             // If this lesson is the "firstIncomplete", it's active.
-             // If it's completed, it's completed.
-             // Else, it's locked.
-
              let status: 'locked' | 'active' | 'completed' = 'locked';
              let isFirstActive = false;
 
@@ -215,19 +218,6 @@ function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }:
              } else if (`${module.id}:${lesson.id}` === firstIncompleteLessonId) {
                status = 'active';
                isFirstActive = true;
-             } else {
-               // Check if it's unlocked by logic (if previous was done)
-               // But `firstIncompleteLessonId` is sufficient for "Active".
-               // Any lesson AFTER the active one is locked.
-               // Any lesson BEFORE the active one should be completed (logic of set).
-               // So default locked is correct for future lessons.
-
-               // Edge case: If EVERYTHING is completed, firstIncompleteLessonId is null.
-               // Then all are completed.
-               if (!firstIncompleteLessonId && completedLessonsSet.size > 0) {
-                 // If this lesson is in the set, it's completed (handled above).
-                 // If not in set? Should be locked.
-               }
              }
 
              return (
@@ -350,15 +340,15 @@ export function LearningTimeline() {
   return (
     <div className="w-full max-w-2xl mx-auto pb-32 min-h-screen overflow-x-hidden">
        {/* Intro / Header */}
-       <div className="mb-10 text-center space-y-2 pt-8 px-4">
-          <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
-            <BookOpen className="w-8 h-8" />
+       <div className="mb-12 md:mb-16 text-center space-y-4 pt-8 px-4">
+          <div className="inline-flex items-center justify-center p-4 rounded-full bg-primary/10 text-primary mb-2 ring-8 ring-primary/5">
+            <BookOpen className="w-10 h-10" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
             Sua Jornada
           </h1>
-          <p className="text-muted-foreground max-w-md mx-auto text-sm md:text-base">
-            Complete os capítulos para desbloquear novos conhecimentos e dominar o inglês.
+          <p className="text-muted-foreground max-w-md mx-auto text-base md:text-lg leading-relaxed">
+            Avance pelos capítulos deste livro interativo para dominar o inglês, página por página.
           </p>
        </div>
 
@@ -373,9 +363,9 @@ export function LearningTimeline() {
        ))}
 
        {/* End of Journey */}
-       <div className="text-center py-12 opacity-50">
-          <Sparkles className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-          <p className="text-sm font-medium">To be continued...</p>
+       <div className="text-center py-20 opacity-50">
+          <Sparkles className="w-16 h-16 mx-auto mb-6 text-muted-foreground/30 animate-pulse" />
+          <p className="text-lg font-medium text-muted-foreground">Continua...</p>
        </div>
     </div>
   );

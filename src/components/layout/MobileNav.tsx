@@ -1,17 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Gamepad2, User, BookOpen, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { navigationConfig } from '@/lib/navigation';
 
 export function MobileNav() {
   const { pathname } = useLocation();
 
-  const navItems = [
-    { href: '/', label: 'Jornada', icon: Compass },
-    { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
-    { href: '/rules', label: 'Regras', icon: BookOpen },
-    { href: '/proficiency', label: 'Nível', icon: GraduationCap },
-  ];
+  const navItems = navigationConfig.mobile;
 
   return (
     <div

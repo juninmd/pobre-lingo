@@ -2,21 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import {
-  BookOpen,
-  ListChecks,
-  CheckSquare,
   Menu,
-  SearchX,
-  BookA,
-  FileText,
   Search as SearchIcon,
   Sun,
   Moon,
-  Map,
   Sparkles,
   GraduationCap,
   X,
-  Gamepad2,
   Coins,
 } from 'lucide-react';
 
@@ -54,39 +46,10 @@ import { MobileNav } from './components/layout/MobileNav';
 import { useGamification } from './contexts/GamificationContext';
 import { SEO } from './components/common/SEO';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { navigationConfig } from '@/lib/navigation';
 
 // Agrupamento de navegação por categorias
-const navGroups = [
-  {
-    title: 'Principal',
-    items: [
-      { href: '/', label: 'Minha Jornada', icon: Map },
-      { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
-    ]
-  },
-  {
-    title: 'Referência',
-    items: [
-      { href: '/rules', label: 'Regras', icon: BookOpen },
-      { href: '/dictionary', label: 'Dicionário', icon: BookA },
-    ]
-  },
-  {
-    title: 'Exercícios',
-    items: [
-      { href: '/exercises/sentence-ordering', label: 'Ordenar Frases', icon: ListChecks },
-      { href: '/exercises/sentence-identification', label: 'Identificar Frases', icon: CheckSquare },
-      { href: '/exercises/find-incorrect-words', label: 'Encontrar Erros', icon: SearchX },
-      { href: '/exercises/news-comprehension', label: 'Interpretação', icon: FileText },
-    ]
-  },
-  {
-    title: 'Status',
-    items: [
-      { href: '/proficiency', label: 'Teste de Nível', icon: GraduationCap },
-    ]
-  },
-];
+const navGroups = navigationConfig.desktop;
 
 // Flatten para busca
 const allNavItems = navGroups.flatMap(group => group.items);

@@ -254,21 +254,21 @@ export default function Layout() {
 
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-2 sm:gap-3 text-sm font-semibold">
-                {/* Level Badge */}
-                <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 backdrop-blur-md shadow-sm ring-1 ring-blue-500/10 hover:ring-blue-500/30 transition-all" title="Nível">
-                  <GraduationCap className="h-4 w-4" />
-                  <span className="font-bold tracking-tight">Nível {userLevel}</span>
+              <div className="flex items-center gap-2 sm:gap-4 text-sm font-medium">
+                {/* Level Badge - Minimalist */}
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/5 hover:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10 backdrop-blur-sm transition-all" title="Nível">
+                  <GraduationCap className="h-4 w-4 opacity-80" />
+                  <span className="tracking-tight">Nível {userLevel}</span>
                 </div>
 
-                {/* Gems / PobreCoins */}
-                <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 backdrop-blur-md shadow-sm ring-1 ring-amber-500/10 hover:ring-amber-500/30 transition-all active:scale-95 group cursor-default" title="PobreCoins">
-                  <Coins className="h-4 w-4 fill-current group-hover:animate-bounce" />
-                  <span className="font-bold tabular-nums tracking-tight">{gems}</span>
+                {/* Gems / PobreCoins - Minimalist */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/5 hover:bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/10 backdrop-blur-sm transition-all active:scale-95 group cursor-default" title="PobreCoins">
+                  <Coins className="h-4 w-4 fill-current opacity-80 group-hover:animate-bounce" />
+                  <span className="tabular-nums tracking-tight">{gems}</span>
                 </div>
               </div>
 
-              <Separator orientation="vertical" className="h-6 bg-border/60 hidden sm:block" />
+              <Separator orientation="vertical" className="h-5 bg-border/40 hidden sm:block" />
 
               {/* Theme Switcher */}
               <DropdownMenu>

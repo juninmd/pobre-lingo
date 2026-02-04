@@ -1,0 +1,33 @@
+
+> pobre-lingo@0.1.0 dev /app
+> vite
+
+
+  VITE v7.3.1  ready in 386 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+(node:2907) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1770195781856 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+
+PWA v1.2.0
+mode      generateSW
+precache  2 entries (0.12 KiB)
+files generated
+  dev-dist/sw.js
+  dev-dist/workbox-35c88359.js
+9:03:24 AM [vite] (client) hmr update /src/globals.css
+9:03:51 AM [vite] (client) hmr update /src/globals.css
+9:06:47 AM [vite] (client) hmr update /src/globals.css
+9:07:26 AM [vite] (client) hmr update /src/globals.css
+9:07:42 AM [vite] (client) page reload playwright-report/index.html
+9:09:09 AM [vite] (client) page reload playwright-report/index.html
+9:09:32 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+9:10:01 AM [vite] (client) page reload playwright-report/index.html
+9:10:01 AM [vite] (client) hmr update /src/globals.css
+9:11:33 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+9:11:42 AM [vite] (client) hmr update /src/globals.css

@@ -54,7 +54,7 @@ export function CurriculumProgressCard() {
   const { isModuleUnlocked, getModuleProgress, overallProgress, totalXP, userLevel, isLessonCompleted } = useCurriculumProgress();
 
   // Encontrar a próxima lição não completada
-  const findNextLesson = (): { module: Module; lesson: Lesson; lessonIndex: number } | null => {
+  const nextLesson = React.useMemo(() => {
     for (const module of curriculumData.modules) {
       if (!isModuleUnlocked(module)) continue;
       for (let i = 0; i < module.lessons.length; i++) {
@@ -65,9 +65,8 @@ export function CurriculumProgressCard() {
       }
     }
     return null;
-  };
+  }, [isModuleUnlocked, isLessonCompleted]);
 
-  const nextLesson = findNextLesson();
 
   // Módulos por dificuldade
   const basicModules = curriculumData.modules.filter(m => m.difficulty === 'basico');

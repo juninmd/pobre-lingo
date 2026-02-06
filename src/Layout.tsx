@@ -254,17 +254,17 @@ export default function Layout() {
 
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-2 sm:gap-4 text-sm font-medium">
-                {/* Level Badge - Elegant */}
-                <div className="hidden md:flex items-center gap-2 h-9 px-4 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 backdrop-blur-md transition-all hover:bg-blue-500/15" title="Nível">
-                  <GraduationCap className="h-4 w-4" />
-                  <span className="font-semibold text-sm tracking-tight">Nível {userLevel}</span>
+              <div className="flex items-center gap-2 sm:gap-6 text-sm font-medium">
+                {/* Level Badge - Minimalist */}
+                <div className="hidden md:flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-default" title="Nível">
+                  <GraduationCap className="h-5 w-5 text-blue-500" />
+                  <span className="font-semibold tracking-tight">Nível {userLevel}</span>
                 </div>
 
-                {/* Gems / PobreCoins - Elegant */}
-                <div className="flex items-center gap-2 h-9 px-4 rounded-full bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 backdrop-blur-md transition-all active:scale-95 hover:bg-amber-400/15 group cursor-default" title="PobreCoins">
-                  <Coins className="h-4 w-4 fill-current opacity-90 group-hover:animate-bounce" />
-                  <span className="font-semibold text-sm tabular-nums tracking-tight">{gems}</span>
+                {/* Gems / PobreCoins - Minimalist */}
+                <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-default group" title="PobreCoins">
+                  <Coins className="h-5 w-5 text-amber-500 fill-current opacity-90 group-hover:animate-bounce" />
+                  <span className="font-semibold tabular-nums tracking-tight">{gems}</span>
                 </div>
               </div>
 

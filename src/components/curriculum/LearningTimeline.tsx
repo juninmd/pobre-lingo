@@ -289,6 +289,13 @@ function UnitGroup({ unit, modules, completedLessonsSet, firstIncompleteLessonId
   );
 }
 
+
+// Pre-calculate units with modules to avoid re-calculation on every render
+const unitsWithModules = curriculumData.units.map(unit => ({
+  ...unit,
+  modules: curriculumData.modules.filter(m => m.unitId === unit.id)
+}));
+
 export function LearningTimeline() {
   const { completedLessons } = useCurriculumProgress();
 
@@ -311,10 +318,6 @@ export function LearningTimeline() {
     return null;
   }, [completedLessonsSet]);
 
-  const unitsWithModules = curriculumData.units.map(unit => ({
-    ...unit,
-    modules: curriculumData.modules.filter(m => m.unitId === unit.id)
-  }));
 
   return (
     <div className="w-full min-h-screen pb-32">

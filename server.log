@@ -1,13 +1,13 @@
 
 > pobre-lingo@0.1.0 dev
-> vite --port 3000
+> vite --port 5173
 
 
-  VITE v7.3.1  ready in 439 ms
+  VITE v7.3.1  ready in 441 ms
 
-  ➜  Local:   http://localhost:3000/
+  ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-(node:2961) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1770280783046 is not specified and it doesn't parse as CommonJS.
+(node:3104) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1770454459157 is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to /app/package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -20,7 +20,12 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-ca84f546.js
-8:40:07 AM [vite] (client) hmr update /src/globals.css
-8:40:36 AM [vite] (client) hmr update /src/globals.css
-8:42:15 AM [vite] (client) hmr update /src/globals.css
-8:42:15 AM [vite] (client) hmr update /src/globals.css
+8:54:36 AM [vite] (client) hmr update /src/globals.css
+8:55:22 AM [vite] (client) hmr update /src/Layout.tsx, /src/components/layout/MobileNav.tsx, /src/globals.css
+8:55:28 AM [vite] (client) hmr update /src/globals.css
+8:55:55 AM [vite] (client) page reload index.html
+8:55:59 AM [vite] (client) hmr update /src/globals.css
+8:56:39 AM [vite] (client) hmr update /src/Layout.tsx, /src/globals.css
+8:57:41 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+8:57:51 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx
+9:03:55 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/LearningTimeline.tsx

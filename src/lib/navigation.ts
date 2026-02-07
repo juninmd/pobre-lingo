@@ -7,8 +7,7 @@ import {
   CheckSquare,
   SearchX,
   FileText,
-  GraduationCap,
-  Compass
+  GraduationCap
 } from 'lucide-react';
 
 export const navigationConfig = {
@@ -16,7 +15,7 @@ export const navigationConfig = {
     {
       title: 'Principal',
       items: [
-        { href: '/', label: 'Minha Jornada', icon: Map },
+        { href: '/', label: 'Jornada', icon: Map },
         { href: '/arcade', label: 'Arcade', icon: Gamepad2, badge: 'Fun' },
       ]
     },
@@ -39,13 +38,13 @@ export const navigationConfig = {
     {
       title: 'Status',
       items: [
-        { href: '/proficiency', label: 'Teste de Nível', icon: GraduationCap },
+        { href: '/proficiency', label: 'Nível', icon: GraduationCap },
       ]
     },
   ],
   mobile: [
-    { href: '/', label: 'Jornada', icon: Compass },
-    { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
+    { href: '/', label: 'Jornada', icon: Map },
+    { href: '/arcade', label: 'Arcade', icon: Gamepad2 },
     { href: '/rules', label: 'Regras', icon: BookOpen },
     { href: '/proficiency', label: 'Nível', icon: GraduationCap },
   ]

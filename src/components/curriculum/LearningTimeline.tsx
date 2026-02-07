@@ -60,7 +60,7 @@ interface LessonCardProps {
   isFirstActive: boolean;
 }
 
-function LessonCard({ module, lesson, status, index, isFirstActive }: LessonCardProps) {
+function LessonCard({ module, lesson, status, isFirstActive }: LessonCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -181,7 +181,7 @@ interface ModuleSectionProps {
 }
 
 function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }: ModuleSectionProps) {
-  const Icon = getIcon(module.icon);
+  const icon = getIcon(module.icon);
 
   return (
     <div className="relative pb-12 last:pb-0">
@@ -189,7 +189,7 @@ function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }:
        {/* Chapter Header Linked to Spine */}
        <div className="flex items-center gap-6 mb-12 relative">
           {/* Chapter Icon on Spine */}
-          <div className="absolute left-[1.125rem] -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-xl bg-background border-4 border-muted/50 shadow-sm z-10">
+          <div className="absolute left-[1.25rem] -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-xl bg-background border-4 border-muted/50 shadow-sm z-10">
              <span className="font-black text-sm text-muted-foreground">{module.order}</span>
           </div>
 
@@ -199,7 +199,7 @@ function ModuleSection({ module, completedLessonsSet, firstIncompleteLessonId }:
                 module.color,
                 "text-white"
             )}>
-                <Icon className="w-6 h-6" />
+                {React.createElement(icon, { className: "w-6 h-6" })}
             </div>
             <div>
                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -253,9 +253,9 @@ function UnitGroup({ unit, modules, completedLessonsSet, firstIncompleteLessonId
   return (
     <div className="mb-24">
       {/* Unit Header (Book Part) */}
-      <div className="sticky top-[4rem] z-20 py-4 backdrop-blur-xl bg-background/60 border-b border-white/5 mb-12 transition-all">
+      <div className="sticky top-[4rem] z-20 py-4 backdrop-blur-xl bg-background/80 border-b border-border/10 shadow-sm mb-12 transition-all">
         <div className="container max-w-2xl mx-auto flex items-center gap-4 px-4 md:px-0">
-           <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary font-bold text-lg border border-primary/20 backdrop-blur-md">
+           <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary font-bold text-lg border border-primary/20 backdrop-blur-md shadow-inner">
               {unit.order}
            </div>
            <div>

@@ -254,17 +254,17 @@ export default function Layout() {
 
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-2 sm:gap-6 text-sm font-medium">
-                {/* Level Badge - Minimalist */}
-                <div className="hidden md:flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-default" title="Nível">
-                  <GraduationCap className="h-5 w-5 text-blue-500" />
-                  <span className="font-semibold tracking-tight">Nível {userLevel}</span>
+              <div className="flex items-center gap-3 sm:gap-4 text-sm font-medium">
+                {/* Level Badge - Elegant Pill */}
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm transition-all hover:bg-blue-500/20 cursor-default" title="Nível">
+                  <GraduationCap className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <span className="font-bold tracking-tight text-blue-700 dark:text-blue-300">Nível {userLevel}</span>
                 </div>
 
-                {/* Gems / PobreCoins - Minimalist */}
-                <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-default group" title="PobreCoins">
-                  <Coins className="h-5 w-5 text-amber-500 fill-current opacity-90 group-hover:animate-bounce" />
-                  <span className="font-semibold tabular-nums tracking-tight">{gems}</span>
+                {/* Gems / PobreCoins - Elegant Pill */}
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 backdrop-blur-sm transition-all hover:bg-amber-500/20 cursor-default group" title="PobreCoins">
+                  <Coins className="h-4 w-4 text-amber-600 dark:text-amber-400 fill-current opacity-90 group-hover:animate-bounce-short" />
+                  <span className="font-bold tabular-nums tracking-tight text-amber-700 dark:text-amber-300">{gems}</span>
                 </div>
               </div>
 

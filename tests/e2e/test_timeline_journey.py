@@ -5,6 +5,7 @@ from playwright.sync_api import Page, expect
 # Use environment variable or default to localhost
 BASE_URL = os.getenv("BASE_URL", "http://localhost:5173")
 
+# E2E Test Suite for the new "Learning Timeline" (Book Metaphor) journey
 def test_timeline_journey_rendering(page: Page):
     """
     Test that the Learning Timeline renders correctly on the Dashboard.

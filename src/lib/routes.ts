@@ -1,5 +1,8 @@
 import { Module, Lesson } from './curriculumData';
 
+/**
+ * Generates the correct route for a given lesson based on its type and properties.
+ */
 export function getLessonLink(module: Module, lesson: Lesson): string {
   // 0. Game Type (Highest Priority)
   if (lesson.gameType) {

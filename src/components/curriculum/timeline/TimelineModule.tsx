@@ -21,19 +21,19 @@ export function TimelineModule({ module, completedLessonsSet, firstIncompleteLes
   return (
     <div className="relative pb-12 last:pb-0">
        {/* Chapter Header Linked to Spine */}
-       <div className="flex items-center gap-6 mb-12 relative">
+       <div className="flex items-center gap-6 mb-12 relative z-10">
           {/* Chapter Icon on Spine */}
-          <div className="absolute left-[1.25rem] -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-xl bg-background border-4 border-muted/50 shadow-sm z-10">
+          <div className="absolute left-[1.25rem] -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-xl bg-background border-4 border-muted shadow-sm z-10 transition-transform hover:scale-110 duration-300">
              <span className="font-black text-sm text-muted-foreground">{module.order}</span>
           </div>
 
-          <div className="ml-14 flex items-center gap-4 p-4 rounded-2xl bg-card/30 border border-white/10 backdrop-blur-md shadow-sm w-full">
+          <div className="ml-14 flex items-center gap-4 p-4 rounded-2xl bg-card/40 border border-white/10 backdrop-blur-md shadow-sm w-full transition-all hover:bg-card/60">
             <div className={cn(
-                "flex items-center justify-center w-12 h-12 rounded-xl shadow-inner",
+                "flex items-center justify-center w-12 h-12 rounded-xl shadow-inner ring-1 ring-white/20",
                 module.color,
                 "text-white"
             )}>
-                {React.createElement(icon, { className: "w-6 h-6" })}
+                {React.createElement(icon, { className: "w-6 h-6 drop-shadow-md" })}
             </div>
             <div>
                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">

@@ -19,9 +19,11 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
 
   useEffect(() => {
     if (isFirstActive && cardRef.current) {
-      setTimeout(() => {
+      // Delay scrolling to allow for initial render and animations
+      const timer = setTimeout(() => {
         cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 500);
+      }, 800);
+      return () => clearTimeout(timer);
     }
   }, [isFirstActive]);
 
@@ -31,7 +33,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
     <>
       {/* Status Icon */}
       <div className={cn(
-        "flex items-center justify-center w-12 h-12 rounded-xl shrink-0 transition-all border",
+        "flex items-center justify-center w-12 h-12 rounded-xl shrink-0 transition-all border relative z-10",
         status === 'locked' ? "bg-muted/50 text-muted-foreground/50 border-white/5" :
         status === 'active' ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 border-primary/20" :
         "bg-green-500 text-white shadow-md shadow-green-500/20 border-green-600/20"
@@ -42,7 +44,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
       </div>
 
       {/* Text Info */}
-      <div className="flex-1 min-w-0 flex flex-col justify-center">
+      <div className="flex-1 min-w-0 flex flex-col justify-center z-10">
          <h4 className={cn("font-bold text-base truncate", status === 'active' && "text-primary")}>
            {lesson.title_pt}
          </h4>
@@ -52,7 +54,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
       </div>
 
       {/* Action / XP */}
-      <div className={cn("flex flex-col items-end justify-center gap-1", status !== 'active' && "hidden sm:flex")}>
+      <div className={cn("flex flex-col items-end justify-center gap-1 z-10", status !== 'active' && "hidden sm:flex")}>
          {status === 'active' ? (
            <div className={cn(buttonVariants({ size: "sm" }), "h-8 px-4 text-xs font-bold uppercase tracking-wider shadow-sm animate-pulse pointer-events-none")}>
              Começar
@@ -68,7 +70,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
   );
 
   const wrapperClass = cn(
-    "relative flex items-center gap-6 p-4 rounded-2xl border transition-all duration-300 w-full text-left",
+    "relative flex items-center gap-6 p-4 rounded-2xl border transition-all duration-300 w-full text-left overflow-hidden",
     "backdrop-blur-md",
     status === 'locked'
       ? "bg-muted/5 border-white/5 opacity-60 grayscale cursor-not-allowed"
@@ -82,27 +84,27 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
 
   return (
     <div ref={cardRef} className="relative pl-10 md:pl-12 group py-2">
-      {/* Spine Connection Line */}
+      {/* Connection Line to Spine */}
       <div className={cn(
         "absolute left-[19px] md:left-[19px] top-1/2 -translate-y-1/2 w-8 h-0.5 transition-all duration-300",
         status === 'active' ? "bg-primary" : "bg-border/50"
       )} />
 
-      {/* Spine Dot */}
+      {/* Spine Dot on the Line */}
       <div className={cn(
         "absolute left-[15px] md:left-[15px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 z-10",
-        status === 'completed' ? "bg-green-500 border-green-500" :
-        status === 'active' ? "bg-primary border-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] scale-125" :
-        "bg-background border-muted-foreground/30"
+        status === 'completed' ? "bg-green-500 border-green-500 scale-100" :
+        status === 'active' ? "bg-primary border-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] scale-150 ring-4 ring-primary/20" :
+        "bg-background border-muted-foreground/30 scale-75"
       )} />
 
-      {/* Bookmark */}
+      {/* Floating Bookmark Indicator */}
       {isFirstActive && (
-        <div className="absolute -left-2 top-0 z-30 animate-in fade-in slide-in-from-left-4 duration-700 pointer-events-none">
-           <div className="relative">
-             <Bookmark className="w-10 h-10 text-primary fill-primary drop-shadow-xl filter" />
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] text-[10px] font-black text-primary-foreground">
-               LER
+        <div className="absolute -left-3 -top-3 z-40 animate-in slide-in-from-top-8 fade-in duration-1000 pointer-events-none">
+           <div className="relative animate-bounce">
+             <Bookmark className="w-12 h-12 text-primary fill-primary drop-shadow-2xl filter" />
+             <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-primary-foreground tracking-tighter">
+               AGORA
              </div>
            </div>
         </div>
@@ -111,7 +113,13 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
       {status === 'locked' ? (
         <div className={wrapperClass}>{content}</div>
       ) : (
-        <Link to={link} className={wrapperClass}>{content}</Link>
+        <Link to={link} className={wrapperClass}>
+            {/* Active Glow Effect inside card */}
+            {status === 'active' && (
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-transparent opacity-50" />
+            )}
+            {content}
+        </Link>
       )}
     </div>
   );

@@ -11,7 +11,7 @@ export interface TimelineUnitProps {
 
 export function TimelineUnit({ unit, modules, completedLessonsSet, firstIncompleteLessonId }: TimelineUnitProps) {
   return (
-    <div className="mb-24">
+    <div className="pb-24">
       {/* Unit Header (Book Part) */}
       <div className="sticky top-[4rem] z-20 py-4 backdrop-blur-xl bg-background/80 border-b border-border/10 shadow-sm mb-12 transition-all">
         <div className="container max-w-2xl mx-auto flex items-center gap-4 px-4 md:px-0">
@@ -30,10 +30,10 @@ export function TimelineUnit({ unit, modules, completedLessonsSet, firstIncomple
       </div>
 
       <div className="relative max-w-2xl mx-auto pl-4 md:pl-8 pr-4">
-         {/* The Spine */}
-         <div className="absolute left-[2.125rem] md:left-[3.125rem] top-0 bottom-0 w-1 bg-gradient-to-b from-muted via-muted-foreground/20 to-transparent rounded-full opacity-50" />
+         {/* The Spine - Continuous Line */}
+         <div className="absolute left-[2.125rem] md:left-[3.125rem] top-0 bottom-0 w-1 bg-border/40 rounded-full z-0" />
 
-         <div className="flex flex-col gap-12">
+         <div className="flex flex-col gap-12 relative z-10">
             {modules.map(module => (
               <TimelineModule
                 key={module.id}

@@ -9,7 +9,7 @@ export interface TimelineUnitProps {
   firstIncompleteLessonId: string | null;
 }
 
-export function TimelineUnit({ unit, modules, completedLessonsSet, firstIncompleteLessonId }: TimelineUnitProps) {
+export default function TimelineUnit({ unit, modules, completedLessonsSet, firstIncompleteLessonId }: TimelineUnitProps) {
   return (
     <div className="pb-24">
       {/* Unit Header (Book Part) */}

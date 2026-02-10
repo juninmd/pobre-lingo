@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { curriculumData } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, Sparkles } from 'lucide-react';
-import { TimelineUnit } from './timeline/TimelineUnit';
+
+const TimelineUnit = React.lazy(() => import('./timeline/TimelineUnit'));
 
 // Pre-calculate units with modules
 const unitsWithModules = curriculumData.units.map(unit => ({
@@ -48,13 +49,14 @@ export function LearningTimeline() {
        </div>
 
        {unitsWithModules.map(unit => (
-         <TimelineUnit
-           key={unit.id}
-           unit={unit}
-           modules={unit.modules}
-           completedLessonsSet={completedLessonsSet}
-           firstIncompleteLessonId={firstIncompleteLessonId}
-         />
+         <Suspense key={unit.id} fallback={<div className="h-64 mb-12 animate-pulse bg-muted/5 rounded-3xl mx-auto max-w-2xl border border-white/5" />}>
+           <TimelineUnit
+             unit={unit}
+             modules={unit.modules}
+             completedLessonsSet={completedLessonsSet}
+             firstIncompleteLessonId={firstIncompleteLessonId}
+           />
+         </Suspense>
        ))}
 
        <div className="text-center py-24 opacity-60">

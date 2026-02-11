@@ -44,3 +44,5 @@ firestore-debug.log
 # local dev
 dev-dist/
 dev_server.log
+__pycache__/
+*.pyc

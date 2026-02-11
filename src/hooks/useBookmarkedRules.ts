@@ -36,9 +36,11 @@ export function useBookmarkedRules() {
     });
   }, []);
 
+  const bookmarkedRuleIdsSet = useMemo(() => new Set(bookmarkedRuleIds), [bookmarkedRuleIds]);
+
   const isBookmarked = useCallback((ruleId: string) => {
-    return bookmarkedRuleIds.includes(ruleId);
-  }, [bookmarkedRuleIds]);
+    return bookmarkedRuleIdsSet.has(ruleId);
+  }, [bookmarkedRuleIdsSet]);
 
   const toggleBookmark = useCallback((ruleId: string) => {
     if (isBookmarked(ruleId)) {

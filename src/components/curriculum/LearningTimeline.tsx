@@ -34,13 +34,13 @@ export function LearningTimeline() {
   }, [completedLessonsSet]);
 
   return (
-    <div className="w-full min-h-screen pb-32">
+    <div className="w-full min-h-screen pb-32 flex flex-col gap-12">
        {/* Book Title / Intro */}
-       <div className="pt-8 pb-12 px-6 text-center max-w-xl mx-auto">
+       <div className="pt-8 px-6 text-center max-w-xl mx-auto">
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4 shadow-inner ring-1 ring-primary/20 backdrop-blur-sm">
             <BookOpen className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground mb-2">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground mb-2 font-headline">
             Sua História
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
@@ -49,7 +49,7 @@ export function LearningTimeline() {
        </div>
 
        {unitsWithModules.map(unit => (
-         <Suspense key={unit.id} fallback={<div className="h-64 mb-12 animate-pulse bg-muted/5 rounded-3xl mx-auto max-w-2xl border border-white/5" />}>
+         <Suspense key={unit.id} fallback={<div className="h-64 animate-pulse bg-muted/5 rounded-3xl mx-auto max-w-2xl border border-white/5" />}>
            <TimelineUnit
              unit={unit}
              modules={unit.modules}
@@ -59,7 +59,7 @@ export function LearningTimeline() {
          </Suspense>
        ))}
 
-       <div className="text-center py-24 opacity-60">
+       <div className="text-center py-12 opacity-60">
           <Sparkles className="w-12 h-12 mx-auto mb-4 text-muted-foreground/40" />
           <p className="font-medium text-muted-foreground">O próximo capítulo aguarda...</p>
        </div>

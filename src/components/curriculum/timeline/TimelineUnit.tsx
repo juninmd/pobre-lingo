@@ -11,29 +11,32 @@ export interface TimelineUnitProps {
 
 export default function TimelineUnit({ unit, modules, completedLessonsSet, firstIncompleteLessonId }: TimelineUnitProps) {
   return (
-    <div className="pb-24">
+    <div className="relative pb-16 pt-4">
+      {/* Unit Background (Glassmorphism) */}
+      <div className="absolute inset-0 bg-card/10 dark:bg-card/5 backdrop-blur-sm rounded-[2.5rem] -z-10 border border-white/5" />
+
       {/* Unit Header (Book Part) */}
-      <div className="sticky top-[4rem] z-20 py-4 backdrop-blur-xl bg-background/80 border-b border-border/10 shadow-sm mb-12 transition-all">
-        <div className="container max-w-2xl mx-auto flex items-center gap-4 px-4 md:px-0">
-           <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary font-bold text-lg border border-primary/20 backdrop-blur-md shadow-inner">
+      <div className="sticky top-[4rem] z-20 py-6 backdrop-blur-xl bg-background/60 border-b border-border/5 mb-12 transition-all rounded-t-[2.5rem]">
+        <div className="container max-w-2xl mx-auto flex items-center gap-5 px-6">
+           <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/10 text-primary font-black text-xl border border-primary/20 backdrop-blur-md shadow-[0_0_15px_rgba(var(--primary),0.15)] transform rotate-[-3deg]">
               {unit.order}
            </div>
-           <div>
-             <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-primary/80">
+           <div className="flex flex-col">
+             <h2 className="text-xs font-black uppercase tracking-[0.2em] text-primary/60 mb-0.5">
                Unidade {unit.order}
              </h2>
-             <p className="text-lg sm:text-xl font-bold text-foreground leading-none mt-0.5">
+             <p className="text-xl md:text-2xl font-black text-foreground tracking-tight leading-none font-headline">
                {unit.title}
              </p>
            </div>
         </div>
       </div>
 
-      <div className="relative max-w-2xl mx-auto pl-4 md:pl-8 pr-4">
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-8 pb-8">
          {/* The Spine - Continuous Line */}
-         <div className="absolute left-[2.125rem] md:left-[3.125rem] top-0 bottom-0 w-1 bg-border/40 rounded-full z-0" />
+         <div className="absolute left-[2.25rem] sm:left-[3.25rem] top-0 bottom-8 w-1 bg-gradient-to-b from-primary/20 via-border/40 to-transparent rounded-full z-0" />
 
-         <div className="flex flex-col gap-12 relative z-10">
+         <div className="flex flex-col gap-16 relative z-10">
             {modules.map(module => (
               <TimelineModule
                 key={module.id}

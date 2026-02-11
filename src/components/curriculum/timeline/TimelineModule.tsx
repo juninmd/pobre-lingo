@@ -19,27 +19,27 @@ export function TimelineModule({ module, completedLessonsSet, firstIncompleteLes
   const icon = getIcon(module.icon);
 
   return (
-    <div className="relative pb-12 last:pb-0">
+    <div className="relative pb-16 last:pb-0">
        {/* Chapter Header Linked to Spine */}
        <div className="flex items-center gap-6 mb-12 relative z-10">
           {/* Chapter Icon on Spine */}
-          <div className="absolute left-[1.25rem] -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-xl bg-background border-4 border-muted shadow-sm z-10 transition-transform hover:scale-110 duration-300">
-             <span className="font-black text-sm text-muted-foreground">{module.order}</span>
+          <div className="absolute left-[2.25rem] sm:left-[3.25rem] -translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full bg-background border-[4px] border-muted/50 shadow-sm z-10 transition-transform hover:scale-110 duration-300 group">
+             <span className="font-black text-sm text-muted-foreground group-hover:text-primary transition-colors">{module.order}</span>
           </div>
 
-          <div className="ml-14 flex items-center gap-4 p-4 rounded-2xl bg-card/40 border border-white/10 backdrop-blur-md shadow-sm w-full transition-all hover:bg-card/60">
+          <div className="ml-16 sm:ml-20 flex items-center gap-5 p-5 rounded-[2rem] bg-card/40 border border-white/10 backdrop-blur-md shadow-sm w-full transition-all hover:bg-card/60 hover:shadow-md group">
             <div className={cn(
-                "flex items-center justify-center w-12 h-12 rounded-xl shadow-inner ring-1 ring-white/20",
+                "flex items-center justify-center w-12 h-12 rounded-2xl shadow-inner ring-1 ring-white/20 transition-transform group-hover:scale-110 duration-500",
                 module.color,
                 "text-white"
             )}>
                 {React.createElement(icon, { className: "w-6 h-6 drop-shadow-md" })}
             </div>
             <div>
-                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/80 mb-0.5 block">
                    Capítulo {module.order}
                  </span>
-                 <h3 className="text-lg font-bold text-foreground leading-tight">
+                 <h3 className="text-xl font-bold text-foreground leading-tight font-headline">
                    {module.title_pt}
                  </h3>
             </div>
@@ -47,7 +47,7 @@ export function TimelineModule({ module, completedLessonsSet, firstIncompleteLes
        </div>
 
        {/* Lessons List */}
-       <div className="flex flex-col gap-6">
+       <div className="flex flex-col gap-5">
           {module.lessons.map((lesson, idx) => {
              const isCompleted = completedLessonsSet.has(`${module.id}:${lesson.id}`);
              let status: 'locked' | 'active' | 'completed' = 'locked';

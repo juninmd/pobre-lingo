@@ -254,17 +254,19 @@ export default function Layout() {
 
             <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               {/* Gamification Stats */}
-              <div className="flex items-center gap-3 sm:gap-4 text-sm font-medium">
+              <div className="flex items-center gap-2 sm:gap-4 text-sm font-medium">
                 {/* Level Badge - Minimalist */}
-                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 dark:bg-blue-400/10 border border-blue-500/20 dark:border-blue-400/20 backdrop-blur-md transition-all hover:bg-blue-500/20 dark:hover:bg-blue-400/20 cursor-default" title="Nível">
-                  <GraduationCap className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                  <span className="font-headline font-bold text-xs tracking-wide text-blue-700 dark:text-blue-300">Nível {userLevel}</span>
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-blue-500/10 dark:bg-blue-400/10 border border-blue-500/20 dark:border-blue-400/20 backdrop-blur-md transition-all hover:bg-blue-500/20 dark:hover:bg-blue-400/20 cursor-default" title="Nível">
+                  <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 dark:text-blue-400" />
+                  <span className="font-headline font-bold text-[10px] sm:text-xs tracking-wide text-blue-700 dark:text-blue-300">
+                    <span className="hidden sm:inline">Nível </span>{userLevel}
+                  </span>
                 </div>
 
                 {/* Gems / PobreCoins - Minimalist */}
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20 backdrop-blur-md transition-all hover:bg-amber-500/20 dark:hover:bg-amber-400/20 cursor-default group" title="PobreCoins">
-                  <Coins className="h-4 w-4 text-amber-600 dark:text-amber-400 fill-amber-600/20 dark:fill-amber-400/20 opacity-90 group-hover:animate-bounce-short" />
-                  <span className="font-headline font-black text-xs tabular-nums tracking-wide text-amber-700 dark:text-amber-300">{gems}</span>
+                <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20 backdrop-blur-md transition-all hover:bg-amber-500/20 dark:hover:bg-amber-400/20 cursor-default group" title="PobreCoins">
+                  <Coins className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-600 dark:text-amber-400 fill-amber-600/20 dark:fill-amber-400/20 opacity-90 group-hover:animate-bounce-short" />
+                  <span className="font-headline font-black text-[10px] sm:text-xs tabular-nums tracking-wide text-amber-700 dark:text-amber-300">{gems}</span>
                 </div>
               </div>
 
@@ -306,6 +308,7 @@ export default function Layout() {
         </SidebarInset>
       </SidebarProvider>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+      {/* Mobile Navigation - Hidden on Desktop */}
       <div className="lg:hidden">
         <MobileNav />
       </div>

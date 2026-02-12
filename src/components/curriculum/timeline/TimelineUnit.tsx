@@ -11,9 +11,14 @@ export interface TimelineUnitProps {
 
 export default function TimelineUnit({ unit, modules, completedLessonsSet, firstIncompleteLessonId }: TimelineUnitProps) {
   return (
-    <div className="relative pb-16 pt-4">
+    <div className="relative pt-4">
+      {/* The Spine - Continuous Line (Absolute container aligned with content) */}
+      <div className="absolute inset-0 max-w-2xl mx-auto px-4 sm:px-8 z-0 pointer-events-none">
+         <div className="absolute left-[2.25rem] sm:left-[3.25rem] top-0 bottom-0 w-1 bg-border/30" />
+      </div>
+
       {/* Unit Background (Glassmorphism) */}
-      <div className="absolute inset-0 bg-card/10 dark:bg-card/5 backdrop-blur-sm rounded-[2.5rem] -z-10 border border-white/5" />
+      <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-sm rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
 
       {/* Unit Header (Book Part) */}
       <div className="sticky top-[4rem] z-20 py-6 backdrop-blur-xl bg-background/60 border-b border-border/5 mb-12 transition-all rounded-t-[2.5rem]">
@@ -32,10 +37,7 @@ export default function TimelineUnit({ unit, modules, completedLessonsSet, first
         </div>
       </div>
 
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-8 pb-8">
-         {/* The Spine - Continuous Line */}
-         <div className="absolute left-[2.25rem] sm:left-[3.25rem] top-0 bottom-8 w-1 bg-gradient-to-b from-primary/20 via-border/40 to-transparent rounded-full z-0" />
-
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-8 pb-24">
          <div className="flex flex-col gap-16 relative z-10">
             {modules.map(module => (
               <TimelineModule

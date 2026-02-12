@@ -19,10 +19,10 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
 
   useEffect(() => {
     if (isFirstActive && cardRef.current) {
-      // Delay scrolling to allow for initial render and animations
+      // Slight delay to ensure layout stability and provide a "book opening" feel
       const timer = setTimeout(() => {
         cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 800);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [isFirstActive]);

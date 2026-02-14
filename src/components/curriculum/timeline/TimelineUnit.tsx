@@ -18,7 +18,7 @@ export default function TimelineUnit({ unit, modules, completedLessonsSet, first
       </div>
 
       {/* Unit Background (Glassmorphism) */}
-      <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-sm rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
+      <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-md rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
 
       {/* Unit Header (Book Part) */}
       <div className="sticky top-[4rem] z-20 py-6 backdrop-blur-xl bg-background/60 border-b border-border/5 mb-12 transition-all rounded-t-[2.5rem]">

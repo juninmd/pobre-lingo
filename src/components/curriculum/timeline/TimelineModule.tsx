@@ -47,7 +47,7 @@ export function TimelineModule({ module, completedLessonsSet, firstIncompleteLes
        </div>
 
        {/* Lessons List */}
-       <div className="flex flex-col gap-5">
+       <div className="flex flex-col gap-8">
           {module.lessons.map((lesson, idx) => {
              const isCompleted = completedLessonsSet.has(`${module.id}:${lesson.id}`);
              let status: 'locked' | 'active' | 'completed' = 'locked';

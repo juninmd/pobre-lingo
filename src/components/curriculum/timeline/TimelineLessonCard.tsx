@@ -22,7 +22,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
       // Slight delay to ensure layout stability and provide a "book opening" feel
       const timer = setTimeout(() => {
         cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 500);
+      }, 600);
       return () => clearTimeout(timer);
     }
   }, [isFirstActive]);

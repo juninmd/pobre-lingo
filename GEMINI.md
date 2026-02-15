@@ -19,6 +19,7 @@
 - **Scroll Management:** The `TimelineLessonCard` uses `scrollIntoView({ behavior: 'smooth', block: 'center' })` when the `isFirstActive` prop is true. This ensures the user lands exactly where they left off.
 - **Responsive Design:** The layout automatically switches from a single-column vertical stack on mobile to a more spacious layout on desktop, while maintaining the vertical timeline metaphor.
 - **Testing:** E2E tests in `tests/e2e/test_timeline_journey.py` cover rendering, navigation, and the bookmark feature.
+- **Validation:** Confirmed functionality with E2E test suite `test_timeline_journey.py`.
 
 ## 3. Current Tech Stack
 - **Frontend:** Vite + React + TypeScript + Tailwind CSS

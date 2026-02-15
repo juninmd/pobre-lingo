@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Module, Lesson } from '@/lib/curriculumData';
 import { cn } from '@/lib/utils';
-import { Check, Lock, Play, Star, Bookmark } from 'lucide-react';
+import { Check, Lock, Play, Bookmark } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { getLessonLink } from '@/lib/routes';
 

@@ -2,12 +2,13 @@
 > pobre-lingo@0.1.0 dev /app
 > vite
 
+Port 5173 is in use, trying another one...
 
-  VITE v7.3.1  ready in 421 ms
+  VITE v7.3.1  ready in 326 ms
 
-  ➜  Local:   http://localhost:5173/
+  ➜  Local:   http://localhost:5174/
   ➜  Network: use --host to expose
-(node:2453) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1771145108194 is not specified and it doesn't parse as CommonJS.
+(node:3475) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1771232539368 is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to /app/package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -20,6 +21,4 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-35c88359.js
-8:50:20 AM [vite] (client) hmr update /src/globals.css, /src/components/curriculum/timeline/TimelineLessonCard.tsx
-8:51:29 AM [vite] (client) hmr update /src/globals.css
-8:52:08 AM [vite] (client) hmr update /src/globals.css
+9:02:41 AM [vite] (client) hmr update /src/globals.css

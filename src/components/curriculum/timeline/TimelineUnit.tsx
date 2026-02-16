@@ -21,7 +21,10 @@ export default function TimelineUnit({ unit, modules, completedLessonsSet, first
       <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-md rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
 
       {/* Unit Header (Book Part) */}
-      <div className="sticky top-[4rem] z-20 py-6 backdrop-blur-xl bg-background/60 border-b border-border/5 mb-12 transition-all rounded-t-[2.5rem]">
+      <div
+        className="sticky top-[4rem] z-20 py-6 backdrop-blur-xl bg-background/60 border-b border-border/5 mb-12 transition-all rounded-t-[2.5rem] animate-in fade-in slide-in-from-bottom-4 duration-700"
+        data-testid="chapter-header"
+      >
         <div className="container max-w-2xl mx-auto flex items-center gap-5 px-6">
            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/10 text-primary font-black text-xl border border-primary/20 backdrop-blur-md shadow-[0_0_15px_rgba(var(--primary),0.15)] transform rotate-[-3deg]">
               {unit.order}

@@ -116,12 +116,12 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
       )}
 
       {status === 'locked' ? (
-        <div className={wrapperClass} data-testid={status === 'active' ? "active-lesson-card" : undefined}>{content}</div>
+        <div className={wrapperClass} data-testid="locked-lesson-card">{content}</div>
       ) : (
         <Link
           to={link}
           className={wrapperClass}
-          data-testid={status === 'active' ? "active-lesson-card" : undefined}
+          data-testid={status === 'active' ? "active-lesson-card" : "completed-lesson-card"}
         >
             {/* Active Glow Effect inside card */}
             {status === 'active' && (

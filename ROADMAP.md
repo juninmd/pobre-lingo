@@ -11,7 +11,7 @@
     - [x] Verify visual layout (Desktop & Mobile screenshots).
 
 ## 🚀 In Progress
-- [ ] **Deploy & Release** (Pending user approval).
+- [x] **Deploy & Release** (Merged and Deployed).
 
 ## 🔮 Future Tasks
 - [ ] **Advanced Gamification:** Add animations for leveling up and earning "Pobrecoins".

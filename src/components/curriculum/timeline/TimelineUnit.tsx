@@ -41,7 +41,7 @@ export default function TimelineUnit({ unit, modules, completedLessonsSet, first
       </div>
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-8 pb-24">
-         <div className="flex flex-col gap-16 relative z-10">
+         <div className="flex flex-col gap-8 relative z-10">
             {modules.map(module => (
               <TimelineModule
                 key={module.id}

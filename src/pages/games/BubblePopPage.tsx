@@ -143,8 +143,8 @@ export default function BubblePopPage() {
     setBubbles(prev => prev.map(b => {
       if (b.isPopped) return b;
 
-      let newX = b.x + b.vx;
-      let newY = b.y + b.vy;
+      const newX = b.x + b.vx;
+      const newY = b.y + b.vy;
 
       // Bounce off walls
       if (newX <= 0 || newX >= 90) b.vx *= -1;

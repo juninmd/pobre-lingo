@@ -94,3 +94,38 @@ def test_navigation_responsive(page: Page):
     # Note: MobileNav might be directly the .lg:hidden div content
     mobile_nav = page.locator(".lg\\:hidden").first
     expect(mobile_nav).to_be_visible()
+
+def test_timeline_navigation(page: Page):
+    """
+    Verifies that clicking the active lesson card navigates to the lesson.
+    """
+    page.goto(BASE_URL)
+
+    # Get the active card
+    active_card = page.get_by_test_id("active-lesson-card")
+    expect(active_card).to_be_visible(timeout=10000)
+
+    # Get the expected URL from the href attribute
+    expected_href = active_card.get_attribute("href")
+    assert expected_href is not None, "Active card should have an href"
+
+    # Click the card
+    active_card.click()
+
+    # Verify the URL changed to the expected one
+    # Note: playwright page.url might include the full domain, while href might be relative.
+    # We check if the href is contained in the current URL.
+    page.wait_for_url(f"**{expected_href}", timeout=10000)
+
+    # Also verify we are not on the dashboard anymore
+    # The dashboard is likely BASE_URL or BASE_URL + "/"
+    # We check that the path is not empty or just "/"
+    current_url = page.url
+    # normalize
+    if current_url.endswith("/"):
+        current_url = current_url[:-1]
+    base = BASE_URL
+    if base.endswith("/"):
+        base = base[:-1]
+
+    assert current_url != base

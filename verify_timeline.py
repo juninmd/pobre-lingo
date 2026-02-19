@@ -13,7 +13,7 @@ def verify_timeline():
 
         # Wait for content
         page.wait_for_selector('h1:has-text("Sua História")')
-        time.sleep(3) # Wait for animations/scroll
+        page.wait_for_load_state('networkidle') # Wait for animations/scroll
 
         # Screenshot Desktop
         page.screenshot(path="verification_timeline_desktop.png")

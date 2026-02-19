@@ -148,14 +148,14 @@ export default function WordSearchPage() {
 
   // Handle Win
   useEffect(() => {
-    if (words.length > 0 && foundWords.size === words.length) {
+    if (!gameWon && words.length > 0 && foundWords.size === words.length) {
       setGameWon(true);
       triggerConfetti();
       if (moduleId && lessonId) {
         completeLesson(moduleId, lessonId, 100);
       }
     }
-  }, [foundWords, words, moduleId, lessonId, completeLesson]);
+  }, [foundWords, words, moduleId, lessonId, completeLesson, gameWon]);
 
   // Selection Logic
   const handleCellClick = (r: number, c: number) => {

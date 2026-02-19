@@ -183,7 +183,7 @@ export default function HangmanPage() {
                     const isGuessed = guessedLetters.has(letter);
                     const isInWord = currentEntry.word.toUpperCase().includes(letter);
 
-                    let variant = "outline";
+                    const variant = "outline";
                     let className = "w-10 h-12 font-bold text-lg transition-all active:scale-95";
 
                     if (isGuessed) {

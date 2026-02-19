@@ -120,12 +120,5 @@ def test_timeline_navigation(page: Page):
     # Also verify we are not on the dashboard anymore
     # The dashboard is likely BASE_URL or BASE_URL + "/"
     # We check that the path is not empty or just "/"
-    current_url = page.url
-    # normalize
-    if current_url.endswith("/"):
-        current_url = current_url[:-1]
-    base = BASE_URL
-    if base.endswith("/"):
-        base = base[:-1]
-
-    assert current_url != base
+    current_path = urlparse(page.url).path
+    assert current_path not in ('', '/')

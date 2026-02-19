@@ -6,7 +6,7 @@ import * as LucideIcons from 'lucide-react';
 import { Lock, CheckCircle } from 'lucide-react';
 
 const getIcon = (name: string) => {
-  // @ts-ignore
+  // @ts-expect-error - Dynamic import of icons
   return LucideIcons[name] || LucideIcons.Award;
 };
 

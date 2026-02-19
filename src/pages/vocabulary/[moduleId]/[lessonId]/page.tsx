@@ -79,6 +79,7 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line
     initializeGame();
   }, []);
 

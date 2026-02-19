@@ -1,6 +1,7 @@
 import os
 import re
 import pytest
+from urllib.parse import urlparse
 from playwright.sync_api import Page, expect
 
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:5173")

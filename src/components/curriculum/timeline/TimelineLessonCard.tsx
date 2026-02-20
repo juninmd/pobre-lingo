@@ -45,7 +45,7 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
 
       {/* Text Info */}
       <div className="flex-1 min-w-0 flex flex-col justify-center z-10 py-1">
-         <h4 className={cn("font-bold text-base truncate", status === 'active' ? "text-primary" : "text-foreground")}>
+         <h4 className={cn("font-bold text-base truncate font-headline", status === 'active' ? "text-primary" : "text-foreground")}>
            {lesson.title_pt}
          </h4>
          <p className="text-sm text-muted-foreground line-clamp-1 font-medium opacity-80">

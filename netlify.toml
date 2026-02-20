@@ -6,10 +6,10 @@
   command = "pnpm run build"
   publish = "dist"
 
-# Redirects are now handled via _redirects file in public/ (which is copied to dist/)
-# But we can also define them here for clarity and backup.
-# Netlify processes both. To avoid "Redirect rules" check failure due to potential conflict or processing order,
-# we will stick to a minimal config here.
-
-# Note: The presence of public/_redirects is usually sufficient for SPAs on Netlify.
-# However, specifying the build command and publish directory is good practice.
+# Robust SPA Redirect Rule
+# This explicitly tells Netlify to serve index.html for all routes, enabling client-side routing.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true

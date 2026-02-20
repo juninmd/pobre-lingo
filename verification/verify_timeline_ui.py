@@ -23,7 +23,7 @@ def verify_timeline_ui():
         # Take screenshot
         os.makedirs("verification", exist_ok=True)
         screenshot_path = "verification/timeline_ui.png"
-        page.screenshot(path=screenshot_path)
+        page.screenshot(path=screenshot_path, full_page=True)
         print(f"Screenshot saved to {screenshot_path}")
 
         browser.close()

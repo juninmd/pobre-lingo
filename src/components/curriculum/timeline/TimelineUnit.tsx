@@ -14,7 +14,8 @@ export default function TimelineUnit({ unit, modules, completedLessonsSet, first
     <div className="relative pt-4">
       {/* The Spine - Continuous Line (Absolute container aligned with content) */}
       <div className="absolute inset-0 max-w-2xl mx-auto px-4 sm:px-8 z-0 pointer-events-none">
-         <div className="absolute left-[2.25rem] sm:left-[3.25rem] top-0 bottom-0 w-1 bg-border/30" />
+         {/* Main Spine Line with gradient for depth */}
+         <div className="absolute left-[2.25rem] sm:left-[3.25rem] top-0 bottom-0 w-1.5 bg-gradient-to-b from-border/20 via-border/50 to-border/20" />
       </div>
 
       {/* Unit Background (Glassmorphism) */}

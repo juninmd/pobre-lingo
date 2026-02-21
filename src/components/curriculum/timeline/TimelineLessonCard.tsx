@@ -14,7 +14,7 @@ export interface TimelineLessonCardProps {
   isFirstActive: boolean;
 }
 
-export function TimelineLessonCard({ module, lesson, status, isFirstActive }: TimelineLessonCardProps) {
+export function TimelineLessonCard({ module, lesson, status, index, isFirstActive }: TimelineLessonCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,6 +51,13 @@ export function TimelineLessonCard({ module, lesson, status, isFirstActive }: Ti
          <p className="text-sm text-muted-foreground line-clamp-1 font-medium opacity-80">
            {lesson.description_pt}
          </p>
+      </div>
+
+      {/* Page Number (Book Metaphor) */}
+      <div className="absolute top-2 right-3 z-0 opacity-10 pointer-events-none hidden sm:block">
+        <span className="text-[10px] font-black font-headline tracking-widest uppercase">
+          Pág. {index + 1}
+        </span>
       </div>
 
       {/* Action / State Indicator */}

@@ -6,4 +6,18 @@
   command = "pnpm run build"
   publish = "dist"
 
-# Note: Redirects are handled exclusively via public/_redirects to avoid conflicts
+# SPA Redirect Rule
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

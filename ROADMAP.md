@@ -8,7 +8,11 @@
     - [x] Implement "Bookmark" auto-scroll feature.
     - [x] Apply glassmorphism and modern UI polish.
     - [x] Verify with E2E tests (`test_timeline_journey.py`).
-    - [x] Verify visual layout (Desktop & Mobile screenshots).
+- [x] **Code Quality & Refactoring**
+    - [x] Refactor `Layout.tsx` into modular components (`Header`, `SidebarNav`).
+    - [x] Refactor `useCurriculumProgress` hook to extract utilities and types.
+    - [x] Ensure all files are under 150 lines.
+    - [x] Fix mobile navigation access (enable Sidebar Trigger).
 
 ## 🚀 In Progress
 - [ ] **Deploy & Release** (Pending user approval).

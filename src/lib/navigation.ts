@@ -49,3 +49,6 @@ export const navigationConfig = {
     { href: '/proficiency', label: 'Nível', icon: GraduationCap },
   ]
 };
+
+export const navGroups = navigationConfig.desktop;
+export const allNavItems = navGroups.flatMap(group => group.items);

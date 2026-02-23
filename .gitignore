@@ -46,3 +46,9 @@ dev-dist/
 dev_server.log
 __pycache__/
 *.pyc
+
+# python venv
+.venv/
+
+# verification artifacts
+verification/

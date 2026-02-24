@@ -16,3 +16,6 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-35c88359.js
+9:05:53 AM [vite] (client) hmr update /src/globals.css
+9:05:56 AM [vite] (client) hmr update /src/globals.css
+9:05:56 AM [vite] (client) hmr update /src/globals.css

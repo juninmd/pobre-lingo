@@ -30,12 +30,42 @@ export default function DictionaryPage() {
       .sort((a, b) => a.wordLower.localeCompare(b.wordLower));
   }, []);
 
-  const filteredEntries = useMemo(() => {
-    const termLower = deferredSearchTerm.toLowerCase();
-    return preparedEntries.filter(entry =>
-      entry.wordLower.includes(termLower) ||
-      entry.translationLower.includes(termLower)
-    );
+  const [filteredEntries, setFilteredEntries] = useState<any[]>([]);
+  const workerRef = useRef<Worker | null>(null);
+
+  useEffect(() => {
+    // Initialize worker
+    workerRef.current = new Worker(new URL('../workers/searchWorker.ts', import.meta.url), {
+      type: 'module'
+    });
+
+    workerRef.current.onmessage = (e) => {
+      const { type, payload } = e.data;
+      if (type === 'RESULTS') {
+        setFilteredEntries(payload);
+      }
+    };
+
+    // Send initial data
+    workerRef.current.postMessage({ type: 'INIT', payload: preparedEntries });
+    setFilteredEntries(preparedEntries);
+
+    return () => {
+      workerRef.current?.terminate();
+    };
+  }, [preparedEntries]);
+
+  useEffect(() => {
+    const term = deferredSearchTerm.trim();
+    if (!term) {
+      setFilteredEntries(preparedEntries);
+      return;
+    }
+
+    workerRef.current?.postMessage({
+      type: 'SEARCH',
+      payload: { searchTerm: term }
+    });
   }, [deferredSearchTerm, preparedEntries]);
 
   // Reset visible count when search term changes (Render-time update pattern)

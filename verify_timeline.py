@@ -1,36 +1,52 @@
-import os
-import time
 from playwright.sync_api import sync_playwright
 
-def verify_timeline():
+def run():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
+        # Desktop Context
+        context = browser.new_context(viewport={"width": 1280, "height": 800})
+        page = context.new_page()
 
-        # Desktop
-        print("Verifying Desktop...")
-        page = browser.new_page(viewport={"width": 1280, "height": 800})
-        page.goto("http://localhost:5173")
+        try:
+            print("Navigating to Dashboard (Desktop)...")
+            page.goto("http://localhost:5173")
+            page.wait_for_load_state("networkidle")
 
-        # Wait for content
-        page.wait_for_selector('h1:has-text("Sua História")')
-        page.wait_for_load_state('networkidle') # Wait for animations/scroll
+            # Wait for timeline to be visible
+            page.wait_for_selector('h1:has-text("Sua História")')
 
-        # Screenshot Desktop
-        page.screenshot(path="verification_timeline_desktop.png")
-        print("Desktop screenshot saved.")
+            # Screenshot Desktop
+            print("Taking screenshot...")
+            page.screenshot(path="verification_timeline_desktop.png", full_page=True)
+            print("Desktop screenshot saved.")
 
-        # Mobile
-        print("Verifying Mobile...")
-        page_mobile = browser.new_page(viewport={"width": 375, "height": 667})
-        page_mobile.goto("http://localhost:5173")
-        page_mobile.wait_for_selector('h1:has-text("Sua História")')
-        time.sleep(3)
+        except Exception as e:
+            print(f"Error: {e}")
+            page.screenshot(path="verification_error.png")
+        finally:
+            context.close()
 
-        # Screenshot Mobile
-        page_mobile.screenshot(path="verification_timeline_mobile.png")
-        print("Mobile screenshot saved.")
+        # Mobile Context
+        context_mobile = browser.new_context(viewport={"width": 375, "height": 667})
+        page_mobile = context_mobile.new_page()
 
-        browser.close()
+        try:
+            print("Navigating to Dashboard (Mobile)...")
+            page_mobile.goto("http://localhost:5173")
+            page_mobile.wait_for_load_state("networkidle")
+
+            page_mobile.wait_for_selector('h1:has-text("Sua História")')
+
+            # Screenshot Mobile
+            print("Taking screenshot...")
+            page_mobile.screenshot(path="verification_timeline_mobile.png", full_page=True)
+            print("Mobile screenshot saved.")
+
+        except Exception as e:
+            print(f"Error mobile: {e}")
+        finally:
+            context_mobile.close()
+            browser.close()
 
 if __name__ == "__main__":
-    verify_timeline()
+    run()

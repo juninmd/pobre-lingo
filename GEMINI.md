@@ -12,14 +12,14 @@
 
 ### B. Component Structure
 - **`LearningTimeline`:** The main container component managing the vertical layout. Updated to use `gap-8` for improved whitespace and visual separation.
-- **`TimelineUnit`:** Represents a "Chapter" or Module. It contains a list of lessons.
+- **`TimelineUnit`:** Represents a "Chapter" or Module. It contains a list of modules/lessons.
 - **`TimelineLessonCard`:** Represents a single lesson. It handles the "Bookmark" logic (auto-scroll) and visual state (locked, active, completed).
 
 ### C. Technical Implementation
 - **Scroll Management:** The `TimelineLessonCard` uses `scrollIntoView({ behavior: 'smooth', block: 'center' })` when the `isFirstActive` prop is true.
 - **State Management Optimization:** `useCurriculumProgress` hook was refactored to reduce complexity. Core logic was moved to `src/lib/progressUtils.ts` and types to `src/lib/progressTypes.ts`.
 - **Responsive Design:** Confirmed correct behavior on Desktop (Sidebar visible) and Mobile (Bottom Nav + Hamburger Menu).
-- **Testing:** E2E tests in `tests/e2e/test_timeline_journey.py` cover rendering, navigation, responsiveness, and the bookmark feature.
+- **Testing:** E2E tests in `tests/e2e/test_timeline_journey.py` cover rendering, navigation, responsiveness, and the bookmark feature. Verification passed on latest run.
 
 ## 3. Current Tech Stack
 - **Frontend:** Vite + React + TypeScript + Tailwind CSS

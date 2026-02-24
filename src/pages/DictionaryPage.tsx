@@ -1,4 +1,4 @@
-import { dictionaryEntries } from '@/lib/dictionaryData';
+import { dictionaryEntries, type DictionaryEntry } from '@/lib/dictionaryData';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,11 @@ import { BookText, Search, Volume2 } from 'lucide-react';
 import { tts } from '@/lib/tts';
 
 const ITEMS_PER_PAGE = 20;
+
+type PreparedEntry = DictionaryEntry & {
+  wordLower: string;
+  translationLower: string;
+};
 
 export default function DictionaryPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,7 +35,7 @@ export default function DictionaryPage() {
       .sort((a, b) => a.wordLower.localeCompare(b.wordLower));
   }, []);
 
-  const [filteredEntries, setFilteredEntries] = useState<any[]>([]);
+  const [filteredEntries, setFilteredEntries] = useState<PreparedEntry[]>([]);
   const workerRef = useRef<Worker | null>(null);
 
   useEffect(() => {
@@ -39,7 +44,7 @@ export default function DictionaryPage() {
       type: 'module'
     });
 
-    workerRef.current.onmessage = (e) => {
+    workerRef.current.onmessage = (e: MessageEvent) => {
       const { type, payload } = e.data;
       if (type === 'RESULTS') {
         setFilteredEntries(payload);

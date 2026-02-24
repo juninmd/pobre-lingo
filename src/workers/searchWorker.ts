@@ -1,29 +1,29 @@
 
 /* eslint-disable no-restricted-globals */
-self.onmessage = (e: MessageEvent) => {
-  const { type, payload } = e.data;
+
+// Explicitly type the global context as any to avoid TS errors without webworker lib
+const ctx: any = self;
+
+ctx.onmessage = (event: any) => {
+  const { type, payload } = event.data;
 
   if (type === 'INIT') {
-    (self as any).preparedEntries = payload;
-    return;
-  }
-
-  if (type === 'SEARCH') {
+    ctx.preparedEntries = payload;
+  } else if (type === 'SEARCH') {
     const { searchTerm } = payload;
-    const preparedEntries = (self as any).preparedEntries || [];
+    const entries = ctx.preparedEntries || [];
+    const term = searchTerm.toLowerCase().trim();
 
-    const termLower = searchTerm.toLowerCase().trim();
-
-    if (!termLower) {
-      self.postMessage({ type: 'RESULTS', payload: preparedEntries });
-      return;
+    if (!term) {
+      ctx.postMessage({ type: 'RESULTS', payload: entries });
+    } else {
+      const filtered = entries.filter((entry: any) =>
+        entry.wordLower.includes(term) ||
+        entry.translationLower.includes(term)
+      );
+      ctx.postMessage({ type: 'RESULTS', payload: filtered });
     }
-
-    const filtered = preparedEntries.filter((entry: any) =>
-      entry.wordLower.includes(termLower) ||
-      entry.translationLower.includes(termLower)
-    );
-
-    self.postMessage({ type: 'RESULTS', payload: filtered });
   }
 };
+
+export {};

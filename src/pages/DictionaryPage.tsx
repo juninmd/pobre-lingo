@@ -1,4 +1,4 @@
-import { dictionaryEntries } from '@/lib/dictionaryData';
+import { dictionaryEntries, type DictionaryEntry } from '@/lib/dictionaryData';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,11 @@ import { BookText, Search, Volume2 } from 'lucide-react';
 import { tts } from '@/lib/tts';
 
 const ITEMS_PER_PAGE = 20;
+
+type PreparedEntry = DictionaryEntry & {
+  wordLower: string;
+  translationLower: string;
+};
 
 export default function DictionaryPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,12 +35,42 @@ export default function DictionaryPage() {
       .sort((a, b) => a.wordLower.localeCompare(b.wordLower));
   }, []);
 
-  const filteredEntries = useMemo(() => {
-    const termLower = deferredSearchTerm.toLowerCase();
-    return preparedEntries.filter(entry =>
-      entry.wordLower.includes(termLower) ||
-      entry.translationLower.includes(termLower)
-    );
+  const [filteredEntries, setFilteredEntries] = useState<PreparedEntry[]>([]);
+  const workerRef = useRef<Worker | null>(null);
+
+  useEffect(() => {
+    // Initialize worker
+    workerRef.current = new Worker(new URL('../workers/searchWorker.ts', import.meta.url), {
+      type: 'module'
+    });
+
+    workerRef.current.onmessage = (e: MessageEvent) => {
+      const { type, payload } = e.data;
+      if (type === 'RESULTS') {
+        setFilteredEntries(payload);
+      }
+    };
+
+    // Send initial data
+    workerRef.current.postMessage({ type: 'INIT', payload: preparedEntries });
+    setFilteredEntries(preparedEntries);
+
+    return () => {
+      workerRef.current?.terminate();
+    };
+  }, [preparedEntries]);
+
+  useEffect(() => {
+    const term = deferredSearchTerm.trim();
+    if (!term) {
+      setFilteredEntries(preparedEntries);
+      return;
+    }
+
+    workerRef.current?.postMessage({
+      type: 'SEARCH',
+      payload: { searchTerm: term }
+    });
   }, [deferredSearchTerm, preparedEntries]);
 
   // Reset visible count when search term changes (Render-time update pattern)

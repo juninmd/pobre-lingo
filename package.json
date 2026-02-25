@@ -81,5 +81,5 @@
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^4.0.17"
   },
-  "packageManager": "pnpm@8.14.3+sha1.872b21adeaae4e71acd5c551ba848d927d6aa446"
+  "packageManager": "pnpm@8.14.3"
 }

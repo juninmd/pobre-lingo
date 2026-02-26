@@ -1,17 +1,25 @@
 import React, { Suspense } from 'react';
-import { curriculumData } from '@/lib/curriculumData';
+import { curriculumData, Unit, Module } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, Sparkles } from 'lucide-react';
 
 const TimelineUnit = React.lazy(() => import('./timeline/TimelineUnit'));
 
-// Pre-calculate units with modules
-const unitsWithModules = curriculumData.units.map(unit => ({
+export interface UnitWithModules extends Unit {
+  modules: Module[];
+}
+
+export interface LearningTimelineProps {
+  units?: UnitWithModules[];
+}
+
+// Pre-calculate units with modules for default usage
+const defaultUnitsWithModules: UnitWithModules[] = curriculumData.units.map(unit => ({
   ...unit,
   modules: curriculumData.modules.filter(m => m.unitId === unit.id)
 }));
 
-export function LearningTimeline() {
+export function LearningTimeline({ units = defaultUnitsWithModules }: LearningTimelineProps) {
   const { completedLessons } = useCurriculumProgress();
 
   const completedLessonsSet = React.useMemo(() => {
@@ -19,9 +27,8 @@ export function LearningTimeline() {
   }, [completedLessons]);
 
   const firstIncompleteLessonId = React.useMemo(() => {
-    for (const unit of curriculumData.units) {
-      const unitModules = curriculumData.modules.filter(m => m.unitId === unit.id);
-      for (const module of unitModules) {
+    for (const unit of units) {
+      for (const module of unit.modules) {
         for (const lesson of module.lessons) {
           const id = `${module.id}:${lesson.id}`;
           if (!completedLessonsSet.has(id)) {
@@ -31,7 +38,7 @@ export function LearningTimeline() {
       }
     }
     return null;
-  }, [completedLessonsSet]);
+  }, [completedLessonsSet, units]);
 
   return (
     <div className="w-full min-h-screen pb-32 flex flex-col gap-8">
@@ -48,7 +55,7 @@ export function LearningTimeline() {
           </p>
        </div>
 
-       {unitsWithModules.map(unit => (
+       {units.map(unit => (
          <Suspense key={unit.id} fallback={<div className="h-64 animate-pulse bg-muted/5 rounded-3xl mx-auto max-w-2xl border border-white/5" />}>
            <TimelineUnit
              unit={unit}

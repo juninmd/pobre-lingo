@@ -7,12 +7,14 @@
     - [x] Unify navigation (Remove bottom bar on Desktop).
     - [x] Implement "Bookmark" auto-scroll feature.
     - [x] Apply glassmorphism and modern UI polish.
+    - [x] Refactor `LearningTimeline` to accept explicit data props.
     - [x] Verify with E2E tests (`test_timeline_journey.py`).
 - [x] **Code Quality & Refactoring**
     - [x] Refactor `Layout.tsx` into modular components (`Header`, `SidebarNav`).
     - [x] Refactor `useCurriculumProgress` hook to extract utilities and types.
     - [x] Ensure all files are under 150 lines.
     - [x] Fix mobile navigation access (enable Sidebar Trigger).
+    - [x] Polish Header Gamification stats (Minimalist icons, Typography).
 
 ## 🚀 In Progress
 - [ ] **Deploy & Release** (Pending user approval).

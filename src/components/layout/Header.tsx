@@ -51,7 +51,7 @@ export function Header({ onSearchClick }: HeaderProps) {
         <div>
           <SidebarTrigger asChild>
             <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-colors">
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5" strokeWidth={1.5} />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SidebarTrigger>
@@ -59,7 +59,7 @@ export function Header({ onSearchClick }: HeaderProps) {
 
         <div className="lg:hidden flex-shrink-0 flex items-center gap-2">
           <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm">
-            <GraduationCap className="h-5 w-5 text-primary" />
+            <GraduationCap className="h-5 w-5 text-primary" strokeWidth={1.5} />
           </div>
           <span className="font-bold text-base tracking-tight [data-theme=pobre-lingo]:text-gold">PobreLingo</span>
         </div>
@@ -68,7 +68,7 @@ export function Header({ onSearchClick }: HeaderProps) {
 
         <div className="hidden sm:flex items-center gap-2 min-w-0">
           <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10">
-            <GraduationCap className="h-4 w-4 text-primary" />
+            <GraduationCap className="h-4 w-4 text-primary" strokeWidth={1.5} />
           </div>
           <h1 className="font-semibold text-base md:text-lg truncate">
             {getCurrentPageTitle()}
@@ -85,7 +85,7 @@ export function Header({ onSearchClick }: HeaderProps) {
         <div className="flex items-center gap-3 sm:gap-6 text-sm font-medium">
           <div className="flex items-center gap-1.5 group cursor-default" title="Nível Atual">
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                <GraduationCap className="h-4 w-4" />
+                <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">Nível</span>
@@ -95,7 +95,7 @@ export function Header({ onSearchClick }: HeaderProps) {
 
           <div className="flex items-center gap-1.5 group cursor-default" title="PobreCoins">
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 group-hover:rotate-12 transition-transform duration-300">
-                <Coins className="h-4 w-4 fill-current/20" />
+                <Coins className="h-4 w-4 fill-current/20" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">Moedas</span>
@@ -109,23 +109,23 @@ export function Header({ onSearchClick }: HeaderProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95">
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" strokeWidth={1.5} />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" strokeWidth={1.5} />
               <span className="sr-only">Alternar tema</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-44">
             <DropdownMenuItem onClick={() => setTheme("light")} className="gap-2 cursor-pointer">
-              <Sun className="h-4 w-4" />
+              <Sun className="h-4 w-4" strokeWidth={1.5} />
               <span>Claro</span>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme("dark")} className="gap-2 cursor-pointer">
-              <Moon className="h-4 w-4" />
+              <Moon className="h-4 w-4" strokeWidth={1.5} />
               <span>Escuro</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setTheme("pobre-lingo")} className="gap-2 cursor-pointer">
-              <Sparkles className="h-4 w-4" />
+              <Sparkles className="h-4 w-4" strokeWidth={1.5} />
               <span>PobreLingo</span>
             </DropdownMenuItem>
           </DropdownMenuContent>

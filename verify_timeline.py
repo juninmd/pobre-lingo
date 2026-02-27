@@ -1,52 +1,51 @@
+import os
+import time
 from playwright.sync_api import sync_playwright
 
-def run():
+def verify_timeline_visuals():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        # Desktop Context
-        context = browser.new_context(viewport={"width": 1280, "height": 800})
+        # Use a desktop viewport to see the full timeline layout
+        context = browser.new_context(viewport={"width": 1280, "height": 1200})
         page = context.new_page()
 
         try:
-            print("Navigating to Dashboard (Desktop)...")
-            page.goto("http://localhost:5173")
-            page.wait_for_load_state("networkidle")
+            print("Navigating to Dashboard...")
+            page.goto("http://localhost:5173", timeout=60000)
 
-            # Wait for timeline to be visible
-            page.wait_for_selector('h1:has-text("Sua História")')
+            # Wait for the timeline to load
+            print("Waiting for chapter header...")
+            page.wait_for_selector('[data-testid="chapter-header"]', timeout=30000)
 
-            # Screenshot Desktop
-            print("Taking screenshot...")
+            # Wait a bit for animations (opening book, fade-ins) to settle
+            time.sleep(2)
+
+            print("Taking desktop screenshot...")
             page.screenshot(path="verification_timeline_desktop.png", full_page=True)
-            print("Desktop screenshot saved.")
+
+            # --- Mobile Verification ---
+            print("Switching to Mobile Viewport...")
+            page.set_viewport_size({"width": 390, "height": 844})
+            time.sleep(1) # Allow layout to adapt
+
+            print("Taking mobile screenshot...")
+            page.screenshot(path="verification_timeline_mobile.png", full_page=True)
+
+            # --- Check Bookmark Scroll ---
+            # Reload to trigger auto-scroll again
+            print("Reloading to check auto-scroll...")
+            page.reload()
+            page.wait_for_selector('[data-testid="active-lesson-card"]', timeout=30000)
+            time.sleep(2) # Wait for scroll animation
+
+            print("Taking screenshot after auto-scroll...")
+            page.screenshot(path="verification_timeline_mobile_scroll_check.png")
 
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error during verification: {e}")
             page.screenshot(path="verification_error.png")
         finally:
-            context.close()
-
-        # Mobile Context
-        context_mobile = browser.new_context(viewport={"width": 375, "height": 667})
-        page_mobile = context_mobile.new_page()
-
-        try:
-            print("Navigating to Dashboard (Mobile)...")
-            page_mobile.goto("http://localhost:5173")
-            page_mobile.wait_for_load_state("networkidle")
-
-            page_mobile.wait_for_selector('h1:has-text("Sua História")')
-
-            # Screenshot Mobile
-            print("Taking screenshot...")
-            page_mobile.screenshot(path="verification_timeline_mobile.png", full_page=True)
-            print("Mobile screenshot saved.")
-
-        except Exception as e:
-            print(f"Error mobile: {e}")
-        finally:
-            context_mobile.close()
             browser.close()
 
 if __name__ == "__main__":
-    run()
+    verify_timeline_visuals()

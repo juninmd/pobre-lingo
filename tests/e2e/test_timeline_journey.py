@@ -52,8 +52,9 @@ def test_bookmark_auto_scroll(page: Page):
 
     # Verify the "AGORA" bookmark indicator is visible near it
     # The "AGORA" text is absolutely positioned relative to the card wrapper's parent
-    # We can just check if "AGORA" is visible on the page
-    expect(page.get_by_text("AGORA")).to_be_visible()
+    # We can just check if "AGORA" is visible on the page (it says "AQUI" now based on latest code)
+    # Checking for "Aqui" case-insensitively or exactly as implemented ("Aqui")
+    expect(page.get_by_text("Aqui", exact=True)).to_be_visible()
 
 def test_navigation_responsive(page: Page):
     """

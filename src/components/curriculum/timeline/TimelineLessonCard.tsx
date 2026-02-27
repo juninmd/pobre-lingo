@@ -19,7 +19,7 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
 
   useEffect(() => {
     if (isFirstActive && cardRef.current) {
-      // Slight delay to ensure layout stability and provide a "book opening" feel
+      // "Opening the book" scroll effect
       const timer = setTimeout(() => {
         cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 600);
@@ -29,12 +29,13 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
 
   const link = getLessonLink(module, lesson);
 
+  // Common content for the card
   const content = (
     <>
-      {/* Status Icon */}
+      {/* Status Icon Wrapper */}
       <div className={cn(
         "flex items-center justify-center w-12 h-12 rounded-2xl shrink-0 transition-all border relative z-10",
-        status === 'locked' ? "bg-muted/30 text-muted-foreground/30 border-white/5" :
+        status === 'locked' ? "bg-muted/10 text-muted-foreground/30 border-white/5" :
         status === 'active' ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30 border-primary/20 ring-2 ring-primary/10" :
         "bg-green-500 text-white shadow-md shadow-green-500/20 border-green-600/20"
       )}>
@@ -83,40 +84,45 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
 
   const wrapperClass = cn(
     "relative flex items-center gap-5 p-4 rounded-3xl border transition-all duration-300 w-full text-left overflow-hidden group/card",
-    "backdrop-blur-md",
+    "backdrop-blur-md", // Glassmorphism
     status === 'locked'
       ? "bg-card/20 border-white/5 opacity-60 grayscale-[0.5] hover:opacity-80 cursor-not-allowed"
-      : "bg-card/60 hover:bg-card/80 border-white/10 hover:border-white/20 hover:scale-[1.01] active:scale-[0.99] shadow-sm hover:shadow-md",
+      : "bg-card/40 hover:bg-card/60 border-white/10 hover:border-white/20 hover:scale-[1.01] active:scale-[0.99] shadow-sm hover:shadow-md",
     status === 'active'
-      ? "bg-card/90 border-primary/50 shadow-xl shadow-primary/5 ring-1 ring-primary/20 z-10"
+      ? "bg-card/80 border-primary/50 shadow-xl shadow-primary/5 ring-1 ring-primary/20 z-10" // More prominent active state
       : status === 'completed'
         ? "border-green-500/20 bg-green-500/5 hover:bg-green-500/10"
         : ""
   );
 
   return (
-    <div ref={cardRef} className="relative pl-8 sm:pl-12 py-2">
-      {/* Connection Line to Spine */}
+    <div ref={cardRef} className="relative pl-[4.5rem] sm:pl-[6.5rem] py-2"> {/* Increased padding to clear spine */}
+
+      {/* Connector Line (Horizontal) */}
       <div className={cn(
-        "absolute left-[19px] sm:left-[19px] top-1/2 -translate-y-1/2 w-8 sm:w-10 h-[2px] transition-all duration-300",
+        "absolute top-1/2 -translate-y-1/2 h-[2px] transition-all duration-300",
+        "left-[2.25rem] w-[2.25rem]", // Mobile: Starts at 36px, width reaches content at 72px
+        "sm:left-[3.25rem] sm:w-[3.25rem]", // Desktop: Starts at 52px, width reaches content at 104px
         status === 'active' ? "bg-gradient-to-r from-primary to-primary/50" : "bg-border/40"
       )} />
 
-      {/* Spine Dot on the Line */}
+      {/* Spine Dot (On the spine) */}
       <div className={cn(
-        "absolute left-[15px] sm:left-[15px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 transition-all duration-500 z-10",
+        "absolute top-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-500 z-10",
+        "left-[2.25rem] -translate-x-1/2 w-3 h-3", // Mobile: Centered on spine
+        "sm:left-[3.25rem] sm:-translate-x-1/2 sm:w-4 sm:h-4", // Desktop: Centered on spine
         status === 'completed' ? "bg-green-500 border-green-500 scale-100" :
         status === 'active' ? "bg-primary border-primary shadow-[0_0_15px_rgba(var(--primary),0.6)] scale-125 ring-4 ring-primary/20" :
         "bg-background border-muted-foreground/20 scale-75 group-hover/card:scale-90 group-hover/card:border-muted-foreground/40"
       )} />
 
-      {/* Floating Bookmark Indicator */}
+      {/* Floating Bookmark Indicator (The "Opening Book" feel) */}
       {isFirstActive && (
-        <div className="absolute -left-3 -top-4 z-40 animate-in slide-in-from-top-8 fade-in duration-1000 pointer-events-none">
+        <div className="absolute -left-2 sm:left-6 -top-6 z-40 animate-in slide-in-from-top-4 fade-in duration-1000 pointer-events-none">
            <div className="relative animate-bounce">
-             <Bookmark className="w-14 h-14 text-primary fill-primary drop-shadow-2xl filter" />
-             <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-primary-foreground tracking-tighter">
-               AGORA
+             <Bookmark className="w-12 h-12 sm:w-14 sm:h-14 text-primary fill-primary drop-shadow-2xl filter" />
+             <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[9px] sm:text-[10px] font-black text-primary-foreground tracking-tighter uppercase">
+               Aqui
              </div>
            </div>
         </div>

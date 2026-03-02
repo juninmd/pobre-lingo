@@ -16,11 +16,15 @@
     - [x] Fix mobile navigation access (enable Sidebar Trigger).
     - [x] Polish Header Gamification stats (Minimalist icons, Typography).
 
+- [x] **Deploy & Release**
+    - [x] Create GitHub Actions CI/CD Pipeline (`.github/workflows/main.yml`).
+    - [x] Integrate Lint, Vitest, and Playwright E2E tests in CI.
+    - [x] Setup `semantic-release` for automated versioning and tags.
+
 ## 🚀 In Progress
-- [ ] **Deploy & Release** (Pending user approval).
+- [ ] **Advanced Gamification:** Add animations for leveling up and earning "Pobrecoins".
 
 ## 🔮 Future Tasks
-- [ ] **Advanced Gamification:** Add animations for leveling up and earning "Pobrecoins".
 - [ ] **Performance Tuning:** Implement code splitting for heavy game modules.
 - [ ] **Accessibility Audit:** Ensure full keyboard navigation support for the timeline.
 - [ ] **Dark Mode:** Refine color palette for better contrast in dark mode.

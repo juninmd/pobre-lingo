@@ -20,11 +20,12 @@
 - **Scroll Management:** The `TimelineLessonCard` uses `scrollIntoView({ behavior: 'smooth', block: 'center' })` when the `isFirstActive` prop is true.
 - **State Management Optimization:** `useCurriculumProgress` hook was refactored to reduce complexity. Core logic was moved to `src/lib/progressUtils.ts` and types to `src/lib/progressTypes.ts`.
 - **Responsive Design:** Confirmed correct behavior on Desktop (Sidebar visible) and Mobile (Bottom Nav + Hamburger Menu).
-- **Testing:** E2E tests in `tests/e2e/test_timeline_journey.py` cover rendering, navigation, responsiveness, bookmark feature, and data injection. Verification passed on latest run.
+- **Testing & CI:** E2E tests in `tests/e2e/test_timeline_journey.py` cover rendering, navigation, responsiveness, bookmark feature, and data injection. GitHub Actions Pipeline ensures quality (`Lint` -> `Test` -> `Build` -> `Semantic-Release`).
 
 ## 3. Current Tech Stack
 - **Frontend:** Vite + React + TypeScript + Tailwind CSS
 - **Testing:** Playwright (E2E), Vitest (Unit)
+- **CI/CD Pipeline:** GitHub Actions (`pnpm` setup, Lint, Test, Build, `semantic-release`)
 - **Package Manager:** `pnpm` (Node), `uv` (Python)
 
 ## 4. Key Conventions

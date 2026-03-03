@@ -16,7 +16,7 @@ export default function RulesPage() {
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
   const ruleIdsParam = searchParams.get('ruleIds');
-  const ruleIds = useMemo(() => ruleIdsParam?.split(',') || [], [ruleIdsParam]);
+  const ruleIds = useMemo(() => (ruleIdsParam ? ruleIdsParam.split(',') : []), [ruleIdsParam]);
   const ruleIdsSet = useMemo(() => new Set(ruleIds), [ruleIds]);
   const isFromCurriculum = moduleId !== null && lessonId !== null;
 

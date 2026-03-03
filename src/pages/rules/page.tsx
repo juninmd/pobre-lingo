@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { BookOpen, ChevronRight, GraduationCap, Sparkles } from 'lucide-react';
 
 export default function RulesPage() {
@@ -15,7 +15,9 @@ export default function RulesPage() {
   // Parâmetros de currículo
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
-  const ruleIds = searchParams.get('ruleIds')?.split(',') || [];
+  const ruleIdsParam = searchParams.get('ruleIds');
+  const ruleIds = useMemo(() => ruleIdsParam?.split(',') || [], [ruleIdsParam]);
+  const ruleIdsSet = useMemo(() => new Set(ruleIds), [ruleIds]);
   const isFromCurriculum = moduleId !== null && lessonId !== null;
 
   // Se vindo do currículo com regras específicas, redirecionar para a primeira regra
@@ -36,7 +38,7 @@ export default function RulesPage() {
   // Filtrar categorias baseado nas regras do currículo (se aplicável)
   const displayCategories = isFromCurriculum && ruleIds.length > 0
     ? grammarCategories.filter(category =>
-        category.rules.some(rule => ruleIds.includes(rule.id))
+        category.rules.some(rule => ruleIdsSet.has(rule.id))
       )
     : grammarCategories;
 
@@ -82,7 +84,7 @@ export default function RulesPage() {
         {displayCategories.map((category) => {
           // Filtrar regras específicas se vindo do currículo
           const rulesToShow = isFromCurriculum && ruleIds.length > 0
-            ? category.rules.filter(rule => ruleIds.includes(rule.id))
+            ? category.rules.filter(rule => ruleIdsSet.has(rule.id))
             : category.rules;
 
           return (

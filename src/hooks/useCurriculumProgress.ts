@@ -101,7 +101,7 @@ export function useCurriculumProgress() {
   }, [totalXP, updateStreak]);
 
   // Fix: accept argument to match expected signature
-  const isModuleUnlocked = useCallback((_module: Module) => true, []);
+  const isModuleUnlocked = useCallback((_module: Module) => true, []); // TODO: Implement module unlocking logic
 
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {
     return getModuleProgressUtil(moduleId, completedLessons, completedLessonsSet);

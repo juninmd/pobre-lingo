@@ -8,8 +8,7 @@ import {
   calculateOverallProgress,
   isLessonCompleted
 } from '@/lib/progressUtils';
-// Import Module type if needed for type checking, though we ignore the arg
-// import { Module } from '@/lib/curriculumData';
+import { Module } from '@/lib/curriculumData';
 
 const PROGRESS_STORAGE_KEY = 'pobrelingo_curriculum_progress';
 const XP_STORAGE_KEY = 'pobrelingo_total_xp';
@@ -102,7 +101,7 @@ export function useCurriculumProgress() {
   }, [totalXP, updateStreak]);
 
   // Fix: accept argument to match expected signature
-  const isModuleUnlocked = useCallback((_module: any) => true, []);
+  const isModuleUnlocked = useCallback((_module: Module) => true, []); // TODO: Implement module unlocking logic
 
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {
     return getModuleProgressUtil(moduleId, completedLessons, completedLessonsSet);

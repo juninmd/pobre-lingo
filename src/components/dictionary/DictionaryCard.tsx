@@ -21,7 +21,7 @@ export function DictionaryCard({ entry }: DictionaryCardProps) {
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               <span className="truncate">{entry.word}</span>
               <button
-                onClick={() => speak(entry.word)}
+                onClick={() => tts.speak(entry.word)}
                 className="text-primary hover:text-primary/80 transition-colors active:scale-95 flex-shrink-0 p-1.5 -m-1.5 rounded-lg hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target"
                 title="Ouvir pronúncia"
                 aria-label="Ouvir pronúncia"

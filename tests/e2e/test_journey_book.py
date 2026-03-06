@@ -30,7 +30,7 @@ def test_journey_book_desktop_rendering(page: Page):
 
     # 3. Garante que o Navbar Mobile NÃO está visível no Desktop
     # We verify that a typical mobile nav container is hidden
-    mobile_nav = page.locator("nav.flex.justify-around").first
+    mobile_nav = page.get_by_role("navigation").first
     expect(mobile_nav).not_to_be_visible()
 
 def test_journey_book_mobile_rendering(page: Page):

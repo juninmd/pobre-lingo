@@ -57,7 +57,9 @@ def test_dashboard_interaction(page: Page):
     page.goto("http://localhost:5173/")
 
     # Click the module. We target the link containing the text.
-    module_link = page.locator("a").filter(has_text="Fundamentos do Inglês")
+    # The new Timeline uses different locators and doesn't wrap the whole module in an anchor tag.
+    # Instead, we will look for a module title inside the timeline.
+    module_link = page.locator("h3").filter(has_text="Fundamentos do Inglês")
 
     # Ensure it's visible
     expect(module_link).to_be_visible()

@@ -11,6 +11,7 @@
 - **Modular Layout:** `Layout.tsx` was refactored to extract `Header.tsx` and `SidebarNav.tsx` components, adhering to the 150-line limit.
 
 ### B. Component Structure
+- **GamificationContext**: Refactored to separate `ACHIEVEMENTS_LIST` static data into `src/lib/gamification.ts`, ensuring `GamificationContext.tsx` is under 150 lines. Added `canvas-confetti` and `sonner` toast animations for "Level Up" events.
 - **`LearningTimeline`:** The main container component managing the vertical layout. Updated to accept an optional `units` prop (`UnitWithModules[]`) for explicit data injection, defaulting to internal `curriculumData`.
 - **`TimelineUnit`:** Represents a "Chapter" or Module. It contains a list of modules/lessons.
 - **`TimelineLessonCard`:** Represents a single lesson. It handles the "Bookmark" logic (auto-scroll) and visual state (locked, active, completed).

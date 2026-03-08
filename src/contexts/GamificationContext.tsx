@@ -1,21 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { Achievement, ACHIEVEMENTS_LIST } from '@/lib/gamification';
+import confetti from 'canvas-confetti';
+import { toast } from 'sonner';
 
-export interface Achievement {
-  id: string;
-  title: string;
-  description: string;
-  icon: string; // Lucide icon name
-  condition?: (stats: { xp: number, streak: number, gems: number }) => boolean;
-}
-
-export const ACHIEVEMENTS_LIST: Achievement[] = [
-  { id: 'first_steps', title: 'Primeiros Passos', description: 'Ganhe seus primeiros 50 XP.', icon: 'Footprints' },
-  { id: 'streak_3', title: 'Em Chamas', description: 'Alcance uma ofensiva de 3 dias.', icon: 'Flame' },
-  { id: 'streak_7', title: 'Hábito Formado', description: 'Alcance uma ofensiva de 7 dias.', icon: 'CalendarCheck' },
-  { id: 'rich', title: 'Acumulador', description: 'Junte 100 PobreCoins.', icon: 'Coins' },
-  { id: 'scholar', title: 'Estudioso', description: 'Chegue ao Nível 5.', icon: 'GraduationCap' },
-  { id: 'master', title: 'Mestre', description: 'Chegue ao Nível 10.', icon: 'Crown' },
-];
+export { ACHIEVEMENTS_LIST };
+export type { Achievement };
 
 interface GamificationContextType {
   hearts: number;
@@ -71,6 +60,29 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
   // Formula: Level = floor(sqrt(xp / 100)) + 1
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;
 
+  // Track previous level for animations
+  const previousLevelRef = useRef(level);
+
+  useEffect(() => {
+    if (level > previousLevelRef.current) {
+      // Level up animation
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#eab308', '#3b82f6', '#22c55e', '#ef4444']
+      });
+
+      toast.success(`Nível Atualizado!`, {
+        description: `Parabéns, você alcançou o Nível ${level}!`,
+        icon: '👑',
+        duration: 5000,
+      });
+
+      previousLevelRef.current = level;
+    }
+  }, [level]);
+
   // Save to localStorage whenever state changes
   useEffect(() => {
     localStorage.setItem('pl_gems', gems.toString());
@@ -96,37 +108,45 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
      }
   }, [xp, streak, gems, level, unlockedAchievements]);
 
-  const loseHeart = () => {
+  const loseHeart = useCallback(() => {
     // Infinite lives: do nothing
     // User requested: "as pessoas podem errar a vontade"
-  };
+  }, []);
 
-  const refillHearts = () => {
+  const refillHearts = useCallback(() => {
     setHearts(Infinity);
-  };
+  }, []);
 
-  const addGem = (amount: number) => {
+  const addGem = useCallback((amount: number) => {
     setGems(prev => prev + amount);
-  };
+    if (amount > 0) {
+       toast.success(`+${amount} PobreCoins`, {
+          icon: '🪙',
+          duration: 3000,
+       });
+    }
+  }, []);
 
-  const addStreak = () => {
+  const addStreak = useCallback(() => {
      setStreak(prev => prev + 1);
      // Daily reward for streak: 10 PobreCoins
      addGem(10);
-  };
+  }, [addGem]);
 
-  const addXp = (amount: number) => {
+  const addXp = useCallback((amount: number) => {
     setXp(prev => prev + amount);
-  };
+  }, []);
 
-  const unlockAchievement = (id: string) => {
-    if (!unlockedAchievements.includes(id)) {
-        setUnlockedAchievements(prev => [...prev, id]);
-    }
-  };
+  const unlockAchievement = useCallback((id: string) => {
+    setUnlockedAchievements(prev => {
+      if (!prev.includes(id)) {
+        return [...prev, id];
+      }
+      return prev;
+    });
+  }, []);
 
-  return (
-    <GamificationContext.Provider value={{
+  const contextValue = useMemo(() => ({
       hearts,
       maxHearts,
       gems,
@@ -143,7 +163,10 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
       addStreak,
       addXp,
       unlockAchievement
-    }}>
+  }), [hearts, maxHearts, gems, streak, xp, level, unlockedAchievements, loseHeart, refillHearts, addGem, addStreak, addXp, unlockAchievement]);
+
+  return (
+    <GamificationContext.Provider value={contextValue}>
       {children}
     </GamificationContext.Provider>
   );

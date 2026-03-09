@@ -96,13 +96,13 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
   );
 
   return (
-    <div ref={cardRef} className="relative pl-[4.5rem] sm:pl-[6.5rem] py-2"> {/* Increased padding to clear spine */}
+    <div ref={cardRef} className="relative pl-[4.5rem] sm:pl-[7.5rem] py-2"> {/* Increased padding to clear spine */}
 
       {/* Connector Line (Horizontal) */}
       <div className={cn(
         "absolute top-1/2 -translate-y-1/2 h-[2px] transition-all duration-300",
         "left-[2.25rem] w-[2.25rem]", // Mobile: Starts at 36px, width reaches content at 72px
-        "sm:left-[3.25rem] sm:w-[3.25rem]", // Desktop: Starts at 52px, width reaches content at 104px
+        "sm:left-[3.25rem] sm:w-[4.25rem]", // Desktop: Starts at 52px, width reaches content at 120px
         status === 'active' ? "bg-gradient-to-r from-primary to-primary/50" : "bg-border/40"
       )} />
 

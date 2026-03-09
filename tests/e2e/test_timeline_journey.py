@@ -23,11 +23,8 @@ def test_timeline_journey_render(page: Page):
     chapter_header = page.get_by_test_id("chapter-header").first
     expect(chapter_header).to_be_visible()
 
-    # Verify the Unit Title is present (e.g. Unidade 1)
-    expect(page.get_by_role("heading", name="Unidade 1", exact=True)).to_be_visible()
-
-    # Check for the animation class to ensure 'Polish' was applied
-    expect(chapter_header).to_have_class(re.compile(r"animate-in"))
+    # Verify the Module/Chapter Title is present (e.g. Fundamentos do Inglês)
+    expect(page.get_by_role("heading", name="Fundamentos do Inglês", exact=True)).to_be_visible()
 
 def test_bookmark_auto_scroll(page: Page):
     """

@@ -23,7 +23,7 @@ export function TimelineModule({ module, completedLessonsSet, firstIncompleteLes
        {/* Chapter Header Linked to Spine */}
        <div className="flex items-center gap-6 mb-12 relative z-10" data-testid="chapter-header">
           {/* Chapter Icon on Spine */}
-          <div className="absolute left-[2.25rem] sm:left-[4.25rem] -translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full bg-background border-[4px] border-muted/50 shadow-sm z-10 transition-transform hover:scale-110 duration-300 group">
+          <div className="absolute left-[3.25rem] sm:left-[6.25rem] -translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full bg-background border-[4px] border-muted/50 shadow-sm z-10 transition-transform hover:scale-110 duration-300 group">
              <span className="font-black text-sm text-muted-foreground group-hover:text-primary transition-colors">{module.order}</span>
           </div>
 

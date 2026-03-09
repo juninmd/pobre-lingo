@@ -101,8 +101,8 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
       {/* Connector Line (Horizontal) */}
       <div className={cn(
         "absolute top-1/2 -translate-y-1/2 h-[2px] transition-all duration-300",
-        "left-[2.25rem] w-[2.25rem]", // Mobile: Starts at 36px, width reaches content at 72px
-        "sm:left-[3.25rem] sm:w-[4.25rem]", // Desktop: Starts at 52px, width reaches content at 120px
+        "left-[3.25rem] w-[1.25rem]", // Mobile: Connects spine (at 3.25rem) to content (at 4.5rem)
+        "sm:left-[6.25rem] sm:w-[1.25rem]", // Desktop: Connects spine (at 6.25rem) to content (at 7.5rem)
         status === 'active' ? "bg-gradient-to-r from-primary to-primary/50" : "bg-border/40"
       )} />
 

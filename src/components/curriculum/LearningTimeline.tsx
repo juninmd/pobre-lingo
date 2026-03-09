@@ -1,25 +1,15 @@
 import React, { Suspense } from 'react';
-import { curriculumData, Unit, Module } from '@/lib/curriculumData';
+import { curriculumData, Module } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { BookOpen, Sparkles } from 'lucide-react';
 
-const TimelineUnit = React.lazy(() => import('./timeline/TimelineUnit'));
-
-export interface UnitWithModules extends Unit {
-  modules: Module[];
-}
+const TimelineModule = React.lazy(() => import('./timeline/TimelineModule').then(m => ({ default: m.TimelineModule })));
 
 export interface LearningTimelineProps {
-  units?: UnitWithModules[];
+  modules?: Module[];
 }
 
-// Pre-calculate units with modules for default usage
-const defaultUnitsWithModules: UnitWithModules[] = curriculumData.units.map(unit => ({
-  ...unit,
-  modules: curriculumData.modules.filter(m => m.unitId === unit.id)
-}));
-
-export function LearningTimeline({ units = defaultUnitsWithModules }: LearningTimelineProps) {
+export function LearningTimeline({ modules = curriculumData.modules }: LearningTimelineProps) {
   const { completedLessons } = useCurriculumProgress();
 
   const completedLessonsSet = React.useMemo(() => {
@@ -27,23 +17,21 @@ export function LearningTimeline({ units = defaultUnitsWithModules }: LearningTi
   }, [completedLessons]);
 
   const firstIncompleteLessonId = React.useMemo(() => {
-    for (const unit of units) {
-      for (const module of unit.modules) {
-        for (const lesson of module.lessons) {
-          const id = `${module.id}:${lesson.id}`;
-          if (!completedLessonsSet.has(id)) {
-            return id;
-          }
+    for (const module of modules) {
+      for (const lesson of module.lessons) {
+        const id = `${module.id}:${lesson.id}`;
+        if (!completedLessonsSet.has(id)) {
+          return id;
         }
       }
     }
     return null;
-  }, [completedLessonsSet, units]);
+  }, [completedLessonsSet, modules]);
 
   return (
     <div className="w-full min-h-screen pb-32 flex flex-col gap-8">
        {/* Book Title / Intro */}
-       <div className="pt-8 px-6 text-center max-w-xl mx-auto">
+       <div className="pt-8 px-6 text-center max-w-xl mx-auto z-10">
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4 shadow-inner ring-1 ring-primary/20 backdrop-blur-sm">
             <BookOpen className="w-8 h-8" />
           </div>
@@ -55,18 +43,32 @@ export function LearningTimeline({ units = defaultUnitsWithModules }: LearningTi
           </p>
        </div>
 
-       {units.map(unit => (
-         <Suspense key={unit.id} fallback={<div className="h-64 animate-pulse bg-muted/5 rounded-3xl mx-auto max-w-2xl border border-white/5" />}>
-           <TimelineUnit
-             unit={unit}
-             modules={unit.modules}
-             completedLessonsSet={completedLessonsSet}
-             firstIncompleteLessonId={firstIncompleteLessonId}
-           />
-         </Suspense>
-       ))}
+       <div className="relative pt-4 w-full max-w-2xl mx-auto">
+          {/* The Spine - Continuous Line (Absolute container aligned with content) */}
+          <div className="absolute inset-0 px-4 sm:px-8 z-0 pointer-events-none">
+             {/* Main Spine Line with gradient for depth */}
+             <div className="absolute left-[3.25rem] sm:left-[6.25rem] top-0 bottom-0 w-1.5 bg-gradient-to-b from-border/20 via-border/50 to-border/20" />
+          </div>
 
-       <div className="text-center py-12 opacity-60">
+          {/* Chapters Background (Glassmorphism) */}
+          <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-md rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
+
+          <div className="relative px-4 sm:px-8 pb-24 pt-12">
+             <div className="flex flex-col gap-8 relative z-10">
+                {modules.map(module => (
+                  <Suspense key={module.id} fallback={<div className="h-64 animate-pulse bg-muted/5 rounded-3xl border border-white/5" />}>
+                    <TimelineModule
+                      module={module}
+                      completedLessonsSet={completedLessonsSet}
+                      firstIncompleteLessonId={firstIncompleteLessonId}
+                    />
+                  </Suspense>
+                ))}
+             </div>
+          </div>
+       </div>
+
+       <div className="text-center py-12 opacity-60 z-10">
           <Sparkles className="w-12 h-12 mx-auto mb-4 text-muted-foreground/40" />
           <p className="font-medium text-muted-foreground">O próximo capítulo aguarda...</p>
        </div>

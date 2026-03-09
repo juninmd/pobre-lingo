@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 import { curriculumData } from '@/lib/curriculumData';
 
@@ -22,16 +22,6 @@ export default function DashboardPage() {
     setCurrentTip(randomTip);
   };
 
-  // Prepare curriculum data for the timeline
-  // This explicitly passes the modules to satisfy the requirement:
-  // "LearningTimeline que receba um array de módulos" (in this case, units containing modules)
-  const unitsWithModules = useMemo(() => {
-    return curriculumData.units.map(unit => ({
-      ...unit,
-      modules: curriculumData.modules.filter(m => m.unitId === unit.id)
-    }));
-  }, []);
-
   return (
     <PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto">
       <SEO title="Dashboard" description="Acompanhe seu progresso e continue sua jornada de aprendizado no PobreLingo." />
@@ -41,7 +31,7 @@ export default function DashboardPage() {
         {/* Left Column: Learning Timeline */}
         <div className="lg:col-span-2 space-y-3 sm:space-y-6 lg:space-y-8">
           <section>
-            <LearningTimeline units={unitsWithModules} />
+            <LearningTimeline modules={curriculumData.modules} />
           </section>
         </div>
 

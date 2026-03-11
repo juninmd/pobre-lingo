@@ -124,6 +124,21 @@ export function GamificationProvider({ children }: { children: React.ReactNode }
           icon: '🪙',
           duration: 3000,
        });
+
+       // Trigger coin floating animation
+       const numCoins = Math.min(amount, 10);
+       const colors = ['#f59e0b', '#fbbf24', '#fcd34d']; // Gold colors
+       confetti({
+         particleCount: numCoins,
+         spread: 60,
+         origin: { y: 0.1, x: 0.8 }, // Top right corner near the coins counter
+         colors: colors,
+         shapes: ['circle'],
+         gravity: 1.5,
+         scalar: 1.2,
+         ticks: 100,
+         disableForReducedMotion: true
+       });
     }
   }, []);
 

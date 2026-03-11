@@ -17,7 +17,8 @@ def test_gamification_updates():
         time.sleep(2)
 
         # Check Coins/Gems label presence
-        coins_label = page.get_by_text("PobreCoins")
+        # In the new header layout, the label is "Moedas"
+        coins_label = page.get_by_text("Moedas", exact=True)
         expect(coins_label).to_be_visible()
 
         # Check Streak Icon presence

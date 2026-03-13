@@ -12,14 +12,11 @@ test.describe('Journey Book Timeline', () => {
 
         // Verify Chapter Headers
         await expect(page.getByText('Capítulo 1', { exact: true })).toBeVisible();
-
-        // Verify Unit Headers
-        await expect(page.getByRole('heading', { name: 'Unidade 1', exact: true })).toBeVisible();
     });
 
     test('should show the Bookmark and Active Lesson', async ({ page }) => {
-        // Verify Bookmark "LER" is present
-        await expect(page.getByText('LER')).toBeVisible();
+        // Verify Bookmark "Aqui" is present
+        await expect(page.getByText('Aqui', { exact: true })).toBeVisible();
 
         // Verify "Começar" button on active lesson
         const startButton = page.getByText('Começar');

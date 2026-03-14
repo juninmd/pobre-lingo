@@ -29,21 +29,18 @@ test.describe('Journey Book Timeline', () => {
 
     test('should manage navigation layout (Desktop vs Mobile)', async ({ page, isMobile }) => {
         if (isMobile) {
-            // MobileNav should be visible (check for "Jornada" in nav)
-            // MobileNav usually has "Jornada", "Arcade", etc.
-            // Using a generic locator for nav
-            await expect(page.locator('nav').getByText('Jornada')).toBeVisible();
-        } else {
-            // Desktop: Sidebar visible
-            await expect(page.getByText('Aprenda Grátis')).toBeVisible();
+            // On mobile, the Sidebar is hidden by default and accessible via a SidebarTrigger in the header
+            await expect(page.getByRole('button', { name: 'Toggle menu' })).toBeVisible();
 
-            // MobileNav hidden (check for .lg:hidden containing PobreLingo which is in the mobile header)
-            // Or simpler: The specific MobileNav container logic.
-            // Let's rely on checking if the bottom nav "Jornada" is visible.
-            // The sidebar has "Minha Jornada" (or "PobreLingo" header).
-            // MobileNav has specific class `lg:hidden`.
-            const mobileNav = page.locator('.lg\\:hidden > nav');
-            await expect(mobileNav).toBeHidden();
+            // Open the sidebar
+            await page.getByRole('button', { name: 'Toggle menu' }).click({ force: true });
+
+            // The sidebar should now be visible and contain "PobreLingo" header
+            await expect(page.getByText('PobreLingo', { exact: true }).first()).toBeVisible();
+        } else {
+            // Desktop: Sidebar visible by default
+            await expect(page.getByText('Aprenda Grátis')).toBeVisible();
+            await expect(page.getByRole('link', { name: 'Jornada' })).toBeVisible();
         }
     });
 });

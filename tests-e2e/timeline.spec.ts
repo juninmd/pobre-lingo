@@ -36,7 +36,7 @@ test.describe('Journey Book Timeline', () => {
             await page.getByRole('button', { name: 'Toggle menu' }).click({ force: true });
 
             // The sidebar should now be visible and contain "PobreLingo" header
-            await expect(page.getByText('PobreLingo', { exact: true }).first()).toBeVisible();
+            await expect(page.locator('[data-sidebar="sidebar"]').getByText('PobreLingo', { exact: true })).toBeVisible();
         } else {
             // Desktop: Sidebar visible by default
             await expect(page.getByText('Aprenda Grátis')).toBeVisible();

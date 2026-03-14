@@ -9,7 +9,6 @@ import {
   SidebarInset,
 } from '@/components/ui/sidebar';
 import { GlobalSearch } from '@/components/common/GlobalSearch';
-import { MobileNav } from './components/layout/MobileNav';
 import { SidebarNav } from './components/layout/SidebarNav';
 import { Header } from './components/layout/Header';
 import { SEO } from './components/common/SEO';
@@ -50,10 +49,6 @@ export default function Layout() {
         </SidebarInset>
       </SidebarProvider>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-      {/* Mobile Navigation - Hidden on Desktop */}
-      <div className="lg:hidden">
-        <MobileNav />
-      </div>
       <PWAInstallPrompt />
       <Toaster />
     </div>

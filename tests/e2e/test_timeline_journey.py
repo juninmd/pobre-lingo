@@ -90,12 +90,12 @@ def test_navigation_responsive(page: Page):
     # Sidebar check: "Aprenda Grátis" should be hidden (as sidebar collapses or hides)
     expect(page.get_by_text("Aprenda Grátis")).not_to_be_visible()
 
-    # MobileNav check: Should be visible now
-    # We can verify the "Início" link is visible in the bottom bar location?
-    # Or just check the container again.
-    # Note: MobileNav might be directly the .lg:hidden div content
-    mobile_nav = page.locator(".lg\\:hidden").first
-    expect(mobile_nav).to_be_visible()
+    # O Header deve ter um trigger de menu visível no mobile, e MobileNav escondido/removido
+    menu_trigger = page.get_by_role("button", name="Toggle menu")
+    expect(menu_trigger).to_be_visible()
+
+    mobile_nav = page.locator("nav.flex.justify-around").first
+    expect(mobile_nav).not_to_be_visible()
 
 def test_timeline_navigation(page: Page):
     """

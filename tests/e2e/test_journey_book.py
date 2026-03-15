@@ -13,9 +13,9 @@ def test_journey_book_desktop_rendering(page: Page):
     # "Sua História" text represents the book metaphor intro
     expect(page.get_by_role("heading", name="Sua História")).to_be_visible()
 
-    # Verifica se os componentes da Timeline estão visíveis (Capítulos e Unidades)
-    # The first unit "Unidade 1" should be visible
-    expect(page.get_by_test_id("chapter-header").filter(has_text=re.compile(r"Unidade 1\b"))).to_be_visible()
+    # Verifica se os componentes da Timeline estão visíveis (Capítulos)
+    # The first unit "Capítulo 1" should be visible
+    expect(page.get_by_test_id("chapter-header").filter(has_text=re.compile(r"Capítulo 1\b"))).to_be_visible()
 
     # 2. Verifica Bookmark Auto-scroll e Navegação
     # The active lesson card is our "Bookmark"
@@ -47,9 +47,13 @@ def test_journey_book_mobile_rendering(page: Page):
     sidebar_nav = page.get_by_test_id("sidebar")
     expect(sidebar_nav).not_to_be_visible()
 
-    # 3. Verifica se a MobileNav inferior está visível
+    # 3. Verifica se a MobileNav inferior foi removida e substituída pela navegação unificada
     mobile_nav = page.locator("nav.flex.justify-around").first
-    expect(mobile_nav).to_be_visible()
+    expect(mobile_nav).not_to_be_visible()
+
+    # O Header deve ter um trigger de menu visível no mobile
+    menu_trigger = page.get_by_role("button", name="Toggle menu")
+    expect(menu_trigger).to_be_visible()
 
     # 4. Verifica responsividade dos cards
     active_card = page.get_by_test_id("active-lesson-card").first

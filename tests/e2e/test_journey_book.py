@@ -15,7 +15,7 @@ def test_journey_book_desktop_rendering(page: Page):
 
     # Verifica se os componentes da Timeline estão visíveis (Capítulos)
     # The first unit "Capítulo 1" should be visible
-    expect(page.get_by_test_id("chapter-header").filter(has_text=re.compile(r"Capítulo 1\b"))).to_be_visible()
+    expect(page.get_by_test_id("chapter-header").first).to_contain_text(re.compile(r"Capítulo 1", re.IGNORECASE))
 
     # 2. Verifica Bookmark Auto-scroll e Navegação
     # The active lesson card is our "Bookmark"

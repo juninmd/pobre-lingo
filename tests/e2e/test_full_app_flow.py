@@ -56,23 +56,23 @@ def test_dashboard_interaction(page: Page):
     """
     page.goto("http://localhost:5173/")
 
-    # Click the module. We target the link containing the text.
-    # The new Timeline uses different locators and doesn't wrap the whole module in an anchor tag.
-    # Instead, we will look for a module title inside the timeline.
-    module_link = page.locator("h3").filter(has_text="Fundamentos do Inglês")
+    # With the new "Journey Book" metaphor, there are no "COMEÇAR" popups.
+    # We find the active lesson card and click it directly to start the lesson.
 
-    # Ensure it's visible
-    expect(module_link).to_be_visible()
+    # 1. Verify the chapter header is visible
+    chapter_header = page.locator("h3").filter(has_text="Fundamentos do Inglês")
+    expect(chapter_header).to_be_visible()
 
-    # Click it. We use force=True to bypass the pointer-events check on the specific point if it hits the label.
-    module_link.click(force=True)
+    # 2. Find the active lesson card
+    active_card = page.get_by_test_id("active-lesson-card").first
+    expect(active_card).to_be_visible()
 
-    # Expect the Pre-Lesson Modal
-    expect(page.get_by_text("COMEÇAR")).to_be_visible()
-    expect(page.get_by_text("Fundamentos do Inglês")).to_be_visible()
+    # 3. Verify it has the "Começar" text indicator directly on the card
+    expect(active_card.get_by_text("Começar", exact=True)).to_be_visible()
 
-    # Click Start
-    page.get_by_role("button", name="COMEÇAR").click()
+    # 4. Click the active card to navigate to the lesson directly
+    active_card.click()
 
-    # Should navigate away from root
+    # 5. Should navigate away from root to the lesson URL
+    page.wait_for_url(re.compile(r".*/vocabulary/.*"))
     expect(page).not_to_have_url("http://localhost:5173/")

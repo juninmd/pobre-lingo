@@ -48,7 +48,7 @@ export function Header({ onSearchClick }: HeaderProps) {
   return (
     <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
       <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-        <div>
+        <div className="lg:hidden">
           <SidebarTrigger asChild>
             <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-colors">
               <Menu className="h-5 w-5" strokeWidth={1.5} />

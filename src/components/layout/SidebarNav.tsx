@@ -24,9 +24,9 @@ import { navGroups, allNavItems } from '@/lib/navigation';
 
 export function SidebarNav() {
   const { pathname } = useLocation();
-  const { setOpenMobile, state } = useSidebar();
+  const { setOpenMobile, state, isMobile } = useSidebar();
   const [sidebarSearchTerm, setSidebarSearchTerm] = useState('');
-  const isCollapsed = state === 'collapsed';
+  const isCollapsed = state === 'collapsed' && !isMobile;
 
   const filteredGroups = sidebarSearchTerm
     ? [{

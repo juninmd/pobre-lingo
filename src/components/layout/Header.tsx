@@ -88,7 +88,7 @@ export function Header({ onSearchClick }: HeaderProps) {
                 <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Nível</span>
+              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">Nível</span>
               <span className="font-headline font-black text-sm text-foreground">{userLevel}</span>
             </div>
           </div>
@@ -98,7 +98,7 @@ export function Header({ onSearchClick }: HeaderProps) {
                 <Coins className="h-4 w-4 fill-current/20" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Moedas</span>
+              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">Moedas</span>
               <span className="font-headline font-black text-sm text-foreground">{gems}</span>
             </div>
           </div>

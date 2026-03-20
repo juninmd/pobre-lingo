@@ -34,7 +34,7 @@ export default function Layout() {
       <SEO />
       <SidebarProvider defaultOpen>
         {/* Sidebar only visible on lg and up */}
-        <Sidebar collapsible="icon" variant="sidebar" side="left" className="hidden lg:flex border-r border-border/40">
+        <Sidebar collapsible="icon" variant="sidebar" side="left" className="border-r border-border/40">
           <SidebarNav />
         </Sidebar>
 

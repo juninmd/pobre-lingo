@@ -1,12 +1,12 @@
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
 import { Star } from 'lucide-react';
-import { CurriculumProgress } from '@/lib/progressTypes';
+import { OverallProgressStats } from '@/lib/progressTypes';
 
 export interface ProgressStatsProps {
   userLevel: number;
   totalXP: number;
-  overallProgress: CurriculumProgress;
+  overallProgress: OverallProgressStats;
 }
 
 export function ProgressStats({ userLevel, totalXP, overallProgress }: ProgressStatsProps) {

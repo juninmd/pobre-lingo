@@ -47,7 +47,7 @@ export function LearningTimeline({ modules = curriculumData.modules }: LearningT
           {/* The Spine - Continuous Line (Absolute container aligned with content) */}
           <div className="absolute inset-0 px-4 sm:px-8 z-0 pointer-events-none">
              {/* Main Spine Line with gradient for depth */}
-             <div className="absolute left-[3.25rem] sm:left-[6.25rem] top-0 bottom-0 w-1.5 bg-gradient-to-b from-border/20 via-border/50 to-border/20" />
+             <div className="absolute left-[3.25rem] sm:left-[6.25rem] top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary/80 via-primary/40 to-border/20" />
           </div>
 
           {/* Chapters Background (Glassmorphism) */}

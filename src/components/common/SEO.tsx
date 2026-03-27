@@ -20,7 +20,7 @@ export function SEO({
         <Helmet>
             {/* Standard metadata tags */}
             <title>{finalTitle}</title>
-            <meta name='description' content={description} />
+            <meta name="description" content={description} />
 
             {/* Facebook tags */}
             <meta property="og:type" content={type} />

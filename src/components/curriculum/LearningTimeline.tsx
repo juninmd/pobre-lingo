@@ -29,7 +29,7 @@ export function LearningTimeline({ modules = curriculumData.modules }: LearningT
   }, [completedLessonsSet, modules]);
 
   return (
-    <div className="w-full min-h-screen pb-32 flex flex-col gap-8">
+    <div className="w-full min-h-screen pb-32 flex flex-col gap-8" aria-label="Learning Timeline">
        {/* Book Title / Intro */}
        <div className="pt-8 px-6 text-center max-w-xl mx-auto z-10">
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4 shadow-inner ring-1 ring-primary/20 backdrop-blur-sm">

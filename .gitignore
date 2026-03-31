@@ -55,3 +55,4 @@ verification/
 dev.log
 playwright-report/
 test-results/
+debug_screenshot.png

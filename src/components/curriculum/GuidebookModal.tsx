@@ -85,7 +85,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
         {trigger || (
           <Button variant="outline" size="sm" className="gap-2 border-primary/20 hover:bg-primary/5 hover:text-primary uppercase tracking-wide font-bold text-xs h-9">
             <BookOpen className="h-4 w-4" />
-            <span className="hidden sm:inline">Guia da Unidade</span>
+            <span className="hidden sm:inline">Guia do Capítulo</span>
             <span className="sm:hidden">Guia</span>
           </Button>
         )}

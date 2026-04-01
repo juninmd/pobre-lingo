@@ -11,7 +11,7 @@ export const units: Unit[] = [
     guidebookContent: `
 # Bem-vindo ao Inglês! 🚀
 
-Parabéns por começar sua jornada! Nesta primeira capítulo, vamos construir a base do seu conhecimento.
+Parabéns por começar sua jornada! Neste primeiro capítulo, vamos construir a base do seu conhecimento.
 
 ### 1. O Alfabeto e Pronúncia
 O inglês tem sons únicos.

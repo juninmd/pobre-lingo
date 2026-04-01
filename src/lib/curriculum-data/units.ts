@@ -3,7 +3,7 @@ import { Unit } from './types';
 export const units: Unit[] = [
   {
     id: 'unit-1',
-    title: 'Unidade 1: Primeiros Passos',
+    title: 'Capítulo 1: Primeiros Passos',
     description: 'Comece sua jornada com o básico do inglês.',
     order: 1,
     difficulty: 'basico',
@@ -11,7 +11,7 @@ export const units: Unit[] = [
     guidebookContent: `
 # Bem-vindo ao Inglês! 🚀
 
-Parabéns por começar sua jornada! Nesta primeira unidade, vamos construir a base do seu conhecimento.
+Parabéns por começar sua jornada! Neste primeiro capítulo, vamos construir a base do seu conhecimento.
 
 ### 1. O Alfabeto e Pronúncia
 O inglês tem sons únicos.
@@ -36,7 +36,7 @@ Não tenha medo de errar! O erro faz parte do aprendizado. Tente imitar os sons 
   },
   {
     id: 'unit-2',
-    title: 'Unidade 2: Conversas do Dia a Dia',
+    title: 'Capítulo 2: Conversas do Dia a Dia',
     description: 'Aprenda a cumprimentar e ser educado.',
     order: 2,
     difficulty: 'basico',
@@ -66,7 +66,7 @@ Em português, dizemos "Fui ao mercado" (sujeito oculto). Em inglês, **sempre**
   },
   {
     id: 'unit-3',
-    title: 'Unidade 3: Falando do Passado',
+    title: 'Capítulo 3: Falando do Passado',
     description: 'Conte histórias e descreva ações.',
     order: 3,
     difficulty: 'basico',
@@ -99,7 +99,7 @@ Para o que está acontecendo **agora**.
   },
   {
     id: 'unit-4',
-    title: 'Unidade 4: Viagem e Aventura',
+    title: 'Capítulo 4: Viagem e Aventura',
     description: 'Prepare-se para explorar o mundo.',
     order: 4,
     difficulty: 'basico',
@@ -125,7 +125,7 @@ Em inglês, o "H" de "Hotel" é pronunciado (como "R"), mas o "H" de "Hour" é m
   },
   {
     id: 'unit-5',
-    title: 'Unidade 5: Conexões Temporais',
+    title: 'Capítulo 5: Conexões Temporais',
     description: 'Domine os tempos perfeitos.',
     order: 5,
     difficulty: 'intermediario',
@@ -150,7 +150,7 @@ Calma! Ele não é um bicho de sete cabeças. O segredo é entender a **conexão
   },
   {
     id: 'unit-6',
-    title: 'Unidade 6: Possibilidades',
+    title: 'Capítulo 6: Possibilidades',
     description: 'O que aconteceria se...?',
     order: 6,
     difficulty: 'intermediario',
@@ -176,7 +176,7 @@ Usamos condicionais para falar de causas e consequências.
   },
   {
     id: 'unit-7',
-    title: 'Unidade 7: Estilo Formal',
+    title: 'Capítulo 7: Estilo Formal',
     description: 'Aprenda a Voz Passiva e Inglês de Negócios.',
     order: 7,
     difficulty: 'intermediario',
@@ -202,7 +202,7 @@ Em emails, evite gírias. Use "Dear Mr./Ms." e termine com "Sincerely" ou "Best 
   },
   {
     id: 'unit-8',
-    title: 'Unidade 8: Rumo à Fluência',
+    title: 'Capítulo 8: Rumo à Fluência',
     description: 'Gramática avançada e expressões nativas.',
     order: 8,
     difficulty: 'avancado',
@@ -227,7 +227,7 @@ Para soar nativo, você precisa dessas expressões que não se traduzem ao pé d
   },
   {
     id: 'unit-9',
-    title: 'Unidade 9: Domínio e Gírias',
+    title: 'Capítulo 9: Domínio e Gírias',
     description: 'Fale como um nativo: gírias, contrações e internet.',
     order: 9,
     difficulty: 'avancado',
@@ -255,7 +255,7 @@ Use isso com amigos, nunca com o chefe!
   },
   {
     id: 'unit-10',
-    title: 'Unidade 10: Fluência Profissional',
+    title: 'Capítulo 10: Fluência Profissional',
     description: 'Domine a arte da retórica e formalidade.',
     order: 10,
     difficulty: 'avancado',
@@ -285,7 +285,7 @@ Parabéns! Você tem as ferramentas para se expressar em qualquer nível. Contin
   },
   {
     id: 'unit-11',
-    title: 'Unidade 11: Maestria da Nuance',
+    title: 'Capítulo 11: Maestria da Nuance',
     description: 'Use adjetivos precisos e descreva com detalhes.',
     order: 11,
     difficulty: 'avancado',
@@ -311,7 +311,7 @@ Dominar essas diferenças mostra que você tem controle total sobre o idioma.
   },
   {
     id: 'unit-12',
-    title: 'Unidade 12: Retórica Profissional',
+    title: 'Capítulo 12: Retórica Profissional',
     description: 'Argumentação, debate e persuasão.',
     order: 12,
     difficulty: 'avancado',
@@ -336,7 +336,7 @@ Use essas estruturas para manter o debate civilizado e produtivo.
   },
   {
     id: 'unit-13',
-    title: 'Unidade 13: Imersão Cultural',
+    title: 'Capítulo 13: Imersão Cultural',
     description: 'Humor, sarcasmo e expressões complexas.',
     order: 13,
     difficulty: 'avancado',
@@ -360,7 +360,7 @@ Preste atenção ao contexto!
   },
   {
     id: 'unit-14',
-    title: 'Unidade 14: O Desafio Final',
+    title: 'Capítulo 14: O Desafio Final',
     description: 'O teste definitivo de proficiência C2.',
     order: 14,
     difficulty: 'avancado',
@@ -380,7 +380,7 @@ Você agora é parte da elite do PobreLingo. Vá e conquiste o mundo!
   },
   {
     id: 'unit-15',
-    title: 'Unidade 15: Business Mastery',
+    title: 'Capítulo 15: Business Mastery',
     description: 'Domine o inglês corporativo global.',
     order: 15,
     difficulty: 'avancado',

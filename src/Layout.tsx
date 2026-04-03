@@ -38,7 +38,7 @@ export default function Layout() {
           <SidebarNav />
         </Sidebar>
 
-        <SidebarInset className="flex flex-col min-h-screen">
+        <SidebarInset className="flex flex-col min-h-screen pb-32 sm:pb-28 lg:pb-0">
           <Header onSearchClick={() => setSearchOpen(true)} />
 
           <main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">

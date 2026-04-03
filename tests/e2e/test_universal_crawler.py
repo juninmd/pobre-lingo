@@ -47,7 +47,7 @@ def test_crawl_curriculum(page: Page):
             elif "/exercises/" in full_url:
                 page.wait_for_selector("h1, h2, .card", timeout=5000)
             elif "/vocabulary/" in full_url:
-                page.wait_for_selector("button", timeout=5000)
+                    page.wait_for_selector("text=Vocabulário", timeout=5000)
             elif "/quiz/" in full_url:
                 page.wait_for_selector("text=Quiz", timeout=5000)
 

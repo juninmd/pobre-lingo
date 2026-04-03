@@ -43,7 +43,7 @@ export function useLearningStreak() {
   }, []);
 
   useEffect(() => {
-     // eslint-disable-next-line
+
      updateStreak();
   }, [updateStreak]);
 

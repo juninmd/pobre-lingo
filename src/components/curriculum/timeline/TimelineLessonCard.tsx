@@ -83,7 +83,7 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
   );
 
   const wrapperClass = cn(
-    "relative flex items-center gap-5 p-4 rounded-3xl border transition-all duration-300 w-full text-left overflow-hidden group/card",
+    "relative flex items-center gap-6 p-6 rounded-3xl border transition-all duration-300 w-full text-left overflow-hidden group/card",
     "backdrop-blur-md", // Glassmorphism
     status === 'locked'
       ? "bg-card/20 border-white/5 opacity-60 grayscale-[0.5] hover:opacity-80 cursor-not-allowed"

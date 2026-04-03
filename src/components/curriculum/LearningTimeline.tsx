@@ -43,7 +43,7 @@ export function LearningTimeline({ modules = curriculumData.modules }: LearningT
           </p>
        </div>
 
-       <div className="relative pt-4 w-full max-w-2xl mx-auto">
+       <div className="relative pt-8 w-full max-w-2xl mx-auto">
           {/* The Spine - Continuous Line (Absolute container aligned with content) */}
           <div className="absolute inset-0 px-4 sm:px-8 z-0 pointer-events-none">
              {/* Main Spine Line with gradient for depth */}
@@ -51,10 +51,10 @@ export function LearningTimeline({ modules = curriculumData.modules }: LearningT
           </div>
 
           {/* Chapters Background (Glassmorphism) */}
-          <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-md rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0" />
+          <div className="absolute inset-x-0 top-0 bottom-16 bg-card/10 dark:bg-card/5 backdrop-blur-xl rounded-[2.5rem] -z-10 border border-white/5 mx-4 sm:mx-0 shadow-sm" />
 
           <div className="relative px-4 sm:px-8 pb-24 pt-12">
-             <div className="flex flex-col gap-8 relative z-10">
+             <div className="flex flex-col gap-12 relative z-10">
                 {modules.map(module => (
                   <Suspense key={module.id} fallback={<div className="h-64 animate-pulse bg-muted/5 rounded-3xl border border-white/5" />}>
                     <TimelineModule

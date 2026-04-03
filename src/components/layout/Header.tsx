@@ -82,14 +82,14 @@ export function Header({ onSearchClick }: HeaderProps) {
 
       <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
         {/* Gamification Stats */}
-        <div className="flex items-center gap-3 sm:gap-6 text-sm font-medium">
+        <div className="flex items-center gap-4 sm:gap-8 text-sm font-medium">
           <div className="flex items-center gap-2 group cursor-default" title="Nível Atual">
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
                 <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Nível</span>
-              <span className="font-inter font-black text-sm text-foreground">{userLevel}</span>
+              <span className="font-inter font-black text-base text-foreground leading-tight">{userLevel}</span>
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export function Header({ onSearchClick }: HeaderProps) {
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Moedas</span>
-              <span className="font-inter font-black text-sm text-foreground">{gems}</span>
+              <span className="font-inter font-black text-base text-foreground leading-tight">{gems}</span>
             </div>
           </div>
         </div>

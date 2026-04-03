@@ -23,20 +23,20 @@ export default function DashboardPage() {
   };
 
   return (
-    <PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto">
+    <PageContainer className="space-y-6 lg:space-y-8 max-w-7xl mx-auto">
       <SEO title="Dashboard" description="Acompanhe seu progresso e continue sua jornada de aprendizado no PobreLingo." />
 
-      <div className="grid lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+      <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
 
         {/* Left Column: Learning Timeline */}
-        <div className="lg:col-span-2 space-y-3 sm:space-y-6 lg:space-y-8">
+        <div className="lg:col-span-2 space-y-6 lg:space-y-8">
           <section>
             <LearningTimeline modules={curriculumData.modules} />
           </section>
         </div>
 
         {/* Right Column: Quests & Tips */}
-        <div className="space-y-3 sm:space-y-4 md:space-y-6">
+        <div className="space-y-6 md:space-y-8">
           {/* Daily Quests */}
           <DailyQuestsWidget />
 

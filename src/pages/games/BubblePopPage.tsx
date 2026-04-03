@@ -136,7 +136,7 @@ export default function BubblePopPage() {
   const animate = useCallback(function _animate(time: number) {
     if (gameState !== 'playing') return;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const delta = time - lastTimeRef.current;
     lastTimeRef.current = time;
 

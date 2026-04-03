@@ -1,5 +1,5 @@
 
-/* eslint-disable no-restricted-globals */
+
 
 // Explicitly type the global context as any to avoid TS errors without webworker lib
 const ctx: any = self;

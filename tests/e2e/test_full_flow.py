@@ -26,7 +26,7 @@ def test_full_app_flow(page: Page):
     expect(page.get_by_text("Cada lição é uma página virada rumo à fluência.")).to_be_visible()
 
     # 2. Test Refresh Tip
-    tip_card = page.locator(".border-primary\\/20") # Tip card
+    tip_card = page.locator(".glass-card.bg-primary\\/5.border-primary\\/20") # Tip card
     expect(tip_card).to_be_visible()
 
     # Find refresh button (icon button inside card header)

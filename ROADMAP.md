@@ -21,9 +21,9 @@
     - [x] Integrate Lint, Vitest, and Playwright E2E tests in CI.
     - [x] Setup `semantic-release` for automated versioning and tags.
 - [x] **Advanced Gamification:** Add animations for leveling up and earning "Pobrecoins".
+- [x] **Performance Tuning:** Implement code splitting for heavy game modules.
 
 ## 🚀 In Progress
-- [ ] **Performance Tuning:** Implement code splitting for heavy game modules.
 
 ## 🔮 Future Tasks
 - [ ] **Accessibility Audit:** Ensure full keyboard navigation support for the timeline.

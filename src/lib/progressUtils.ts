@@ -18,6 +18,28 @@ export function isLessonCompleted(
   return completedLessonsSet.has(`${moduleId}:${lessonId}`);
 }
 
+/**
+ * Verifica se um módulo está desbloqueado.
+ * Um módulo está desbloqueado se não tiver pré-requisitos ou se todos os módulos
+ * pré-requisitos estiverem 100% concluídos.
+ */
+export function isModuleUnlocked(
+  module: Module,
+  completedLessonsSet: Set<string>
+): boolean {
+  if (!module.prerequisites || module.prerequisites.length === 0) {
+    return true;
+  }
+
+  return module.prerequisites.every(prereqId => {
+    const prereqModule = moduleMap.get(prereqId);
+    if (!prereqModule) return true;
+
+    const { completionPercentage } = calculateModuleStats(prereqModule, completedLessonsSet);
+    return completionPercentage === 100;
+  });
+}
+
 // Helper para calcular estatísticas de conclusão de um módulo
 export function calculateModuleStats(
   module: Module,
@@ -62,8 +84,7 @@ export function getModuleProgress(
     ? completedLessonsData[completedLessonsData.length - 1]?.completedAt
     : undefined;
 
-  // Assumindo que todos os módulos estão desbloqueados por padrão como na lógica original
-  const unlocked = true;
+  const unlocked = isModuleUnlocked(module, completedLessonsSet);
 
   return {
     moduleId,
@@ -94,8 +115,9 @@ export function calculateOverallProgress(
     ? Math.round((completedLessonsCount / totalLessons) * 100)
     : 0;
 
-  // Assumindo unlocked = true para todos
-  const unlockedModules = totalModules;
+  const unlockedModules = curriculumData.modules.filter(m =>
+    isModuleUnlocked(m, completedLessonsSet)
+  ).length;
 
   const completedModules = curriculumData.modules.filter(m => {
     const { completionPercentage } = calculateModuleStats(m, completedLessonsSet);

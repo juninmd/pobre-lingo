@@ -6,7 +6,8 @@ import {
   calculateLevel,
   getModuleProgress as getModuleProgressUtil,
   calculateOverallProgress,
-  isLessonCompleted
+  isLessonCompleted,
+  isModuleUnlocked as isModuleUnlockedUtil
 } from '@/lib/progressUtils';
 import { Module } from '@/lib/curriculumData';
 
@@ -100,8 +101,9 @@ export function useCurriculumProgress() {
     });
   }, [totalXP, updateStreak]);
 
-  // Fix: accept argument to match expected signature
-  const isModuleUnlocked = useCallback((_module: Module) => true, []); // TODO: Implement module unlocking logic
+  const isModuleUnlocked = useCallback((module: Module) => {
+    return isModuleUnlockedUtil(module, completedLessonsSet);
+  }, [completedLessonsSet]);
 
   const getModuleProgress = useCallback((moduleId: string): ModuleProgress => {
     return getModuleProgressUtil(moduleId, completedLessons, completedLessonsSet);

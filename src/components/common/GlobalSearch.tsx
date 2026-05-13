@@ -54,11 +54,11 @@ const navPages: SearchResult[] = [
 ];
 
 // Converter categorias e regras em resultados de pesquisa
-function getRuleSearchResults(): SearchResult[] {
+const ruleSearchResults: SearchResult[] = (() => {
   const results: SearchResult[] = [];
 
   // Adicionar categorias
-  grammarCategories.forEach(category => {
+  for (const category of grammarCategories) {
     results.push({
       type: 'category',
       title: category.name_pt,
@@ -68,7 +68,7 @@ function getRuleSearchResults(): SearchResult[] {
     });
 
     // Adicionar regras de cada categoria
-    category.rules.forEach(rule => {
+    for (const rule of category.rules) {
       results.push({
         type: 'rule',
         title: rule.title_pt,
@@ -78,11 +78,14 @@ function getRuleSearchResults(): SearchResult[] {
         tags: rule.tags,
         categoryName: category.name_pt,
       });
-    });
-  });
+    }
+  }
 
   return results;
-}
+})();
+
+// Combinar todos os resultados de pesquisa estáticos
+const ALL_SEARCH_RESULTS = [...navPages, ...ruleSearchResults];
 
 interface GlobalSearchProps {
   open: boolean;
@@ -95,11 +98,6 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Combinar todos os resultados de pesquisa
-  const allResults = useMemo(() => {
-    return [...navPages, ...getRuleSearchResults()];
-  }, []);
-
   // Filtrar resultados baseado no termo de pesquisa
   const filteredResults = useMemo(() => {
     if (!searchTerm.trim()) {
@@ -108,14 +106,14 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
     }
 
     const term = searchTerm.toLowerCase();
-    return allResults.filter(result => {
+    return ALL_SEARCH_RESULTS.filter(result => {
       const matchTitle = result.title.toLowerCase().includes(term);
       const matchSubtitle = result.subtitle?.toLowerCase().includes(term);
       const matchTags = result.tags?.some(tag => tag.toLowerCase().includes(term));
       const matchCategory = result.categoryName?.toLowerCase().includes(term);
       return matchTitle || matchSubtitle || matchTags || matchCategory;
     }).slice(0, 10); // Limitar a 10 resultados
-  }, [searchTerm, allResults]);
+  }, [searchTerm]);
 
   // Reset ao abrir
   useEffect(() => {

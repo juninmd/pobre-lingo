@@ -84,22 +84,22 @@ export function Header({ onSearchClick }: HeaderProps) {
         {/* Gamification Stats */}
         <div className="flex items-center gap-4 sm:gap-8 text-sm font-medium">
           <div className="flex items-center gap-2 group cursor-default" title="Nível Atual">
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300 animate-pulse-subtle">
                 <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Nível</span>
-              <span className="font-inter font-black text-base text-foreground leading-tight">{userLevel}</span>
+              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-poppins">Nível</span>
+              <span className="font-poppins font-black text-base text-foreground leading-tight">{userLevel}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2 group cursor-default" title="PobreCoins">
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 group-hover:rotate-12 transition-transform duration-300">
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 group-hover:rotate-12 transition-transform duration-300 animate-pulse-subtle" style={{ animationDelay: '1s' }}>
                 <Coins className="h-4 w-4 fill-current/20" strokeWidth={1.5} />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-inter">Moedas</span>
-              <span className="font-inter font-black text-base text-foreground leading-tight">{gems}</span>
+              <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold font-poppins">Moedas</span>
+              <span className="font-poppins font-black text-base text-foreground leading-tight">{gems}</span>
             </div>
           </div>
         </div>

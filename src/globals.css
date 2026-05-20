@@ -28,7 +28,7 @@
     --border: 210 15% 90%;
     --input: 210 15% 90%;
     --ring: 210 90% 50%;
-    --radius: 0.75rem;
+    --radius: 1rem;
     /* Slightly more rounded */
 
     --sidebar-background: 210 90% 50%;
@@ -121,7 +121,7 @@
     --sidebar-border: 217 33% 10%;
     --sidebar-ring: 43 70% 50%;
 
-    --radius: 1.25rem;
+    --radius: 1.5rem;
   }
 }
 

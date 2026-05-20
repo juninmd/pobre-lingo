@@ -43,7 +43,7 @@ export function SidebarNav() {
 
   return (
     <>
-      <SidebarHeader className="p-3 border-b border-sidebar-border/50">
+      <SidebarHeader className="p-4 gap-4 border-b border-sidebar-border/50">
         <div className="flex items-center gap-3">
           <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10">
             <GraduationCap className="h-5 w-5 text-primary" />
@@ -79,7 +79,7 @@ export function SidebarNav() {
       </SidebarHeader>
 
       <ScrollArea className="flex-1">
-        <SidebarContent className="p-2">
+        <SidebarContent className="p-4 gap-4">
           {filteredGroups.map((group, groupIndex) => (
             <div key={group.title} className={groupIndex > 0 ? 'mt-4' : ''}>
               {!isCollapsed && (
@@ -100,7 +100,7 @@ export function SidebarNav() {
                           "justify-start h-10 transition-all duration-300 rounded-lg group",
                           isActive
                             ? "bg-primary/10 text-primary font-bold shadow-sm [data-theme=pobre-lingo]:sidebar-active"
-                            : "hover:bg-sidebar-accent/50 text-sidebar-foreground/80 hover:translate-x-1"
+                            : "hover:bg-primary/5 hover:text-primary text-sidebar-foreground/80 hover:translate-x-1 transition-colors duration-300"
                         )}
                         onClick={handleLinkClick}
                       >

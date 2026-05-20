@@ -82,7 +82,7 @@ export function Header({ onSearchClick }: HeaderProps) {
 
       <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
         {/* Gamification Stats */}
-        <div className="flex items-center gap-4 sm:gap-8 text-sm font-medium">
+        <div className="flex items-center gap-4 sm:gap-8 text-sm font-medium transition-all duration-300">
           <div className="flex items-center gap-2 group cursor-default" title="Nível Atual">
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
                 <GraduationCap className="h-4 w-4" strokeWidth={1.5} />
@@ -108,7 +108,7 @@ export function Header({ onSearchClick }: HeaderProps) {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95">
+            <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all duration-300 hover:bg-muted/50 active:scale-95">
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" strokeWidth={1.5} />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" strokeWidth={1.5} />
               <span className="sr-only">Alternar tema</span>

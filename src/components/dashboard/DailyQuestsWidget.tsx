@@ -62,11 +62,11 @@ export function DailyQuestsWidget() {
   ];
 
   return (
-    <Card className="w-full border-2 shadow-sm bg-card/50 backdrop-blur-sm">
+    <Card className="w-full border-2 shadow-sm bg-card/50 backdrop-blur-sm card-hover">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-bold flex items-center gap-2">
-            <Target className="w-5 h-5 text-red-500" />
+            <Target className="w-5 h-5 text-red-500 animate-pulse-subtle" />
             Missões Diárias
           </CardTitle>
           <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">Reseta à meia-noite</span>
@@ -74,11 +74,11 @@ export function DailyQuestsWidget() {
       </CardHeader>
       <CardContent className="space-y-5">
         {quests.map((quest) => (
-          <div key={quest.id} className="space-y-2">
+          <div key={quest.id} className="space-y-2 hover:scale-[1.02] transition-transform duration-300">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2">
                 {quest.completed ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 transition-transform duration-500 scale-110" />
                 ) : (
                   <Circle className="w-5 h-5 text-muted-foreground/30 shrink-0" />
                 )}
@@ -92,7 +92,7 @@ export function DailyQuestsWidget() {
               </div>
             </div>
             <div className="pl-7 relative">
-               <Progress value={Math.min((quest.progress / quest.total) * 100, 100)} className="h-2.5" />
+               <Progress value={Math.min((quest.progress / quest.total) * 100, 100)} className="h-2.5 transition-all duration-500 ease-in-out" />
                <div className="flex justify-between mt-1 text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
                  <span>{Math.min(quest.progress, quest.total)} / {quest.total}</span>
                </div>

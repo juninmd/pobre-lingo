@@ -41,10 +41,10 @@ export default function DashboardPage() {
           <DailyQuestsWidget />
 
           {/* Tip of the Day */}
-          <Card className="glass-card bg-primary/5 border-primary/20 sticky top-20 sm:top-24">
+          <Card className="glass-card bg-primary/5 border-primary/30 shadow-md sticky top-20 sm:top-24 card-hover">
             <CardHeader className="pb-2 sm:pb-3 flex flex-row items-center justify-between space-y-0">
               <CardTitle className="text-sm sm:text-base md:text-lg flex items-center gap-2 text-primary">
-                <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 animate-pulse-subtle" />
                 <span>Dica do Dia</span>
               </CardTitle>
               <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 text-primary/70 hover:text-primary active:scale-95 transition-transform" onClick={refreshTip}>

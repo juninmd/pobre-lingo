@@ -31,15 +31,15 @@ export function LearningTimeline({ modules = curriculumData.modules }: LearningT
   return (
     <div className="w-full min-h-screen pb-32 flex flex-col gap-8">
        {/* Book Title / Intro */}
-       <div className="pt-8 px-6 text-center max-w-xl mx-auto z-10">
+       <div className="pt-8 px-6 text-center max-w-xl mx-auto z-10 animate-in fade-in slide-in-from-top-4 duration-700">
           <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4 shadow-inner ring-1 ring-primary/20 backdrop-blur-sm">
             <BookOpen className="w-8 h-8" />
           </div>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground mb-2 font-headline">
-            Sua História
+            Bem-vindo de volta! 👋
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Cada lição é uma página virada rumo à fluência.
+            Pronto para continuar sua jornada no PobreLingo?
           </p>
        </div>
 

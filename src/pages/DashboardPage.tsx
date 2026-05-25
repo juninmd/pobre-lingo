@@ -3,6 +3,7 @@ import { PageContainer } from '@/components/common/PageContainer';
 import { curriculumData } from '@/lib/curriculumData';
 
 import { DailyQuestsWidget } from '@/components/dashboard/DailyQuestsWidget';
+import { MascotGreeting } from '@/components/mascot/MascotGreeting';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Lightbulb, RefreshCw } from 'lucide-react';
@@ -37,6 +38,9 @@ export default function DashboardPage() {
 
         {/* Right Column: Quests & Tips */}
         <div className="space-y-6 md:space-y-8">
+          {/* Mascot Greeting */}
+          <MascotGreeting className="hidden lg:block shadow-md" />
+
           {/* Daily Quests */}
           <DailyQuestsWidget />
 

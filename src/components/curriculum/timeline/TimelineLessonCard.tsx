@@ -89,7 +89,7 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
       ? "bg-card/20 border-white/5 opacity-60 grayscale-[0.5] hover:opacity-80 cursor-not-allowed"
       : "bg-card/40 hover:bg-card/60 border-white/10 hover:border-white/20 hover:scale-[1.01] active:scale-[0.99] shadow-sm hover:shadow-md",
     status === 'active'
-      ? "bg-card/80 border-primary/50 shadow-xl shadow-primary/5 ring-1 ring-primary/20 z-10" // More prominent active state
+      ? "bg-card/80 border-primary/50 shadow-xl shadow-primary/10 ring-2 ring-primary/30 z-10 animate-in zoom-in-95" // Enhanced active state with stronger glow and entry animation
       : status === 'completed'
         ? "border-green-500/20 bg-green-500/5 hover:bg-green-500/10"
         : ""
@@ -112,7 +112,7 @@ export function TimelineLessonCard({ module, lesson, status, index, isFirstActiv
         "left-[2.25rem] -translate-x-1/2 w-3 h-3", // Mobile: Centered on spine
         "sm:left-[3.25rem] sm:-translate-x-1/2 sm:w-4 sm:h-4", // Desktop: Centered on spine
         status === 'completed' ? "bg-green-500 border-green-500 scale-100" :
-        status === 'active' ? "bg-primary border-primary shadow-[0_0_15px_rgba(var(--primary),0.6)] scale-125 ring-4 ring-primary/20" :
+        status === 'active' ? "bg-primary border-primary shadow-[0_0_20px_rgba(var(--primary),0.8)] scale-125 ring-4 ring-primary/30 animate-pulse" : // Stronger glow and pulse for active dot
         "bg-background border-muted-foreground/20 scale-75 group-hover/card:scale-90 group-hover/card:border-muted-foreground/40"
       )} />
 

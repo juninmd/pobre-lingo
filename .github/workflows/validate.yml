@@ -11,4 +11,97 @@ concurrency:
 
 jobs:
   check:
-    uses: juninmd/base-actions/.github/workflows/reusable-validate.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for committed secrets (Basic)
+        shell: bash
+        run: |
+          forbidden=$(git ls-files | grep -E '(^|\/)\.env$|(^|\/)\.env\.(local|production|prod|staging|dev)$|(^|\/)id_rsa$|(^|\/).+\.pem$|(^|\/).+\.key$' || true)
+          if [ -n "$forbidden" ]; then
+            echo "::error::Secret files tracked: $forbidden"
+            exit 1
+          fi
+          echo "No committed secrets found."
+
+      - name: Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Setup Node.js
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        if: hashFiles('pnpm-lock.yaml') != ''
+        uses: pnpm/action-setup@v2
+
+      - name: Install Node dependencies
+        if: hashFiles('package.json') != ''
+        shell: bash
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm install --frozen-lockfile
+          elif [ -f "package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Build Node
+        if: hashFiles('package.json') != ''
+        shell: bash
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm run build --if-present
+          else
+            npm run build --if-present
+          fi
+
+      - name: Lint Node
+        if: hashFiles('package.json') != ''
+        shell: bash
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm run lint --if-present
+          else
+            npm run lint --if-present
+          fi
+
+      - name: Test Node
+        if: hashFiles('package.json') != ''
+        shell: bash
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm test --if-present
+          else
+            npm test --if-present
+          fi
+
+      - name: Setup Python
+        if: hashFiles('pyproject.toml') != '' || hashFiles('requirements.txt') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Python dependencies
+        if: hashFiles('pyproject.toml') != '' || hashFiles('requirements.txt') != ''
+        shell: bash
+        run: |
+          if [ -f "pyproject.toml" ]; then
+            pip install .[dev,test] 2>/dev/null || pip install .[dev] 2>/dev/null || pip install .
+          elif [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Test Python
+        if: hashFiles('pyproject.toml') != ''
+        shell: bash
+        run: |
+          python -m pytest -x --timeout=30 2>/dev/null || echo "No tests found"

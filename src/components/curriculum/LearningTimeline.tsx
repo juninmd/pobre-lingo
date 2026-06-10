@@ -325,7 +325,7 @@ export function LearningTimeline() {
           <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
             <BookOpen className="w-8 h-8" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-foreground [data-theme=pobre-lingo]:text-gold">
             Sua Jornada
           </h1>
           <p className="text-muted-foreground max-w-md mx-auto text-sm md:text-base">

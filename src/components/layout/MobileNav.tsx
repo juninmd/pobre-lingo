@@ -20,7 +20,7 @@ export function MobileNav() {
       style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 0.75rem)' }}
     >
       <div className="mx-3 mb-2 pointer-events-auto">
-        <nav className="flex justify-around items-center h-[4.5rem] px-1.5 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl border border-white/20 dark:border-zinc-700/40 shadow-[0_-2px_16px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_-2px_16px_rgba(0,0,0,0.3),0_8px_32px_rgba(0,0,0,0.4)] rounded-[1.75rem] ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:dark:bg-zinc-900/90">
+        <nav className="flex justify-around items-center h-[4.5rem] px-1.5 bg-background/95 backdrop-blur-2xl border border-border/50 shadow-lg rounded-[1.75rem] ring-1 ring-border/10 relative overflow-hidden supports-[backdrop-filter]:bg-background/90">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.02] to-transparent pointer-events-none" />
           

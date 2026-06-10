@@ -2,14 +2,17 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Learning Timeline', () => {
     test.beforeEach(async ({ page }) => {
+        await page.addInitScript(() => {
+            window.localStorage.setItem('pobrelingo_onboarded', 'true');
+        });
         // Go to home page where the timeline is
         await page.goto('/');
     });
 
     test('should render the timeline structure', async ({ page }) => {
-        // Verify "My Journey" title is present
-        await expect(page.getByRole('heading', { name: 'My Journey' })).toBeVisible();
-        await expect(page.getByText('Keep moving forward, chapter by chapter.')).toBeVisible();
+        // Verify "Sua Jornada" title is present
+        await expect(page.getByRole('heading', { name: 'Sua Jornada' })).toBeVisible();
+        await expect(page.getByText('Complete os capítulos para desbloquear novos conhecimentos e dominar o inglês.')).toBeVisible();
 
         // Verify at least one Unit is visible (e.g. Unit 1)
         await expect(page.getByText('Unidade 1: Primeiros Passos')).toBeVisible();
@@ -38,12 +41,12 @@ test.describe('Learning Timeline', () => {
         if (isMobile) {
             // Verify timeline line has margin adjustments or container width
             // This is more visual, but we can check if elements are stacked
-            const timelineContainer = page.locator('.border-l-2');
+            const timelineContainer = page.locator('.w-px.bg-border').first();
             await expect(timelineContainer).toBeVisible();
 
             // Verify no horizontal scrollbar ideally, but hard to test directly
             // Check if main container has padding
-            await expect(page.locator('.max-w-2xl')).toBeVisible();
+            await expect(page.locator('.max-w-2xl').first()).toBeVisible();
         }
     });
 

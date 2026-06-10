@@ -218,7 +218,7 @@ function NavMenu() {
 }
 
 export default function Layout() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { gems } = useGamification();
   const { userLevel } = useCurriculumProgress();
   const location = useLocation();
@@ -312,9 +312,10 @@ export default function Layout() {
               {/* Theme Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95">
-                    <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95 flex items-center justify-center">
+                    {theme === "light" && <Sun className="h-5 w-5 transition-all text-amber-500" />}
+                    {theme === "dark" && <Moon className="h-5 w-5 transition-all text-blue-400" />}
+                    {theme === "pobre-lingo" && <Sparkles className="h-5 w-5 text-amber-500 animate-pulse transition-all" />}
                     <span className="sr-only">Alternar tema</span>
                   </Button>
                 </DropdownMenuTrigger>

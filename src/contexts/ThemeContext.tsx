@@ -37,7 +37,7 @@ export function ThemeProvider({
 
     if (theme === "pobre-lingo") {
       root.setAttribute("data-theme", "pobre-lingo")
-      root.classList.add("light") // or dark depending on base
+      root.classList.add("dark") // PobreLingo is a dark navy theme
     } else {
       root.removeAttribute("data-theme")
       root.classList.add(theme)

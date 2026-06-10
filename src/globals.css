@@ -218,6 +218,31 @@
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
+
+  /* Elegant themed scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  /* PobreLingo custom premium card effects */
+  [data-theme="pobre-lingo"] .glass-card:hover {
+    border-color: hsla(43, 70%, 50%, 0.35);
+    box-shadow: 0 12px 30px -10px hsla(43, 70%, 50%, 0.18);
+  }
 }
 
 @layer base {

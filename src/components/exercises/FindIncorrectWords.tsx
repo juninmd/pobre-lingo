@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Separator } from '../ui/separator';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
+import { GrammarHintBanner } from '@/components/exercises/GrammarHintBanner';
 
 interface FeedbackDetail {
   status: 'correct_identification' | 'missed_error' | 'wrong_selection';
@@ -26,6 +27,7 @@ export function FindIncorrectWords() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [showExplanations, setShowExplanations] = useState(false);
   const [exercisesCompleted, setExercisesCompleted] = useState(0);
+  const [showHint, setShowHint] = useState(false);
   const { toast } = useToast();
   const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
 
@@ -96,6 +98,9 @@ export function FindIncorrectWords() {
     // Se encontrou todos os erros sem seleções erradas, conta como exercício completo
     if (correctIdentifications === totalErrors && wrongSelections === 0) {
       setExercisesCompleted(prev => prev + 1);
+      setShowHint(false);
+    } else {
+      setShowHint(true);
     }
 
     toast({
@@ -147,6 +152,14 @@ export function FindIncorrectWords() {
           moduleId={moduleId}
           lessonId={lessonId}
           showCompleteButton={exercisesCompleted >= EXERCISES_TO_COMPLETE}
+        />
+      )}
+
+      {/* Grammar hint banner */}
+      {showHint && currentExercise?.grammarRuleIds && (
+        <GrammarHintBanner
+          ruleIds={currentExercise.grammarRuleIds}
+          onDismiss={() => setShowHint(false)}
         />
       )}
 

@@ -30,6 +30,7 @@ const MemoryMatchPage = React.lazy(() => import('./pages/games/MemoryMatchPage')
 const HangmanPage = React.lazy(() => import('./pages/games/HangmanPage'));
 const BubblePopPage = React.lazy(() => import('./pages/games/BubblePopPage'));
 const ConversationPage = React.lazy(() => import('./pages/exercises/conversation/page'));
+const NotebookPage = React.lazy(() => import('./pages/NotebookPage'));
 
 // Loading component
 const PageLoader = () => (
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
       {
         path: 'exercises/conversation',
         element: <Suspense fallback={<PageLoader />}><ConversationPage /></Suspense>,
+      },
+      {
+        path: 'notebook',
+        element: <Suspense fallback={<PageLoader />}><NotebookPage /></Suspense>,
       },
       {
         path: 'rules',

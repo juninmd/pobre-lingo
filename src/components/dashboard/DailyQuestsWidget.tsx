@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle2, Circle, Target, Zap } from 'lucide-react';
+import { CheckCircle2, Circle, Target, Zap, Flame } from 'lucide-react';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
-import { useGamification } from '@/contexts/GamificationContext';
+import { useActivityLog, DAILY_GOAL } from '@/hooks/useActivityLog';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 interface Quest {
@@ -17,21 +17,25 @@ interface Quest {
 
 export function DailyQuestsWidget() {
   const { completedLessons } = useCurriculumProgress();
+  const { todayCount } = useActivityLog();
 
-  // Calculate real daily progress
+  // Re-render when activity changes (todayCount reads localStorage on every call)
+  const [, forceUpdate] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => forceUpdate(n => n + 1), 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  const activityCount = todayCount();
+
   const todaysStats = useMemo(() => {
     const today = new Date();
     const todayLessons = completedLessons.filter(l => {
       if (!l.completedAt) return false;
       return differenceInCalendarDays(today, parseISO(l.completedAt)) === 0;
     });
-
     const xpToday = todayLessons.reduce((acc, lesson) => acc + (lesson.xpEarned || 0), 0);
-
-    return {
-      lessons: todayLessons.length,
-      xp: xpToday
-    };
+    return { lessons: todayLessons.length, xp: xpToday };
   }, [completedLessons]);
 
   const quests: Quest[] = [
@@ -41,7 +45,7 @@ export function DailyQuestsWidget() {
       progress: todaysStats.lessons,
       total: 1,
       reward: 10,
-      completed: todaysStats.lessons >= 1
+      completed: todaysStats.lessons >= 1,
     },
     {
       id: 2,
@@ -49,7 +53,7 @@ export function DailyQuestsWidget() {
       progress: todaysStats.xp,
       total: 50,
       reward: 20,
-      completed: todaysStats.xp >= 50
+      completed: todaysStats.xp >= 50,
     },
     {
       id: 3,
@@ -57,9 +61,12 @@ export function DailyQuestsWidget() {
       progress: todaysStats.lessons,
       total: 3,
       reward: 30,
-      completed: todaysStats.lessons >= 3
-    }
+      completed: todaysStats.lessons >= 3,
+    },
   ];
+
+  const dailyPct = Math.min(Math.round((activityCount / DAILY_GOAL) * 100), 100);
+  const goalReached = activityCount >= DAILY_GOAL;
 
   return (
     <Card className="w-full border-2 shadow-sm bg-card/50 backdrop-blur-sm">
@@ -69,10 +76,35 @@ export function DailyQuestsWidget() {
             <Target className="w-5 h-5 text-red-500" />
             Missões Diárias
           </CardTitle>
-          <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">Reseta à meia-noite</span>
+          <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">
+            Reseta à meia-noite
+          </span>
         </div>
       </CardHeader>
       <CardContent className="space-y-5">
+        {/* Daily goal summary */}
+        <div className={`rounded-xl p-3 flex flex-col gap-2 ${goalReached ? 'bg-green-500/10 border border-green-500/20' : 'bg-primary/5 border border-primary/15'}`}>
+          <div className="flex items-center justify-between text-sm font-semibold">
+            <span className="flex items-center gap-1.5 text-foreground">
+              <Flame className={`w-4 h-4 ${goalReached ? 'text-green-500' : 'text-primary'}`} />
+              Meta do Dia
+            </span>
+            <span className={goalReached ? 'text-green-600 dark:text-green-400' : 'text-primary'}>
+              {activityCount} / {DAILY_GOAL} atividades
+            </span>
+          </div>
+          <Progress
+            value={dailyPct}
+            className="h-2.5"
+          />
+          {goalReached && (
+            <p className="text-xs text-green-600 dark:text-green-400 font-medium text-center">
+              🎉 Meta alcançada! Incrível!
+            </p>
+          )}
+        </div>
+
+        {/* Quest rows */}
         {quests.map((quest) => (
           <div key={quest.id} className="space-y-2">
             <div className="flex items-start justify-between">
@@ -92,16 +124,13 @@ export function DailyQuestsWidget() {
               </div>
             </div>
             <div className="pl-7 relative">
-               <Progress value={Math.min((quest.progress / quest.total) * 100, 100)} className="h-2.5" />
-               <div className="flex justify-between mt-1 text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
-                 <span>{Math.min(quest.progress, quest.total)} / {quest.total}</span>
-               </div>
+              <Progress value={Math.min((quest.progress / quest.total) * 100, 100)} className="h-2.5" />
+              <div className="flex justify-between mt-1 text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
+                <span>{Math.min(quest.progress, quest.total)} / {quest.total}</span>
+              </div>
             </div>
           </div>
         ))}
-        {quests.length === 0 && (
-           <p className="text-sm text-muted-foreground">Nenhuma missão disponível no momento.</p>
-        )}
       </CardContent>
     </Card>
   );

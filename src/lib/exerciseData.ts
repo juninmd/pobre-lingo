@@ -6,6 +6,7 @@ export interface SentenceOrderingExercise {
   translation_pt?: string; // Optional translation
   topic: string; // e.g., "Present Simple"
   difficulty: 'easy' | 'medium' | 'hard';
+  grammarRuleIds?: string[];
 }
 
 export interface CorrectSentenceIdentificationChoice {
@@ -21,6 +22,7 @@ export interface CorrectSentenceIdentificationExercise {
   explanation: string; // Explanation for the correct answer(s)
   topic: string;
   difficulty: 'easy' | 'medium' | 'hard';
+  grammarRuleIds?: string[];
 }
 
 export interface WordToken {
@@ -38,6 +40,7 @@ export interface FindIncorrectWordsExercise {
   tokens: WordToken[];
   topic: string;
   difficulty: 'easy' | 'medium' | 'hard';
+  grammarRuleIds?: string[];
 }
 
 // --- News Comprehension Exercise ---
@@ -96,6 +99,7 @@ export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
     translation_pt: 'O gato está no tapete.',
     topic: 'Prepositions of Place',
     difficulty: 'easy',
+    grammarRuleIds: ['prepositions-place'],
   },
   {
     id: 'so2',
@@ -104,6 +108,7 @@ export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
     translation_pt: 'Ela gosta de café de manhã.',
     topic: 'Present Simple',
     difficulty: 'easy',
+    grammarRuleIds: ['present-simple'],
   },
   {
     id: 'so3',
@@ -112,6 +117,7 @@ export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
     translation_pt: 'Eles foram ao parque ontem.',
     topic: 'Past Simple',
     difficulty: 'medium',
+    grammarRuleIds: ['past-simple'],
   },
   {
     id: 'so4',
@@ -120,6 +126,7 @@ export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
     translation_pt: 'Ele está lendo um livro agora.',
     topic: 'Present Continuous',
     difficulty: 'easy',
+    grammarRuleIds: ['present-continuous'],
   },
   {
     id: 'so5',
@@ -263,6 +270,7 @@ export const correctSentenceIdentificationExercises: CorrectSentenceIdentificati
     explanation: "Na terceira pessoa do singular (he, she, it) no Present Simple, adicionamos 's' ao verbo. 'Plays' é a forma correta.",
     topic: 'Present Simple - 3rd Person',
     difficulty: 'easy',
+    grammarRuleIds: ['present-simple'],
   },
   {
     id: 'csi2',
@@ -275,6 +283,7 @@ export const correctSentenceIdentificationExercises: CorrectSentenceIdentificati
     explanation: "'A' é usado antes de palavras com som de consoante como 'dog'. 'The' pode ser usado se for um cachorro específico já mencionado ou conhecido pelo ouvinte/leitor.",
     topic: 'Articles',
     difficulty: 'medium',
+    grammarRuleIds: ['articles'],
   },
   {
     id: 'csi3',
@@ -287,6 +296,7 @@ export const correctSentenceIdentificationExercises: CorrectSentenceIdentificati
     explanation: "'Went' é a forma irregular do passado do verbo 'to go'. 'Was going' seria Past Continuous, mas o contexto 'last weekend' geralmente pede Past Simple para uma ação concluída.",
     topic: 'Past Simple - Irregular Verbs',
     difficulty: 'medium',
+    grammarRuleIds: ['past-simple'],
   },
   {
     id: 'csi4',
@@ -444,6 +454,7 @@ export const findIncorrectWordsExercises: FindIncorrectWordsExercise[] = [
     ],
     topic: "Email Writing, Spelling",
     difficulty: 'medium',
+    grammarRuleIds: ['present-continuous'],
   },
   {
     id: 'fiw2',
@@ -523,6 +534,7 @@ export const findIncorrectWordsExercises: FindIncorrectWordsExercise[] = [
     ],
     topic: "Verb Tenses",
     difficulty: 'medium',
+    grammarRuleIds: ['past-simple'],
   },
   {
     id: 'fiw4',

@@ -10,6 +10,7 @@ import confetti from 'canvas-confetti';
 import { dictionaryEntries } from '@/lib/dictionaryData';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 const WORDS_TO_WIN = 5;
 
@@ -18,6 +19,7 @@ export default function WordScramblePage() {
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
   const { completeLesson } = useCurriculumProgress();
+  const { logActivity } = useActivityLog();
   const navigate = useNavigate();
 
   const { toast } = useToast();
@@ -95,6 +97,7 @@ export default function WordScramblePage() {
 
   const handleLevelComplete = () => {
       setGameComplete(true);
+      logActivity();
       confetti({
           particleCount: 200,
           spread: 100,

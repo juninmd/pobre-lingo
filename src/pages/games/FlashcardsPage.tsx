@@ -8,6 +8,7 @@ import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { ArrowLeft, Check, X, GraduationCap, PartyPopper } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { triggerConfetti } from '@/lib/confetti';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 export default function FlashcardsPage() {
   const [searchParams] = useSearchParams();
@@ -16,6 +17,7 @@ export default function FlashcardsPage() {
   const { completeLesson } = useCurriculumProgress();
 
   const { addXp, addStreak } = useGamification();
+  const { logActivity } = useActivityLog();
   const [deck, setDeck] = useState<typeof dictionaryEntries>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -59,6 +61,7 @@ export default function FlashcardsPage() {
   const finishGame = (finalKnownCount: number) => {
     setIsFinished(true);
     addStreak();
+    logActivity();
     if (finalKnownCount >= 5) {
       triggerConfetti();
     }

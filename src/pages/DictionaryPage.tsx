@@ -6,8 +6,9 @@ import { Badge } from '@/components/ui/badge';
 import { useState, useMemo, useDeferredValue, useEffect, useRef } from 'react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { PageContainer } from '@/components/common/PageContainer';
-import { BookText, Search, Volume2 } from 'lucide-react';
+import { BookText, Search, Volume2, BookmarkPlus, BookmarkCheck } from 'lucide-react';
 import { tts } from '@/lib/tts';
+import { useVocabularyNotebook } from '@/hooks/useVocabularyNotebook';
 
 const ITEMS_PER_PAGE = 20;
 
@@ -70,6 +71,8 @@ export default function DictionaryPage() {
     };
   }, [visibleCount, filteredEntries.length]);
 
+  const { saveWord, removeWord, isWordSaved } = useVocabularyNotebook();
+
   const speak = (text: string) => {
     tts.speak(text);
   };
@@ -123,9 +126,22 @@ export default function DictionaryPage() {
                       <span className="text-xs sm:text-sm text-muted-foreground">{entry.phonetic_transcription_en}</span>
                     )}
                   </div>
-                  <Badge variant="outline" className="text-primary text-xs flex-shrink-0">
-                    {entry.translation_pt}
-                  </Badge>
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
+                    <button
+                      onClick={() => isWordSaved(entry.id) ? removeWord(entry.id) : saveWord(entry.id)}
+                      className={`p-1.5 -m-1.5 rounded-lg transition-colors active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target ${isWordSaved(entry.id) ? 'text-primary hover:text-primary/80 hover:bg-primary/10' : 'text-muted-foreground hover:text-primary hover:bg-primary/10'}`}
+                      title={isWordSaved(entry.id) ? 'Remover do caderninho' : 'Salvar no caderninho'}
+                      aria-label={isWordSaved(entry.id) ? 'Remover do caderninho' : 'Salvar no caderninho'}
+                    >
+                      {isWordSaved(entry.id)
+                        ? <BookmarkCheck className="h-4 w-4" />
+                        : <BookmarkPlus className="h-4 w-4" />
+                      }
+                    </button>
+                    <Badge variant="outline" className="text-primary text-xs">
+                      {entry.translation_pt}
+                    </Badge>
+                  </div>
                 </div>
               </CardHeader>
               <CardContent>

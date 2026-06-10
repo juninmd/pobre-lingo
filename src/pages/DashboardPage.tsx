@@ -2,6 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { PageContainer } from '@/components/common/PageContainer';
 
 import { DailyQuestsWidget } from '@/components/dashboard/DailyQuestsWidget';
+import { ContinueLearningCard } from '@/components/dashboard/ContinueLearningCard';
+import { SmartReviewWidget } from '@/components/dashboard/SmartReviewWidget';
+import { OnboardingModal } from '@/components/onboarding/OnboardingModal';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -30,8 +33,10 @@ export default function DashboardPage() {
   return (
     <PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto">
       <SEO title="Dashboard" description="Acompanhe seu progresso e continue sua jornada de aprendizado no PobreLingo." />
+      <OnboardingModal />
 
-
+      {/* 1. Continue Learning CTA */}
+      <ContinueLearningCard />
 
       {/* 2. Statistics Summary Cards */}
       <section className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 md:grid-cols-4">
@@ -95,6 +100,9 @@ export default function DashboardPage() {
 
         {/* Right Column: Quests & Tips */}
         <div className="space-y-3 sm:space-y-4 md:space-y-6">
+          {/* Smart Review */}
+          <SmartReviewWidget />
+
           {/* Daily Quests */}
           <DailyQuestsWidget />
 

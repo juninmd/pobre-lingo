@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { curriculumData, Unit, Module, Lesson } from '@/lib/curriculumData';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { getLessonLink } from '@/lib/lessonLink';
 import { cn } from '@/lib/utils';
 import * as LucideIcons from 'lucide-react';
 import {
@@ -21,36 +22,6 @@ const getIcon = (name: string) => {
   const icons = LucideIcons as unknown as Record<string, React.ElementType>;
   return icons[name] || LucideIcons.HelpCircle;
 };
-
-function getLessonLink(module: Module, lesson: Lesson): string {
-  if (lesson.exerciseType) {
-    return `/exercises/${lesson.exerciseType}?module=${module.id}&lesson=${lesson.id}`;
-  }
-  if (lesson.gameType) {
-    return `/games/${lesson.gameType}?module=${module.id}&lesson=${lesson.id}`;
-  }
-  if (lesson.type === 'vocabulary') {
-    return `/vocabulary/${module.id}/${lesson.id}`;
-  }
-  if (lesson.type === 'quiz') {
-    return `/quiz/${module.id}/${lesson.id}`;
-  }
-  if (lesson.type === 'grammar' && lesson.grammarRuleIds?.length) {
-    return `/rules?module=${module.id}&lesson=${lesson.id}&ruleIds=${lesson.grammarRuleIds.join(',')}`;
-  }
-  if (lesson.type === 'reading') {
-    return `/exercises/news-comprehension?module=${module.id}&lesson=${lesson.id}`;
-  }
-  if (lesson.type === 'culture') {
-    // Assuming culture lessons might be reading or simple pages for now
-    return `/rules?module=${module.id}&lesson=${lesson.id}`;
-  }
-  if (lesson.type === 'speaking') {
-     // Assuming speaking goes to conversation or specific speaking tool
-     return `/exercises/conversation?module=${module.id}&lesson=${lesson.id}`;
-  }
-  return `/rules?module=${module.id}&lesson=${lesson.id}`;
-}
 
 // --- Components ---
 

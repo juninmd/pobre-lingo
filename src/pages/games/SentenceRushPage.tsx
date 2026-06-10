@@ -9,6 +9,7 @@ import confetti from 'canvas-confetti';
 import { sentenceOrderingExercises } from '@/lib/exerciseData';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 function shuffleArray<T>(array: T[]): T[] {
   const newArray = [...array];
@@ -24,6 +25,7 @@ export default function SentenceRushPage() {
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
   const { completeLesson } = useCurriculumProgress();
+  const { logActivity } = useActivityLog();
 
   const { toast } = useToast();
   const [timeLeft, setTimeLeft] = useState(60);
@@ -125,6 +127,7 @@ export default function SentenceRushPage() {
   const endGame = (completedAll = false) => {
       setIsPlaying(false);
       setGameOver(true);
+      logActivity();
       if (score > 50 || completedAll) {
           confetti();
           if (moduleId && lessonId) {

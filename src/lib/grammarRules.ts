@@ -897,3 +897,12 @@ export const getRuleById = (ruleId: string): GrammarRule | undefined => {
 export const getCategoryById = (categoryId: string): GrammarCategory | undefined => {
   return grammarCategories.find(c => c.id === categoryId);
 };
+
+export const findRuleCategory = (ruleId: string): string | null => {
+  for (const category of grammarCategories) {
+    if (category.rules.some(r => r.id === ruleId)) {
+      return category.id;
+    }
+  }
+  return null;
+};

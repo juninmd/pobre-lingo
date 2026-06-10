@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
 import { curriculumData, Module, Lesson } from '@/lib/curriculumData';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 // Otimização: Mapa para busca O(1) de módulos
 const moduleMap = new Map(curriculumData.modules.map(m => [m.id, m]));
@@ -39,6 +40,7 @@ export interface UserProgress {
 }
 
 export function useCurriculumProgress() {
+  const { logActivity } = useActivityLog();
   const [completedLessons, setCompletedLessons] = useState<LessonProgress[]>(() => {
     return getLocalStorageItem<LessonProgress[]>(PROGRESS_STORAGE_KEY, []);
   });
@@ -156,6 +158,9 @@ export function useCurriculumProgress() {
 
       // Atualizar Streak
       updateStreak();
+
+      // Log activity for daily goal tracking
+      logActivity();
 
       return updated;
     });

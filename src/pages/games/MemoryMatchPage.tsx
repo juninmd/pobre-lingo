@@ -7,6 +7,7 @@ import { Shuffle, RefreshCw, Trophy, ArrowLeft, ArrowRight } from 'lucide-react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 interface MemoryCard {
   id: string; // unique id for the card instance
@@ -24,6 +25,7 @@ export default function MemoryMatchPage() {
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
   const { completeLesson } = useCurriculumProgress();
+  const { logActivity } = useActivityLog();
   const navigate = useNavigate();
 
   const [cards, setCards] = useState<MemoryCard[]>([]);
@@ -128,6 +130,7 @@ export default function MemoryMatchPage() {
 
   const handleWin = () => {
     setGameWon(true);
+    logActivity();
     confetti({
       particleCount: 150,
       spread: 70,

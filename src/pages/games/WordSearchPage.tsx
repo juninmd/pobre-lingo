@@ -7,6 +7,7 @@ import { Gamepad2, Timer, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { triggerConfetti } from '@/lib/confetti';
+import { useActivityLog } from '@/hooks/useActivityLog';
 import { Pobrelingo } from '@/components/mascot/Pobrelingo';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 
@@ -98,6 +99,7 @@ export default function WordSearchPage() {
   const moduleId = searchParams.get('module');
   const lessonId = searchParams.get('lesson');
   const { completeLesson } = useCurriculumProgress();
+  const { logActivity } = useActivityLog();
 
   const [grid, setGrid] = useState<string[][]>([]);
   const [words, setWords] = useState<string[]>([]); // Original words
@@ -151,6 +153,7 @@ export default function WordSearchPage() {
     if (words.length > 0 && foundWords.size === words.length) {
       setGameWon(true);
       triggerConfetti();
+      logActivity();
       if (moduleId && lessonId) {
         completeLesson(moduleId, lessonId, 100);
       }

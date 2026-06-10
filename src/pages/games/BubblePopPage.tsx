@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
 import { useGamification } from '@/contexts/GamificationContext';
+import { useActivityLog } from '@/hooks/useActivityLog';
 import { LessonCompleteModal } from '@/components/curriculum/LessonCompleteModal';
 import { getWordsByTopic, DictionaryEntry, dictionaryEntries } from '@/lib/dictionaryData';
 import { ArrowLeft, Pause, Play, RefreshCw, Volume2, Sparkles } from 'lucide-react';
@@ -41,6 +42,7 @@ export default function BubblePopPage() {
 
   const { completeLesson } = useCurriculumProgress();
   const { addGem, addXp } = useGamification();
+  const { logActivity } = useActivityLog();
 
   // Find Lesson Data to determine topic
   const moduleData = curriculumData.modules.find(m => m.id === moduleId);
@@ -183,6 +185,7 @@ export default function BubblePopPage() {
 
   const handleWin = () => {
     setGameState('won');
+    logActivity();
     if (moduleId && lessonId) {
         completeLesson(moduleId, lessonId, lessonData?.xpReward || 50);
         addXp(lessonData?.xpReward || 50);

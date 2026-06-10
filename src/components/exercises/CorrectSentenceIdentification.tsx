@@ -14,14 +14,18 @@ import { correctSentenceIdentificationExercises, CorrectSentenceIdentificationEx
 import { useToast } from '@/hooks/use-toast';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
+import { GrammarHintBanner } from '@/components/exercises/GrammarHintBanner';
+import { useWrongAnswers } from '@/hooks/useWrongAnswers';
 
 export function CorrectSentenceIdentification() {
   const [currentExercise, setCurrentExercise] = useState<CorrectSentenceIdentificationExercise | null>(null);
   const [selectedChoices, setSelectedChoices] = useState<string[]>([]); // Store IDs of selected choices
   const [showFeedback, setShowFeedback] = useState(false);
   const [exercisesCompleted, setExercisesCompleted] = useState(0);
+  const [showHint, setShowHint] = useState(false);
   const { toast } = useToast();
   const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
+  const { recordWrong } = useWrongAnswers();
 
   const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
@@ -31,6 +35,7 @@ export function CorrectSentenceIdentification() {
     setCurrentExercise(exercise);
     setSelectedChoices([]);
     setShowFeedback(false);
+    setShowHint(false);
   };
 
   useEffect(() => {
@@ -61,8 +66,18 @@ export function CorrectSentenceIdentification() {
 
     if (isCompletelyCorrect) {
         setExercisesCompleted(prev => prev + 1);
+        setShowHint(false);
         toast({ title: "Correto!", description: "Você identificou a(s) frase(s) correta(s)!", className: "bg-green-500/20 border-green-500 text-green-700" });
     } else {
+        setShowHint(true);
+        if (currentExercise) {
+          recordWrong({
+            id: `sentence-identification-${currentExercise.id}`,
+            exerciseType: 'sentence-identification',
+            question: currentExercise.prompt,
+            correctAnswer: currentExercise.choices.filter(c => c.isCorrect).map(c => c.sentence).join(' | '),
+          });
+        }
         toast({ title: "Incorreto!", description: "Verifique a explicação para entender melhor.", variant: "destructive" });
     }
   };
@@ -77,6 +92,14 @@ export function CorrectSentenceIdentification() {
 
   return (
     <div className="space-y-6">
+      {/* Grammar hint banner */}
+      {showHint && currentExercise?.grammarRuleIds && (
+        <GrammarHintBanner
+          ruleIds={currentExercise.grammarRuleIds}
+          onDismiss={() => setShowHint(false)}
+        />
+      )}
+
       {/* Barra de progresso da lição (se vindo do currículo) */}
       {isFromCurriculum && moduleId && lessonId && (
         <LessonProgressBar

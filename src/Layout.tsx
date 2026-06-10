@@ -18,6 +18,7 @@ import {
   X,
   Gamepad2,
   Coins,
+  BookMarked,
 } from 'lucide-react';
 
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt';
@@ -69,6 +70,7 @@ const navGroups = [
     items: [
       { href: '/rules', label: 'Regras', icon: BookOpen },
       { href: '/dictionary', label: 'Dicionário', icon: BookA },
+      { href: '/notebook', label: 'Caderninho', icon: BookMarked },
     ]
   },
   {

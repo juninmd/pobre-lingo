@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import confetti from 'canvas-confetti';
 import { dictionaryEntries } from '@/lib/dictionaryData';
 import { calculateMultiplier, calculateScore, calculateTimeBonus } from '@/lib/gameLogic';
+import { useActivityLog } from '@/hooks/useActivityLog';
 
 interface Pair {
   id: string;
@@ -20,6 +21,7 @@ interface Pair {
 
 export default function MatchMadnessPage() {
   const { toast } = useToast();
+  const { logActivity } = useActivityLog();
 
   // Game State
   const [level, setLevel] = useState(1);
@@ -92,6 +94,7 @@ export default function MatchMadnessPage() {
   const endGame = React.useCallback(() => {
     setIsPlaying(false);
     setGameOver(true);
+    logActivity();
     toast({
         title: "Fim de Jogo!",
         description: `Pontuação Final: ${score}`,

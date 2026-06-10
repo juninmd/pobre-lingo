@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import confetti from 'canvas-confetti';
 import { useGamification } from '@/contexts/GamificationContext';
 import { useCurriculumProgress } from '@/hooks/useCurriculumProgress';
+import { useActivityLog } from '@/hooks/useActivityLog';
 import { Link, useSearchParams } from 'react-router-dom';
 
 const MAX_LIVES = 6;
@@ -26,6 +27,7 @@ export default function HangmanPage() {
   const { completeLesson } = useCurriculumProgress();
 
   const { addXp, addGem } = useGamification();
+  const { logActivity } = useActivityLog();
   const { toast } = useToast();
   const [currentEntry, setCurrentEntry] = useState(WORD_POOL[0]);
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
@@ -58,6 +60,7 @@ export default function HangmanPage() {
     if (isWin) {
       setStatus('won');
       setStreak((s) => s + 1);
+      logActivity();
       confetti({
         particleCount: 100,
         spread: 70,

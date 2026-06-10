@@ -12,6 +12,8 @@ import { useToast } from '@/hooks/use-toast';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
 import { triggerConfetti } from '@/lib/confetti';
+import { GrammarHintBanner } from '@/components/exercises/GrammarHintBanner';
+import { useWrongAnswers } from '@/hooks/useWrongAnswers';
 
 // Utility to shuffle an array
 function shuffleArray<T>(array: T[]): T[] {
@@ -30,8 +32,10 @@ export function SentenceOrdering() {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showTranslation, setShowTranslation] = useState(false);
   const [exercisesCompleted, setExercisesCompleted] = useState(0);
+  const [showHint, setShowHint] = useState(false);
   const { toast } = useToast();
   const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
+  const { recordWrong } = useWrongAnswers();
 
   const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
@@ -43,6 +47,7 @@ export function SentenceOrdering() {
     setOrderedSentence([]);
     setIsCorrect(null);
     setShowTranslation(false);
+    setShowHint(false);
   };
 
   useEffect(() => {
@@ -83,6 +88,15 @@ export function SentenceOrdering() {
     } else {
       setIsCorrect(false);
       setShowTranslation(false);
+      setShowHint(true);
+      if (currentExercise) {
+        recordWrong({
+          id: `sentence-ordering-${currentExercise.id}`,
+          exerciseType: 'sentence-ordering',
+          question: currentExercise.words.join(' '),
+          correctAnswer: currentExercise.correctSentence,
+        });
+      }
       toast({ title: "Incorreto!", description: "Tente novamente ou veja a resposta.", variant: "destructive" });
     }
   };
@@ -161,6 +175,15 @@ export function SentenceOrdering() {
               </Button>
             ))}
           </div>
+
+          {showHint && isCorrect === false && currentExercise.grammarRuleIds && (
+            <div className="mt-4">
+              <GrammarHintBanner
+                ruleIds={currentExercise.grammarRuleIds}
+                onDismiss={() => setShowHint(false)}
+              />
+            </div>
+          )}
 
           {isCorrect !== null && (
             <Alert className={`mt-4 ${isCorrect ? 'border-green-500 bg-green-500/10' : 'border-red-500 bg-red-500/10'}`}>

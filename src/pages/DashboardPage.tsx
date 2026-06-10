@@ -113,7 +113,7 @@ export default function DashboardPage() {
                 <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                 <span>Dica do Dia</span>
               </CardTitle>
-              <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 text-primary/70 hover:text-primary active:scale-95 transition-transform" onClick={refreshTip}>
+              <Button variant="ghost" size="icon" aria-label="Nova dica" className="h-8 w-8 sm:h-9 sm:w-9 text-primary/70 hover:text-primary active:scale-95 transition-transform" onClick={refreshTip}>
                 <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </Button>
             </CardHeader>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Gamepad2, User, BookOpen, GraduationCap } from 'lucide-react';
+import { Compass, Gamepad2, BookOpen, GraduationCap, BookMarked } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileNav() {
@@ -10,6 +10,7 @@ export function MobileNav() {
     { href: '/', label: 'Jornada', icon: Compass },
     { href: '/arcade', label: 'Jogos', icon: Gamepad2 },
     { href: '/rules', label: 'Regras', icon: BookOpen },
+    { href: '/dictionary', label: 'Dicionário', icon: BookMarked },
     { href: '/proficiency', label: 'Nível', icon: GraduationCap },
   ];
 

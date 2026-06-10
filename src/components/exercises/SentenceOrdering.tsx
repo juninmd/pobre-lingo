@@ -8,6 +8,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CheckCircle, XCircle, Shuffle, RefreshCw, Languages } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { sentenceOrderingExercises, SentenceOrderingExercise } from '@/lib/exerciseData';
+import { useSearchParams } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { LessonProgressBar } from '@/components/curriculum/LessonProgressBar';
 import { useLessonFromUrl } from '@/contexts/ActiveLessonContext';
@@ -34,14 +35,20 @@ export function SentenceOrdering() {
   const [exercisesCompleted, setExercisesCompleted] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const fromRule = searchParams.get('fromRule');
   const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
   const { recordWrong } = useWrongAnswers();
 
   const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
   const loadNewExercise = () => {
-    const randomIndex = Math.floor(Math.random() * sentenceOrderingExercises.length);
-    const exercise = sentenceOrderingExercises[randomIndex];
+    const pool = fromRule
+      ? sentenceOrderingExercises.filter(e => e.grammarRuleIds?.includes(fromRule))
+      : sentenceOrderingExercises;
+    const source = pool.length > 0 ? pool : sentenceOrderingExercises;
+    const randomIndex = Math.floor(Math.random() * source.length);
+    const exercise = source[randomIndex];
     setCurrentExercise(exercise);
     setShuffledWords(shuffleArray(exercise.words));
     setOrderedSentence([]);

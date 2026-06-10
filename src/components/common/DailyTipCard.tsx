@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lightbulb, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,21 +31,22 @@ const tips = [
   }
 ];
 
+const DISMISSED_KEY = 'pobrelingo_tip_dismissed';
+
 export function DailyTipCard() {
-  const [tip] = useState(() => {
-    // Pick a tip based on the day of the year so it's consistent for the day
-    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
-    const tipIndex = dayOfYear % tips.length;
-    return tips[tipIndex];
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  const tip = tips[dayOfYear % tips.length];
+  const tipKey = `tip-${dayOfYear}`;
+  const [isVisible, setIsVisible] = useState(() => {
+    try { return localStorage.getItem(DISMISSED_KEY) !== tipKey; } catch { return true; }
   });
-  const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;
 
   return (
     <Card className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/30 dark:to-yellow-950/20 border-amber-200 dark:border-amber-800 relative overflow-hidden">
       <div className="absolute top-0 right-0 p-2">
-        <Button variant="ghost" size="icon" className="h-6 w-6 text-amber-700/50 hover:text-amber-700" onClick={() => setIsVisible(false)}>
+        <Button variant="ghost" size="icon" aria-label="Fechar dica" className="h-6 w-6 text-amber-700/50 hover:text-amber-700" onClick={() => { try { localStorage.setItem(DISMISSED_KEY, tipKey); } catch {} setIsVisible(false); }}>
           <X className="h-4 w-4" />
         </Button>
       </div>

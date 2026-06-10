@@ -6,11 +6,15 @@ import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { proficiencyQuestions, ProficiencyQuestion } from '@/lib/proficiencyQuestions';
-import { CheckCircle2, AlertCircle, RefreshCw, Trophy, ArrowRight, User } from 'lucide-react';
+import { CheckCircle2, AlertCircle, RefreshCw, Trophy, ArrowRight, User, BadgeCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { AchievementsList } from '@/components/gamification/AchievementsList';
 import { useGamification } from '@/contexts/GamificationContext';
+
+const PROFICIENCY_RESULT_KEY = 'pobrelingo_proficiency_result';
+
+interface SavedResult { level: string; score: number; date: string }
 
 export default function ProficiencyTestPage() {
   const { level: userLevelNum, xp, streak, gems } = useGamification();
@@ -20,6 +24,10 @@ export default function ProficiencyTestPage() {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState('');
+
+  const savedResult: SavedResult | null = (() => {
+    try { return JSON.parse(localStorage.getItem(PROFICIENCY_RESULT_KEY) || 'null'); } catch { return null; }
+  })();
 
   const totalQuestions = proficiencyQuestions.length;
   const currentQuestion = proficiencyQuestions[currentQuestionIndex];
@@ -65,6 +73,10 @@ export default function ProficiencyTestPage() {
     }
     setLevel(userLevel);
     setShowResult(true);
+    try {
+      const result: SavedResult = { level: userLevel, score: correctCount, date: new Date().toISOString().split('T')[0] };
+      localStorage.setItem(PROFICIENCY_RESULT_KEY, JSON.stringify(result));
+    } catch {}
   };
 
   if (!started) {
@@ -80,13 +92,19 @@ export default function ProficiencyTestPage() {
             <div>
               <h2 className="text-2xl font-bold">Aprendiz PobreLingo</h2>
               <p className="text-muted-foreground">Nível {userLevelNum}</p>
-              <div className="flex gap-4 mt-2 text-sm font-medium">
+              <div className="flex flex-wrap gap-3 mt-2 text-sm font-medium">
                 <div className="flex items-center gap-1 text-yellow-600">
                   <Trophy className="w-4 h-4" /> {xp} XP
                 </div>
                 <div className="flex items-center gap-1 text-orange-600">
                   <span className="w-4 h-4 flex items-center justify-center font-bold">🔥</span> {streak} dias
                 </div>
+                {savedResult && (
+                  <div className="flex items-center gap-1 text-green-600">
+                    <BadgeCheck className="w-4 h-4" />
+                    {savedResult.level} ({savedResult.score}/100)
+                  </div>
+                )}
               </div>
             </div>
           </div>

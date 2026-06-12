@@ -13,8 +13,8 @@ import "@radix-ui/react-dialog";
 import "@radix-ui/react-dropdown-menu";
 
 declare module "react" {
-  // Permite bigint como ReactNode (mudança do React 19)
-  interface DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES {
-    bigint: true;
-  }
+	// Permite bigint como ReactNode (mudança do React 19)
+	interface DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES {
+		bigint: true;
+	}
 }

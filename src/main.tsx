@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import LogRocket from 'logrocket';
-import { Router } from './Router';
-import { HelmetProvider } from 'react-helmet-async';
-import './globals.css';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { GamificationProvider } from './contexts/GamificationContext';
+import LogRocket from "logrocket";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import { Router } from "./Router";
+import "./globals.css";
+import { GamificationProvider } from "./contexts/GamificationContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
-LogRocket.init('g2noug/pobre-lingo');
+LogRocket.init("g2noug/pobre-lingo");
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <GamificationProvider>
-        <HelmetProvider>
-          <Router />
-        </HelmetProvider>
-      </GamificationProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+	<React.StrictMode>
+		<ThemeProvider>
+			<GamificationProvider>
+				<HelmetProvider>
+					<Router />
+				</HelmetProvider>
+			</GamificationProvider>
+		</ThemeProvider>
+	</React.StrictMode>,
 );

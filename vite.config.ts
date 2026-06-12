@@ -84,6 +84,30 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('lucide-react')) {
+              return 'lucide';
+            }
+            if (id.includes('react') || id.includes('scheduler')) {
+              return 'react-core';
+            }
+            if (id.includes('recharts') || id.includes('d3')) {
+              return 'recharts';
+            }
+            if (id.includes('firebase')) {
+              return 'firebase';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 800,
+  },
   test: {
     globals: true,
     environment: 'jsdom',

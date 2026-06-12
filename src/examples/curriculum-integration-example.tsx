@@ -1,9 +1,9 @@
 // Exemplo de como integrar o sistema de currículo com exercícios existentes
 // Este arquivo demonstra como marcar lições como completas ao finalizar exercícios
 
-import { useState } from 'react';
-import { LessonCompletionDialog } from '@/components/curriculum/LessonCompletionDialog';
-import { curriculumData } from '@/lib/curriculumData';
+import { useState } from "react";
+import { LessonCompletionDialog } from "@/components/curriculum/LessonCompletionDialog";
+import { curriculumData } from "@/lib/curriculumData";
 
 /**
  * Exemplo de integração em um componente de exercício
@@ -16,69 +16,78 @@ import { curriculumData } from '@/lib/curriculumData';
  */
 
 export function ExerciseExample() {
-  const [showCompletion, setShowCompletion] = useState(false);
-  const [exerciseCompleted, setExerciseCompleted] = useState(false);
+	const [showCompletion, setShowCompletion] = useState(false);
+	const [exerciseCompleted, setExerciseCompleted] = useState(false);
 
-  // Quando o exercício for completado com sucesso
-  const handleExerciseComplete = () => {
-    setExerciseCompleted(true);
+	// Quando o exercício for completado com sucesso
+	const handleExerciseComplete = () => {
+		setExerciseCompleted(true);
 
-    // Encontrar a lição correspondente ao exercício atual
-    // Exemplo para "sentence-ordering"
-    const module = curriculumData.modules.find(m =>
-      m.lessons.some(l => l.exerciseType === 'sentence-ordering')
-    );
+		// Encontrar a lição correspondente ao exercício atual
+		// Exemplo para "sentence-ordering"
+		const module = curriculumData.modules.find((m) =>
+			m.lessons.some((l) => l.exerciseType === "sentence-ordering"),
+		);
 
-    if (module) {
-      const lesson = module.lessons.find(l => l.exerciseType === 'sentence-ordering');
+		if (module) {
+			const lesson = module.lessons.find(
+				(l) => l.exerciseType === "sentence-ordering",
+			);
 
-      if (lesson) {
-        // Mostrar dialog de conclusão
-        setShowCompletion(true);
-      }
-    }
-  };
+			if (lesson) {
+				// Mostrar dialog de conclusão
+				setShowCompletion(true);
+			}
+		}
+	};
 
-  return (
-    <>
-      {/* Seu exercício aqui */}
-      <button onClick={handleExerciseComplete}>
-        Completar Exercício
-      </button>
+	return (
+		<>
+			{/* Seu exercício aqui */}
+			<button onClick={handleExerciseComplete}>Completar Exercício</button>
 
-      {/* Dialog de conclusão */}
-      {showCompletion && (
-        <LessonCompletionDialog
-          open={showCompletion}
-          onClose={() => setShowCompletion(false)}
-          moduleId="foundations" // ID do módulo
-          lessonId="simple-sentences-practice" // ID da lição
-          xpReward={100} // XP da lição
-          lessonTitle="Prática: Frases Simples" // Título da lição
-        />
-      )}
-    </>
-  );
+			{/* Dialog de conclusão */}
+			{showCompletion && (
+				<LessonCompletionDialog
+					open={showCompletion}
+					onClose={() => setShowCompletion(false)}
+					moduleId="foundations" // ID do módulo
+					lessonId="simple-sentences-practice" // ID da lição
+					xpReward={100} // XP da lição
+					lessonTitle="Prática: Frases Simples" // Título da lição
+				/>
+			)}
+		</>
+	);
 }
 
 /**
  * Função auxiliar para encontrar lição por tipo de exercício
  */
 export function findLessonByExerciseType(
-  exerciseType: 'sentence-ordering' | 'sentence-identification' | 'find-incorrect-words' | 'news-comprehension'
-): { moduleId: string; lessonId: string; xpReward: number; lessonTitle: string } | null {
-  for (const module of curriculumData.modules) {
-    const lesson = module.lessons.find(l => l.exerciseType === exerciseType);
-    if (lesson) {
-      return {
-        moduleId: module.id,
-        lessonId: lesson.id,
-        xpReward: lesson.xpReward,
-        lessonTitle: lesson.title_pt,
-      };
-    }
-  }
-  return null;
+	exerciseType:
+		| "sentence-ordering"
+		| "sentence-identification"
+		| "find-incorrect-words"
+		| "news-comprehension",
+): {
+	moduleId: string;
+	lessonId: string;
+	xpReward: number;
+	lessonTitle: string;
+} | null {
+	for (const module of curriculumData.modules) {
+		const lesson = module.lessons.find((l) => l.exerciseType === exerciseType);
+		if (lesson) {
+			return {
+				moduleId: module.id,
+				lessonId: lesson.id,
+				xpReward: lesson.xpReward,
+				lessonTitle: lesson.title_pt,
+			};
+		}
+	}
+	return null;
 }
 
 /**

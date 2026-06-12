@@ -137,7 +137,7 @@ function NavMenu() {
 		<>
 			<SidebarHeader className="p-3 border-b border-sidebar-border/50">
 				<div className="flex items-center gap-3">
-					<div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10">
+					<div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 						<GraduationCap className="h-5 w-5 text-primary" />
 					</div>
 					{!isCollapsed && (
@@ -145,7 +145,7 @@ function NavMenu() {
 							<span className="font-bold text-base text-sidebar-foreground truncate tracking-tight [data-theme=pobre-lingo]:text-gold">
 								PobreLingo
 							</span>
-							<span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider">
+							<span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:font-semibold">
 								Aprenda Grátis
 							</span>
 						</div>
@@ -160,7 +160,7 @@ function NavMenu() {
 							placeholder="Buscar..."
 							value={sidebarSearchTerm}
 							onChange={(e) => setSidebarSearchTerm(e.target.value)}
-							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground rounded-lg"
+							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground rounded-lg focus-visible:ring-1 focus-visible:ring-primary/50 [data-theme=pobre-lingo]:rounded-xl [data-theme=pobre-lingo]:border-primary/20"
 						/>
 						{sidebarSearchTerm && (
 							<button
@@ -180,7 +180,7 @@ function NavMenu() {
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 							{!isCollapsed && (
-								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40">
+								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 [data-theme=pobre-lingo]:text-accent/60 [data-theme=pobre-lingo]:tracking-[0.12em]">
 									{group.title}
 								</h3>
 							)}
@@ -197,7 +197,7 @@ function NavMenu() {
 														isActive={isActive}
 														tooltip={{ children: item.label }}
 														className={cn(
-															"justify-start h-10 transition-all duration-300 rounded-lg group",
+															"justify-start h-10 transition-all duration-300 rounded-lg group [data-theme=pobre-lingo]:sidebar-menu-btn",
 															isActive
 																? "bg-primary/10 text-primary font-bold shadow-sm [data-theme=pobre-lingo]:sidebar-active"
 																: "hover:bg-sidebar-accent/50 text-sidebar-foreground/80 hover:translate-x-1",
@@ -319,7 +319,7 @@ export default function Layout() {
 							</div>
 
 							<div className="lg:hidden flex-shrink-0 flex items-center gap-2">
-								<div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm">
+								<div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 									<GraduationCap className="h-5 w-5 text-primary" />
 								</div>
 								<span className="font-bold text-base tracking-tight [data-theme=pobre-lingo]:text-gold">
@@ -333,7 +333,7 @@ export default function Layout() {
 							/>
 
 							<div className="hidden sm:flex items-center gap-2 min-w-0">
-								<div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10">
+								<div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 									<GraduationCap className="h-4 w-4 text-primary" />
 								</div>
 								<h1 className="font-semibold text-base md:text-lg truncate">

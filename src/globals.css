@@ -80,48 +80,49 @@
 	}
 
 	[data-theme="pobre-lingo"] {
-		--background: 224 71% 4%;
-		/* Deep Slate Navy (#020617) */
-		--foreground: 210 40% 98%;
+		--background: 160 30% 4.5%;
+		/* Pure Deep Emerald-Black */
+		--foreground: 160 10% 98%;
 
-		--card: 222 47% 11%;
-		/* Navy Card */
-		--card-foreground: 210 40% 98%;
+		--card: 160 25% 7.5%;
+		/* Deep Emerald Card background */
+		--card-foreground: 160 10% 98%;
 
-		--popover: 222 47% 11%;
-		--popover-foreground: 210 40% 98%;
+		--popover: 160 25% 7.5%;
+		--popover-foreground: 160 10% 98%;
 
-		--primary: 43 70% 50%;
-		/* Richer Gold (#d97706) */
-		--primary-foreground: 224 71% 4%;
+		--primary: 158 82% 52%;
+		/* Glowing Mint Green (#34d399) */
+		--primary-foreground: 160 30% 4.5%;
 
-		--secondary: 217 33% 13%;
-		--secondary-foreground: 210 40% 98%;
+		--secondary: 160 15% 12%;
+		--secondary-foreground: 160 10% 98%;
 
-		--muted: 217 33% 13%;
-		--muted-foreground: 215 20% 55%;
+		--muted: 160 15% 12%;
+		--muted-foreground: 160 10% 65%;
 
-		--accent: 43 70% 50%;
-		--accent-foreground: 224 71% 4%;
+		--accent: 43 96% 56%;
+		/* Glowing Amber/Saffron Gold (#fbbf24) */
+		--accent-foreground: 160 30% 4.5%;
 
 		--destructive: 0 84% 60%;
 		--destructive-foreground: 0 0% 98%;
 
-		--border: 217 33% 18%;
-		--input: 217 33% 18%;
-		--ring: 43 70% 50%;
+		--border: 160 15% 16%;
+		--input: 160 15% 16%;
+		--ring: 158 82% 52%;
 
-		--sidebar-background: 224 71% 2%;
-		/* Even darker sidebar */
-		--sidebar-foreground: 210 40% 96%;
-		--sidebar-primary: 43 70% 50%;
-		--sidebar-primary-foreground: 224 71% 4%;
-		--sidebar-accent: 217 33% 12%;
-		--sidebar-accent-foreground: 43 70% 50%;
-		--sidebar-border: 217 33% 10%;
-		--sidebar-ring: 43 70% 50%;
+		--sidebar-background: 160 28% 5%;
+		/* Matching Deep Emerald Sidebar */
+		--sidebar-foreground: 160 10% 88%;
+		--sidebar-primary: 158 82% 52%;
+		--sidebar-primary-foreground: 160 30% 4.5%;
+		--sidebar-accent: 160 15% 12%;
+		--sidebar-accent-foreground: 158 82% 52%;
+		--sidebar-border: 160 15% 11%;
+		--sidebar-ring: 158 82% 52%;
 
-		--radius: 1.25rem;
+		--radius: 0.75rem;
 	}
 }
 
@@ -131,21 +132,21 @@
 		background:
 			radial-gradient(
 				circle at 0% 0%,
-				hsla(217, 33%, 15%, 0.8) 0%,
-				transparent 50%
+				hsla(158, 82%, 52%, 0.08) 0%,
+				transparent 40%
 			),
 			radial-gradient(
 				circle at 100% 100%,
-				hsla(43, 70%, 5%, 0.5) 0%,
-				transparent 50%
+				hsla(43, 96%, 56%, 0.05) 0%,
+				transparent 45%
 			),
-			hsl(224, 71%, 4%);
+			hsl(160, 30%, 4.5%);
 		background-attachment: fixed;
 	}
 
 	/* Metallic Text */
 	.text-gold {
-		@apply bg-clip-text text-transparent bg-gradient-to-b from-[#fde68a] via-[#fbbf24] to-[#92400e];
+		@apply bg-clip-text text-transparent bg-gradient-to-r from-[#5debb4] via-[#fbbf24] to-[#caa44b];
 	}
 
 	/* Improved Glassmorphism */
@@ -186,12 +187,42 @@
 	/* Sidebar Active Highlight Metallic Effect */
 	[data-theme="pobre-lingo"] .sidebar-active {
 		background: linear-gradient(
-			to bottom right,
-			hsla(43, 70%, 50%, 0.2),
-			hsla(43, 70%, 50%, 0.05)
+			to right,
+			hsla(158, 82%, 52%, 0.1) 0%,
+			hsla(158, 82%, 52%, 0.02) 100%
 		);
-		border: 1px solid hsla(43, 70%, 50%, 0.3);
-		@apply shadow-lg shadow-primary/10;
+		border-left: 3px solid hsl(158, 82%, 52%);
+		border-top: 1px solid hsla(158, 82%, 52%, 0.12);
+		border-right: 1px solid hsla(158, 82%, 52%, 0.03);
+		border-bottom: 1px solid hsla(158, 82%, 52%, 0.03);
+		@apply shadow-sm shadow-primary/5 rounded-l-none rounded-r-xl;
+	}
+
+	[data-theme="pobre-lingo"] .sidebar-menu-btn {
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+		border: 1px solid transparent;
+		@apply rounded-xl;
+	}
+
+	[data-theme="pobre-lingo"] .sidebar-menu-btn:hover {
+		background: hsla(160, 15% , 12% , 0.5) !important;
+		border-color: hsla(160, 15% , 20% , 0.4) !important;
+		transform: translateX(2px);
+		color: hsl(var(--foreground)) !important;
+	}
+
+	[data-theme="pobre-lingo"] .sidebar-menu-btn.sidebar-active {
+		background: linear-gradient(
+			135deg,
+			hsla(158, 82%, 52%, 0.12) 0%,
+			hsla(43, 96%, 56%, 0.03) 100%
+		) !important;
+		border: 1px solid hsla(158, 82%, 52%, 0.25) !important;
+		border-left: 4px solid hsl(158, 82%, 52%) !important;
+		box-shadow: 0 4px 20px -5px hsla(158, 82%, 52%, 0.15);
+		color: hsl(var(--primary)) !important;
+		font-weight: 700;
+		@apply rounded-l-none rounded-r-xl;
 	}
 
 	.glass-button {
@@ -253,8 +284,32 @@
 
 	/* PobreLingo custom premium card effects */
 	[data-theme="pobre-lingo"] .glass-card:hover {
-		border-color: hsla(43, 70%, 50%, 0.35);
-		box-shadow: 0 12px 30px -10px hsla(43, 70%, 50%, 0.18);
+		border-color: hsla(158, 82%, 52%, 0.35);
+		box-shadow: 0 12px 30px -10px hsla(158, 82%, 52%, 0.18);
+	}
+
+	/* Form shapes and transition refinements for PobreLingo */
+	[data-theme="pobre-lingo"] input,
+	[data-theme="pobre-lingo"] textarea,
+	[data-theme="pobre-lingo"] select {
+		transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+		border-radius: 0.75rem !important;
+	}
+
+	[data-theme="pobre-lingo"] input:focus,
+	[data-theme="pobre-lingo"] textarea:focus,
+	[data-theme="pobre-lingo"] select:focus {
+		border-color: hsl(158, 82%, 52%) !important;
+		box-shadow: 0 0 0 2px hsla(158, 82%, 52%, 0.15) !important;
+	}
+
+	[data-theme="pobre-lingo"] button:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
+		border-radius: 0.75rem !important;
+		transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+	}
+
+	[data-theme="pobre-lingo"] button:active:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
+		transform: scale(0.97) !important;
 	}
 }
 

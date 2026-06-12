@@ -38,14 +38,14 @@ export function MascotGreeting({
 	// Custom styles mapped to each theme
 	const themeStyles = {
 		"pobre-lingo": {
-			card: "bg-gradient-to-br from-slate-950 via-[#1e1b10] to-slate-950 border-amber-500/20 text-foreground",
-			bubble: "bg-slate-950/95 border-amber-500/20 shadow-md",
-			bubbleTail: "bg-slate-950 border-l border-t border-amber-500/20",
+			card: "bg-gradient-to-br from-[#050a07] via-[#09120e] to-[#050a07] border-primary/20 text-foreground",
+			bubble: "bg-[#09120e]/95 border-primary/20 shadow-md",
+			bubbleTail: "bg-[#09120e] border-l border-t border-primary/20",
 			title: "text-gold font-bold",
 			progress:
-				"h-2 bg-amber-950/50 [&>div]:bg-gradient-to-r [&>div]:from-amber-500 [&>div]:to-yellow-400",
-			circleLarge: "bg-amber-500/10",
-			circleSmall: "bg-yellow-500/5",
+				"h-2 bg-primary/20 [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-accent",
+			circleLarge: "bg-primary/10",
+			circleSmall: "bg-accent/5",
 		},
 		dark: {
 			card: "bg-gradient-to-br from-slate-900 via-blue-950/20 to-slate-950 border-blue-500/20 text-foreground",

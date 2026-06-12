@@ -1,13 +1,5 @@
-import {
-	AlertCircle,
-	ArrowRight,
-	BadgeCheck,
-	CheckCircle2,
-	RefreshCw,
-	Trophy,
-	User,
-} from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ArrowRight, BadgeCheck, RefreshCw, Trophy, User } from "lucide-react";
+import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { AchievementsList } from "@/components/gamification/AchievementsList";
 import { Button } from "@/components/ui/button";
@@ -21,12 +13,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useGamification } from "@/contexts/GamificationContext";
-import {
-	ProficiencyQuestion,
-	proficiencyQuestions,
-} from "@/lib/proficiencyQuestions";
+import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
 import { cn } from "@/lib/utils";
 
 const PROFICIENCY_RESULT_KEY = "pobrelingo_proficiency_result";
@@ -38,7 +26,7 @@ interface SavedResult {
 }
 
 export default function ProficiencyTestPage() {
-	const { level: userLevelNum, xp, streak, gems } = useGamification();
+	const { level: userLevelNum, xp, streak } = useGamification();
 	const [started, setStarted] = useState(false);
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -259,7 +247,7 @@ export default function ProficiencyTestPage() {
 						>
 							{currentQuestion.options.map((option, index) => (
 								<div
-									key={index}
+									key={option}
 									className={cn(
 										"flex items-center space-x-2 border rounded-lg p-4 transition-colors hover:bg-accent cursor-pointer",
 										answers[currentQuestion.id] === option

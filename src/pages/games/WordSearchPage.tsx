@@ -1,5 +1,5 @@
-import { ArrowLeft, Gamepad2, RefreshCw, Timer, Trophy } from "lucide-react";
-import React, { useEffect, useMemo, useState } from "react";
+import { Gamepad2, RefreshCw, Timer, Trophy } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -125,7 +125,7 @@ export default function WordSearchPage() {
 	const [gameWon, setGameWon] = useState(false);
 
 	// Initialize Game
-	const startNewGame = () => {
+	const startNewGame = useCallback(() => {
 		// Pick 6 random words
 		const shuffled = [...dictionaryEntries].sort(() => 0.5 - Math.random());
 		const selected = shuffled.slice(0, 6).map((e) => e.word);
@@ -145,11 +145,11 @@ export default function WordSearchPage() {
 		setTimeLeft(120); // 2 minutes
 		setGameOver(false);
 		setGameWon(false);
-	};
+	}, []);
 
 	useEffect(() => {
 		startNewGame();
-	}, []);
+	}, [startNewGame]);
 
 	// Timer
 	useEffect(() => {
@@ -171,7 +171,7 @@ export default function WordSearchPage() {
 				completeLesson(moduleId, lessonId, 100);
 			}
 		}
-	}, [foundWords, words, moduleId, lessonId, completeLesson]);
+	}, [foundWords, words, moduleId, lessonId, completeLesson, logActivity]);
 
 	// Selection Logic
 	const handleCellClick = (r: number, c: number) => {
@@ -280,6 +280,38 @@ export default function WordSearchPage() {
 		return `${mins}:${secs.toString().padStart(2, "0")}`;
 	};
 
+	let rowIndex = 0;
+	const gridRender = grid.map((row) => {
+		const r = rowIndex;
+		rowIndex++;
+		let colIndex = 0;
+		return row.map((cell) => {
+			const c = colIndex;
+			colIndex++;
+			const isFound = isCellFound(r, c);
+			const isSelected = isCellSelected(r, c);
+			return (
+				<button
+					key={`${r}-${c}`}
+					type="button"
+					className={cn(
+						"w-[8.5vw] h-[8.5vw] max-w-[40px] max-h-[40px] sm:w-10 sm:h-10 flex items-center justify-center font-bold text-base sm:text-xl rounded-md cursor-pointer transition-all duration-100 select-none",
+						isFound
+							? "bg-green-500 text-white shadow-inner scale-95"
+							: isSelected
+								? "bg-primary text-primary-foreground scale-105 shadow-lg z-10"
+								: "bg-muted/50 hover:bg-muted text-foreground",
+					)}
+					onMouseDown={() => handleCellClick(r, c)}
+					onMouseEnter={() => handleCellHover(r, c)}
+					onMouseUp={() => selectionStart && handleCellClick(r, c)}
+				>
+					{cell}
+				</button>
+			);
+		});
+	});
+
 	return (
 		<PageContainer className="pb-20">
 			<PageHeader
@@ -335,6 +367,7 @@ export default function WordSearchPage() {
 						</div>
 					)}
 
+					{/* biome-ignore lint/a11y/noStaticElementInteractions: board container mouseLeave handles drag reset */}
 					<div
 						className="grid gap-1"
 						style={{
@@ -342,30 +375,7 @@ export default function WordSearchPage() {
 						}}
 						onMouseLeave={() => setSelectionStart(null)}
 					>
-						{grid.map((row, r) =>
-							row.map((cell, c) => {
-								const isFound = isCellFound(r, c);
-								const isSelected = isCellSelected(r, c);
-								return (
-									<div
-										key={`${r}-${c}`}
-										className={cn(
-											"w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center font-bold text-lg sm:text-xl rounded-md cursor-pointer transition-all duration-100",
-											isFound
-												? "bg-green-500 text-white shadow-inner scale-95"
-												: isSelected
-													? "bg-primary text-primary-foreground scale-105 shadow-lg z-10"
-													: "bg-muted/50 hover:bg-muted text-foreground",
-										)}
-										onMouseDown={() => handleCellClick(r, c)}
-										onMouseEnter={() => handleCellHover(r, c)}
-										onMouseUp={() => selectionStart && handleCellClick(r, c)}
-									>
-										{cell}
-									</div>
-								);
-							}),
-						)}
+						{gridRender}
 					</div>
 				</div>
 

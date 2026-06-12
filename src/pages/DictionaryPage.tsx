@@ -11,7 +11,6 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useVocabularyNotebook } from "@/hooks/useVocabularyNotebook";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 import { tts } from "@/lib/tts";
@@ -119,90 +118,90 @@ export default function DictionaryPage() {
 				</Badge>
 			</div>
 
-			<ScrollArea className="h-[calc(100vh-20rem)] smooth-scroll">
-				<div className="grid gap-3 sm:gap-4 sm:grid-cols-2 pr-2 sm:pr-4">
-					{visibleEntries.map((entry) => (
-						<Card
-							key={entry.id}
-							className="glass-card hover:shadow-lg transition-all active:scale-[0.99] touch-manipulation"
-						>
-							<CardHeader className="pb-2 sm:pb-3">
-								<div className="flex items-start justify-between gap-2">
-									<div className="min-w-0 flex-1">
-										<CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-											<span className="truncate">{entry.word}</span>
-											<button
-												onClick={() => speak(entry.word)}
-												className="text-primary hover:text-primary/80 transition-colors active:scale-95 flex-shrink-0 p-1.5 -m-1.5 rounded-lg hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target"
-												title="Ouvir pronúncia"
-												aria-label="Ouvir pronúncia"
-											>
-												<Volume2 className="h-4 w-4" />
-											</button>
-										</CardTitle>
-										{entry.phonetic_transcription_en && (
-											<span className="text-xs sm:text-sm text-muted-foreground">
-												{entry.phonetic_transcription_en}
-											</span>
-										)}
-									</div>
-									<div className="flex items-center gap-1.5 flex-shrink-0">
+			<div className="grid gap-3 sm:gap-4 sm:grid-cols-2 pr-2 sm:pr-4">
+				{visibleEntries.map((entry) => (
+					<Card
+						key={entry.id}
+						className="glass-card hover:shadow-lg transition-all active:scale-[0.99] touch-manipulation"
+					>
+						<CardHeader className="pb-2 sm:pb-3">
+							<div className="flex items-start justify-between gap-2">
+								<div className="min-w-0 flex-1">
+									<CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+										<span className="truncate">{entry.word}</span>
 										<button
-											onClick={() =>
-												isWordSaved(entry.id)
-													? removeWord(entry.id)
-													: saveWord(entry.id)
-											}
-											className={`p-1.5 -m-1.5 rounded-lg transition-colors active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target ${isWordSaved(entry.id) ? "text-primary hover:text-primary/80 hover:bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-primary/10"}`}
-											title={
-												isWordSaved(entry.id)
-													? "Remover do caderninho"
-													: "Salvar no caderninho"
-											}
-											aria-label={
-												isWordSaved(entry.id)
-													? "Remover do caderninho"
-													: "Salvar no caderninho"
-											}
+											type="button"
+											onClick={() => speak(entry.word)}
+											className="text-primary hover:text-primary/80 transition-colors active:scale-95 flex-shrink-0 p-1.5 -m-1.5 rounded-lg hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target"
+											title="Ouvir pronúncia"
+											aria-label="Ouvir pronúncia"
 										>
-											{isWordSaved(entry.id) ? (
-												<BookmarkCheck className="h-4 w-4" />
-											) : (
-												<BookmarkPlus className="h-4 w-4" />
-											)}
+											<Volume2 className="h-4 w-4" />
 										</button>
-										<Badge variant="outline" className="text-primary text-xs">
-											{entry.translation_pt}
-										</Badge>
-									</div>
+									</CardTitle>
+									{entry.phonetic_transcription_en && (
+										<span className="text-xs sm:text-sm text-muted-foreground">
+											{entry.phonetic_transcription_en}
+										</span>
+									)}
 								</div>
-							</CardHeader>
-							<CardContent>
-								<p className="text-sm text-foreground mb-2 leading-relaxed">
-									{entry.meaning_en}
-								</p>
-								{entry.example_sentence_en && (
-									<div className="bg-muted/50 dark:bg-muted/30 p-2.5 sm:p-3 rounded-lg space-y-1">
-										<p className="text-xs text-foreground italic leading-relaxed">
-											“{entry.example_sentence_en}”
-										</p>
-										{entry.example_sentence_pt && (
-											<p className="text-xs text-muted-foreground leading-relaxed">
-												“{entry.example_sentence_pt}”
-											</p>
+								<div className="flex items-center gap-1.5 flex-shrink-0">
+									<button
+										type="button"
+										onClick={() =>
+											isWordSaved(entry.id)
+												? removeWord(entry.id)
+												: saveWord(entry.id)
+										}
+										className={`p-1.5 -m-1.5 rounded-lg transition-colors active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target ${isWordSaved(entry.id) ? "text-primary hover:text-primary/80 hover:bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-primary/10"}`}
+										title={
+											isWordSaved(entry.id)
+												? "Remover do caderninho"
+												: "Salvar no caderninho"
+										}
+										aria-label={
+											isWordSaved(entry.id)
+												? "Remover do caderninho"
+												: "Salvar no caderninho"
+										}
+									>
+										{isWordSaved(entry.id) ? (
+											<BookmarkCheck className="h-4 w-4" />
+										) : (
+											<BookmarkPlus className="h-4 w-4" />
 										)}
-									</div>
-								)}
-							</CardContent>
-						</Card>
-					))}
+									</button>
+									<Badge variant="outline" className="text-primary text-xs">
+										{entry.translation_pt}
+									</Badge>
+								</div>
+							</div>
+						</CardHeader>
+						<CardContent>
+							<p className="text-sm text-foreground mb-2 leading-relaxed">
+								{entry.meaning_en}
+							</p>
+							{entry.example_sentence_en && (
+								<div className="bg-muted/50 dark:bg-muted/30 p-2.5 sm:p-3 rounded-lg space-y-1">
+									<p className="text-xs text-foreground italic leading-relaxed">
+										“{entry.example_sentence_en}”
+									</p>
+									{entry.example_sentence_pt && (
+										<p className="text-xs text-muted-foreground leading-relaxed">
+											“{entry.example_sentence_pt}”
+										</p>
+									)}
+								</div>
+							)}
+						</CardContent>
+					</Card>
+				))}
 
-					{/* Sentinel for IntersectionObserver */}
-					{visibleCount < filteredEntries.length && (
-						<div ref={observerTarget} className="h-4 w-full col-span-full" />
-					)}
-				</div>
-			</ScrollArea>
+				{/* Sentinel for IntersectionObserver */}
+				{visibleCount < filteredEntries.length && (
+					<div ref={observerTarget} className="h-4 w-full col-span-full" />
+				)}
+			</div>
 		</PageContainer>
 	);
 }

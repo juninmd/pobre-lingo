@@ -289,9 +289,9 @@ export default function Layout() {
 	};
 
 	return (
-		<div className="font-body antialiased min-h-screen bg-background text-foreground">
+		<div className="font-body antialiased h-svh overflow-hidden bg-background text-foreground flex flex-col">
 			<SEO />
-			<SidebarProvider defaultOpen>
+			<SidebarProvider defaultOpen className="h-full overflow-hidden">
 				{/* Sidebar only visible on lg and up */}
 				<Sidebar
 					collapsible="icon"
@@ -302,7 +302,7 @@ export default function Layout() {
 					<NavMenu />
 				</Sidebar>
 
-				<SidebarInset className="flex flex-col min-h-screen">
+				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0">
 					<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 						<div className="flex items-center gap-2 sm:gap-3 min-w-0">
 							<div className="hidden lg:block">
@@ -426,11 +426,11 @@ export default function Layout() {
 						</div>
 					</header>
 
-					<main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">
+					<div className="flex-1 overflow-y-auto bg-muted/5 dark:bg-background smooth-scroll min-h-0">
 						<div className="container mx-auto px-3 pt-4 pb-32 sm:pb-28 lg:pb-8 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
 							<Outlet />
 						</div>
-					</main>
+					</div>
 				</SidebarInset>
 			</SidebarProvider>
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />

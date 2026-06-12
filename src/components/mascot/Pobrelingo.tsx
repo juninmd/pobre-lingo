@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/lib/utils";
 
 interface PobrelingoProps {
@@ -35,6 +34,7 @@ export function Pobrelingo({
 				xmlns="http://www.w3.org/2000/svg"
 				className="w-full h-full"
 			>
+				<title>Pobrelingo Mascote</title>
 				<defs>
 					<linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
 						<stop offset="0%" stopColor={highlightColor} />

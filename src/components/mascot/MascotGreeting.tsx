@@ -1,7 +1,7 @@
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 import { Pobrelingo } from "./Pobrelingo";
 
@@ -17,6 +17,8 @@ export function MascotGreeting({
 	className,
 }: MascotGreetingProps) {
 	const { xp, level } = useGamification();
+	const { theme } = useTheme();
+
 	const greeting =
 		message ||
 		(userName
@@ -33,10 +35,47 @@ export function MascotGreeting({
 		Math.max(0, (xpInCurrentLevel / xpRequiredForNextLevel) * 100),
 	);
 
+	// Custom styles mapped to each theme
+	const themeStyles = {
+		"pobre-lingo": {
+			card: "bg-gradient-to-br from-slate-950 via-[#1e1b10] to-slate-950 border-amber-500/20 text-foreground",
+			bubble: "bg-slate-950/95 border-amber-500/20 shadow-md",
+			bubbleTail: "bg-slate-950 border-l border-t border-amber-500/20",
+			title: "text-gold font-bold",
+			progress:
+				"h-2 bg-amber-950/50 [&>div]:bg-gradient-to-r [&>div]:from-amber-500 [&>div]:to-yellow-400",
+			circleLarge: "bg-amber-500/10",
+			circleSmall: "bg-yellow-500/5",
+		},
+		dark: {
+			card: "bg-gradient-to-br from-slate-900 via-blue-950/20 to-slate-950 border-blue-500/20 text-foreground",
+			bubble: "bg-slate-900/95 border-blue-500/20 shadow-md",
+			bubbleTail: "bg-slate-900 border-l border-t border-blue-500/20",
+			title: "text-blue-400 font-bold",
+			progress:
+				"h-2 bg-blue-900/50 [&>div]:bg-gradient-to-r [&>div]:from-blue-500 [&>div]:to-indigo-400",
+			circleLarge: "bg-blue-500/10",
+			circleSmall: "bg-indigo-500/5",
+		},
+		light: {
+			card: "bg-gradient-to-br from-blue-50/70 via-indigo-50/50 to-blue-100/50 border-blue-200 text-foreground",
+			bubble: "bg-white border-blue-100 shadow-sm",
+			bubbleTail: "bg-white border-l border-t border-blue-100",
+			title: "text-blue-600 font-bold",
+			progress:
+				"h-2 bg-blue-100 [&>div]:bg-gradient-to-r [&>div]:from-blue-600 [&>div]:to-indigo-500",
+			circleLarge: "bg-blue-400/10",
+			circleSmall: "bg-indigo-400/5",
+		},
+	};
+
+	const currentStyles = themeStyles[theme] || themeStyles.light;
+
 	return (
 		<Card
 			className={cn(
-				"bg-gradient-to-r from-green-50 to-emerald-100 border-green-200 dark:from-green-950/40 dark:to-emerald-900/40 dark:border-green-800 overflow-hidden relative",
+				"border overflow-hidden relative",
+				currentStyles.card,
 				className,
 			)}
 		>
@@ -46,8 +85,13 @@ export function MascotGreeting({
 				</div>
 
 				<div className="flex-1">
-					<div className="relative bg-white dark:bg-zinc-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-green-100 dark:border-green-900">
-						<h3 className="text-lg font-bold text-green-800 dark:text-green-300 mb-1">
+					<div
+						className={cn(
+							"relative p-4 rounded-2xl rounded-tl-none shadow-sm border",
+							currentStyles.bubble,
+						)}
+					>
+						<h3 className={cn("text-lg font-bold mb-1", currentStyles.title)}>
 							Vamos lá!
 						</h3>
 						<p className="text-muted-foreground text-sm sm:text-base mb-3">
@@ -64,13 +108,16 @@ export function MascotGreeting({
 							</div>
 							<Progress
 								value={progressPercent}
-								className="h-2 bg-green-200 dark:bg-green-900/50 [&>div]:bg-green-500"
+								className={currentStyles.progress}
 							/>
 						</div>
 
 						{/* Speech bubble tail */}
 						<div
-							className="absolute top-0 -left-2 w-4 h-4 bg-white dark:bg-zinc-800 border-l border-t border-green-100 dark:border-green-900 transform -skew-x-12"
+							className={cn(
+								"absolute top-0 -left-2 w-4 h-4 transform -skew-x-12",
+								currentStyles.bubbleTail,
+							)}
 							style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%)" }}
 						></div>
 					</div>
@@ -78,8 +125,18 @@ export function MascotGreeting({
 			</CardContent>
 
 			{/* Decorative background circles */}
-			<div className="absolute -right-10 -bottom-20 w-40 h-40 bg-green-200/30 rounded-full blur-3xl"></div>
-			<div className="absolute top-10 left-1/3 w-20 h-20 bg-emerald-200/20 rounded-full blur-2xl"></div>
+			<div
+				className={cn(
+					"absolute -right-10 -bottom-20 w-40 h-40 rounded-full blur-3xl",
+					currentStyles.circleLarge,
+				)}
+			></div>
+			<div
+				className={cn(
+					"absolute top-10 left-1/3 w-20 h-20 rounded-full blur-2xl",
+					currentStyles.circleSmall,
+				)}
+			></div>
 		</Card>
 	);
 }

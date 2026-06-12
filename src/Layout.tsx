@@ -8,7 +8,7 @@ import {
 	Gamepad2,
 	GraduationCap,
 	ListChecks,
-	Map,
+	Map as MapIcon,
 	Menu,
 	Moon,
 	Search as SearchIcon,
@@ -17,7 +17,7 @@ import {
 	Sun,
 	X,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
 	GlobalSearch,
@@ -64,7 +64,7 @@ const navGroups = [
 	{
 		title: "Principal",
 		items: [
-			{ href: "/", label: "Minha Jornada", icon: Map },
+			{ href: "/", label: "Minha Jornada", icon: MapIcon },
 			{ href: "/arcade", label: "Arcade", icon: Gamepad2, badge: "Fun" },
 		],
 	},
@@ -164,6 +164,7 @@ function NavMenu() {
 						/>
 						{sidebarSearchTerm && (
 							<button
+								type="button"
 								onClick={() => setSidebarSearchTerm("")}
 								className="absolute right-2 top-1/2 -translate-y-1/2 text-sidebar-foreground/50 hover:text-sidebar-foreground"
 							>
@@ -301,7 +302,7 @@ export default function Layout() {
 					<NavMenu />
 				</Sidebar>
 
-				<SidebarInset className="flex flex-col min-h-screen pb-32 sm:pb-28 lg:pb-0">
+				<SidebarInset className="flex flex-col min-h-screen">
 					<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 						<div className="flex items-center gap-2 sm:gap-3 min-w-0">
 							<div className="hidden lg:block">
@@ -426,7 +427,7 @@ export default function Layout() {
 					</header>
 
 					<main className="flex-1 overflow-auto bg-muted/5 dark:bg-background">
-						<div className="container mx-auto px-3 pt-4 pb-4 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
+						<div className="container mx-auto px-3 pt-4 pb-32 sm:pb-28 lg:pb-8 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
 							<Outlet />
 						</div>
 					</main>

@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles, Volume2, X } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -45,7 +45,7 @@ export function PobrelingoAssistant() {
 	};
 
 	return (
-		<div className="fixed bottom-24 right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none">
+		<div className="fixed bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none">
 			{isOpen && (
 				<Card className="w-80 glass-card border-primary/20 bg-background/95 backdrop-blur-xl shadow-2xl pointer-events-auto animate-in slide-in-from-bottom-5 duration-300">
 					<CardContent className="p-4 relative">

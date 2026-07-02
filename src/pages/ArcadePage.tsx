@@ -8,7 +8,6 @@ import {
 	Trophy,
 	Zap,
 } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +30,8 @@ const games = [
 		color: "text-rose-500",
 		bgColor: "bg-rose-500/10",
 		href: "/games/hangman",
-		difficulty: "Medium",
+		difficulty: "Médio",
+		cefr: "B1/B2",
 		xp: "20 XP / Win",
 	},
 	{
@@ -42,7 +42,8 @@ const games = [
 		color: "text-indigo-500",
 		bgColor: "bg-indigo-500/10",
 		href: "/games/memory-match",
-		difficulty: "Easy",
+		difficulty: "Fácil",
+		cefr: "A1/A2",
 		xp: "150 XP",
 	},
 	{
@@ -54,7 +55,8 @@ const games = [
 		color: "text-pink-500",
 		bgColor: "bg-pink-500/10",
 		href: "/games/word-search",
-		difficulty: "Medium",
+		difficulty: "Médio",
+		cefr: "B1/B2",
 		xp: "100 XP",
 	},
 	{
@@ -66,7 +68,8 @@ const games = [
 		color: "text-green-500",
 		bgColor: "bg-green-500/10",
 		href: "/games/flashcards",
-		difficulty: "Easy",
+		difficulty: "Fácil",
+		cefr: "A1/A2",
 		xp: "10 XP / Card",
 	},
 	{
@@ -78,7 +81,8 @@ const games = [
 		color: "text-orange-500",
 		bgColor: "bg-orange-500/10",
 		href: "/games/speed-match",
-		difficulty: "Hard",
+		difficulty: "Difícil",
+		cefr: "C1/C2",
 		xp: "Max 1000 XP",
 	},
 	{
@@ -89,7 +93,8 @@ const games = [
 		color: "text-purple-500",
 		bgColor: "bg-purple-500/10",
 		href: "/games/word-scramble",
-		difficulty: "Medium",
+		difficulty: "Médio",
+		cefr: "B1/B2",
 		xp: "75 XP",
 	},
 	{
@@ -101,7 +106,8 @@ const games = [
 		color: "text-red-500",
 		bgColor: "bg-red-500/10",
 		href: "/games/sentence-rush",
-		difficulty: "Hard",
+		difficulty: "Difícil",
+		cefr: "C1/C2",
 		xp: "Max 500 XP",
 	},
 	{
@@ -113,7 +119,8 @@ const games = [
 		color: "text-blue-500",
 		bgColor: "bg-blue-500/10",
 		href: "/exercises/listening",
-		difficulty: "Hard",
+		difficulty: "Difícil",
+		cefr: "B1/B2",
 		xp: "100 XP",
 	},
 ];
@@ -155,9 +162,14 @@ export default function ArcadePage() {
 							</CardHeader>
 							<CardContent>
 								<div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
-									<Badge variant="secondary" className="font-normal text-xs">
-										{game.difficulty}
-									</Badge>
+									<div className="flex items-center gap-1.5">
+										<Badge variant="secondary" className="font-normal text-xs">
+											{game.difficulty}
+										</Badge>
+										<Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] font-black">
+											{game.cefr}
+										</Badge>
+									</div>
 									<Badge
 										variant="outline"
 										className="text-yellow-600 dark:text-yellow-500 border-yellow-200 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/30 text-xs font-semibold"

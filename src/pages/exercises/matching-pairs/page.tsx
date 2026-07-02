@@ -1,6 +1,7 @@
 import { ArrowLeft, Heart, RefreshCw, Trophy } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,8 +11,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
 import { useGamification } from "@/contexts/GamificationContext";
 import { triggerConfetti } from "@/lib/confetti";
+import { getCEFRLevel } from "@/lib/curriculumData";
 import {
 	type MatchingPairsExercise,
 	matchingPairsExercises,
@@ -36,7 +39,7 @@ export default function MatchingPairsPage() {
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [isCompleted, setIsCompleted] = useState(false);
 
-	const initializeGame = (ex: MatchingPairsExercise) => {
+	const initializeGame = useCallback((ex: MatchingPairsExercise) => {
 		// Create card items from pairs
 		const newCards: CardState[] = [];
 		ex.pairs.forEach((pair) => {
@@ -61,7 +64,7 @@ export default function MatchingPairsPage() {
 		setSelectedCards([]);
 		setIsCompleted(false);
 		setIsProcessing(false);
-	};
+	}, []);
 
 	useEffect(() => {
 		// Select an exercise (random or specific)
@@ -75,7 +78,7 @@ export default function MatchingPairsPage() {
 			setExercise(currentExercise);
 			initializeGame(currentExercise);
 		}
-	}, [exerciseId]);
+	}, [exerciseId, initializeGame]);
 
 	const handleCardClick = (card: CardState) => {
 		if (isProcessing || card.status === "matched" || card.status === "selected")
@@ -150,6 +153,17 @@ export default function MatchingPairsPage() {
 		triggerConfetti();
 	};
 
+	const { module } = useLessonFromUrl();
+	const cefrLevel = module
+		? getCEFRLevel(module.unitId)
+		: exercise
+			? exercise.difficulty === "easy"
+				? "A1"
+				: exercise.difficulty === "medium"
+					? "B1"
+					: "C1"
+			: undefined;
+
 	if (!exercise) return <div>Carregando...</div>;
 
 	return (
@@ -175,9 +189,10 @@ export default function MatchingPairsPage() {
 
 			<Card className="max-w-2xl mx-auto">
 				<CardHeader>
-					<CardTitle className="flex items-center gap-2">
+					<CardTitle className="flex items-center gap-2 flex-wrap">
 						<Trophy className="h-6 w-6 text-yellow-500" />
-						Par de Palavras: {exercise.topic}
+						<span>Par de Palavras: {exercise.topic}</span>
+						{cefrLevel && <CefrBadge level={cefrLevel} />}
 					</CardTitle>
 					<CardDescription>
 						Combine as palavras em inglês com suas traduções.
@@ -221,6 +236,7 @@ export default function MatchingPairsPage() {
 						<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 							{cards.map((card) => (
 								<button
+									type="button"
 									key={card.id}
 									onClick={() => handleCardClick(card)}
 									disabled={card.status === "matched"}

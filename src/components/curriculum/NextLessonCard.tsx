@@ -12,8 +12,8 @@ import {
 	Trophy,
 	Zap,
 } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +25,12 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { curriculumData, type Lesson, type Module } from "@/lib/curriculumData";
+import {
+	curriculumData,
+	getCEFRLevel,
+	type Lesson,
+	type Module,
+} from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
 
 const lessonTypeConfig = {
@@ -80,13 +85,8 @@ const lessonTypeConfig = {
 };
 
 export function NextLessonCard() {
-	const {
-		isLessonCompleted,
-		isModuleUnlocked,
-		getModuleProgress,
-		totalXP,
-		userLevel,
-	} = useCurriculumProgress();
+	const { isLessonCompleted, isModuleUnlocked, getModuleProgress } =
+		useCurriculumProgress();
 
 	// Encontrar a próxima lição não completada
 	const findNextLesson = (): {
@@ -206,6 +206,7 @@ export function NextLessonCard() {
 					<Badge variant="outline" className={config.color}>
 						{config.label}
 					</Badge>
+					<CefrBadge level={getCEFRLevel(module.unitId)} />
 				</div>
 
 				{/* Progresso do módulo */}

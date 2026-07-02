@@ -6,10 +6,11 @@ import {
 	RefreshCw,
 	Trophy,
 } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
+import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
@@ -29,8 +30,7 @@ export default function DashboardPage() {
 	// Pick a random tip based on the day of the year to be consistent for the day
 	const [currentTip, setCurrentTip] = useState(() => {
 		const dayOfYear = Math.floor(
-			(new Date().getTime() -
-				new Date(new Date().getFullYear(), 0, 0).getTime()) /
+			(Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
 				1000 /
 				60 /
 				60 /
@@ -142,6 +142,8 @@ export default function DashboardPage() {
 				<div className="space-y-3 sm:space-y-4 md:space-y-6">
 					{/* Smart Review */}
 					<SmartReviewWidget />
+
+					<CertificationPlanCard />
 
 					{/* Daily Quests */}
 					<DailyQuestsWidget />

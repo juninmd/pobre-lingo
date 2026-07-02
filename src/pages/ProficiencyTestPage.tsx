@@ -1,7 +1,8 @@
-import { ArrowRight, BadgeCheck, RefreshCw, Trophy, User } from "lucide-react";
+import { BadgeCheck, GraduationCap, Trophy } from "lucide-react";
 import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
-import { AchievementsList } from "@/components/gamification/AchievementsList";
+import { QuestionCard } from "@/components/proficiency/QuestionCard";
+import { ResultCard } from "@/components/proficiency/ResultCard";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -10,208 +11,66 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useGamification } from "@/contexts/GamificationContext";
+import {
+	calculateProficiency,
+	loadProficiencyResult,
+	type ProficiencyResult,
+	saveProficiencyResult,
+} from "@/lib/proficiency";
 import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
-import { cn } from "@/lib/utils";
-
-const PROFICIENCY_RESULT_KEY = "pobrelingo_proficiency_result";
-
-interface SavedResult {
-	level: string;
-	score: number;
-	date: string;
-}
 
 export default function ProficiencyTestPage() {
-	const { level: userLevelNum, xp, streak } = useGamification();
+	const { level: appLevel, xp, streak } = useGamification();
 	const [started, setStarted] = useState(false);
-	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+	const [index, setIndex] = useState(0);
 	const [answers, setAnswers] = useState<Record<number, string>>({});
-	const [showResult, setShowResult] = useState(false);
-	const [score, setScore] = useState(0);
-	const [level, setLevel] = useState("");
+	const [result, setResult] = useState<ProficiencyResult | null>(() =>
+		loadProficiencyResult(),
+	);
+	const question = proficiencyQuestions[index];
 
-	const savedResult: SavedResult | null = (() => {
-		try {
-			return JSON.parse(localStorage.getItem(PROFICIENCY_RESULT_KEY) || "null");
-		} catch {
-			return null;
-		}
-	})();
-
-	const totalQuestions = proficiencyQuestions.length;
-	const currentQuestion = proficiencyQuestions[currentQuestionIndex];
-	const progress = (currentQuestionIndex / totalQuestions) * 100;
-
-	const handleStart = () => {
+	const start = () => {
 		setStarted(true);
-		setCurrentQuestionIndex(0);
+		setIndex(0);
 		setAnswers({});
-		setShowResult(false);
 	};
 
-	const handleAnswer = (value: string) => {
-		setAnswers((prev) => ({
-			...prev,
-			[currentQuestion.id]: value,
-		}));
-	};
-
-	const handleNext = () => {
-		if (currentQuestionIndex < totalQuestions - 1) {
-			setCurrentQuestionIndex((prev) => prev + 1);
-		} else {
-			calculateResult();
+	const next = () => {
+		if (index < proficiencyQuestions.length - 1) {
+			setIndex((current) => current + 1);
+			return;
 		}
+		const calculated = calculateProficiency(answers);
+		setResult(calculated);
+		saveProficiencyResult(calculated);
+		setStarted(false);
 	};
 
-	const calculateResult = () => {
-		let correctCount = 0;
-		proficiencyQuestions.forEach((q) => {
-			if (answers[q.id] === q.correctAnswer) {
-				correctCount++;
-			}
-		});
-		setScore(correctCount);
-
-		// Determine level
-		let userLevel = "Básico";
-		if (correctCount > 70) {
-			userLevel = "Avançado";
-		} else if (correctCount > 30) {
-			userLevel = "Intermediário";
-		}
-		setLevel(userLevel);
-		setShowResult(true);
-		try {
-			const result: SavedResult = {
-				level: userLevel,
-				score: correctCount,
-				date: new Date().toISOString().split("T")[0],
-			};
-			localStorage.setItem(PROFICIENCY_RESULT_KEY, JSON.stringify(result));
-		} catch {}
-	};
-
-	if (!started) {
+	if (result && !started) {
 		return (
 			<PageContainer>
-				<div className="max-w-2xl mx-auto space-y-8">
-					{/* Profile Header */}
-					<div className="flex items-center gap-4 bg-card p-6 rounded-xl border shadow-sm">
-						<div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
-							<User className="w-10 h-10 text-primary" />
-						</div>
-						<div>
-							<h2 className="text-2xl font-bold">Aprendiz PobreLingo</h2>
-							<p className="text-muted-foreground">Nível {userLevelNum}</p>
-							<div className="flex flex-wrap gap-3 mt-2 text-sm font-medium">
-								<div className="flex items-center gap-1 text-yellow-600">
-									<Trophy className="w-4 h-4" /> {xp} XP
-								</div>
-								<div className="flex items-center gap-1 text-orange-600">
-									<span className="w-4 h-4 flex items-center justify-center font-bold">
-										🔥
-									</span>{" "}
-									{streak} dias
-								</div>
-								{savedResult && (
-									<div className="flex items-center gap-1 text-green-600">
-										<BadgeCheck className="w-4 h-4" />
-										{savedResult.level} ({savedResult.score}/100)
-									</div>
-								)}
-							</div>
-						</div>
-					</div>
-
-					<AchievementsList />
-
-					<Card className="text-center p-8">
-						<CardHeader>
-							<div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4">
-								<Trophy className="w-12 h-12 text-primary" />
-							</div>
-							<CardTitle className="text-2xl">Teste de Proficiência</CardTitle>
-						</CardHeader>
-						<CardContent className="space-y-4">
-							<p className="text-muted-foreground">
-								Faça este teste para avaliar seu nível real de inglês (Básico,
-								Intermediário ou Avançado).
-							</p>
-							<div className="flex justify-center gap-8 text-sm font-medium text-muted-foreground">
-								<div className="flex flex-col items-center">
-									<span className="text-foreground text-lg">100</span>
-									<span>Questões</span>
-								</div>
-								<div className="flex flex-col items-center">
-									<span className="text-foreground text-lg">~15min</span>
-									<span>Duração</span>
-								</div>
-							</div>
-						</CardContent>
-						<CardFooter className="justify-center pt-4">
-							<Button
-								size="lg"
-								onClick={handleStart}
-								className="w-full sm:w-auto px-8"
-							>
-								Começar Teste
-							</Button>
-						</CardFooter>
-					</Card>
+				<div className="mx-auto max-w-2xl">
+					<ResultCard result={result} onRestart={start} />
 				</div>
 			</PageContainer>
 		);
 	}
 
-	if (showResult) {
+	if (started) {
 		return (
 			<PageContainer>
-				<div className="max-w-2xl mx-auto space-y-6">
-					<Card className="text-center p-8 border-primary/20 bg-primary/5">
-						<CardHeader>
-							<CardTitle className="text-3xl font-bold text-primary">
-								Seu Nível: {level}
-							</CardTitle>
-						</CardHeader>
-						<CardContent className="space-y-6">
-							<div className="relative pt-4 pb-2">
-								<div className="text-5xl font-bold mb-2">
-									{score}
-									<span className="text-2xl text-muted-foreground">/100</span>
-								</div>
-								<p className="text-muted-foreground">Questões corretas</p>
-							</div>
-
-							<div className="grid grid-cols-1 gap-4 text-left max-w-sm mx-auto bg-background p-4 rounded-lg border">
-								<div className="flex items-center justify-between">
-									<span className="text-sm font-medium">Básico</span>
-									<span className="text-sm text-muted-foreground">0-30</span>
-								</div>
-								<div className="flex items-center justify-between">
-									<span className="text-sm font-medium">Intermediário</span>
-									<span className="text-sm text-muted-foreground">31-70</span>
-								</div>
-								<div className="flex items-center justify-between">
-									<span className="text-sm font-medium">Avançado</span>
-									<span className="text-sm text-muted-foreground">71-100</span>
-								</div>
-							</div>
-						</CardContent>
-						<CardFooter className="justify-center gap-4 pt-4">
-							<Button variant="outline" onClick={handleStart}>
-								<RefreshCw className="mr-2 h-4 w-4" />
-								Refazer Teste
-							</Button>
-							<Button asChild>
-								<a href="/">Ir para o Curso</a>
-							</Button>
-						</CardFooter>
-					</Card>
+				<div className="mx-auto max-w-2xl">
+					<QuestionCard
+						question={question}
+						index={index}
+						total={proficiencyQuestions.length}
+						value={answers[question.id] || ""}
+						onAnswer={(value) =>
+							setAnswers((current) => ({ ...current, [question.id]: value }))
+						}
+						onNext={next}
+					/>
 				</div>
 			</PageContainer>
 		);
@@ -219,64 +78,36 @@ export default function ProficiencyTestPage() {
 
 	return (
 		<PageContainer>
-			<div className="max-w-2xl mx-auto space-y-6">
-				<h1 className="text-2xl font-bold text-center mb-4">
-					Teste de Proficiência
-				</h1>
-				<div className="space-y-2">
-					<div className="flex justify-between text-xs text-muted-foreground uppercase tracking-wider font-semibold">
-						<span>
-							Questão {currentQuestionIndex + 1} de {totalQuestions}
-						</span>
-						<span>{Math.round(progress)}% Concluído</span>
-					</div>
-					<Progress value={progress} className="h-2" />
-				</div>
-
-				<Card className="min-h-[400px] flex flex-col">
-					<CardHeader>
-						<CardTitle className="text-xl leading-relaxed">
-							{currentQuestion.question}
-						</CardTitle>
+			<div className="mx-auto max-w-2xl space-y-6">
+				<Card className="border-primary/20">
+					<CardHeader className="text-center">
+						<div className="mx-auto mb-2 rounded-full bg-primary/10 p-4">
+							<GraduationCap className="h-10 w-10 text-primary" />
+						</div>
+						<CardTitle className="text-2xl">Diagnóstico CEFR</CardTitle>
 					</CardHeader>
-					<CardContent className="flex-1">
-						<RadioGroup
-							value={answers[currentQuestion.id] || ""}
-							onValueChange={handleAnswer}
-							className="space-y-3"
-						>
-							{currentQuestion.options.map((option, index) => (
-								<div
-									key={option}
-									className={cn(
-										"flex items-center space-x-2 border rounded-lg p-4 transition-colors hover:bg-accent cursor-pointer",
-										answers[currentQuestion.id] === option
-											? "border-primary bg-primary/5"
-											: "border-border",
-									)}
-								>
-									<RadioGroupItem value={option} id={`option-${index}`} />
-									<Label
-										htmlFor={`option-${index}`}
-										className="flex-1 cursor-pointer font-normal text-base"
-									>
-										{option}
-									</Label>
-								</div>
-							))}
-						</RadioGroup>
+					<CardContent className="space-y-4 text-center text-sm text-muted-foreground">
+						<p>
+							Descubra seu nível provável A1-C2 e receba um plano diário ligado
+							a IELTS, TOEFL iBT e Cambridge.
+						</p>
+						<div className="flex flex-wrap justify-center gap-3 font-medium">
+							<span className="inline-flex items-center gap-1">
+								<Trophy className="h-4 w-4 text-yellow-600" /> {xp} XP
+							</span>
+							<span>App nível {appLevel}</span>
+							<span>{streak} dias seguidos</span>
+						</div>
+						{result && (
+							<p className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1 text-green-700 dark:text-green-300">
+								<BadgeCheck className="h-4 w-4" /> Último resultado:{" "}
+								{result.level}
+							</p>
+						)}
 					</CardContent>
-					<CardFooter className="border-t p-6 flex justify-end">
-						<Button
-							onClick={handleNext}
-							disabled={!answers[currentQuestion.id]}
-							size="lg"
-							className="w-full sm:w-auto"
-						>
-							{currentQuestionIndex === totalQuestions - 1
-								? "Finalizar"
-								: "Próxima"}
-							<ArrowRight className="ml-2 h-4 w-4" />
+					<CardFooter className="justify-center">
+						<Button size="lg" onClick={start} className="w-full sm:w-auto">
+							Começar diagnóstico
 						</Button>
 					</CardFooter>
 				</Card>

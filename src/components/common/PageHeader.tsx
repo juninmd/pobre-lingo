@@ -1,7 +1,10 @@
 import { ArrowLeft, type LucideIcon } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { Button } from "@/components/ui/button";
+import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
+import { type CEFRLevel, getCEFRLevel } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
@@ -13,6 +16,7 @@ interface PageHeaderProps {
 	className?: string;
 	backLink?: string;
 	backLabel?: string;
+	cefrLevel?: CEFRLevel;
 }
 
 export function PageHeader({
@@ -24,7 +28,12 @@ export function PageHeader({
 	className,
 	backLink,
 	backLabel = "Voltar",
+	cefrLevel,
 }: PageHeaderProps) {
+	const { module } = useLessonFromUrl();
+	const activeCefr =
+		cefrLevel || (module ? getCEFRLevel(module.unitId) : undefined);
+
 	return (
 		<div
 			className={cn(
@@ -59,11 +68,12 @@ export function PageHeader({
 					</Button>
 				)}
 
-				<h1 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+				<h1 className="text-2xl md:text-4xl font-bold mb-2 flex items-center flex-wrap gap-3">
 					{Icon && (
 						<Icon className={cn("h-8 w-8 md:h-10 md:w-10", iconClassName)} />
 					)}
-					{title}
+					<span>{title}</span>
+					{activeCefr && <CefrBadge level={activeCefr} />}
 				</h1>
 				{description && (
 					<p className="text-muted-foreground text-base md:text-lg max-w-2xl">

@@ -11,9 +11,11 @@ import {
 } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import {
 	curriculumData,
+	getCEFRLevel,
 	type Lesson,
 	type Module,
 	type Unit,
@@ -34,7 +36,6 @@ interface LessonCardProps {
 	module: Module;
 	lesson: Lesson;
 	status: "locked" | "active" | "completed";
-	index: number;
 	isFirstActive: boolean;
 }
 
@@ -42,7 +43,6 @@ function LessonCard({
 	module,
 	lesson,
 	status,
-	index,
 	isFirstActive,
 }: LessonCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null);
@@ -110,16 +110,23 @@ function LessonCard({
 			</div>
 
 			{/* Reward / Type Info */}
-			<div className="hidden sm:flex flex-col items-end gap-1 text-xs text-muted-foreground/80">
+			<div className="hidden sm:flex flex-col items-end gap-1.5 text-xs text-muted-foreground/80">
 				<div className="flex items-center gap-1">
 					<Star className="w-3 h-3 text-amber-500 fill-amber-500" />
 					<span className="font-semibold text-amber-600 dark:text-amber-400">
 						+{lesson.xpReward} XP
 					</span>
 				</div>
-				<span className="px-2 py-0.5 rounded-full bg-muted text-[10px] uppercase font-bold tracking-wider opacity-70">
-					{lesson.type}
-				</span>
+				<div className="flex items-center gap-1.5">
+					<span className="px-2 py-0.5 rounded-full bg-muted text-[10px] uppercase font-bold tracking-wider opacity-70">
+						{lesson.type}
+					</span>
+					<CefrBadge
+						level={getCEFRLevel(module.unitId)}
+						showDescriptionOnHover={false}
+						className="px-1 py-0 text-[8px] sm:text-[9px]"
+					/>
+				</div>
 			</div>
 
 			{status !== "locked" && (
@@ -197,9 +204,16 @@ function ModuleSection({
 					<Icon className="w-7 h-7 md:w-8 md:h-8 drop-shadow-md" />
 				</div>
 				<div className="flex flex-col pt-1">
-					<span className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-0.5">
-						Capítulo {module.order}
-					</span>
+					<div className="flex items-center gap-2 mb-0.5">
+						<span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+							Capítulo {module.order}
+						</span>
+						<CefrBadge
+							level={getCEFRLevel(module.unitId)}
+							showDescriptionOnHover={false}
+							className="px-1.5 py-0 text-[8px] sm:text-[9px]"
+						/>
+					</div>
 					<h3 className="text-xl md:text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
 						{module.title_pt}
 					</h3>
@@ -211,7 +225,7 @@ function ModuleSection({
 
 			{/* Lessons List */}
 			<div className="space-y-4">
-				{module.lessons.map((lesson, idx) => {
+				{module.lessons.map((lesson, _idx) => {
 					const isCompleted = completedLessonsSet.has(
 						`${module.id}:${lesson.id}`,
 					);
@@ -249,7 +263,6 @@ function ModuleSection({
 							key={lesson.id}
 							module={module}
 							lesson={lesson}
-							index={idx}
 							status={status}
 							isFirstActive={isFirstActive}
 						/>
@@ -305,10 +318,11 @@ function UnitGroup({
 							{unit.order}
 						</div>
 						<div>
-							<h2 className="text-sm md:text-base font-bold uppercase tracking-wide leading-none">
-								{unit.title}
+							<h2 className="text-sm md:text-base font-bold uppercase tracking-wide leading-none flex items-center gap-2">
+								<span>{unit.title}</span>
+								<CefrBadge level={getCEFRLevel(unit.id)} />
 							</h2>
-							<p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+							<p className="text-xs text-muted-foreground mt-1 line-clamp-1">
 								{unit.description}
 							</p>
 						</div>

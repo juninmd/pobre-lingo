@@ -40,8 +40,11 @@ import {
 	getCurriculumStats,
 	type Lesson,
 	type Module,
+	getCEFRLevel,
+	getModuleCEFRLevel,
 } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
+import { CefrBadge } from "@/components/common/CefrBadge";
 
 const difficultyConfig = {
 	basico: {
@@ -375,6 +378,7 @@ export default function CurriculumPage() {
 												>
 													{diffConfig.label}
 												</Badge>
+												<CefrBadge level={getModuleCEFRLevel(module)} />
 												{isCompleted && (
 													<Badge className="bg-green-500 text-xs">
 														<Trophy className="h-3 w-3 mr-1" />
@@ -496,6 +500,7 @@ export default function CurriculumPage() {
 																>
 																	{config.label}
 																</Badge>
+																<CefrBadge level={getModuleCEFRLevel(module)} showDescriptionOnHover={false} className="px-1.5 py-0 text-[8px] sm:text-[9px]" />
 															</div>
 														</div>
 

@@ -205,8 +205,8 @@
 	}
 
 	[data-theme="pobre-lingo"] .sidebar-menu-btn:hover {
-		background: hsla(160, 15% , 12% , 0.5) !important;
-		border-color: hsla(160, 15% , 20% , 0.4) !important;
+		background: hsla(160, 15%, 12%, 0.5) !important;
+		border-color: hsla(160, 15%, 20%, 0.4) !important;
 		transform: translateX(2px);
 		color: hsl(var(--foreground)) !important;
 	}
@@ -303,12 +303,14 @@
 		box-shadow: 0 0 0 2px hsla(158, 82%, 52%, 0.15) !important;
 	}
 
-	[data-theme="pobre-lingo"] button:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
+	[data-theme="pobre-lingo"]
+		button:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
 		border-radius: 0.75rem !important;
 		transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 	}
 
-	[data-theme="pobre-lingo"] button:active:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
+	[data-theme="pobre-lingo"]
+		button:active:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
 		transform: scale(0.97) !important;
 	}
 }

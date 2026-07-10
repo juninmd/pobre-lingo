@@ -11,11 +11,11 @@ test.describe('SEO Verification', () => {
         await page.goto('/');
         await expect(page).toHaveTitle(/Dashboard | PobreLingo/);
 
-        const description = page.locator('meta[name="description"]');
+        const description = page.locator('meta[name="description"]').last();
         await expect(description).toHaveAttribute('content', /Acompanhe seu progresso/, { timeout: 10000 });
 
         // Open Graph
-        await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', /Dashboard | PobreLingo/);
+        await expect(page.locator('meta[property="og:title"]').last()).toHaveAttribute('content', /Dashboard | PobreLingo/);
     });
 
     test('Curriculum page should have correct title', async ({ page }) => {

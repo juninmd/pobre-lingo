@@ -120,7 +120,10 @@ export function LearningTimeline() {
 				)}
 			</div>
 
-			<div className="relative border-l-2 border-border/50 ml-4 md:ml-10 space-y-12">
+			<div className="relative ml-4 md:ml-10 space-y-12">
+				{/* The robust, wider gradient spine */}
+				<div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary/80 via-primary/40 to-border/20 -ml-[3px] rounded-full" />
+
 				{curriculumData.units.map((unit, unitIndex) => {
 					const modules = curriculumData.modules.filter(
 						(m) => m.unitId === unit.id,
@@ -138,7 +141,7 @@ export function LearningTimeline() {
 							{/* Timeline Dot for Unit */}
 							<div
 								className={cn(
-									"absolute -left-[9px] top-6 w-4 h-4 rounded-full border-4 border-background",
+									"absolute -left-[11px] top-6 w-5 h-5 rounded-full border-4 border-background",
 									isUnitLocked
 										? "bg-muted-foreground/30"
 										: "bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]",
@@ -186,6 +189,8 @@ export function LearningTimeline() {
 										? "#"
 										: getLessonLink(module, targetLesson);
 
+									const isActiveNext = !isLocked && !isCompleted;
+
 									return (
 										<div key={module.id} className="group relative">
 											<Link
@@ -201,6 +206,8 @@ export function LearningTimeline() {
 													isLocked
 														? "bg-muted/50 border-transparent cursor-not-allowed"
 														: "bg-card border-border/50 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1",
+													isActiveNext &&
+														"ring-2 ring-primary/50 ring-offset-2 ring-offset-background",
 												)}
 											>
 												<div className="p-5 flex items-start gap-4">
@@ -262,7 +269,7 @@ export function LearningTimeline() {
 																<Star className="w-5 h-5 text-yellow-500 fill-current" />
 															</div>
 														) : (
-															<div className="bg-primary/10 p-2 rounded-full group-hover:scale-110 transition-transform">
+															<div className="bg-primary/10 p-2 rounded-full group-hover:scale-110 transition-transform animate-pulse shadow-[0_0_15px_rgba(var(--primary),0.3)]">
 																<Play className="w-5 h-5 text-primary fill-current pl-0.5" />
 															</div>
 														)}

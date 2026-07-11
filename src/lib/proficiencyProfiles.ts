@@ -36,7 +36,9 @@ export const proficiencyProfiles: Record<CEFRLevel, LevelProfile> = {
 		cambridge: "B1 Preliminary",
 		focus: "conversas reais, leitura curta e controle de tempos verbais.",
 		dailyPlan: ["1 notícia fácil", "shadowing por 5 min", "1 resposta escrita"],
-		tips: ["Resuma uma notícia em 80 palavras e grave sua opinião em voz alta."],
+		tips: [
+			"Resuma uma notícia em 80 palavras e grave sua opinião em voz alta.",
+		],
 	},
 	B2: {
 		ielts: "5.5-6.5",
@@ -44,7 +46,9 @@ export const proficiencyProfiles: Record<CEFRLevel, LevelProfile> = {
 		cambridge: "B2 First",
 		focus: "argumentação, fluência, phrasal verbs e precisão gramatical.",
 		dailyPlan: ["1 speaking prompt", "20 min input nativo", "corrigir 5 erros"],
-		tips: ["Defenda uma opinião por 2 minutos usando however, although e therefore."],
+		tips: [
+			"Defenda uma opinião por 2 minutos usando however, although e therefore.",
+		],
 	},
 	C1: {
 		ielts: "7.0-8.0",
@@ -59,7 +63,11 @@ export const proficiencyProfiles: Record<CEFRLevel, LevelProfile> = {
 		toefl: "115-120",
 		cambridge: "C2 Proficiency",
 		focus: "precisão quase nativa, estilo, inferência e timing de exame.",
-		dailyPlan: ["1 simulado cronometrado", "reescrever 1 texto", "debater 1 tema"],
+		dailyPlan: [
+			"1 simulado cronometrado",
+			"reescrever 1 texto",
+			"debater 1 tema",
+		],
 		tips: ["Cronometre uma resposta estilo prova e corte palavras vagas."],
 	},
 };

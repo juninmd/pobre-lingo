@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { NextLessonCard } from "@/components/curriculum/NextLessonCard";
@@ -37,14 +38,13 @@ import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import {
 	curriculumData,
 	type DifficultyLevel,
+	getCEFRLevel,
 	getCurriculumStats,
+	getModuleCEFRLevel,
 	type Lesson,
 	type Module,
-	getCEFRLevel,
-	getModuleCEFRLevel,
 } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
-import { CefrBadge } from "@/components/common/CefrBadge";
 
 const difficultyConfig = {
 	basico: {
@@ -500,7 +500,11 @@ export default function CurriculumPage() {
 																>
 																	{config.label}
 																</Badge>
-																<CefrBadge level={getModuleCEFRLevel(module)} showDescriptionOnHover={false} className="px-1.5 py-0 text-[8px] sm:text-[9px]" />
+																<CefrBadge
+																	level={getModuleCEFRLevel(module)}
+																	showDescriptionOnHover={false}
+																	className="px-1.5 py-0 text-[8px] sm:text-[9px]"
+																/>
 															</div>
 														</div>
 

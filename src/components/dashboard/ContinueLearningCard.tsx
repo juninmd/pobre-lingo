@@ -1,5 +1,5 @@
 import * as LucideIcons from "lucide-react";
-import { ArrowRight, Clock, PartyPopper, Star } from "lucide-react";
+import { ArrowRight, Clock, PartyPopper, Play, Star } from "lucide-react";
 import type React from "react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
@@ -63,47 +63,59 @@ export function ContinueLearningCard() {
 	const ModuleIcon = getIcon(module.icon);
 
 	return (
-		<Card className="border-2 border-primary/40 bg-gradient-to-r from-primary/5 via-primary/3 to-transparent shadow-md shadow-primary/10 hover:shadow-lg hover:shadow-primary/15 transition-shadow">
-			<CardContent className="p-4 sm:p-5">
-				<div className="flex items-center gap-4">
-					{/* Module Icon */}
-					<div
-						className={cn(
-							"flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl shrink-0 text-white shadow-md",
-							module.color,
-						)}
-					>
-						<ModuleIcon className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow" />
-					</div>
+		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group">
+			{/* Shimmer effect */}
+			<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
 
-					{/* Content */}
-					<div className="flex-1 min-w-0">
-						<p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground mb-0.5">
-							Continuar — {module.title_pt}
-						</p>
-						<h3 className="text-base sm:text-lg font-bold text-foreground truncate">
-							{lesson.title_pt}
-						</h3>
-						<div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
-							<span className="flex items-center gap-1">
-								<Clock className="w-3 h-3" />
-								{lesson.estimatedMinutes} min
-							</span>
-							<span className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-semibold">
-								<Star className="w-3 h-3 fill-current" />+{lesson.xpReward} XP
-							</span>
+			<CardContent className="p-4 sm:p-5 md:p-6 relative z-10">
+				<div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+					<div className="flex items-center gap-4 flex-1 w-full">
+						{/* Module Icon */}
+						<div
+							className={cn(
+								"flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl shrink-0 text-white shadow-lg ring-4 ring-background",
+								module.color,
+							)}
+						>
+							<ModuleIcon className="w-7 h-7 sm:w-8 sm:h-8 drop-shadow-md" />
+						</div>
+
+						{/* Content */}
+						<div className="flex-1 min-w-0">
+							<div className="flex items-center gap-2 mb-1">
+								<span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
+									A SEGUIR
+								</span>
+								<p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
+									{module.title_pt}
+								</p>
+							</div>
+							<h3 className="text-lg sm:text-xl md:text-2xl font-black text-foreground truncate group-hover:text-primary transition-colors">
+								{lesson.title_pt}
+							</h3>
+							<div className="flex items-center gap-3 mt-1.5 text-xs sm:text-sm font-semibold text-muted-foreground">
+								<span className="flex items-center gap-1.5 bg-background/50 px-2 py-1 rounded-md">
+									<Clock className="w-3.5 h-3.5" />
+									{lesson.estimatedMinutes} min
+								</span>
+								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-1 rounded-md">
+									<Star className="w-3.5 h-3.5 fill-current" />+
+									{lesson.xpReward} XP
+								</span>
+							</div>
 						</div>
 					</div>
 
 					{/* CTA */}
 					<Button
 						asChild
-						size="sm"
-						className="shrink-0 gap-1.5 font-bold shadow-md shadow-primary/20"
+						size="lg"
+						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base shadow-xl shadow-primary/20 group-hover:scale-105 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 rounded-xl"
 					>
 						<Link to={link}>
-							<span className="hidden sm:inline">Continuar</span>
-							<ArrowRight className="w-4 h-4" />
+							<Play className="w-5 h-5 fill-current" />
+							<span>Começar Agora</span>
+							<ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
 						</Link>
 					</Button>
 				</div>

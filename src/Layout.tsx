@@ -349,10 +349,10 @@ export default function Layout() {
 
 						<div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
 							{/* Gamification Stats */}
-							<div className="flex items-center gap-2 sm:gap-3 text-sm font-semibold">
+							<div className="flex items-center gap-4 sm:gap-6 text-sm font-semibold">
 								{/* Level Badge */}
 								<div
-									className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 backdrop-blur-md shadow-sm ring-1 ring-blue-500/10 hover:ring-blue-500/30 transition-all"
+									className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-background/80 backdrop-blur-md shadow-sm border border-border/50 text-foreground font-sans font-medium transition-all"
 									title="Nível"
 								>
 									<GraduationCap className="h-4 w-4" />
@@ -363,7 +363,7 @@ export default function Layout() {
 
 								{/* Gems / PobreCoins */}
 								<div
-									className="flex items-center gap-2 px-3 py-2 rounded-full bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 backdrop-blur-md shadow-sm ring-1 ring-amber-500/10 hover:ring-amber-500/30 transition-all active:scale-95 group cursor-default"
+									className="flex items-center gap-2 px-3 py-2 rounded-full bg-background/80 backdrop-blur-md shadow-sm border border-border/50 text-foreground font-sans font-medium transition-all active:scale-95 group cursor-default"
 									title="PobreCoins"
 								>
 									<Coins className="h-4 w-4 fill-current group-hover:animate-bounce" />

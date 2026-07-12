@@ -113,7 +113,7 @@ export function ContinueLearningCard() {
 						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base shadow-xl shadow-primary/20 group-hover:scale-105 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 rounded-xl"
 					>
 						<Link to={link}>
-							<Play className="w-5 h-5 fill-current" />
+							<Play className="w-5 h-5 fill-current animate-pulse group-hover:animate-none" />
 							<span>Começar Agora</span>
 							<ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
 						</Link>

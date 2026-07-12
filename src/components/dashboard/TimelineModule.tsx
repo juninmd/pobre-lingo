@@ -1,5 +1,5 @@
 import * as LucideIcons from "lucide-react";
-import { Check, Lock, Play, Star } from "lucide-react";
+import { Check, Clock, Lock, Play, Star } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
@@ -183,9 +183,18 @@ export default function TimelineModule({
 									>
 										{lesson.title_pt}
 									</h4>
-									<p className="text-xs text-muted-foreground truncate">
-										{lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1)}
-									</p>
+									<div className="flex items-center gap-2 mt-0.5">
+										<p className="text-xs text-muted-foreground truncate">
+											{lesson.type.charAt(0).toUpperCase() +
+												lesson.type.slice(1)}
+										</p>
+										{lesson.estimatedMinutes && (
+											<span className="flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded-md font-medium">
+												<Clock className="w-3 h-3" />
+												{lesson.estimatedMinutes} min
+											</span>
+										)}
+									</div>
 								</div>
 
 								{/* Action Area */}

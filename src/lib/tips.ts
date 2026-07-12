@@ -1,6 +1,8 @@
 export const TIPS = [
 	// HÁBITOS DE ESTUDO
+	"Microlearning: Pequenas pílulas diárias de 5 a 15 minutos são melhores que horas de estudo no fim de semana.",
 	"Pratique 15 minutos por dia para criar hábito.",
+	"Mantenha a ofensiva: estudar todos os dias ajuda o cérebro a reter a informação.",
 	"Tente pensar em inglês durante tarefas simples, como lavar louça.",
 	"Mude o idioma do seu celular para inglês.",
 	"Faça uma lista de compras em inglês.",
@@ -43,6 +45,7 @@ export const TIPS = [
 	'Para dias da semana, use "ON" (On Monday). Para horas, use "AT" (At 2pm).',
 
 	// CULTURA E DICAS GERAIS
+	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",
 	'Nos EUA e UK, "Please" e "Thank you" são usados o tempo todo.',
 	"Sorrir e fazer contato visual é importante em conversas em inglês.",
 	"Não se preocupe em ter um sotaque perfeito, foque em ser entendido.",

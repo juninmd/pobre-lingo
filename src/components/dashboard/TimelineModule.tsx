@@ -147,7 +147,7 @@ export default function TimelineModule({
 										: isLessonDone
 											? "bg-green-500/5 text-green-600 border-green-500/20 hover:bg-green-500/10"
 											: isFirstActive
-												? "bg-primary/5 hover:bg-primary/10 text-primary border-primary/30 shadow-sm shadow-primary/10 ring-2 ring-primary/30"
+												? "bg-primary/5 hover:bg-primary/10 text-primary border-primary/30 shadow-sm shadow-primary/10 ring-2 ring-primary/50 animate-pulse animate-in zoom-in duration-300"
 												: "bg-background border-border hover:border-primary/30 hover:bg-muted/50",
 								)}
 							>

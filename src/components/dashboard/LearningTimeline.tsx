@@ -45,7 +45,7 @@ export function LearningTimeline() {
 				</p>
 			</div>
 
-			<div className="relative ml-4 md:ml-10 space-y-12">
+			<div className="relative ml-4 md:ml-10 space-y-12 flex flex-col gap-8">
 				{/* The robust, wider gradient spine */}
 				<div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary/80 via-primary/40 to-border/20 -ml-[3px] rounded-full" />
 

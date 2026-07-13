@@ -24,6 +24,12 @@ test.describe('Learning Timeline', () => {
         }
     });
 
+    test('should visually emphasize the active lesson bookmark', async ({ page }) => {
+        // Find the first available lesson which has the animate-pulse class
+        const activeLesson = page.locator('.animate-pulse').first();
+        await expect(activeLesson).toBeVisible();
+    });
+
     test('should navigate directly to lesson when clicking a lesson link', async ({ page }) => {
         // Find a direct lesson link within the new TimelineModule
         // Because of lazy loading, we wait for a lesson link to appear

@@ -3,10 +3,11 @@
 > vite
 
 
-  VITE v8.0.16  ready in 316 ms
+  VITE v8.0.16  ready in 388 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
+8:41:27 AM [vite] (client) [optimizer] bundling dependencies...
 
 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
 
@@ -16,5 +17,5 @@ precache  2 entries (0.12 KiB)
 files generated
   dev-dist/sw.js
   dev-dist/workbox-afac4cd2.js
-3:40:50 PM [vite] (client) page reload playwright-report/index.html
- ELIFECYCLE  Command failed with exit code 143.
+8:41:53 AM [vite] (client) page reload playwright-report/index.html
+8:43:40 AM [vite] (client) page reload playwright-report/index.html

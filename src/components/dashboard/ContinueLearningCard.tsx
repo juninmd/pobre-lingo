@@ -90,7 +90,7 @@ export function ContinueLearningCard() {
 									{module.title_pt}
 								</p>
 							</div>
-							<h3 className="text-lg sm:text-xl md:text-2xl font-black text-foreground truncate group-hover:text-primary transition-colors">
+							<h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-foreground truncate group-hover:text-primary transition-colors">
 								{lesson.title_pt}
 							</h3>
 							<div className="flex items-center gap-3 mt-1.5 text-xs sm:text-sm font-semibold text-muted-foreground">
@@ -109,8 +109,9 @@ export function ContinueLearningCard() {
 					{/* CTA */}
 					<Button
 						asChild
+						variant="gamified"
 						size="lg"
-						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base shadow-xl shadow-primary/20 group-hover:scale-105 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 rounded-xl"
+						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl"
 					>
 						<Link to={link}>
 							<Play className="w-5 h-5 fill-current animate-pulse group-hover:animate-none" />

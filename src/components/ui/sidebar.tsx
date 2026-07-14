@@ -545,6 +545,7 @@ const sidebarMenuButtonVariants = cva(
 				secondary: "", // Adicionado para compatibilidade de tipo
 				ghost: "", // Adicionado para compatibilidade de tipo
 				link: "", // Adicionado para compatibilidade de tipo
+				gamified: "", // Adicionado para compatibilidade de tipo
 			},
 			size: {
 				default: "h-8 text-sm",

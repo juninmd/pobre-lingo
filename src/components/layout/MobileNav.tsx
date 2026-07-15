@@ -26,7 +26,10 @@ export function MobileNav() {
 			style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0.75rem)" }}
 		>
 			<div className="mx-3 mb-2 pointer-events-auto">
-				<nav className="flex justify-around items-center h-[4.5rem] px-1.5 bg-background/95 backdrop-blur-2xl border border-border/50 shadow-lg rounded-[1.75rem] ring-1 ring-border/10 relative overflow-hidden supports-[backdrop-filter]:bg-background/90">
+				<nav
+					aria-label="Navegação principal móvel"
+					className="flex justify-around items-center h-[4.5rem] px-1.5 bg-background/95 backdrop-blur-2xl border border-border/50 shadow-lg rounded-[1.75rem] ring-1 ring-border/10 relative overflow-hidden supports-[backdrop-filter]:bg-background/90"
+				>
 					{/* Subtle gradient overlay */}
 					<div className="absolute inset-0 bg-gradient-to-t from-primary/[0.02] to-transparent pointer-events-none" />
 
@@ -39,6 +42,7 @@ export function MobileNav() {
 							<Link
 								key={item.href}
 								to={item.href}
+								aria-current={isActive ? "page" : undefined}
 								className={cn(
 									"relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 touch-manipulation select-none group active:scale-95",
 									isActive

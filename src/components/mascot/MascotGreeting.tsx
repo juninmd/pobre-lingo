@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Pobrelingo } from "./Pobrelingo";
 
@@ -16,8 +17,9 @@ export function MascotGreeting({
 	userName,
 	className,
 }: MascotGreetingProps) {
-	const { xp, level } = useGamification();
+	const { xp, level, addXp } = useGamification();
 	const { theme } = useTheme();
+	const { toast } = useToast();
 
 	const greeting =
 		message ||
@@ -80,7 +82,16 @@ export function MascotGreeting({
 			)}
 		>
 			<CardContent className="p-6 flex items-center gap-6 relative z-10">
-				<div className="flex-shrink-0 animate-bounce-slow">
+				<div
+					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+					onClick={() => {
+						addXp(5);
+						toast({
+							title: "Bônus Diário!",
+							description: "PobreLingo está animado para aprender com você hoje! +5 XP",
+						});
+					}}
+				>
 					<Pobrelingo width={120} height={120} emotion="excited" />
 				</div>
 

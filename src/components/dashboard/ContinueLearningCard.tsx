@@ -111,10 +111,13 @@ export function ContinueLearningCard() {
 						asChild
 						variant="gamified"
 						size="lg"
-						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl"
+						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn"
 					>
-						<Link to={link}>
-							<Play className="w-5 h-5 fill-current animate-pulse group-hover:animate-none" />
+						<Link
+							to={link}
+							aria-label={`Continuar aprendendo: ${lesson.title_pt}`}
+						>
+							<Play className="w-5 h-5 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
 							<span>Começar Agora</span>
 							<ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
 						</Link>

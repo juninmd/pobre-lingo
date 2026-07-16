@@ -14,7 +14,7 @@ test.describe('Learning Timeline', () => {
         await expect(page.getByRole('heading', { name: 'My Journey' }).or(page.getByRole('heading', { name: 'Sua Jornada' }))).toBeVisible();
 
         // Verify at least one Unit title is visible (e.g. Unit 1)
-        await expect(page.getByText('Unidade 1: Primeiros Passos')).toBeVisible();
+        await expect(page.getByText('Capítulo 1: Primeiros Passos')).toBeVisible();
     });
 
     test('should adapt to mobile layout', async ({ page, isMobile }) => {

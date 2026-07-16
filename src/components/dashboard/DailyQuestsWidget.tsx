@@ -1,3 +1,4 @@
+import confetti from "canvas-confetti";
 import { differenceInCalendarDays, parseISO } from "date-fns";
 import { CheckCircle2, Circle, Flame, Target, Zap } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
@@ -73,6 +74,23 @@ export function DailyQuestsWidget() {
 		100,
 	);
 	const goalReached = activityCount >= DAILY_GOAL;
+
+	// Trigger confetti when goal is reached for the first time
+	useEffect(() => {
+		if (goalReached) {
+			const hasCelebrated = localStorage.getItem("daily_goal_celebrated_today");
+			const todayStr = new Date().toISOString().split("T")[0];
+
+			if (hasCelebrated !== todayStr) {
+				confetti({
+					particleCount: 100,
+					spread: 70,
+					origin: { y: 0.6 }
+				});
+				localStorage.setItem("daily_goal_celebrated_today", todayStr);
+			}
+		}
+	}, [goalReached]);
 
 	return (
 		<Card className="w-full border-2 shadow-sm bg-card/50 backdrop-blur-sm">

@@ -88,7 +88,8 @@ export function MascotGreeting({
 						addXp(5);
 						toast({
 							title: "Bônus Diário!",
-							description: "PobreLingo está animado para aprender com você hoje! +5 XP",
+							description:
+								"PobreLingo está animado para aprender com você hoje! +5 XP",
 						});
 					}}
 				>

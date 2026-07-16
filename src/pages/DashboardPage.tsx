@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
 
 export default function DashboardPage() {
 	const { overallProgress } = useCurriculumProgress();
-	const { gems } = useGamification();
+	const { gems, addGem } = useGamification();
 
 	// Pick a random tip based on the day of the year to be consistent for the day
 	const [currentTip, setCurrentTip] = useState(() => {
@@ -39,9 +39,23 @@ export default function DashboardPage() {
 		return TIPS[dayOfYear % TIPS.length];
 	});
 
+	const [claimedTipReward, setClaimedTipReward] = useState(() => {
+		const todayStr = new Date().toISOString().split("T")[0];
+		return localStorage.getItem("daily_tip_reward_claimed") === todayStr;
+	});
+
 	const refreshTip = () => {
 		const randomTip = TIPS[Math.floor(Math.random() * TIPS.length)];
 		setCurrentTip(randomTip);
+	};
+
+	const claimTipReward = () => {
+		if (!claimedTipReward) {
+			addGem(5);
+			setClaimedTipReward(true);
+			const todayStr = new Date().toISOString().split("T")[0];
+			localStorage.setItem("daily_tip_reward_claimed", todayStr);
+		}
 	};
 
 	return (
@@ -167,13 +181,28 @@ export default function DashboardPage() {
 								<RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
 							</Button>
 						</CardHeader>
-						<CardContent className="pt-0">
+						<CardContent className="pt-0 space-y-4">
 							<p
 								className="text-xs sm:text-sm italic text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-right-4 duration-300"
 								key={currentTip}
 							>
 								"{currentTip}"
 							</p>
+							<Button
+								variant={claimedTipReward ? "secondary" : "gamified"}
+								size="sm"
+								className="w-full text-xs font-bold shadow-sm"
+								disabled={claimedTipReward}
+								onClick={claimTipReward}
+							>
+								{claimedTipReward ? (
+									<>Resgatado!</>
+								) : (
+									<span className="flex items-center gap-1.5">
+										Entendi! (+5 <Coins className="w-3.5 h-3.5" />)
+									</span>
+								)}
+							</Button>
 						</CardContent>
 					</Card>
 				</div>

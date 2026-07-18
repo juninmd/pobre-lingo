@@ -1,5 +1,4 @@
 import { CheckCircle2, Trophy } from "lucide-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,7 @@ interface QuizViewProps {
 }
 
 export function QuizView({ lesson, onComplete, isCompleted }: QuizViewProps) {
-	const navigate = useNavigate();
+	const _navigate = useNavigate();
 
 	return (
 		<div className="max-w-2xl mx-auto text-center space-y-8 py-10">

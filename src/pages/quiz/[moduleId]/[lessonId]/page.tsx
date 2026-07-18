@@ -1,5 +1,5 @@
 import { ArrowLeft, CheckCircle2, Star, Trophy, XCircle } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
@@ -677,7 +677,7 @@ export default function QuizLessonPage() {
 					<CardContent>
 						<RadioGroup
 							value={selectedAnswers[currentQuestion]?.toString()}
-							onValueChange={(value) => handleSelectAnswer(parseInt(value))}
+							onValueChange={(value) => handleSelectAnswer(parseInt(value, 10))}
 						>
 							<div className="space-y-3">
 								{currentQ.options.map((option, idx) => (

@@ -7,7 +7,7 @@ import {
 	User,
 	Volume2,
 } from "lucide-react";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
@@ -71,7 +71,7 @@ export default function ConversationExercise() {
 	}, [lessonId, moduleId]);
 
 	const steps = useMemo(() => {
-		return SCENARIOS[scenarioKey] || SCENARIOS["default"];
+		return SCENARIOS[scenarioKey] || SCENARIOS.default;
 	}, [scenarioKey]);
 
 	const currentStep = steps[currentStepIndex];
@@ -107,12 +107,12 @@ export default function ConversationExercise() {
 			}, 800);
 			return () => clearTimeout(timer);
 		}
-	}, [currentStepIndex, scenarioKey]); // Only trigger on step or scenario change
+	}, [speak, currentStep.id, currentStep]); // Only trigger on step or scenario change
 
 	// Auto-scroll
 	useEffect(() => {
 		chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, [history, typing]);
+	}, []);
 
 	const handleOptionSelect = (option: ConversationOption) => {
 		if (typing) return; // Prevent clicking while mascot is "typing"

@@ -118,7 +118,7 @@ export default function MatchMadnessPage() {
 			description: `Pontuação Final: ${score}`,
 			variant: "destructive",
 		});
-	}, [score, toast]);
+	}, [score, toast, logActivity]);
 
 	// Timer Effect
 	useEffect(() => {

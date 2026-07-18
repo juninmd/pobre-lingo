@@ -6,7 +6,7 @@ import {
 	Shuffle,
 	Trophy,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ export default function MemoryMatchPage() {
 
 	const [cards, setCards] = useState<MemoryCard[]>([]);
 	const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
-	const [matches, setMatches] = useState(0);
+	const [_matches, setMatches] = useState(0);
 	const [moves, setMoves] = useState(0);
 	const [gameWon, setGameWon] = useState(false);
 
@@ -82,7 +82,7 @@ export default function MemoryMatchPage() {
 
 	useEffect(() => {
 		startNewGame();
-	}, []);
+	}, [startNewGame]);
 
 	const handleCardClick = (index: number) => {
 		// Prevent clicking if game won, card already flipped/matched, or 2 cards already flipped

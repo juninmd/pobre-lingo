@@ -1,8 +1,6 @@
 import {
 	AlertTriangle,
 	ArrowLeft,
-	ArrowRight,
-	BookMarked,
 	BookOpen,
 	CheckCircle2,
 	ChevronLeft,
@@ -20,15 +18,8 @@ import { PageContainer } from "@/components/common/PageContainer";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";

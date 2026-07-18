@@ -1,5 +1,5 @@
 import { AlertCircle, CheckCircle2, Volume2 } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LessonCompleteModal } from "@/components/curriculum/LessonCompleteModal";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";

@@ -1,6 +1,6 @@
 import confetti from "canvas-confetti";
-import { ArrowRight, Play, RefreshCw, Timer, Trophy, Zap } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { Play, RefreshCw, Timer, Trophy, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
@@ -163,7 +163,7 @@ export default function SentenceRushPage() {
 		} else if (timeLeft === 0 && isPlaying) {
 			endGame();
 		}
-	}, [isPlaying, timeLeft]);
+	}, [isPlaying, timeLeft, endGame]);
 
 	return (
 		<PageContainer>

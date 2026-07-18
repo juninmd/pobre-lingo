@@ -17,7 +17,7 @@ import { curriculumData } from "@/lib/curriculumData";
 
 export function ExerciseExample() {
 	const [showCompletion, setShowCompletion] = useState(false);
-	const [exerciseCompleted, setExerciseCompleted] = useState(false);
+	const [_exerciseCompleted, setExerciseCompleted] = useState(false);
 
 	// Quando o exercício for completado com sucesso
 	const handleExerciseComplete = () => {

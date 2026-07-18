@@ -1,6 +1,6 @@
 import confetti from "canvas-confetti";
 import { AlertCircle, Heart, HelpCircle, RefreshCw } from "lucide-react";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Badge } from "@/components/ui/badge";
@@ -87,7 +87,18 @@ export default function HangmanPage() {
 				variant: "destructive",
 			});
 		}
-	}, [guessedLetters, lives, currentEntry, status, addXp, toast]);
+	}, [
+		guessedLetters,
+		lives,
+		currentEntry,
+		status,
+		addXp,
+		toast,
+		moduleId,
+		logActivity,
+		lessonId,
+		completeLesson,
+	]);
 
 	const handleGuess = (letter: string) => {
 		if (status !== "playing" || guessedLetters.has(letter)) return;
@@ -198,7 +209,7 @@ export default function HangmanPage() {
 							const isGuessed = guessedLetters.has(letter);
 							const isInWord = currentEntry.word.toUpperCase().includes(letter);
 
-							const variant = "outline";
+							const _variant = "outline";
 							let className =
 								"w-10 h-12 font-bold text-lg transition-all active:scale-95";
 

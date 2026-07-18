@@ -1,5 +1,4 @@
 import { Check, Trophy } from "lucide-react";
-import React from "react";
 import { CefrBadge } from "@/components/common/CefrBadge";
 import type { Module, Unit } from "@/lib/curriculumData";
 import { getCEFRLevel } from "@/lib/curriculumData";

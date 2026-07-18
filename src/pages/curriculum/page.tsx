@@ -7,7 +7,6 @@ import {
 	Clock,
 	Flame,
 	GraduationCap,
-	Lock,
 	Mic,
 	Play,
 	Sparkles,
@@ -38,7 +37,6 @@ import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import {
 	curriculumData,
 	type DifficultyLevel,
-	getCEFRLevel,
 	getCurriculumStats,
 	getModuleCEFRLevel,
 	type Lesson,
@@ -178,7 +176,7 @@ export default function CurriculumPage() {
 				break;
 			}
 		}
-	}, []);
+	}, [getModuleProgress]);
 
 	return (
 		<PageContainer>
@@ -309,7 +307,7 @@ export default function CurriculumPage() {
 				{filteredModules.map((module, moduleIndex) => {
 					const progress = getModuleProgress(module.id);
 					// Unlock everything by default for interaction, but keep visual logic clean
-					const isUnlocked = true;
+					const _isUnlocked = true;
 					const isCompleted = progress.completionPercentage === 100;
 					const isInProgress =
 						progress.completionPercentage > 0 && !isCompleted;

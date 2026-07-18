@@ -29,7 +29,7 @@ const CategoryPage = React.lazy(
 const RulePage = React.lazy(
 	() => import("./pages/rules/[categoryId]/[ruleId]/page"),
 );
-const CurriculumPage = React.lazy(() => import("./pages/curriculum/page"));
+const _CurriculumPage = React.lazy(() => import("./pages/curriculum/page"));
 const VocabularyLessonPage = React.lazy(
 	() => import("./pages/vocabulary/[moduleId]/[lessonId]/page"),
 );

@@ -95,7 +95,7 @@ const SidebarProvider = React.forwardRef<
 			return isMobile
 				? setOpenMobile((openMobileState) => !openMobileState)
 				: setOpen((openState) => !openState);
-		}, [isMobile, setOpen, setOpenMobile]);
+		}, [isMobile, setOpen]);
 
 		React.useEffect(() => {
 			const handleKeyDown = (event: KeyboardEvent) => {
@@ -131,7 +131,6 @@ const SidebarProvider = React.forwardRef<
 				setOpen,
 				isMobile,
 				openMobile,
-				setOpenMobile,
 				toggleSidebar,
 			],
 		);

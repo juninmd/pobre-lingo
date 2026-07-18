@@ -1,12 +1,5 @@
-import {
-	ArrowLeft,
-	Pause,
-	Play,
-	RefreshCw,
-	Sparkles,
-	Volume2,
-} from "lucide-react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowLeft, Pause, Play, RefreshCw, Sparkles } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LessonCompleteModal } from "@/components/curriculum/LessonCompleteModal";
 import { Button } from "@/components/ui/button";
@@ -160,7 +153,7 @@ export default function BubblePopPage() {
 			if (gameState !== "playing") return;
 
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const delta = time - lastTimeRef.current;
+			const _delta = time - lastTimeRef.current;
 			lastTimeRef.current = time;
 
 			setBubbles((prev) =>
@@ -228,7 +221,7 @@ export default function BubblePopPage() {
 		) {
 			handleWin();
 		}
-	}, [bubbles, gameState]);
+	}, [bubbles, gameState, handleWin]);
 
 	const handleBubbleClick = (clickedId: string) => {
 		if (gameState !== "playing") return;

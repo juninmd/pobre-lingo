@@ -1,19 +1,11 @@
-import {
-	ArrowRight,
-	BookOpen,
-	CheckCircle2,
-	Lock,
-	Star,
-	Trophy,
-} from "lucide-react";
-import React from "react";
+import { ArrowRight, BookOpen, CheckCircle2, Star, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { curriculumData, Lesson, Module } from "@/lib/curriculumData";
+import { curriculumData } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +53,7 @@ export function LessonProgressBar({
 	const currentModuleIndex = curriculumData.modules.findIndex(
 		(m) => m.id === moduleId,
 	);
-	const nextModule = curriculumData.modules[currentModuleIndex + 1];
+	const _nextModule = curriculumData.modules[currentModuleIndex + 1];
 
 	const handleComplete = () => {
 		if (!isCompleted && moduleId && lessonId) {
@@ -156,35 +148,32 @@ export function LessonProgressBar({
 								</Button>
 							)}
 
-							{isCompleted && (
-								<>
-									{nextLink && nextLink !== "/" ? (
-										<Link to={nextLink}>
-											<Button variant="default">
-												Próxima Lição
-												<ArrowRight className="h-4 w-4 ml-2" />
-											</Button>
-										</Link>
-									) : moduleProgress.completionPercentage === 100 ? (
-										<Link to="/">
-											<Button
-												variant="default"
-												className="bg-yellow-600 hover:bg-yellow-700"
-											>
-												<Trophy className="h-4 w-4 mr-2" />
-												Módulo Completo!
-											</Button>
-										</Link>
-									) : (
-										<Link to="/">
-											<Button variant="outline">
-												Ver Jornada
-												<ArrowRight className="h-4 w-4 ml-2" />
-											</Button>
-										</Link>
-									)}
-								</>
-							)}
+							{isCompleted &&
+								(nextLink && nextLink !== "/" ? (
+									<Link to={nextLink}>
+										<Button variant="default">
+											Próxima Lição
+											<ArrowRight className="h-4 w-4 ml-2" />
+										</Button>
+									</Link>
+								) : moduleProgress.completionPercentage === 100 ? (
+									<Link to="/">
+										<Button
+											variant="default"
+											className="bg-yellow-600 hover:bg-yellow-700"
+										>
+											<Trophy className="h-4 w-4 mr-2" />
+											Módulo Completo!
+										</Button>
+									</Link>
+								) : (
+									<Link to="/">
+										<Button variant="outline">
+											Ver Jornada
+											<ArrowRight className="h-4 w-4 ml-2" />
+										</Button>
+									</Link>
+								))}
 						</div>
 					</div>
 				</div>

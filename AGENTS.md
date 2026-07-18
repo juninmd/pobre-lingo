@@ -26,4 +26,5 @@
 
 ## 🤝 Interaction Protocol
 - Follow the **Plan -> Act -> Validate** cycle for every task.
-- Consult `GEMINI.md` for project-specific instructions.
+- Consult `gemini.md` for project-specific instructions.
+- Ensure to check if features are already implemented to avoid duplicate work and safely transition to completion when verifying existing states (e.g. Learning Timeline).

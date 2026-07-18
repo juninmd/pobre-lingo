@@ -52,7 +52,7 @@ export function CorrectSentenceIdentification() {
 
 	useEffect(() => {
 		loadNewExercise();
-	}, []);
+	}, [loadNewExercise]);
 
 	const handleCheckboxChange = (choiceId: string, checked: boolean) => {
 		setSelectedChoices((prev) =>

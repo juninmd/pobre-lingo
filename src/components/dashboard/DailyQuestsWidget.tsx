@@ -1,7 +1,7 @@
 import confetti from "canvas-confetti";
 import { differenceInCalendarDays, parseISO } from "date-fns";
 import { CheckCircle2, Circle, Flame, Target, Zap } from "lucide-react";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { DAILY_GOAL, useActivityLog } from "@/hooks/useActivityLog";
@@ -85,7 +85,7 @@ export function DailyQuestsWidget() {
 				confetti({
 					particleCount: 100,
 					spread: 70,
-					origin: { y: 0.6 }
+					origin: { y: 0.6 },
 				});
 				localStorage.setItem("daily_goal_celebrated_today", todayStr);
 			}

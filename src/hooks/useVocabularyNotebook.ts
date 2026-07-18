@@ -11,7 +11,7 @@ function loadSaved(): string[] {
 export function useVocabularyNotebook() {
 	const [savedWords, setSavedWords] = useState<string[]>(loadSaved);
 
-	const persist = useCallback((words: string[]) => {
+	const _persist = useCallback((words: string[]) => {
 		setLocalStorageItem(NOTEBOOK_KEY, words);
 		setSavedWords(words);
 	}, []);

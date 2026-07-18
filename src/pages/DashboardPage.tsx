@@ -14,6 +14,8 @@ import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanC
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
+import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";
@@ -161,6 +163,12 @@ export default function DashboardPage() {
 
 					{/* Daily Quests */}
 					<DailyQuestsWidget />
+
+					{/* Weekly Goal */}
+					<WeeklyGoalWidget />
+
+					{/* Word of the Day - Microlearning */}
+					<WordOfTheDayWidget />
 
 					<CertificationPlanCard />
 

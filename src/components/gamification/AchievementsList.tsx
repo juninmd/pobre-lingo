@@ -1,6 +1,5 @@
 import * as LucideIcons from "lucide-react";
 import { CheckCircle, Lock } from "lucide-react";
-import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	ACHIEVEMENTS_LIST,

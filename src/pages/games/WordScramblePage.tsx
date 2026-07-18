@@ -75,7 +75,7 @@ export default function WordScramblePage() {
 		setScrambled(newScrambled);
 		setGuess("");
 		setFeedback("none");
-	}, []);
+	}, [shuffleWord]);
 
 	useEffect(() => {
 		nextWord();

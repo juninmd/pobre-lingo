@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 const STUDIED_RULES_KEY = "pobrelingo_studied_rules";

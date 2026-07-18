@@ -3,14 +3,12 @@ import {
 	ArrowRight,
 	BookOpen,
 	CheckCircle2,
-	Heart,
-	HelpCircle,
 	RefreshCw,
 	Star,
 	Trophy,
 	Volume2,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { CultureLessonView } from "@/components/curriculum/CultureLessonView";
@@ -94,7 +92,7 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
 
 	useEffect(() => {
 		initializeGame();
-	}, []);
+	}, [initializeGame]);
 
 	const handleCardClick = (card: CardState) => {
 		if (isProcessing || card.status === "matched" || card.status === "selected")
@@ -379,8 +377,6 @@ export default function LessonPage() {
 						isCompleted={completed}
 					/>
 				);
-
-			case "vocabulary":
 			default: {
 				const topics = lesson.vocabularyTopics || [];
 				// New Logic: Fetch from centralized dictionary

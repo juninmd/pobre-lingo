@@ -12,11 +12,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	getCategoryById,
-	getRuleById,
-	grammarCategories,
-} from "@/lib/grammarRules";
+import { grammarCategories } from "@/lib/grammarRules";
 
 export default function RulesPage() {
 	const [searchParams] = useSearchParams();

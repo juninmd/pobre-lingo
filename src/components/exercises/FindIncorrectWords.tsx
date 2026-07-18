@@ -4,7 +4,6 @@ import {
 	CheckCircle,
 	Eye,
 	EyeOff,
-	Lightbulb,
 	RefreshCw,
 	SearchX,
 	XCircle,
@@ -84,7 +83,7 @@ export function FindIncorrectWords() {
 		if (!currentExercise) return;
 
 		let correctIdentifications = 0;
-		let missedErrors = 0;
+		let _missedErrors = 0;
 		let wrongSelections = 0;
 		const newFeedbackDetails: Record<string, FeedbackDetail> = {};
 
@@ -99,7 +98,7 @@ export function FindIncorrectWords() {
 						correctText: token.correctText,
 					};
 				} else {
-					missedErrors++;
+					_missedErrors++;
 					newFeedbackDetails[token.id] = {
 						status: "missed_error",
 						explanation: token.explanation,
@@ -269,12 +268,12 @@ export function FindIncorrectWords() {
 									const feedback = feedbackDetails[token.id];
 									if (!feedback) return null;
 
-									let alertVariant: "default" | "destructive" = "default";
+									let _alertVariant: "default" | "destructive" = "default";
 									let alertTitle = "";
 									const descriptionElements: React.ReactElement[] = [];
 
 									if (feedback.status === "correct_identification") {
-										alertVariant = "default";
+										_alertVariant = "default";
 										alertTitle = "Correto!";
 										descriptionElements.push(
 											<p key="orig">
@@ -298,7 +297,7 @@ export function FindIncorrectWords() {
 											);
 										}
 									} else if (feedback.status === "missed_error") {
-										alertVariant = "destructive";
+										_alertVariant = "destructive";
 										alertTitle = "Erro não encontrado";
 										descriptionElements.push(
 											<p key="orig">
@@ -322,7 +321,7 @@ export function FindIncorrectWords() {
 											);
 										}
 									} else if (feedback.status === "wrong_selection") {
-										alertVariant = "destructive";
+										_alertVariant = "destructive";
 										alertTitle = "Seleção Incorreta";
 										descriptionElements.push(
 											<p key="sel">

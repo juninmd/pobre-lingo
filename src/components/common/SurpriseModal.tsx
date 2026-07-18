@@ -1,5 +1,4 @@
 import { Lightbulb, Sparkles } from "lucide-react";
-import React from "react";
 import { Pobrelingo } from "@/components/mascot/Pobrelingo";
 import { Button } from "@/components/ui/button";
 import {

@@ -9,7 +9,7 @@ import { getCEFRLevel } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
 
-const getIcon = (name: string) => {
+const _getIcon = (name: string) => {
 	const icons = LucideIcons as unknown as Record<string, React.ElementType>;
 	return icons[name] || LucideIcons.HelpCircle;
 };

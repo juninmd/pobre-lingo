@@ -1,4 +1,4 @@
-import { ArrowRight, Share2, Star, TrendingUp, Trophy } from "lucide-react";
+import { ArrowRight, Star, TrendingUp, Trophy } from "lucide-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,6 @@ import {
 	Dialog,
 	DialogContent,
 	DialogFooter,
-	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
@@ -48,7 +47,7 @@ export function LessonCompletionDialog({
 				setLeveledUp(true);
 			}
 		}
-	}, [open]);
+	}, [open, lessonId, xpReward, totalXP, moduleId, completeLesson]);
 
 	return (
 		<Dialog open={open} onOpenChange={(val) => !val && onClose()}>

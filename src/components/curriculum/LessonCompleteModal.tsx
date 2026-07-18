@@ -1,6 +1,6 @@
 import confetti from "canvas-confetti";
 import { ArrowRight, Flame, Star, Trophy } from "lucide-react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";

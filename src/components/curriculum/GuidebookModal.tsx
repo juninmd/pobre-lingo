@@ -156,16 +156,15 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 													<div className="bg-primary/5 p-4 border-b border-primary/10">
 														<h3 className="text-lg font-bold text-primary flex items-center gap-2">
 															{rule.title_pt}
-															{rule.tags &&
-																rule.tags.map((t) => (
-																	<Badge
-																		key={t}
-																		variant="secondary"
-																		className="text-[10px] h-5"
-																	>
-																		{t}
-																	</Badge>
-																))}
+															{rule.tags?.map((t) => (
+																<Badge
+																	key={t}
+																	variant="secondary"
+																	className="text-[10px] h-5"
+																>
+																	{t}
+																</Badge>
+															))}
 														</h3>
 														<p className="text-sm text-muted-foreground">
 															{rule.title_en}

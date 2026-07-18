@@ -1,9 +1,8 @@
 import { Brain, ChevronDown, X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useWrongAnswers, type WrongAnswer } from "@/hooks/useWrongAnswers";
-import { cn } from "@/lib/utils";
 
 export function SmartReviewWidget() {
 	const { getTopWrong, markReviewed } = useWrongAnswers();

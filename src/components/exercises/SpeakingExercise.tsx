@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { CheckCircle2, Mic, RotateCcw, Volume2, XCircle } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -107,7 +107,7 @@ export function SpeakingExercise({
 				recognitionRef.current.abort();
 			}
 		};
-	}, [currentIndex, currentPhrase.phrase, supported]);
+	}, [currentPhrase.phrase, supported]);
 
 	const playAudio = () => {
 		tts.speak(currentPhrase.phrase);

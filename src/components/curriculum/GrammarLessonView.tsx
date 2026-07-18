@@ -1,10 +1,8 @@
 import { AlertTriangle, BookOpen, CheckCircle2 } from "lucide-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { getRuleById } from "@/lib/grammarRules";
 
 interface GrammarLessonViewProps {
@@ -18,7 +16,7 @@ export function GrammarLessonView({
 	onComplete,
 	isCompleted,
 }: GrammarLessonViewProps) {
-	const navigate = useNavigate();
+	const _navigate = useNavigate();
 	const rules = ruleIds.map((id) => getRuleById(id)).filter(Boolean);
 
 	if (rules.length === 0) {

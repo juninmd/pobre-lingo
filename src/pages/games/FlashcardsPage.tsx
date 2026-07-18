@@ -37,7 +37,7 @@ export default function FlashcardsPage() {
 	// Initialize deck with random 10 words
 	useEffect(() => {
 		startNewGame();
-	}, []);
+	}, [startNewGame]);
 
 	const handleFlip = () => {
 		setIsFlipped(!isFlipped);

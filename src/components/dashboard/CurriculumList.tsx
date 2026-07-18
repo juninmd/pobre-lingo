@@ -1,29 +1,11 @@
 import * as LucideIcons from "lucide-react";
-import {
-	BookOpen,
-	CheckCircle2,
-	ChevronRight,
-	Lock,
-	MoreVertical,
-	Play,
-	Star,
-	Trophy,
-} from "lucide-react";
-import React from "react";
+import { CheckCircle2, ChevronRight, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { GuidebookModal } from "@/components/curriculum/GuidebookModal";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { curriculumData, Module, Unit } from "@/lib/curriculumData";
+import { curriculumData } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
 
 // Helper to get icon component dynamically

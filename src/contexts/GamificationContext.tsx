@@ -83,19 +83,19 @@ export function GamificationProvider({
 	const [gems, setGems] = useState<number>(() => {
 		if (typeof window === "undefined") return 0;
 		const stored = localStorage.getItem("pl_gems");
-		return stored ? parseInt(stored) : 0;
+		return stored ? parseInt(stored, 10) : 0;
 	});
 
 	const [streak, setStreak] = useState<number>(() => {
 		if (typeof window === "undefined") return 0;
 		const stored = localStorage.getItem("pl_streak");
-		return stored ? parseInt(stored) : 0;
+		return stored ? parseInt(stored, 10) : 0;
 	});
 
 	const [xp, setXp] = useState<number>(() => {
 		if (typeof window === "undefined") return 0;
 		const stored = localStorage.getItem("pl_xp");
-		return stored ? parseInt(stored) : 0;
+		return stored ? parseInt(stored, 10) : 0;
 	});
 
 	const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(

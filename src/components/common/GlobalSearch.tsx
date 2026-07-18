@@ -215,7 +215,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
 
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [open, filteredResults, selectedIndex]);
+	}, [open, filteredResults, selectedIndex, handleSelect]);
 
 	// Agrupar resultados por tipo
 	const groupedResults = useMemo(() => {

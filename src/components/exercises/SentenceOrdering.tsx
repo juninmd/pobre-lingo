@@ -77,7 +77,7 @@ export function SentenceOrdering() {
 
 	useEffect(() => {
 		loadNewExercise();
-	}, []);
+	}, [loadNewExercise]);
 
 	const handleWordClick = (word: string, index: number) => {
 		setOrderedSentence((prev) => [...prev, word]);

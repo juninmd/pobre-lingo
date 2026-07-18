@@ -1,7 +1,7 @@
 import { differenceInCalendarDays, parseISO } from "date-fns";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useActivityLog } from "@/hooks/useActivityLog";
-import { curriculumData, Lesson, type Module } from "@/lib/curriculumData";
+import { curriculumData, type Module } from "@/lib/curriculumData";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 // Otimização: Mapa para busca O(1) de módulos
@@ -179,7 +179,12 @@ export function useCurriculumProgress() {
 				return updated;
 			});
 		},
-		[totalXP, calculateLevel, updateStreak],
+		[
+			totalXP,
+			calculateLevel,
+			updateStreak, // Log activity for daily goal tracking
+			logActivity,
+		],
 	);
 
 	// Verificar se uma lição está concluída
@@ -209,7 +214,7 @@ export function useCurriculumProgress() {
 	);
 
 	// Verificar se um módulo está desbloqueado
-	const isModuleUnlocked = useCallback((module: Module) => {
+	const isModuleUnlocked = useCallback((_module: Module) => {
 		// Agora todos os módulos estão desbloqueados por padrão a pedido do usuário
 		return true;
 	}, []);

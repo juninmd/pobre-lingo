@@ -13,6 +13,7 @@ import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
+import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
@@ -166,6 +167,9 @@ export default function DashboardPage() {
 
 					{/* Weekly Goal */}
 					<WeeklyGoalWidget />
+
+					{/* Pronunciation Practice */}
+					<PronunciationWidget />
 
 					{/* Word of the Day - Microlearning */}
 					<WordOfTheDayWidget />

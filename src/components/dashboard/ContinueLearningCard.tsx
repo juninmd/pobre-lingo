@@ -63,7 +63,7 @@ export function ContinueLearningCard() {
 	const ModuleIcon = getIcon(module.icon);
 
 	return (
-		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group">
+		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] active:scale-[0.98]">
 			{/* Shimmer effect */}
 			<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
 

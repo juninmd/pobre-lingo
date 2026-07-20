@@ -11,13 +11,13 @@ export function SmartReviewWidget() {
 	if (topItems.length === 0) return null;
 
 	return (
-		<Card className="w-full border-2 border-amber-300/60 dark:border-amber-700/40 bg-amber-50/50 dark:bg-amber-950/20 shadow-sm">
+		<Card className="glass-card w-full border border-amber-200/30 dark:border-amber-800/30 bg-amber-50/30 dark:bg-amber-950/10 shadow-sm backdrop-blur-md">
 			<CardHeader className="pb-3">
-				<CardTitle className="text-base font-bold flex items-center gap-2 text-amber-700 dark:text-amber-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-amber-700 dark:text-amber-400">
 					<Brain className="w-4 h-4" />
 					Revisar Erros
-					<span className="ml-auto text-xs font-normal text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-						{topItems.length} item{topItems.length !== 1 ? "s" : ""}
+					<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-amber-600/70 bg-amber-500/10 px-2 py-0.5 rounded-full">
+						{topItems.length}
 					</span>
 				</CardTitle>
 			</CardHeader>
@@ -40,17 +40,17 @@ function ReviewItem({
 	const [revealed, setRevealed] = useState(false);
 
 	return (
-		<div className="rounded-lg border border-amber-200/60 dark:border-amber-800/40 bg-background/70 p-3 space-y-2">
+		<div className="rounded-xl border border-white/40 dark:border-white/10 bg-white/40 dark:bg-black/20 p-3 space-y-2 shadow-sm transition-all hover:bg-white/60 dark:hover:bg-black/30">
 			<div className="flex items-start justify-between gap-2">
-				<p className="text-sm font-medium text-foreground line-clamp-2 flex-1">
+				<p className="text-sm font-medium text-foreground/90 leading-snug line-clamp-2 flex-1">
 					{item.question}
 				</p>
 				<button
 					onClick={() => onDismiss(item.id)}
-					className="shrink-0 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+					className="shrink-0 text-muted-foreground/40 hover:text-amber-600 transition-colors"
 					aria-label="Marcar como revisado"
 				>
-					<X className="w-4 h-4" />
+					<X className="w-3.5 h-3.5" />
 				</button>
 			</div>
 

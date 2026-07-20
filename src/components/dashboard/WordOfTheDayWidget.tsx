@@ -51,6 +51,7 @@ export function WordOfTheDayWidget() {
 	const { addXp } = useGamification();
 	const [claimed, setClaimed] = useState(false);
 	const [wordData, setWordData] = useState(WORDS_OF_THE_DAY[0]);
+	const [isFlipped, setIsFlipped] = useState(false);
 
 	useEffect(() => {
 		// Pick a word based on the day of the year
@@ -87,53 +88,77 @@ export function WordOfTheDayWidget() {
 	return (
 		<Card className="glass-card bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-950/20 dark:to-purple-950/20 border-indigo-200/50 dark:border-indigo-800/50 relative overflow-hidden">
 			<div className="absolute -right-4 -top-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl" />
-			<CardHeader className="pb-2 flex flex-row items-center justify-between">
+			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
 				<CardTitle className="text-sm font-bold flex items-center gap-2 text-indigo-700 dark:text-indigo-400">
 					<BookOpen className="w-4 h-4" />
 					Palavra do Dia
 				</CardTitle>
 				<span className="text-[10px] uppercase font-bold tracking-widest text-indigo-500/70 bg-indigo-500/10 px-2 py-0.5 rounded-full">
-					Microlearning
+					Flashcard 3D
 				</span>
 			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="space-y-1">
-					<div className="flex items-center justify-between">
-						<h3 className="text-2xl font-black text-indigo-900 dark:text-indigo-300">
+			<CardContent className="space-y-4 [perspective:1000px]">
+				{/* 3D Flip Container */}
+				<div
+					className="relative w-full h-[140px] [transform-style:preserve-3d] transition-transform duration-500 cursor-pointer"
+					style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+					onClick={() => setIsFlipped(!isFlipped)}
+				>
+					{/* Front Face */}
+					<div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] bg-white/60 dark:bg-black/30 rounded-xl border border-indigo-100 dark:border-indigo-900/50 flex flex-col items-center justify-center shadow-sm">
+						<h3 className="text-3xl font-black text-indigo-900 dark:text-indigo-300 mb-2">
 							{wordData.word}
 						</h3>
-						<Button
-							variant="ghost"
-							size="icon"
-							className="h-8 w-8 text-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-900"
-							onClick={playAudio}
-						>
-							<Volume2 className="w-4 h-4" />
-						</Button>
+						<p className="text-xs text-indigo-500/70 dark:text-indigo-400/70 font-semibold uppercase tracking-widest">
+							Toque para virar
+						</p>
 					</div>
-					<div className="flex items-center gap-2 text-sm text-indigo-600/80 dark:text-indigo-400/80 font-medium">
-						<span>{wordData.phonetic}</span>
-						<span>•</span>
-						<span className="italic">{wordData.type}</span>
-						<span>•</span>
-						<span className="font-semibold text-indigo-700 dark:text-indigo-400">
-							{wordData.translation}
-						</span>
-					</div>
-				</div>
 
-				<div className="bg-white/50 dark:bg-black/20 p-3 rounded-lg border border-indigo-100 dark:border-indigo-900/50">
-					<p className="text-sm italic text-indigo-800 dark:text-indigo-300">
-						"{wordData.example}"
-					</p>
+					{/* Back Face */}
+					<div
+						className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] bg-white/80 dark:bg-black/40 rounded-xl border border-indigo-200 dark:border-indigo-800/60 p-4 flex flex-col justify-center shadow-md"
+						style={{ transform: "rotateY(180deg)" }}
+					>
+						<div className="flex items-start justify-between mb-2">
+							<div>
+								<div className="flex items-center gap-2 text-sm text-indigo-600/80 dark:text-indigo-400/80 font-medium">
+									<span>{wordData.phonetic}</span>
+									<span>•</span>
+									<span className="italic">{wordData.type}</span>
+								</div>
+								<span className="font-bold text-lg text-indigo-700 dark:text-indigo-400 block mt-0.5">
+									{wordData.translation}
+								</span>
+							</div>
+							<Button
+								variant="ghost"
+								size="icon"
+								className="h-8 w-8 text-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-900 shrink-0"
+								onClick={(e: React.MouseEvent) => {
+									e.stopPropagation();
+									playAudio();
+								}}
+							>
+								<Volume2 className="w-4 h-4" />
+							</Button>
+						</div>
+						<div className="bg-indigo-50/50 dark:bg-indigo-950/30 p-2 rounded border border-indigo-100 dark:border-indigo-900/40">
+							<p className="text-xs italic text-indigo-800 dark:text-indigo-300 leading-tight">
+								"{wordData.example}"
+							</p>
+						</div>
+					</div>
 				</div>
 
 				<Button
 					variant={claimed ? "secondary" : "gamified"}
 					size="sm"
-					className="w-full text-xs font-bold shadow-sm group"
+					className="w-full text-xs font-bold shadow-sm group mt-2"
 					disabled={claimed}
-					onClick={claimReward}
+					onClick={(e: React.MouseEvent) => {
+						e.stopPropagation();
+						claimReward();
+					}}
 				>
 					{claimed ? (
 						<>Aprendido! ✓</>

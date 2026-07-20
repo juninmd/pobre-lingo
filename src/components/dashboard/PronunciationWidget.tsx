@@ -255,10 +255,27 @@ export function PronunciationWidget() {
 					</div>
 				)}
 
+				{isRecording && (
+					<div className="flex justify-center items-center gap-1 h-6 animate-in fade-in">
+						{[...Array(5)].map((_, i) => (
+							<span
+								key={i}
+								className="w-1.5 bg-sky-500 rounded-full animate-bounce"
+								style={{
+									height: `${(i % 3 === 0 ? 80 : i % 2 === 0 ? 60 : 40)}%`,
+									minHeight: "4px",
+									animationDelay: `${i * 0.15}s`,
+									animationDuration: "0.8s",
+								}}
+							/>
+						))}
+					</div>
+				)}
+
 				<div className="flex gap-2">
 					<Button
 						variant={isRecording ? "destructive" : "gamified"}
-						className={`flex-1 font-bold shadow-sm transition-all ${isRecording ? "animate-pulse" : ""}`}
+						className={`flex-1 font-bold shadow-sm transition-all`}
 						onClick={toggleRecording}
 					>
 						{isRecording ? (

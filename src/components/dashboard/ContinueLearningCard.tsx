@@ -94,11 +94,11 @@ export function ContinueLearningCard() {
 								{lesson.title_pt}
 							</h3>
 							<div className="flex items-center gap-3 mt-1.5 text-xs sm:text-sm font-semibold text-muted-foreground">
-								<span className="flex items-center gap-1.5 bg-background/50 px-2 py-1 rounded-md">
+								<span className="flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded-md border border-primary/20 shadow-sm">
 									<Clock className="w-3.5 h-3.5" />
-									{lesson.estimatedMinutes} min
+									Apenas {lesson.estimatedMinutes} min
 								</span>
-								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-1 rounded-md">
+								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 shadow-sm">
 									<Star className="w-3.5 h-3.5 fill-current" />+
 									{lesson.xpReward} XP
 								</span>
@@ -111,15 +111,16 @@ export function ContinueLearningCard() {
 						asChild
 						variant="gamified"
 						size="lg"
-						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn"
+						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn h-12 sm:h-14 px-6 relative overflow-hidden"
 					>
 						<Link
 							to={link}
 							aria-label={`Continuar aprendendo: ${lesson.title_pt}`}
 						>
-							<Play className="w-5 h-5 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
-							<span>Começar Agora</span>
-							<ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+							<div className="absolute inset-0 bg-white/20 dark:bg-white/10 w-full h-full -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite] pointer-events-none" />
+							<Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
+							<span className="text-sm sm:text-base">Começar Agora</span>
+							<ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-1 group-hover/btn:translate-x-1.5 transition-transform" />
 						</Link>
 					</Button>
 				</div>

@@ -62,7 +62,14 @@ export default function DashboardPage() {
 	};
 
 	return (
-		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto">
+		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto relative">
+			{/* Spatial UI / Glassmorphism Ambient Background */}
+			<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+				<div className="absolute -top-[10%] -right-[5%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px]" />
+				<div className="absolute top-[30%] -left-[10%] w-[30%] h-[30%] rounded-full bg-blue-500/10 blur-[120px]" />
+				<div className="absolute bottom-[-10%] right-[20%] w-[50%] h-[30%] rounded-full bg-green-500/5 blur-[120px]" />
+			</div>
+
 			<SEO
 				title="Dashboard"
 				description="Acompanhe seu progresso e continue sua jornada de aprendizado no PobreLingo."

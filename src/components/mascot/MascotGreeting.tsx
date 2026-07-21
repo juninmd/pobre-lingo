@@ -21,11 +21,29 @@ export function MascotGreeting({
 	const { theme } = useTheme();
 	const { toast } = useToast();
 
-	const greeting =
-		message ||
-		(userName
-			? `Oi, ${userName}! Pronto para aprender?`
-			: "Oi! Pronto para aprender?");
+	const TRENDY_GREETINGS = [
+		"Microlearning é a chave! 5 minutos por dia fazem a diferença.",
+		"Consistência vence a intensidade. Vamos praticar um pouco?",
+		"A imersão diária cria o hábito. Pronto para mergulhar?",
+		"Pequenos passos todos os dias. Vamos subir de nível?",
+		"O segredo é não parar. Bora aprender inglês hoje?",
+	];
+
+	// Pick a stable greeting for the day based on the date
+	const dayOfYear = Math.floor(
+		(Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
+			1000 /
+			60 /
+			60 /
+			24,
+	);
+
+	const dynamicGreeting =
+		userName
+			? `Oi, ${userName}! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`
+			: `Oi! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`;
+
+	const greeting = message || dynamicGreeting;
 
 	// Calculate Level Progress
 	const currentLevelStartXP = (level - 1) ** 2 * 100;

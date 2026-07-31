@@ -197,7 +197,9 @@ async function fecharOnboarding(page: Page): Promise<void> {
 const RUIDO_EXTERNO = /logrocket|lr-in-prod|analytics|favicon/i;
 
 for (const persona of PERSONAS) {
-	test(`Usuário ${persona.id}: ${persona.nome}`, async ({ browser }) => {
+	// Título em ASCII de propósito: o filtro -g é digitado em consoles do
+	// Windows que não lidam bem com acento.
+	test(`Usuario ${persona.id}: ${persona.nome}`, async ({ browser }) => {
 		const context = await browser.newContext({
 			baseURL: BASE_URL,
 			...(persona.mobile

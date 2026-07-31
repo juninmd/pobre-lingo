@@ -77,10 +77,6 @@ export default function ConversationExercise() {
 	const currentStep = steps[currentStepIndex];
 	const chatEndRef = useRef<HTMLDivElement>(null);
 
-	const speak = (text: string) => {
-		tts.speak(text);
-	};
-
 	// Handle mascot messages for current step
 	useEffect(() => {
 		if (currentStep) {
@@ -103,11 +99,15 @@ export default function ConversationExercise() {
 					];
 				});
 				setTyping(false);
-				speak(currentStep.mascotMessage);
+				tts.speak(currentStep.mascotMessage);
 			}, 800);
 			return () => clearTimeout(timer);
 		}
-	}, [speak, currentStep.id, currentStep]); // Only trigger on step or scenario change
+		// Só depende do passo atual. Havia um `speak` aqui, recriado a cada
+		// render: o efeito reexecutava sempre, o cleanup matava o timer de 800ms
+		// e `typing` nunca voltava a false — as opções ficavam desabilitadas
+		// para sempre e a conversa era impossível de responder.
+	}, [currentStep]);
 
 	// Auto-scroll
 	useEffect(() => {
@@ -171,7 +171,7 @@ export default function ConversationExercise() {
 					},
 				]);
 				setTyping(false);
-				speak(option.feedback || "Try again.");
+				tts.speak(option.feedback || "Try again.");
 			}, 1000);
 		}
 	};
@@ -257,7 +257,7 @@ export default function ConversationExercise() {
 									</p>
 									{msg.speaker === "mascot" && (
 										<button
-											onClick={() => speak(msg.text_en)}
+											onClick={() => tts.speak(msg.text_en)}
 											className="mt-1 p-1 rounded-full hover:bg-primary/20 text-primary transition-colors"
 										>
 											<Volume2 className="w-5 h-5" />

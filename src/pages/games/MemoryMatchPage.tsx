@@ -6,7 +6,7 @@ import {
 	Shuffle,
 	Trophy,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
@@ -40,7 +40,9 @@ export default function MemoryMatchPage() {
 	const [moves, setMoves] = useState(0);
 	const [gameWon, setGameWon] = useState(false);
 
-	const startNewGame = () => {
+	// Estável de propósito: é dependência do efeito de montagem; uma nova
+	// identidade a cada render provocaria loop infinito de render.
+	const startNewGame = useCallback(() => {
 		// Select random words
 		const shuffledDictionary = [...dictionaryEntries].sort(
 			() => 0.5 - Math.random(),
@@ -78,7 +80,7 @@ export default function MemoryMatchPage() {
 		setMatches(0);
 		setMoves(0);
 		setGameWon(false);
-	};
+	}, []);
 
 	useEffect(() => {
 		startNewGame();

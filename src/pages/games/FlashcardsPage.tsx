@@ -1,6 +1,6 @@
 import { ArrowLeft, Check, GraduationCap, PartyPopper, X } from "lucide-react";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
@@ -25,14 +25,16 @@ export default function FlashcardsPage() {
 	const [knownCount, setKnownCount] = useState(0);
 	const [isFinished, setIsFinished] = useState(false);
 
-	const startNewGame = () => {
+	// Estável de propósito: é dependência do efeito de montagem; uma nova
+	// identidade a cada render provocaria loop infinito de render.
+	const startNewGame = useCallback(() => {
 		const shuffled = [...dictionaryEntries].sort(() => 0.5 - Math.random());
 		setDeck(shuffled.slice(0, 10));
 		setCurrentIndex(0);
 		setIsFlipped(false);
 		setKnownCount(0);
 		setIsFinished(false);
-	};
+	}, []);
 
 	// Initialize deck with random 10 words
 	useEffect(() => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckSquare, Languages, RefreshCw } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
 import { GrammarHintBanner } from "@/components/exercises/GrammarHintBanner";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -39,7 +39,9 @@ export function CorrectSentenceIdentification() {
 
 	const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
-	const loadNewExercise = () => {
+	// Precisa ser estável: entra como dependência do efeito de montagem e, sem
+	// useCallback, o efeito reexecutaria a cada render (loop infinito).
+	const loadNewExercise = useCallback(() => {
 		const randomIndex = Math.floor(
 			Math.random() * correctSentenceIdentificationExercises.length,
 		);
@@ -48,7 +50,7 @@ export function CorrectSentenceIdentification() {
 		setSelectedChoices([]);
 		setShowFeedback(false);
 		setShowHint(false);
-	};
+	}, []);
 
 	useEffect(() => {
 		loadNewExercise();

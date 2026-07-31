@@ -22,6 +22,20 @@ import { cn } from "@/lib/utils";
 
 const WORDS_TO_WIN = 5;
 
+/**
+ * Embaralha as letras. Fica fora do componente de propósito: como função
+ * interna ela era recriada a cada render, invalidava o useCallback de
+ * nextWord e fazia o efeito de montagem entrar em loop infinito.
+ */
+const shuffleWord = (word: string) => {
+	const arr = word.split("");
+	for (let i = arr.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[arr[i], arr[j]] = [arr[j], arr[i]];
+	}
+	return arr.join("");
+};
+
 export default function WordScramblePage() {
 	const [searchParams] = useSearchParams();
 	const moduleId = searchParams.get("module");
@@ -45,15 +59,6 @@ export default function WordScramblePage() {
 	const [wordsSolved, setWordsSolved] = useState(0);
 	const [gameComplete, setGameComplete] = useState(false);
 
-	const shuffleWord = (word: string) => {
-		const arr = word.split("");
-		for (let i = arr.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[arr[i], arr[j]] = [arr[j], arr[i]];
-		}
-		return arr.join("");
-	};
-
 	const nextWord = React.useCallback(() => {
 		// Pick from dictionary
 		const randomEntry =
@@ -75,7 +80,7 @@ export default function WordScramblePage() {
 		setScrambled(newScrambled);
 		setGuess("");
 		setFeedback("none");
-	}, [shuffleWord]);
+	}, []);
 
 	useEffect(() => {
 		nextWord();

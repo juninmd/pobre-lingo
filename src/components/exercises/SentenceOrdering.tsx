@@ -7,7 +7,7 @@ import {
 	Shuffle,
 	XCircle,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
 import { GrammarHintBanner } from "@/components/exercises/GrammarHintBanner";
@@ -58,7 +58,9 @@ export function SentenceOrdering() {
 
 	const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
-	const loadNewExercise = () => {
+	// Estável de propósito: é dependência do efeito de montagem; uma nova
+	// identidade a cada render provocaria loop infinito de render.
+	const loadNewExercise = useCallback(() => {
 		const pool = fromRule
 			? sentenceOrderingExercises.filter((e) =>
 					e.grammarRuleIds?.includes(fromRule),
@@ -73,7 +75,7 @@ export function SentenceOrdering() {
 		setIsCorrect(null);
 		setShowTranslation(false);
 		setShowHint(false);
-	};
+	}, [fromRule]);
 
 	useEffect(() => {
 		loadNewExercise();

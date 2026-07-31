@@ -160,7 +160,7 @@ export default function HangmanPage() {
 											"w-10 h-12 border-b-4 flex items-center justify-center text-2xl font-bold transition-all",
 											isGuessed
 												? "border-primary text-primary"
-												: "border-gray-300 text-transparent",
+												: "border-muted-foreground/30 text-transparent",
 											isLost && !isGuessed && "text-red-500 border-red-300", // Reveal on loss
 										)}
 									>

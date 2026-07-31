@@ -2,6 +2,7 @@ import {
 	BookA,
 	BookMarked,
 	BookOpen,
+	Brain,
 	CheckSquare,
 	Coins,
 	FileText,
@@ -13,8 +14,10 @@ import {
 	Moon,
 	Search as SearchIcon,
 	SearchX,
+	Settings,
 	Sparkles,
 	Sun,
+	Trophy,
 	X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -24,6 +27,7 @@ import {
 	GlobalSearchTrigger,
 } from "@/components/common/GlobalSearch";
 import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
+import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
 import { Badge } from "@/components/ui/badge";
@@ -65,6 +69,7 @@ const navGroups = [
 		title: "Principal",
 		items: [
 			{ href: "/", label: "Minha Jornada", icon: MapIcon },
+			{ href: "/review", label: "Revisar", icon: Brain, badge: "SRS" },
 			{ href: "/arcade", label: "Arcade", icon: Gamepad2, badge: "Fun" },
 		],
 	},
@@ -105,6 +110,8 @@ const navGroups = [
 		title: "Status",
 		items: [
 			{ href: "/proficiency", label: "Teste de Nível", icon: GraduationCap },
+			{ href: "/achievements", label: "Conquistas", icon: Trophy },
+			{ href: "/settings", label: "Configurações", icon: Settings },
 		],
 	},
 ];
@@ -377,6 +384,9 @@ export default function Layout() {
 								orientation="vertical"
 								className="h-6 bg-border/60 hidden sm:block"
 							/>
+
+							{/* Caixa de notificações */}
+							<NotificationCenter />
 
 							{/* Theme Switcher */}
 							<DropdownMenu>

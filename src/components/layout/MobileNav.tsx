@@ -1,22 +1,18 @@
-import {
-	BookMarked,
-	BookOpen,
-	Compass,
-	Gamepad2,
-	GraduationCap,
-} from "lucide-react";
+import { BookMarked, BookOpen, Brain, Compass, Gamepad2 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useSrs } from "@/hooks/useSrs";
 import { cn } from "@/lib/utils";
 
 export function MobileNav() {
 	const { pathname } = useLocation();
+	const { stats } = useSrs();
 
 	const navItems = [
-		{ href: "/", label: "Jornada", icon: Compass },
-		{ href: "/arcade", label: "Jogos", icon: Gamepad2 },
-		{ href: "/rules", label: "Regras", icon: BookOpen },
-		{ href: "/dictionary", label: "Dicionário", icon: BookMarked },
-		{ href: "/proficiency", label: "Nível", icon: GraduationCap },
+		{ href: "/", label: "Jornada", icon: Compass, badge: 0 },
+		{ href: "/review", label: "Revisar", icon: Brain, badge: stats.due },
+		{ href: "/arcade", label: "Jogos", icon: Gamepad2, badge: 0 },
+		{ href: "/rules", label: "Regras", icon: BookOpen, badge: 0 },
+		{ href: "/dictionary", label: "Dicionário", icon: BookMarked, badge: 0 },
 	];
 
 	return (
@@ -75,6 +71,11 @@ export function MobileNav() {
 											isActive && "scale-110 drop-shadow-sm",
 										)}
 									/>
+									{item.badge > 0 && (
+										<span className="absolute -top-1 -right-1 z-20 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center ring-2 ring-background tabular-nums">
+											{item.badge > 9 ? "9+" : item.badge}
+										</span>
+									)}
 								</div>
 
 								{/* Label */}

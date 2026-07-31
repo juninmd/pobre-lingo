@@ -19,7 +19,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
 import { useToast } from "@/hooks/use-toast";
-import { useWrongAnswers } from "@/hooks/useWrongAnswers";
+import { useSrs } from "@/hooks/useSrs";
 import {
 	type CorrectSentenceIdentificationChoice,
 	type CorrectSentenceIdentificationExercise,
@@ -35,7 +35,7 @@ export function CorrectSentenceIdentification() {
 	const [showHint, setShowHint] = useState(false);
 	const { toast } = useToast();
 	const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
-	const { recordWrong } = useWrongAnswers();
+	const { addCard } = useSrs();
 
 	const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
@@ -92,14 +92,16 @@ export function CorrectSentenceIdentification() {
 		} else {
 			setShowHint(true);
 			if (currentExercise) {
-				recordWrong({
+				addCard({
 					id: `sentence-identification-${currentExercise.id}`,
-					exerciseType: "sentence-identification",
-					question: currentExercise.prompt,
-					correctAnswer: currentExercise.choices
+					source: "exercise",
+					front: currentExercise.prompt,
+					back: currentExercise.choices
 						.filter((c) => c.isCorrect)
 						.map((c) => c.sentence)
 						.join(" | "),
+					hint: "Identificar frase correta",
+					href: "/exercises/sentence-identification",
 				});
 			}
 			toast({

@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/card";
 import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
 import { useToast } from "@/hooks/use-toast";
-import { useWrongAnswers } from "@/hooks/useWrongAnswers";
+import { useSrs } from "@/hooks/useSrs";
 import { triggerConfetti } from "@/lib/confetti";
 import {
 	type SentenceOrderingExercise,
@@ -54,7 +54,7 @@ export function SentenceOrdering() {
 	const [searchParams] = useSearchParams();
 	const fromRule = searchParams.get("fromRule");
 	const { moduleId, lessonId, isFromCurriculum } = useLessonFromUrl();
-	const { recordWrong } = useWrongAnswers();
+	const { addCard } = useSrs();
 
 	const EXERCISES_TO_COMPLETE = 3; // Número de exercícios para marcar como dominada
 
@@ -121,11 +121,13 @@ export function SentenceOrdering() {
 			setShowTranslation(false);
 			setShowHint(true);
 			if (currentExercise) {
-				recordWrong({
+				addCard({
 					id: `sentence-ordering-${currentExercise.id}`,
-					exerciseType: "sentence-ordering",
-					question: currentExercise.words.join(" "),
-					correctAnswer: currentExercise.correctSentence,
+					source: "exercise",
+					front: currentExercise.words.join(" "),
+					back: currentExercise.correctSentence,
+					hint: "Ordenar as palavras na frase",
+					href: "/exercises/sentence-ordering",
 				});
 			}
 			toast({

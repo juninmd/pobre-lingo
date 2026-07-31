@@ -1,88 +1,86 @@
-import { Brain, ChevronDown, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Brain, CalendarClock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useWrongAnswers, type WrongAnswer } from "@/hooks/useWrongAnswers";
+import { useSrs } from "@/hooks/useSrs";
 
+/**
+ * Porta de entrada para a revisão espaçada. Some do painel quando não há
+ * nada agendado — widget vazio é ruído.
+ */
 export function SmartReviewWidget() {
-	const { getTopWrong, markReviewed } = useWrongAnswers();
-	const topItems = getTopWrong(5);
+	const { dueCards, stats } = useSrs();
 
-	if (topItems.length === 0) return null;
+	if (stats.total === 0) return null;
+
+	const hasDue = dueCards.length > 0;
 
 	return (
-		<Card className="glass-card w-full border border-amber-200/30 dark:border-amber-800/30 bg-amber-50/30 dark:bg-amber-950/10 shadow-sm backdrop-blur-md">
+		<Card className="glass-card w-full border border-amber-200/40 dark:border-amber-800/40 bg-amber-50/40 dark:bg-amber-950/15 shadow-sm backdrop-blur-md">
 			<CardHeader className="pb-3">
 				<CardTitle className="text-sm font-bold flex items-center gap-2 text-amber-700 dark:text-amber-400">
 					<Brain className="w-4 h-4" />
-					Revisar Erros
-					<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-amber-600/70 bg-amber-500/10 px-2 py-0.5 rounded-full">
-						{topItems.length}
-					</span>
+					Revisão Inteligente
+					{hasDue && (
+						<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-amber-600/80 bg-amber-500/15 px-2 py-0.5 rounded-full tabular-nums">
+							{dueCards.length}
+						</span>
+					)}
 				</CardTitle>
 			</CardHeader>
+
 			<CardContent className="space-y-3">
-				{topItems.map((item) => (
-					<ReviewItem key={item.id} item={item} onDismiss={markReviewed} />
-				))}
+				{hasDue ? (
+					<>
+						<p className="text-xs text-muted-foreground leading-relaxed">
+							{dueCards.length}{" "}
+							{dueCards.length === 1
+								? "card está no ponto certo de revisão"
+								: "cards estão no ponto certo de revisão"}
+							. Revisar agora é o que transforma acerto em memória.
+						</p>
+
+						<ul className="space-y-1.5">
+							{dueCards.slice(0, 3).map((card) => (
+								<li
+									key={card.id}
+									className="text-xs rounded-lg bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 px-2.5 py-1.5 truncate text-foreground/80"
+								>
+									{card.front}
+								</li>
+							))}
+						</ul>
+
+						<Button
+							asChild
+							variant="gamified"
+							size="sm"
+							className="w-full font-bold gap-1.5"
+						>
+							<Link to="/review">
+								Revisar agora
+								<ArrowRight className="w-3.5 h-3.5" />
+							</Link>
+						</Button>
+					</>
+				) : (
+					<div className="space-y-2">
+						<p className="text-xs text-muted-foreground leading-relaxed">
+							Nenhuma revisão vencida. Seus {stats.total} cards estão em dia.
+						</p>
+						{stats.nextDueAt && (
+							<p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
+								<CalendarClock className="w-3 h-3" />
+								Próxima em{" "}
+								{new Date(stats.nextDueAt).toLocaleDateString("pt-BR", {
+									day: "2-digit",
+									month: "short",
+								})}
+							</p>
+						)}
+					</div>
+				)}
 			</CardContent>
 		</Card>
-	);
-}
-
-function ReviewItem({
-	item,
-	onDismiss,
-}: {
-	item: WrongAnswer;
-	onDismiss: (id: string) => void;
-}) {
-	const [revealed, setRevealed] = useState(false);
-
-	return (
-		<div className="rounded-xl border border-white/40 dark:border-white/10 bg-white/40 dark:bg-black/20 p-3 space-y-2 shadow-sm transition-all hover:bg-white/60 dark:hover:bg-black/30">
-			<div className="flex items-start justify-between gap-2">
-				<p className="text-sm font-medium text-foreground/90 leading-snug line-clamp-2 flex-1">
-					{item.question}
-				</p>
-				<button
-					onClick={() => onDismiss(item.id)}
-					className="shrink-0 text-muted-foreground/40 hover:text-amber-600 transition-colors"
-					aria-label="Marcar como revisado"
-				>
-					<X className="w-3.5 h-3.5" />
-				</button>
-			</div>
-
-			{!revealed ? (
-				<button
-					onClick={() => setRevealed(true)}
-					className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 hover:underline font-medium"
-				>
-					<ChevronDown className="w-3 h-3" />
-					Ver resposta correta
-				</button>
-			) : (
-				<div className="space-y-2">
-					<p className="text-xs text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950/30 rounded p-2 border border-green-200/50 dark:border-green-800/40">
-						<span className="font-semibold">Correto: </span>
-						{item.correctAnswer}
-					</p>
-					<div className="flex items-center justify-between">
-						<span className="text-[10px] text-muted-foreground">
-							Errado {item.wrongCount}×
-						</span>
-						<Button
-							size="sm"
-							variant="outline"
-							className="h-6 text-xs px-2 border-green-400/50 text-green-700 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-950/20"
-							onClick={() => onDismiss(item.id)}
-						>
-							Entendi ✓
-						</Button>
-					</div>
-				</div>
-			)}
-		</div>
 	);
 }

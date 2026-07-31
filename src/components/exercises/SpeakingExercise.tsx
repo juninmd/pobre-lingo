@@ -155,7 +155,9 @@ export function SpeakingExercise({
 
 					<div className="p-8 bg-blue-50 rounded-xl w-full">
 						<h2 className="text-3xl font-bold mb-2">{currentPhrase.phrase}</h2>
-						<p className="text-gray-600 italic">{currentPhrase.translation}</p>
+						<p className="text-muted-foreground italic">
+						{currentPhrase.translation}
+					</p>
 					</div>
 
 					<Button
@@ -228,10 +230,10 @@ export function SpeakingExercise({
 						<div
 							className={`w-full p-4 rounded-lg border-2 ${
 								feedback === "correct"
-									? "bg-green-50 border-green-200"
+									? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900/50"
 									: feedback === "incorrect"
-										? "bg-red-50 border-red-200"
-										: "bg-gray-50 border-gray-100"
+										? "bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900/50"
+										: "bg-muted/50 border-border"
 							} transition-all duration-300`}
 						>
 							<p className="text-center font-medium text-lg mb-2">

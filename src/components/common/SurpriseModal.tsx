@@ -87,8 +87,8 @@ export function SurpriseModal({ open, onOpenChange }: SurpriseModalProps) {
 						<Pobrelingo width={120} height={120} emotion="excited" />
 					</div>
 
-					<div className="text-center p-4 bg-white rounded-xl shadow-sm border border-yellow-200">
-						<p className="text-lg font-medium text-gray-800 leading-relaxed">
+					<div className="text-center p-4 bg-card rounded-xl shadow-sm border border-yellow-200 dark:border-yellow-900/50">
+						<p className="text-lg font-medium text-foreground leading-relaxed">
 							"{surprise.content}"
 						</p>
 					</div>

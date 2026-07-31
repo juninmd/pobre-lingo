@@ -1,5 +1,6 @@
 import {
 	BookMarked,
+	Brain,
 	Check,
 	ChevronLeft,
 	ChevronRight,
@@ -15,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useSrs } from "@/hooks/useSrs";
 import { useVocabularyNotebook } from "@/hooks/useVocabularyNotebook";
 import { type DictionaryEntry, dictionaryEntries } from "@/lib/dictionaryData";
 import { tts } from "@/lib/tts";
@@ -30,6 +32,23 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 export default function NotebookPage() {
 	const { savedWords, removeWord } = useVocabularyNotebook();
+	const { cards, addCard } = useSrs();
+	const srsIds = useMemo(() => new Set(cards.map((c) => c.id)), [cards]);
+
+	/** Manda a palavra para a fila de repetição espaçada em /review. */
+	const sendToSrs = useCallback(
+		(entry: DictionaryEntry) => {
+			addCard({
+				id: `dictionary-${entry.id}`,
+				source: "dictionary",
+				front: entry.word,
+				back: entry.translation_pt,
+				hint: entry.example_sentence_en || entry.meaning_en,
+				href: "/notebook",
+			});
+		},
+		[addCard],
+	);
 
 	const entries = useMemo<DictionaryEntry[]>(() => {
 		const map = new Map(dictionaryEntries.map((e) => [e.id, e]));
@@ -68,7 +87,12 @@ export default function NotebookPage() {
 					</TabsList>
 
 					<TabsContent value="lista">
-						<WordList entries={entries} onRemove={removeWord} />
+						<WordList
+							entries={entries}
+							onRemove={removeWord}
+							onSendToSrs={sendToSrs}
+							srsIds={srsIds}
+						/>
 					</TabsContent>
 
 					<TabsContent value="revisar">
@@ -83,9 +107,13 @@ export default function NotebookPage() {
 function WordList({
 	entries,
 	onRemove,
+	onSendToSrs,
+	srsIds,
 }: {
 	entries: DictionaryEntry[];
 	onRemove: (id: string) => void;
+	onSendToSrs: (entry: DictionaryEntry) => void;
+	srsIds: Set<string>;
 }) {
 	return (
 		<div className="grid gap-3 sm:grid-cols-2">
@@ -114,13 +142,28 @@ function WordList({
 								{entry.meaning_en}
 							</p>
 						</div>
-						<button
-							onClick={() => onRemove(entry.id)}
-							className="shrink-0 p-1.5 text-muted-foreground/50 hover:text-red-500 transition-colors rounded"
-							aria-label="Remover"
-						>
-							<Trash2 className="w-4 h-4" />
-						</button>
+						<div className="shrink-0 flex flex-col gap-1">
+							<button
+								onClick={() => onSendToSrs(entry)}
+								disabled={srsIds.has(`dictionary-${entry.id}`)}
+								className="p-1.5 text-muted-foreground/50 hover:text-amber-500 disabled:text-amber-500 disabled:cursor-default transition-colors rounded"
+								title={
+									srsIds.has(`dictionary-${entry.id}`)
+										? "Já está na revisão espaçada"
+										: "Enviar para a revisão espaçada"
+								}
+								aria-label="Enviar para a revisão espaçada"
+							>
+								<Brain className="w-4 h-4" />
+							</button>
+							<button
+								onClick={() => onRemove(entry.id)}
+								className="p-1.5 text-muted-foreground/50 hover:text-red-500 transition-colors rounded"
+								aria-label="Remover"
+							>
+								<Trash2 className="w-4 h-4" />
+							</button>
+						</div>
 					</CardContent>
 				</Card>
 			))}

@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { useSrs } from "@/hooks/useSrs";
 import { curriculumData } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
 
@@ -372,6 +373,7 @@ export default function QuizLessonPage() {
 	}>();
 	const navigate = useNavigate();
 	const { completeLesson, isLessonCompleted } = useCurriculumProgress();
+	const { addCard } = useSrs();
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>([]);
@@ -410,10 +412,26 @@ export default function QuizLessonPage() {
 		setSelectedAnswers(newAnswers);
 	};
 
+	/** Manda cada questão errada para a fila de repetição espaçada. */
+	const enqueueMistakes = () => {
+		questions.forEach((q, idx) => {
+			if (selectedAnswers[idx] === q.correctAnswer) return;
+			addCard({
+				id: `quiz-${lessonId}-${idx}`,
+				source: "quiz",
+				front: q.question,
+				back: q.options[q.correctAnswer],
+				hint: q.explanation,
+				href: `/quiz/${moduleId}/${lessonId}`,
+			});
+		});
+	};
+
 	const handleNext = () => {
 		if (currentQuestion < questions.length - 1) {
 			setCurrentQuestion((prev) => prev + 1);
 		} else {
+			enqueueMistakes();
 			setShowResults(true);
 		}
 	};
@@ -462,8 +480,8 @@ export default function QuizLessonPage() {
 					<Card className="border-2 border-green-500">
 						<CardHeader className="text-center">
 							<div className="flex justify-center mb-4">
-								<div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
-									<Trophy className="h-10 w-10 text-green-600" />
+								<div className="w-20 h-20 bg-green-100 dark:bg-green-900/40 rounded-full flex items-center justify-center">
+									<Trophy className="h-10 w-10 text-green-600 dark:text-green-400" />
 								</div>
 							</div>
 							<CardTitle className="text-3xl">
@@ -475,7 +493,7 @@ export default function QuizLessonPage() {
 						</CardHeader>
 						<CardContent className="space-y-6">
 							<div className="text-center">
-								<div className="text-5xl font-bold text-green-600 mb-2">
+								<div className="text-5xl font-bold text-green-600 dark:text-green-400 mb-2">
 									{score.percentage}%
 								</div>
 								<p className="text-muted-foreground">
@@ -528,11 +546,13 @@ export default function QuizLessonPage() {
 							<CardDescription>{lesson.title_pt}</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-6">
-							<div className="text-center p-6 bg-gray-50 rounded-lg">
+							<div className="text-center p-6 bg-muted/50 rounded-lg">
 								<div
 									className={cn(
 										"text-5xl font-bold mb-2",
-										passed ? "text-green-600" : "text-yellow-600",
+										passed
+											? "text-green-600 dark:text-green-400"
+											: "text-yellow-600 dark:text-yellow-400",
 									)}
 								>
 									{score.percentage}%
@@ -541,11 +561,11 @@ export default function QuizLessonPage() {
 									{score.correct} de {score.total} questões corretas
 								</p>
 								{passed ? (
-									<p className="text-green-600 font-semibold mt-2">
+									<p className="text-green-600 dark:text-green-400 font-semibold mt-2">
 										✓ Aprovado! Você pode avançar.
 									</p>
 								) : (
-									<p className="text-yellow-600 font-semibold mt-2">
+									<p className="text-yellow-600 dark:text-yellow-400 font-semibold mt-2">
 										Você precisa de 70% para passar. Tente novamente!
 									</p>
 								)}
@@ -564,15 +584,15 @@ export default function QuizLessonPage() {
 											className={cn(
 												"p-4 rounded-lg border-2",
 												isCorrect
-													? "border-green-200 bg-green-50"
-													: "border-red-200 bg-red-50",
+													? "border-green-200 bg-green-50 dark:border-green-900/50 dark:bg-green-950/20"
+													: "border-red-200 bg-red-50 dark:border-red-900/50 dark:bg-red-950/20",
 											)}
 										>
 											<div className="flex items-start gap-2 mb-2">
 												{isCorrect ? (
-													<CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+													<CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5" />
 												) : (
-													<XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+													<XCircle className="h-5 w-5 text-red-600 dark:text-red-400 mt-0.5" />
 												)}
 												<div className="flex-1">
 													<p className="font-medium mb-2">
@@ -580,10 +600,10 @@ export default function QuizLessonPage() {
 													</p>
 													{!isCorrect && (
 														<>
-															<p className="text-sm text-red-700 mb-1">
+															<p className="text-sm text-red-700 dark:text-red-400 mb-1">
 																Sua resposta: {q.options[userAnswer ?? -1]}
 															</p>
-															<p className="text-sm text-green-700 mb-1">
+															<p className="text-sm text-green-700 dark:text-green-400 mb-1">
 																Resposta correta: {q.options[q.correctAnswer]}
 															</p>
 														</>
@@ -686,8 +706,8 @@ export default function QuizLessonPage() {
 										className={cn(
 											"flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-colors",
 											selectedAnswers[currentQuestion] === idx
-												? "border-blue-500 bg-blue-50"
-												: "border-gray-200 hover:border-gray-300",
+												? "border-primary bg-primary/5"
+												: "border-border hover:border-primary/40",
 										)}
 										onClick={() => handleSelectAnswer(idx)}
 									>

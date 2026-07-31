@@ -64,6 +64,10 @@ const ConversationPage = React.lazy(
 	() => import("./pages/exercises/conversation/page"),
 );
 const NotebookPage = React.lazy(() => import("./pages/NotebookPage"));
+const ReviewPage = React.lazy(() => import("./pages/ReviewPage"));
+const SettingsPage = React.lazy(() => import("./pages/SettingsPage"));
+const AchievementsPage = React.lazy(() => import("./pages/AchievementsPage"));
+const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
 // Loading component
 const PageLoader = () => (
@@ -262,6 +266,30 @@ const router = createBrowserRouter([
 				),
 			},
 			{
+				path: "review",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<ReviewPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "achievements",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<AchievementsPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "settings",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<SettingsPage />
+					</Suspense>
+				),
+			},
+			{
 				path: "rules",
 				element: (
 					<Suspense fallback={<PageLoader />}>
@@ -282,6 +310,14 @@ const router = createBrowserRouter([
 				element: (
 					<Suspense fallback={<PageLoader />}>
 						<RulePage />
+					</Suspense>
+				),
+			},
+			{
+				path: "*",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<NotFoundPage />
 					</Suspense>
 				),
 			},

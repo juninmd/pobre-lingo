@@ -201,7 +201,7 @@ export default function MatchingPairsPage() {
 				<CardContent>
 					{hearts <= 0 ? (
 						<div className="text-center py-10">
-							<Heart className="h-16 w-16 mx-auto text-gray-300 mb-4" />
+							<Heart className="h-16 w-16 mx-auto text-muted-foreground/40 mb-4" />
 							<h3 className="text-xl font-bold mb-2">Sem vidas!</h3>
 							<p className="text-muted-foreground mb-6">
 								Você perdeu todas as suas vidas. Espere recarregar ou pratique

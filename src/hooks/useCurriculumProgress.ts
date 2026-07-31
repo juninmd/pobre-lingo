@@ -1,8 +1,12 @@
-import { differenceInCalendarDays, parseISO } from "date-fns";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { curriculumData, type Module } from "@/lib/curriculumData";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
+import {
+	readLastActivityDate,
+	readStreak,
+	recordStreakActivity,
+} from "@/lib/streak";
 
 // Otimização: Mapa para busca O(1) de módulos
 const moduleMap = new Map(curriculumData.modules.map((m) => [m.id, m]));
@@ -55,33 +59,13 @@ export function useCurriculumProgress() {
 		return getLocalStorageItem<number>(LEVEL_STORAGE_KEY, 1);
 	});
 
-	const [lastActivityDate, setLastActivityDate] = useState<string | null>(
-		() => {
-			return getLocalStorageItem<string | null>(LAST_ACTIVITY_DATE_KEY, null);
-		},
+	const [lastActivityDate, setLastActivityDate] = useState<string | null>(() =>
+		readLastActivityDate(),
 	);
 
-	const [streak, setStreak] = useState(() => {
-		const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
-		const savedLastDate = getLocalStorageItem<string | null>(
-			LAST_ACTIVITY_DATE_KEY,
-			null,
-		);
+	const [streak, setStreak] = useState(() => readStreak());
 
-		if (savedLastDate) {
-			const daysDiff = differenceInCalendarDays(
-				new Date(),
-				parseISO(savedLastDate),
-			);
-			if (daysDiff > 1) {
-				// Streak broken, we don't update storage here (side effect), but we return correct state
-				return 0;
-			}
-		}
-		return savedStreak;
-	});
-
-	// Sync broken streak to storage if needed
+	// Sequência quebrada: persiste o zero para as demais telas lerem o mesmo valor.
 	useEffect(() => {
 		const savedStreak = getLocalStorageItem<number>(STREAK_STORAGE_KEY, 0);
 		if (streak === 0 && savedStreak > 0) {
@@ -98,43 +82,13 @@ export function useCurriculumProgress() {
 		return Math.floor(xp / 100) + 1;
 	}, []);
 
-	// Update streak logic
+	// Update streak logic — delega para a fonte única (lib/streak).
 	const updateStreak = useCallback(() => {
-		const today = new Date().toISOString();
-
-		if (!lastActivityDate) {
-			setStreak(1);
-			setLastActivityDate(today);
-			setLocalStorageItem(STREAK_STORAGE_KEY, 1);
-			setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
-			return 1;
-		}
-
-		const daysDiff = differenceInCalendarDays(
-			new Date(),
-			parseISO(lastActivityDate),
-		);
-
-		if (daysDiff === 0) {
-			// Already active today, streak doesn't change
-			return streak;
-		} else if (daysDiff === 1) {
-			// Consecutive day
-			const newStreak = streak + 1;
-			setStreak(newStreak);
-			setLastActivityDate(today);
-			setLocalStorageItem(STREAK_STORAGE_KEY, newStreak);
-			setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
-			return newStreak;
-		} else {
-			// Streak broken
-			setStreak(1);
-			setLastActivityDate(today);
-			setLocalStorageItem(STREAK_STORAGE_KEY, 1);
-			setLocalStorageItem(LAST_ACTIVITY_DATE_KEY, today);
-			return 1;
-		}
-	}, [streak, lastActivityDate]);
+		const newStreak = recordStreakActivity();
+		setStreak(newStreak);
+		setLastActivityDate(readLastActivityDate());
+		return newStreak;
+	}, []);
 
 	// Marcar lição como concluída
 	const completeLesson = useCallback(
@@ -322,6 +276,7 @@ export function useCurriculumProgress() {
 		totalXP,
 		userLevel,
 		streak,
+		lastActivityDate,
 		completeLesson,
 		isLessonCompleted,
 		isModuleUnlocked,

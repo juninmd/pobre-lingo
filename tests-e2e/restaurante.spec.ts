@@ -11,6 +11,11 @@ import { expect, type Page, test } from "@playwright/test";
 
 const BASE_URL = process.env.SMOKE_BASE_URL ?? "http://localhost:5173";
 
+// O atendimento tem atrasos propositais (o mascote "digita" ~800ms por fala) e
+// são três passos, cada um podendo começar com uma resposta errada. Somado à
+// latência de rede, o padrão de 30s por teste é apertado demais.
+test.describe.configure({ timeout: 90_000 });
+
 const ROTA_RESTAURANTE =
 	"/exercises/conversation?module=ordering-food-module&lesson=ordering-food-sim";
 

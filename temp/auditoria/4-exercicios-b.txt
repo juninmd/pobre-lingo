@@ -1,0 +1,556 @@
+opencode.exe : [0m
+No linha:4 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -¿ deepseek-v4-flash
+[0m
+Vou rodar o auditor headless nas 4 rotas em paralelo.
+[0m$ [0mnode scripts/audit-page.mjs /exercises/listening https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/listening",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Back to Home\" est+Ì sob \"PRINCIPAL\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/conversation https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/conversation",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Caderninho\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Ordenar Frases\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Identificar Frases\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, 
+obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Encontrar Erros\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Interpreta+∫+˙o\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"ESCOLHA SUA RESPOSTA\nI am fine, thanks.\nEstou bem, obrigado.\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"BUTTON\" est+Ì sob \"Pr+Ìtica de Conversa\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "3 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"BUTTON\" est+Ì sob \"Pr+Ìtica de Conversa\n\nSIMULA+Á+‚O REALISTA\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "3 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/matching-pairs https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/matching-pairs",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Voltar\" est+Ì sob \"INPUT\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Leite\" est+Ì sob \"Jornada\nRevisar\nJogos\nRegras\nDicion+Ìrio\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Ch+Ì\" est+Ì sob \"Jornada\nRevisar\nJogos\nRegras\nDicion+Ìrio\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /arcade https://pobrelingo.netlify.app
+{
+  "rota": "/arcade",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Jogar Agora\" est+Ì sob \"Regras\nDicion+Ìrio\nCaderninho\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Jogar Agora\" est+Ì sob \"Ordenar Frases\nIdentificar Frases\nEncontrar Erros\nInterpreta\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+Agora vou investigar o c+¶digo-fonte para confirmar as causas. Vou mapear a estrutura primeiro.
+[0m‘£¶ [0mGlob "src/pages/**/*.tsx"[90m 30 matches[0m
+[0m‘£¶ [0mGlob "src/components/**/*.tsx"[90m 88 matches[0m
+[0m‘Â∆ [0mRead src/pages/exercises/listening/page.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/conversation/page.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/matching-pairs/page.tsx
+[0m‘Â∆ [0mRead src/pages/ArcadePage.tsx
+[0m‘£¶ [0mGlob "src/components/layout/**/*.tsx"[90m 1 match[0m
+[0m‘Â∆ [0mRead src/components/common/PageContainer.tsx
+[0m‘Â∆ [0mRead src/components/common/PageHeader.tsx
+Os achados apontam para elementos de layout/nav sobrepondo conte+¶do. Vou ler os componentes de layout e exerc+°cios.
+[0m‘£¶ [0mGrep "Teste de N+°vel"[90m 1 match[0m
+[0m‘£¶ [0mGrep "dias"[90m 14 matches[0m
+[0m‘£¶ [0mGrep "PRINCIPAL|Caderninho|Jornada"[90m 24 matches[0m
+[0m‘Â∆ [0mRead src/Layout.tsx
+[0m‘Â∆ [0mRead src/components/layout/MobileNav.tsx
+[0m‘Â∆ [0mRead src/components/common/GlobalSearch.tsx
+O culpado comum est+Ì em `Layout.tsx`. Vou l+¨-lo junto com `MobileNav.tsx`, `GlobalSearch.tsx` e `LearningStreakDisplay.tsx`.
+[0m‘Â∆ [0mRead src/components/streaks/LearningStreakDisplay.tsx
+Vou ler o script do auditor e os componentes de exerc+°cio + NotificationCenter para entender as sobreposi+∫+¡es e os bot+¡es sem nome.
+[0m‘Â∆ [0mRead scripts/audit-page.mjs
+[0m‘Â∆ [0mRead src/components/notifications/NotificationCenter.tsx
+[0m‘Â∆ [0mRead src/components/ui/sidebar.tsx
+[0m‘Â∆ [0mRead src/components/exercises/ConversationExercise.tsx
+Preciso ler o `sidebar.tsx` (geometria/posicionamento) e os exerc+°cios de listening/conversation (para os bot+¡es sem nome).
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-pobrelingo.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx">
+ERROR [10:2] Do not shadow the global "Map" property.
+ERROR [218:44] handleSelect changes on every re-render and should not be used as a hook dependency.
+ERROR [393:3] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx">
+ERROR [259:11] Provide an explicit type prop for the button element.
+ERROR [319:17] Avoid using the index of an array as key property in an element.
+ERROR [334:10] Provide an explicit type prop for the button element.
+</diagnostics>
+[0m
+Os achados apontam para sobreposi+∫+˙o real entre sidebar fixa, barra fixa do exerc+°cio e elementos do layout. Vou rodar uma sonda headless (no temp dir, fora do repo) para obter a geometria exata e confirmar cada causa sem editar o repo.
+LSP avisos s+˙o do repo (n+˙o editei nada dele). Rodando a sonda:
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs" https://pobrelingo.netlify.app
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@playwright/test' imported from 
+C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+[0m
+Probe no temp n+˙o resolve o m+¶dulo. Vou apontar o import para o `@playwright/test` do repo via caminho absoluto.
+[0m$ [0mnode -e "const 
+p=require.resolve('@playwright/test/package.json',{paths:['D:/Solutions/pessoal/pobre-lingo']}); console.log(p)"
+D:\Solutions\pessoal\pobre-lingo\node_modules\.pnpm\@playwright+test@1.60.0\node_modules\@playwright\test\package.json
+[0m
+[0m‘Â… [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-pobrelingo.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
+@@ -1,5 +1,5 @@
+-import { chromium, devices } from "@playwright/test";
++import { chromium, devices } from 
+"D:/Solutions/pessoal/pobre-lingo/node_modules/.pnpm/@playwright+test@1.60.0/node_modules/@playwright/test/index.mjs";
+ 
+ const base = process.argv[2] ?? "https://pobrelingo.netlify.app";
+ const rotas = [
+   "/exercises/listening",
+
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs" https://pobrelingo.netlify.app
+node:internal/modules/esm/load:193
+    throw new ERR_UNSUPPORTED_ESM_URL_SCHEME(parsed, schemes);
+          ^
+
+Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: Only URLs with a scheme in: file, data, and node are supported by the default 
+ESM loader. On Windows, absolute paths must be valid file:// URLs. Received protocol 'd:'
+    at throwIfUnsupportedURLScheme (node:internal/modules/esm/load:193:11)
+    at defaultLoadSync (node:internal/modules/esm/load:146:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:802:12)
+    at #loadSync (node:internal/modules/esm/loader:834:53)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_UNSUPPORTED_ESM_URL_SCHEME'
+}
+
+Node.js v24.18.0
+[0m
+[0m‘Â… [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-pobrelingo.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs
+@@ -1,5 +1,5 @@
+-import { chromium, devices } from 
+"D:/Solutions/pessoal/pobre-lingo/node_modules/.pnpm/@playwright+test@1.60.0/node_modules/@playwright/test/index.mjs";
++import { chromium, devices } from "file:///D:/Solutions/pessoal/pobre-lingo/node_modules/.pnpm/@playwright+test@1.60.0
+/node_modules/@playwright/test/index.mjs";
+ 
+ const base = process.argv[2] ?? "https://pobrelingo.netlify.app";
+ const rotas = [
+   "/exercises/listening",
+
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-pobrelingo.mjs" https://pobrelingo.netlify.app
+==== /exercises/listening (desktop) ====
+COBERTO  alvo=Teste de N+°vel [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,720,224,40)
+         por=0
+dias [div.flex items-baseline gap-1.5] rect=(8,720,224,40)
+COBERTO  alvo=Back to Home [a.inline-flex items-center justify-center gap-2 whitespace-now] rect=(57,113,132,36)
+         por=PRINCIPAL [h3.px-3 mb-2 text-[10px] font-bold uppercase tracking-wider tex] rect=(57,113,132,36)
+UNNAMED_BUTTONS (1):
+  - BUTTON[gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc] svg=w-full h-full 
+rect=(1200,720,56,56)
+
+==== /exercises/conversation (desktop) ====
+COBERTO  alvo=Caderninho [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,414,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,414,224,40)
+COBERTO  alvo=Ordenar Frases [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,501,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,501,224,40)
+COBERTO  alvo=Identificar Frases [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,545,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,545,224,40)
+COBERTO  alvo=Encontrar Erros [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,589,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,589,224,40)
+COBERTO  alvo=Interpreta+∫+˙o [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,633,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,633,224,40)
+COBERTO  alvo=Teste de N+°vel [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,720,224,40)
+         por=ESCOLHA SUA RESPOSTA
+I am fine, thanks.
+ [div.fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 s] rect=(8,720,224,40)
+COBERTO  alvo=BUTTON [button.mt-1 p-1 rounded-full hover:bg-primary/20 text-primary trans] rect=(653,93,28,28)
+         por=Pr+Ìtica de Conversa [h1.text-xl font-bold tracking-tight text-gold] rect=(653,93,28,28)
+UNNAMED_BUTTONS (3):
+  - BUTTON[inline-flex items-center justify-center gap-2 whitespace-nowrap rounde] svg=lucide lucide-arrow-left w-6 
+h-6 rect=(128,82,40,40)
+  - BUTTON[mt-1 p-1 rounded-full hover:bg-primary/20 text-primary transition-colo] svg=lucide lucide-volume2 
+lucide-volume-2 w-5 h-5 rect=(653,93,28,28)
+  - BUTTON[gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc] svg=w-full h-full 
+rect=(1200,720,56,56)
+
+==== /exercises/matching-pairs (desktop) ====
+COBERTO  alvo=Teste de N+°vel [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,720,224,40)
+         por=0
+dias [div.flex items-baseline gap-1.5] rect=(8,720,224,40)
+COBERTO  alvo=Voltar [a.flex items-center text-sm text-muted-foreground hover:text-p] rect=(32,92,60,20)
+         por=INPUT [input.flex border px-3 py-2 ring-offset-background file:border-0 f] rect=(32,92,60,20)
+UNNAMED_BUTTONS (1):
+  - BUTTON[gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc] svg=w-full h-full 
+rect=(1200,720,56,56)
+
+==== /arcade (desktop) ====
+COBERTO  alvo=Teste de N+°vel [a.whitespace-nowrap font-medium ring-offset-background focus-v] rect=(8,720,224,40)
+         por=0
+dias [div.flex items-baseline gap-1.5] rect=(8,720,224,40)
+COBERTO  alvo=Jogar Agora [a.inline-flex items-center justify-center gap-2 whitespace-now] rect=(58,346,337,44)
+         por=Regras
+Dicion+Ìrio
+Caderninho [ul.flex w-full min-w-0 flex-col gap-1] rect=(58,346,337,44)
+COBERTO  alvo=Jogar Agora [a.inline-flex items-center justify-center gap-2 whitespace-now] rect=(58,610,337,44)
+         por=Ordenar Frases
+Identificar Frases
+Encont [ul.flex w-full min-w-0 flex-col gap-1] rect=(58,610,337,44)
+UNNAMED_BUTTONS (1):
+  - BUTTON[gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc] svg=w-full h-full 
+rect=(1200,720,56,56)
+
+==== /exercises/matching-pairs (mobile) ====
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-geometry.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx">
+ERROR [10:2] Do not shadow the global "Map" property.
+ERROR [218:44] handleSelect changes on every re-render and should not be used as a hook dependency.
+ERROR [393:3] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx">
+ERROR [259:11] Provide an explicit type prop for the button element.
+ERROR [319:17] Avoid using the index of an array as key property in an element.
+ERROR [334:10] Provide an explicit type prop for the button element.
+</diagnostics>
+[0m
+A sonda revelou a causa raiz: o conte+¶do est+Ì em x‘ÎÍ0 e a sidebar fixa sobrep+¡e o conte+¶do (elementos do conte+¶do t+¨m o mesmo rect dos elementos da sidebar). Vou confirmar a geometria da sidebar e o bot+˙o flutuante sem nome.
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-geometry.mjs" https://pobrelingo.netlify.app
+sidebar inner: x=0 w=240 display=flex data-collapsible="null" data-state="null"
+sidebar peer wrapper: x=0 w=0 display=block data-collapsible="" data-state="expanded"
+main: x=0 w=1280 display=flex data-collapsible="null" data-state="null"
+CSS var --sidebar-width on wrapper: --sidebar-width: 16rem; --sidebar-width-icon: 3rem;
+spacer: x=0 w=0 h=800 class=duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] 
+ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 
+group-data-[collapsible=icon]:w-[--sidebar-width-icon]
+fixed sidebar container: x=0 w=241 z=10 class=duration-200 fixed inset-y-0 z-10 h-svh w-[--sidebar-width] 
+transition-[left,rig
+unnamed: tag=BUTTON class=gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 
+hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex items-center justify-center 
+transition-all duration-300 scale-100 hover:scale-105 active:scale-95 border border-primary/20 bg-primary 
+text-primary-foreground rect=(1200,720,56,56) outerHTML head=<button class="gap-2 whitespace-nowrap text-sm 
+font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+focus-visible:ring-offset-2 disabled:pointer-e
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-css.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx">
+ERROR [10:2] Do not shadow the global "Map" property.
+ERROR [218:44] handleSelect changes on every re-render and should not be used as a hook dependency.
+ERROR [393:3] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx">
+ERROR [259:11] Provide an explicit type prop for the button element.
+ERROR [319:17] Avoid using the index of an array as key property in an element.
+ERROR [334:10] Provide an explicit type prop for the button element.
+</diagnostics>
+[0m
+Causa confirmada: `spacer` com largura 0 e `main` em x=0 w=1280 ‘«ˆ a sidebar fixa cobre o conte+¶do. Vou inspecionar o CSS computado do spacer para a causa exata.
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-css.mjs" https://pobrelingo.netlify.app
+spacer computed width=0px
+spacer cssText=duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear 
+group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 
+group-data-[collapsible=icon]:w-[--sidebar-width-icon]
+var defined on <DIV class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar h-full 
+overflow-hidden"> --sidebar-width: 16rem; --sidebar-width-icon: 3rem;
+[0m
+[0m‘Â∆ [0mRead src/components/mascot/PobrelingoAssistant.tsx
+Causa raiz confirmada. Vou confirmar o bot+˙o flutuante sem nome (PobrelingoAssistant) lendo o componente.
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-button.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx">
+ERROR [10:2] Do not shadow the global "Map" property.
+ERROR [218:44] handleSelect changes on every re-render and should not be used as a hook dependency.
+ERROR [393:3] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx">
+ERROR [259:11] Provide an explicit type prop for the button element.
+ERROR [319:17] Avoid using the index of an array as key property in an element.
+ERROR [334:10] Provide an explicit type prop for the button element.
+</diagnostics>
+[0m
+O bot+˙o (1200,720) sem nome +Æ suspeito ‘«ˆ o PobrelingoAssistant tem `aria-label`. Vou identificar o bot+˙o exato por outerHTML completo.
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-button.mjs" https://pobrelingo.netlify.app
+BUTTON aria-label="null" title="null" text="" rect=(1200,720) OUTERHTML=<button class="gap-2 whitespace-nowrap text-sm 
+font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none 
+[&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl 
+pointer-events-auto flex items-center justify-center transition-all duration-300 scale-100 hover:scale-105 
+active:scale-95 border border-primary/20 bg-primary text-primary-foreground" type="button"><div class="relative flex 
+items-center justify-center"><div class="inline-block drop-shadow-sm transition-transform hover:scale-105 dur
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe-css2.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx">
+ERROR [10:2] Do not shadow the global "Map" property.
+ERROR [218:44] handleSelect changes on every re-render and should not be used as a hook dependency.
+ERROR [393:3] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx">
+ERROR [259:11] Provide an explicit type prop for the button element.
+ERROR [319:17] Avoid using the index of an array as key property in an element.
+ERROR [334:10] Provide an explicit type prop for the button element.
+</diagnostics>
+[0m
+O bot+˙o sem nome +Æ o launcher do PobrelingoAssistant **em produ+∫+˙o** (sem `aria-label`, apesar do source local ter). Falta confirmar se o CSS compilado realmente n+˙o tem regra para `w-[--sidebar-width]` ‘«ˆ vou escanear recursivamente (incluindo @media/@layer).
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe-css2.mjs" https://pobrelingo.netlify.app
+rules with 'sidebar-width': 6
+  .w-\[--sidebar-width\] => 
+  .group-data-\[collapsible\=icon\]\:w-\[--sidebar-width-icon\]:is(:where(.group)[data-collapsible="icon"] *) => 
+  .group-data-\[collapsible\=icon\]\:w-\[calc\(var\(--sidebar-width-icon\)_\+_theme\(spacing\.4\)\)\]:is(:where(.group)
+[da => calc(var(--sidebar-width-icon) + 1rem)
+  .group-data-\[collapsible\=icon\]\:w-\[calc\(var\(--sidebar-width-icon\)_\+_theme\(spacing\.4\)_\+2px\)\]:is(:where(.
+gro => calc(var(--sidebar-width-icon) + 1rem + 2px)
+  .group-data-\[collapsible\=offcanvas\]\:right-\[calc\(var\(--sidebar-width\)\*-1\)\]:is(:where(.group)[data-collapsib
+le= => 
+  .group-data-\[collapsible\=offcanvas\]\:left-\[calc\(var\(--sidebar-width\)\*-1\)\]:is(:where(.group)[data-collapsibl
+e=" =>
+[0m
+Tudo confirmado com geometria e CSS compilado. Resumo dos fatos verificados:
+- O spacer reservador de espa+∫o da sidebar (`w-[--sidebar-width]`) computa `width: 0px` no build (a regra CSS existe mas a declara+∫+˙o `width` n+˙o vale) ‘Â∆ `main` fica em x=0 e a sidebar `fixed z-10` cobre o conte+¶do em desktop.
+- No conversation, a barra de op+∫+¡es `fixed left-0 right-0 z-40` cobre os itens inferiores da sidebar; o header `sticky z-30` cobre o bot+˙o de +Ìudio (chat rola sob ele via `scrollIntoView`).
+- O bot+˙o sem nome em produ+∫+˙o +Æ o launcher do `PobrelingoAssistant` (o source local tem `aria-label` ‘Â∆ deploy defasado) + 2 no ConversationExercise (back/Volume2 sem `aria-label`).
+
+Achados:
+
+```
+/exercises/listening | alta | src/components/ui/sidebar.tsx:234 | Bot+˙o "Back to Home" do PageHeader sob o heading "PRINCIPAL" da sidebar (desktop) | Spacer `w-[--sidebar-width]` computa 0px no build (Tailwind v4 n+˙o gera width v+Ìlida p/ var em bracket); `SidebarInset` (sidebar.tsx:350) n+˙o +Æ deslocado e a sidebar `fixed z-10` (sidebar.tsx:244) sobrep+¡e o conte+¶do em x=0
+/exercises/listening | alta | src/Layout.tsx:112 | Item "Teste de N+°vel" sob o streak "0 dias" (desktop) | `LearningStreakDisplay` compact do `SidebarFooter` (Layout.tsx:253-263) ocupa o mesmo band vertical do +¶ltimo item do menu; ScrollArea `flex-1` sem `min-h-0` (Layout.tsx:185) deixa o item escorregar para baixo da +Ìrea do footer
+/exercises/listening | media | src/components/mascot/PobrelingoAssistant.tsx:103 | 1 bot+˙o sem nome acess+°vel (launcher do assistente) | Bot+˙o flutuante 56x56 sem aria-label/title no bundle de produ+∫+˙o (source local tem aria-label em :105-107 ‘Â∆ deploy defasado)
+/exercises/conversation | alta | src/components/exercises/ConversationExercise.tsx:308 | Itens da sidebar (Caderninho, Ordenar, Identificar, Encontrar, Interpreta+∫+˙o, Teste de N+°vel) sob a barra "ESCOLHA SUA RESPOSTA" (desktop) | Barra de op+∫+¡es `fixed bottom-0 left-0 right-0 z-40` cobre toda a largura inferior; z-40 > z-10 da sidebar fixa ‘Â∆ cobre os itens inferiores da navega+∫+˙o
+/exercises/conversation | alta | src/components/exercises/ConversationExercise.tsx:259 | Bot+˙o de +Ìudio (Volume2) sob o h1 "Pr+Ìtica de Conversa" (desktop e mobile) | Header `sticky top-0 z-30` (ConversationExercise.tsx:182) + `scrollIntoView` no mount (:113-115) rolam o chat e a bolha com o replay cai sob o header transl+¶cido (`glass`); hit-test retorna o header
+/exercises/conversation | media | src/components/exercises/ConversationExercise.tsx:184 | 3 bot+¡es sem nome acess+°vel (back ArrowLeft, Volume2 replay e launcher do assistente) | Back button (:184) e Volume2 (:259) sem aria-label/title; terceiro +Æ o PobrelingoAssistant:103 em produ+∫+˙o
+/exercises/matching-pairs | alta | src/components/ui/sidebar.tsx:234 | Link "Voltar" sob o INPUT de busca da sidebar (desktop) | Mesma causa da sidebar: spacer `w-[--sidebar-width]` com width 0 ‘Â∆ conte+¶do em x=0 sob a sidebar fixa; INPUT do SidebarHeader (Layout.tsx:165-171) cobre o link
+/exercises/matching-pairs | alta | src/Layout.tsx:112 | Item "Teste de N+°vel" sob o streak "0 dias" (desktop) | Mesma causa: rodap+Æ com `LearningStreakDisplay` (Layout.tsx:253-263) sobrep+¡e o +¶ltimo item do menu
+/exercises/matching-pairs | alta | src/components/layout/MobileNav.tsx:20 | Cartas "Leite"/"Ch+Ì" sob a nav fixa (Jornada/Revisar/Jogos/Regras/Dicion+Ìrio) (mobile) | MobileNav `fixed bottom-0 z-[100]` (MobileNav.tsx:20) cobre a +¶ltima linha do grid de cartas (matching-pairs/page.tsx:236); reprodu+∫+˙o dependente de shuffle/altura (n+˙o reproduzi na sonda, mas o auditor reportou)
+/exercises/matching-pairs | media | src/components/mascot/PobrelingoAssistant.tsx:103 | 1 bot+˙o sem nome acess+°vel | Launcher do assistente sem aria-label em produ+∫+˙o
+/arcade | alta | src/components/ui/sidebar.tsx:234 | Bot+¡es "Jogar Agora" sob os grupos "Refer+¨ncia"/"Exerc+°cios" da sidebar (desktop) | Mesma causa da sidebar: spacer com width 0 ‘Â∆ grid do Arcade (ArcadePage.tsx:180-186) em x=0 sob a sidebar fixa z-10
+/arcade | alta | src/Layout.tsx:112 | Item "Teste de N+°vel" sob o streak "0 dias" (desktop) | Mesma causa: rodap+Æ `LearningStreakDisplay` (Layout.tsx:253-263) sobrep+¡e o +¶ltimo item do menu
+/arcade | media | src/components/mascot/PobrelingoAssistant.tsx:103 | 1 bot+˙o sem nome acess+°vel | Launcher do assistente sem aria-label em produ+∫+˙o
+```
+
+Nota: o problema sist+¨mico em desktop (spacer da sidebar com width 0 ‘Â∆ sidebar sobrepondo conte+¶do) afeta todas as rotas; a causa +Æ `sidebar.tsx:234`/`350` + `Layout.tsx:307-312`. O probe e o CSS compilado de produ+∫+˙o confirmaram `width: 0px` e `main` em x=0/w=1280.
+

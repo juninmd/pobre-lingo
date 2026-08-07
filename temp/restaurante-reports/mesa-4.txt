@@ -1,0 +1,96 @@
+opencode.exe : [0m
+No linha:5 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -¿ deepseek-v4-flash
+[0m
+[0m$ [0mnpx playwright test tests-e2e/restaurante.spec.ts --project=chromium --reporter=line -g Restaurante
+[1A[2K
+[2m[WebServer] [22m(node:21472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 8 workers
+
+[1A[2K
+
+(node:44036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:44036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+
+
+
+[1A[2K(node:14296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:14296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:35424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:28664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:42568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+
+
+
+[1A[2K[1/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 4: Cliente que confunde a 
+pergunta
+
+
+[1A[2K(node:28664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:32420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:35424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:42568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+
+
+
+[1A[2K(node:32420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[2/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 6: Cliente confiante
+[1A[2K(node:35236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+
+[1A[2K(node:35236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[3/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 5: Cliente iniciante
+[1A[2K[4/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 1: Cliente decidido
+[1A[2K(node:21508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[5/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 8: Cliente que testa o gar+∫om
+[1A[2K(node:21508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[6/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 7: Cliente distra+°do
+[1A[2K[7/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 3: Cliente apressado
+[1A[2K[8/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 2: Cliente inseguro no primeiro 
+passo
+[1A[2K[9/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 9: Cliente experiente
+[1A[2K[10/10] [chromium] ‘«¶ tests-e2e\restaurante.spec.ts:73:2 ‘«¶ Restaurante mesa 10: Cliente hesitante
+[1A[2K  10 passed (47.0s)
+[0m
+MESA 4 | PASSOU | Todos os 10 cen+Ìrios (mesa 1-10) do m+¶dulo ordering-food passaram no smoke.
+

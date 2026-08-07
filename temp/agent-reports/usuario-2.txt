@@ -1,0 +1,35 @@
+opencode.exe : [0m
+No linha:5 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -À deepseek-v4-flash
+[0m
+[0m$ [0mnpx playwright test tests-e2e/homologacao.spec.ts --project=chromium --reporter=line -g "Usuario 2"
+Running 2 tests using 2 workers
+
+[1A[2K(node:44592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+
+
+
+
+
+[1A[2K(node:25656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:44592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:25656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[1/2] [chromium] ÔÇ¦ tests-e2e\homologacao.spec.ts:202:2 ÔÇ¦ Usuario 2: Usu+írio que vai direto para a 
+revis+úo espa+ºada
+[1A[2K[2/2] [chromium] ÔÇ¦ tests-e2e\homologacao.spec.ts:202:2 ÔÇ¦ Usuario 20: Usu+írio digitando uma URL inexistente
+[1A[2K  2 passed (10.6s)
+[0m
+USUARIO 2 | PASSOU | Usu+írio foi direto +á revis+úo espa+ºada e usu+írio digitando URL inexistente (2 testes passaram).
+

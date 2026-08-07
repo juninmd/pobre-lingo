@@ -1,0 +1,827 @@
+opencode.exe : [0m
+No linha:4 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -À deepseek-v4-flash
+[0m
+[0m$ [0mTest-Path -LiteralPath "scripts/audit-page.mjs"
+True
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /review https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/review",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+¡vel\" est+í sob \"0\ndias\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs / https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Minha Jornada\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Revisar\nSRS\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Arcade\nFun\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Regras\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Dicion+írio\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Caderninho\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Ordenar Frases\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Identificar Frases\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Anterior\" (confirmar se +® esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "2 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Pesquisar\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"1\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Alternar tema\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"VOCABULARY\n15m\nAlfabeto e Pron+¦ncia\nA1\" est+í sob \"Fa+ºa um teste r+ípido de 10 minutos 
+para sabermos qual +® o se\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"BUTTON\" est+í sob \"DIV\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Anterior\" (confirmar se +® esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "2 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /achievements https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/achievements",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+¡vel\" est+í sob \"0\ndias\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /settings https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/settings",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+¡vel\" est+í sob \"0\ndias\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "2 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Ofensiva\" est+í sob \"Jornada\nRevisar\nJogos\nRegras\nDicion+írio\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "2 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /rota-inexistente-404 https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/rota-inexistente-404",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+¡vel\" est+í sob \"0\ndias\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /proficiency https://pobrelingo.netlify.app; exit 0
+{
+  "rota": "/proficiency",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+¡vel\" est+í sob \"0\ndias\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+úo(+Áes) sem nome acess+¡vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0mÔ£¦ [0mGlob "src/pages/**/*"[90m 30 matches[0m
+[0mÔ£¦ [0mGlob "src/components/**/*"[90m 88 matches[0m
+[0mÔ£¦ [0mGlob "src/**/*.tsx"[90m 100 matches[0m
+[0m
+[0m$ [0mGet-ChildItem -Recurse src/pages, src/components, src/Layout.tsx, src/Router.tsx -Include *.tsx,*.tsx | 
+Where-Object { $_.Name -match 'DashboardPage|ReviewPage|AchievementsPage|SettingsPage|NotFoundPage|ProficiencyTestPage|
+Layout|MobileNav|AchievementsList|ResultCard' } | ForEach-Object { "{0}`t{1}" -f $_.FullName, ((Get-Content 
+$_.FullName).Count) }
+D:\Solutions\pessoal\pobre-lingo\src\pages\AchievementsPage.tsx	207
+D:\Solutions\pessoal\pobre-lingo\src\pages\DashboardPage.tsx	231
+D:\Solutions\pessoal\pobre-lingo\src\pages\NotFoundPage.tsx	40
+D:\Solutions\pessoal\pobre-lingo\src\pages\ProficiencyTestPage.tsx	117
+D:\Solutions\pessoal\pobre-lingo\src\pages\ReviewPage.tsx	328
+D:\Solutions\pessoal\pobre-lingo\src\pages\SettingsPage.tsx	332
+D:\Solutions\pessoal\pobre-lingo\src\components\gamification\AchievementsList.tsx	83
+D:\Solutions\pessoal\pobre-lingo\src\components\layout\MobileNav.tsx	99
+D:\Solutions\pessoal\pobre-lingo\src\components\proficiency\ResultCard.tsx	100
+D:\Solutions\pessoal\pobre-lingo\src\Layout.tsx	455
+[0m
+[0mÔåÆ [0mRead src/Layout.tsx
+[0mÔåÆ [0mRead src/pages/DashboardPage.tsx
+[0mÔåÆ [0mRead src/components/layout/MobileNav.tsx
+[0mÔåÆ [0mRead src/components/streaks/LearningStreakDisplay.tsx
+[0mÔåÆ [0mRead src/pages/ReviewPage.tsx
+[0mÔåÆ [0mRead src/pages/NotFoundPage.tsx
+[0mÔåÆ [0mRead src/pages/AchievementsPage.tsx
+[0m
+[0m$ [0m(Get-Content scripts/audit-page.mjs).Count
+165
+[0m
+[0mÔåÆ [0mRead scripts/audit-page.mjs
+Audit mechanics are clear (overlay hit-test via `elementFromPoint`). Now let me identify the covering elements and unnamed buttons precisely with a diagnostic in the temp dir (outside the repo).
+[0m
+[0m$ [0mTest-Path -LiteralPath "C:\Users\jr_ac\AppData\Local\Temp\opencode"
+True
+[0m
+[0mÔåÉ [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/diag.mjs
+Wrote file successfully.
+[0m
+[0m$ [0mnode diag.mjs "/" 2>&1 | Select-Object -First 80
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright' imported from 
+C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+[0m
+[0m$ [0mTest-Path -LiteralPath "D:\Solutions\pessoal\pobre-lingo\node_modules\playwright\index.mjs"; Test-Path 
+-LiteralPath "D:\Solutions\pessoal\pobre-lingo\node_modules\@playwright\test\index.mjs"
+False
+True
+[0m
+[0mÔåÉ [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/diag.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+@@ -1,5 +1,5 @@
+-import { chromium, devices } from "playwright";
++import { chromium, devices } from "file:///D:/Solutions/pessoal/pobre-lingo/node_modules/@playwright/test/index.mjs";
+ 
+ const rota = process.argv[2] ?? "/";
+ const base = "https://pobrelingo.netlify.app";
+ 
+
+[0m
+[0m$ [0mnode diag.mjs "/" 2>&1 | Select-Object -First 100
+=== desktop / ===
+COBERTOS:
+{"alvo":"Minha Jornada","alvoTag":"A","alvoCls":"whitespace-nowrap ring-offset-background focus-visible:outline-none 
+focus-visible:ring-ring focus-visible:ring-offset-2 ","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 
+bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Revisar\nSRS","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Arcade\nFun","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Regras","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Dicion+írio","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Caderninho","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Ordenar Frases","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Identificar Frases","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Encontrar Erros","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Interpreta+º+úo","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+BOTOES SEM NOME: 2
+{"tag":"BUTTON","cls":"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium 
+ring-offset-background transition-colors focus-visible:","outer":"<button class=\"inline-flex items-center 
+justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors 
+focus-visible:outline-none focus-visible:ring-2 f"}
+{"tag":"BUTTON","cls":"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none 
+focus-visible:ring-2 focus-visible:ring-ring focus-visib","outer":"<button class=\"gap-2 whitespace-nowrap text-sm 
+font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+focus-visible:ring-offset-2 disabled:pointer-e"}
+[0m
+[0mÔåÉ [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/diag.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+@@ -36,15 +36,39 @@
+ 	return achados.slice(0, 10);
+ });
+ 
+ const semNome = await page.evaluate(
+-	() =>
+-		Array.from(document.querySelectorAll("button"))
++	() => {
++		const cadeia = (b) => {
++			const l = [];
++			let n = b;
++			for (let i = 0; i < 5 && n; i++, n = n.parentElement) {
++				const s = n.tagName.toLowerCase();
++				const id = n.id ? `#${n.id}` : "";
++				const cls = (n.className || "").toString().slice(0, 70);
++				l.push(`${s}${id}.${cls}`);
++			}
++			return l.join(" < ");
++		};
++		return Array.from(document.querySelectorAll("button"))
+ 			.filter((b) => !b.innerText.trim() && !b.getAttribute("aria-label") && !b.getAttribute("title"))
+ 			.map((b) => ({
+-				tag: b.tagName,
+-				cls: (b.className || "").toString().slice(0, 150),
+-				outer: b.outerHTML.slice(0, 200),
++				outer: b.outerHTML.slice(0, 400),
++				ancestors: cadeia(b),
++			}));
++	},
++);
++
++const dialogs = await page.evaluate(
++	() =>
++		Array.from(document.querySelectorAll('[role=dialog], [data-state=open], [aria-modal=true]'))
++			.map((d) => ({
++				tag: d.tagName,
++				role: d.getAttribute("role"),
++				aria: d.getAttribute("aria-modal"),
++				state: d.getAttribute("data-state"),
++				cls: (d.className || "").toString().slice(0, 100),
++				text: (d.innerText || "").trim().slice(0, 80),
+ 			})),
+ );
+ 
+ console.log(`\n=== ${nome} ${rota} ===`);
+
+[0m
+The dashboard cover is a modal overlay (`fixed inset-0 z-50 bg-black/80`). Let me identify the dialogs/buttons precisely and check the other routes.
+[0mÔåÉ [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/diag.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\diag.mjs
+@@ -75,8 +75,10 @@
+ 	console.log("COBERTOS:");
+ 	for (const c of cobertos) console.log(JSON.stringify(c));
+ 	console.log("BOTOES SEM NOME:", semNome.length);
+ 	for (const b of semNome) console.log(JSON.stringify(b));
++	console.log("DIALOGOS/OVERLAYS ABIERTOS:");
++	for (const d of dialogs) console.log(JSON.stringify(d));
+ 	await browser.close();
+ }
+ 
+ await diag("desktop", { viewport: { width: 1280, height: 800 } });
+
+[0m
+[0m$ [0mnode diag.mjs "/" 2>&1 | Select-Object -First 40
+=== desktop / ===
+COBERTOS:
+{"alvo":"Minha Jornada","alvoTag":"A","alvoCls":"whitespace-nowrap ring-offset-background focus-visible:outline-none 
+focus-visible:ring-ring focus-visible:ring-offset-2 ","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 
+bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Revisar\nSRS","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Arcade\nFun","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Regras","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Dicion+írio","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Caderninho","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Ordenar Frases","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Identificar Frases","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Encontrar Erros","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+{"alvo":"Interpreta+º+úo","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"DIV","topoTag":"DIV","topoCls":"fixed inset-0 z-50 bg-black/80 
+data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
+data-[state=open]:fade-in-0","topoPosition":"fixed","topoZ":"50","topoPE":"auto"}
+BOTOES SEM NOME: 2
+{"outer":"<button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm 
+font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 
+focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 
+[&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 
+hover:text-accent-foreground","ancestors":"button.inline-flex items-center justify-center gap-2 whitespace-nowrap 
+rounde < div.flex items-start justify-between mb-2 < div.absolute inset-0 [backface-visibility:hidden] 
+[-webkit-backface-visibi < div.relative w-full h-[140px] [transform-style:preserve-3d] transition-tra < div.p-6 pt-0 
+space-y-4 [perspective:1000px]"}
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+{"tag":"DIV","role":null,"aria":null,"state":"open","cls":"fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in 
+data-[state=closed]:animate-out data-[st","text":""}
+{"tag":"DIV","role":"dialog","aria":null,"state":"open","cls":"fixed left-[50%] top-[50%] z-50 grid w-full 
+translate-x-[-50%] translate-y-[-50%] gap-4 border bg-ba","text":"Descubra seu n+¡vel\n\nFa+ºa um teste r+ípido de 10 
+minutos para sabermos qual +® o se"}
+[0m
+[0m$ [0mnode diag.mjs "/review" 2>&1 | Select-Object -First 40
+=== desktop /review ===
+COBERTOS:
+{"alvo":"Teste de N+¡vel","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"0\ndias","topoTag":"DIV","topoCls":"flex items-baseline 
+gap-1.5","topoPosition":"static","topoZ":"auto","topoPE":"auto"}
+BOTOES SEM NOME: 1
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+[0m
+Dashboard cover = onboarding modal overlay; shared unnamed button = mascot floating button. Let me check the other routes and settings.
+[0m$ [0mnode diag.mjs "/settings" 2>&1 | Select-Object -First 45
+=== desktop /settings ===
+COBERTOS:
+{"alvo":"Teste de N+¡vel","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"0\ndias","topoTag":"DIV","topoCls":"flex items-baseline 
+gap-1.5","topoPosition":"static","topoZ":"auto","topoPE":"auto"}
+BOTOES SEM NOME: 2
+{"outer":"<button type=\"button\" role=\"switch\" aria-checked=\"false\" data-state=\"unchecked\" data-disabled=\"\" 
+disabled=\"\" value=\"on\" class=\"peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full 
+border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring 
+focus-visible:ring-offset-2 focus-visible:ring-offset-background 
+disabled:curso","ancestors":"button#browser-notifications.peer inline-flex h-6 w-11 shrink-0 cursor-pointer 
+items-center rounded < div.flex items-start justify-between gap-4 rounded-xl border bg-muted/20 p < div.p-6 pt-0 
+space-y-5 < div.rounded-lg border bg-card text-card-foreground shadow-sm glass-card < div.w-full space-y-6 max-w-3xl 
+mx-auto"}
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+[0m
+[0m$ [0mnode diag.mjs "/achievements" 2>&1 | Select-Object -First 25
+=== desktop /achievements ===
+COBERTOS:
+{"alvo":"Teste de N+¡vel","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"0\ndias","topoTag":"DIV","topoCls":"flex items-baseline 
+gap-1.5","topoPosition":"static","topoZ":"auto","topoPE":"auto"}
+BOTOES SEM NOME: 1
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+[0m
+[0m$ [0mnode diag.mjs "/proficiency" 2>&1 | Select-Object -First 25
+=== desktop /proficiency ===
+COBERTOS:
+{"alvo":"Teste de N+¡vel","alvoTag":"A","alvoCls":"whitespace-nowrap ring-offset-background focus-visible:outline-none 
+focus-visible:ring-ring focus-visible:ring-offset-2 ","cobertoPor":"0\ndias","topoTag":"DIV","topoCls":"flex 
+items-baseline gap-1.5","topoPosition":"static","topoZ":"auto","topoPE":"auto"}
+BOTOES SEM NOME: 1
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+[0m
+[0m$ [0mnode diag.mjs "/rota-inexistente-404" 2>&1 | Select-Object -First 25
+=== desktop /rota-inexistente-404 ===
+COBERTOS:
+{"alvo":"Teste de N+¡vel","alvoTag":"A","alvoCls":"whitespace-nowrap font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-ring 
+focus-visible:ri","cobertoPor":"0\ndias","topoTag":"DIV","topoCls":"flex items-baseline 
+gap-1.5","topoPosition":"static","topoZ":"auto","topoPE":"auto"}
+BOTOES SEM NOME: 1
+{"outer":"<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background 
+focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 
+[&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex 
+items-ce","ancestors":"button.gap-2 whitespace-nowrap text-sm font-medium ring-offset-background foc < div.fixed 
+bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex- < div.font-body antialiased h-svh overflow-hidden 
+bg-background text-foregro < div#root. < body."}
+DIALOGOS/OVERLAYS ABIERTOS:
+[0m
+[0mÔåÆ [0mRead src/components/onboarding/OnboardingModal.tsx
+[0mÔåÆ [0mRead src/components/mascot/PobrelingoAssistant.tsx
+[0mÔåÆ [0mRead src/components/dashboard/WordOfTheDayWidget.tsx
+Now let me read the source files to confirm causes: OnboardingModal, PobrelingoAssistant, WordOfTheDayWidget, SettingsPage.
+PobrelingoAssistant's button has an `aria-label` in source (line 105-107), yet the deployed site flags it as unnamed. Let me verify the deployed DOM and measure the sidebar overlap.
+[0m
+[0m$ [0m@'
+import { chromium } from "file:///D:/Solutions/pessoal/pobre-lingo/node_modules/@playwright/test/index.mjs";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+await page.goto("https://pobrelingo.netlify.app/review", { waitUntil: "domcontentloaded", timeout: 30000 });
+await page.waitForTimeout(3500);
+const out = await page.evaluate(() => {
+  const b = Array.from(document.querySelectorAll("button")).filter(
+    (x) => !x.innerText.trim() && !x.getAttribute("aria-label") && !x.getAttribute("title"),
+  );
+  return {
+    count: b.length,
+    html: b.map((x) => x.outerHTML.slice(0, 1200)),
+  };
+});
+console.log(JSON.stringify(out, null, 2));
+await browser.close();
+'@ | node --input-type=module -e "eval(require('fs').readFileSync(0,'utf8'))"
+file:///D:/Solutions/pessoal/pobre-lingo/[eval1]:1
+eval(require('fs').readFileSync(0,'utf8'))
+^
+
+ReferenceError: require is not defined in ES module scope, you can use import instead
+    at file:///D:/Solutions/pessoal/pobre-lingo/[eval1]:1:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:224:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:221:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
+[0m
+[0mÔåÉ [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/diag2.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\onboarding\OnboardingModal.tsx">
+ERROR [77:15] Avoid using the index of an array as key property in an element.
+ERROR [146:6] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\WordOfTheDayWidget.tsx">
+ERROR [102:5] Static Elements should not be interactive.
+ERROR [102:5] Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard 
+event.
+</diagnostics>
+[0m
+[0m$ [0mnode diag2.mjs 2>&1
+{
+  "count": 1,
+  "html": [
+    "<button class=\"gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none 
+focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
+disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 px-4 
+py-2 h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex items-center justify-center transition-all 
+duration-300 scale-100 hover:scale-105 active:scale-95 border border-primary/20 bg-primary text-primary-foreground\" 
+type=\"button\"><div class=\"relative flex items-center justify-center\"><div class=\"inline-block drop-shadow-sm 
+transition-transform hover:scale-105 duration-300\" style=\"width: 44px; height: 44px;\"><svg viewBox=\"0 0 200 200\" 
+xmlns=\"http://www.w3.org/2000/svg\" class=\"w-full h-full\"><title>Pobrelingo Mascote</title><defs><linearGradient 
+id=\"bodyGradient\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" 
+stop-color=\"#4ade80\"></stop><stop offset=\"100%\" stop-color=\"#22c55e\"></stop></linearGradient></defs><path 
+d=\"M100 20\n             C 160 20, 190 60, 190 110\n             C 190 170, 150 190, 100 190\n             C 50 190, 
+10 170, 10 110\n             C 10 60, 40 20, 100 20 Z\" fill=\"url(#bodyGradient)\" stroke=\"#15803d\" 
+stroke-width=\"3\"></path><path d=\"M100 120\n             Q 150 120, 150 160\n             Q 150 185, 100 185\n       
+      Q 50 185, 50 160\n             Q 50 120, 100 120 Z\" fill=\"#dcfce7\" opacity=\"0.8\"></path><path d=\"M85 25 Q 
+90"
+  ],
+  "nivelRect": {
+    "top": 720,
+    "bottom": 760,
+    "left": 8,
+    "width": 224,
+    "h": 40
+  },
+  "streakRect": {
+    "top": 733,
+    "bottom": 761,
+    "left": 76,
+    "width": 140,
+    "h": 28
+  }
+}
+[0m
+Overlap confirmed: streak (top 733) covers "Teste de N+¡vel" (720-760). And the deployed mascot button indeed lacks `aria-label` (source has it ÔÇö stale deploy). Now the settings page:
+[0mÔåÆ [0mRead src/pages/SettingsPage.tsx
+[0mÔ£¦ [0mGrep "Ofensiva"[90m in src -À 8 matches[0m
+[0m
+[0mÔåÉ [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/diag3.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\onboarding\OnboardingModal.tsx">
+ERROR [77:15] Avoid using the index of an array as key property in an element.
+ERROR [146:6] Provide an explicit type prop for the button element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\WordOfTheDayWidget.tsx">
+ERROR [102:5] Static Elements should not be interactive.
+ERROR [102:5] Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard 
+event.
+</diagnostics>
+[0m
+[0m$ [0mnode diag3.mjs 2>&1
+{
+  "vh": 727,
+  "navRect": {
+    "top": 635,
+    "bottom": 707
+  },
+  "achados": [
+    {
+      "alvo": "Ofensiva",
+      "alvoRect": {
+        "top": 694.5,
+        "bottom": 718.5
+      },
+      "topo": "Jornada\nRevisar\nJogos\nRegras\nDicion+írio",
+      "topoRect": {
+        "top": 635,
+        "bottom": 707
+      }
+    }
+  ]
+}
+[0m
+[0m$ [0mrg -n "NotFound|path=" src/Router.tsx
+rg: The term 'rg' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[0m
+[0mÔ£¦ [0mGrep "NotFound|path="[90m in src/Router.tsx -À 4 matches[0m
+Achados confirmados (auditor + leitura de c+¦digo + medi+º+Áes de rect no site publicado):
+
+```
+/ | alta | src/pages/DashboardPage.tsx:77 | Sidebar, header ("Pesquisar", "Alternar tema", coins) e card de li+º+úo cobertos pelo overlay do modal (desktop e mobile) | OnboardingModal auto-abre na 1-¬ visita (OnboardingModal.tsx:58/65); DialogOverlay `fixed inset-0 z-50` cobre a UI inteira; auditor roda em contexto limpo
+/ | media | src/components/dashboard/WordOfTheDayWidget.tsx:133 | Bot+úo de +íudio do flashcard "Palavra do Dia" sem nome acess+¡vel | Button com s+¦ +¡cone Volume2, sem aria-label/title
+/ | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo flutuante do mascote sem nome acess+¡vel na produ+º+úo | aria-label j+í existe no c+¦digo (linha 105) mas n+úo est+í no bundle publicado - deploy desatualizado
+/ | baixa | src/components/onboarding/OnboardingModal.tsx:122 | Bot+úo "Anterior" desabilitado | Disabled no step 0 (comportamento esperado do carrossel)
+/review | alta | src/Layout.tsx:112 | Link "Teste de N+¡vel" coberto por "0 dias" (desktop) | +Ültimo item do sidebar sobreposto pelo LearningStreakDisplay do SidebarFooter (Layout.tsx:253-255); rects medidos: item 720-760 vs streak 733-761
+/review | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo do mascote sem nome acess+¡vel | aria-label (linha 105) ausente no deploy publicado
+/achievements | alta | src/Layout.tsx:112 | Link "Teste de N+¡vel" coberto por "0 dias" (desktop) | Mesma sobreposi+º+úo sidebar/footer do Layout
+/achievements | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo do mascote sem nome acess+¡vel | aria-label ausente no deploy publicado
+/settings | alta | src/Layout.tsx:112 | Link "Teste de N+¡vel" coberto por "0 dias" (desktop) | Mesma sobreposi+º+úo sidebar/footer do Layout
+/settings | alta | src/pages/SettingsPage.tsx:213 | Switch da categoria "Ofensiva" coberto pela barra m+¦vel (mobile) | +Ültimo switch de "Tipos de aviso" fica sob o MobileNav fixo (`bottom-0 z-[100]`, MobileNav.tsx:20) no topo da rolagem; rects: switch 694-718 vs nav 635-707
+/settings | media | src/pages/SettingsPage.tsx:172 | Switch "Avisos do navegador" sem nome acess+¡vel e desabilitado | Switch Radix sem aria-label; `disabled` quando permission +® denied/unsupported (headless)
+/settings | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo do mascote sem nome acess+¡vel | aria-label ausente no deploy publicado
+/proficiency | alta | src/Layout.tsx:112 | Link "Teste de N+¡vel" coberto por "0 dias" (desktop) | Mesma sobreposi+º+úo sidebar/footer do Layout
+/proficiency | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo do mascote sem nome acess+¡vel | aria-label ausente no deploy publicado
+/rota-inexistente-404 | alta | src/Layout.tsx:112 | Link "Teste de N+¡vel" coberto por "0 dias" (desktop) | Mesma sobreposi+º+úo sidebar/footer do Layout
+/rota-inexistente-404 | media | src/components/mascot/PobrelingoAssistant.tsx:103 | Bot+úo do mascote sem nome acess+¡vel | aria-label ausente no deploy publicado
+```
+
+Sem `erro-js`, `pagina-vazia` ou `overflow-horizontal` em nenhuma rota; a 404 renderiza normalmente via wildcard (Router.tsx:320).
+

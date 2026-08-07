@@ -52,6 +52,7 @@ export function PobrelingoAssistant() {
 						<Button
 							variant="ghost"
 							size="icon"
+							aria-label="Fechar assistente"
 							className="absolute top-2 right-2 h-7 w-7 text-muted-foreground hover:text-foreground"
 							onClick={() => setIsOpen(false)}
 						>
@@ -101,6 +102,10 @@ export function PobrelingoAssistant() {
 			)}
 			<Button
 				onClick={() => setIsOpen(!isOpen)}
+				aria-label={
+					isOpen ? "Fechar assistente Pobrelingo" : "Abrir assistente Pobrelingo"
+				}
+				aria-expanded={isOpen}
 				className={cn(
 					"h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex items-center justify-center transition-all duration-300 scale-100 hover:scale-105 active:scale-95 border border-primary/20 bg-primary text-primary-foreground",
 					isOpen ? "bg-zinc-800 border-zinc-700 text-white" : "",

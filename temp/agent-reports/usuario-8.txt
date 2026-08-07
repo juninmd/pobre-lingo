@@ -1,0 +1,35 @@
+opencode.exe : [0m
+No linha:5 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -À deepseek-v4-flash
+[0m
+[0m$ [0mnpx playwright test tests-e2e/homologacao.spec.ts --project=chromium --reporter=line -g "Usuario 8"
+[1A[2K
+[2m[WebServer] [22m(node:38164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[2m[WebServer] [22m
+[2m[WebServer] [22mA PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported 
+assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please 
+contact the package author to fix the issue.
+
+
+Running 1 test using 1 worker
+
+[1A[2K
+
+(node:23272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K(node:23272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [chromium] ÔÇ¦ tests-e2e\homologacao.spec.ts:202:2 ÔÇ¦ Usuario 8: Usu+írio estudando as regras de 
+gram+ítica
+[1A[2K  1 passed (5.2s)
+[0m
+USUARIO 8 | PASSOU | Jornada: usu+írio estudando as regras de gram+ítica.
+

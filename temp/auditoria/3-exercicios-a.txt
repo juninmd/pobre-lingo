@@ -1,0 +1,974 @@
+opencode.exe : [0m
+No linha:4 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -¿ deepseek-v4-flash
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/sentence-ordering https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/sentence-ordering",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Voltar ao In+°cio\" est+Ì sob \"PRINCIPAL\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"French\" est+Ì sob \"DIV\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/sentence-identification https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/sentence-identification",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Voltar ao In+°cio\" est+Ì sob \"PRINCIPAL\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar Resposta\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "6 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"BUTTON\" est+Ì sob \"DIV\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar Resposta\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "6 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/find-incorrect-words https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/find-incorrect-words",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Voltar ao In+°cio\" est+Ì sob \"PRINCIPAL\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar Respostas\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"would\" est+Ì sob \"Jornada\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"go.\" est+Ì sob \"DIV\""
+        },
+        {
+          "severidade": "baixa",
+          "tipo": "botao-desabilitado",
+          "detalhe": "\"Verificar Respostas\" (confirmar se +Æ esperado)"
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+[0m$ [0mnode scripts/audit-page.mjs /exercises/news-comprehension https://pobrelingo.netlify.app
+{
+  "rota": "/exercises/news-comprehension",
+  "base": "https://pobrelingo.netlify.app",
+  "resultados": [
+    {
+      "viewport": "desktop",
+      "problemas": [
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Teste de N+°vel\" est+Ì sob \"0\ndias\""
+        },
+        {
+          "severidade": "alta",
+          "tipo": "interativo-coberto",
+          "detalhe": "\"Voltar ao In+°cio\" est+Ì sob \"PRINCIPAL\""
+        },
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "problemas": [
+        {
+          "severidade": "media",
+          "tipo": "a11y",
+          "detalhe": "1 bot+˙o(+¡es) sem nome acess+°vel"
+        }
+      ]
+    }
+  ]
+}
+[0m
+All 4 audits done. Now confirming causes in source.
+[0m$ [0mGet-ChildItem -Recurse src -Include *.tsx,*.ts,*.jsx,*.js -File | Select-Object -ExpandProperty FullName
+D:\Solutions\pessoal\pobre-lingo\src\components\common\CefrBadge.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\DailyTipCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\GlobalSearch.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\PageContainer.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\PageHeader.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\SectionTitle.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\SEO.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\common\SurpriseModal.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\timeline\LessonCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\timeline\ModuleSection.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\timeline\UnitGroup.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\AchievementsCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\CultureLessonView.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\CurriculumProgressCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\GrammarLessonView.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\GuidebookModal.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LearningPath.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LearningTimeline.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LessonCompleteModal.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LessonCompletionDialog.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LessonProgressBar.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\LessonStartModal.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\NextLessonCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\curriculum\QuizView.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\CertificationPlanCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\ContinueLearningCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\CurriculumList.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\DailyQuestsWidget.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\LearningPath.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\PronunciationWidget.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\SmartReviewWidget.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\WeeklyGoalWidget.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\dashboard\WordOfTheDayWidget.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ConversationExercise.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\CorrectSentenceIdentification.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\FindIncorrectWords.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\GrammarHintBanner.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\ListeningExercise.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\NewsComprehension.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\SentenceOrdering.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\exercises\SpeakingExercise.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\gamification\AchievementsList.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\grammar\BookmarkButton.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\icons\PobreLingoLogo.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\layout\MobileNav.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\mascot\MascotGreeting.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\mascot\Pobrelingo.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\mascot\PobrelingoAssistant.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\notifications\NotificationCenter.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\onboarding\OnboardingModal.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\proficiency\QuestionCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\proficiency\ResultCard.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\pwa\PWAInstallPrompt.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\streaks\LearningStreakDisplay.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\streaks\ShareStreakButtons.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\accordion.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\alert-dialog.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\alert.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\avatar.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\badge.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\button.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\calendar.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\card.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\chart.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\checkbox.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\dialog.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\dropdown-menu.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\form.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\input.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\label.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\menubar.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\popover.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\progress.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\radio-group.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\scroll-area.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\select.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\separator.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\sheet.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\sidebar.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\skeleton.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\slider.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\switch.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\table.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\tabs.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\textarea.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\toast.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\toaster.tsx
+D:\Solutions\pessoal\pobre-lingo\src\components\ui\tooltip.tsx
+D:\Solutions\pessoal\pobre-lingo\src\contexts\ActiveLessonContext.tsx
+D:\Solutions\pessoal\pobre-lingo\src\contexts\GamificationContext.tsx
+D:\Solutions\pessoal\pobre-lingo\src\contexts\NotificationContext.tsx
+D:\Solutions\pessoal\pobre-lingo\src\contexts\ThemeContext.tsx
+D:\Solutions\pessoal\pobre-lingo\src\examples\curriculum-integration-example.tsx
+D:\Solutions\pessoal\pobre-lingo\src\hooks\use-mobile.tsx
+D:\Solutions\pessoal\pobre-lingo\src\hooks\use-toast.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useActivityLog.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useBookmarkedRules.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useCurriculumProgress.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useLearningStreak.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useOnboarding.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\usePWAInstall.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useSrs.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useStudiedRules.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useVocabularyNotebook.ts
+D:\Solutions\pessoal\pobre-lingo\src\hooks\useWrongAnswers.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\confetti.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\conversationData.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\curriculumData.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\dictionaryData.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\exerciseData.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\gameLogic.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\grammarRules.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\lessonLink.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\localStorage.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\notifications.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\proficiency.test.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\proficiency.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\proficiencyProfiles.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\proficiencyQuestions.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\routes.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\speakingData.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\srs.test.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\srs.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\streak.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\tips.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\tts.ts
+D:\Solutions\pessoal\pobre-lingo\src\lib\utils.ts
+D:\Solutions\pessoal\pobre-lingo\src\pages\curriculum\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\conversation\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\find-incorrect-words\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\listening\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\matching-pairs\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\news-comprehension\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\sentence-identification\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\sentence-ordering\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\BubblePopPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\FlashcardsPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\HangmanPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\MemoryMatchPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\SentenceRushPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\SpeedMatchPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\WordScramblePage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\games\WordSearchPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\quiz\[moduleId]\[lessonId]\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\rules\[categoryId]\[ruleId]\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\rules\[categoryId]\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\rules\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\vocabulary\[moduleId]\[lessonId]\page.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\AchievementsPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\ArcadePage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\DashboardPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\DictionaryPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\NotebookPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\NotFoundPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\ProficiencyTestPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\ReviewPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\pages\SettingsPage.tsx
+D:\Solutions\pessoal\pobre-lingo\src\scripts\testGameLogic.ts
+D:\Solutions\pessoal\pobre-lingo\src\types\react-override.d.ts
+D:\Solutions\pessoal\pobre-lingo\src\App.test.tsx
+D:\Solutions\pessoal\pobre-lingo\src\Layout.tsx
+D:\Solutions\pessoal\pobre-lingo\src\main.tsx
+D:\Solutions\pessoal\pobre-lingo\src\Router.tsx
+D:\Solutions\pessoal\pobre-lingo\src\setupTests.ts
+[0m
+[0m$ [0mrg -n "Teste de N+°vel|Voltar ao In+°cio|PRINCIPAL|Jornada" src -g '*.tsx' -g '*.ts' -g '*.jsx' -g '*.js'
+rg: The term 'rg' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[0m
+[0m‘£¶ [0mGrep "Teste de N+°vel"[90m in src -¿ 1 match[0m
+[0m‘£¶ [0mGrep "Voltar ao In+°cio"[90m in src -¿ 6 matches[0m
+[0m‘£¶ [0mGrep "Jornada"[90m in src -¿ 22 matches[0m
+[0m‘£¶ [0mGrep ""French"|'French'|french"[90m in src -¿ 1 match[0m
+rg unavailable; using grep tool.
+[0m‘Â∆ [0mRead src/Layout.tsx
+[0m‘Â∆ [0mRead src/components/layout/MobileNav.tsx
+[0m‘Â∆ [0mRead src/components/exercises/SentenceOrdering.tsx
+[0m‘Â∆ [0mRead src/components/exercises/CorrectSentenceIdentification.tsx
+[0m‘Â∆ [0mRead src/components/exercises/FindIncorrectWords.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/sentence-ordering/page.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/sentence-identification/page.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/find-incorrect-words/page.tsx
+[0m‘Â∆ [0mRead src/pages/exercises/news-comprehension/page.tsx
+[0m‘Â∆ [0mRead src/components/common/PageContainer.tsx
+[0m‘Â∆ [0mRead src/components/common/PageHeader.tsx
+[0m‘Â∆ [0mRead src/components/ui/sidebar.tsx
+[0m‘Â∆ [0mRead src/components/streaks/LearningStreakDisplay.tsx
+[0m‘Â∆ [0mRead scripts/audit-page.mjs
+[0m‘Â∆ [0mRead src/components/exercises/NewsComprehension.tsx
+[0m
+[0m‘Â… [0mWrite C:/Users/jr_ac/AppData/Local/Temp/opencode/probe.mjs
+Wrote file successfully.
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\SentenceOrdering.tsx">
+ERROR [201:26] Avoid using the index of an array as key property in an element.
+ERROR [219:25] Avoid using the index of an array as key property in an element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\components\exercises\NewsComprehension.tsx">
+ERROR [169:9] Avoid passing content using the dangerouslySetInnerHTML prop.
+ERROR [193:15] Avoid using the index of an array as key property in an element.
+</diagnostics>
+
+LSP errors detected in other files:
+<diagnostics file="D:\Solutions\pessoal\pobre-lingo\src\pages\exercises\news-comprehension\page.tsx">
+ERROR [17:8] Unexpected empty object pattern.
+</diagnostics>
+[0m
+Now I understand the audit methodology. Let me empirically verify the geometry of the overlaps with a probe script (in temp dir, not the repo).
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/sentence-ordering
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@playwright/test' imported from 
+C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/sentence-identification
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@playwright/test' imported from 
+C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/find-incorrect-words
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@playwright/test' imported from 
+C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+[0m
+Module resolution issue ‘«ˆ probe outside repo can't find `@playwright/test`. Let me fix the import to use an absolute specifier.
+[0m$ [0mGet-Content "D:\Solutions\pessoal\pobre-lingo\node_modules\@playwright\test\package.json" | Select-Object 
+-First 40
+{
+  "name": "@playwright/test",
+  "version": "1.60.0",
+  "description": "A high-level API to automate web browsers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/playwright.git"
+  },
+  "homepage": "https://playwright.dev",
+  "engines": {
+    "node": ">=18"
+  },
+  "author": {
+    "name": "Microsoft Corporation"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./cli": "./cli.js",
+    "./package.json": "./package.json",
+    "./reporter": "./reporter.js"
+  },
+  "bin": {
+    "playwright": "cli.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "playwright": "1.60.0"
+  }
+}
+[0m
+[0m‘Â… [0mEdit C:/Users/jr_ac/AppData/Local/Temp/opencode/probe.mjs
+Index: C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
+===================================================================
+--- C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
++++ C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs
+@@ -1,5 +1,5 @@
+-import { chromium, devices } from "@playwright/test";
++import { chromium, devices } from "file:///D:/Solutions/pessoal/pobre-lingo/node_modules/@playwright/test/index.mjs";
+ 
+ const rota = process.argv[2] || "/exercises/sentence-ordering";
+ const base = "https://pobrelingo.netlify.app";
+ 
+
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/sentence-ordering
+=== desktop /exercises/sentence-ordering ===
+{
+  "achados": [
+    {
+      "alvo": "Teste de N+°vel",
+      "alvoRect": [
+        8,
+        720,
+        224,
+        40
+      ],
+      "alvoCls": "whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visi",
+      "cobertoPor": "0\ndias",
+      "cobCls": "flex items-baseline gap-1.5",
+      "cobRect": [
+        76,
+        733,
+        140,
+        28
+      ]
+    },
+    {
+      "alvo": "Voltar ao In+°cio",
+      "alvoRect": [
+        57,
+        113,
+        137,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-o",
+      "cobertoPor": "PRINCIPAL",
+      "cobCls": "px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 
+[data-theme=pobre-lingo]:text-accent",
+      "cobRect": [
+        8,
+        128,
+        224,
+        15
+      ]
+    }
+  ],
+  "viewport": [
+    1280,
+    800
+  ],
+  "bodyH": 800,
+  "scrollY": 0,
+  "scrollH": 800,
+  "scrollW": 1280,
+  "clientW": 1280
+}
+
+=== mobile /exercises/sentence-ordering ===
+{
+  "achados": [
+    {
+      "alvo": "it",
+      "alvoRect": [
+        304,
+        589,
+        34,
+        34
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium rin",
+      "cobertoPor": "BUTTON",
+      "cobCls": "gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none 
+focus-visible:ring-2 focus",
+      "cobRect": [
+        321,
+        583,
+        56,
+        56
+      ]
+    },
+    {
+      "alvo": "is",
+      "alvoRect": [
+        178,
+        631,
+        38,
+        34
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium rin",
+      "cobertoPor": "DIV",
+      "cobCls": "relative flex items-center justify-center p-3 rounded-[1.125rem] transition-all duration-300 
+will-change-transform bg-tr",
+      "cobRect": [
+        174,
+        639,
+        46,
+        46
+      ]
+    }
+  ],
+  "viewport": [
+    393,
+    727
+  ],
+  "bodyH": 727,
+  "scrollY": 0,
+  "scrollH": 727,
+  "scrollW": 393,
+  "clientW": 393
+}
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/sentence-identification
+=== desktop /exercises/sentence-identification ===
+{
+  "achados": [
+    {
+      "alvo": "Teste de N+°vel",
+      "alvoRect": [
+        8,
+        720,
+        224,
+        40
+      ],
+      "alvoCls": "whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visi",
+      "cobertoPor": "0\ndias",
+      "cobCls": "flex items-baseline gap-1.5",
+      "cobRect": [
+        76,
+        733,
+        140,
+        28
+      ]
+    },
+    {
+      "alvo": "Voltar ao In+°cio",
+      "alvoRect": [
+        57,
+        113,
+        137,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-o",
+      "cobertoPor": "PRINCIPAL",
+      "cobCls": "px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 
+[data-theme=pobre-lingo]:text-accent",
+      "cobRect": [
+        8,
+        128,
+        224,
+        15
+      ]
+    }
+  ],
+  "viewport": [
+    1280,
+    800
+  ],
+  "bodyH": 800,
+  "scrollY": 0,
+  "scrollH": 800,
+  "scrollW": 1280,
+  "clientW": 1280
+}
+
+=== mobile /exercises/sentence-identification ===
+{
+  "achados": [
+    {
+      "alvo": "BUTTON",
+      "alvoRect": [
+        50,
+        642,
+        16,
+        16
+      ],
+      "alvoCls": "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visibl",
+      "cobertoPor": "DIV",
+      "cobCls": "relative flex items-center justify-center p-3 rounded-[1.125rem] transition-all duration-300 
+will-change-transform bg-tr",
+      "cobRect": [
+        32,
+        639,
+        46,
+        46
+      ]
+    }
+  ],
+  "viewport": [
+    393,
+    727
+  ],
+  "bodyH": 727,
+  "scrollY": 0,
+  "scrollH": 727,
+  "scrollW": 393,
+  "clientW": 393
+}
+[0m
+[0m$ [0mnode "C:\Users\jr_ac\AppData\Local\Temp\opencode\probe.mjs" /exercises/find-incorrect-words
+=== desktop /exercises/find-incorrect-words ===
+{
+  "achados": [
+    {
+      "alvo": "Teste de N+°vel",
+      "alvoRect": [
+        8,
+        720,
+        224,
+        40
+      ],
+      "alvoCls": "whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visi",
+      "cobertoPor": "0\ndias",
+      "cobCls": "flex items-baseline gap-1.5",
+      "cobRect": [
+        76,
+        733,
+        140,
+        28
+      ]
+    },
+    {
+      "alvo": "Voltar ao In+°cio",
+      "alvoRect": [
+        57,
+        113,
+        137,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-o",
+      "cobertoPor": "PRINCIPAL",
+      "cobCls": "px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 
+[data-theme=pobre-lingo]:text-accent",
+      "cobRect": [
+        8,
+        128,
+        224,
+        15
+      ]
+    }
+  ],
+  "viewport": [
+    1280,
+    800
+  ],
+  "bodyH": 800,
+  "scrollY": 0,
+  "scrollH": 800,
+  "scrollW": 1280,
+  "clientW": 1280
+}
+
+=== mobile /exercises/find-incorrect-words ===
+{
+  "achados": [
+    {
+      "alvo": "writing",
+      "alvoRect": [
+        56,
+        646,
+        64,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Jornada",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        19,
+        636,
+        71,
+        70
+      ]
+    },
+    {
+      "alvo": "to",
+      "alvoRect": [
+        124,
+        646,
+        31,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "DIV",
+      "cobCls": "relative flex items-center justify-center p-3 rounded-[1.125rem] transition-all duration-300 
+will-change-transform bg-tr",
+      "cobRect": [
+        103,
+        639,
+        46,
+        46
+      ]
+    },
+    {
+      "alvo": "enquire",
+      "alvoRect": [
+        160,
+        646,
+        71,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "svg",
+      "cobCls": "[object SVGAnimatedString]",
+      "cobRect": [
+        186,
+        651,
+        22,
+        22
+      ]
+    },
+    {
+      "alvo": "about",
+      "alvoRect": [
+        235,
+        646,
+        58,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "svg",
+      "cobCls": "[object SVGAnimatedString]",
+      "cobRect": [
+        257,
+        651,
+        22,
+        22
+      ]
+    },
+    {
+      "alvo": "the",
+      "alvoRect": [
+        56,
+        686,
+        40,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Jornada",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        19,
+        636,
+        71,
+        70
+      ]
+    },
+    {
+      "alvo": "job",
+      "alvoRect": [
+        100,
+        686,
+        39,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Revisar",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        90,
+        636,
+        71,
+        70
+      ]
+    },
+    {
+      "alvo": "advertisment",
+      "alvoRect": [
+        144,
+        686,
+        110,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Jogos",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        161,
+        636,
+        71,
+        70
+      ]
+    },
+    {
+      "alvo": "I",
+      "alvoRect": [
+        257,
+        686,
+        22,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Regras",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        232,
+        636,
+        71,
+        70
+      ]
+    },
+    {
+      "alvo": "saw",
+      "alvoRect": [
+        284,
+        686,
+        46,
+        36
+      ],
+      "alvoCls": "inline-flex items-center justify-center gap-2 rounded-md font-medium ring-offset-backgroun",
+      "cobertoPor": "Dicion+Ìrio",
+      "cobCls": "relative flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 
+touch-manipulation se",
+      "cobRect": [
+        303,
+        636,
+        71,
+        70
+      ]
+    }
+  ],
+  "viewport": [
+    393,
+    727
+  ],
+  "bodyH": 727,
+  "scrollY": 0,
+  "scrollH": 727,
+  "scrollW": 393,
+  "clientW": 393
+}
+[0m
+

@@ -182,7 +182,12 @@ function NavMenu() {
 				)}
 			</SidebarHeader>
 
-			<ScrollArea className="flex-1">
+			{/*
+			  min-h-0 é obrigatório: sem ele o flex-1 não encolhe abaixo do
+			  conteúdo, e o menu passa por baixo do rodapé da ofensiva — o
+			  último item do menu fica coberto e não recebe clique.
+			*/}
+			<ScrollArea className="flex-1 min-h-0">
 				<SidebarContent className="p-2">
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>

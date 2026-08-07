@@ -1,0 +1,25 @@
+opencode.exe : [0m
+No linha:5 caractere:14
++         $r = & opencode run $p 2>&1 | Out-String
++              ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> build -À deepseek-v4-flash
+[0m
+[0m$ [0mnpx playwright test tests-e2e/homologacao.spec.ts --project=chromium --reporter=line -g "Usuario 10:"
+Running 1 test using 1 worker
+
+[1A[2K(node:43952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K
+
+(node:43952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1A[2K[1/1] [chromium] ÔÇ¦ tests-e2e\homologacao.spec.ts:202:2 ÔÇ¦ Usuario 10: Usu+írio entrando no arcade
+[1A[2K  1 passed (3.0s)
+[0m
+USUARIO 10 | PASSOU | Jornada do usu+írio entrando no arcade validada com sucesso em homologa+º+úo (1 teste passou).
+

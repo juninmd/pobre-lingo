@@ -15,6 +15,7 @@ import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCar
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
@@ -177,6 +178,9 @@ export default function DashboardPage() {
 
 					{/* Pronunciation Practice */}
 					<PronunciationWidget />
+
+					{/* Real-world Task - TBLT */}
+					<TaskMissionWidget />
 
 					{/* Word of the Day - Microlearning */}
 					<WordOfTheDayWidget />

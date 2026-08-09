@@ -28,7 +28,8 @@ export interface Lesson {
 		| "news-comprehension"
 		| "matching-pairs"
 		| "listening"
-		| "conversation";
+		| "conversation"
+		| "real-world-task";
 	gameType?:
 		| "flashcards"
 		| "hangman"
@@ -1354,6 +1355,32 @@ export const curriculumData: LearningPath = {
 					estimatedMinutes: 10,
 					xpReward: 150,
 					gameType: "word-search",
+					order: 1,
+				},
+			],
+		},
+		// NEW: TBLT Module in Unit 6
+		{
+			id: "tblt-problem-solving",
+			unitId: "unit-6",
+			title_pt: "Missão Prática: Viagem",
+			title_en: "Real-World Task: Travel",
+			description_pt: "Resolva problemas reais usando o que aprendeu.",
+			difficulty: "intermediario",
+			icon: "Briefcase",
+			color: "bg-cyan-700",
+			order: 4,
+			prerequisites: ["conditionals"],
+			lessons: [
+				{
+					id: "tblt-flight-delay",
+					title_pt: "Missão: Voo Atrasado",
+					title_en: "Task: Delayed Flight",
+					description_pt: "Negocie com a companhia aérea sobre seu voo.",
+					type: "exercise",
+					estimatedMinutes: 20,
+					xpReward: 200,
+					exerciseType: "real-world-task",
 					order: 1,
 				},
 			],

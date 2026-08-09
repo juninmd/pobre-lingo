@@ -14,6 +14,7 @@ import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanC
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
+import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
@@ -82,7 +83,7 @@ export default function DashboardPage() {
 
 			{/* 1. Statistics Summary Cards */}
 			<section className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 md:grid-cols-4">
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-orange-50/90 to-red-50/50 dark:from-orange-950/40 dark:to-red-950/20 border-orange-200/80 dark:border-orange-800/60 shadow-lg shadow-orange-500/5 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-orange-500/10 active:scale-[0.98] touch-manipulation">
+				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-orange-50/90 to-red-50/50 dark:from-orange-950/40 dark:to-red-950/20 border-orange-200/80 dark:border-orange-800/60 shadow-lg shadow-orange-500/5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-orange-500/20 active:scale-[0.98] touch-manipulation">
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-orange-100 to-orange-200/80 dark:from-orange-900/60 dark:to-orange-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-orange-200/50 dark:border-orange-800/50">
 							<Flame
@@ -103,7 +104,7 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-yellow-50/90 to-amber-50/50 dark:from-yellow-950/40 dark:to-amber-950/20 border-yellow-200/80 dark:border-yellow-800/60 shadow-lg shadow-yellow-500/5 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-yellow-500/10 active:scale-[0.98] touch-manipulation">
+				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-yellow-50/90 to-amber-50/50 dark:from-yellow-950/40 dark:to-amber-950/20 border-yellow-200/80 dark:border-yellow-800/60 shadow-lg shadow-yellow-500/5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-yellow-500/20 active:scale-[0.98] touch-manipulation">
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-yellow-100 to-yellow-200/80 dark:from-yellow-900/60 dark:to-yellow-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-yellow-200/50 dark:border-yellow-800/50">
 							<Coins className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600 dark:text-yellow-400 fill-current drop-shadow-sm" />
@@ -119,7 +120,7 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-blue-50/90 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border-blue-200/80 dark:border-blue-800/60 shadow-lg shadow-blue-500/5 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 active:scale-[0.98] touch-manipulation">
+				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-blue-50/90 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border-blue-200/80 dark:border-blue-800/60 shadow-lg shadow-blue-500/5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 active:scale-[0.98] touch-manipulation">
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-blue-100 to-blue-200/80 dark:from-blue-900/60 dark:to-blue-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-blue-200/50 dark:border-blue-800/50">
 							<GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-blue-600 dark:text-blue-400 drop-shadow-sm" />
@@ -135,7 +136,7 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-green-50/90 to-emerald-50/50 dark:from-green-950/40 dark:to-emerald-950/20 border-green-200/80 dark:border-green-800/60 shadow-lg shadow-green-500/5 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-green-500/10 active:scale-[0.98] touch-manipulation">
+				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-green-50/90 to-emerald-50/50 dark:from-green-950/40 dark:to-emerald-950/20 border-green-200/80 dark:border-green-800/60 shadow-lg shadow-green-500/5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-green-500/20 active:scale-[0.98] touch-manipulation">
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-green-100 to-green-200/80 dark:from-green-900/60 dark:to-green-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-green-200/50 dark:border-green-800/50">
 							<Trophy className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-green-600 dark:text-green-400 drop-shadow-sm" />
@@ -170,6 +171,9 @@ export default function DashboardPage() {
 					{/* Smart Review */}
 					<SmartReviewWidget />
 
+					{/* Microlearning Lesson */}
+					<MicroLessonWidget />
+
 					{/* Daily Quests */}
 					<DailyQuestsWidget />
 
@@ -188,7 +192,7 @@ export default function DashboardPage() {
 					<CertificationPlanCard />
 
 					{/* Tip of the Day */}
-					<Card className="glass-card bg-primary/5 border-primary/20 sticky top-20 sm:top-24">
+					<Card className="glass-card bg-primary/5 border-primary/20 border-l-4 border-l-primary hover:shadow-lg transition-all hover:-translate-y-1 duration-300 sticky top-20 sm:top-24">
 						<CardHeader className="pb-2 sm:pb-3 flex flex-row items-center justify-between space-y-0">
 							<CardTitle className="text-sm sm:text-base md:text-lg flex items-center gap-2 text-primary">
 								<Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
@@ -206,7 +210,7 @@ export default function DashboardPage() {
 						</CardHeader>
 						<CardContent className="pt-0 space-y-4">
 							<p
-								className="text-xs sm:text-sm italic text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-right-4 duration-300"
+								className="text-xs sm:text-sm italic text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-2 zoom-in-95 duration-500"
 								key={currentTip}
 							>
 								"{currentTip}"

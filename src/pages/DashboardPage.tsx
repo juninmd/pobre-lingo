@@ -16,6 +16,7 @@ import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
@@ -185,6 +186,9 @@ export default function DashboardPage() {
 
 					{/* Real-world Task - TBLT */}
 					<TaskMissionWidget />
+
+					{/* Interactive Story - TPRS */}
+					<StorytellingWidget />
 
 					{/* Word of the Day - Microlearning */}
 					<WordOfTheDayWidget />

@@ -131,6 +131,12 @@ export function LessonCard({
 
 	return (
 		<div ref={cardRef} className="relative pl-8 md:pl-0 py-2 group">
+			{/* Onde Parei Indicator */}
+			{isFirstActive && (
+				<div className="absolute -top-3 left-10 md:left-4 z-20 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-background animate-bounce whitespace-nowrap">
+					Onde parei
+				</div>
+			)}
 			{/* Timeline Connector Dot */}
 			<div
 				className={cn(

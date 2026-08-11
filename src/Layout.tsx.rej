@@ -1,0 +1,13 @@
+--- Layout.tsx
++++ Layout.tsx
+@@ -444,7 +444,9 @@
+				</SidebarInset>
+			</SidebarProvider>
+			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+-			<MobileNav />
++			<div className="lg:hidden">
++				<MobileNav />
++			</div>
+			<PWAInstallPrompt />
+			<PobrelingoAssistant />
+			<Toaster />

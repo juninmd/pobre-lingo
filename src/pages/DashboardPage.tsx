@@ -16,6 +16,8 @@ import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
+import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
@@ -190,8 +192,14 @@ export default function DashboardPage() {
 					{/* Interactive Story - TPRS */}
 					<StorytellingWidget />
 
+					{/* Pop Culture & Trends - Social Media / Netflix */}
+					<PopCultureWidget />
+
 					{/* Word of the Day - Microlearning */}
 					<WordOfTheDayWidget />
+
+					{/* Mindful Learning - Well-being */}
+					<MindfulWidget />
 
 					<CertificationPlanCard />
 

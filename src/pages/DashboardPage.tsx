@@ -4,6 +4,7 @@ import {
 	GraduationCap,
 	Lightbulb,
 	RefreshCw,
+	Sparkles,
 	Trophy,
 } from "lucide-react";
 import { useState } from "react";
@@ -167,6 +168,32 @@ export default function DashboardPage() {
 					<section>
 						<LearningTimeline />
 					</section>
+
+					{/* Prática Imersiva Section */}
+					<section className="space-y-3 sm:space-y-4 md:space-y-6 mt-8">
+						<div className="flex items-center gap-2 mb-2">
+							<div className="p-1.5 bg-primary/10 rounded-lg">
+								<Sparkles className="w-5 h-5 text-primary" />
+							</div>
+							<h3 className="text-xl font-bold text-foreground">Prática Imersiva</h3>
+						</div>
+						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+							{/* Microlearning Lesson */}
+							<MicroLessonWidget />
+
+							{/* Real-world Task - TBLT */}
+							<TaskMissionWidget />
+
+							{/* Interactive Story - TPRS */}
+							<StorytellingWidget />
+
+							{/* Pronunciation Practice */}
+							<PronunciationWidget />
+						</div>
+
+						{/* Pop Culture & Trends - Social Media / Netflix */}
+						<PopCultureWidget />
+					</section>
 				</div>
 
 				{/* Right Column: Quests & Tips */}
@@ -174,26 +201,11 @@ export default function DashboardPage() {
 					{/* Smart Review */}
 					<SmartReviewWidget />
 
-					{/* Microlearning Lesson */}
-					<MicroLessonWidget />
-
 					{/* Daily Quests */}
 					<DailyQuestsWidget />
 
 					{/* Weekly Goal */}
 					<WeeklyGoalWidget />
-
-					{/* Pronunciation Practice */}
-					<PronunciationWidget />
-
-					{/* Real-world Task - TBLT */}
-					<TaskMissionWidget />
-
-					{/* Interactive Story - TPRS */}
-					<StorytellingWidget />
-
-					{/* Pop Culture & Trends - Social Media / Netflix */}
-					<PopCultureWidget />
 
 					{/* Word of the Day - Microlearning */}
 					<WordOfTheDayWidget />

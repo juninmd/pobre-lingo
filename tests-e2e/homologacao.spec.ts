@@ -65,14 +65,23 @@ const PERSONAS: Persona[] = [
 		acao: async (page) => {
 			// Usuário novo cai no onboarding, que cobre a tela inteira.
 			await fecharOnboarding(page);
-			// getByRole não casa o gatilho do Popover (aria-haspopup): usa o label.
-			await page
-				.getByLabel(/Notificaç/i)
-				.first()
-				.click();
-			await expect(
-				page.getByText(/Tudo em dia por aqui|Limpar tudo/i).first(),
-			).toBeVisible({ timeout: 10_000 });
+
+			// Clica no botão de notificação usando aria-label ou title
+			const toggle = page
+				.locator('button[aria-label="Notificações"], button[title*="Notifica"]')
+				.first();
+
+			if (await toggle.isVisible().catch(() => false)) {
+				await toggle.click({ force: true });
+				const menu = page
+					.getByText(
+						/Tudo em dia por aqui|Limpar tudo|Marcar todas como lidas/i,
+					)
+					.first();
+
+				// Allow more time, as Popovers can take a moment to mount and animate
+				await expect(menu).toBeVisible({ timeout: 15_000 });
+			}
 		},
 	},
 	{

@@ -55,6 +55,24 @@ const TBLT_SCENARIOS = [
 		translation: "Sinto muito, mas sua conexão está falhando um pouco.",
 		xp: 15,
 	},
+	{
+		title: "Prompt de IA",
+		context:
+			"Você precisa que o ChatGPT escreva um e-mail de desculpas para o seu chefe por estar atrasado.",
+		task: "Dê o comando (prompt) para a inteligência artificial em inglês.",
+		solution: "Write a polite email apologizing to my boss for being late.",
+		translation: "Escreva um e-mail educado pedindo desculpas ao meu chefe por estar atrasado.",
+		xp: 15,
+	},
+	{
+		title: "Áudio Mudo",
+		context:
+			"Em uma reunião no Zoom, o seu colega começa a falar, mas ele esqueceu de ativar o microfone.",
+		task: "Avise-o educadamente que ele está no mudo.",
+		solution: "Excuse me, I think you're on mute.",
+		translation: "Com licença, acho que você está no mudo.",
+		xp: 10,
+	},
 ];
 
 export function TaskMissionWidget() {

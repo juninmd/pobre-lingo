@@ -38,6 +38,30 @@ const POP_CULTURE_ITEMS = [
 			"A vida é cheia de surpresas, assim como não sabemos qual sabor vamos pegar numa caixa de bombons.",
 		xp: 10,
 	},
+	{
+		title: "Internet Slang",
+		quote: "Living rent-free in my head.",
+		source: "TikTok / Social Media",
+		explanation:
+			"Quando você não consegue parar de pensar em algo ou alguém, dizemos que está 'morando de graça na sua cabeça'.",
+		xp: 10,
+	},
+	{
+		title: "Internet Slang",
+		quote: "Being delulu is the solulu.",
+		source: "Gen Z / TikTok",
+		explanation:
+			"Brincadeira com 'delusional' (iludido) e 'solution' (solução). Significa manter o otimismo mesmo quando as coisas parecem impossíveis.",
+		xp: 10,
+	},
+	{
+		title: "Pop Culture Trend",
+		quote: "How often do you think about the Roman Empire?",
+		source: "TikTok Trend",
+		explanation:
+			"Uma trend viral de 2023/2024 onde mulheres descobriram que os homens pensam no Império Romano com uma frequência surpreendente.",
+		xp: 10,
+	},
 ];
 
 export function PopCultureWidget() {

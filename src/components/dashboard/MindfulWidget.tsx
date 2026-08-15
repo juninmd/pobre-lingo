@@ -36,6 +36,22 @@ const MINDFUL_AFFIRMATIONS = [
 			"O verbo 'become' (tornar-se) indica um processo de mudança gradual.",
 		xp: 5,
 	},
+	{
+		phrase: "It is okay to disconnect and recharge my mind.",
+		translation: "Está tudo bem em se desconectar e recarregar a minha mente.",
+		focus: "recharge",
+		grammar:
+			"O prefixo 're-' indica repetição ou volta ao estado anterior, como em 'recharge' (recarregar).",
+		xp: 5,
+	},
+	{
+		phrase: "I let go of the pressure to be perfect on social media.",
+		translation: "Eu abro mão da pressão de ser perfeito nas redes sociais.",
+		focus: "let go of",
+		grammar:
+			"'Let go of' é um phrasal verb que significa soltar, desapegar ou abrir mão de algo.",
+		xp: 5,
+	},
 ];
 
 export function MindfulWidget() {

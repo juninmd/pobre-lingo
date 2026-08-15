@@ -44,6 +44,14 @@ export const TIPS = [
 	'Use "listen TO" music. O "to" é necessário.',
 	'Para dias da semana, use "ON" (On Monday). Para horas, use "AT" (At 2pm).',
 
+	// TECNOLOGIA E IA (Tendências 2024)
+	"Use IAs como ChatGPT para praticar conversação. Peça: 'Aja como um atendente de café e corrija meus erros'.",
+	"Peça para IAs explicarem regras gramaticais como se você tivesse 10 anos.",
+	"Grave áudios no celular e use ferramentas de transcrição para ver se a IA entende sua pronúncia.",
+	"Use o TikTok ou Reels a seu favor: crie uma conta só para seguir criadores de conteúdo em inglês.",
+	"Assista vídeos curtos (Shorts/TikTok) com legendas; eles são ótimos para aprender gírias modernas e reais.",
+	"Aprenda inglês baseado em tarefas reais (TBLT): tente configurar seu ambiente de trabalho ou fazer compras online em inglês.",
+
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",
 	'Nos EUA e UK, "Please" e "Thank you" são usados o tempo todo.',

@@ -80,3 +80,7 @@ Use `src/lib/localStorage.ts` para interagir com o `localStorage`. Isso evita er
 
 ---
 *Gerado por Gemini para a equipe de engenharia do PobreLingo.*
+
+## 6. UI Trends e Metodologias (2024 Updates)
+*   **Design**: Adoção de Spatial UI e Glassmorphism. Componentes interativos utilizam animações de flutuação (`animate-float`) e brilho pulsante (`animate-pulse-glow`) para criar hierarquia visual, além de bordas semi-transparentes sobre fundos translúcidos (`backdrop-blur-xl`, `bg-gradient-to-br from-color-50/90 to-color-50/50`).
+*   **Metodologia ELT (English Language Teaching)**: Integração de "Nano-learning" através do formato de redes sociais (vídeos curtos estilo Reels/TikTok) e "Prática com Inteligência Artificial" (Roleplays e simulação de parceiros de idioma), ambos aplicados na seção de *Prática Imersiva*.

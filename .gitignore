@@ -50,3 +50,4 @@ dev_server.log
 
 playwright-report/
 test-results/
+pnpm_output.log

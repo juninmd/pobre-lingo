@@ -21,7 +21,7 @@ export function MicroLessonWidget() {
 	};
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-950/20 dark:to-purple-950/20 border-indigo-200/50 dark:border-indigo-800/50">
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-indigo-50/70 to-purple-50/70 dark:from-indigo-950/30 dark:to-purple-950/30 border-indigo-200/50 dark:border-indigo-800/50 shadow-lg hover:shadow-indigo-500/10">
 			<CardHeader className="pb-2">
 				<CardTitle className="text-lg flex items-center gap-2 text-indigo-700 dark:text-indigo-400">
 					<Zap className="w-5 h-5 text-yellow-500 fill-yellow-500" />

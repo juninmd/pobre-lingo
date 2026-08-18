@@ -122,7 +122,7 @@ export function LessonCard({
 		status === "locked" &&
 			"opacity-60 grayscale cursor-not-allowed border-dashed bg-muted/20",
 		status === "active" &&
-			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent scale-[1.03] ring-2 ring-primary/50 animate-pulse hover:scale-[1.04]",
+			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent scale-[1.03] ring-2 ring-primary/50 animate-pulse hover:scale-[1.04] animate-in fade-in zoom-in duration-500",
 		status === "completed" &&
 			"border-green-500/20 bg-green-500/5 hover:bg-green-500/10",
 		status !== "locked" &&

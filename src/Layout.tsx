@@ -356,25 +356,25 @@ export default function Layout() {
 
 						<div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
 							{/* Gamification Stats */}
-							<div className="flex items-center gap-4 sm:gap-6 text-sm font-semibold">
+							<div className="flex items-center gap-3 sm:gap-4 font-sans">
 								{/* Level Badge */}
 								<div
-									className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-amber-50/50 dark:bg-amber-950/30 backdrop-blur-md shadow-sm border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-sans font-medium transition-all"
+									className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/10 backdrop-blur-md border border-black/5 dark:border-white/10 text-foreground/80 font-medium transition-all hover:bg-black/10 dark:hover:bg-white/20"
 									title="Nível"
 								>
-									<GraduationCap className="h-4 w-4" />
-									<span className="font-bold tracking-tight">
-										Nível {userLevel}
+									<GraduationCap className="h-3.5 w-3.5 opacity-70" strokeWidth={2.5} />
+									<span className="text-[13px] font-semibold tracking-tight">
+										Nvl {userLevel}
 									</span>
 								</div>
 
 								{/* Gems / PobreCoins */}
 								<div
-									className="flex items-center gap-2 px-3 py-2 rounded-full bg-amber-50/50 dark:bg-amber-950/30 backdrop-blur-md shadow-sm border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-sans font-medium transition-all active:scale-95 group cursor-default"
-									title="PobreCoins"
+									className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100/50 dark:bg-amber-900/30 backdrop-blur-md border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-medium transition-all hover:bg-amber-100 dark:hover:bg-amber-900/50 group cursor-default"
+									title="Pobrecoins"
 								>
-									<Coins className="h-4 w-4 fill-current group-hover:animate-bounce" />
-									<span className="font-bold tabular-nums tracking-tight">
+									<Coins className="h-3.5 w-3.5 text-amber-500 group-hover:animate-bounce" strokeWidth={2.5} />
+									<span className="text-[13px] font-bold tabular-nums tracking-tight">
 										{gems}
 									</span>
 								</div>

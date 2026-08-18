@@ -7,10 +7,10 @@ import {
 	Sparkles,
 	Trophy,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
+import { Loader2 } from "lucide-react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
-import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
@@ -33,6 +33,8 @@ import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { TIPS } from "@/lib/tips";
 import { cn } from "@/lib/utils";
+
+const LearningTimeline = lazy(() => import("@/components/curriculum/LearningTimeline").then(m => ({ default: m.LearningTimeline })));
 
 export default function DashboardPage() {
 	const { overallProgress } = useCurriculumProgress();
@@ -168,7 +170,9 @@ export default function DashboardPage() {
 					</div>
 
 					<section>
-						<LearningTimeline />
+						<Suspense fallback={<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />}>
+							<LearningTimeline />
+						</Suspense>
 					</section>
 
 					{/* Prática Imersiva Section */}

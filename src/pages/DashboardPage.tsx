@@ -3,24 +3,26 @@ import {
 	Flame,
 	GraduationCap,
 	Lightbulb,
+	Loader2,
 	RefreshCw,
 	Sparkles,
 	Trophy,
 } from "lucide-react";
-import { useState, Suspense, lazy } from "react";
-import { Loader2 } from "lucide-react";
+import { lazy, Suspense, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
+import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
+import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
-import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
+import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
-import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
-import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
-import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
+import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
+import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
@@ -34,7 +36,11 @@ import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { TIPS } from "@/lib/tips";
 import { cn } from "@/lib/utils";
 
-const LearningTimeline = lazy(() => import("@/components/curriculum/LearningTimeline").then(m => ({ default: m.LearningTimeline })));
+const LearningTimeline = lazy(() =>
+	import("@/components/curriculum/LearningTimeline").then((m) => ({
+		default: m.LearningTimeline,
+	})),
+);
 
 export default function DashboardPage() {
 	const { overallProgress } = useCurriculumProgress();
@@ -76,8 +82,14 @@ export default function DashboardPage() {
 			{/* Spatial UI / Glassmorphism Ambient Background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
 				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/15 blur-[140px] animate-pulse-glow" />
-				<div className="absolute top-[20%] -left-[15%] w-[40%] h-[40%] rounded-full bg-blue-500/15 blur-[120px] animate-pulse-glow" style={{ animationDelay: "1s" }} />
-				<div className="absolute bottom-[-15%] right-[10%] w-[60%] h-[40%] rounded-full bg-emerald-500/10 blur-[130px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
+				<div
+					className="absolute top-[20%] -left-[15%] w-[40%] h-[40%] rounded-full bg-blue-500/15 blur-[120px] animate-pulse-glow"
+					style={{ animationDelay: "1s" }}
+				/>
+				<div
+					className="absolute bottom-[-15%] right-[10%] w-[60%] h-[40%] rounded-full bg-emerald-500/10 blur-[130px] animate-pulse-glow"
+					style={{ animationDelay: "2s" }}
+				/>
 			</div>
 
 			<SEO
@@ -112,7 +124,10 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-yellow-50/90 to-amber-50/50 dark:from-yellow-950/40 dark:to-amber-950/20 border-yellow-200/80 dark:border-yellow-800/60 shadow-lg shadow-yellow-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-yellow-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group" style={{ animationDelay: "0.2s" }}>
+				<Card
+					className="glass-card backdrop-blur-xl bg-gradient-to-br from-yellow-50/90 to-amber-50/50 dark:from-yellow-950/40 dark:to-amber-950/20 border-yellow-200/80 dark:border-yellow-800/60 shadow-lg shadow-yellow-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-yellow-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group"
+					style={{ animationDelay: "0.2s" }}
+				>
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-yellow-100 to-yellow-200/80 dark:from-yellow-900/60 dark:to-yellow-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-yellow-200/50 dark:border-yellow-800/50">
 							<Coins className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600 dark:text-yellow-400 fill-current drop-shadow-sm" />
@@ -128,7 +143,10 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-blue-50/90 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border-blue-200/80 dark:border-blue-800/60 shadow-lg shadow-blue-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-blue-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group" style={{ animationDelay: "0.4s" }}>
+				<Card
+					className="glass-card backdrop-blur-xl bg-gradient-to-br from-blue-50/90 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border-blue-200/80 dark:border-blue-800/60 shadow-lg shadow-blue-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-blue-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group"
+					style={{ animationDelay: "0.4s" }}
+				>
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-blue-100 to-blue-200/80 dark:from-blue-900/60 dark:to-blue-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-blue-200/50 dark:border-blue-800/50">
 							<GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-blue-600 dark:text-blue-400 drop-shadow-sm" />
@@ -144,7 +162,10 @@ export default function DashboardPage() {
 					</CardContent>
 				</Card>
 
-				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-green-50/90 to-emerald-50/50 dark:from-green-950/40 dark:to-emerald-950/20 border-green-200/80 dark:border-green-800/60 shadow-lg shadow-green-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-green-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group" style={{ animationDelay: "0.6s" }}>
+				<Card
+					className="glass-card backdrop-blur-xl bg-gradient-to-br from-green-50/90 to-emerald-50/50 dark:from-green-950/40 dark:to-emerald-950/20 border-green-200/80 dark:border-green-800/60 shadow-lg shadow-green-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-green-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group"
+					style={{ animationDelay: "0.6s" }}
+				>
 					<CardContent className="p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-2.5">
 						<div className="p-2 sm:p-2.5 bg-gradient-to-br from-green-100 to-green-200/80 dark:from-green-900/60 dark:to-green-800/50 rounded-xl sm:rounded-2xl shadow-sm border border-green-200/50 dark:border-green-800/50">
 							<Trophy className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-green-600 dark:text-green-400 drop-shadow-sm" />
@@ -170,7 +191,11 @@ export default function DashboardPage() {
 					</div>
 
 					<section>
-						<Suspense fallback={<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />}>
+						<Suspense
+							fallback={
+								<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />
+							}
+						>
 							<LearningTimeline />
 						</Suspense>
 					</section>
@@ -181,7 +206,9 @@ export default function DashboardPage() {
 							<div className="p-1.5 bg-primary/10 rounded-lg">
 								<Sparkles className="w-5 h-5 text-primary" />
 							</div>
-							<h3 className="text-xl font-bold text-foreground">Prática Imersiva</h3>
+							<h3 className="text-xl font-bold text-foreground">
+								Prática Imersiva
+							</h3>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
 							{/* Microlearning Lesson */}
@@ -201,6 +228,12 @@ export default function DashboardPage() {
 
 							{/* Pronunciation Practice */}
 							<PronunciationWidget />
+
+							{/* Immersive Audio - 2024 Trend */}
+							<InteractiveAudioWidget />
+
+							{/* Social Learning Challenge - 2024 Trend */}
+							<CommunityChallengeWidget />
 						</div>
 
 						{/* Pop Culture & Trends - Social Media / Netflix */}

@@ -1,13 +1,42 @@
---- src/Layout.tsx
-+++ src/Layout.tsx
-@@ -444,7 +444,9 @@
-				</SidebarInset>
-			</SidebarProvider>
-			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
--			<MobileNav />
-+			<div className="lg:hidden">
-+				<MobileNav />
-+			</div>
-			<PWAInstallPrompt />
-			<PobrelingoAssistant />
-			<Toaster />
+<<<<<<< SEARCH
+import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
+import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
+import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
+import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
+=======
+import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
+import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
+import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
+import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
+import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
+import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+							{/* Interactive Story - TPRS */}
+							<StorytellingWidget />
+
+							{/* Pronunciation Practice */}
+							<PronunciationWidget />
+						</div>
+
+						{/* Pop Culture & Trends - Social Media / Netflix */}
+						<PopCultureWidget />
+					</section>
+=======
+							{/* Interactive Story - TPRS */}
+							<StorytellingWidget />
+
+							{/* Pronunciation Practice */}
+							<PronunciationWidget />
+
+							{/* Immersive Audio - 2024 Trend */}
+							<InteractiveAudioWidget />
+
+							{/* Social Learning Challenge - 2024 Trend */}
+							<CommunityChallengeWidget />
+						</div>
+
+						{/* Pop Culture & Trends - Social Media / Netflix */}
+						<PopCultureWidget />
+					</section>
+>>>>>>> REPLACE

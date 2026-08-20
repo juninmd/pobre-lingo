@@ -26,6 +26,7 @@ import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsW
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
+import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
@@ -234,6 +235,9 @@ export default function DashboardPage() {
 
 							{/* Social Learning Challenge - 2024 Trend */}
 							<CommunityChallengeWidget />
+
+							{/* Content and Language Integrated Learning */}
+							<CLILWidget />
 						</div>
 
 						{/* Pop Culture & Trends - Social Media / Netflix */}

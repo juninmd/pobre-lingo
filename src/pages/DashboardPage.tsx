@@ -208,30 +208,30 @@ export default function DashboardPage() {
 								<Sparkles className="w-5 h-5 text-primary" />
 							</div>
 							<h3 className="text-xl font-bold text-foreground">
-								Prática Imersiva
+								Tendências 2024 & Prática Imersiva
 							</h3>
 						</div>
 						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							{/* Microlearning Lesson */}
-							<MicroLessonWidget />
-
-							{/* Real-world Task - TBLT */}
-							<TaskMissionWidget />
-
 							{/* AI Language Partner - 2024 Trend */}
 							<AILanguagePartnerWidget />
 
 							{/* Nano-learning / Shorts - 2024 Trend */}
 							<SocialMediaReelsWidget />
 
+							{/* Immersive Audio - 2024 Trend */}
+							<InteractiveAudioWidget />
+
+							{/* Real-world Task - TBLT */}
+							<TaskMissionWidget />
+
+							{/* Microlearning Lesson */}
+							<MicroLessonWidget />
+
 							{/* Interactive Story - TPRS */}
 							<StorytellingWidget />
 
 							{/* Pronunciation Practice */}
 							<PronunciationWidget />
-
-							{/* Immersive Audio - 2024 Trend */}
-							<InteractiveAudioWidget />
 
 							{/* Social Learning Challenge - 2024 Trend */}
 							<CommunityChallengeWidget />

@@ -1,9 +1,34 @@
-import { Bot, MessageSquare, Mic, Sparkles } from "lucide-react";
+import { Bot, MessageSquare, Mic, Sparkles, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useGamification } from "@/contexts/GamificationContext";
 
 export function AILanguagePartnerWidget() {
+	const { addXp } = useGamification();
+	const [claimed, setClaimed] = useState(false);
+	const [isChatting, setIsChatting] = useState(false);
+
+	useEffect(() => {
+		const todayStr = new Date().toISOString().split("T")[0];
+		setClaimed(
+			localStorage.getItem("daily_ai_partner_claimed") === todayStr,
+		);
+	}, []);
+
+	const handleRespond = () => {
+		if (claimed) return;
+		setIsChatting(true);
+		setTimeout(() => {
+			setIsChatting(false);
+			setClaimed(true);
+			addXp(15);
+			const todayStr = new Date().toISOString().split("T")[0];
+			localStorage.setItem("daily_ai_partner_claimed", todayStr);
+		}, 1500); // Simulate network request/typing
+	};
+
 	return (
 		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-indigo-50/70 to-blue-50/70 dark:from-indigo-950/30 dark:to-blue-950/30 border-indigo-200/50 dark:border-indigo-800/50 shadow-lg hover:shadow-indigo-500/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
@@ -35,10 +60,34 @@ export function AILanguagePartnerWidget() {
 				</div>
 
 				<div className="flex gap-2">
-					<Button className="w-full gap-2" variant="default">
-						<MessageSquare className="w-4 h-4" /> Responder
+					<Button
+						className="w-full gap-2"
+						variant={claimed ? "secondary" : "default"}
+						onClick={handleRespond}
+						disabled={claimed || isChatting}
+					>
+						{isChatting ? (
+							<span className="flex items-center gap-1.5 animate-pulse">
+								Enviando...
+							</span>
+						) : claimed ? (
+							<span className="flex items-center gap-1.5 text-indigo-700 dark:text-indigo-400">
+								<CheckCircle2 className="w-4 h-4" />
+								Prática Concluída!
+							</span>
+						) : (
+							<>
+								<MessageSquare className="w-4 h-4" /> Responder
+							</>
+						)}
 					</Button>
-					<Button variant="outline" size="icon" className="shrink-0 rounded-full border-indigo-200 dark:border-indigo-800 text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900">
+					<Button
+						variant="outline"
+						size="icon"
+						className="shrink-0 rounded-full border-indigo-200 dark:border-indigo-800 text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900"
+						onClick={handleRespond}
+						disabled={claimed || isChatting}
+					>
 						<Mic className="w-4 h-4" />
 					</Button>
 				</div>

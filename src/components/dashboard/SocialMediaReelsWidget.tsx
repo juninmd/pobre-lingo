@@ -1,9 +1,36 @@
-import { Play, Heart, MessageCircle, Share2, Smartphone } from "lucide-react";
+import { Play, Heart, MessageCircle, Share2, Smartphone, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useGamification } from "@/contexts/GamificationContext";
 
 export function SocialMediaReelsWidget() {
+	const { addXp } = useGamification();
+	const [claimed, setClaimed] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	useEffect(() => {
+		const todayStr = new Date().toISOString().split("T")[0];
+		setClaimed(
+			localStorage.getItem("daily_reels_claimed") === todayStr,
+		);
+	}, []);
+
+	const handleWatch = () => {
+		if (claimed) return;
+		setIsPlaying(true);
+
+		// Simulate watching a short reel (e.g., 3 seconds)
+		setTimeout(() => {
+			setIsPlaying(false);
+			setClaimed(true);
+			addXp(15);
+			const todayStr = new Date().toISOString().split("T")[0];
+			localStorage.setItem("daily_reels_claimed", todayStr);
+		}, 3000);
+	};
+
 	return (
 		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-pink-50/70 to-rose-50/70 dark:from-pink-950/30 dark:to-rose-950/30 border-pink-200/50 dark:border-pink-800/50 shadow-lg hover:shadow-pink-500/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
@@ -31,9 +58,19 @@ export function SocialMediaReelsWidget() {
 					/>
 
 					{/* Play Button */}
-					<div className="z-20 p-3 bg-white/20 backdrop-blur-md rounded-full cursor-pointer hover:bg-white/40 transition-colors">
-						<Play className="w-8 h-8 text-white fill-white" />
-					</div>
+					{!isPlaying && (
+						<div
+							className="z-20 p-3 bg-white/20 backdrop-blur-md rounded-full cursor-pointer hover:bg-white/40 transition-colors"
+							onClick={handleWatch}
+						>
+							<Play className="w-8 h-8 text-white fill-white" />
+						</div>
+					)}
+					{isPlaying && (
+						<div className="z-20 p-3 bg-white/20 backdrop-blur-md rounded-full">
+							<Loader2 className="w-8 h-8 text-white animate-spin" />
+						</div>
+					)}
 
 					{/* Fake UI Overlay */}
 					<div className="absolute bottom-3 left-3 right-3 z-20 flex justify-between items-end">
@@ -49,8 +86,24 @@ export function SocialMediaReelsWidget() {
 					</div>
 				</div>
 
-				<Button variant="gamified" className="w-full bg-pink-600 hover:bg-pink-700 text-white">
-					Assistir & Ganhar 15 XP
+				<Button
+					variant={claimed ? "secondary" : "gamified"}
+					className={`w-full ${!claimed ? 'bg-pink-600 hover:bg-pink-700 text-white' : ''}`}
+					onClick={handleWatch}
+					disabled={claimed || isPlaying}
+				>
+					{isPlaying ? (
+						<span className="flex items-center gap-1.5">
+							Assistindo...
+						</span>
+					) : claimed ? (
+						<span className="flex items-center gap-1.5 text-pink-700 dark:text-pink-400">
+							<CheckCircle2 className="w-4 h-4" />
+							Visualizado!
+						</span>
+					) : (
+						<span>Assistir & Ganhar 15 XP</span>
+					)}
 				</Button>
 			</CardContent>
 		</Card>

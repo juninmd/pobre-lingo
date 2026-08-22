@@ -28,6 +28,7 @@ import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
+import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";
@@ -202,46 +203,64 @@ export default function DashboardPage() {
 					</section>
 
 					{/* Prática Imersiva Section */}
-					<section className="space-y-3 sm:space-y-4 md:space-y-6 mt-8">
-						<div className="flex items-center gap-2 mb-2">
+					<section className="space-y-6 sm:space-y-8 mt-8">
+						<div className="flex items-center gap-2 mb-4">
 							<div className="p-1.5 bg-primary/10 rounded-lg">
 								<Sparkles className="w-5 h-5 text-primary" />
 							</div>
-							<h3 className="text-xl font-bold text-foreground">
+							<h3 className="text-2xl font-bold text-foreground tracking-tight">
 								Tendências 2024 & Prática Imersiva
 							</h3>
 						</div>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							{/* AI Language Partner - 2024 Trend */}
-							<AILanguagePartnerWidget />
 
-							{/* Nano-learning / Shorts - 2024 Trend */}
-							<SocialMediaReelsWidget />
+						<div className="space-y-8">
+							{/* Category 1: Imersão Digital & IA */}
+							<div className="space-y-3">
+								<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+									<span>🤖</span> Imersão Digital & IA
+								</h4>
+								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+									<AILanguagePartnerWidget />
+									<InteractiveAudioWidget />
+									<PronunciationWidget />
+								</div>
+							</div>
 
-							{/* Immersive Audio - 2024 Trend */}
-							<InteractiveAudioWidget />
+							{/* Category 2: Conexão Humana & Social */}
+							<div className="space-y-3">
+								<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+									<span>👥</span> Conexão Humana & Social
+								</h4>
+								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+									<LiveTutorWidget />
+									<CommunityChallengeWidget />
+								</div>
+							</div>
 
-							{/* Real-world Task - TBLT */}
-							<TaskMissionWidget />
+							{/* Category 3: Nano-Learning & Cultura */}
+							<div className="space-y-3">
+								<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+									<span>📱</span> Nano-Learning & Cultura
+								</h4>
+								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+									<SocialMediaReelsWidget />
+									<PopCultureWidget />
+								</div>
+							</div>
 
-							{/* Microlearning Lesson */}
-							<MicroLessonWidget />
-
-							{/* Interactive Story - TPRS */}
-							<StorytellingWidget />
-
-							{/* Pronunciation Practice */}
-							<PronunciationWidget />
-
-							{/* Social Learning Challenge - 2024 Trend */}
-							<CommunityChallengeWidget />
-
-							{/* Content and Language Integrated Learning */}
-							<CLILWidget />
+							{/* Category 4: Metodologias Ativas */}
+							<div className="space-y-3">
+								<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+									<span>🧠</span> Metodologias Ativas
+								</h4>
+								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+									<TaskMissionWidget />
+									<CLILWidget />
+									<StorytellingWidget />
+									<MicroLessonWidget />
+								</div>
+							</div>
 						</div>
-
-						{/* Pop Culture & Trends - Social Media / Netflix */}
-						<PopCultureWidget />
 					</section>
 				</div>
 

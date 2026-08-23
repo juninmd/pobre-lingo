@@ -298,7 +298,7 @@ export default function Layout() {
 	return (
 		<div className="font-body antialiased h-svh overflow-hidden bg-background text-foreground flex flex-col">
 			<SEO />
-			<SidebarProvider defaultOpen className="h-full overflow-hidden">
+			<SidebarProvider defaultOpen className="h-full overflow-hidden flex flex-row w-full">
 				{/* Sidebar only visible on lg and up */}
 				<Sidebar
 					collapsible="icon"
@@ -309,7 +309,7 @@ export default function Layout() {
 					<NavMenu />
 				</Sidebar>
 
-				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0">
+				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0 flex-1 w-full">
 					<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 						<div className="flex items-center gap-2 sm:gap-3 min-w-0">
 							<div className="hidden lg:block">

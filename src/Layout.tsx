@@ -298,13 +298,16 @@ export default function Layout() {
 	return (
 		<div className="font-body antialiased h-svh overflow-hidden bg-background text-foreground flex flex-col">
 			<SEO />
-			<SidebarProvider defaultOpen className="h-full overflow-hidden flex flex-row w-full">
+			<SidebarProvider
+				defaultOpen
+				className="h-full overflow-hidden flex flex-row w-full"
+			>
 				{/* Sidebar only visible on lg and up */}
 				<Sidebar
 					collapsible="icon"
 					variant="sidebar"
 					side="left"
-					className="hidden lg:flex border-r border-border/40"
+					className="hidden md:flex border-r border-border/40"
 				>
 					<NavMenu />
 				</Sidebar>
@@ -312,7 +315,7 @@ export default function Layout() {
 				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0 flex-1 w-full">
 					<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 						<div className="flex items-center gap-2 sm:gap-3 min-w-0">
-							<div className="hidden lg:block">
+							<div className="hidden md:block">
 								<SidebarTrigger asChild>
 									<Button
 										variant="ghost"
@@ -325,7 +328,7 @@ export default function Layout() {
 								</SidebarTrigger>
 							</div>
 
-							<div className="lg:hidden flex-shrink-0 flex items-center gap-2">
+							<div className="md:hidden flex-shrink-0 flex items-center gap-2">
 								<div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 									<GraduationCap className="h-5 w-5 text-primary" />
 								</div>
@@ -336,7 +339,7 @@ export default function Layout() {
 
 							<Separator
 								orientation="vertical"
-								className="h-6 hidden lg:block bg-border/60"
+								className="h-6 hidden md:block bg-border/60"
 							/>
 
 							<div className="hidden sm:flex items-center gap-2 min-w-0">
@@ -359,10 +362,13 @@ export default function Layout() {
 							<div className="flex items-center gap-3 sm:gap-4 font-sans">
 								{/* Level Badge */}
 								<div
-									className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/10 backdrop-blur-md border border-black/5 dark:border-white/10 text-foreground/80 font-medium transition-all hover:bg-black/10 dark:hover:bg-white/20"
+									className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/80 dark:bg-blue-950/50 backdrop-blur-md border border-blue-200/50 dark:border-blue-800/50 text-blue-700 dark:text-blue-400 font-sans shadow-sm transition-all hover:bg-blue-100/80 dark:hover:bg-blue-900/60"
 									title="Nível"
 								>
-									<GraduationCap className="h-3.5 w-3.5 opacity-70" strokeWidth={2.5} />
+									<GraduationCap
+										className="h-3.5 w-3.5 opacity-70"
+										strokeWidth={2.5}
+									/>
 									<span className="text-[13px] font-semibold tracking-tight">
 										Nvl {userLevel}
 									</span>
@@ -370,10 +376,13 @@ export default function Layout() {
 
 								{/* Gems / PobreCoins */}
 								<div
-									className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100/50 dark:bg-amber-900/30 backdrop-blur-md border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-medium transition-all hover:bg-amber-100 dark:hover:bg-amber-900/50 group cursor-default"
+									className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50/80 dark:bg-amber-950/50 backdrop-blur-md border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-sans shadow-sm transition-all group cursor-default hover:bg-amber-100/80 dark:hover:bg-amber-900/60"
 									title="Pobrecoins"
 								>
-									<Coins className="h-3.5 w-3.5 text-amber-500 group-hover:animate-bounce" strokeWidth={2.5} />
+									<Coins
+										className="h-3.5 w-3.5 text-amber-500 group-hover:animate-bounce"
+										strokeWidth={2.5}
+									/>
 									<span className="text-[13px] font-bold tabular-nums tracking-tight">
 										{gems}
 									</span>
@@ -444,7 +453,7 @@ export default function Layout() {
 				</SidebarInset>
 			</SidebarProvider>
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-			<div className="lg:hidden">
+			<div className="md:hidden">
 				<MobileNav />
 			</div>
 			<PWAInstallPrompt />

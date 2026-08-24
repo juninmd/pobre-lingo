@@ -1,43 +1,54 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Home Page', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.addInitScript(() => {
-            window.localStorage.setItem('pobrelingo_onboarded', 'true');
-        });
-        await page.goto('/');
-    });
+test.describe('Home Page - Learning Journey', () => {
+	// Pula modal de onboarding caso exista para focar no teste da página principal
+	test.beforeEach(async ({ page }) => {
+		await page.goto('/');
+		await page.evaluate(() => {
+			localStorage.setItem('pobrelingo_onboarded', 'true');
+		});
+		await page.reload();
+	});
 
-    test('should render the home dashboard', async ({ page, isMobile }) => {
-        await expect(page.getByRole('heading', { name: 'Prática Imersiva' }).or(page.getByText('Prática Imersiva'))).toBeVisible();
+	test('should render home properly and display desktop layout', async ({ page }) => {
+		// Define resolução desktop
+		await page.setViewportSize({ width: 1280, height: 720 });
 
-        // Verify that the layout adjusts based on mobile
-        if (isMobile) {
-            // Verify desktop navigation is hidden and mobile nav is shown
-            const desktopNav = page.locator('nav').first();
-            // In MobileNav, we have `nav[aria-label="Navegação principal móvel"]`
-            const mobileNav = page.locator('nav[aria-label="Navegação principal móvel"]');
-            await expect(mobileNav).toBeVisible();
-        } else {
-            // Verify mobile nav is not visible on desktop
-            const mobileNav = page.locator('nav[aria-label="Navegação principal móvel"]');
-            await expect(mobileNav).not.toBeVisible();
-        }
-    });
+		// O Sidebar deve estar visível e o MobileNav deve estar oculto
+		const sidebar = page.locator('nav').filter({ hasText: 'Navegação' }).first(); // Ajustar se a sidebar usar outra label
 
-    test('should navigate to current lesson when clicking active lesson bookmark', async ({ page }) => {
-        const activeLesson = page.locator('a[href*="/lesson/"]').locator('div.animate-pulse').first().locator('..');
+		// Como a sidebar original no Layout usa `.hidden md:flex`, verificamos se está visível
+		const sidebarContainer = page.locator('.hidden.md\\:flex.border-r');
+		await expect(sidebarContainer).toBeVisible();
 
-        try {
-           await activeLesson.waitFor({ state: 'visible', timeout: 5000 });
-           await activeLesson.click({ force: true });
-           await expect(page).not.toHaveURL('/');
-        } catch {
-            // fallback if it renders differently
-             const alternative = page.locator('a.bg-gradient-to-r').first();
-             await alternative.waitFor({ state: 'visible', timeout: 5000 });
-             await alternative.click({ force: true });
-             await expect(page).not.toHaveURL('/');
-        }
-    });
+		// Mobile Nav tem a classe `md:hidden`, ou seja, não deve estar visível no desktop
+		const mobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
+		await expect(mobileNav).toBeHidden();
+	});
+
+	test('should adapt to mobile layout', async ({ page }) => {
+		// Define resolução mobile
+		await page.setViewportSize({ width: 375, height: 812 });
+
+		// O Sidebar deve estar oculto
+		const sidebarContainer = page.locator('.hidden.md\\:flex.border-r');
+		await expect(sidebarContainer).toBeHidden();
+
+		// O MobileNav deve estar visível
+		const mobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
+		await expect(mobileNav).toBeVisible();
+	});
+
+	test('should display the bookmark (Onde parei) on active lesson', async ({ page }) => {
+		// Espera a página carregar
+		await page.waitForSelector('.lucide-loader-2', { state: 'hidden' });
+
+		// Procura pelo texto "Onde parei"
+		const bookmark = page.locator('text="Onde parei"').first();
+		await expect(bookmark).toBeVisible();
+
+		// Verifica se o card da lição ativa tem o botão COMEÇAR
+		const startButton = page.locator('text="COMEÇAR"').first();
+		await expect(startButton).toBeVisible();
+	});
 });

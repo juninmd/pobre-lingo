@@ -1,9 +1,10 @@
 import * as LucideIcons from "lucide-react";
-import { Check, ChevronRight, Lock, Play, Star } from "lucide-react";
+import { Check, Lock, Play, Star } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { CefrBadge } from "@/components/common/CefrBadge";
+import { Button } from "@/components/ui/button";
 import type { Lesson, Module } from "@/lib/curriculumData";
 import { getCEFRLevel } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
@@ -111,9 +112,26 @@ export function LessonCard({
 				</div>
 			</div>
 
-			{status !== "locked" && (
-				<ChevronRight className="w-5 h-5 text-muted-foreground/30 group-hover:text-primary transition-colors" />
-			)}
+			<div className="flex-shrink-0 ml-2">
+				{status === "locked" && (
+					<div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-muted/50 px-2 py-1 rounded-md">
+						<Lock className="w-3 h-3" /> BLOQUEADO
+					</div>
+				)}
+				{status === "active" && (
+					<Button
+						size="sm"
+						className="rounded-full shadow-md animate-pulse font-bold"
+					>
+						COMEÇAR <Play className="w-3 h-3 ml-1 fill-current" />
+					</Button>
+				)}
+				{status === "completed" && (
+					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-2 py-1 rounded-md">
+						<Check className="w-3 h-3 stroke-[3]" /> CONCLUÍDO
+					</div>
+				)}
+			</div>
 		</>
 	);
 
@@ -122,7 +140,7 @@ export function LessonCard({
 		status === "locked" &&
 			"opacity-60 grayscale cursor-not-allowed border-dashed bg-muted/20",
 		status === "active" &&
-			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent scale-[1.03] ring-2 ring-primary/50 animate-pulse hover:scale-[1.04] animate-in fade-in zoom-in duration-500",
+			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent scale-[1.03] ring-2 ring-primary/50 animate-pulse hover:scale-[1.04] animate-in fade-in zoom-in duration-1000",
 		status === "completed" &&
 			"border-green-500/20 bg-green-500/5 hover:bg-green-500/10",
 		status !== "locked" &&

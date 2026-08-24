@@ -29,6 +29,7 @@ import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
+import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";
@@ -223,6 +224,7 @@ export default function DashboardPage() {
 									<AILanguagePartnerWidget />
 									<InteractiveAudioWidget />
 									<PronunciationWidget />
+									<VirtualImmersionWidget />
 								</div>
 							</div>
 

@@ -18,6 +18,8 @@ import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCar
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
+import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
+import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
@@ -223,6 +225,7 @@ export default function DashboardPage() {
 								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
 									<AILanguagePartnerWidget />
 									<InteractiveAudioWidget />
+									<RealWorldARWidget />
 									<PronunciationWidget />
 									<VirtualImmersionWidget />
 								</div>
@@ -236,6 +239,7 @@ export default function DashboardPage() {
 								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
 									<LiveTutorWidget />
 									<CommunityChallengeWidget />
+									<PeerReviewWidget />
 								</div>
 							</div>
 

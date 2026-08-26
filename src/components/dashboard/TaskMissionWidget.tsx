@@ -61,7 +61,8 @@ const TBLT_SCENARIOS = [
 			"Você precisa que o ChatGPT escreva um e-mail de desculpas para o seu chefe por estar atrasado.",
 		task: "Dê o comando (prompt) para a inteligência artificial em inglês.",
 		solution: "Write a polite email apologizing to my boss for being late.",
-		translation: "Escreva um e-mail educado pedindo desculpas ao meu chefe por estar atrasado.",
+		translation:
+			"Escreva um e-mail educado pedindo desculpas ao meu chefe por estar atrasado.",
 		xp: 15,
 	},
 	{

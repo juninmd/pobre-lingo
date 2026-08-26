@@ -13,25 +13,26 @@ import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
+import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
+import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
-import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
-import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
+import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
 import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
+import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
-import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
-import { CLILWidget } from "@/components/dashboard/CLILWidget";
-import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
-import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
+import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
+import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
+import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";
@@ -260,6 +261,7 @@ export default function DashboardPage() {
 									<span>🧠</span> Metodologias Ativas
 								</h4>
 								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+									<TranslanguagingWidget />
 									<TaskMissionWidget />
 									<CLILWidget />
 									<StorytellingWidget />

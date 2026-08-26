@@ -38,10 +38,9 @@ export function MascotGreeting({
 			24,
 	);
 
-	const dynamicGreeting =
-		userName
-			? `Oi, ${userName}! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`
-			: `Oi! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`;
+	const dynamicGreeting = userName
+		? `Oi, ${userName}! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`
+		: `Oi! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`;
 
 	const greeting = message || dynamicGreeting;
 

@@ -1,8 +1,8 @@
 import { BookOpen, CheckCircle2, Globe, Lightbulb } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useGamification } from "@/contexts/GamificationContext";
 
 const CLIL_TOPICS = [
@@ -82,7 +82,10 @@ export function CLILWidget() {
 			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
-					<Badge variant="secondary" className="mb-2 bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300 border-none font-bold">
+					<Badge
+						variant="secondary"
+						className="mb-2 bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300 border-none font-bold"
+					>
 						<Globe className="w-3 h-3 mr-1 inline" /> CLIL Method
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-orange-700 dark:text-orange-400">

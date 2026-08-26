@@ -1,8 +1,16 @@
-import { Play, Heart, MessageCircle, Share2, Smartphone, CheckCircle2, Loader2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import {
+	CheckCircle2,
+	Heart,
+	Loader2,
+	MessageCircle,
+	Play,
+	Share2,
+	Smartphone,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useGamification } from "@/contexts/GamificationContext";
 
 export function SocialMediaReelsWidget() {
@@ -12,9 +20,7 @@ export function SocialMediaReelsWidget() {
 
 	useEffect(() => {
 		const todayStr = new Date().toISOString().split("T")[0];
-		setClaimed(
-			localStorage.getItem("daily_reels_claimed") === todayStr,
-		);
+		setClaimed(localStorage.getItem("daily_reels_claimed") === todayStr);
 	}, []);
 
 	const handleWatch = () => {
@@ -35,7 +41,10 @@ export function SocialMediaReelsWidget() {
 		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-pink-50/70 to-rose-50/70 dark:from-pink-950/30 dark:to-rose-950/30 border-pink-200/50 dark:border-pink-800/50 shadow-lg hover:shadow-pink-500/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
 				<div>
-					<Badge variant="secondary" className="mb-2 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 border-none font-bold">
+					<Badge
+						variant="secondary"
+						className="mb-2 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 border-none font-bold"
+					>
 						<Smartphone className="w-3 h-3 mr-1 inline" /> TREND 2024
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-pink-700 dark:text-pink-400">
@@ -88,14 +97,12 @@ export function SocialMediaReelsWidget() {
 
 				<Button
 					variant={claimed ? "secondary" : "gamified"}
-					className={`w-full ${!claimed ? 'bg-pink-600 hover:bg-pink-700 text-white' : ''}`}
+					className={`w-full ${!claimed ? "bg-pink-600 hover:bg-pink-700 text-white" : ""}`}
 					onClick={handleWatch}
 					disabled={claimed || isPlaying}
 				>
 					{isPlaying ? (
-						<span className="flex items-center gap-1.5">
-							Assistindo...
-						</span>
+						<span className="flex items-center gap-1.5">Assistindo...</span>
 					) : claimed ? (
 						<span className="flex items-center gap-1.5 text-pink-700 dark:text-pink-400">
 							<CheckCircle2 className="w-4 h-4" />

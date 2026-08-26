@@ -1,5 +1,5 @@
-import { Mic, MicOff, Star, Trophy, AlertCircle } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { AlertCircle, Mic, MicOff, Star, Trophy } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
@@ -262,7 +262,7 @@ export function PronunciationWidget() {
 								key={i}
 								className="w-1.5 bg-sky-500 rounded-full animate-bounce"
 								style={{
-									height: `${(i % 3 === 0 ? 80 : i % 2 === 0 ? 60 : 40)}%`,
+									height: `${i % 3 === 0 ? 80 : i % 2 === 0 ? 60 : 40}%`,
 									minHeight: "4px",
 									animationDelay: `${i * 0.15}s`,
 									animationDuration: "0.8s",

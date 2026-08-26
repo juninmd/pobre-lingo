@@ -1,14 +1,14 @@
 import {
+	CheckCircle2,
+	Loader2,
 	Scan,
 	Smartphone,
-	CheckCircle2,
 	Sparkles,
-	Loader2,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useGamification } from "@/contexts/GamificationContext";
 
 export function RealWorldARWidget() {
@@ -117,7 +117,7 @@ export function RealWorldARWidget() {
 							<CheckCircle2 className="w-4 h-4" />
 							Descoberta Feita!
 						</span>
-					) : !!scannedItem ? (
+					) : scannedItem ? (
 						<span className="flex items-center gap-1.5 animate-pulse">
 							Validando descoberta...
 						</span>

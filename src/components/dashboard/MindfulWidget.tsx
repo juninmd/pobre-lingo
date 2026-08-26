@@ -1,4 +1,4 @@
-import { HeartHandshake, CheckCircle2, Flower, Droplets } from "lucide-react";
+import { CheckCircle2, Droplets, Flower, HeartHandshake } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

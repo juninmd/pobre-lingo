@@ -1,4 +1,4 @@
-import { Clapperboard, CheckCircle2, Play, Sparkles } from "lucide-react";
+import { CheckCircle2, Clapperboard, Play, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -94,7 +94,10 @@ export function PopCultureWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-violet-50/70 to-fuchsia-50/70 dark:from-violet-950/30 dark:to-fuchsia-950/30 border-violet-200/50 dark:border-violet-800/50 shadow-lg hover:shadow-violet-500/10 relative overflow-hidden group" style={{ animationDelay: "0.2s" }}>
+		<Card
+			className="glass-card hover:animate-float group bg-gradient-to-br from-violet-50/70 to-fuchsia-50/70 dark:from-violet-950/30 dark:to-fuchsia-950/30 border-violet-200/50 dark:border-violet-800/50 shadow-lg hover:shadow-violet-500/10 relative overflow-hidden group"
+			style={{ animationDelay: "0.2s" }}
+		>
 			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-violet-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
 				<CardTitle className="text-sm font-bold flex items-center gap-2 text-violet-700 dark:text-violet-400">

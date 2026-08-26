@@ -1,5 +1,5 @@
-import { Headphones, Play, CheckCircle2, Pause } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { CheckCircle2, Headphones, Pause, Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
@@ -51,7 +51,10 @@ export function InteractiveAudioWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-teal-50/70 to-emerald-50/70 dark:from-teal-950/30 dark:to-emerald-950/30 border-teal-200/50 dark:border-teal-800/50 shadow-lg hover:shadow-teal-500/10 relative overflow-hidden" style={{ animationDelay: "0.2s" }}>
+		<Card
+			className="glass-card hover:animate-float group bg-gradient-to-br from-teal-50/70 to-emerald-50/70 dark:from-teal-950/30 dark:to-emerald-950/30 border-teal-200/50 dark:border-teal-800/50 shadow-lg hover:shadow-teal-500/10 relative overflow-hidden"
+			style={{ animationDelay: "0.2s" }}
+		>
 			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-teal-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
 				<CardTitle className="text-sm font-bold flex items-center gap-2 text-teal-700 dark:text-teal-400">

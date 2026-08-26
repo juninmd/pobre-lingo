@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("VirtualImmersionWidget", () => {
 	test("renders and simulates VR immersion correctly", async ({ page }) => {
@@ -14,7 +14,9 @@ test.describe("VirtualImmersionWidget", () => {
 		await page.waitForSelector("text=Tendências 2024 & Prática Imersiva");
 
 		// Locate the widget
-		const widget = page.locator(".glass-card", { hasText: "Imersão 360° / VR" });
+		const widget = page.locator(".glass-card", {
+			hasText: "Imersão 360° / VR",
+		});
 		await expect(widget).toBeVisible();
 
 		// Click to start

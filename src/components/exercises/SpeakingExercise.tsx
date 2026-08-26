@@ -156,8 +156,8 @@ export function SpeakingExercise({
 					<div className="p-8 bg-blue-50 rounded-xl w-full">
 						<h2 className="text-3xl font-bold mb-2">{currentPhrase.phrase}</h2>
 						<p className="text-muted-foreground italic">
-						{currentPhrase.translation}
-					</p>
+							{currentPhrase.translation}
+						</p>
 					</div>
 
 					<Button

@@ -17,12 +17,14 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
+import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
 import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
+import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedLearningWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
@@ -228,6 +230,7 @@ export default function DashboardPage() {
 									<InteractiveAudioWidget />
 									<RealWorldARWidget />
 									<PronunciationWidget />
+									<DataDrivenLearningWidget />
 									<VirtualImmersionWidget />
 								</div>
 							</div>
@@ -263,6 +266,7 @@ export default function DashboardPage() {
 								<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
 									<TranslanguagingWidget />
 									<TaskMissionWidget />
+									<ProjectBasedLearningWidget />
 									<CLILWidget />
 									<StorytellingWidget />
 									<MicroLessonWidget />

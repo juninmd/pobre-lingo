@@ -7,7 +7,7 @@
 
 ## 🚧 Phase 2: Refinement & Depth (Current)
 - [x] **Feature Expansion**: Transition to "Interactive Journey Book" timeline. (Completed)
-- [ ] **Feature Expansion**: Implement core business logic and missing functionalities.
+- [x] **Feature Expansion**: Implement core business logic and missing functionalities (PBL, DDL).
 - [ ] **Testing Suite**: Increase test coverage to at least 80%.
 - [ ] **Optimization**: Improve performance and reduce technical debt.
 
@@ -23,3 +23,4 @@ Updated roadmap timestamp
 ## Recent Updates (2024 UI & Methods)
 - [x] **UI Trends**: Integrated Gamified, Spatial, and Glassmorphic aesthetics (`globals.css`, Dashboard).
 - [x] **Teaching Trends**: Added AI Language Partner and Social Media Reels (Nano-learning) widgets to Dashboard.
+- [x] **Teaching Trends**: Added Project-Based Learning (PBL) and Data-Driven Learning (DDL) widgets to Dashboard.

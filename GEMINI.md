@@ -20,3 +20,7 @@
 ## Testing & Automation
 - 100% unit test coverage required.
 - E2E tests powered by Playwright covering main flow, navigation layout adaptiveness, and the Learning Timeline.
+## Recent Refactoring (File Size Limits)
+- Refactored `Layout.tsx` by extracting `NavMenu` and `Header` to comply with the 150-line size limit rule.
+- Refactored `DashboardPage.tsx` by extracting `DashboardStats`, `ImmersivePracticeSection`, and `RightColumnWidgets`.
+- Refactored `LessonCard.tsx` by extracting `LessonCardContent`.

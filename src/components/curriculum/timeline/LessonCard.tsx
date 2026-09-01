@@ -1,3 +1,4 @@
+import { LessonCardContent } from "./LessonCardContent";
 import * as LucideIcons from "lucide-react";
 import { Check, Lock, Play, Star } from "lucide-react";
 import type React from "react";
@@ -43,97 +44,7 @@ export function LessonCard({
 		}
 	}, [isFirstActive]);
 
-	const content = (
-		<>
-			{/* Status Icon Area */}
-			<div className="flex-shrink-0 relative">
-				<div
-					className={cn(
-						"w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300",
-						status === "locked"
-							? "bg-muted text-muted-foreground/50 border border-muted-foreground/10"
-							: status === "completed"
-								? "bg-green-500 text-white shadow-lg shadow-green-500/20"
-								: "bg-primary text-primary-foreground shadow-lg shadow-primary/30",
-					)}
-				>
-					{status === "locked" ? (
-						<Lock className="w-4 h-4 md:w-5 md:h-5" />
-					) : status === "completed" ? (
-						<Check className="w-5 h-5 md:w-6 md:h-6 stroke-[3]" />
-					) : (
-						<Play className="w-4 h-4 md:w-5 md:h-5 ml-1" /> // Play icon slightly offset for optical balance
-					)}
-				</div>
-			</div>
-
-			{/* Lesson Info Area */}
-			<div className="flex-1 min-w-0 py-1">
-				<div className="flex items-center gap-2 mb-1">
-					<span
-						className={cn(
-							"text-[10px] md:text-xs font-bold uppercase tracking-wider",
-							status === "locked"
-								? "text-muted-foreground/50"
-								: "text-primary/80",
-						)}
-					>
-						{lesson.type}
-					</span>
-					{lesson.estimatedMinutes && (
-						<span className="text-[10px] md:text-xs text-muted-foreground bg-muted px-1.5 rounded-sm">
-							{lesson.estimatedMinutes}m
-						</span>
-					)}
-					{status === "completed" && (
-						<span className="flex items-center text-amber-500 text-[10px] md:text-xs font-bold ml-auto bg-amber-500/10 px-1.5 py-0.5 rounded-md">
-							<Star className="w-3 h-3 mr-0.5 fill-current" />
-							{lesson.xpReward} XP
-						</span>
-					)}
-				</div>
-				<h4
-					className={cn(
-						"font-bold text-sm md:text-base leading-tight md:leading-snug truncate",
-						status === "locked" ? "text-muted-foreground" : "text-foreground",
-					)}
-				>
-					{lesson.title_pt}
-				</h4>
-				<div className="flex items-center gap-2 mt-1">
-					<p className="text-xs text-muted-foreground truncate hidden md:block">
-						{lesson.description_pt}
-					</p>
-					<CefrBadge
-						level={getCEFRLevel(module.unitId)}
-						showDescriptionOnHover={false}
-						className="px-1 py-0 text-[8px] sm:text-[9px]"
-					/>
-				</div>
-			</div>
-
-			<div className="flex-shrink-0 ml-2">
-				{status === "locked" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-muted/50 px-2 py-1 rounded-md">
-						<Lock className="w-3 h-3" /> BLOQUEADO
-					</div>
-				)}
-				{status === "active" && (
-					<Button
-						size="sm"
-						className="rounded-full shadow-md animate-pulse font-bold"
-					>
-						COMEÇAR <Play className="w-3 h-3 ml-1 fill-current" />
-					</Button>
-				)}
-				{status === "completed" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-2 py-1 rounded-md">
-						<Check className="w-3 h-3 stroke-[3]" /> CONCLUÍDO
-					</div>
-				)}
-			</div>
-		</>
-	);
+	const content = <LessonCardContent module={module} lesson={lesson} status={status} />;
 
 	const wrapperClass = cn(
 		"flex items-center gap-4 p-5 rounded-xl border transition-all duration-300 bg-card/50 backdrop-blur-md",

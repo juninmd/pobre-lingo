@@ -47,3 +47,11 @@
 - **Action:** Created `ProjectBasedLearningWidget` and `DataDrivenLearningWidget`.
 - **Action:** Integrated new widgets into the `DashboardPage` and verified all tests pass.
 - **Next Steps:** Consider adding backend support or local persistence for the newly introduced methodology tools.
+
+### [2026-09-01] Jules-Architect / Stitch-Frontend: Dashboard & Layout Refactoring
+- **Action:** Audited codebase to ensure compliance with the 150-line limit rule for large components.
+- **Action:** Extracted `NavMenu` and `Header` from `Layout.tsx`.
+- **Action:** Modularized `DashboardPage.tsx` into logical components (`DashboardStats`, `ImmersivePracticeSection`, `RightColumnWidgets`).
+- **Action:** Split `LessonCard.tsx` to isolate its content.
+- **Action:** Expanded `tests-e2e/learning_timeline.spec.ts` to explicitly assert the "Onde parei" bookmark, mobile viewport layout, and lesson link clickability.
+- **Next Steps:** Maintain component sizes under the limit for future changes.

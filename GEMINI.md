@@ -24,3 +24,6 @@
 - Refactored `Layout.tsx` by extracting `NavMenu` and `Header` to comply with the 150-line size limit rule.
 - Refactored `DashboardPage.tsx` by extracting `DashboardStats`, `ImmersivePracticeSection`, and `RightColumnWidgets`.
 - Refactored `LessonCard.tsx` by extracting `LessonCardContent`.
+
+## Test Flakiness Resolution
+- E2E tests for the Learning Timeline (`learning_timeline.spec.ts`) now wait for the lazy-loading spinner (`.lucide-loader-2`) to disappear before making assertions, preventing false-negative timeout failures on elements rendered after loading.

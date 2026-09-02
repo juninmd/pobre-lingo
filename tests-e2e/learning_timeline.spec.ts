@@ -9,6 +9,7 @@ test.describe("Learning Timeline (Journey Book)", () => {
 
 	test("should render timeline on home", async ({ page }) => {
 		await page.goto("/");
+		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 		await expect(
 			page.getByRole("heading", { name: "Sua Jornada", exact: true }),
 		).toBeVisible();
@@ -17,6 +18,7 @@ test.describe("Learning Timeline (Journey Book)", () => {
 
 	test("should show the 'Onde parei' bookmark on the active lesson", async ({ page }) => {
 		await page.goto("/");
+		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 		const bookmark = page.getByText("Onde parei");
 		await expect(bookmark.first()).toBeVisible();
 	});

@@ -16,25 +16,34 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		await expect(page.getByText("To be continued...")).toBeVisible();
 	});
 
-	test("should show the 'Onde parei' bookmark on the active lesson", async ({ page }) => {
+	test("should show the 'Onde parei' bookmark on the active lesson", async ({
+		page,
+	}) => {
 		await page.goto("/");
 		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 		const bookmark = page.getByText("Onde parei");
 		await expect(bookmark.first()).toBeVisible();
 	});
 
-	test("should adapt layout for mobile devices without breaking", async ({ page, isMobile }) => {
+	test("should adapt layout for mobile devices without breaking", async ({
+		page,
+		isMobile,
+	}) => {
 		await page.goto("/");
 		if (isMobile) {
 			// Ensure MobileNav is visible on mobile devices
-			const mobileNav = page.locator("nav[aria-label='Navegação principal móvel']");
+			const mobileNav = page.locator(
+				"nav[aria-label='Navegação principal móvel']",
+			);
 			await expect(mobileNav).toBeVisible();
 		}
 	});
 
-	test("should navigate to the active lesson upon clicking the bookmark lesson", async ({ page }) => {
+	test("should navigate to the active lesson upon clicking the bookmark lesson", async ({
+		page,
+	}) => {
 		await page.goto("/");
-		const activeLessonLink = page.locator('a.animate-pulse').first();
+		const activeLessonLink = page.locator("a.animate-pulse").first();
 		await activeLessonLink.waitFor({ state: "visible", timeout: 5000 });
 
 		const href = await activeLessonLink.getAttribute("href");
@@ -43,7 +52,9 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		const expectedPath = href!.split("?")[0];
 		await expect(async () => {
 			const currentUrl = page.url();
-			expect(currentUrl.includes(expectedPath) || currentUrl.includes("/rules")).toBeTruthy();
+			expect(
+				currentUrl.includes(expectedPath) || currentUrl.includes("/rules"),
+			).toBeTruthy();
 		}).toPass({ timeout: 5000 });
 	});
 });

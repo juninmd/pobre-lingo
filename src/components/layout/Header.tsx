@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { allNavItems } from "./NavMenu";
 
 export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {

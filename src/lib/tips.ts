@@ -50,7 +50,14 @@ export const TIPS = [
 	"Grave áudios no celular e use ferramentas de transcrição para ver se a IA entende sua pronúncia.",
 	"Use o TikTok ou Reels a seu favor: crie uma conta só para seguir criadores de conteúdo em inglês.",
 	"Assista vídeos curtos (Shorts/TikTok) com legendas; eles são ótimos para aprender gírias modernas e reais.",
-	"Aprenda inglês baseado em tarefas reais (TBLT): tente configurar seu ambiente de trabalho ou fazer compras online em inglês.",
+
+	// NOVAS METODOLOGIAS (Tendências 2024)
+	"Task-Based Language Teaching (TBLT): Aprenda inglês focando em tarefas reais, como configurar seu ambiente de trabalho ou fazer compras online em inglês.",
+	"Content and Language Integrated Learning (CLIL): Tente aprender sobre outros assuntos (como história ou ciências) em inglês.",
+	"Translanguaging: Use sua língua materna como ponte, mas faça conexões e comparações claras entre o português e o inglês.",
+	"Mindful Learning: Crie um ambiente de estudo focado e sem distrações para melhorar a retenção.",
+	"Realidade Virtual e Aumentada: Se puder, use apps ou experiências de VR/AR para se imergir em ambientes que simulam a vida real.",
+	"Data-Driven Learning (DDL): Procure em bancos de dados como nativos usam certas palavras para entender o contexto real de uso.",
 
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",

@@ -66,9 +66,10 @@ export function RightColumnWidgets() {
 				<CertificationPlanCard />
 
 				{/* Tip of the Day */}
-				<Card className="glass-card bg-primary/5 border-primary/20 border-l-4 border-l-primary hover:shadow-lg transition-all hover:-translate-y-1 duration-300 sticky top-20 sm:top-24">
-					<CardHeader className="pb-2 sm:pb-3 flex flex-row items-center justify-between space-y-0">
-						<CardTitle className="text-sm sm:text-base md:text-lg flex items-center gap-2 text-primary">
+				<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 border-l-4 border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all hover:-translate-y-1 duration-300 sticky top-20 sm:top-24 backdrop-blur-xl relative overflow-hidden group">
+					<div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+					<CardHeader className="pb-2 sm:pb-3 flex flex-row items-center justify-between space-y-0 relative z-10">
+						<CardTitle className="text-sm sm:text-base md:text-lg flex items-center gap-2 text-primary font-bold">
 							<Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
 							<span>Dica do Dia</span>
 						</CardTitle>
@@ -82,9 +83,9 @@ export function RightColumnWidgets() {
 							<RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
 						</Button>
 					</CardHeader>
-					<CardContent className="pt-0 space-y-4">
+					<CardContent className="pt-0 space-y-4 relative z-10">
 						<p
-							className="text-xs sm:text-sm italic text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-2 zoom-in-95 duration-500"
+							className="text-xs sm:text-sm italic text-foreground font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-2 zoom-in-95 duration-500"
 							key={currentTip}
 						>
 							"{currentTip}"

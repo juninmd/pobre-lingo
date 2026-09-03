@@ -11,9 +11,12 @@ interface LessonCardContentProps {
 	status: "locked" | "active" | "completed";
 }
 
-export function LessonCardContent({ module, lesson, status }: LessonCardContentProps) {
+export function LessonCardContent({
+	module,
+	lesson,
+	status,
+}: LessonCardContentProps) {
 	return (
-
 		<>
 			{/* Status Icon Area */}
 			<div className="flex-shrink-0 relative">

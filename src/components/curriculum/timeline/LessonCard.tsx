@@ -1,4 +1,3 @@
-import { LessonCardContent } from "./LessonCardContent";
 import * as LucideIcons from "lucide-react";
 import { Check, Lock, Play, Star } from "lucide-react";
 import type React from "react";
@@ -10,6 +9,7 @@ import type { Lesson, Module } from "@/lib/curriculumData";
 import { getCEFRLevel } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
+import { LessonCardContent } from "./LessonCardContent";
 
 const _getIcon = (name: string) => {
 	const icons = LucideIcons as unknown as Record<string, React.ElementType>;
@@ -44,7 +44,9 @@ export function LessonCard({
 		}
 	}, [isFirstActive]);
 
-	const content = <LessonCardContent module={module} lesson={lesson} status={status} />;
+	const content = (
+		<LessonCardContent module={module} lesson={lesson} status={status} />
+	);
 
 	const wrapperClass = cn(
 		"flex items-center gap-4 p-5 rounded-xl border transition-all duration-300 bg-card/50 backdrop-blur-md",

@@ -1,5 +1,3 @@
-import { Header } from "./components/layout/Header";
-import { NavMenu, allNavItems } from "./components/layout/NavMenu";
 import {
 	BookA,
 	BookMarked,
@@ -61,7 +59,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { cn } from "@/lib/utils";
 import { SEO } from "./components/common/SEO";
+import { Header } from "./components/layout/Header";
 import { MobileNav } from "./components/layout/MobileNav";
+import { allNavItems, NavMenu } from "./components/layout/NavMenu";
 import { useGamification } from "./contexts/GamificationContext";
 import { useTheme } from "./contexts/ThemeContext";
 
@@ -105,7 +105,7 @@ export default function Layout() {
 			>
 				{/* Sidebar only visible on lg and up */}
 				<Sidebar
-					collapsible="icon"
+					collapsible="none"
 					variant="sidebar"
 					side="left"
 					className="hidden md:flex border-r border-border/40"

@@ -1,6 +1,3 @@
-import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
-import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
-import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import {
 	Coins,
 	Flame,
@@ -20,7 +17,9 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
+import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
+import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
@@ -30,6 +29,7 @@ import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
 import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedLearningWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
+import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";

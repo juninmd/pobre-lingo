@@ -1,14 +1,14 @@
-import { Lightbulb, RefreshCw, Coins } from "lucide-react";
+import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useGamification } from "@/contexts/GamificationContext";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useGamification } from "@/contexts/GamificationContext";
 import { TIPS } from "@/lib/tips";
 
 export function RightColumnWidgets() {

@@ -1,7 +1,7 @@
 import { Coins, Flame, GraduationCap, Trophy } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useGamification } from "@/contexts/GamificationContext";
+import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { cn } from "@/lib/utils";
 
 export function DashboardStats() {
@@ -10,8 +10,6 @@ export function DashboardStats() {
 
 	return (
 		<>
-
-
 			{/* 1. Statistics Summary Cards */}
 			<section className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 md:grid-cols-4">
 				<Card className="glass-card backdrop-blur-xl bg-gradient-to-br from-orange-50/90 to-red-50/50 dark:from-orange-950/40 dark:to-red-950/20 border-orange-200/80 dark:border-orange-800/60 shadow-lg shadow-orange-500/5 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-2xl hover:shadow-orange-500/30 active:scale-[0.98] touch-manipulation hover:animate-float group">
@@ -92,7 +90,6 @@ export function DashboardStats() {
 					</CardContent>
 				</Card>
 			</section>
-
-					</>
+		</>
 	);
 }

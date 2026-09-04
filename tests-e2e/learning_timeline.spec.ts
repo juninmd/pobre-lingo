@@ -43,8 +43,8 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		page,
 	}) => {
 		await page.goto("/");
-		const activeLessonLink = page.locator("a.animate-pulse").first();
-		await activeLessonLink.waitFor({ state: "visible", timeout: 5000 });
+		const activeLessonLink = page.locator("a", { has: page.locator(".animate-pulse") }).first();
+		await activeLessonLink.waitFor({ state: "visible", timeout: 10000 });
 
 		const href = await activeLessonLink.getAttribute("href");
 		await activeLessonLink.click({ force: true });

@@ -31,9 +31,9 @@ export function UnitGroup({
 			{/* Unit Sticky Header */}
 			<div
 				className={cn(
-					"sticky top-[4.5rem] z-20 py-3 px-4 -mx-4 mb-8 backdrop-blur-md border-y transition-all duration-300 shadow-sm",
+					"sticky top-[4.5rem] z-20 py-4 px-4 -mx-4 mb-10 backdrop-blur-xl border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x",
 					isActiveUnit
-						? "bg-background/95 border-primary/30 shadow-md shadow-primary/5"
+						? "bg-card/70 border-primary/30 shadow-md shadow-primary/5"
 						: "bg-muted/40 border-border/40 grayscale opacity-80",
 				)}
 			>
@@ -74,11 +74,11 @@ export function UnitGroup({
 				</div>
 			</div>
 
-			<div className="relative pl-4 md:pl-0">
+			<div className="relative pl-4 md:pl-0 mt-4">
 				{/* Vertical Spine Line */}
-				<div className="absolute left-4 md:left-4 -top-4 bottom-0 w-px bg-border md:bg-gradient-to-b md:from-border md:via-border md:to-transparent" />
+				<div className="absolute left-4 md:left-4 -top-10 bottom-0 w-1 bg-border/50 rounded-full md:bg-gradient-to-b md:from-primary/20 md:via-border/50 md:to-transparent" />
 
-				<div className="flex flex-col gap-8 relative">
+				<div className="flex flex-col gap-10 relative mt-4">
 					{modules.map((module) => (
 						<ModuleSection
 							key={module.id}

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, act } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { AIStudyCoachWidget } from "./AIStudyCoachWidget";
 
 const mockAddXp = vi.fn();

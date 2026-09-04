@@ -24,3 +24,4 @@ Updated roadmap timestamp
 - [x] **UI Trends**: Integrated Gamified, Spatial, and Glassmorphic aesthetics (`globals.css`, Dashboard).
 - [x] **Teaching Trends**: Added AI Language Partner and Social Media Reels (Nano-learning) widgets to Dashboard.
 - [x] **Teaching Trends**: Added Project-Based Learning (PBL) and Data-Driven Learning (DDL) widgets to Dashboard.
+- [x] **Teaching Trends**: Added AI Study Coach (Structured Pedagogy) and Communicative Roleplay (CLT) widgets to Dashboard.

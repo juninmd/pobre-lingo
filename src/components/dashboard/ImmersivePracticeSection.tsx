@@ -12,6 +12,8 @@ import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedL
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
+import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
+import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
@@ -76,6 +78,8 @@ export function ImmersivePracticeSection() {
 							<span>🧠</span> Metodologias Ativas
 						</h4>
 						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+							<AIStudyCoachWidget />
+							<CommunicativeRoleplayWidget />
 							<TranslanguagingWidget />
 							<TaskMissionWidget />
 							<ProjectBasedLearningWidget />

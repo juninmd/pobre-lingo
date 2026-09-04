@@ -83,13 +83,10 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 				<div className="flex items-center gap-3 sm:gap-4 font-sans">
 					{/* Level Badge */}
 					<div
-						className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/80 dark:bg-blue-950/50 backdrop-blur-md border border-blue-200/50 dark:border-blue-800/50 text-blue-700 dark:text-blue-400 font-sans shadow-sm transition-all hover:bg-blue-100/80 dark:hover:bg-blue-900/60"
+						className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/50 dark:bg-blue-950/40 backdrop-blur-xl border border-blue-200/30 dark:border-blue-800/40 text-blue-700 dark:text-blue-400 font-sans shadow-sm transition-all hover:bg-blue-50/70 dark:hover:bg-blue-900/50"
 						title="Nível"
 					>
-						<GraduationCap
-							className="h-3.5 w-3.5 opacity-70"
-							strokeWidth={2.5}
-						/>
+						<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={2.5} />
 						<span className="text-[13px] font-semibold tracking-tight">
 							Nvl {userLevel}
 						</span>
@@ -97,11 +94,11 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 
 					{/* Gems / PobreCoins */}
 					<div
-						className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50/80 dark:bg-amber-950/50 backdrop-blur-md border border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400 font-sans shadow-sm transition-all group cursor-default hover:bg-amber-100/80 dark:hover:bg-amber-900/60"
+						className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50/50 dark:bg-amber-950/40 backdrop-blur-xl border border-amber-200/30 dark:border-amber-800/40 text-amber-700 dark:text-amber-400 font-sans shadow-sm transition-all group cursor-default hover:bg-amber-50/70 dark:hover:bg-amber-900/50"
 						title="Pobrecoins"
 					>
 						<Coins
-							className="h-3.5 w-3.5 text-amber-500 group-hover:animate-bounce"
+							className="h-4 w-4 text-amber-500 group-hover:animate-bounce"
 							strokeWidth={2.5}
 						/>
 						<span className="text-[13px] font-bold tabular-nums tracking-tight">

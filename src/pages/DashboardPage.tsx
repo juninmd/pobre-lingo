@@ -15,7 +15,6 @@ import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartne
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
-import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
@@ -113,14 +112,9 @@ export default function DashboardPage() {
 			<MascotGreeting />
 			<DashboardStats />
 
-			<div className="grid lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+			<div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
 				{/* Left Column: Learning Timeline */}
-				<div className="lg:col-span-2 space-y-3 sm:space-y-6 lg:space-y-8 flex flex-col">
-					{/* 2. Continue Learning CTA - Moved to top of main column */}
-					<div className="order-first">
-						<ContinueLearningCard />
-					</div>
-
+				<div className="lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
 					<section>
 						<Suspense
 							fallback={

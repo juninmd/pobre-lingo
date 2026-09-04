@@ -54,8 +54,8 @@ test.describe("Home Page - Learning Journey", () => {
 		const bookmark = page.locator('text="Onde parei"').first();
 		await expect(bookmark).toBeVisible();
 
-		// Verifica se o card da lição ativa tem o botão COMEÇAR
-		const startButton = page.locator('text="COMEÇAR"').first();
+		// Verifica se o card da lição ativa tem o botão DISPONÍVEL
+		const startButton = page.locator('text="DISPONÍVEL"').first();
 		await expect(startButton).toBeVisible();
 	});
 });

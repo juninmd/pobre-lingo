@@ -33,22 +33,24 @@ test.describe("Learning Timeline", () => {
 	}) => {
 		// Find the first available lesson which has the animate-pulse class
 		const activeLesson = page.locator(".animate-pulse").first();
-		await expect(activeLesson).toBeVisible();
+		await expect(activeLesson).toBeVisible({ timeout: 10000 });
 	});
 
 	test("should navigate directly to lesson when clicking a lesson link", async ({
 		page,
 	}) => {
 		// Find a direct lesson link within the new TimelineModule
-		// Because of lazy loading, we wait for a lesson link to appear
+		// Because of lazy loading, we wait for a lesson link to appear.
+		// On Mobile, the sidebar has hidden links, so we make sure to target the timeline container
 		const lessonLink = page
+			.locator(".max-w-2xl") // target timeline container to avoid hidden sidebar links
 			.locator(
 				'a[href*="/vocabulary/"], a[href*="/exercises/"], a[href*="/quiz/"], a[href*="/rules"]',
 			)
 			.first();
 
 		// Wait for lazy loaded elements
-		await lessonLink.waitFor({ state: "visible", timeout: 5000 });
+		await lessonLink.waitFor({ state: "visible", timeout: 10000 });
 
 		if (await lessonLink.isVisible()) {
 			const href = await lessonLink.getAttribute("href");

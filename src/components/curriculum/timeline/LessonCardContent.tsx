@@ -87,20 +87,20 @@ export function LessonCardContent({
 
 			<div className="flex-shrink-0 ml-2">
 				{status === "locked" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-muted/50 px-2 py-1 rounded-md">
+					<div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-full border border-muted-foreground/10">
 						<Lock className="w-3 h-3" /> BLOQUEADO
 					</div>
 				)}
 				{status === "active" && (
 					<Button
 						size="sm"
-						className="rounded-full shadow-md animate-pulse font-bold"
+						className="rounded-full shadow-lg shadow-primary/25 animate-pulse font-bold px-4 hover:scale-105 transition-transform"
 					>
-						COMEÇAR <Play className="w-3 h-3 ml-1 fill-current" />
+						DISPONÍVEL <Play className="w-3 h-3 ml-1 fill-current" />
 					</Button>
 				)}
 				{status === "completed" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-2 py-1 rounded-md">
+					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
 						<Check className="w-3 h-3 stroke-[3]" /> CONCLUÍDO
 					</div>
 				)}

@@ -1,19 +1,20 @@
 import { Sparkles } from "lucide-react";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
+import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
 import { CLILWidget } from "@/components/dashboard/CLILWidget";
+import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
+import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
 import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
 import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedLearningWidget";
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
-import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
-import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
@@ -58,6 +59,7 @@ export function ImmersivePracticeSection() {
 							<LiveTutorWidget />
 							<CommunityChallengeWidget />
 							<PeerReviewWidget />
+							<MindfulWidget />
 						</div>
 					</div>
 

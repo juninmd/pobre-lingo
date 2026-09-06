@@ -1,75 +1,24 @@
-import {
-	BookA,
-	BookMarked,
-	BookOpen,
-	Brain,
-	CheckSquare,
-	Coins,
-	FileText,
-	Gamepad2,
-	GraduationCap,
-	ListChecks,
-	Map as MapIcon,
-	Menu,
-	Moon,
-	Search as SearchIcon,
-	SearchX,
-	Settings,
-	Sparkles,
-	Sun,
-	Trophy,
-	X,
-} from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import {
-	GlobalSearch,
-	GlobalSearchTrigger,
-} from "@/components/common/GlobalSearch";
+import { Outlet, useLocation } from "react-router-dom";
+import { GlobalSearch } from "@/components/common/GlobalSearch";
 import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
-import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
-import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import {
 	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarHeader,
-	SidebarInput,
 	SidebarInset,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
 	SidebarProvider,
-	SidebarTrigger,
-	useSidebar,
 } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { cn } from "@/lib/utils";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
 import { MobileNav } from "./components/layout/MobileNav";
 import { allNavItems, NavMenu } from "./components/layout/NavMenu";
-import { useGamification } from "./contexts/GamificationContext";
-import { useTheme } from "./contexts/ThemeContext";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {
-	const { theme, setTheme } = useTheme();
-	const { gems } = useGamification();
-	const { userLevel } = useCurriculumProgress();
+	//	const { theme, setTheme } = useTheme();
+	//	const { gems } = useGamification();
+	//	const { userLevel } = useCurriculumProgress();
 	const location = useLocation();
 	const [searchOpen, setSearchOpen] = useState(false);
 
@@ -87,7 +36,7 @@ export default function Layout() {
 	}, []);
 
 	// Determinar título da página atual
-	const getCurrentPageTitle = () => {
+	const _getCurrentPageTitle = () => {
 		const currentItem = allNavItems.find(
 			(item) =>
 				location.pathname === item.href ||

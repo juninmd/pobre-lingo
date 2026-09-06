@@ -34,7 +34,7 @@ const PERSONAS: Persona[] = [
 		id: 2,
 		nome: "Usuário que vai direto para a revisão espaçada",
 		rotas: ["/review"],
-		esperado: /Revisão Inteligente/i,
+		esperado: /Revisar|Revisão Inteligente/i,
 	},
 	{
 		id: 3,

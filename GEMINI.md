@@ -15,7 +15,7 @@
 3. **Gamification Header**
    - Uses `lucide-react` icons (Coins, GraduationCap) and elegant UI (Glassmorphism, backdrop-blur) to highlight Pobrecoins and Levels natively within the `Layout` header.
 4. **Methodologies**
-   - Implements TPRS (Storytelling), CLIL (Content integrated texts), and Translanguaging elements, PBL (Project-Based Learning), and DDL (Data-Driven Learning).
+   - Implements TPRS (Storytelling), CLIL (Content integrated texts), and Translanguaging elements, PBL (Project-Based Learning), DDL (Data-Driven Learning), Adaptive Learning, and Flipped Classroom.
 
 ## Testing & Automation
 - 100% unit test coverage required.

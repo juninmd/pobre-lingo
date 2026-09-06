@@ -44,14 +44,14 @@ export const TIPS = [
 	'Use "listen TO" music. O "to" é necessário.',
 	'Para dias da semana, use "ON" (On Monday). Para horas, use "AT" (At 2pm).',
 
-	// TECNOLOGIA E IA (Tendências 2024)
+	// TECNOLOGIA E IA (Tendências 2025)
 	"Use IAs como ChatGPT para praticar conversação. Peça: 'Aja como um atendente de café e corrija meus erros'.",
 	"Peça para IAs explicarem regras gramaticais como se você tivesse 10 anos.",
 	"Grave áudios no celular e use ferramentas de transcrição para ver se a IA entende sua pronúncia.",
 	"Use o TikTok ou Reels a seu favor: crie uma conta só para seguir criadores de conteúdo em inglês.",
 	"Assista vídeos curtos (Shorts/TikTok) com legendas; eles são ótimos para aprender gírias modernas e reais.",
 
-	// NOVAS METODOLOGIAS (Tendências 2024)
+	// NOVAS METODOLOGIAS (Tendências 2025)
 	"Task-Based Language Teaching (TBLT): Aprenda inglês focando em tarefas reais, como configurar seu ambiente de trabalho ou fazer compras online em inglês.",
 	"Content and Language Integrated Learning (CLIL): Tente aprender sobre outros assuntos (como história ou ciências) em inglês.",
 	"Translanguaging: Use sua língua materna como ponte, mas faça conexões e comparações claras entre o português e o inglês.",

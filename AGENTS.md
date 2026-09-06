@@ -55,3 +55,10 @@
 - **Action:** Split `LessonCard.tsx` to isolate its content.
 - **Action:** Expanded `tests-e2e/learning_timeline.spec.ts` to explicitly assert the "Onde parei" bookmark, mobile viewport layout, and lesson link clickability.
 - **Next Steps:** Maintain component sizes under the limit for future changes.
+
+### [2026-09-06] Jules-Architect: Interface Enhancement & Trend Implementation (2025)
+- **Action:** Researched 2025 English teaching trends and identified Adaptive Learning and Flipped Classroom.
+- **Action:** Created `AdaptiveLearningWidget` and `FlippedClassroomWidget`.
+- **Action:** Updated existing references of 2024 trends to 2025 across the dashboard, exercise data, and tips.
+- **Action:** Integrated new widgets into the `DashboardPage` and verified frontend and UI.
+- **Next Steps:** Consider personalized learning paths powered by backend integrations.

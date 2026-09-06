@@ -1,3 +1,5 @@
+import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
+import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { Sparkles } from "lucide-react";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
@@ -30,7 +32,7 @@ export function ImmersivePracticeSection() {
 						<Sparkles className="w-5 h-5 text-primary" />
 					</div>
 					<h3 className="text-2xl font-bold text-foreground tracking-tight">
-						Tendências 2024 & Prática Imersiva
+						Tendências 2025 & Prática Imersiva
 					</h3>
 				</div>
 
@@ -47,6 +49,8 @@ export function ImmersivePracticeSection() {
 							<PronunciationWidget />
 							<DataDrivenLearningWidget />
 							<VirtualImmersionWidget />
+							<FlippedClassroomWidget />
+							<AdaptiveLearningWidget />
 						</div>
 					</div>
 

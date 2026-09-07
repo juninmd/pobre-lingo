@@ -44,7 +44,7 @@ test.describe("Home Page - Learning Journey", () => {
 		await expect(mobileNav).toBeVisible();
 	});
 
-	test("should display the bookmark (Onde parei) on active lesson", async ({
+	test("should display the bookmark (Onde parei) on active lesson and navigate to it", async ({
 		page,
 	}) => {
 		// Espera a página carregar
@@ -57,5 +57,12 @@ test.describe("Home Page - Learning Journey", () => {
 		// Verifica se o card da lição ativa tem o botão DISPONÍVEL
 		const startButton = page.locator('text="DISPONÍVEL"').first();
 		await expect(startButton).toBeVisible();
+
+		// Clica na lição ativa para verificar a navegação
+		await startButton.click({ force: true });
+
+		await expect(async () => {
+			expect(page.url().includes("/vocabulary/") || page.url().includes("/quiz/")).toBeTruthy();
+		}).toPass({ timeout: 5000 });
 	});
 });

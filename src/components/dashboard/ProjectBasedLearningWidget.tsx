@@ -42,7 +42,7 @@ export function ProjectBasedLearningWidget() {
 						variant="secondary"
 						className="mb-2 bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 border-none font-bold"
 					>
-						<Briefcase className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Briefcase className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-sm font-bold flex items-center gap-2 text-indigo-700 dark:text-indigo-400">
 						<FolderKanban className="w-4 h-4" />

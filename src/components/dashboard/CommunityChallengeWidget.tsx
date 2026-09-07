@@ -39,7 +39,7 @@ export function CommunityChallengeWidget() {
 					Social Learning
 				</CardTitle>
 				<span className="text-[10px] uppercase font-bold tracking-widest text-indigo-500/70 bg-indigo-500/10 px-2 py-0.5 rounded-full">
-					Trend 2024
+					Trend 2025
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">

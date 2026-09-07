@@ -45,7 +45,7 @@ export function SocialMediaReelsWidget() {
 						variant="secondary"
 						className="mb-2 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 border-none font-bold"
 					>
-						<Smartphone className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Smartphone className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-pink-700 dark:text-pink-400">
 						<span>Nano-Learning em Vídeo</span>

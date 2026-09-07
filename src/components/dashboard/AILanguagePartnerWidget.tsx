@@ -35,7 +35,7 @@ export function AILanguagePartnerWidget() {
 						variant="secondary"
 						className="mb-2 bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 border-none font-bold"
 					>
-						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-indigo-700 dark:text-indigo-400">
 						<Bot className="w-5 h-5" />

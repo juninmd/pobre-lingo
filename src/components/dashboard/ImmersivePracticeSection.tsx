@@ -21,6 +21,8 @@ import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
+import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
+import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -92,6 +94,8 @@ export function ImmersivePracticeSection() {
 							<CLILWidget />
 							<StorytellingWidget />
 							<MicroLessonWidget />
+							<GlobalEnglishesWidget />
+							<LexicalApproachWidget />
 						</div>
 					</div>
 				</div>

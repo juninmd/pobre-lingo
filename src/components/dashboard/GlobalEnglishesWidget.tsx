@@ -8,7 +8,7 @@ import { useGamification } from "@/contexts/GamificationContext";
 export function GlobalEnglishesWidget() {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [completed, setCompleted] = useState(false);
-	const { addXP } = useGamification();
+	const { addXp } = useGamification();
 
 	const handleListen = () => {
 		setIsPlaying(true);
@@ -16,7 +16,7 @@ export function GlobalEnglishesWidget() {
 			setIsPlaying(false);
 			if (!completed) {
 				setCompleted(true);
-				addXP(20);
+				addXp(20);
 			}
 		}, 2000);
 	};

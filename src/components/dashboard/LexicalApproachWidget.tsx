@@ -7,12 +7,12 @@ import { useGamification } from "@/contexts/GamificationContext";
 
 export function LexicalApproachWidget() {
 	const [completed, setCompleted] = useState(false);
-	const { addXP } = useGamification();
+	const { addXp } = useGamification();
 
 	const handlePractice = () => {
 		if (!completed) {
 			setCompleted(true);
-			addXP(15);
+			addXp(15);
 		}
 	};
 

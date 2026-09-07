@@ -5,7 +5,7 @@ import { NotificationProvider } from "@/contexts/NotificationContext";
 import { vi, describe, it, expect } from "vitest";
 
 vi.mock("@/contexts/GamificationContext", () => ({
-  useGamification: () => ({ addXP: vi.fn() }),
+  useGamification: () => ({ addXp: vi.fn() }),
   GamificationProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 

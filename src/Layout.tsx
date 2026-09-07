@@ -13,6 +13,7 @@ import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
 import { MobileNav } from "./components/layout/MobileNav";
 import { allNavItems, NavMenu } from "./components/layout/NavMenu";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {
@@ -21,6 +22,7 @@ export default function Layout() {
 	//	const { userLevel } = useCurriculumProgress();
 	const location = useLocation();
 	const [searchOpen, setSearchOpen] = useState(false);
+	const isMobile = useIsMobile();
 
 	// Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
 	useEffect(() => {
@@ -73,9 +75,11 @@ export default function Layout() {
 				</SidebarInset>
 			</SidebarProvider>
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-			<div className="md:hidden">
-				<MobileNav />
-			</div>
+			{isMobile && (
+				<div className="md:hidden">
+					<MobileNav />
+				</div>
+			)}
 			<PWAInstallPrompt />
 			<PobrelingoAssistant />
 			<Toaster />

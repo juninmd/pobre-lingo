@@ -42,7 +42,7 @@ export function DataDrivenLearningWidget() {
 						variant="secondary"
 						className="mb-2 bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300 border-none font-bold"
 					>
-						<BarChart3 className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<BarChart3 className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-sm font-bold flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
 						<Search className="w-4 h-4" />

@@ -35,7 +35,7 @@ export function VirtualImmersionWidget() {
 						variant="secondary"
 						className="mb-2 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 border-none font-bold"
 					>
-						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-purple-700 dark:text-purple-400">
 						<Box className="w-5 h-5" />

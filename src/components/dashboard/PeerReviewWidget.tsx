@@ -62,7 +62,7 @@ export function PeerReviewWidget() {
 						variant="secondary"
 						className="mb-2 bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900 dark:text-fuchsia-300 border-none font-bold"
 					>
-						<Users className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Users className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-fuchsia-700 dark:text-fuchsia-400">
 						<Star className="w-5 h-5" />

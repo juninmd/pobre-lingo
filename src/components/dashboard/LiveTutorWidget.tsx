@@ -41,7 +41,7 @@ export function LiveTutorWidget() {
 						variant="secondary"
 						className="mb-2 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 border-none font-bold"
 					>
-						<Users className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Users className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-sm font-bold flex items-center gap-2 text-red-700 dark:text-red-400">
 						<Video className="w-4 h-4" />

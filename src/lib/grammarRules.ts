@@ -1218,8 +1218,8 @@ export const grammarCategories: GrammarCategory[] = [
 					},
 					{
 						sentence_en:
-							"We are in the year 2024 (twenty twenty-four or two thousand twenty-four).",
-						translation_pt: "Estamos no ano de 2024.",
+							"We are in the year 2025 (twenty twenty-five or two thousand twenty-five).",
+						translation_pt: "Estamos no ano de 2025.",
 					},
 					{
 						sentence_en: "He ate 1/2 (one half) of the pizza.",

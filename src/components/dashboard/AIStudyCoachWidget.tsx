@@ -66,7 +66,7 @@ export function AIStudyCoachWidget() {
 						variant="secondary"
 						className="mb-2 bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 border-none font-bold"
 					>
-						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2024
+						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
 					<CardTitle className="text-lg flex items-center gap-2 text-violet-700 dark:text-violet-400">
 						<Brain className="w-5 h-5" />

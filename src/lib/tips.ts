@@ -58,6 +58,9 @@ export const TIPS = [
 	"Mindful Learning: Crie um ambiente de estudo focado e sem distrações para melhorar a retenção.",
 	"Realidade Virtual e Aumentada: Se puder, use apps ou experiências de VR/AR para se imergir em ambientes que simulam a vida real.",
 	"Data-Driven Learning (DDL): Procure em bancos de dados como nativos usam certas palavras para entender o contexto real de uso.",
+	"Spaced Repetition System (SRS): Revise as palavras um pouco antes de esquecê-las para fixá-las de vez na memória de longo prazo.",
+	"Global Englishes (ELF): Pratique entender diversos sotaques (indiano, australiano, nigeriano), o inglês é uma língua global!",
+	"Lexical Approach: Não estude regras isoladas, estude blocos de palavras (chunks) que os nativos usam juntos.",
 
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",

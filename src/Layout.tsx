@@ -9,11 +9,11 @@ import {
 	SidebarProvider,
 } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
 import { MobileNav } from "./components/layout/MobileNav";
 import { allNavItems, NavMenu } from "./components/layout/NavMenu";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {

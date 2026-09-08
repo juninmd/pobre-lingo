@@ -1,23 +1,24 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { LexicalApproachWidget } from "./LexicalApproachWidget";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
-import { vi, describe, it, expect } from "vitest";
+import { LexicalApproachWidget } from "./LexicalApproachWidget";
 
 vi.mock("@/contexts/GamificationContext", () => ({
-  useGamification: () => ({ addXp: vi.fn() }),
-  GamificationProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+	useGamification: () => ({ addXp: vi.fn() }),
+	GamificationProvider: ({ children }: { children: React.ReactNode }) => (
+		<>{children}</>
+	),
 }));
-
 
 describe("LexicalApproachWidget", () => {
 	it("renders correctly", () => {
 		render(
 			<NotificationProvider>
-      <GamificationProvider>
-				<LexicalApproachWidget />
-			</GamificationProvider>
-      </NotificationProvider>,
+				<GamificationProvider>
+					<LexicalApproachWidget />
+				</GamificationProvider>
+			</NotificationProvider>,
 		);
 		expect(screen.getByText("Abordagem Lexical")).toBeInTheDocument();
 	});
@@ -25,10 +26,10 @@ describe("LexicalApproachWidget", () => {
 	it("handles interaction and awards XP", () => {
 		render(
 			<NotificationProvider>
-      <GamificationProvider>
-				<LexicalApproachWidget />
-			</GamificationProvider>
-      </NotificationProvider>,
+				<GamificationProvider>
+					<LexicalApproachWidget />
+				</GamificationProvider>
+			</NotificationProvider>,
 		);
 
 		const button = screen.getByRole("button");

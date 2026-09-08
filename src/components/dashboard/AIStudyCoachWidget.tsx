@@ -109,11 +109,13 @@ export function AIStudyCoachWidget() {
 						>
 							{isAnalyzing ? (
 								<span className="flex items-center gap-1.5 animate-pulse">
-									<Brain className="w-4 h-4 animate-spin" /> Analisando Perfil...
+									<Brain className="w-4 h-4 animate-spin" /> Analisando
+									Perfil...
 								</span>
 							) : (
 								<>
-									<Sparkles className="w-4 h-4" /> Gerar Dica Diária (+{tip.xp} XP)
+									<Sparkles className="w-4 h-4" /> Gerar Dica Diária (+{tip.xp}{" "}
+									XP)
 								</>
 							)}
 						</Button>

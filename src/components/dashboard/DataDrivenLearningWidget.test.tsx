@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, act } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
@@ -31,7 +31,9 @@ describe("DataDrivenLearningWidget", () => {
 
 		expect(screen.getByText("Analisando...")).toBeInTheDocument();
 
-		vi.advanceTimersByTime(1500);
+		await act(async () => {
+			vi.advanceTimersByTime(1500);
+		});
 
 		await waitFor(() => {
 			expect(screen.getByText("Analisado!")).toBeInTheDocument();

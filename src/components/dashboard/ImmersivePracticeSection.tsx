@@ -1,5 +1,3 @@
-import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
-import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { Sparkles } from "lucide-react";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
@@ -7,7 +5,9 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
+import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
+import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
@@ -17,12 +17,13 @@ import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedL
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
+import { SpacedRepetitionWidget } from "@/components/dashboard/SpacedRepetitionWidget";
 import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
-import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
-import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
+import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
+import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -96,6 +97,7 @@ export function ImmersivePracticeSection() {
 							<MicroLessonWidget />
 							<GlobalEnglishesWidget />
 							<LexicalApproachWidget />
+							<SpacedRepetitionWidget />
 						</div>
 					</div>
 				</div>

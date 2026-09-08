@@ -1,8 +1,8 @@
-import { Puzzle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Puzzle } from "lucide-react";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState } from "react";
 import { useGamification } from "@/contexts/GamificationContext";
 
 export function LexicalApproachWidget() {

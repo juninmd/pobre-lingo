@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, act } from "@testing-library/react";
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { AIStudyCoachWidget } from "./AIStudyCoachWidget";
 
 const mockAddXp = vi.fn();
@@ -24,9 +24,7 @@ describe("AIStudyCoachWidget", () => {
 	it("renders correctly initially", () => {
 		render(<AIStudyCoachWidget />);
 		expect(screen.getByText("AI Study Coach")).toBeInTheDocument();
-		expect(
-			screen.getByText(/Gerar Dica Diária/i),
-		).toBeInTheDocument();
+		expect(screen.getByText(/Gerar Dica Diária/i)).toBeInTheDocument();
 	});
 
 	it("simulates analysis and awards XP on click", async () => {

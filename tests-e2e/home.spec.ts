@@ -62,7 +62,9 @@ test.describe("Home Page - Learning Journey", () => {
 		await startButton.click({ force: true });
 
 		await expect(async () => {
-			expect(page.url().includes("/vocabulary/") || page.url().includes("/quiz/")).toBeTruthy();
+			expect(
+				page.url().includes("/vocabulary/") || page.url().includes("/quiz/"),
+			).toBeTruthy();
 		}).toPass({ timeout: 5000 });
 	});
 });

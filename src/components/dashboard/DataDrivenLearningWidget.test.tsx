@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor, act } from "@testing-library/react";
+import {
+	act,
+	fireEvent,
+	render,
+	screen,
+	waitFor,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";

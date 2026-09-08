@@ -1,8 +1,8 @@
-import { Globe2, Ear, PlayCircle } from "lucide-react";
+import { Ear, Globe2, PlayCircle } from "lucide-react";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState } from "react";
 import { useGamification } from "@/contexts/GamificationContext";
 
 export function GlobalEnglishesWidget() {

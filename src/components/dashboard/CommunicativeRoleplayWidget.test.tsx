@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, act } from "@testing-library/react";
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CommunicativeRoleplayWidget } from "./CommunicativeRoleplayWidget";
 
 const mockAddXp = vi.fn();
@@ -24,9 +24,7 @@ describe("CommunicativeRoleplayWidget", () => {
 	it("renders correctly initially", () => {
 		render(<CommunicativeRoleplayWidget />);
 		expect(screen.getByText("Roleplay Prático")).toBeInTheDocument();
-		expect(
-			screen.getByText(/Gravar Resposta/i),
-		).toBeInTheDocument();
+		expect(screen.getByText(/Gravar Resposta/i)).toBeInTheDocument();
 	});
 
 	it("simulates recording and awards XP on click", async () => {

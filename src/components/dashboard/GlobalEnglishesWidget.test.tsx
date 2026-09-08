@@ -1,14 +1,15 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
-import { GlobalEnglishesWidget } from "./GlobalEnglishesWidget";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { GlobalEnglishesWidget } from "./GlobalEnglishesWidget";
 
 vi.mock("@/contexts/GamificationContext", () => ({
-  useGamification: () => ({ addXp: vi.fn() }),
-  GamificationProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+	useGamification: () => ({ addXp: vi.fn() }),
+	GamificationProvider: ({ children }: { children: React.ReactNode }) => (
+		<>{children}</>
+	),
 }));
-
 
 vi.useFakeTimers();
 
@@ -20,10 +21,10 @@ describe("GlobalEnglishesWidget", () => {
 	it("renders correctly", () => {
 		render(
 			<NotificationProvider>
-      <GamificationProvider>
-				<GlobalEnglishesWidget />
-			</GamificationProvider>
-      </NotificationProvider>,
+				<GamificationProvider>
+					<GlobalEnglishesWidget />
+				</GamificationProvider>
+			</NotificationProvider>,
 		);
 		expect(screen.getByText("Inglês Global (ELF)")).toBeInTheDocument();
 	});
@@ -31,10 +32,10 @@ describe("GlobalEnglishesWidget", () => {
 	it("handles interaction and awards XP", () => {
 		render(
 			<NotificationProvider>
-      <GamificationProvider>
-				<GlobalEnglishesWidget />
-			</GamificationProvider>
-      </NotificationProvider>,
+				<GamificationProvider>
+					<GlobalEnglishesWidget />
+				</GamificationProvider>
+			</NotificationProvider>,
 		);
 
 		const button = screen.getByRole("button");

@@ -61,6 +61,8 @@ export const TIPS = [
 	"Spaced Repetition System (SRS): Revise as palavras um pouco antes de esquecê-las para fixá-las de vez na memória de longo prazo.",
 	"Global Englishes (ELF): Pratique entender diversos sotaques (indiano, australiano, nigeriano), o inglês é uma língua global!",
 	"Lexical Approach: Não estude regras isoladas, estude blocos de palavras (chunks) que os nativos usam juntos.",
+	"Green ELT: Pratique vocabulário sobre sustentabilidade e meio ambiente, um tópico cada vez mais comum em exames de proficiência.",
+	"DEIB (Diversity, Equity, Inclusion & Belonging): Aprenda a usar linguagem inclusiva em inglês, como o uso do 'they' singular.",
 
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",

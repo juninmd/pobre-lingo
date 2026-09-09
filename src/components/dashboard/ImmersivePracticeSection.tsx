@@ -9,6 +9,8 @@ import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWid
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
+import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
+import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
@@ -67,6 +69,8 @@ export function ImmersivePracticeSection() {
 							<CommunityChallengeWidget />
 							<PeerReviewWidget />
 							<MindfulWidget />
+							<DEIBWidget />
+							<GreenELTWidget />
 						</div>
 					</div>
 

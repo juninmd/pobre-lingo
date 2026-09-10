@@ -17,7 +17,7 @@ export function AdaptiveLearningWidget() {
 						<h3 className="font-semibold text-foreground">Adaptive Learning</h3>
 					</div>
 					<span className="text-xs font-medium px-2.5 py-1 bg-cyan-500/20 text-cyan-400 rounded-full border border-cyan-500/20">
-						IA Analítica
+						TREND 2025
 					</span>
 				</div>
 

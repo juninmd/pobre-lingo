@@ -17,7 +17,7 @@ export function FlippedClassroomWidget() {
 						<h3 className="font-semibold text-foreground">Flipped Classroom</h3>
 					</div>
 					<span className="text-xs font-medium px-2.5 py-1 bg-indigo-500/20 text-indigo-400 rounded-full border border-indigo-500/20">
-						Pré-aula
+						TREND 2025
 					</span>
 				</div>
 

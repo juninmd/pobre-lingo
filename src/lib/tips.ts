@@ -61,6 +61,8 @@ export const TIPS = [
 	"Spaced Repetition System (SRS): Revise as palavras um pouco antes de esquecê-las para fixá-las de vez na memória de longo prazo.",
 	"Global Englishes (ELF): Pratique entender diversos sotaques (indiano, australiano, nigeriano), o inglês é uma língua global!",
 	"Lexical Approach: Não estude regras isoladas, estude blocos de palavras (chunks) que os nativos usam juntos.",
+	"Dogme ELT: Tente praticar conversação sem materiais didáticos, usando apenas tópicos reais e spontâneos do seu dia a dia.",
+	"Materiais Autênticos: Aprenda com coisas reais, como menus de restaurantes, cupons, bilhetes de trem e propagandas.",
 	"Green ELT: Pratique vocabulário sobre sustentabilidade e meio ambiente, um tópico cada vez mais comum em exames de proficiência.",
 	"DEIB (Diversity, Equity, Inclusion & Belonging): Aprenda a usar linguagem inclusiva em inglês, como o uso do 'they' singular.",
 

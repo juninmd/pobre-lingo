@@ -26,6 +26,8 @@ import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWid
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
 import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
+import { DogmeELTWidget } from "./DogmeELTWidget";
+import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -102,6 +104,8 @@ export function ImmersivePracticeSection() {
 							<GlobalEnglishesWidget />
 							<LexicalApproachWidget />
 							<SpacedRepetitionWidget />
+							<DogmeELTWidget />
+							<AuthenticMaterialsWidget />
 						</div>
 					</div>
 				</div>

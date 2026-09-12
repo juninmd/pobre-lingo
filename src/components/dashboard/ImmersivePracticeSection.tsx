@@ -28,6 +28,8 @@ import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
 import { DogmeELTWidget } from "./DogmeELTWidget";
 import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
+import { NeuroELTWidget } from "./NeuroELTWidget";
+import { PlurilingualismWidget } from "./PlurilingualismWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -73,6 +75,7 @@ export function ImmersivePracticeSection() {
 							<MindfulWidget />
 							<DEIBWidget />
 							<GreenELTWidget />
+							<PlurilingualismWidget />
 						</div>
 					</div>
 
@@ -106,6 +109,7 @@ export function ImmersivePracticeSection() {
 							<SpacedRepetitionWidget />
 							<DogmeELTWidget />
 							<AuthenticMaterialsWidget />
+							<NeuroELTWidget />
 						</div>
 					</div>
 				</div>

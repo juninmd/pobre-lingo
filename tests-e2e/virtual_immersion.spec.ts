@@ -11,7 +11,7 @@ test.describe("VirtualImmersionWidget", () => {
 		await page.goto("/");
 
 		// Wait for main content to load
-		await page.waitForSelector("text=Tendências 2024 & Prática Imersiva");
+		await page.waitForSelector("text=Tendências 2025 & Prática Imersiva");
 
 		// Locate the widget
 		const widget = page.locator(".glass-card", {

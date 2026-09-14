@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { GlobalSearch } from "@/components/common/GlobalSearch";
 import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
@@ -13,14 +13,14 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
 import { MobileNav } from "./components/layout/MobileNav";
-import { allNavItems, NavMenu } from "./components/layout/NavMenu";
+import { NavMenu } from "./components/layout/NavMenu";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {
 	//	const { theme, setTheme } = useTheme();
 	//	const { gems } = useGamification();
 	//	const { userLevel } = useCurriculumProgress();
-	const location = useLocation();
+
 	const [searchOpen, setSearchOpen] = useState(false);
 	const isMobile = useIsMobile();
 
@@ -38,14 +38,6 @@ export default function Layout() {
 	}, []);
 
 	// Determinar título da página atual
-	const _getCurrentPageTitle = () => {
-		const currentItem = allNavItems.find(
-			(item) =>
-				location.pathname === item.href ||
-				(item.href !== "/" && location.pathname.startsWith(item.href)),
-		);
-		return currentItem?.label || "PobreLingo";
-	};
 
 	return (
 		<div className="font-body antialiased h-svh overflow-hidden bg-background text-foreground flex flex-col">

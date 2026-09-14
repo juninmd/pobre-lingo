@@ -30,6 +30,7 @@ import { DogmeELTWidget } from "./DogmeELTWidget";
 import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
 import { NeuroELTWidget } from "./NeuroELTWidget";
 import { PlurilingualismWidget } from "./PlurilingualismWidget";
+import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -76,6 +77,7 @@ export function ImmersivePracticeSection() {
 							<DEIBWidget />
 							<GreenELTWidget />
 							<PlurilingualismWidget />
+							<CriticalPedagogyWidget />
 						</div>
 					</div>
 

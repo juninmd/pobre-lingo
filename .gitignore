@@ -47,3 +47,10 @@ dev_server.log
 
 # Local Netlify folder
 .netlify
+
+playwright-report/
+test-results/
+pnpm_output.log
+playwright-report/
+pnpm_dev.log
+debug_screenshot.png

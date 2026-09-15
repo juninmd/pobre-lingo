@@ -28,3 +28,37 @@
 - Follow the **Plan -> Act -> Validate** cycle for every task.
 - Consult `gemini.md` for project-specific instructions.
 - Ensure to check if features are already implemented to avoid duplicate work and safely transition to completion when verifying existing states (e.g. Learning Timeline).
+
+## 📅 Session Logs
+
+### [Current Date] Jules-Architect: Validation of Interactive Journey Book
+- **Action:** Audited codebase for requested UI/UX refactoring (Interactive Journey Book).
+- **Findings:** The requested features (`LearningTimeline`, MobileNav visibility logic, removed START popups, gamified header, "Onde parei" bookmark, and associated Playwright tests) are already fully implemented and verified as passing.
+- **Next Steps:** Proceeding with standard validation checks and closing the session as the state is already compliant with the user's request.
+
+### [2024-05-27] Jules-Architect: Interface Modernization & Trend Integration
+- **Action:** Researched 2024 English learning trends (British Council) and redesigned the `DashboardPage` layout to categorize widgets ("Imersão Digital & IA", "Conexão Humana & Social", "Nano-Learning & Cultura", "Metodologias Ativas").
+- **Action:** Created `LiveTutorWidget.tsx` to satisfy the "Live Human Connection" trend requirement.
+- **Findings:** Successfully modernized the dashboard layout. Ensured all new structural elements are thoroughly tested via Playwright E2E.
+- **Next Steps:** Maintain the structured grid layout for future widget additions.
+
+### [Current Date] Jules-Architect: Interface Enhancement & Trend Implementation
+- **Action:** Researched modern English teaching trends and identified Project-Based Learning (PBL) and Data-Driven Learning (DDL).
+- **Action:** Created `ProjectBasedLearningWidget` and `DataDrivenLearningWidget`.
+- **Action:** Integrated new widgets into the `DashboardPage` and verified all tests pass.
+- **Next Steps:** Consider adding backend support or local persistence for the newly introduced methodology tools.
+
+### [2026-09-01] Jules-Architect / Stitch-Frontend: Dashboard & Layout Refactoring
+- **Action:** Audited codebase to ensure compliance with the 150-line limit rule for large components.
+- **Action:** Extracted `NavMenu` and `Header` from `Layout.tsx`.
+- **Action:** Modularized `DashboardPage.tsx` into logical components (`DashboardStats`, `ImmersivePracticeSection`, `RightColumnWidgets`).
+- **Action:** Split `LessonCard.tsx` to isolate its content.
+- **Action:** Expanded `tests-e2e/learning_timeline.spec.ts` to explicitly assert the "Onde parei" bookmark, mobile viewport layout, and lesson link clickability.
+- **Next Steps:** Maintain component sizes under the limit for future changes.
+
+### [2026-09-06] Jules-Architect: Interface Enhancement & Trend Implementation (2025)
+- **Action:** Researched 2025 English teaching trends and identified Adaptive Learning and Flipped Classroom.
+- **Action:** Created `AdaptiveLearningWidget` and `FlippedClassroomWidget`.
+- **Action:** Updated existing references of 2024 trends to 2025 across the dashboard, exercise data, and tips.
+- **Action:** Integrated new widgets into the `DashboardPage` and verified frontend and UI.
+- **Next Steps:** Consider personalized learning paths powered by backend integrations.

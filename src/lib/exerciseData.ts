@@ -890,7 +890,7 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
 			id: "news1",
 			title: "City Announces New Green Initiative",
 			source: "PobreLingo Local News",
-			date: "October 26, 2024",
+			date: "October 26, 2025",
 			content:
 				"<p>The city council today announced a major new green initiative aimed at reducing urban pollution and increasing green spaces. The plan, called 'Green City, Clean Air,' will involve planting 10,000 new trees across various neighborhoods over the next two years. Additionally, the initiative will fund the development of three new public parks and promote the use of bicycles through the creation of new dedicated bike lanes.</p><p>Mayor Johnson stated, 'This is a significant step towards a healthier and more sustainable future for our residents. We believe these changes will not only improve air quality but also enhance the overall well-being of our community.' The project is set to begin in early spring next year and is expected to create several temporary jobs in landscaping and park maintenance. Funding for the 'Green City, Clean Air' initiative will come from a combination of city budget allocations and private sponsorships.</p>",
 		},
@@ -954,7 +954,7 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
 			id: "news2",
 			title: "The Future of AI in Education",
 			source: "Tech Daily",
-			date: "November 01, 2024",
+			date: "November 01, 2025",
 			content:
 				"<p>Artificial Intelligence (AI) is rapidly transforming the educational landscape. From personalized learning paths to automated grading, AI tools are becoming indispensable in modern classrooms.</p><p>Dr. Smith, an ed-tech researcher, argues that 'AI allows teachers to focus more on mentorship and less on administrative tasks.' However, critics warn about data privacy and the loss of human connection.</p>",
 		},
@@ -995,7 +995,7 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
 			id: "news3",
 			title: "Literary Classics: A Review",
 			source: "Bookworm Weekly",
-			date: "November 05, 2024",
+			date: "November 05, 2025",
 			content:
 				"<p>Why do we still read Jane Austen? Her keen observation of social mores and her biting irony remain relevant today. In 'Pride and Prejudice', Austen explores the tension between individual desire and social responsibility.</p>",
 		},
@@ -1028,9 +1028,9 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
 		id: "nce4",
 		article: {
 			id: "news4",
-			title: "Social Media Trends 2024",
+			title: "Social Media Trends 2025",
 			source: "Digital Buzz",
-			date: "November 10, 2024",
+			date: "November 10, 2025",
 			content:
 				"<p>Short-form video content continues to dominate platforms. Influencers are shifting towards 'authentic' behind-the-scenes content rather than polished productions. Engagement rates are higher for unedited clips.</p>",
 		},
@@ -1070,7 +1070,7 @@ export const newsComprehensionExercises: NewsComprehensionExercise[] = [
 			id: "news5",
 			title: "The Study of Quantum Mechanics",
 			source: "Science Today",
-			date: "November 12, 2024",
+			date: "November 12, 2025",
 			content:
 				"<p>Quantum entanglement remains one of the most puzzling phenomena in physics. Einstein famously called it 'spooky action at a distance'. Recent experiments have closed significant loopholes in Bell's inequalities.</p>",
 		},

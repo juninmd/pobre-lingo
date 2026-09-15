@@ -44,6 +44,28 @@ export const TIPS = [
 	'Use "listen TO" music. O "to" é necessário.',
 	'Para dias da semana, use "ON" (On Monday). Para horas, use "AT" (At 2pm).',
 
+	// TECNOLOGIA E IA (Tendências 2025)
+	"Use IAs como ChatGPT para praticar conversação. Peça: 'Aja como um atendente de café e corrija meus erros'.",
+	"Peça para IAs explicarem regras gramaticais como se você tivesse 10 anos.",
+	"Grave áudios no celular e use ferramentas de transcrição para ver se a IA entende sua pronúncia.",
+	"Use o TikTok ou Reels a seu favor: crie uma conta só para seguir criadores de conteúdo em inglês.",
+	"Assista vídeos curtos (Shorts/TikTok) com legendas; eles são ótimos para aprender gírias modernas e reais.",
+
+	// NOVAS METODOLOGIAS (Tendências 2025)
+	"Task-Based Language Teaching (TBLT): Aprenda inglês focando em tarefas reais, como configurar seu ambiente de trabalho ou fazer compras online em inglês.",
+	"Content and Language Integrated Learning (CLIL): Tente aprender sobre outros assuntos (como história ou ciências) em inglês.",
+	"Translanguaging: Use sua língua materna como ponte, mas faça conexões e comparações claras entre o português e o inglês.",
+	"Mindful Learning: Crie um ambiente de estudo focado e sem distrações para melhorar a retenção.",
+	"Realidade Virtual e Aumentada: Se puder, use apps ou experiências de VR/AR para se imergir em ambientes que simulam a vida real.",
+	"Data-Driven Learning (DDL): Procure em bancos de dados como nativos usam certas palavras para entender o contexto real de uso.",
+	"Spaced Repetition System (SRS): Revise as palavras um pouco antes de esquecê-las para fixá-las de vez na memória de longo prazo.",
+	"Global Englishes (ELF): Pratique entender diversos sotaques (indiano, australiano, nigeriano), o inglês é uma língua global!",
+	"Lexical Approach: Não estude regras isoladas, estude blocos de palavras (chunks) que os nativos usam juntos.",
+	"Dogme ELT: Tente praticar conversação sem materiais didáticos, usando apenas tópicos reais e spontâneos do seu dia a dia.",
+	"Materiais Autênticos: Aprenda com coisas reais, como menus de restaurantes, cupons, bilhetes de trem e propagandas.",
+	"Green ELT: Pratique vocabulário sobre sustentabilidade e meio ambiente, um tópico cada vez mais comum em exames de proficiência.",
+	"DEIB (Diversity, Equity, Inclusion & Belonging): Aprenda a usar linguagem inclusiva em inglês, como o uso do 'they' singular.",
+
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",
 	'Nos EUA e UK, "Please" e "Thank you" são usados o tempo todo.',

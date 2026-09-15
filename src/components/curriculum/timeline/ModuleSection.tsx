@@ -25,7 +25,7 @@ export function ModuleSection({
 	const Icon = getIcon(module.icon);
 
 	return (
-		<div className="relative ml-4 md:ml-8 pb-12 last:pb-0">
+		<div className="relative ml-4 md:ml-8 pb-12 last:pb-0 flex flex-col gap-8">
 			{/* Chapter Header (Module) */}
 			<div className="flex items-center gap-4 mb-6 -ml-10 md:-ml-14 group">
 				<div

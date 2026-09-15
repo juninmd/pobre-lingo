@@ -38,10 +38,9 @@ export function MascotGreeting({
 			24,
 	);
 
-	const dynamicGreeting =
-		userName
-			? `Oi, ${userName}! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`
-			: `Oi! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`;
+	const dynamicGreeting = userName
+		? `Oi, ${userName}! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`
+		: `Oi! ${TRENDY_GREETINGS[dayOfYear % TRENDY_GREETINGS.length]}`;
 
 	const greeting = message || dynamicGreeting;
 
@@ -58,7 +57,7 @@ export function MascotGreeting({
 	// Custom styles mapped to each theme
 	const themeStyles = {
 		"pobre-lingo": {
-			card: "bg-gradient-to-br from-[#050a07] via-[#09120e] to-[#050a07] border-primary/20 text-foreground",
+			card: "backdrop-blur-xl bg-opacity-80 bg-gradient-to-br from-[#050a07] via-[#09120e] to-[#050a07] border-primary/20 text-foreground",
 			bubble: "bg-[#09120e]/95 border-primary/20 shadow-md",
 			bubbleTail: "bg-[#09120e] border-l border-t border-primary/20",
 			title: "text-gold font-bold",
@@ -68,7 +67,7 @@ export function MascotGreeting({
 			circleSmall: "bg-accent/5",
 		},
 		dark: {
-			card: "bg-gradient-to-br from-slate-900 via-blue-950/20 to-slate-950 border-blue-500/20 text-foreground",
+			card: "backdrop-blur-xl bg-opacity-80 bg-gradient-to-br from-slate-900 via-blue-950/20 to-slate-950 border-blue-500/20 text-foreground",
 			bubble: "bg-slate-900/95 border-blue-500/20 shadow-md",
 			bubbleTail: "bg-slate-900 border-l border-t border-blue-500/20",
 			title: "text-blue-400 font-bold",
@@ -78,7 +77,7 @@ export function MascotGreeting({
 			circleSmall: "bg-indigo-500/5",
 		},
 		light: {
-			card: "bg-gradient-to-br from-blue-50/70 via-indigo-50/50 to-blue-100/50 border-blue-200 text-foreground",
+			card: "backdrop-blur-xl bg-opacity-80 bg-gradient-to-br from-blue-50/70 via-indigo-50/50 to-blue-100/50 border-blue-200 text-foreground",
 			bubble: "bg-white border-blue-100 shadow-sm",
 			bubbleTail: "bg-white border-l border-t border-blue-100",
 			title: "text-blue-600 font-bold",
@@ -101,7 +100,7 @@ export function MascotGreeting({
 		>
 			<CardContent className="p-6 flex items-center gap-6 relative z-10">
 				<div
-					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 hover:rotate-3 active:scale-95 transition-all duration-300 hover:drop-shadow-xl"
 					onClick={() => {
 						addXp(5);
 						toast({

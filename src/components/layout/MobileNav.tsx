@@ -17,7 +17,7 @@ export function MobileNav() {
 
 	return (
 		<div
-			className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] pointer-events-none"
+			className="md:hidden fixed bottom-0 left-0 right-0 z-[100] pointer-events-none"
 			style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0.75rem)" }}
 		>
 			<div className="mx-3 mb-2 pointer-events-auto">

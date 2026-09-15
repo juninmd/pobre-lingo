@@ -8,8 +8,9 @@ def verify_timeline():
 
         try:
             print("Navigating to home...")
-            # Wait for server to be ready (naive wait, better to use wait_until="networkidle" or similar logic)
             page.goto("http://localhost:5173", timeout=30000)
+            page.evaluate("localStorage.setItem('pobrelingo_onboarded', 'true')")
+            page.reload()
 
             # Wait for key elements
             page.wait_for_selector("text=Sua Jornada", timeout=30000)
@@ -21,8 +22,6 @@ def verify_timeline():
             # Mobile View
             print("Taking mobile screenshot...")
             page.set_viewport_size({"width": 375, "height": 667})
-            # Reload to trigger responsive layout changes if necessary (though React should handle resize, reload ensures clean state)
-            page.reload()
             page.wait_for_selector("text=Sua Jornada")
             # Wait a bit for layout
             page.wait_for_timeout(2000)

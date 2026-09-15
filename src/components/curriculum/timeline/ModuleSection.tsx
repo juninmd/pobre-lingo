@@ -25,9 +25,9 @@ export function ModuleSection({
 	const Icon = getIcon(module.icon);
 
 	return (
-		<div className="relative ml-4 md:ml-8 pb-12 last:pb-0 flex flex-col gap-8">
+		<div className="relative ml-4 md:ml-8 pb-12 last:pb-0 flex flex-col gap-12">
 			{/* Chapter Header (Module) */}
-			<div className="flex items-center gap-4 mb-6 -ml-10 md:-ml-14 group">
+			<div className="flex items-center gap-4 mb-8 -ml-10 md:-ml-14 group">
 				<div
 					className={cn(
 						"flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-lg border-4 border-background z-10 transition-transform hover:scale-110 duration-300",
@@ -58,7 +58,7 @@ export function ModuleSection({
 			</div>
 
 			{/* Lessons List */}
-			<div className="flex flex-col gap-8">
+			<div className="flex flex-col gap-12">
 				{module.lessons.map((lesson, _idx) => {
 					const isCompleted = completedLessonsSet.has(
 						`${module.id}:${lesson.id}`,

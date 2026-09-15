@@ -88,7 +88,7 @@ export default function DashboardPage() {
 	};
 
 	return (
-		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto relative">
+		<PageContainer className="space-y-6 sm:space-y-8 lg:space-y-12 max-w-7xl mx-auto relative">
 			{/* Spatial UI / Glassmorphism Ambient Background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
 				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/15 blur-[140px] animate-pulse-glow" />
@@ -112,9 +112,9 @@ export default function DashboardPage() {
 			<MascotGreeting />
 			<DashboardStats />
 
-			<div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+			<div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
 				{/* Left Column: Learning Timeline */}
-				<div className="lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
+				<div className="lg:col-span-2 space-y-8 lg:space-y-12 flex flex-col">
 					<section>
 						<Suspense
 							fallback={

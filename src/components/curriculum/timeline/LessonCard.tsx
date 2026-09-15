@@ -64,14 +64,14 @@ export function LessonCard({
 		<div
 			ref={cardRef}
 			className={cn(
-				"relative pl-8 md:pl-0 py-2 group",
+				"relative pl-8 md:pl-16 py-2 group",
 				isFirstActive &&
 					"animate-in slide-in-from-right-4 fade-in zoom-in-95 duration-700 ease-out fill-mode-both",
 			)}
 		>
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
-				<div className="absolute -top-3 left-10 md:left-4 z-20 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-background animate-bounce whitespace-nowrap flex items-center gap-1.5">
+				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-pulse whitespace-nowrap flex items-center gap-1.5">
 					<LucideIcons.BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>
@@ -79,7 +79,7 @@ export function LessonCard({
 			{/* Timeline Connector Dot */}
 			<div
 				className={cn(
-					"absolute left-[-5px] md:left-[-5px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 transition-all duration-300 z-10",
+					"absolute left-[14px] md:left-[30px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 transition-all duration-300 z-10",
 					status === "completed"
 						? "bg-green-500 border-green-500"
 						: status === "active"

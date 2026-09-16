@@ -41,16 +41,16 @@ export function ContinueLearningCard() {
 
 	if (!next) {
 		return (
-			<Card className="border-2 border-green-400/50 bg-gradient-to-r from-green-50/80 to-emerald-50/80 dark:from-green-950/30 dark:to-emerald-950/30">
+			<Card className="border-2 border-brand-aqua/40 bg-gradient-to-r from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/30 dark:to-brand-aqua/30">
 				<CardContent className="p-4 sm:p-5 flex items-center gap-4">
-					<div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400">
+					<div className="p-3 rounded-xl bg-brand-aqua/15 dark:bg-brand-aqua/40 text-brand-aqua">
 						<PartyPopper className="w-7 h-7" />
 					</div>
 					<div>
-						<p className="font-bold text-green-700 dark:text-green-300 text-base">
+						<p className="font-bold text-brand-aqua text-base">
 							Curso completo!
 						</p>
-						<p className="text-sm text-green-600/80 dark:text-green-400/70">
+						<p className="text-sm text-brand-aqua/80 dark:text-brand-aqua/70">
 							Você completou toda a jornada. Parabéns!
 						</p>
 					</div>
@@ -98,7 +98,7 @@ export function ContinueLearningCard() {
 									<Clock className="w-3.5 h-3.5" />
 									Apenas {lesson.estimatedMinutes} min
 								</span>
-								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 shadow-sm">
+								<span className="flex items-center gap-1.5 text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded-md border border-brand-gold/20 shadow-sm">
 									<Star className="w-3.5 h-3.5 fill-current" />+
 									{lesson.xpReward} XP
 								</span>

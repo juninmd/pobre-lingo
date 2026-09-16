@@ -18,10 +18,10 @@ export function CertificationPlanCard() {
 
 	if (!result) {
 		return (
-			<Card className="border-blue-500/20 bg-blue-500/5">
+			<Card className="border-primary/20 bg-primary/5">
 				<CardHeader className="pb-2">
 					<CardTitle className="flex items-center gap-2 text-base">
-						<GraduationCap className="h-5 w-5 text-blue-600" />
+						<GraduationCap className="h-5 w-5 text-primary" />
 						Descobrir nível oficial
 					</CardTitle>
 				</CardHeader>
@@ -39,10 +39,10 @@ export function CertificationPlanCard() {
 	}
 
 	return (
-		<Card className="border-blue-500/20 bg-blue-500/5">
+		<Card className="border-primary/20 bg-primary/5">
 			<CardHeader className="pb-2">
 				<CardTitle className="flex items-center gap-2 text-base">
-					<ClipboardCheck className="h-5 w-5 text-blue-600" />
+					<ClipboardCheck className="h-5 w-5 text-primary" />
 					Plano CEFR
 					<CefrBadge level={result.level} showDescriptionOnHover={false} />
 				</CardTitle>

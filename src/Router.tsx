@@ -66,6 +66,14 @@ const NotebookPage = React.lazy(() => import("./pages/NotebookPage"));
 const ReviewPage = React.lazy(() => import("./pages/ReviewPage"));
 const SettingsPage = React.lazy(() => import("./pages/SettingsPage"));
 const AchievementsPage = React.lazy(() => import("./pages/AchievementsPage"));
+const ReadingPage = React.lazy(() => import("./pages/ReadingPage"));
+const ReadingViewPage = React.lazy(() => import("./pages/ReadingViewPage"));
+const VocabularyVaultPage = React.lazy(
+	() => import("./pages/VocabularyVaultPage"),
+);
+const FluencyPage = React.lazy(() => import("./pages/FluencyPage"));
+const WritingPage = React.lazy(() => import("./pages/WritingPage"));
+const CheckpointsPage = React.lazy(() => import("./pages/CheckpointsPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
 // Loading component
@@ -171,6 +179,54 @@ const router = createBrowserRouter([
 			{
 				path: "curriculum",
 				element: <Navigate to="/" replace />,
+			},
+			{
+				path: "vocabulary",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<VocabularyVaultPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "reading",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<ReadingPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "reading/:readerId",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<ReadingViewPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "fluency",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<FluencyPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "writing",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<WritingPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "checkpoints",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<CheckpointsPage />
+					</Suspense>
+				),
 			},
 			{
 				path: "vocabulary/:moduleId/:lessonId",

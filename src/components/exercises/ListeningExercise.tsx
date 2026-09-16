@@ -29,7 +29,7 @@ export function ListeningExercise() {
 	const { toast } = useToast();
 
 	const exercises = useMemo(() => {
-		return lessonId ? getListeningExercisesForLesson(lessonId) : [];
+		return getListeningExercisesForLesson(lessonId ?? "");
 	}, [lessonId]);
 
 	const [currentIndex, setCurrentIndex] = useState(0);

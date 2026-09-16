@@ -11,7 +11,7 @@ export default function FindIncorrectWordsPage() {
 				title="Encontrar Palavras Incorretas"
 				description="Identifique os erros gramaticais clicando nas palavras incorretas."
 				icon={SearchX}
-				iconClassName="text-red-500"
+				iconClassName="text-destructive"
 				backLink="/"
 				backLabel="Voltar ao Início"
 			>

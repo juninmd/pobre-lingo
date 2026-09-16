@@ -56,17 +56,17 @@ export function NeuroELTWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-rose-50/70 to-orange-50/70 dark:from-rose-950/30 dark:to-orange-950/30 border-rose-200/50 dark:border-rose-800/50 shadow-lg hover:shadow-rose-500/10 relative overflow-hidden">
-			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-rose-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-destructive/10 to-brand-gold/10 dark:from-destructive/30 dark:to-brand-gold/30 border-destructive/20 dark:border-destructive/50 shadow-lg hover:shadow-destructive/10 relative overflow-hidden">
+			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-destructive/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300 border-none font-bold"
+						className="mb-2 bg-destructive/15 text-destructive dark:bg-destructive/60 border-none font-bold"
 					>
 						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-rose-700 dark:text-rose-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-destructive">
 						<BrainCircuit className="w-5 h-5" />
 						<span>Neuro ELT</span>
 					</CardTitle>
@@ -78,29 +78,29 @@ export function NeuroELTWidget() {
 				</div>
 
 				{claimed ? (
-					<div className="p-4 bg-white/60 dark:bg-black/30 rounded-lg border border-rose-100 dark:border-rose-900 animate-in fade-in zoom-in duration-300">
-						<h4 className="font-bold text-rose-900 dark:text-rose-300 mb-2 flex items-center gap-2">
-							<HeartPulse className="w-4 h-4 text-rose-500" />
+					<div className="p-4 bg-white/60 dark:bg-black/30 rounded-lg border border-destructive/15 dark:border-destructive/60 animate-in fade-in zoom-in duration-300">
+						<h4 className="font-bold text-destructive mb-2 flex items-center gap-2">
+							<HeartPulse className="w-4 h-4 text-destructive" />
 							{tip.title}
 						</h4>
 						<p className="text-sm text-foreground/80 leading-relaxed mb-3">
 							"{tip.advice}"
 						</p>
-						<div className="bg-rose-100/50 dark:bg-rose-900/30 p-2 rounded text-center border border-rose-200 dark:border-rose-800">
-							<span className="flex items-center justify-center gap-1.5 text-rose-700 dark:text-rose-400 font-bold text-sm">
+						<div className="bg-destructive/15 dark:bg-destructive/30 p-2 rounded text-center border border-destructive/20 dark:border-destructive/70">
+							<span className="flex items-center justify-center gap-1.5 text-destructive font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								Mente Otimizada! (+{tip.xp} XP)
 							</span>
 						</div>
 					</div>
 				) : (
-					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-rose-300 dark:border-rose-700 flex flex-col items-center text-center space-y-3">
-						<BrainCircuit className="w-8 h-8 text-rose-400 dark:text-rose-600 mb-1" />
-						<p className="text-sm font-medium text-rose-800 dark:text-rose-300">
+					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-destructive/30 dark:border-destructive/80 flex flex-col items-center text-center space-y-3">
+						<BrainCircuit className="w-8 h-8 text-destructive mb-1" />
+						<p className="text-sm font-medium text-destructive">
 							Respire fundo. Pronto para calibrar seu foco e reduzir o filtro afetivo?
 						</p>
 						<Button
-							className="w-full gap-2 bg-rose-500 hover:bg-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+							className="w-full gap-2 bg-destructive hover:bg-destructive/90 text-white shadow-[0_0_15px_hsl(var(--destructive)_/_0.3)]"
 							onClick={handleCalibrate}
 							disabled={isCalibrating}
 						>

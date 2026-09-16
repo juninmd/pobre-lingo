@@ -79,29 +79,29 @@ export function StorytellingWidget() {
 	};
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-pink-50/50 to-rose-50/50 dark:from-pink-950/20 dark:to-rose-950/20 border-pink-200/50 dark:border-pink-800/50 relative overflow-hidden">
-			<div className="absolute -right-4 -top-4 w-24 h-24 bg-pink-500/10 rounded-full blur-2xl" />
+		<Card className="glass-card bg-gradient-to-br from-destructive/10 to-destructive/10 dark:from-destructive/20 dark:to-destructive/20 border-destructive/20 dark:border-destructive/50 relative overflow-hidden">
+			<div className="absolute -right-4 -top-4 w-24 h-24 bg-destructive/10 rounded-full blur-2xl" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-pink-700 dark:text-pink-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-destructive">
 					<BookOpen className="w-4 h-4" />
 					História Interativa
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-pink-500/70 bg-pink-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-destructive/70 bg-destructive/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Target className="w-3 h-3" />
 					TPRS
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<h4 className="font-bold text-pink-900 dark:text-pink-300 text-base mb-1">
+					<h4 className="font-bold text-destructive text-base mb-1">
 						{story.title}
 					</h4>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-pink-100 dark:border-pink-900/50 text-sm mb-3">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-destructive/15 dark:border-destructive/50 text-sm mb-3">
 						<p className="text-muted-foreground italic mb-2 leading-relaxed">
 							"{story.story}"
 						</p>
 						<p className="font-semibold text-foreground flex items-start gap-2">
-							<Navigation className="w-4 h-4 text-pink-600 shrink-0 mt-0.5" />
+							<Navigation className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
 							<span>{story.question}</span>
 						</p>
 					</div>
@@ -124,7 +124,7 @@ export function StorytellingWidget() {
 									variant={variant}
 									className={`w-full justify-start text-left font-medium ${
 										variant === "outline"
-											? "border-pink-200 text-pink-700 hover:bg-pink-50 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30"
+											? "border-destructive/20 text-destructive hover:bg-destructive/10 dark:border-destructive/70 dark:hover:bg-destructive/30"
 											: ""
 									}`}
 									disabled={selectedAnswer !== null}
@@ -132,7 +132,7 @@ export function StorytellingWidget() {
 								>
 									{opt.text}
 									{showCorrect && (
-										<CheckCircle2 className="w-4 h-4 ml-auto text-green-500" />
+										<CheckCircle2 className="w-4 h-4 ml-auto text-brand-aqua" />
 									)}
 								</Button>
 							);
@@ -140,8 +140,8 @@ export function StorytellingWidget() {
 					</div>
 
 					{claimed && (
-						<div className="mt-3 bg-pink-100/50 dark:bg-pink-900/30 p-2 rounded border border-pink-200 dark:border-pink-800 text-center animate-in fade-in slide-in-from-top-2 duration-300">
-							<span className="flex items-center justify-center gap-1.5 text-pink-700 dark:text-pink-400 font-bold text-sm">
+						<div className="mt-3 bg-destructive/15 dark:bg-destructive/30 p-2 rounded border border-destructive/20 dark:border-destructive/70 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+							<span className="flex items-center justify-center gap-1.5 text-destructive font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								História Concluída! (+{story.xp} XP)
 							</span>

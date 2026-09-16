@@ -209,18 +209,18 @@ export function NewsComprehension({
 
 						{showFeedback && (
 							<Alert
-								className={`mt-4 ${selectedAnswer === currentQuestion.correctAnswer ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10"}`}
+								className={`mt-4 ${selectedAnswer === currentQuestion.correctAnswer ? "border-brand-aqua bg-brand-aqua/10" : "border-destructive bg-destructive/10"}`}
 							>
 								{selectedAnswer === currentQuestion.correctAnswer ? (
-									<CheckCircle className="h-5 w-5 text-green-500" />
+									<CheckCircle className="h-5 w-5 text-brand-aqua" />
 								) : (
-									<XCircle className="h-5 w-5 text-red-500" />
+									<XCircle className="h-5 w-5 text-destructive" />
 								)}
 								<AlertTitle
 									className={
 										selectedAnswer === currentQuestion.correctAnswer
-											? "text-green-700"
-											: "text-red-700"
+											? "text-brand-aqua"
+											: "text-destructive"
 									}
 								>
 									{selectedAnswer === currentQuestion.correctAnswer

@@ -38,16 +38,16 @@ export function SocialMediaReelsWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-pink-50/70 to-rose-50/70 dark:from-pink-950/30 dark:to-rose-950/30 border-pink-200/50 dark:border-pink-800/50 shadow-lg hover:shadow-pink-500/10">
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-destructive/10 to-destructive/10 dark:from-destructive/30 dark:to-destructive/30 border-destructive/20 dark:border-destructive/50 shadow-lg hover:shadow-destructive/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 border-none font-bold"
+						className="mb-2 bg-destructive/15 text-destructive dark:bg-destructive/60 border-none font-bold"
 					>
 						<Smartphone className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-pink-700 dark:text-pink-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-destructive">
 						<span>Nano-Learning em Vídeo</span>
 					</CardTitle>
 				</div>
@@ -97,14 +97,14 @@ export function SocialMediaReelsWidget() {
 
 				<Button
 					variant={claimed ? "secondary" : "gamified"}
-					className={`w-full ${!claimed ? "bg-pink-600 hover:bg-pink-700 text-white" : ""}`}
+					className={`w-full ${!claimed ? "bg-destructive/90 hover:bg-destructive/80 text-white" : ""}`}
 					onClick={handleWatch}
 					disabled={claimed || isPlaying}
 				>
 					{isPlaying ? (
 						<span className="flex items-center gap-1.5">Assistindo...</span>
 					) : claimed ? (
-						<span className="flex items-center gap-1.5 text-pink-700 dark:text-pink-400">
+						<span className="flex items-center gap-1.5 text-destructive">
 							<CheckCircle2 className="w-4 h-4" />
 							Visualizado!
 						</span>

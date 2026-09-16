@@ -55,17 +55,17 @@ export function GreenELTWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-green-50/70 to-emerald-50/70 dark:from-green-950/30 dark:to-emerald-950/30 border-green-200/50 dark:border-emerald-800/50 shadow-lg hover:shadow-green-500/10 relative overflow-hidden">
-			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-green-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/30 dark:to-brand-aqua/30 border-brand-aqua/20 dark:border-brand-aqua/50 shadow-lg hover:shadow-brand-aqua/10 relative overflow-hidden">
+			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-brand-aqua/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 border-none font-bold"
+						className="mb-2 bg-brand-aqua/15 text-brand-aqua dark:bg-brand-aqua/60 border-none font-bold"
 					>
 						<Sprout className="w-3 h-3 mr-1 inline" /> Green ELT
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-green-700 dark:text-green-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-brand-aqua">
 						<Leaf className="w-5 h-5" />
 						<span>{topic.title}</span>
 					</CardTitle>
@@ -73,23 +73,23 @@ export function GreenELTWidget() {
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-green-100 dark:border-green-900/50 text-sm mb-3">
-						<p className="text-slate-700 dark:text-slate-300 font-medium mb-2">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-brand-aqua/15 dark:border-brand-aqua/50 text-sm mb-3">
+						<p className="text-muted-foreground font-medium mb-2">
 							{topic.fact}
 						</p>
-						<div className="border-t border-green-100 dark:border-green-900/50 pt-2">
-							<span className="font-bold text-green-700 dark:text-green-400 block mb-1">
+						<div className="border-t border-brand-aqua/15 dark:border-brand-aqua/50 pt-2">
+							<span className="font-bold text-brand-aqua block mb-1">
 								Example:
 							</span>
-							<span className="text-green-800 dark:text-green-300 italic">
+							<span className="text-brand-aqua italic">
 								"{topic.example}"
 							</span>
 						</div>
 					</div>
 
 					{claimed ? (
-						<div className="bg-green-100/30 dark:bg-green-900/20 p-2 rounded border border-green-200/50 dark:border-green-800/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
-							<span className="flex items-center justify-center gap-1.5 text-green-700 dark:text-green-400 font-bold text-sm">
+						<div className="bg-brand-aqua/15 dark:bg-brand-aqua/20 p-2 rounded border border-brand-aqua/20 dark:border-brand-aqua/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+							<span className="flex items-center justify-center gap-1.5 text-brand-aqua font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								Aprendizado Verde! (+{topic.xp} XP)
 							</span>

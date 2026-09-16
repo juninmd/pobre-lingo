@@ -28,16 +28,16 @@ export function VirtualImmersionWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-purple-50/70 to-pink-50/70 dark:from-purple-950/30 dark:to-pink-950/30 border-purple-200/50 dark:border-purple-800/50 shadow-lg hover:shadow-purple-500/10">
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-brand-violet/10 to-destructive/10 dark:from-brand-violet/30 dark:to-destructive/30 border-brand-violet/20 dark:border-brand-violet/50 shadow-lg hover:shadow-brand-violet/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 border-none font-bold"
+						className="mb-2 bg-brand-violet/15 text-brand-violet dark:bg-brand-violet/60 border-none font-bold"
 					>
 						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-purple-700 dark:text-purple-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-brand-violet">
 						<Box className="w-5 h-5" />
 						<span>Imersão 360° / VR</span>
 					</CardTitle>
@@ -48,11 +48,11 @@ export function VirtualImmersionWidget() {
 					Pratique inglês explorando um ambiente virtual interativo.
 				</div>
 
-				<div className="p-3 bg-white/60 dark:bg-black/30 rounded-lg border border-purple-100 dark:border-purple-900 relative overflow-hidden flex items-center justify-center min-h-[80px]">
+				<div className="p-3 bg-white/60 dark:bg-black/30 rounded-lg border border-brand-violet/15 dark:border-brand-violet/60 relative overflow-hidden flex items-center justify-center min-h-[80px]">
 					{isPlaying ? (
 						<div className="flex flex-col items-center animate-pulse">
-							<Box className="w-8 h-8 text-purple-600 dark:text-purple-400 mb-2 animate-bounce" />
-							<p className="font-semibold text-sm text-purple-700 dark:text-purple-300">
+							<Box className="w-8 h-8 text-brand-violet mb-2 animate-bounce" />
+							<p className="font-semibold text-sm text-brand-violet">
 								Carregando Cenário VR...
 							</p>
 						</div>
@@ -69,7 +69,7 @@ export function VirtualImmersionWidget() {
 				</div>
 
 				<Button
-					className="w-full gap-2 bg-purple-600 hover:bg-purple-700 text-white"
+					className="w-full gap-2 bg-brand-violet/90 hover:bg-brand-violet/80 text-white"
 					variant={claimed ? "secondary" : "default"}
 					onClick={handleStart}
 					disabled={claimed || isPlaying}
@@ -79,7 +79,7 @@ export function VirtualImmersionWidget() {
 							Explorando...
 						</span>
 					) : claimed ? (
-						<span className="flex items-center gap-1.5 text-purple-700 dark:text-purple-400">
+						<span className="flex items-center gap-1.5 text-brand-violet">
 							<CheckCircle2 className="w-4 h-4" />
 							Exploração Concluída!
 						</span>

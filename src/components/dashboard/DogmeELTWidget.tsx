@@ -1,4 +1,4 @@
-import { MessageSquare, Users, Sparkles } from "lucide-react";
+import { MessageSquare, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function DogmeELTWidget() {
@@ -22,7 +22,8 @@ export function DogmeELTWidget() {
 				</div>
 
 				<p className="text-sm text-muted-foreground mb-4">
-					Sem material didático, apenas conversas reais. O conteúdo da aula é criado por você!
+					Sem material didático, apenas conversas reais. O conteúdo da aula é
+					criado por você!
 				</p>
 
 				<div className="space-y-3 mb-6">

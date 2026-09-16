@@ -1,4 +1,4 @@
-import { Newspaper, Ticket, Compass } from "lucide-react";
+import { Compass, Newspaper, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function AuthenticMaterialsWidget() {
@@ -14,7 +14,9 @@ export function AuthenticMaterialsWidget() {
 						<div className="p-2 bg-emerald-500/20 rounded-lg">
 							<Newspaper className="w-5 h-5 text-emerald-400" />
 						</div>
-						<h3 className="font-semibold text-foreground">Materiais Autênticos</h3>
+						<h3 className="font-semibold text-foreground">
+							Materiais Autênticos
+						</h3>
 					</div>
 					<span className="text-xs font-medium px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/20">
 						TREND 2025
@@ -31,7 +33,8 @@ export function AuthenticMaterialsWidget() {
 						<div className="flex-1 text-sm">
 							<p className="font-medium text-emerald-100">Desafio do Dia</p>
 							<p className="text-emerald-400/80 mt-1">
-								Leia um cardápio de restaurante em Nova York e faça o seu pedido.
+								Leia um cardápio de restaurante em Nova York e faça o seu
+								pedido.
 							</p>
 						</div>
 					</div>

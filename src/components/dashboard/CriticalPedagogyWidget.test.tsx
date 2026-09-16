@@ -32,7 +32,9 @@ describe("CriticalPedagogyWidget", () => {
 		// Since the test focuses on rendering, we just ensure key elements exist.
 		expect(screen.getByText("Critical Pedagogy")).toBeInTheDocument();
 		expect(screen.getByText("Reflection:")).toBeInTheDocument();
-		expect(screen.getByRole("button", { name: /Refletir & Ganhar/i })).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: /Refletir & Ganhar/i }),
+		).toBeInTheDocument();
 	});
 
 	it("awards XP and shows claimed state when button is clicked", () => {
@@ -54,7 +56,9 @@ describe("CriticalPedagogyWidget", () => {
 		render(<CriticalPedagogyWidget />);
 
 		expect(screen.getByText(/Reflexão Completa!/i)).toBeInTheDocument();
-		expect(screen.queryByRole("button", { name: /Refletir & Ganhar/i })).not.toBeInTheDocument();
+		expect(
+			screen.queryByRole("button", { name: /Refletir & Ganhar/i }),
+		).not.toBeInTheDocument();
 
 		// XP should not have been added automatically on render
 		expect(mockAddXp).not.toHaveBeenCalled();

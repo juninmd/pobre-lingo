@@ -8,17 +8,20 @@ import { useGamification } from "@/contexts/GamificationContext";
 const NEURO_TIPS = [
 	{
 		title: "Filtro Afetivo Baixo",
-		advice: "Estudar quando você está relaxado melhora a retenção de memória em até 30%. Respire fundo antes da próxima lição.",
+		advice:
+			"Estudar quando você está relaxado melhora a retenção de memória em até 30%. Respire fundo antes da próxima lição.",
 		xp: 15,
 	},
 	{
 		title: "Aprendizado Espaçado",
-		advice: "Seu cérebro precisa de pausas para consolidar memórias. A cada 20 minutos de estudo, descanse 5 minutos.",
+		advice:
+			"Seu cérebro precisa de pausas para consolidar memórias. A cada 20 minutos de estudo, descanse 5 minutos.",
 		xp: 15,
 	},
 	{
 		title: "Conexão Emocional",
-		advice: "Palavras associadas a emoções ou experiências pessoais são armazenadas mais facilmente na memória de longo prazo.",
+		advice:
+			"Palavras associadas a emoções ou experiências pessoais são armazenadas mais facilmente na memória de longo prazo.",
 		xp: 15,
 	},
 ];
@@ -97,7 +100,8 @@ export function NeuroELTWidget() {
 					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-rose-300 dark:border-rose-700 flex flex-col items-center text-center space-y-3">
 						<BrainCircuit className="w-8 h-8 text-rose-400 dark:text-rose-600 mb-1" />
 						<p className="text-sm font-medium text-rose-800 dark:text-rose-300">
-							Respire fundo. Pronto para calibrar seu foco e reduzir o filtro afetivo?
+							Respire fundo. Pronto para calibrar seu foco e reduzir o filtro
+							afetivo?
 						</p>
 						<Button
 							className="w-full gap-2 bg-rose-500 hover:bg-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.3)]"
@@ -111,7 +115,8 @@ export function NeuroELTWidget() {
 								</span>
 							) : (
 								<>
-									<BrainCircuit className="w-4 h-4" /> Calibrar Foco (+{tip.xp} XP)
+									<BrainCircuit className="w-4 h-4" /> Calibrar Foco (+{tip.xp}{" "}
+									XP)
 								</>
 							)}
 						</Button>

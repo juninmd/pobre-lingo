@@ -9,13 +9,15 @@ const CRITICAL_TOPICS = [
 	{
 		title: "Language & Power",
 		fact: "English is often seen as a global language, but it can also be a tool of inequality.",
-		example: "How does speaking 'Standard English' affect a person's opportunities in life?",
+		example:
+			"How does speaking 'Standard English' affect a person's opportunities in life?",
 		xp: 15,
 	},
 	{
 		title: "Representation",
 		fact: "Textbooks often reflect the culture and values of English-speaking countries, sometimes ignoring local contexts.",
-		example: "Why is it important to learn English through stories from our own culture?",
+		example:
+			"Why is it important to learn English through stories from our own culture?",
 		xp: 15,
 	},
 	{

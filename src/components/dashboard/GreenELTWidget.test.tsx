@@ -51,9 +51,7 @@ describe("GreenELTWidget", () => {
 		expect(
 			screen.queryByRole("button", { name: /Plantar Semente/i }),
 		).not.toBeInTheDocument();
-		expect(
-			screen.getByText("Aprendizado Verde! (+15 XP)"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Aprendizado Verde! (+15 XP)")).toBeInTheDocument();
 	});
 
 	it("prevents multiple claims on the same day", () => {
@@ -65,9 +63,7 @@ describe("GreenELTWidget", () => {
 		expect(
 			screen.queryByRole("button", { name: /Plantar Semente/i }),
 		).not.toBeInTheDocument();
-		expect(
-			screen.getByText("Aprendizado Verde! (+15 XP)"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Aprendizado Verde! (+15 XP)")).toBeInTheDocument();
 		expect(mockAddXp).not.toHaveBeenCalled();
 	});
 });

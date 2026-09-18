@@ -8,17 +8,20 @@ import { useGamification } from "@/contexts/GamificationContext";
 const PLURI_TIPS = [
 	{
 		title: "Abraçando seu Sotaque",
-		advice: "No plurilinguismo, seu sotaque é parte da sua identidade. Foco na clareza (inteligibilidade), não em soar como um nativo.",
+		advice:
+			"No plurilinguismo, seu sotaque é parte da sua identidade. Foco na clareza (inteligibilidade), não em soar como um nativo.",
 		xp: 15,
 	},
 	{
 		title: "Tradução Mental é Normal",
-		advice: "Não tenha medo de comparar o inglês com o português ou outras línguas que você conhece. Seu repertório linguístico é uma vantagem, não um obstáculo.",
+		advice:
+			"Não tenha medo de comparar o inglês com o português ou outras línguas que você conhece. Seu repertório linguístico é uma vantagem, não um obstáculo.",
 		xp: 15,
 	},
 	{
 		title: "Comunicação Global",
-		advice: "O inglês é uma língua global. Você se comunicará com pessoas de diversas culturas. A empatia e a adaptação superam a gramática perfeita.",
+		advice:
+			"O inglês é uma língua global. Você se comunicará com pessoas de diversas culturas. A empatia e a adaptação superam a gramática perfeita.",
 		xp: 15,
 	},
 ];
@@ -97,7 +100,8 @@ export function PlurilingualismWidget() {
 					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-blue-300 dark:border-blue-700 flex flex-col items-center text-center space-y-3">
 						<Globe2 className="w-8 h-8 text-blue-400 dark:text-blue-600 mb-1" />
 						<p className="text-sm font-medium text-blue-800 dark:text-blue-300">
-							Pronto para quebrar mitos sobre fluência e abraçar sua identidade global?
+							Pronto para quebrar mitos sobre fluência e abraçar sua identidade
+							global?
 						</p>
 						<Button
 							className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]"

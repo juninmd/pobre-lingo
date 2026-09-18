@@ -5,12 +5,12 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
+import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
 import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
+import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
-import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
-import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
@@ -25,12 +25,12 @@ import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
 import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
-import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
-import { DogmeELTWidget } from "./DogmeELTWidget";
 import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
+import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
+import { DogmeELTWidget } from "./DogmeELTWidget";
+import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
 import { NeuroELTWidget } from "./NeuroELTWidget";
 import { PlurilingualismWidget } from "./PlurilingualismWidget";
-import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
 
 export function ImmersivePracticeSection() {
 	return (

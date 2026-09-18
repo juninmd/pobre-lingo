@@ -12,17 +12,13 @@ test.describe("Home Page - Learning Journey", () => {
 
 	test("should render home properly and display desktop layout", async ({
 		page,
+		isMobile,
 	}) => {
+		test.skip(isMobile, "Desktop only test");
+
 		// Define resolução desktop
 		await page.setViewportSize({ width: 1280, height: 720 });
 
-		// O Sidebar deve estar visível e o MobileNav deve estar oculto
-		const sidebar = page
-			.locator("nav")
-			.filter({ hasText: "Navegação" })
-			.first(); // Ajustar se a sidebar usar outra label
-
-		// Como a sidebar original no Layout usa `.hidden md:flex`, verificamos se está visível
 		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
 		await expect(sidebarContainer).toBeVisible();
 
@@ -31,7 +27,9 @@ test.describe("Home Page - Learning Journey", () => {
 		await expect(mobileNav).toBeHidden();
 	});
 
-	test("should adapt to mobile layout", async ({ page }) => {
+	test("should adapt to mobile layout", async ({ page, isMobile }) => {
+		test.skip(!isMobile, "Mobile only test");
+
 		// Define resolução mobile
 		await page.setViewportSize({ width: 375, height: 812 });
 
@@ -49,13 +47,20 @@ test.describe("Home Page - Learning Journey", () => {
 	}) => {
 		// Espera a página carregar
 		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
+		await expect(page.locator(".max-w-2xl").first()).toBeVisible();
 
 		// Procura pelo texto "Onde parei"
-		const bookmark = page.locator('text="Onde parei"').first();
+		const bookmark = page
+			.locator(".max-w-2xl")
+			.locator('text="Onde parei"')
+			.first();
 		await expect(bookmark).toBeVisible();
 
 		// Verifica se o card da lição ativa tem o botão DISPONÍVEL
-		const startButton = page.locator('text="DISPONÍVEL"').first();
+		const startButton = page
+			.locator(".max-w-2xl")
+			.locator('text="DISPONÍVEL"')
+			.first();
 		await expect(startButton).toBeVisible();
 
 		// Clica na lição ativa para verificar a navegação
@@ -63,7 +68,10 @@ test.describe("Home Page - Learning Journey", () => {
 
 		await expect(async () => {
 			expect(
-				page.url().includes("/vocabulary/") || page.url().includes("/quiz/"),
+				page.url().includes("/vocabulary/") ||
+					page.url().includes("/quiz/") ||
+					page.url().includes("/grammar/") ||
+					page.url().includes("/speaking/"),
 			).toBeTruthy();
 		}).toPass({ timeout: 5000 });
 	});

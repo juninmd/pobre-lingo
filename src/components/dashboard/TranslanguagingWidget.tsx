@@ -68,17 +68,17 @@ export function TranslanguagingWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-indigo-50/70 to-purple-50/70 dark:from-indigo-950/30 dark:to-purple-950/30 border-indigo-200/50 dark:border-purple-800/50 shadow-lg hover:shadow-indigo-500/10 relative overflow-hidden">
-			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-primary/10 to-brand-violet/10 dark:from-primary/30 dark:to-brand-violet/30 border-primary/20 dark:border-brand-violet/50 shadow-lg hover:shadow-primary/10 relative overflow-hidden">
+			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 border-none font-bold"
+						className="mb-2 bg-primary/15 text-primary dark:bg-primary/60 border-none font-bold"
 					>
 						<Languages className="w-3 h-3 mr-1 inline" /> Translanguaging
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-indigo-700 dark:text-indigo-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-primary">
 						<ArrowRightLeft className="w-5 h-5" />
 						<span>{topic.title}</span>
 					</CardTitle>
@@ -86,20 +86,20 @@ export function TranslanguagingWidget() {
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-indigo-100 dark:border-indigo-900/50 text-sm mb-3">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-primary/15 dark:border-primary/50 text-sm mb-3">
 						<div className="flex justify-between items-center mb-2">
-							<span className="font-bold text-slate-700 dark:text-slate-300">
+							<span className="font-bold text-muted-foreground">
 								🇧🇷 PT:
 							</span>
-							<span className="text-slate-600 dark:text-slate-400 font-medium">
+							<span className="text-muted-foreground font-medium">
 								{topic.pt}
 							</span>
 						</div>
-						<div className="flex justify-between items-center border-t border-indigo-100 dark:border-indigo-900/50 pt-2">
-							<span className="font-bold text-indigo-700 dark:text-indigo-400">
+						<div className="flex justify-between items-center border-t border-primary/15 dark:border-primary/50 pt-2">
+							<span className="font-bold text-primary">
 								🇺🇸 EN:
 							</span>
-							<span className="text-indigo-700 dark:text-indigo-400 font-bold">
+							<span className="text-primary font-bold">
 								{topic.en}
 							</span>
 						</div>
@@ -107,14 +107,14 @@ export function TranslanguagingWidget() {
 
 					{claimed ? (
 						<div className="space-y-3">
-							<div className="bg-indigo-100/50 dark:bg-indigo-900/30 p-3 rounded border border-indigo-200 dark:border-indigo-800 animate-in fade-in zoom-in duration-300">
-								<p className="text-sm text-indigo-900 dark:text-indigo-200 flex items-start gap-2">
-									<Lightbulb className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+							<div className="bg-primary/15 dark:bg-primary/30 p-3 rounded border border-primary/20 dark:border-primary/70 animate-in fade-in zoom-in duration-300">
+								<p className="text-sm text-primary flex items-start gap-2">
+									<Lightbulb className="w-4 h-4 text-primary shrink-0 mt-0.5" />
 									<span>{topic.explanation}</span>
 								</p>
 							</div>
-							<div className="bg-indigo-100/30 dark:bg-indigo-900/20 p-2 rounded border border-indigo-200/50 dark:border-indigo-800/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
-								<span className="flex items-center justify-center gap-1.5 text-indigo-700 dark:text-indigo-400 font-bold text-sm">
+							<div className="bg-primary/15 dark:bg-primary/20 p-2 rounded border border-primary/20 dark:border-primary/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+								<span className="flex items-center justify-center gap-1.5 text-primary font-bold text-sm">
 									<CheckCircle2 className="w-4 h-4" />
 									Conexão Feita! (+{topic.xp} XP)
 								</span>

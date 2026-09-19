@@ -131,16 +131,16 @@ export default function HangmanPage() {
 						</Badge>
 						<Badge
 							variant="outline"
-							className="text-lg px-3 py-1 text-red-500 bg-white dark:bg-slate-900"
+							className="text-lg px-3 py-1 text-destructive bg-card border-destructive/20"
 						>
 							<Heart className="w-4 h-4 mr-1 fill-current" /> {lives}
 						</Badge>
 					</div>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 w-full">
 					{/* Drawing Area */}
-					<Card className="p-8 flex items-center justify-center bg-slate-50 dark:bg-slate-900 border-2 min-h-[300px]">
+					<Card className="p-4 sm:p-8 flex items-center justify-center bg-muted/30 border-2 min-h-[180px] sm:min-h-[300px]">
 						<HangmanDrawing lives={lives} />
 					</Card>
 
@@ -171,8 +171,8 @@ export default function HangmanPage() {
 						</div>
 
 						{/* Hint */}
-						<div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-100 dark:border-blue-900">
-							<div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold mb-1">
+						<div className="bg-primary/5 p-4 rounded-lg border border-primary/15">
+							<div className="flex items-center gap-2 text-primary font-semibold mb-1">
 								<HelpCircle className="w-4 h-4" /> Dica:
 							</div>
 							<p className="text-sm text-muted-foreground italic">
@@ -203,7 +203,7 @@ export default function HangmanPage() {
 				</div>
 
 				{/* Keyboard */}
-				<div className="w-full mt-4">
+				<div className="w-full mt-4 sticky bottom-24 z-20 bg-background/90 backdrop-blur-md rounded-2xl p-2 border border-border/50 sm:static sm:bg-transparent sm:border-0 sm:p-0">
 					<div className="flex flex-wrap justify-center gap-2">
 						{keyboard.map((letter) => {
 							const isGuessed = guessedLetters.has(letter);
@@ -211,15 +211,15 @@ export default function HangmanPage() {
 
 							const _variant = "outline";
 							let className =
-								"w-10 h-12 font-bold text-lg transition-all active:scale-95";
+								"w-8 h-10 sm:w-10 sm:h-12 font-bold text-base sm:text-lg transition-all active:scale-95";
 
 							if (isGuessed) {
 								if (isInWord) {
 									className +=
-										" bg-green-500 text-white border-green-600 hover:bg-green-600";
+										" bg-brand-aqua text-white border-brand-aqua hover:bg-brand-aqua/90";
 								} else {
 									className +=
-										" bg-gray-200 text-gray-400 border-transparent dark:bg-gray-800 dark:text-gray-600 opacity-50";
+										" bg-muted text-muted-foreground/50 border-transparent opacity-50";
 								}
 							} else {
 								className += " hover:bg-primary/10 hover:border-primary";

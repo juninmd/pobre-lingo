@@ -61,17 +61,17 @@ export function DEIBWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-rose-50/70 to-pink-50/70 dark:from-rose-950/30 dark:to-pink-950/30 border-rose-200/50 dark:border-pink-800/50 shadow-lg hover:shadow-rose-500/10 relative overflow-hidden">
-			<div className="absolute -left-4 -top-4 w-24 h-24 bg-rose-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-destructive/10 to-destructive/10 dark:from-destructive/30 dark:to-destructive/30 border-destructive/20 dark:border-destructive/50 shadow-lg hover:shadow-destructive/10 relative overflow-hidden">
+			<div className="absolute -left-4 -top-4 w-24 h-24 bg-destructive/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300 border-none font-bold"
+						className="mb-2 bg-destructive/15 text-destructive dark:bg-destructive/60 border-none font-bold"
 					>
 						<HeartHandshake className="w-3 h-3 mr-1 inline" /> DEIB Focus
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-rose-700 dark:text-rose-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-destructive">
 						<Users className="w-5 h-5" />
 						<span>{topic.title}</span>
 					</CardTitle>
@@ -79,26 +79,26 @@ export function DEIBWidget() {
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-rose-100 dark:border-rose-900/50 text-sm mb-3">
-						<p className="font-bold text-rose-900 dark:text-rose-300 mb-1">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-destructive/15 dark:border-destructive/50 text-sm mb-3">
+						<p className="font-bold text-destructive mb-1">
 							{topic.concept}
 						</p>
-						<p className="text-slate-700 dark:text-slate-300 mb-2">
+						<p className="text-muted-foreground mb-2">
 							{topic.explanation}
 						</p>
-						<div className="border-t border-rose-100 dark:border-rose-900/50 pt-2">
-							<span className="font-bold text-rose-700 dark:text-rose-400 block mb-1">
+						<div className="border-t border-destructive/15 dark:border-destructive/50 pt-2">
+							<span className="font-bold text-destructive block mb-1">
 								Example:
 							</span>
-							<span className="text-rose-800 dark:text-rose-300 italic">
+							<span className="text-destructive italic">
 								"{topic.example}"
 							</span>
 						</div>
 					</div>
 
 					{claimed ? (
-						<div className="bg-rose-100/30 dark:bg-rose-900/20 p-2 rounded border border-rose-200/50 dark:border-rose-800/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
-							<span className="flex items-center justify-center gap-1.5 text-rose-700 dark:text-rose-400 font-bold text-sm">
+						<div className="bg-destructive/15 dark:bg-destructive/20 p-2 rounded border border-destructive/20 dark:border-destructive/50 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+							<span className="flex items-center justify-center gap-1.5 text-destructive font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								Linguagem Inclusiva! (+{topic.xp} XP)
 							</span>

@@ -179,7 +179,7 @@ export default function MatchingPairsPage() {
 				<div className="flex items-center gap-2">
 					<Heart
 						className={cn(
-							"h-6 w-6 fill-red-500 text-red-500",
+							"h-6 w-6 fill-destructive text-destructive",
 							hearts === 0 && "animate-pulse",
 						)}
 					/>
@@ -190,7 +190,7 @@ export default function MatchingPairsPage() {
 			<Card className="max-w-2xl mx-auto">
 				<CardHeader>
 					<CardTitle className="flex items-center gap-2 flex-wrap">
-						<Trophy className="h-6 w-6 text-yellow-500" />
+						<Trophy className="h-6 w-6 text-brand-gold" />
 						<span>Par de Palavras: {exercise.topic}</span>
 						{cefrLevel && <CefrBadge level={cefrLevel} />}
 					</CardTitle>
@@ -213,8 +213,8 @@ export default function MatchingPairsPage() {
 						</div>
 					) : isCompleted ? (
 						<div className="text-center py-10">
-							<div className="h-20 w-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-								<Trophy className="h-10 w-10 text-yellow-600" />
+							<div className="h-20 w-20 bg-brand-gold/15 rounded-full flex items-center justify-center mx-auto mb-6">
+								<Trophy className="h-10 w-10 text-brand-gold" />
 							</div>
 							<h3 className="text-2xl font-bold mb-2">Parabéns!</h3>
 							<p className="text-muted-foreground mb-6">
@@ -247,9 +247,9 @@ export default function MatchingPairsPage() {
 										card.status === "selected" &&
 											"border-primary bg-primary/10 scale-105 ring-2 ring-primary/20",
 										card.status === "matched" &&
-											"border-transparent bg-green-100 text-green-700 opacity-50 cursor-default",
+											"border-transparent bg-brand-aqua/15 text-brand-aqua opacity-50 cursor-default",
 										card.status === "error" &&
-											"border-red-500 bg-red-50 text-red-700 animate-shake",
+											"border-destructive bg-destructive/10 text-destructive animate-shake",
 									)}
 								>
 									{card.text}

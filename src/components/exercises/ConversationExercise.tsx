@@ -351,7 +351,7 @@ export default function ConversationExercise() {
 												{option.text_pt}
 											</span>
 										</div>
-										<div className="ml-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-x-3 group-hover:translate-x-0">
+										<div className="ml-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all transform translate-x-0 sm:translate-x-3 sm:group-hover:translate-x-0">
 											<Send className="w-5 h-5 ml-1" />
 										</div>
 									</button>
@@ -360,7 +360,7 @@ export default function ConversationExercise() {
 						</div>
 					) : (
 						<div className="flex flex-col items-center py-4 space-y-6">
-							<div className="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center text-gold shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+							<div className="w-20 h-20 rounded-full bg-brand-gold/20 flex items-center justify-center text-gold shadow-[0_0_20px_rgba(251,191,36,0.2)]">
 								<CheckCircle2 className="w-10 h-10" />
 							</div>
 							<div className="text-center">

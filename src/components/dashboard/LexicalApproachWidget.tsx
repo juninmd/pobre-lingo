@@ -26,12 +26,12 @@ export function LexicalApproachWidget() {
 				<div className="space-y-4">
 					<div className="flex items-start justify-between">
 						<div className="flex items-center gap-2">
-							<div className="p-2 bg-purple-500/20 text-purple-500 rounded-lg">
+							<div className="p-2 bg-brand-violet/20 text-brand-violet rounded-lg">
 								<Puzzle className="w-5 h-5" />
 							</div>
 							<Badge
 								variant="secondary"
-								className="bg-purple-500/10 text-purple-500 hover:bg-purple-500/20"
+								className="bg-brand-violet/10 text-brand-violet hover:bg-brand-violet/20"
 							>
 								TREND 2025
 							</Badge>
@@ -52,7 +52,7 @@ export function LexicalApproachWidget() {
 							<span className="text-xs text-muted-foreground">
 								Em vez de traduzir palavra por palavra:
 							</span>
-							<span className="text-sm font-medium line-through text-red-400">
+							<span className="text-sm font-medium line-through text-destructive">
 								Depends of you
 							</span>
 						</div>
@@ -60,7 +60,7 @@ export function LexicalApproachWidget() {
 							<span className="text-xs text-muted-foreground">
 								Use o chunk (bloco) correto:
 							</span>
-							<span className="text-sm font-bold text-green-500">
+							<span className="text-sm font-bold text-brand-aqua">
 								It depends on you
 							</span>
 						</div>

@@ -46,19 +46,19 @@ export function RealWorldARWidget() {
 
 	return (
 		<Card
-			className="glass-card hover:animate-float group bg-gradient-to-br from-cyan-50/70 to-blue-50/70 dark:from-cyan-950/30 dark:to-blue-950/30 border-cyan-200/50 dark:border-cyan-800/50 shadow-lg hover:shadow-cyan-500/10 relative overflow-hidden"
+			className="glass-card hover:animate-float group bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/30 dark:to-primary/30 border-primary/20 dark:border-primary/50 shadow-lg hover:shadow-primary/10 relative overflow-hidden"
 			style={{ animationDelay: "0.1s" }}
 		>
-			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300 border-none font-bold"
+						className="mb-2 bg-primary/15 text-primary dark:bg-primary/60 border-none font-bold"
 					>
 						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-primary">
 						<Scan className="w-5 h-5" />
 						<span>AR Vocab Scanner</span>
 					</CardTitle>
@@ -70,12 +70,12 @@ export function RealWorldARWidget() {
 					Aumentada.
 				</div>
 
-				<div className="relative aspect-[4/3] bg-black/5 dark:bg-white/5 rounded-xl border-2 border-dashed border-cyan-300/50 dark:border-cyan-700/50 flex flex-col items-center justify-center overflow-hidden group-hover:border-cyan-400 dark:group-hover:border-cyan-500 transition-colors">
+				<div className="relative aspect-[4/3] bg-black/5 dark:bg-white/5 rounded-xl border-2 border-dashed border-primary/30 dark:border-primary/50 flex flex-col items-center justify-center overflow-hidden group-hover:border-primary/40 dark:group-hover:border-primary transition-colors">
 					{isScanning && (
-						<div className="absolute inset-0 z-10 bg-cyan-500/10 flex flex-col items-center justify-center">
-							<div className="w-full h-1 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] absolute top-0 animate-scan" />
-							<Loader2 className="w-8 h-8 text-cyan-600 dark:text-cyan-400 animate-spin mb-2" />
-							<span className="text-xs font-bold text-cyan-700 dark:text-cyan-300 animate-pulse">
+						<div className="absolute inset-0 z-10 bg-primary/10 flex flex-col items-center justify-center">
+							<div className="w-full h-1 bg-primary/40 shadow-[0_0_15px_hsl(var(--primary)_/_0.8)] absolute top-0 animate-scan" />
+							<Loader2 className="w-8 h-8 text-primary animate-spin mb-2" />
+							<span className="text-xs font-bold text-primary animate-pulse">
 								Analisando objeto...
 							</span>
 						</div>
@@ -83,17 +83,17 @@ export function RealWorldARWidget() {
 
 					{!isScanning && !scannedItem && (
 						<div className="text-center p-4">
-							<Smartphone className="w-8 h-8 text-cyan-600/50 dark:text-cyan-400/50 mx-auto mb-2" />
-							<span className="text-xs font-bold text-cyan-700/70 dark:text-cyan-300/70">
+							<Smartphone className="w-8 h-8 text-primary/50 mx-auto mb-2" />
+							<span className="text-xs font-bold text-primary/70">
 								Pronto para escanear
 							</span>
 						</div>
 					)}
 
 					{scannedItem && (
-						<div className="z-20 p-4 w-full h-full flex flex-col items-center justify-center bg-cyan-50/90 dark:bg-cyan-950/90 backdrop-blur-sm animate-in zoom-in duration-300">
-							<div className="bg-white dark:bg-slate-900 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800 text-center w-full max-w-[80%]">
-								<p className="text-xl font-black text-cyan-700 dark:text-cyan-400">
+						<div className="z-20 p-4 w-full h-full flex flex-col items-center justify-center bg-primary/10 dark:bg-primary/50 backdrop-blur-sm animate-in zoom-in duration-300">
+							<div className="bg-white dark:bg-muted p-3 rounded-lg shadow-sm border border-primary/15 dark:border-primary/70 text-center w-full max-w-[80%]">
+								<p className="text-xl font-black text-primary">
 									{scannedItem.en}
 								</p>
 								<p className="text-xs text-muted-foreground mt-1">
@@ -106,14 +106,14 @@ export function RealWorldARWidget() {
 
 				<Button
 					variant={claimed ? "secondary" : "gamified"}
-					className={`w-full font-bold shadow-sm ${!claimed ? "bg-cyan-600 hover:bg-cyan-700 text-white" : ""}`}
+					className={`w-full font-bold shadow-sm ${!claimed ? "bg-primary/90 hover:bg-primary/80 text-white" : ""}`}
 					onClick={handleScan}
 					disabled={claimed || isScanning || !!scannedItem}
 				>
 					{isScanning ? (
 						<span className="flex items-center gap-1.5">Escaneando...</span>
 					) : claimed ? (
-						<span className="flex items-center gap-1.5 text-cyan-700 dark:text-cyan-400">
+						<span className="flex items-center gap-1.5 text-primary">
 							<CheckCircle2 className="w-4 h-4" />
 							Descoberta Feita!
 						</span>

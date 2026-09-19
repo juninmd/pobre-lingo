@@ -11,7 +11,7 @@ export default function SentenceOrderingPage() {
 				title="Ordenar Frases"
 				description="Arraste as palavras para formar frases corretas em inglês."
 				icon={Shuffle}
-				iconClassName="text-purple-500"
+				iconClassName="text-primary"
 				backLink="/"
 				backLabel="Voltar ao Início"
 			>

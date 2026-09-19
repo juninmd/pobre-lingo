@@ -31,12 +31,12 @@ export function GlobalEnglishesWidget() {
 				<div className="space-y-4">
 					<div className="flex items-start justify-between">
 						<div className="flex items-center gap-2">
-							<div className="p-2 bg-blue-500/20 text-blue-500 rounded-lg">
+							<div className="p-2 bg-primary/20 text-primary rounded-lg">
 								<Globe2 className="w-5 h-5" />
 							</div>
 							<Badge
 								variant="secondary"
-								className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20"
+								className="bg-primary/10 text-primary hover:bg-primary/20"
 							>
 								TREND 2025
 							</Badge>

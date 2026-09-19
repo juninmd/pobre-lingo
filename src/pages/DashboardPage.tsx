@@ -89,15 +89,15 @@ export default function DashboardPage() {
 
 	return (
 		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto relative">
-			{/* Spatial UI / Glassmorphism Ambient Background */}
+			{/* Spatial UI / Aurora ambient background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/15 blur-[140px] animate-pulse-glow" />
+				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[140px] animate-pulse-glow" />
 				<div
-					className="absolute top-[20%] -left-[15%] w-[40%] h-[40%] rounded-full bg-blue-500/15 blur-[120px] animate-pulse-glow"
+					className="absolute top-[20%] -left-[15%] w-[40%] h-[40%] rounded-full bg-brand-aqua/15 blur-[120px] animate-pulse-glow"
 					style={{ animationDelay: "1s" }}
 				/>
 				<div
-					className="absolute bottom-[-15%] right-[10%] w-[60%] h-[40%] rounded-full bg-emerald-500/10 blur-[130px] animate-pulse-glow"
+					className="absolute bottom-[-15%] right-[10%] w-[60%] h-[40%] rounded-full bg-brand-gold/10 blur-[130px] animate-pulse-glow"
 					style={{ animationDelay: "2s" }}
 				/>
 			</div>
@@ -112,9 +112,9 @@ export default function DashboardPage() {
 			<MascotGreeting />
 			<DashboardStats />
 
-			<div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 				{/* Left Column: Learning Timeline */}
-				<div className="lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
+				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
 					<section>
 						<Suspense
 							fallback={

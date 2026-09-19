@@ -78,17 +78,17 @@ export function CLILWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-orange-50/70 to-amber-50/70 dark:from-orange-950/30 dark:to-amber-950/30 border-orange-200/50 dark:border-orange-800/50 shadow-lg hover:shadow-orange-500/10 relative overflow-hidden">
-			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-brand-gold/10 to-brand-gold/10 dark:from-brand-gold/30 dark:to-brand-gold/30 border-brand-gold/20 dark:border-brand-gold/50 shadow-lg hover:shadow-brand-gold/10 relative overflow-hidden">
+			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300 border-none font-bold"
+						className="mb-2 bg-brand-gold/15 text-brand-gold dark:bg-brand-gold/60 border-none font-bold"
 					>
 						<Globe className="w-3 h-3 mr-1 inline" /> CLIL Method
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-orange-700 dark:text-orange-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-brand-gold">
 						<BookOpen className="w-5 h-5" />
 						<span>{topic.subject}</span>
 					</CardTitle>
@@ -96,15 +96,15 @@ export function CLILWidget() {
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<h4 className="font-bold text-orange-900 dark:text-orange-300 text-base mb-1">
+					<h4 className="font-bold text-brand-gold text-base mb-1">
 						{topic.title}
 					</h4>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-orange-100 dark:border-orange-900/50 text-sm mb-3">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-brand-gold/15 dark:border-brand-gold/50 text-sm mb-3">
 						<p className="text-muted-foreground leading-relaxed mb-3">
 							{topic.text}
 						</p>
-						<p className="font-semibold text-foreground flex items-start gap-2 border-t border-orange-100 dark:border-orange-900/50 pt-3">
-							<Lightbulb className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+						<p className="font-semibold text-foreground flex items-start gap-2 border-t border-brand-gold/15 dark:border-brand-gold/50 pt-3">
+							<Lightbulb className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
 							<span>{topic.question}</span>
 						</p>
 					</div>
@@ -127,7 +127,7 @@ export function CLILWidget() {
 									variant={variant}
 									className={`w-full justify-start text-left font-medium ${
 										variant === "outline"
-											? "border-orange-200 text-orange-700 hover:bg-orange-50 dark:border-orange-800 dark:text-orange-400 dark:hover:bg-orange-900/30"
+											? "border-brand-gold/20 text-brand-gold hover:bg-brand-gold/10 dark:border-brand-gold/70 dark:hover:bg-brand-gold/30"
 											: ""
 									}`}
 									disabled={selectedAnswer !== null}
@@ -135,7 +135,7 @@ export function CLILWidget() {
 								>
 									{opt.text}
 									{showCorrect && (
-										<CheckCircle2 className="w-4 h-4 ml-auto text-green-500" />
+										<CheckCircle2 className="w-4 h-4 ml-auto text-brand-aqua" />
 									)}
 								</Button>
 							);
@@ -143,8 +143,8 @@ export function CLILWidget() {
 					</div>
 
 					{claimed && (
-						<div className="mt-3 bg-orange-100/50 dark:bg-orange-900/30 p-2 rounded border border-orange-200 dark:border-orange-800 text-center animate-in fade-in slide-in-from-top-2 duration-300">
-							<span className="flex items-center justify-center gap-1.5 text-orange-700 dark:text-orange-400 font-bold text-sm">
+						<div className="mt-3 bg-brand-gold/15 dark:bg-brand-gold/30 p-2 rounded border border-brand-gold/20 dark:border-brand-gold/70 text-center animate-in fade-in slide-in-from-top-2 duration-300">
+							<span className="flex items-center justify-center gap-1.5 text-brand-gold font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								Desafio Concluído! (+{topic.xp} XP)
 							</span>

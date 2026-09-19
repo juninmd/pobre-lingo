@@ -286,7 +286,7 @@ export default function SettingsPage() {
 				<CardContent className="flex flex-col sm:flex-row gap-3">
 					<Button variant="outline" className="gap-2" onClick={handleExport}>
 						{exported ? (
-							<Check className="h-4 w-4 text-emerald-500" />
+							<Check className="h-4 w-4 text-brand-aqua" />
 						) : (
 							<Download className="h-4 w-4" />
 						)}
@@ -297,7 +297,7 @@ export default function SettingsPage() {
 						<AlertDialogTrigger asChild>
 							<Button
 								variant="outline"
-								className="gap-2 text-red-600 border-red-300 hover:bg-red-50 dark:border-red-900/60 dark:hover:bg-red-950/30"
+								className="gap-2 text-destructive border-destructive/40 hover:bg-destructive/10"
 							>
 								<Trash2 className="h-4 w-4" />
 								Apagar tudo
@@ -306,7 +306,7 @@ export default function SettingsPage() {
 						<AlertDialogContent>
 							<AlertDialogHeader>
 								<AlertDialogTitle className="flex items-center gap-2">
-									<AlertTriangle className="h-5 w-5 text-red-500" />
+									<AlertTriangle className="h-5 w-5 text-destructive" />
 									Apagar todo o progresso?
 								</AlertDialogTitle>
 								<AlertDialogDescription>
@@ -318,7 +318,7 @@ export default function SettingsPage() {
 								<AlertDialogCancel>Cancelar</AlertDialogCancel>
 								<AlertDialogAction
 									onClick={handleReset}
-									className="bg-red-600 hover:bg-red-700"
+									className="bg-destructive hover:bg-destructive/90"
 								>
 									Apagar tudo
 								</AlertDialogAction>

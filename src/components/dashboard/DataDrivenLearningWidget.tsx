@@ -34,34 +34,34 @@ export function DataDrivenLearningWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-cyan-50/70 to-blue-50/70 dark:from-cyan-950/30 dark:to-blue-950/30 border-cyan-200/50 dark:border-cyan-800/50 shadow-lg hover:shadow-cyan-500/10 relative overflow-hidden">
-			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/30 dark:to-primary/30 border-primary/20 dark:border-primary/50 shadow-lg hover:shadow-primary/10 relative overflow-hidden">
+			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300 border-none font-bold"
+						className="mb-2 bg-primary/15 text-primary dark:bg-primary/60 border-none font-bold"
 					>
 						<BarChart3 className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-sm font-bold flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
+					<CardTitle className="text-sm font-bold flex items-center gap-2 text-primary">
 						<Search className="w-4 h-4" />
 						Data-Driven Learning
 					</CardTitle>
 				</div>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-primary/70 bg-primary/10 px-2 py-0.5 rounded-full">
 					Imersão Digital
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
 					<div className="flex justify-between items-center mb-1">
-						<h4 className="font-bold text-cyan-900 dark:text-cyan-300 text-base">
+						<h4 className="font-bold text-primary text-base">
 							Análise de Corpus
 						</h4>
 					</div>
 
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-cyan-100 dark:border-cyan-900/50 text-sm mb-3">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-primary/15 dark:border-primary/50 text-sm mb-3">
 						<p className="text-muted-foreground">
 							Descubra como falantes nativos usam a palavra "actually" em
 							conversas reais, extraído de bancos de dados.
@@ -71,7 +71,7 @@ export function DataDrivenLearningWidget() {
 					<Button
 						variant={claimed ? "secondary" : "gamified"}
 						size="sm"
-						className={`w-full font-bold shadow-sm ${!claimed ? "bg-cyan-600 hover:bg-cyan-700 text-white" : ""}`}
+						className={`w-full font-bold shadow-sm ${!claimed ? "bg-primary/90 hover:bg-primary/80 text-white" : ""}`}
 						disabled={claimed || isAnalyzing}
 						onClick={handleAction}
 					>
@@ -80,7 +80,7 @@ export function DataDrivenLearningWidget() {
 								Analisando...
 							</span>
 						) : claimed ? (
-							<span className="flex items-center gap-1.5 text-cyan-700 dark:text-cyan-400">
+							<span className="flex items-center gap-1.5 text-primary">
 								<CheckCircle2 className="w-4 h-4" />
 								Analisado!
 							</span>

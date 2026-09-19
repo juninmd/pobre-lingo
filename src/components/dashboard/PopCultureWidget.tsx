@@ -95,16 +95,16 @@ export function PopCultureWidget() {
 
 	return (
 		<Card
-			className="glass-card hover:animate-float group bg-gradient-to-br from-violet-50/70 to-fuchsia-50/70 dark:from-violet-950/30 dark:to-fuchsia-950/30 border-violet-200/50 dark:border-violet-800/50 shadow-lg hover:shadow-violet-500/10 relative overflow-hidden group"
+			className="glass-card hover:animate-float group bg-gradient-to-br from-brand-violet/10 to-brand-violet/10 dark:from-brand-violet/30 dark:to-brand-violet/30 border-brand-violet/20 dark:border-brand-violet/50 shadow-lg hover:shadow-brand-violet/10 relative overflow-hidden group"
 			style={{ animationDelay: "0.2s" }}
 		>
-			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-violet-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+			<div className="absolute -left-4 -bottom-4 w-24 h-24 bg-brand-violet/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-violet-700 dark:text-violet-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-brand-violet">
 					<Clapperboard className="w-4 h-4" />
 					Inglês na Cultura Pop
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-violet-500/70 bg-violet-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-brand-violet/70 bg-brand-violet/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Sparkles className="w-3 h-3" />
 					Trend
 				</span>
@@ -112,16 +112,16 @@ export function PopCultureWidget() {
 			<CardContent className="space-y-4 relative z-10">
 				<div>
 					<div className="flex justify-between items-center mb-1">
-						<h4 className="font-bold text-violet-900 dark:text-violet-300 text-base">
+						<h4 className="font-bold text-brand-violet text-base">
 							{item.title}
 						</h4>
-						<span className="text-xs font-semibold text-violet-600/70 dark:text-violet-400/70">
+						<span className="text-xs font-semibold text-brand-violet/70">
 							{item.source}
 						</span>
 					</div>
 
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-violet-100 dark:border-violet-900/50 text-center relative shadow-inner mb-3">
-						<p className="text-lg font-black text-violet-900 dark:text-violet-300 tracking-tight italic">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-brand-violet/15 dark:border-brand-violet/50 text-center relative shadow-inner mb-3">
+						<p className="text-lg font-black text-brand-violet tracking-tight italic">
 							"{item.quote}"
 						</p>
 					</div>
@@ -129,15 +129,15 @@ export function PopCultureWidget() {
 					{!revealed ? (
 						<Button
 							variant="outline"
-							className="w-full border-violet-200 text-violet-700 hover:bg-violet-50 dark:border-violet-800 dark:text-violet-400 dark:hover:bg-violet-900/30 font-medium"
+							className="w-full border-brand-violet/20 text-brand-violet hover:bg-brand-violet/10 dark:border-brand-violet/70 dark:hover:bg-brand-violet/30 font-medium"
 							onClick={() => setRevealed(true)}
 						>
 							<Play className="w-4 h-4 mr-2" />
 							Descobrir Significado
 						</Button>
 					) : (
-						<div className="bg-violet-100/50 dark:bg-violet-900/30 p-3 rounded-lg border border-violet-200 dark:border-violet-800 animate-in fade-in slide-in-from-top-2 duration-300">
-							<p className="text-sm font-medium text-violet-800 dark:text-violet-300 mb-3">
+						<div className="bg-brand-violet/15 dark:bg-brand-violet/30 p-3 rounded-lg border border-brand-violet/20 dark:border-brand-violet/70 animate-in fade-in slide-in-from-top-2 duration-300">
+							<p className="text-sm font-medium text-brand-violet mb-3">
 								{item.explanation}
 							</p>
 
@@ -149,7 +149,7 @@ export function PopCultureWidget() {
 								onClick={claimReward}
 							>
 								{claimed ? (
-									<span className="flex items-center gap-1.5 text-violet-700 dark:text-violet-400">
+									<span className="flex items-center gap-1.5 text-brand-violet">
 										<CheckCircle2 className="w-4 h-4" />
 										Aprendido!
 									</span>

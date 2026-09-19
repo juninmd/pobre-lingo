@@ -130,7 +130,7 @@ export default function SentenceRushPage() {
 		toast({
 			title: "Correto! +10pts",
 			description: `+${bonusTime} segundos`,
-			className: "bg-green-500 text-white border-none",
+			className: "bg-brand-aqua text-white border-none",
 		});
 
 		// Next level
@@ -171,8 +171,8 @@ export default function SentenceRushPage() {
 				{/* Header */}
 				<div className="w-full flex justify-between items-center bg-card p-4 rounded-xl border shadow-sm">
 					<div className="flex items-center gap-3">
-						<div className="p-2 bg-yellow-100 rounded-full">
-							<Zap className="w-6 h-6 text-yellow-600 fill-yellow-600" />
+						<div className="p-2 bg-brand-gold/10 rounded-full">
+							<Zap className="w-6 h-6 text-brand-gold fill-brand-gold" />
 						</div>
 						<div>
 							<h1 className="font-bold text-xl leading-none">Sentence Rush</h1>
@@ -186,7 +186,7 @@ export default function SentenceRushPage() {
 						<div
 							className={cn(
 								"flex items-center gap-2",
-								timeLeft < 10 && "text-red-500 animate-pulse",
+								timeLeft < 10 && "text-destructive animate-pulse",
 							)}
 						>
 							<Timer className="w-5 h-5" />
@@ -211,7 +211,7 @@ export default function SentenceRushPage() {
 								<p className="text-muted-foreground max-w-md">
 									Você tem 60 segundos. Monte o máximo de frases que conseguir.
 									Cada acerto dá{" "}
-									<span className="text-green-600 font-bold">+5 segundos</span>.
+									<span className="text-brand-aqua font-bold">+5 segundos</span>.
 								</p>
 							</div>
 							<Button
@@ -279,7 +279,7 @@ export default function SentenceRushPage() {
 						<Card className="p-10 flex flex-col items-center text-center gap-6 animate-in zoom-in-95 duration-300 border-2 border-primary/20">
 							<div className="relative">
 								<Trophy className="w-24 h-24 text-yellow-500 mb-4 drop-shadow-lg" />
-								<div className="absolute -top-2 -right-2 bg-red-500 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center border-2 border-white shadow">
+								<div className="absolute -top-2 -right-2 bg-destructive text-white font-bold rounded-full w-10 h-10 flex items-center justify-center border-2 border-background shadow">
 									{score > 100 ? "S+" : score > 50 ? "A" : "B"}
 								</div>
 							</div>

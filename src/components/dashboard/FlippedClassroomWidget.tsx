@@ -11,12 +11,12 @@ export function FlippedClassroomWidget() {
 			<div className="relative z-10">
 				<div className="flex items-center justify-between mb-4">
 					<div className="flex items-center gap-2">
-						<div className="p-2 bg-indigo-500/20 rounded-lg">
-							<Play className="w-5 h-5 text-indigo-400" />
+						<div className="p-2 bg-primary/20 rounded-lg">
+							<Play className="w-5 h-5 text-primary" />
 						</div>
 						<h3 className="font-semibold text-foreground">Flipped Classroom</h3>
 					</div>
-					<span className="text-xs font-medium px-2.5 py-1 bg-indigo-500/20 text-indigo-400 rounded-full border border-indigo-500/20">
+					<span className="text-xs font-medium px-2.5 py-1 bg-primary/20 text-primary rounded-full border border-primary/20">
 						TREND 2025
 					</span>
 				</div>
@@ -28,7 +28,7 @@ export function FlippedClassroomWidget() {
 
 				<div className="space-y-3 mb-6">
 					<div className="flex items-center gap-3 p-3 bg-background/50 rounded-xl border border-border/50">
-						<CheckCircle className="w-5 h-5 text-emerald-500" />
+						<CheckCircle className="w-5 h-5 text-brand-aqua" />
 						<div className="flex-1">
 							<p className="text-sm font-medium text-foreground">
 								Material Base
@@ -39,16 +39,16 @@ export function FlippedClassroomWidget() {
 						</div>
 					</div>
 
-					<div className="flex items-center gap-3 p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
-						<Play className="w-5 h-5 text-indigo-500" />
+					<div className="flex items-center gap-3 p-3 bg-primary/10 rounded-xl border border-primary/20">
+						<Play className="w-5 h-5 text-primary" />
 						<div className="flex-1">
-							<p className="text-sm font-medium text-indigo-300">Vídeo-aula</p>
-							<p className="text-xs text-indigo-400/80">15 min restantes</p>
+							<p className="text-sm font-medium text-primary">Vídeo-aula</p>
+							<p className="text-xs text-primary/80">15 min restantes</p>
 						</div>
 					</div>
 				</div>
 
-				<Button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+				<Button className="w-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_15px_hsl(var(--primary)_/_0.3)]">
 					Continuar Assistindo
 				</Button>
 			</div>

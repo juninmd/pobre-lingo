@@ -108,27 +108,27 @@ export function TaskMissionWidget() {
 	};
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-cyan-50/50 to-blue-50/50 dark:from-cyan-950/20 dark:to-blue-950/20 border-cyan-200/50 dark:border-cyan-800/50 relative overflow-hidden">
-			<div className="absolute -right-4 -top-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl" />
+		<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/20 dark:to-primary/20 border-primary/20 dark:border-primary/50 relative overflow-hidden">
+			<div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-primary">
 					<Target className="w-4 h-4" />
 					Missão Prática
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-primary/70 bg-primary/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Briefcase className="w-3 h-3" />
 					Mundo Real
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<h4 className="font-bold text-cyan-900 dark:text-cyan-300 text-base mb-1">
+					<h4 className="font-bold text-primary text-base mb-1">
 						{scenario.title}
 					</h4>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-cyan-100 dark:border-cyan-900/50 text-sm mb-3">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-primary/15 dark:border-primary/50 text-sm mb-3">
 						<p className="text-muted-foreground mb-2">{scenario.context}</p>
 						<p className="font-semibold text-foreground flex items-start gap-2">
-							<Navigation className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
+							<Navigation className="w-4 h-4 text-primary shrink-0 mt-0.5" />
 							<span>{scenario.task}</span>
 						</p>
 					</div>
@@ -136,17 +136,17 @@ export function TaskMissionWidget() {
 					{!revealed ? (
 						<Button
 							variant="outline"
-							className="w-full border-cyan-200 text-cyan-700 hover:bg-cyan-50 dark:border-cyan-800 dark:text-cyan-400 dark:hover:bg-cyan-900/30 font-medium"
+							className="w-full border-primary/20 text-primary hover:bg-primary/10 dark:border-primary/70 dark:hover:bg-primary/30 font-medium"
 							onClick={() => setRevealed(true)}
 						>
 							Pense e depois veja a resposta
 						</Button>
 					) : (
-						<div className="bg-cyan-100/50 dark:bg-cyan-900/30 p-3 rounded-lg border border-cyan-200 dark:border-cyan-800 animate-in fade-in slide-in-from-top-2 duration-300">
-							<p className="font-bold text-cyan-800 dark:text-cyan-300 text-base mb-1">
+						<div className="bg-primary/15 dark:bg-primary/30 p-3 rounded-lg border border-primary/20 dark:border-primary/70 animate-in fade-in slide-in-from-top-2 duration-300">
+							<p className="font-bold text-primary text-base mb-1">
 								"{scenario.solution}"
 							</p>
-							<p className="text-xs text-cyan-600 dark:text-cyan-400/80 italic">
+							<p className="text-xs text-primary dark:text-primary/80 italic">
 								Tradução: {scenario.translation}
 							</p>
 
@@ -158,7 +158,7 @@ export function TaskMissionWidget() {
 								onClick={claimReward}
 							>
 								{claimed ? (
-									<span className="flex items-center gap-1.5 text-cyan-700 dark:text-cyan-400">
+									<span className="flex items-center gap-1.5 text-primary">
 										<CheckCircle2 className="w-4 h-4" />
 										Missão Cumprida!
 									</span>

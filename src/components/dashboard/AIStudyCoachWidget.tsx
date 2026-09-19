@@ -59,16 +59,16 @@ export function AIStudyCoachWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-violet-50/70 to-fuchsia-50/70 dark:from-violet-950/30 dark:to-fuchsia-950/30 border-violet-200/50 dark:border-violet-800/50 shadow-lg hover:shadow-violet-500/10">
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-brand-violet/10 to-brand-violet/10 dark:from-brand-violet/30 dark:to-brand-violet/30 border-brand-violet/20 dark:border-brand-violet/50 shadow-lg hover:shadow-brand-violet/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 border-none font-bold"
+						className="mb-2 bg-brand-violet/15 text-brand-violet dark:bg-brand-violet/60 border-none font-bold"
 					>
 						<Sparkles className="w-3 h-3 mr-1 inline" /> TREND 2025
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-violet-700 dark:text-violet-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-brand-violet">
 						<Brain className="w-5 h-5" />
 						<span>AI Study Coach</span>
 					</CardTitle>
@@ -80,30 +80,30 @@ export function AIStudyCoachWidget() {
 				</div>
 
 				{claimed ? (
-					<div className="p-4 bg-white/60 dark:bg-black/30 rounded-lg border border-violet-100 dark:border-violet-900 animate-in fade-in zoom-in duration-300">
-						<h4 className="font-bold text-violet-900 dark:text-violet-300 mb-2 flex items-center gap-2">
-							<MessageCircle className="w-4 h-4 text-violet-500" />
+					<div className="p-4 bg-white/60 dark:bg-black/30 rounded-lg border border-brand-violet/15 dark:border-brand-violet/60 animate-in fade-in zoom-in duration-300">
+						<h4 className="font-bold text-brand-violet mb-2 flex items-center gap-2">
+							<MessageCircle className="w-4 h-4 text-brand-violet" />
 							{tip.title}
 						</h4>
 						<p className="text-sm text-foreground/80 leading-relaxed mb-3">
 							"{tip.advice}"
 						</p>
-						<div className="bg-violet-100/50 dark:bg-violet-900/30 p-2 rounded text-center border border-violet-200 dark:border-violet-800">
-							<span className="flex items-center justify-center gap-1.5 text-violet-700 dark:text-violet-400 font-bold text-sm">
+						<div className="bg-brand-violet/15 dark:bg-brand-violet/30 p-2 rounded text-center border border-brand-violet/20 dark:border-brand-violet/70">
+							<span className="flex items-center justify-center gap-1.5 text-brand-violet font-bold text-sm">
 								<CheckCircle2 className="w-4 h-4" />
 								Dica do Coach Lida! (+{tip.xp} XP)
 							</span>
 						</div>
 					</div>
 				) : (
-					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-violet-300 dark:border-violet-700 flex flex-col items-center text-center space-y-3">
-						<Brain className="w-8 h-8 text-violet-400 dark:text-violet-600 mb-1" />
-						<p className="text-sm font-medium text-violet-800 dark:text-violet-300">
+					<div className="p-4 bg-white/40 dark:bg-black/20 rounded-lg border border-dashed border-brand-violet/30 dark:border-brand-violet/80 flex flex-col items-center text-center space-y-3">
+						<Brain className="w-8 h-8 text-brand-violet mb-1" />
+						<p className="text-sm font-medium text-brand-violet">
 							Pronto para analisar seu progresso e gerar uma dica de estudo
 							personalizada.
 						</p>
 						<Button
-							className="w-full gap-2 bg-violet-600 hover:bg-violet-700 text-white"
+							className="w-full gap-2 bg-brand-violet/90 hover:bg-brand-violet/80 text-white"
 							onClick={handleRequestAdvice}
 							disabled={isAnalyzing}
 						>

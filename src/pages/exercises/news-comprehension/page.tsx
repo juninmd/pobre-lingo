@@ -67,7 +67,7 @@ export default function NewsComprehensionPage() {
 				title="Interpretação de Artigos"
 				description="Pratique leitura e compreensão de texto em inglês com artigos reais."
 				icon={Newspaper}
-				iconClassName="text-cyan-500"
+				iconClassName="text-brand-aqua"
 				backLink="/"
 				backLabel="Voltar ao Início"
 			>

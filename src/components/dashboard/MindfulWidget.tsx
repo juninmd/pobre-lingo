@@ -86,29 +86,29 @@ export function MindfulWidget() {
 	};
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-teal-50/50 to-emerald-50/50 dark:from-teal-950/20 dark:to-emerald-950/20 border-teal-200/50 dark:border-teal-800/50 relative overflow-hidden group">
-			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-teal-500/10 rounded-full blur-2xl transition-all duration-1000 group-hover:scale-150 animate-pulse" />
+		<Card className="glass-card bg-gradient-to-br from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/20 dark:to-brand-aqua/20 border-brand-aqua/20 dark:border-brand-aqua/50 relative overflow-hidden group">
+			<div className="absolute -right-4 -bottom-4 w-24 h-24 bg-brand-aqua/10 rounded-full blur-2xl transition-all duration-1000 group-hover:scale-150 animate-pulse" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between relative z-10">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-teal-700 dark:text-teal-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-brand-aqua">
 					<HeartHandshake className="w-4 h-4" />
 					Mindful English
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-teal-500/70 bg-teal-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-brand-aqua/70 bg-brand-aqua/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Flower className="w-3 h-3" />
 					Bem-estar
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<p className="text-xs text-teal-600/70 dark:text-teal-400/70 font-medium uppercase tracking-wider mb-2 flex items-center gap-1">
+					<p className="text-xs text-brand-aqua/70 font-medium uppercase tracking-wider mb-2 flex items-center gap-1">
 						<Droplets className="w-3 h-3" /> Afirmação do Dia
 					</p>
 
-					<div className="bg-white/60 dark:bg-black/30 p-4 rounded-xl border border-teal-100 dark:border-teal-900/50 text-center relative shadow-sm mb-4">
-						<p className="text-lg font-medium text-teal-900 dark:text-teal-300 tracking-wide">
+					<div className="bg-white/60 dark:bg-black/30 p-4 rounded-xl border border-brand-aqua/15 dark:border-brand-aqua/50 text-center relative shadow-sm mb-4">
+						<p className="text-lg font-medium text-brand-aqua tracking-wide">
 							"{affirmation.phrase}"
 						</p>
-						<p className="text-sm text-teal-700/80 dark:text-teal-400/80 mt-2 italic">
+						<p className="text-sm text-brand-aqua/80 mt-2 italic">
 							{affirmation.translation}
 						</p>
 					</div>
@@ -116,18 +116,18 @@ export function MindfulWidget() {
 					{!reflected ? (
 						<Button
 							variant="outline"
-							className="w-full border-teal-200 text-teal-700 hover:bg-teal-50 dark:border-teal-800 dark:text-teal-400 dark:hover:bg-teal-900/30 font-medium transition-all"
+							className="w-full border-brand-aqua/20 text-brand-aqua hover:bg-brand-aqua/10 dark:border-brand-aqua/70 dark:hover:bg-brand-aqua/30 font-medium transition-all"
 							onClick={() => setReflected(true)}
 						>
 							Refletir e Aprender
 						</Button>
 					) : (
-						<div className="bg-teal-100/50 dark:bg-teal-900/30 p-3 rounded-xl border border-teal-200 dark:border-teal-800 animate-in fade-in zoom-in-95 duration-500">
+						<div className="bg-brand-aqua/15 dark:bg-brand-aqua/30 p-3 rounded-xl border border-brand-aqua/20 dark:border-brand-aqua/70 animate-in fade-in zoom-in-95 duration-500">
 							<div className="mb-3">
-								<span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400 block mb-1">
+								<span className="text-xs font-bold uppercase tracking-wider text-brand-aqua block mb-1">
 									Foco: {affirmation.focus}
 								</span>
-								<p className="text-sm text-teal-800 dark:text-teal-300">
+								<p className="text-sm text-brand-aqua">
 									{affirmation.grammar}
 								</p>
 							</div>
@@ -135,12 +135,12 @@ export function MindfulWidget() {
 							<Button
 								variant={claimed ? "secondary" : "default"}
 								size="sm"
-								className={`w-full font-bold shadow-sm ${claimed ? "" : "bg-teal-600 hover:bg-teal-700 text-white"}`}
+								className={`w-full font-bold shadow-sm ${claimed ? "" : "bg-brand-aqua/90 hover:bg-brand-aqua/80 text-white"}`}
 								disabled={claimed}
 								onClick={claimReward}
 							>
 								{claimed ? (
-									<span className="flex items-center gap-1.5 text-teal-700 dark:text-teal-400">
+									<span className="flex items-center gap-1.5 text-brand-aqua">
 										<CheckCircle2 className="w-4 h-4" />
 										Mente Tranquila
 									</span>

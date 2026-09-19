@@ -93,13 +93,13 @@ export default function ProficiencyTestPage() {
 						</p>
 						<div className="flex flex-wrap justify-center gap-3 font-medium">
 							<span className="inline-flex items-center gap-1">
-								<Trophy className="h-4 w-4 text-yellow-600" /> {xp} XP
+								<Trophy className="h-4 w-4 text-brand-gold" /> {xp} XP
 							</span>
 							<span>App nível {appLevel}</span>
 							<span>{streak} dias seguidos</span>
 						</div>
 						{result && (
-							<p className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1 text-green-700 dark:text-green-300">
+							<p className="inline-flex items-center gap-2 rounded-full bg-brand-aqua/10 px-3 py-1 text-brand-aqua">
 								<BadgeCheck className="h-4 w-4" /> Último resultado:{" "}
 								{result.level}
 							</p>

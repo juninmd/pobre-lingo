@@ -64,17 +64,17 @@ export function CommunicativeRoleplayWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-emerald-50/70 to-teal-50/70 dark:from-emerald-950/30 dark:to-teal-950/30 border-emerald-200/50 dark:border-teal-800/50 shadow-lg hover:shadow-emerald-500/10 relative overflow-hidden">
-			<div className="absolute -left-4 -top-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl" />
+		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/30 dark:to-brand-aqua/30 border-brand-aqua/20 dark:border-brand-aqua/50 shadow-lg hover:shadow-brand-aqua/10 relative overflow-hidden">
+			<div className="absolute -left-4 -top-4 w-24 h-24 bg-brand-aqua/10 rounded-full blur-2xl" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>
 					<Badge
 						variant="secondary"
-						className="mb-2 bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300 border-none font-bold"
+						className="mb-2 bg-brand-aqua/15 text-brand-aqua dark:bg-brand-aqua/60 border-none font-bold"
 					>
 						<Users className="w-3 h-3 mr-1 inline" /> CLT Method
 					</Badge>
-					<CardTitle className="text-lg flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+					<CardTitle className="text-lg flex items-center gap-2 text-brand-aqua">
 						<MessageSquare className="w-5 h-5" />
 						<span>Roleplay Prático</span>
 					</CardTitle>
@@ -82,13 +82,13 @@ export function CommunicativeRoleplayWidget() {
 			</CardHeader>
 			<CardContent className="space-y-4 relative z-10">
 				<div>
-					<h4 className="font-bold text-emerald-900 dark:text-emerald-300 text-base mb-1">
+					<h4 className="font-bold text-brand-aqua text-base mb-1">
 						{scenario.title}
 					</h4>
-					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-emerald-100 dark:border-emerald-900/50 text-sm mb-4">
+					<div className="bg-white/60 dark:bg-black/30 p-3 rounded-lg border border-brand-aqua/15 dark:border-brand-aqua/50 text-sm mb-4">
 						<p className="text-muted-foreground mb-3">{scenario.context}</p>
-						<p className="font-semibold text-foreground flex items-start gap-2 border-t border-emerald-100 dark:border-emerald-900/50 pt-3">
-							<Zap className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+						<p className="font-semibold text-foreground flex items-start gap-2 border-t border-brand-aqua/15 dark:border-brand-aqua/50 pt-3">
+							<Zap className="w-4 h-4 text-brand-aqua shrink-0 mt-0.5" />
 							<span>{scenario.task}</span>
 						</p>
 					</div>
@@ -97,7 +97,7 @@ export function CommunicativeRoleplayWidget() {
 						variant={claimed ? "secondary" : "gamified"}
 						className={`w-full font-bold shadow-sm ${
 							isRecording
-								? "bg-red-100 text-red-600 hover:bg-red-200 border-red-200"
+								? "bg-destructive/15 text-destructive hover:bg-destructive/20 border-destructive/20"
 								: ""
 						}`}
 						disabled={claimed || isRecording}
@@ -108,7 +108,7 @@ export function CommunicativeRoleplayWidget() {
 								<Mic className="w-4 h-4 animate-bounce" /> Gravando resposta...
 							</span>
 						) : claimed ? (
-							<span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+							<span className="flex items-center gap-1.5 text-brand-aqua">
 								<CheckCircle2 className="w-4 h-4" />
 								Prática Concluída! (+{scenario.xp} XP)
 							</span>

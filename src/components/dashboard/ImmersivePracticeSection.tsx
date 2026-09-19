@@ -31,6 +31,9 @@ import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
 import { NeuroELTWidget } from "./NeuroELTWidget";
 import { PlurilingualismWidget } from "./PlurilingualismWidget";
 import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
+import { AIPromptCraftingWidget } from "./AIPromptCraftingWidget";
+import { HyFlexLearningWidget } from "./HyFlexLearningWidget";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -46,75 +49,90 @@ export function ImmersivePracticeSection() {
 					</h3>
 				</div>
 
-				<div className="space-y-8">
-					{/* Category 1: Imersão Digital & IA */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>🤖</span> Imersão Digital & IA
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<AILanguagePartnerWidget />
-							<InteractiveAudioWidget />
-							<RealWorldARWidget />
-							<PronunciationWidget />
-							<DataDrivenLearningWidget />
-							<VirtualImmersionWidget />
-							<FlippedClassroomWidget />
-							<AdaptiveLearningWidget />
-						</div>
-					</div>
+				<Tabs defaultValue="digital-ai" className="w-full">
+					<TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden bg-background/50 backdrop-blur-md border border-border/50 h-auto p-1.5 gap-2 rounded-xl flex-nowrap md:flex-wrap mb-6 scrollbar-hide">
+						<TabsTrigger
+							value="digital-ai"
+							className="whitespace-nowrap px-4 py-2.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all"
+						>
+							<span className="mr-2">🤖</span> Digital & IA
+						</TabsTrigger>
+						<TabsTrigger
+							value="social"
+							className="whitespace-nowrap px-4 py-2.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all"
+						>
+							<span className="mr-2">👥</span> Social
+						</TabsTrigger>
+						<TabsTrigger
+							value="culture"
+							className="whitespace-nowrap px-4 py-2.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all"
+						>
+							<span className="mr-2">📱</span> Cultura
+						</TabsTrigger>
+						<TabsTrigger
+							value="methodologies"
+							className="whitespace-nowrap px-4 py-2.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all"
+						>
+							<span className="mr-2">🧠</span> Metodologias
+						</TabsTrigger>
+					</TabsList>
 
-					{/* Category 2: Conexão Humana & Social */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>👥</span> Conexão Humana & Social
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<LiveTutorWidget />
-							<CommunityChallengeWidget />
-							<PeerReviewWidget />
-							<MindfulWidget />
-							<DEIBWidget />
-							<GreenELTWidget />
-							<PlurilingualismWidget />
-							<CriticalPedagogyWidget />
-						</div>
-					</div>
+					<div className="space-y-8">
+						<TabsContent value="digital-ai" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+								<AIPromptCraftingWidget />
+								<AILanguagePartnerWidget />
+								<InteractiveAudioWidget />
+								<RealWorldARWidget />
+								<PronunciationWidget />
+								<DataDrivenLearningWidget />
+								<VirtualImmersionWidget />
+								<FlippedClassroomWidget />
+								<AdaptiveLearningWidget />
+							</div>
+						</TabsContent>
 
-					{/* Category 3: Nano-Learning & Cultura */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>📱</span> Nano-Learning & Cultura
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<SocialMediaReelsWidget />
-							<PopCultureWidget />
-						</div>
-					</div>
+						<TabsContent value="social" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+								<LiveTutorWidget />
+								<CommunityChallengeWidget />
+								<PeerReviewWidget />
+								<MindfulWidget />
+								<DEIBWidget />
+								<GreenELTWidget />
+								<PlurilingualismWidget />
+								<CriticalPedagogyWidget />
+							</div>
+						</TabsContent>
 
-					{/* Category 4: Metodologias Ativas */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>🧠</span> Metodologias Ativas
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<AIStudyCoachWidget />
-							<CommunicativeRoleplayWidget />
-							<TranslanguagingWidget />
-							<TaskMissionWidget />
-							<ProjectBasedLearningWidget />
-							<CLILWidget />
-							<StorytellingWidget />
-							<MicroLessonWidget />
-							<GlobalEnglishesWidget />
-							<LexicalApproachWidget />
-							<SpacedRepetitionWidget />
-							<DogmeELTWidget />
-							<AuthenticMaterialsWidget />
-							<NeuroELTWidget />
-						</div>
+						<TabsContent value="culture" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+								<SocialMediaReelsWidget />
+								<PopCultureWidget />
+							</div>
+						</TabsContent>
+
+						<TabsContent value="methodologies" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+								<HyFlexLearningWidget />
+								<AIStudyCoachWidget />
+								<CommunicativeRoleplayWidget />
+								<TranslanguagingWidget />
+								<TaskMissionWidget />
+								<ProjectBasedLearningWidget />
+								<CLILWidget />
+								<StorytellingWidget />
+								<MicroLessonWidget />
+								<GlobalEnglishesWidget />
+								<LexicalApproachWidget />
+								<SpacedRepetitionWidget />
+								<DogmeELTWidget />
+								<AuthenticMaterialsWidget />
+								<NeuroELTWidget />
+							</div>
+						</TabsContent>
 					</div>
-				</div>
+				</Tabs>
 			</section>
 		</>
 	);

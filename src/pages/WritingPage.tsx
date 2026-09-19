@@ -5,10 +5,12 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { DictationExercise } from "@/components/exercises/DictationExercise";
 import { WritingPromptEditor } from "@/components/exercises/WritingPromptEditor";
 import { Button } from "@/components/ui/button";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import type { CEFRLevel } from "@/lib/curriculumData";
 import { dictations, writingPrompts } from "@/lib/dictationData";
 
 export default function WritingPage() {
+	useStudyTimer("writing");
 	const [tab, setTab] = useState<"dictation" | "writing">("dictation");
 	const [level, setLevel] = useState<CEFRLevel>("A1");
 

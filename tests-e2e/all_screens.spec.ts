@@ -83,6 +83,13 @@ const SCREENS: Screen[] = [
 	{ name: "38-pronunciation", path: "/pronunciation", expect: /Pronúncia/ },
 	{ name: "39-tracks", path: "/tracks", expect: /Trilhas/ },
 	{ name: "40-tutor", path: "/tutor", expect: /Tutor de conversa/ },
+	{ name: "42-library", path: "/library", expect: /Leitor livre/ },
+	{
+		name: "43-listening-lab",
+		path: "/listening-lab",
+		expect: /Laboratório de escuta/i,
+	},
+	{ name: "44-progress", path: "/progress", expect: /Rumo à fluência/ },
 	{
 		name: "41-ex-conversation-scenario",
 		path: "/exercises/conversation?scenario=hotel-checkin",

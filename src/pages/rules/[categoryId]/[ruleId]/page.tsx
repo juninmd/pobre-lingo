@@ -23,6 +23,7 @@ import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useSrs } from "@/hooks/useSrs";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { curriculumData } from "@/lib/curriculumData";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";
 import { ruleReviewCards } from "@/lib/ruleReviewCards";
@@ -30,6 +31,7 @@ import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
 export default function RulePage() {
+	useStudyTimer("study");
 	const { categoryId, ruleId } = useParams<{
 		categoryId: string;
 		ruleId: string;

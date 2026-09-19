@@ -5,10 +5,12 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
 import { TutorSession } from "@/components/tutor/TutorSession";
 import { Button } from "@/components/ui/button";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getScenario, TUTOR_SCENARIOS } from "@/lib/ai/tutorPrompt";
 import { loadProficiencyResult } from "@/lib/proficiency";
 
 export default function TutorPage() {
+	useStudyTimer("speaking");
 	const [params, setParams] = useSearchParams();
 	const scenario = getScenario(params.get("scenario"));
 	const level = loadProficiencyResult()?.level ?? "A2";

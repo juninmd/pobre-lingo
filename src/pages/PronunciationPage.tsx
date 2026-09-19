@@ -6,11 +6,13 @@ import { SEO } from "@/components/common/SEO";
 import { FocusPicker } from "@/components/pronunciation/FocusPicker";
 import { FocusSession } from "@/components/pronunciation/FocusSession";
 import { usePersistentState } from "@/hooks/usePersistentState";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import type { PronunciationFocus } from "@/lib/pronunciation/types";
 
 type BestScores = Partial<Record<PronunciationFocus, number>>;
 
 export default function PronunciationPage() {
+	useStudyTimer("speaking");
 	const [focus, setFocus] = useState<PronunciationFocus | null>(null);
 	const [bestScores, setBestScores] = usePersistentState<BestScores>(
 		"pobrelingo_pron_best_scores",

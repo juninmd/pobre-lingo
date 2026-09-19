@@ -1,18 +1,29 @@
-import { ArrowLeft, CheckCircle2, Eye, EyeOff, Play, Pause, Volume2 } from "lucide-react";
+import {
+	ArrowLeft,
+	CheckCircle2,
+	Eye,
+	EyeOff,
+	Pause,
+	Play,
+	Volume2,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { PageContainer } from "@/components/common/PageContainer";
 import { CefrBadge } from "@/components/common/CefrBadge";
+import { PageContainer } from "@/components/common/PageContainer";
+import { PageHeader } from "@/components/common/PageHeader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PageHeader } from "@/components/common/PageHeader";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getReaderById } from "@/lib/gradedReaders";
+import { recordWordsRead } from "@/lib/studyLogStore";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
 export default function ReadingViewPage() {
+	useStudyTimer("reading");
 	const { readerId } = useParams<{ readerId: string }>();
 	const reader = getReaderById(readerId ?? "");
 	const { isRead, markRead } = useReadingProgress();
@@ -65,6 +76,14 @@ export default function ReadingViewPage() {
 	};
 
 	const finish = () => {
+		if (!isRead(reader.id)) {
+			recordWordsRead(
+				reader.lines.reduce(
+					(sum, line) => sum + line.en.split(/\s+/).length,
+					0,
+				),
+			);
+		}
 		markRead(reader.id);
 		navigate("/reading");
 	};
@@ -144,7 +163,11 @@ export default function ReadingViewPage() {
 						Voltar
 					</Link>
 				</Button>
-				<Button onClick={finish} variant={isRead(reader.id) ? "outline" : "default"} className="gap-2">
+				<Button
+					onClick={finish}
+					variant={isRead(reader.id) ? "outline" : "default"}
+					className="gap-2"
+				>
 					<CheckCircle2 className="h-4 w-4" />
 					{isRead(reader.id) ? "Marcado como lido" : "Marcar como lido"}
 				</Button>

@@ -75,6 +75,10 @@ const FluencyPage = React.lazy(() => import("./pages/FluencyPage"));
 const PronunciationPage = React.lazy(() => import("./pages/PronunciationPage"));
 const TracksPage = React.lazy(() => import("./pages/TracksPage"));
 const TutorPage = React.lazy(() => import("./pages/TutorPage"));
+const LibraryPage = React.lazy(() => import("./pages/LibraryPage"));
+const LibraryReaderPage = React.lazy(() => import("./pages/LibraryReaderPage"));
+const ListeningLabPage = React.lazy(() => import("./pages/ListeningLabPage"));
+const ProgressPage = React.lazy(() => import("./pages/ProgressPage"));
 const WritingPage = React.lazy(() => import("./pages/WritingPage"));
 const CheckpointsPage = React.lazy(() => import("./pages/CheckpointsPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
@@ -240,6 +244,30 @@ const router = createBrowserRouter([
 				),
 			},
 			{
+				path: "library",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<LibraryPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "library/:id",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<LibraryReaderPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "listening-lab",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<ListeningLabPage />
+					</Suspense>
+				),
+			},
+			{
 				path: "writing",
 				element: (
 					<Suspense fallback={<PageLoader />}>
@@ -273,7 +301,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "progress",
-				element: <Navigate to="/" replace />,
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<ProgressPage />
+					</Suspense>
+				),
 			},
 			{
 				path: "proficiency",

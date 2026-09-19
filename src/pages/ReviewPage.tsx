@@ -19,6 +19,7 @@ import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
 import { useSrs } from "@/hooks/useSrs";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { triggerConfetti } from "@/lib/confetti";
 import {
 	GRADE_AGAIN,
@@ -39,8 +40,7 @@ const GRADE_BUTTONS: {
 	{
 		grade: GRADE_AGAIN,
 		label: "Errei",
-		className:
-			"border-destructive/40 text-destructive hover:bg-destructive/10",
+		className: "border-destructive/40 text-destructive hover:bg-destructive/10",
 	},
 	{
 		grade: GRADE_HARD,
@@ -60,6 +60,7 @@ const GRADE_BUTTONS: {
 ];
 
 export default function ReviewPage() {
+	useStudyTimer("study");
 	const { dueCards, stats, gradeCard, removeCard } = useSrs();
 	const { addGem, addXp } = useGamification();
 	const { notify } = useNotifications();

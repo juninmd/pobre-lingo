@@ -2,20 +2,22 @@ import { BookMarked } from "lucide-react";
 import { useMemo, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
-import { CoreWordCard } from "@/components/vocabulary/CoreWordCard";
-import { VocabStats } from "@/components/vocabulary/VocabStats";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CoreWordCard } from "@/components/vocabulary/CoreWordCard";
+import { VocabStats } from "@/components/vocabulary/VocabStats";
 import { useKnownWords } from "@/hooks/useKnownWords";
 import { useSrs } from "@/hooks/useSrs";
+import { useStudyTimer } from "@/hooks/useStudyLog";
+import { getWordsByLevel, LEVEL_ORDER } from "@/lib/coreVocabulary";
 import type { CEFRLevel } from "@/lib/curriculumData";
-import { LEVEL_ORDER, getWordsByLevel } from "@/lib/coreVocabulary";
 
 const PAGE_SIZE = 60;
 
 const vocabCardId = (wordId: string) => `core-${wordId}`;
 
 export default function VocabularyVaultPage() {
+	useStudyTimer("study");
 	const [level, setLevel] = useState<CEFRLevel>("A1");
 	const { isKnown, toggleKnown, ids } = useKnownWords();
 	const [query, setQuery] = useState("");

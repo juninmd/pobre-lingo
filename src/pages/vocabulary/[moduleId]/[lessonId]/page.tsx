@@ -28,6 +28,7 @@ import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useSrs } from "@/hooks/useSrs";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { triggerConfetti } from "@/lib/confetti";
 import { curriculumData } from "@/lib/curriculumData";
 import { getWordsByTopic } from "@/lib/dictionaryData";
@@ -260,6 +261,7 @@ function ReadingLessonWrapper({
 // --------------------------------------------------------------------------------
 
 export default function LessonPage() {
+	useStudyTimer("study");
 	const { moduleId, lessonId } = useParams<{
 		moduleId: string;
 		lessonId: string;

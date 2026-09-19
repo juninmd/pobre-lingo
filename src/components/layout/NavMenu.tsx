@@ -1,9 +1,9 @@
 import {
 	AudioLines,
 	BookA,
-	Bot,
 	BookMarked,
 	BookOpen,
+	Bot,
 	Brain,
 	CheckSquare,
 	Coins,
@@ -12,6 +12,8 @@ import {
 	Gamepad2,
 	Gauge,
 	GraduationCap,
+	Headphones,
+	LibraryBig,
 	ListChecks,
 	Map as MapIcon,
 	Menu,
@@ -22,6 +24,7 @@ import {
 	Settings,
 	Sparkles,
 	Sun,
+	TrendingUp,
 	Trophy,
 	X,
 } from "lucide-react";
@@ -31,11 +34,11 @@ import {
 	GlobalSearch,
 	GlobalSearchTrigger,
 } from "@/components/common/GlobalSearch";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
-import { BrandMark } from "@/components/layout/BrandMark";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -86,6 +89,13 @@ export const navGroups = [
 	{
 		title: "Habilidades",
 		items: [
+			{ href: "/progress", label: "Rumo à fluência", icon: TrendingUp },
+			{ href: "/library", label: "Leitor livre", icon: LibraryBig },
+			{
+				href: "/listening-lab",
+				label: "Laboratório de escuta",
+				icon: Headphones,
+			},
 			{ href: "/reading", label: "Leitura & Escuta", icon: BookOpen },
 			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
 			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
@@ -216,12 +226,7 @@ export function NavMenu() {
 															to={item.href}
 															className="flex items-center gap-3"
 														>
-															<item.icon
-																className={cn(
-																	"h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110",
-																	isActive && "text-primary",
-																)}
-															/>
+															<item.icon className="h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110" />
 															{!isCollapsed && (
 																<span className="truncate text-sm">
 																	{item.label}

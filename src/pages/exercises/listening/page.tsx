@@ -2,8 +2,10 @@ import { Headphones } from "lucide-react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListeningExercise } from "@/components/exercises/ListeningExercise";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 
 export default function ListeningPage() {
+	useStudyTimer("listening");
 	return (
 		<PageContainer>
 			<PageHeader

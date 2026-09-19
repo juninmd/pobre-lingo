@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
+import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
 import { PracticeHub } from "@/components/dashboard/PracticeHub";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
@@ -42,6 +43,7 @@ export default function DashboardPage() {
 
 			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
+					<FluencyJourneyCard />
 					<ContinueLearningCard />
 					<section>
 						<Suspense

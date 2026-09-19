@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useToast } from "@/hooks/use-toast";
+import { scoreSpeech } from "@/lib/speechMatch";
 
 const PRACTICE_PHRASES = [
 	{ text: "I love learning English", translation: "Eu amo aprender inglês" },
@@ -95,29 +96,13 @@ export function PronunciationWidget() {
 			setTranscript(resultTranscript);
 			setIsRecording(false);
 
-			// Simple scoring: check word overlap
-			const targetWords = currentPhrase.text
-				.toLowerCase()
-				.replace(/[?,.!]/g, "")
-				.split(" ");
-			const spokenWords = resultTranscript
-				.toLowerCase()
-				.replace(/[?,.!]/g, "")
-				.split(" ");
-
-			let matchCount = 0;
-			for (const word of targetWords) {
-				if (spokenWords.includes(word)) {
-					matchCount++;
-				}
-			}
-
-			const calculatedScore = Math.round(
-				(matchCount / targetWords.length) * 100,
+			const { score: calculatedScore, passed } = scoreSpeech(
+				currentPhrase.text,
+				resultTranscript,
 			);
 			setScore(calculatedScore);
 
-			if (calculatedScore > 70) {
+			if (passed) {
 				const earnedXp = Math.round(calculatedScore / 10);
 				addXp(earnedXp);
 				toast({

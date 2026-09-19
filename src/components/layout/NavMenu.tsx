@@ -1,10 +1,13 @@
 import {
+	AudioLines,
 	BookA,
+	Bot,
 	BookMarked,
 	BookOpen,
 	Brain,
 	CheckSquare,
 	Coins,
+	Compass,
 	FileText,
 	Gamepad2,
 	Gauge,
@@ -87,6 +90,9 @@ export const navGroups = [
 			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
 			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
 			{ href: "/fluency", label: "Fluência", icon: Gauge },
+			{ href: "/pronunciation", label: "Pronúncia", icon: AudioLines },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: Compass },
 		],
 	},
 	{

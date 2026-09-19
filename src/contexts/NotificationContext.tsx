@@ -24,6 +24,7 @@ import {
 	showBrowserNotification,
 	wasDispatched,
 } from "@/lib/notifications";
+import { setStreakReminder } from "@/lib/streakReminder";
 
 /** De quanto em quanto tempo as regras são reavaliadas com a aba aberta. */
 const RULE_TICK_MS = 60_000;
@@ -176,6 +177,7 @@ export function NotificationProvider({
 		setPermission(result);
 		const granted = result === "granted";
 		updatePrefs({ browserEnabled: granted });
+		if (granted) void setStreakReminder(true);
 		return granted;
 	}, [updatePrefs]);
 

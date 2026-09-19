@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AiWritingFeedback } from "@/components/writing/AiWritingFeedback";
 import type { WritingPrompt } from "@/lib/dictationData";
 
 type Feedback = { ok: boolean; text: string };
@@ -20,7 +21,10 @@ export function WritingPromptEditor({ prompt }: { prompt: WritingPrompt }) {
 				ok: words.length >= prompt.minWords,
 				text: `Tamanho: ${words.length} palavras (meta: ${prompt.minWords}+)`,
 			},
-			{ ok: sentences.length >= 3, text: `Frases: ${sentences.length} (busque 3+)` },
+			{
+				ok: sentences.length >= 3,
+				text: `Frases: ${sentences.length} (busque 3+)`,
+			},
 			{ ok: /^[A-Z]/.test(text.trim()), text: "Comece com letra maiúscula" },
 			{ ok: /[.!?]\s*$/.test(text.trim()), text: "Termine com . ! ou ?" },
 		];
@@ -57,17 +61,27 @@ export function WritingPromptEditor({ prompt }: { prompt: WritingPrompt }) {
 					onChange={(event) => setText(event.target.value)}
 					rows={8}
 					placeholder="Escreva seu texto em inglês aqui..."
+					aria-label="Escreva seu texto em inglês"
 					className="w-full rounded-xl border border-border bg-background/60 p-3 text-base outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
 				/>
 
-				<div className="flex justify-end">
-					<Button onClick={evaluate} disabled={text.trim().length < 5}>
+				<div className="flex flex-wrap justify-end gap-2">
+					<AiWritingFeedback
+						topic={prompt.prompt}
+						text={text}
+						level={prompt.level}
+					/>
+					<Button
+						type="button"
+						onClick={evaluate}
+						disabled={text.trim().length < 5}
+					>
 						Avaliar texto
 					</Button>
 				</div>
 
 				{feedback && (
-					<ul className="space-y-1.5">
+					<ul className="space-y-1.5" role="status" aria-live="polite">
 						{feedback.map((item) => (
 							<li
 								key={item.text}
@@ -76,9 +90,12 @@ export function WritingPromptEditor({ prompt }: { prompt: WritingPrompt }) {
 								}`}
 							>
 								{item.ok ? (
-									<CheckCircle2 className="h-4 w-4" />
+									<CheckCircle2 className="h-4 w-4" aria-hidden="true" />
 								) : (
-									<XCircle className="h-4 w-4 text-destructive" />
+									<XCircle
+										className="h-4 w-4 text-destructive"
+										aria-hidden="true"
+									/>
 								)}
 								{item.text}
 							</li>

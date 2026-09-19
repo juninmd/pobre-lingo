@@ -258,7 +258,11 @@ export default function MatchMadnessPage() {
 						</div>
 					</div>
 
-					<div className="flex items-center gap-3 text-right">
+					<div
+						className="flex items-center gap-3 text-right"
+						aria-live="polite"
+						role="status"
+					>
 						<div className="flex flex-col items-end">
 							<span className="text-xs text-muted-foreground font-bold uppercase">
 								Tempo
@@ -292,8 +296,9 @@ export default function MatchMadnessPage() {
 							</h1>
 							<p className="text-lg text-muted-foreground max-w-md mx-auto">
 								Combine o máximo de pares possível antes que o tempo acabe! Cada
-								acerto dá <span className="text-brand-aqua font-bold">+2s</span>.
-								Erros tiram <span className="text-destructive font-bold">-3s</span>.
+								acerto dá <span className="text-brand-aqua font-bold">+2s</span>
+								. Erros tiram{" "}
+								<span className="text-destructive font-bold">-3s</span>.
 							</p>
 						</div>
 						<div className="grid grid-cols-2 gap-4 w-full max-w-sm mt-4">
@@ -356,7 +361,10 @@ export default function MatchMadnessPage() {
 				)}
 
 				{isPlaying && (
-					<div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 flex-1 content-start mt-4">
+					<fieldset
+						className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 flex-1 content-start mt-4"
+						aria-label="Cartas para combinar"
+					>
 						{cards.map((card) => {
 							const isSelected = selectedCards.includes(card.id);
 							const isError = card.error;
@@ -366,6 +374,13 @@ export default function MatchMadnessPage() {
 								<button
 									key={card.id}
 									onClick={() => handleCardClick(card.id)}
+									type="button"
+									aria-pressed={isSelected}
+									aria-label={
+										isMatched
+											? `Carta combinada: ${card.text}`
+											: `Carta: ${card.text}`
+									}
 									disabled={isMatched}
 									className={cn(
 										"relative h-24 sm:h-32 rounded-xl border-b-[6px] font-bold text-lg sm:text-xl transition-all duration-100 flex items-center justify-center p-2 select-none",
@@ -384,7 +399,7 @@ export default function MatchMadnessPage() {
 								</button>
 							);
 						})}
-					</div>
+					</fieldset>
 				)}
 			</div>
 		</PageContainer>

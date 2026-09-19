@@ -117,13 +117,7 @@ export function DailyQuestsWidget() {
 							/>
 							Meta do Dia
 						</span>
-						<span
-							className={
-								goalReached
-									? "text-brand-aqua"
-									: "text-primary"
-							}
-						>
+						<span className={goalReached ? "text-brand-aqua" : "text-primary"}>
 							{activityCount} / {DAILY_GOAL} atividades
 						</span>
 					</div>

@@ -72,6 +72,9 @@ const VocabularyVaultPage = React.lazy(
 	() => import("./pages/VocabularyVaultPage"),
 );
 const FluencyPage = React.lazy(() => import("./pages/FluencyPage"));
+const PronunciationPage = React.lazy(() => import("./pages/PronunciationPage"));
+const TracksPage = React.lazy(() => import("./pages/TracksPage"));
+const TutorPage = React.lazy(() => import("./pages/TutorPage"));
 const WritingPage = React.lazy(() => import("./pages/WritingPage"));
 const CheckpointsPage = React.lazy(() => import("./pages/CheckpointsPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
@@ -209,6 +212,30 @@ const router = createBrowserRouter([
 				element: (
 					<Suspense fallback={<PageLoader />}>
 						<FluencyPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "pronunciation",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<PronunciationPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "tracks",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<TracksPage />
+					</Suspense>
+				),
+			},
+			{
+				path: "tutor",
+				element: (
+					<Suspense fallback={<PageLoader />}>
+						<TutorPage />
 					</Suspense>
 				),
 			},

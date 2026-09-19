@@ -13,19 +13,19 @@ test.beforeEach(async ({ page }) => {
 	});
 });
 
-test("jornada mostra a trilha de niveis A1->C2 e a licao ativa", async ({ page }) => {
+test("jornada mostra a trilha de niveis A1->C2 e a licao ativa", async ({
+	page,
+}) => {
 	await page.goto("/");
-	await expect(
-		page.getByRole("heading", { name: "Sua Jornada" }),
-	).toBeVisible({ timeout: 10_000 });
+	await expect(page.getByRole("heading", { name: "Sua Jornada" })).toBeVisible({
+		timeout: 10_000,
+	});
 
 	const roadmap = page.getByText("Trilha da Fluência").first();
 	await expect(roadmap).toBeVisible();
 
 	for (const level of ["A1", "A2", "B1", "B2", "C1", "C2"]) {
-		await expect(
-			page.getByText(level, { exact: true }).first(),
-		).toBeVisible();
+		await expect(page.getByText(level, { exact: true }).first()).toBeVisible();
 	}
 
 	await expect(page.getByText("Você está aqui").first()).toBeVisible();
@@ -57,7 +57,9 @@ test("clicar na licao ativa abre a licao", async ({ page }) => {
 	await page.screenshot({ path: "e2e-screenshots/flow-lesson-open.png" });
 });
 
-test("licoes de presente, passado e futuro ensinam o conteudo", async ({ page }) => {
+test("licoes de presente, passado e futuro ensinam o conteudo", async ({
+	page,
+}) => {
 	const cases = [
 		{
 			id: "present-tenses-lesson",
@@ -83,20 +85,21 @@ test("licoes de presente, passado e futuro ensinam o conteudo", async ({ page })
 		await page.goto(
 			`/rules?module=verb-tenses&lesson=${item.id}&ruleIds=${item.ruleIds}`,
 		);
-		await page.waitForURL(
-			new RegExp(`/rules/tempos-verbais/${item.slug}`),
+		await page.waitForURL(new RegExp(`/rules/tempos-verbais/${item.slug}`), {
+			timeout: 10_000,
+		});
+		await expect(page.getByRole("heading", { name: item.heading })).toBeVisible(
 			{ timeout: 10_000 },
 		);
-		await expect(
-			page.getByRole("heading", { name: item.heading }),
-		).toBeVisible({ timeout: 10_000 });
 		await page.screenshot({ path: `e2e-screenshots/flow-${item.id}.png` });
 	}
 });
 
 const grammarLessons = curriculumData.modules.flatMap((module) =>
 	module.lessons
-		.filter((lesson) => lesson.type === "grammar" && lesson.grammarRuleIds?.length)
+		.filter(
+			(lesson) => lesson.type === "grammar" && lesson.grammarRuleIds?.length,
+		)
 		.map((lesson) => ({
 			moduleId: module.id,
 			lessonId: lesson.id,
@@ -117,7 +120,9 @@ test("toda licao de gramatica encontra a regra (sem regra quebrada)", async ({
 		await expect(
 			page.getByText("Nenhuma regra gramatical encontrada"),
 		).toHaveCount(0);
-		await expect(page.locator("h1, h2").first()).toBeVisible({
+		await expect(
+			page.locator("h1, h2").filter({ visible: true }).first(),
+		).toBeVisible({
 			timeout: 10_000,
 		});
 	}

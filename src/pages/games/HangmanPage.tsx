@@ -147,7 +147,11 @@ export default function HangmanPage() {
 					{/* Word & Hint Area */}
 					<div className="flex flex-col gap-6 justify-center">
 						{/* Word Display */}
-						<div className="flex flex-wrap gap-2 justify-center">
+						<div
+							className="flex flex-wrap gap-2 justify-center"
+							aria-live="polite"
+							role="status"
+						>
 							{currentEntry.word.split("").map((char, index) => {
 								const upperChar = char.toUpperCase();
 								const isGuessed = guessedLetters.has(upperChar);
@@ -228,6 +232,8 @@ export default function HangmanPage() {
 							return (
 								<button
 									key={letter}
+									type="button"
+									aria-pressed={isGuessed}
 									disabled={isGuessed || status !== "playing"}
 									onClick={() => handleGuess(letter)}
 									className={cn(
@@ -367,7 +373,10 @@ function HangmanDrawing({ lives }: { lives: number }) {
 		<svg
 			viewBox="0 0 300 300"
 			className="w-full h-full max-w-[200px] text-slate-800 dark:text-slate-200"
+			role="img"
+			aria-labelledby="hangman-drawing-title"
 		>
+			<title id="hangman-drawing-title">{`Boneco da forca, ${lives} vida(s) restante(s)`}</title>
 			{parts}
 		</svg>
 	);

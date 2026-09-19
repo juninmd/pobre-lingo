@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData, type Lesson, type Module } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
+import { getNextIncompleteLessonAtLevel } from "@/lib/placement/startingPoint";
+import { loadProficiencyResult } from "@/lib/proficiency";
 import { cn } from "@/lib/utils";
 
 const getIcon = (name: string) => {
@@ -19,12 +21,24 @@ interface NextLesson {
 	module: Module;
 	lesson: Lesson;
 	link: string;
+	recommended: boolean;
 }
 
 export function ContinueLearningCard() {
 	const { isLessonCompleted } = useCurriculumProgress();
 
 	const next = useMemo((): NextLesson | null => {
+		const placement = loadProficiencyResult();
+		if (placement) {
+			const recommended = getNextIncompleteLessonAtLevel(
+				placement.level,
+				isLessonCompleted,
+			);
+			if (recommended) {
+				return { ...recommended, recommended: true };
+			}
+		}
+
 		for (const module of [...curriculumData.modules].sort(
 			(a, b) => a.order - b.order,
 		)) {
@@ -32,7 +46,12 @@ export function ContinueLearningCard() {
 				(a, b) => a.order - b.order,
 			)) {
 				if (!isLessonCompleted(module.id, lesson.id)) {
-					return { module, lesson, link: getLessonLink(module, lesson) };
+					return {
+						module,
+						lesson,
+						link: getLessonLink(module, lesson),
+						recommended: false,
+					};
 				}
 			}
 		}
@@ -59,7 +78,7 @@ export function ContinueLearningCard() {
 		);
 	}
 
-	const { module, lesson, link } = next;
+	const { module, lesson, link, recommended } = next;
 	const ModuleIcon = getIcon(module.icon);
 
 	return (
@@ -84,7 +103,7 @@ export function ContinueLearningCard() {
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
 								<span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
-									A SEGUIR
+									{recommended ? "RECOMENDADO PARA VOCÊ" : "A SEGUIR"}
 								</span>
 								<p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
 									{module.title_pt}

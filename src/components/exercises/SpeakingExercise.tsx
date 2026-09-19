@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { scoreSpeech } from "@/lib/speechMatch";
 import { tts } from "@/lib/tts";
 
 interface SpeakingPhrase {
@@ -51,26 +52,8 @@ export function SpeakingExercise({
 
 	useEffect(() => {
 		const verifySpeech = (transcript: string) => {
-			// Normalize texts for comparison
-			const normalize = (text: string) =>
-				text
-					.toLowerCase()
-					.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")
-					.trim();
-
-			const target = normalize(currentPhrase.phrase);
-			const spoken = normalize(transcript);
-
-			// Simple fuzzy match check (exact match or contains the phrase)
-			if (
-				spoken === target ||
-				spoken.includes(target) ||
-				target.includes(spoken)
-			) {
-				setFeedback("correct");
-			} else {
-				setFeedback("incorrect");
-			}
+			const { passed } = scoreSpeech(currentPhrase.phrase, transcript);
+			setFeedback(passed ? "correct" : "incorrect");
 		};
 
 		if (supported) {
@@ -140,17 +123,17 @@ export function SpeakingExercise({
 	const handleManualPass = () => {
 		// Fallback for when API fails or is not supported
 		setFeedback("correct");
-		setSpokenText("(Manual verification)");
+		setSpokenText("(Verificação manual)");
 	};
 
 	if (!supported) {
 		return (
 			<Card className="max-w-2xl mx-auto mt-8">
 				<CardContent className="p-6 flex flex-col items-center text-center space-y-6">
-					<h3 className="text-xl font-bold">Speaking Practice</h3>
+					<h3 className="text-xl font-bold">Prática de Fala</h3>
 					<p className="text-muted-foreground">
-						Your browser does not support speech recognition. Use "Listen and
-						Self-Check".
+						Seu navegador não suporta reconhecimento de voz. Use "Ouvir e
+						Autoavaliar".
 					</p>
 
 					<div className="p-8 bg-blue-50 rounded-xl w-full">
@@ -161,16 +144,18 @@ export function SpeakingExercise({
 					</div>
 
 					<Button
+						type="button"
 						onClick={playAudio}
 						variant="outline"
 						size="lg"
 						className="w-full"
 					>
-						<Volume2 className="mr-2 h-5 w-5" /> Listen
+						<Volume2 className="mr-2 h-5 w-5" aria-hidden="true" /> Ouvir
 					</Button>
 
-					<Button onClick={handleNext} size="lg" className="w-full">
-						I said it correctly <CheckCircle2 className="ml-2 h-5 w-5" />
+					<Button type="button" onClick={handleNext} size="lg" className="w-full">
+						Eu disse corretamente{" "}
+						<CheckCircle2 className="ml-2 h-5 w-5" aria-hidden="true" />
 					</Button>
 				</CardContent>
 			</Card>
@@ -181,9 +166,9 @@ export function SpeakingExercise({
 		<div className="space-y-6 max-w-2xl mx-auto">
 			<div className="flex justify-between text-sm text-muted-foreground mb-2">
 				<span>
-					Phrase {currentIndex + 1} of {phrases.length}
+					Frase {currentIndex + 1} de {phrases.length}
 				</span>
-				<span>{Math.round(progress)}% Complete</span>
+				<span>{Math.round(progress)}% Concluído</span>
 			</div>
 			<Progress value={progress} className="h-2" />
 
@@ -202,32 +187,39 @@ export function SpeakingExercise({
 					{/* Controls */}
 					<div className="flex gap-4 w-full justify-center">
 						<Button
+							type="button"
 							onClick={playAudio}
 							variant="secondary"
 							size="lg"
 							className="rounded-full w-16 h-16 p-0"
+							aria-label="Ouvir frase"
 						>
-							<Volume2 className="h-8 w-8" />
+							<Volume2 className="h-8 w-8" aria-hidden="true" />
 						</Button>
 
 						<Button
+							type="button"
 							onClick={startListening}
 							disabled={isListening || feedback === "correct"}
 							variant={isListening ? "destructive" : "default"}
 							size="lg"
 							className={`rounded-full w-24 h-24 p-0 shadow-lg transition-all ${isListening ? "animate-pulse" : ""}`}
+							aria-label={isListening ? "Ouvindo..." : "Falar"}
+							aria-pressed={isListening}
 						>
-							<Mic className="h-10 w-10" />
+							<Mic className="h-10 w-10" aria-hidden="true" />
 						</Button>
 					</div>
 
 					<p className="text-sm text-muted-foreground h-4">
-						{isListening ? "Listening..." : "Tap the mic and speak"}
+						{isListening ? "Ouvindo..." : "Toque no microfone e fale"}
 					</p>
 
 					{/* Feedback Area */}
 					{(spokenText || feedback !== "idle") && (
 						<div
+							role="status"
+							aria-live="polite"
 							className={`w-full p-4 rounded-lg border-2 ${
 								feedback === "correct"
 									? "bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900/50"
@@ -243,10 +235,14 @@ export function SpeakingExercise({
 							{feedback === "correct" && (
 								<div className="flex flex-col items-center text-green-600 gap-2">
 									<span className="flex items-center font-bold">
-										<CheckCircle2 className="mr-2" /> Perfect!
+										<CheckCircle2 className="mr-2" aria-hidden="true" /> Perfeito!
 									</span>
-									<Button onClick={handleNext} className="w-full mt-2">
-										Next Phrase
+									<Button
+										type="button"
+										onClick={handleNext}
+										className="w-full mt-2"
+									>
+										Próxima Frase
 									</Button>
 								</div>
 							)}
@@ -254,22 +250,26 @@ export function SpeakingExercise({
 							{feedback === "incorrect" && (
 								<div className="flex flex-col items-center text-red-600 gap-2">
 									<span className="flex items-center font-bold">
-										<XCircle className="mr-2" /> Try Again
+										<XCircle className="mr-2" aria-hidden="true" /> Tente
+										Novamente
 									</span>
 									<div className="flex gap-2 w-full mt-2">
 										<Button
+											type="button"
 											variant="outline"
 											onClick={() => setFeedback("idle")}
 											className="flex-1"
 										>
-											<RotateCcw className="mr-2 h-4 w-4" /> Retry
+											<RotateCcw className="mr-2 h-4 w-4" aria-hidden="true" />{" "}
+											Repetir
 										</Button>
 										<Button
+											type="button"
 											variant="ghost"
 											onClick={handleManualPass}
 											className="flex-1 text-xs text-muted-foreground"
 										>
-											Skip
+											Pular
 										</Button>
 									</div>
 								</div>

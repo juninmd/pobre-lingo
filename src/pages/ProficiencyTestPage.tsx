@@ -1,7 +1,7 @@
 import { BadgeCheck, GraduationCap, Trophy } from "lucide-react";
 import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
-import { QuestionCard } from "@/components/proficiency/QuestionCard";
+import { AdaptiveQuestionCard } from "@/components/proficiency/AdaptiveQuestionCard";
 import { ResultCard } from "@/components/proficiency/ResultCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,38 +13,66 @@ import {
 } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
 import {
-	calculateProficiency,
+	type AdaptiveState,
+	applyAnswer,
+	createAdaptiveState,
+	isComplete,
+	pickNextItem,
+} from "@/lib/placement/adaptive";
+import { placementBank } from "@/lib/placement/bank";
+import type { PlacementItem } from "@/lib/placement/types";
+import {
 	loadProficiencyResult,
 	type ProficiencyResult,
 	saveProficiencyResult,
 } from "@/lib/proficiency";
-import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
+import { calculateProficiencyFromAdaptive } from "@/lib/proficiencyAdaptive";
 
 export default function ProficiencyTestPage() {
 	const { level: appLevel, xp, streak } = useGamification();
 	const [started, setStarted] = useState(false);
-	const [index, setIndex] = useState(0);
-	const [answers, setAnswers] = useState<Record<number, string>>({});
+	const [state, setState] = useState<AdaptiveState>(() =>
+		createAdaptiveState(),
+	);
+	const [current, setCurrent] = useState<PlacementItem | null>(null);
 	const [result, setResult] = useState<ProficiencyResult | null>(() =>
 		loadProficiencyResult(),
 	);
-	const question = proficiencyQuestions[index];
 
 	const start = () => {
+		const initial = createAdaptiveState();
+		setState(initial);
+		setCurrent(pickNextItem(placementBank, initial));
+		setResult(null);
 		setStarted(true);
-		setIndex(0);
-		setAnswers({});
 	};
 
-	const next = () => {
-		if (index < proficiencyQuestions.length - 1) {
-			setIndex((current) => current + 1);
-			return;
-		}
-		const calculated = calculateProficiency(answers);
+	const finish = (finalState: AdaptiveState) => {
+		const calculated = calculateProficiencyFromAdaptive(
+			finalState.answers,
+			finalState.finalLevel,
+		);
 		setResult(calculated);
 		saveProficiencyResult(calculated);
 		setStarted(false);
+	};
+
+	const answer = (optionIndex: number) => {
+		if (!current) return;
+		const nextState = applyAnswer(
+			state,
+			current,
+			optionIndex === current.answer,
+		);
+		setState(nextState);
+		const nextItem = isComplete(nextState)
+			? null
+			: pickNextItem(placementBank, nextState);
+		if (!nextItem) {
+			finish(nextState);
+			return;
+		}
+		setCurrent(nextItem);
 	};
 
 	if (result && !started) {
@@ -57,19 +85,14 @@ export default function ProficiencyTestPage() {
 		);
 	}
 
-	if (started) {
+	if (started && current) {
 		return (
 			<PageContainer>
 				<div className="mx-auto max-w-2xl">
-					<QuestionCard
-						question={question}
-						index={index}
-						total={proficiencyQuestions.length}
-						value={answers[question.id] || ""}
-						onAnswer={(value) =>
-							setAnswers((current) => ({ ...current, [question.id]: value }))
-						}
-						onNext={next}
+					<AdaptiveQuestionCard
+						item={current}
+						index={state.answers.length}
+						onAnswer={answer}
 					/>
 				</div>
 			</PageContainer>
@@ -88,8 +111,9 @@ export default function ProficiencyTestPage() {
 					</CardHeader>
 					<CardContent className="space-y-4 text-center text-sm text-muted-foreground">
 						<p>
-							Descubra seu nível provável A1-C2 e receba um plano diário ligado
-							a IELTS, TOEFL iBT e Cambridge.
+							Teste adaptativo (até 20 questões): as perguntas se ajustam ao seu
+							nível para descobrir seu CEFR provável, com equivalência IELTS,
+							TOEFL iBT e Cambridge.
 						</p>
 						<div className="flex flex-wrap justify-center gap-3 font-medium">
 							<span className="inline-flex items-center gap-1">

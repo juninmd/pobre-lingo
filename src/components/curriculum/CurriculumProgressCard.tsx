@@ -31,44 +31,44 @@ const lessonTypeConfig = {
 	grammar: {
 		label: "Gramática",
 		icon: BookOpen,
-		color: "text-blue-600 dark:text-blue-400",
-		bgColor: "bg-blue-100 dark:bg-blue-900/30",
+		color: "text-primary",
+		bgColor: "bg-primary/10",
 	},
 	vocabulary: {
 		label: "Vocabulário",
 		icon: Star,
-		color: "text-purple-600 dark:text-purple-400",
-		bgColor: "bg-purple-100 dark:bg-purple-900/30",
+		color: "text-brand-violet",
+		bgColor: "bg-brand-violet/10",
 	},
 	exercise: {
 		label: "Exercício",
 		icon: Target,
-		color: "text-green-600 dark:text-green-400",
-		bgColor: "bg-green-100 dark:bg-green-900/30",
+		color: "text-brand-aqua",
+		bgColor: "bg-brand-aqua/10",
 	},
 	reading: {
 		label: "Leitura",
 		icon: BookOpen,
-		color: "text-cyan-600 dark:text-cyan-400",
-		bgColor: "bg-cyan-100 dark:bg-cyan-900/30",
+		color: "text-primary",
+		bgColor: "bg-primary/10",
 	},
 	quiz: {
 		label: "Quiz",
 		icon: Trophy,
-		color: "text-yellow-600 dark:text-yellow-400",
-		bgColor: "bg-yellow-100 dark:bg-yellow-900/30",
+		color: "text-brand-gold",
+		bgColor: "bg-brand-gold/10",
 	},
 	culture: {
 		label: "Cultura",
 		icon: LucideIcons.Globe,
-		color: "text-teal-600 dark:text-teal-400",
-		bgColor: "bg-teal-100 dark:bg-teal-900/30",
+		color: "text-brand-aqua",
+		bgColor: "bg-brand-aqua/10",
 	},
 	speaking: {
 		label: "Fala",
 		icon: Mic,
-		color: "text-rose-600 dark:text-rose-400",
-		bgColor: "bg-rose-100 dark:bg-rose-900/30",
+		color: "text-destructive",
+		bgColor: "bg-destructive/10",
 	},
 };
 
@@ -166,7 +166,7 @@ export function CurriculumProgressCard() {
 					<div className="space-y-1">
 						<p className="text-sm text-muted-foreground">Nível</p>
 						<p className="text-2xl font-bold flex items-center gap-1">
-							<Star className="h-5 w-5 text-yellow-600" />
+							<Star className="h-5 w-5 text-brand-gold" />
 							{userLevel}
 						</p>
 					</div>
@@ -207,7 +207,7 @@ export function CurriculumProgressCard() {
 					<div className="space-y-2">
 						<div className="flex items-center justify-between">
 							<div className="flex items-center gap-2">
-								<div className="w-2 h-2 rounded-full bg-green-500" />
+								<div className="w-2 h-2 rounded-full bg-brand-aqua" />
 								<span className="text-sm">Básico</span>
 							</div>
 							<span className="text-sm font-medium">
@@ -223,7 +223,7 @@ export function CurriculumProgressCard() {
 					<div className="space-y-2">
 						<div className="flex items-center justify-between">
 							<div className="flex items-center gap-2">
-								<div className="w-2 h-2 rounded-full bg-orange-500" />
+								<div className="w-2 h-2 rounded-full bg-brand-gold" />
 								<span className="text-sm">Intermediário</span>
 							</div>
 							<span className="text-sm font-medium">
@@ -239,7 +239,7 @@ export function CurriculumProgressCard() {
 					<div className="space-y-2">
 						<div className="flex items-center justify-between">
 							<div className="flex items-center gap-2">
-								<div className="w-2 h-2 rounded-full bg-red-500" />
+								<div className="w-2 h-2 rounded-full bg-destructive" />
 								<span className="text-sm">Avançado</span>
 							</div>
 							<span className="text-sm font-medium">
@@ -255,7 +255,7 @@ export function CurriculumProgressCard() {
 
 				{/* Próxima Lição */}
 				{nextLesson && (
-					<div className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/5 rounded-lg border border-primary/20">
+					<div className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
 						<div className="flex items-start gap-3">
 							<div
 								className={cn(
@@ -276,7 +276,7 @@ export function CurriculumProgressCard() {
 							<div className="flex-1 min-w-0">
 								<div className="flex items-center gap-2 mb-1">
 									<h4 className="font-semibold text-sm flex items-center gap-1">
-										<Flame className="h-4 w-4 text-orange-500" />
+										<Flame className="h-4 w-4 text-brand-gold" />
 										Continue Aprendendo
 									</h4>
 								</div>
@@ -294,7 +294,7 @@ export function CurriculumProgressCard() {
 										{nextLesson.lesson.estimatedMinutes} min
 									</span>
 									<span className="flex items-center gap-1">
-										<Star className="h-3 w-3 text-yellow-500" />+
+										<Star className="h-3 w-3 text-brand-gold" />+
 										{nextLesson.lesson.xpReward} XP
 									</span>
 									<Badge variant="outline" className="text-[10px]">
@@ -315,8 +315,8 @@ export function CurriculumProgressCard() {
 
 				{/* Mensagem de Motivação */}
 				{overallProgress.completedLessons === 0 && (
-					<div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 rounded-lg border border-green-200 dark:border-green-800">
-						<Award className="h-8 w-8 text-green-600 mx-auto mb-2" />
+					<div className="text-center p-4 bg-gradient-to-r from-brand-aqua/10 to-primary/10 rounded-lg border border-brand-aqua/30">
+						<Award className="h-8 w-8 text-brand-aqua mx-auto mb-2" />
 						<h4 className="font-semibold mb-1">Comece Sua Jornada!</h4>
 						<p className="text-sm text-muted-foreground mb-3">
 							Aprenda inglês do básico ao avançado com um currículo estruturado
@@ -332,8 +332,8 @@ export function CurriculumProgressCard() {
 
 				{/* Jornada Completa */}
 				{!nextLesson && overallProgress.completedLessons > 0 && (
-					<div className="text-center p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 rounded-lg border border-yellow-200 dark:border-yellow-700">
-						<Trophy className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
+					<div className="text-center p-4 bg-gradient-to-r from-brand-gold/15 to-brand-gold/5 rounded-lg border border-brand-gold/30">
+						<Trophy className="h-8 w-8 text-brand-gold mx-auto mb-2" />
 						<h4 className="font-semibold mb-1">🎉 Parabéns!</h4>
 						<p className="text-sm text-muted-foreground mb-3">
 							Você completou toda a jornada de aprendizado!

@@ -229,9 +229,11 @@ export function FindIncorrectWords() {
 						{currentExercise.tokens.map((token) => (
 							<Button
 								key={token.id}
+								type="button"
 								variant={getButtonVariant(token)}
 								className={getButtonClassName(token)}
 								onClick={() => handleTokenClick(token.id)}
+								aria-pressed={selectedTokenIds.includes(token.id)}
 								disabled={
 									showFeedback &&
 									feedbackDetails[token.id]?.status !== "missed_error" &&
@@ -251,19 +253,20 @@ export function FindIncorrectWords() {
 									Detalhes do Feedback
 								</h3>
 								<Button
+									type="button"
 									onClick={() => setShowExplanations(!showExplanations)}
 									variant="outline"
 									size="sm"
 								>
 									{showExplanations ? (
-										<EyeOff className="mr-2 h-4 w-4" />
+										<EyeOff className="mr-2 h-4 w-4" aria-hidden="true" />
 									) : (
-										<Eye className="mr-2 h-4 w-4" />
+										<Eye className="mr-2 h-4 w-4" aria-hidden="true" />
 									)}
 									{showExplanations ? "Ocultar" : "Mostrar"} Explicações
 								</Button>
 							</div>
-							<div className="space-y-3">
+							<div className="space-y-3" role="status" aria-live="polite">
 								{currentExercise.tokens.map((token) => {
 									const feedback = feedbackDetails[token.id];
 									if (!feedback) return null;
@@ -409,14 +412,16 @@ export function FindIncorrectWords() {
 				</CardContent>
 				<CardFooter className="flex flex-col sm:flex-row justify-between gap-2">
 					<Button
+						type="button"
 						onClick={handleSubmit}
 						disabled={showFeedback || selectedTokenIds.length === 0}
 						className="bg-accent hover:bg-accent/90 text-accent-foreground"
 					>
 						Verificar Respostas
 					</Button>
-					<Button onClick={loadNewExercise} variant="secondary">
-						<RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
+					<Button type="button" onClick={loadNewExercise} variant="secondary">
+						<RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" /> Próximo
+						Exercício
 					</Button>
 				</CardFooter>
 			</Card>

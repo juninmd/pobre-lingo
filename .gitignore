@@ -50,7 +50,11 @@ dev_server.log
 
 playwright-report/
 test-results/
+e2e-screenshots/
 pnpm_output.log
 playwright-report/
 pnpm_dev.log
 debug_screenshot.png
+
+# scratch output from local agents/diagnostics
+temp/

@@ -73,7 +73,7 @@ export default function AchievementsPage() {
 
 			<PageHeader
 				icon={Trophy}
-				iconClassName="text-yellow-500"
+				iconClassName="text-brand-gold"
 				title="Conquistas & Progresso"
 				description="O retrato completo da sua jornada: constância, XP, revisões e troféus."
 			/>
@@ -83,25 +83,25 @@ export default function AchievementsPage() {
 					icon={Flame}
 					value={overallProgress.streak}
 					label="Dias seguidos"
-					tone="text-orange-600 dark:text-orange-400"
+					tone="text-brand-gold"
 				/>
 				<StatCard
 					icon={Zap}
 					value={xp}
 					label="XP total"
-					tone="text-purple-600 dark:text-purple-400"
+					tone="text-brand-violet"
 				/>
 				<StatCard
 					icon={Coins}
 					value={gems}
 					label="PobreCoins"
-					tone="text-yellow-600 dark:text-yellow-400"
+					tone="text-brand-gold"
 				/>
 				<StatCard
 					icon={Sparkles}
 					value={srsStats.mature}
 					label="Memorizados"
-					tone="text-emerald-600 dark:text-emerald-400"
+					tone="text-brand-aqua"
 				/>
 			</section>
 
@@ -109,7 +109,7 @@ export default function AchievementsPage() {
 				<Card className="glass-card">
 					<CardHeader className="pb-3">
 						<CardTitle className="text-base flex items-center gap-2">
-							<Zap className="h-4 w-4 text-purple-500" />
+							<Zap className="h-4 w-4 text-brand-violet" />
 							Nível {level}
 						</CardTitle>
 					</CardHeader>
@@ -127,7 +127,7 @@ export default function AchievementsPage() {
 				<Card className="glass-card">
 					<CardHeader className="pb-3">
 						<CardTitle className="text-base flex items-center gap-2">
-							<Medal className="h-4 w-4 text-yellow-500" />
+							<Medal className="h-4 w-4 text-brand-gold" />
 							Troféus
 						</CardTitle>
 					</CardHeader>
@@ -144,7 +144,7 @@ export default function AchievementsPage() {
 			<Card className="glass-card">
 				<CardHeader className="pb-3">
 					<CardTitle className="text-base flex items-center gap-2">
-						<Flame className="h-4 w-4 text-orange-500" />
+						<Flame className="h-4 w-4 text-brand-gold" />
 						Últimas 13 semanas
 					</CardTitle>
 				</CardHeader>
@@ -161,9 +161,9 @@ export default function AchievementsPage() {
 								className={cn(
 									"w-3 h-3 rounded-[3px] transition-colors",
 									day.count === 0 && "bg-muted/60",
-									day.count >= 1 && day.count < 3 && "bg-emerald-500/30",
-									day.count >= 3 && day.count < 5 && "bg-emerald-500/60",
-									day.count >= 5 && "bg-emerald-500",
+									day.count >= 1 && day.count < 3 && "bg-brand-aqua/30",
+									day.count >= 3 && day.count < 5 && "bg-brand-aqua/60",
+									day.count >= 5 && "bg-brand-aqua",
 								)}
 							/>
 						))}

@@ -261,23 +261,18 @@ export default function BubblePopPage() {
 	};
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-brand-violet/40 via-background to-brand-aqua/25 overflow-hidden relative touch-none select-none font-sans">
+		<div className="min-h-screen bg-gradient-to-b from-sky-300 to-blue-500 overflow-hidden relative touch-none select-none font-sans">
 			{/* HUD */}
-			<div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-40 bg-background/40 backdrop-blur-md border-b border-border/40 text-foreground shadow-sm">
+			<div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-40 bg-white/10 backdrop-blur-md border-b border-white/20 text-white shadow-sm">
 				<Button
 					variant="ghost"
 					size="icon"
 					onClick={() => navigate("/")}
-					className="hover:bg-muted text-foreground"
-					aria-label="Voltar"
+					className="hover:bg-white/20 text-white"
 				>
-					<ArrowLeft className="w-6 h-6" aria-hidden="true" />
+					<ArrowLeft className="w-6 h-6" />
 				</Button>
-				<div
-					className="flex items-center gap-4"
-					aria-live="polite"
-					role="status"
-				>
+				<div className="flex items-center gap-4">
 					<div className="flex flex-col items-center">
 						<span className="text-xs uppercase font-bold opacity-80">
 							Tempo
@@ -285,7 +280,7 @@ export default function BubblePopPage() {
 						<span
 							className={cn(
 								"text-2xl font-black tabular-nums",
-								timeLeft < 10 ? "text-destructive animate-pulse" : "text-foreground",
+								timeLeft < 10 ? "text-red-300 animate-pulse" : "text-white",
 							)}
 						>
 							{timeLeft}s
@@ -295,7 +290,7 @@ export default function BubblePopPage() {
 						<span className="text-xs uppercase font-bold opacity-80">
 							Pontos
 						</span>
-						<span className="text-2xl font-black text-brand-gold drop-shadow-sm">
+						<span className="text-2xl font-black text-yellow-300 drop-shadow-sm">
 							{score}
 						</span>
 					</div>
@@ -306,13 +301,12 @@ export default function BubblePopPage() {
 					onClick={() =>
 						setGameState(gameState === "paused" ? "playing" : "paused")
 					}
-					className="hover:bg-muted text-foreground"
-					aria-label={gameState === "paused" ? "Continuar jogo" : "Pausar jogo"}
+					className="hover:bg-white/20 text-white"
 				>
 					{gameState === "paused" ? (
-						<Play className="w-6 h-6" aria-hidden="true" />
+						<Play className="w-6 h-6" />
 					) : (
-						<Pause className="w-6 h-6" aria-hidden="true" />
+						<Pause className="w-6 h-6" />
 					)}
 				</Button>
 			</div>
@@ -322,14 +316,11 @@ export default function BubblePopPage() {
 				{bubbles.map(
 					(bubble) =>
 						!bubble.isPopped && (
-							<button
+							<div
 								key={bubble.id}
-								type="button"
 								onClick={() => handleBubbleClick(bubble.id)}
-								aria-pressed={selectedBubbleId === bubble.id}
-								aria-label={`Bolha ${bubble.type === "en" ? "em inglês" : "em português"}: ${bubble.text}`}
 								className={cn(
-									"absolute rounded-full flex items-center justify-center text-center p-2 cursor-pointer shadow-xl border-4 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring",
+									"absolute rounded-full flex items-center justify-center text-center p-2 cursor-pointer shadow-xl border-4 transition-all duration-300",
 									bubble.color,
 									selectedBubbleId === bubble.id
 										? "scale-110 ring-4 ring-white z-50 brightness-110"
@@ -350,7 +341,7 @@ export default function BubblePopPage() {
 								<span className="font-bold text-white text-sm md:text-base leading-tight drop-shadow-md select-none pointer-events-none">
 									{bubble.text}
 								</span>
-							</button>
+							</div>
 						),
 				)}
 			</div>
@@ -358,11 +349,11 @@ export default function BubblePopPage() {
 			{/* Intro Modal */}
 			{gameState === "intro" && (
 				<div className="absolute inset-0 flex items-center justify-center bg-black/60 z-50 backdrop-blur-sm p-4">
-					<div className="bg-card p-8 rounded-3xl max-w-sm text-center shadow-2xl border-2 border-primary/40 animate-in zoom-in duration-300">
-						<div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-							<Sparkles className="w-10 h-10 text-primary" />
+					<div className="bg-white dark:bg-slate-900 p-8 rounded-3xl max-w-sm text-center shadow-2xl border-4 border-blue-500 animate-in zoom-in duration-300">
+						<div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+							<Sparkles className="w-10 h-10 text-blue-600" />
 						</div>
-						<h2 className="text-3xl font-black mb-2 text-primary">
+						<h2 className="text-3xl font-black mb-2 text-blue-600">
 							Bubble Pop!
 						</h2>
 						<p className="mb-6 text-muted-foreground text-lg">
@@ -370,7 +361,7 @@ export default function BubblePopPage() {
 						</p>
 						<Button
 							size="lg"
-							className="w-full text-lg h-12 rounded-xl shadow-lg shadow-primary/30"
+							className="w-full text-lg h-12 rounded-xl shadow-lg shadow-blue-500/30"
 							onClick={startGame}
 						>
 							Começar <Play className="w-5 h-5 ml-2 fill-current" />
@@ -382,7 +373,7 @@ export default function BubblePopPage() {
 			{/* Paused Modal */}
 			{gameState === "paused" && (
 				<div className="absolute inset-0 flex items-center justify-center bg-black/40 z-50 backdrop-blur-sm">
-					<div className="bg-card p-6 rounded-2xl text-center shadow-xl border border-border/60">
+					<div className="bg-white p-6 rounded-2xl text-center shadow-xl">
 						<h2 className="text-xl font-bold mb-4">Pausado</h2>
 						<div className="flex gap-4">
 							<Button variant="outline" onClick={() => navigate("/")}>
@@ -396,11 +387,7 @@ export default function BubblePopPage() {
 
 			{/* Lost Modal */}
 			{gameState === "lost" && (
-				<div
-					className="absolute inset-0 flex items-center justify-center bg-black/60 z-50 backdrop-blur-sm p-4"
-					aria-live="polite"
-					role="status"
-				>
+				<div className="absolute inset-0 flex items-center justify-center bg-black/60 z-50 backdrop-blur-sm p-4">
 					<div className="bg-white dark:bg-slate-900 p-8 rounded-3xl max-w-sm text-center shadow-2xl border-4 border-red-500">
 						<h2 className="text-3xl font-black mb-2 text-red-500">
 							O tempo acabou!

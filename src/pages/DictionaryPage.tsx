@@ -94,7 +94,7 @@ export default function DictionaryPage() {
 				title="Dicionário"
 				description="Consulte palavras em inglês com tradução, pronúncia e exemplos."
 				icon={BookText}
-				iconClassName="text-primary"
+				iconClassName="text-blue-500"
 			>
 				<div className="relative w-full sm:max-w-md">
 					<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -125,7 +125,7 @@ export default function DictionaryPage() {
 						className="glass-card hover:shadow-lg transition-all active:scale-[0.99] touch-manipulation"
 					>
 						<CardHeader className="pb-2 sm:pb-3">
-							<div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+							<div className="flex items-start justify-between gap-2">
 								<div className="min-w-0 flex-1">
 									<CardTitle className="flex items-center gap-2 text-base sm:text-lg">
 										<span className="truncate">{entry.word}</span>
@@ -182,7 +182,7 @@ export default function DictionaryPage() {
 								{entry.meaning_en}
 							</p>
 							{entry.example_sentence_en && (
-								<div className="bg-muted/50 p-2.5 sm:p-3 rounded-lg space-y-1">
+								<div className="bg-muted/50 dark:bg-muted/30 p-2.5 sm:p-3 rounded-lg space-y-1">
 									<p className="text-xs text-foreground italic leading-relaxed">
 										“{entry.example_sentence_en}”
 									</p>

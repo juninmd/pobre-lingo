@@ -1,257 +1,212 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-/* ============================================================
-   PobreLingo Design System — "Aurora"
-   Ink obsidian + aurora violet + aqua mint + solar gold.
-   Grounded on Cognitive Load Theory: consistent tokens,
-   minimal noise, strong hierarchy, accessible contrast.
-   ============================================================ */
-
 @layer base {
 	:root {
-		--background: 240 40% 99%;
-		--foreground: 236 30% 12%;
-
+		--background: 0 0% 100%;
+		/* White */
+		--foreground: 220 10% 15%;
+		/* Dark Gray */
 		--card: 0 0% 100%;
-		--card-foreground: 236 30% 12%;
+		--card-foreground: 220 10% 15%;
 		--popover: 0 0% 100%;
-		--popover-foreground: 236 30% 12%;
-
-		--primary: 258 82% 58%;
+		--popover-foreground: 220 10% 15%;
+		--primary: 210 90% 50%;
+		/* Vibrant Blue */
 		--primary-foreground: 0 0% 100%;
-
-		--secondary: 250 40% 96%;
-		--secondary-foreground: 252 42% 30%;
-		--muted: 240 22% 96%;
-		--muted-foreground: 238 12% 45%;
-
-		--accent: 172 68% 38%;
+		--secondary: 210 20% 95%;
+		/* Light Blue */
+		--secondary-foreground: 210 90% 50%;
+		--muted: 210 20% 95%;
+		--muted-foreground: 220 10% 45%;
+		--accent: 150 75% 50%;
+		/* Bright Green */
 		--accent-foreground: 0 0% 100%;
-
-		--destructive: 356 78% 55%;
+		--destructive: 0 80% 60%;
+		/* Red */
 		--destructive-foreground: 0 0% 100%;
+		--border: 210 15% 90%;
+		--input: 210 15% 90%;
+		--ring: 210 90% 50%;
+		--radius: 0.75rem;
+		/* Slightly more rounded */
 
-		--border: 240 20% 90%;
-		--input: 240 20% 90%;
-		--ring: 258 82% 58%;
-
-		--chart-1: 258 82% 58%;
-		--chart-2: 172 68% 42%;
-		--chart-3: 42 92% 52%;
-		--chart-4: 210 88% 56%;
-		--chart-5: 332 76% 58%;
-
-		--sidebar-background: 250 38% 13%;
-		--sidebar-foreground: 250 26% 92%;
-		--sidebar-primary: 258 86% 68%;
-		--sidebar-primary-foreground: 250 40% 8%;
-		--sidebar-accent: 250 26% 20%;
+		--sidebar-background: 210 90% 50%;
+		/* Vibrant Blue */
+		--sidebar-foreground: 0 0% 100%;
+		--sidebar-primary: 0 0% 100%;
+		--sidebar-primary-foreground: 210 90% 50%;
+		--sidebar-accent: 210 80% 40%;
 		--sidebar-accent-foreground: 0 0% 100%;
-		--sidebar-border: 250 24% 22%;
-		--sidebar-ring: 258 86% 68%;
-
-		--radius: 0.85rem;
-
-		/* Signature triad */
-		--brand-violet: 258 88% 66%;
-		--brand-aqua: 172 80% 48%;
-		--brand-gold: 42 95% 58%;
+		--sidebar-border: 210 80% 40%;
+		--sidebar-ring: 0 0% 100%;
 	}
 
 	.dark {
-		--background: 236 32% 7%;
-		--foreground: 240 22% 96%;
+		--background: 220 15% 10%;
+		/* Dark Blue-Gray */
+		--foreground: 210 20% 95%;
+		/* Light Gray */
+		--card: 220 15% 15%;
+		--card-foreground: 210 20% 95%;
+		--popover: 220 15% 15%;
+		--popover-foreground: 210 20% 95%;
+		--primary: 210 90% 60%;
+		/* Lighter Vibrant Blue */
+		--primary-foreground: 220 15% 10%;
+		--secondary: 220 15% 20%;
+		--secondary-foreground: 210 20% 95%;
+		--muted: 220 15% 20%;
+		--muted-foreground: 210 10% 60%;
+		--accent: 150 75% 40%;
+		/* Darker Bright Green */
+		--accent-foreground: 220 15% 10%;
+		--destructive: 0 70% 40%;
+		/* Darker Red */
+		--destructive-foreground: 210 20% 95%;
+		--border: 220 15% 25%;
+		--input: 220 15% 25%;
+		--ring: 210 90% 60%;
 
-		--card: 236 26% 10%;
-		--card-foreground: 240 22% 96%;
-		--popover: 236 26% 10%;
-		--popover-foreground: 240 22% 96%;
-
-		--primary: 258 90% 70%;
-		--primary-foreground: 236 32% 7%;
-
-		--secondary: 236 20% 16%;
-		--secondary-foreground: 240 22% 96%;
-		--muted: 236 20% 16%;
-		--muted-foreground: 240 14% 64%;
-
-		--accent: 172 72% 50%;
-		--accent-foreground: 236 32% 7%;
-
-		--destructive: 356 70% 52%;
-		--destructive-foreground: 0 0% 98%;
-
-		--border: 236 18% 20%;
-		--input: 236 18% 20%;
-		--ring: 258 90% 70%;
-
-		--sidebar-background: 236 30% 9%;
-		--sidebar-foreground: 240 18% 90%;
-		--sidebar-primary: 258 90% 70%;
-		--sidebar-primary-foreground: 236 32% 7%;
-		--sidebar-accent: 236 20% 16%;
-		--sidebar-accent-foreground: 240 22% 96%;
-		--sidebar-border: 236 18% 18%;
-		--sidebar-ring: 258 90% 70%;
+		--sidebar-background: 220 20% 5%;
+		/* Very Dark Blue-Gray */
+		--sidebar-foreground: 210 20% 95%;
+		--sidebar-primary: 210 90% 60%;
+		--sidebar-primary-foreground: 220 20% 5%;
+		--sidebar-accent: 220 15% 15%;
+		--sidebar-accent-foreground: 210 20% 95%;
+		--sidebar-border: 220 15% 15%;
+		--sidebar-ring: 210 90% 60%;
 	}
 
-	/* Signature brand theme: Aurora Ink */
 	[data-theme="pobre-lingo"] {
-		--background: 234 42% 5%;
-		--foreground: 240 26% 97%;
+		--background: 160 30% 4.5%;
+		/* Pure Deep Emerald-Black */
+		--foreground: 160 10% 98%;
 
-		--card: 234 34% 8.5%;
-		--card-foreground: 240 26% 97%;
-		--popover: 234 34% 8.5%;
-		--popover-foreground: 240 26% 97%;
+		--card: 160 25% 7.5%;
+		/* Deep Emerald Card background */
+		--card-foreground: 160 10% 98%;
 
-		--primary: 258 92% 70%;
-		--primary-foreground: 234 42% 5%;
+		--popover: 160 25% 7.5%;
+		--popover-foreground: 160 10% 98%;
 
-		--secondary: 234 24% 14%;
-		--secondary-foreground: 240 26% 97%;
-		--muted: 234 24% 14%;
-		--muted-foreground: 240 20% 68%;
+		--primary: 158 82% 52%;
+		/* Glowing Mint Green (#34d399) */
+		--primary-foreground: 160 30% 4.5%;
 
-		--accent: 42 96% 58%;
-		--accent-foreground: 234 42% 5%;
+		--secondary: 160 15% 12%;
+		--secondary-foreground: 160 10% 98%;
 
-		--destructive: 356 80% 62%;
+		--muted: 160 15% 12%;
+		--muted-foreground: 160 10% 65%;
+
+		--accent: 43 96% 56%;
+		/* Glowing Amber/Saffron Gold (#fbbf24) */
+		--accent-foreground: 160 30% 4.5%;
+
+		--destructive: 0 84% 60%;
 		--destructive-foreground: 0 0% 98%;
 
-		--border: 234 22% 17%;
-		--input: 234 22% 17%;
-		--ring: 258 92% 70%;
+		--border: 160 15% 16%;
+		--input: 160 15% 16%;
+		--ring: 158 82% 52%;
 
-		--chart-1: 258 92% 70%;
-		--chart-2: 172 80% 52%;
-		--chart-3: 42 96% 58%;
-		--chart-4: 210 90% 66%;
-		--chart-5: 332 82% 66%;
+		--sidebar-background: 160 28% 5%;
+		/* Matching Deep Emerald Sidebar */
+		--sidebar-foreground: 160 10% 88%;
+		--sidebar-primary: 158 82% 52%;
+		--sidebar-primary-foreground: 160 30% 4.5%;
+		--sidebar-accent: 160 15% 12%;
+		--sidebar-accent-foreground: 158 82% 52%;
+		--sidebar-border: 160 15% 11%;
+		--sidebar-ring: 158 82% 52%;
 
-		--sidebar-background: 234 38% 6%;
-		--sidebar-foreground: 240 22% 88%;
-		--sidebar-primary: 258 92% 70%;
-		--sidebar-primary-foreground: 234 42% 5%;
-		--sidebar-accent: 234 24% 13%;
-		--sidebar-accent-foreground: 258 92% 70%;
-		--sidebar-border: 234 22% 13%;
-		--sidebar-ring: 258 92% 70%;
-
-		--radius: 0.85rem;
-	}
-}
-
-@layer base {
-	* {
-		@apply border-border;
-	}
-
-	body {
-		@apply bg-background text-foreground selection:bg-primary/30 selection:text-foreground;
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeLegibility;
-	}
-
-	h1,
-	h2,
-	h3,
-	h4 {
-		@apply font-headline tracking-tight;
-	}
-
-	:focus-visible {
-		outline: 2px solid hsl(var(--ring));
-		outline-offset: 2px;
+		--radius: 0.75rem;
 	}
 }
 
 @layer components {
-	/* Aurora ambient background for the signature theme */
+	/* Add a more luxurious background for PobreLingo */
 	[data-theme="pobre-lingo"] body {
 		background:
 			radial-gradient(
-				circle at 8% 0%,
-				hsla(258, 92%, 66%, 0.16) 0%,
-				transparent 42%
-			),
-			radial-gradient(
-				circle at 95% 12%,
-				hsla(172, 80%, 52%, 0.1) 0%,
+				circle at 0% 0%,
+				hsla(158, 82%, 52%, 0.08) 0%,
 				transparent 40%
 			),
 			radial-gradient(
-				circle at 60% 105%,
-				hsla(42, 96%, 58%, 0.08) 0%,
-				transparent 48%
+				circle at 100% 100%,
+				hsla(43, 96%, 56%, 0.05) 0%,
+				transparent 45%
 			),
-			hsl(234, 42%, 5%);
+			hsl(160, 30%, 4.5%);
 		background-attachment: fixed;
 	}
 
-	/* Signature gradient text */
+	/* Metallic Text */
 	.text-gold {
-		@apply bg-clip-text text-transparent;
-		background-image: linear-gradient(
-			100deg,
-			hsl(var(--brand-aqua)) 0%,
-			hsl(var(--brand-violet)) 45%,
-			hsl(var(--brand-gold)) 100%
-		);
+		@apply bg-clip-text text-transparent bg-gradient-to-r from-[#5debb4] via-[#fbbf24] to-[#caa44b];
 	}
 
-	.text-gradient-primary {
-		@apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--brand-violet))] via-[hsl(var(--brand-violet))] to-[hsl(var(--brand-aqua))];
-	}
-
-	/* Glass surfaces */
+	/* Improved Glassmorphism */
 	.glass {
 		@apply bg-background/60 backdrop-blur-2xl border-b border-white/5 shadow-2xl;
 	}
 
 	.glass-card {
-		@apply bg-card/55 backdrop-blur-xl border border-white/[0.06] shadow-lg shadow-black/[0.03] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/10 active:scale-[0.99];
+		@apply bg-card/50 backdrop-blur-xl border border-white/[0.08] shadow-xl hover:shadow-2xl hover:shadow-primary/5 hover:bg-card/70 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98];
 		position: relative;
 		overflow: hidden;
 	}
 
+	/* Refined shine effect */
 	.glass-card::before {
 		content: "";
 		position: absolute;
-		inset: 0 0 auto 0;
-		height: 1px;
+		top: 0;
+		left: -150%;
+		width: 300%;
+		height: 100%;
 		background: linear-gradient(
-			90deg,
+			120deg,
 			transparent,
-			hsla(258, 92%, 70%, 0.4),
-			hsla(172, 80%, 52%, 0.25),
+			rgba(255, 255, 255, 0.05),
+			rgba(255, 255, 255, 0.01),
 			transparent
 		);
-		opacity: 0;
-		transition: opacity 0.4s ease;
+		transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 		pointer-events: none;
+		z-index: 1;
 	}
 
 	.glass-card:hover::before {
-		opacity: 1;
+		left: 100%;
 	}
 
-	[data-theme="pobre-lingo"] .glass-card:hover {
-		border-color: hsla(258, 92%, 70%, 0.32);
-		box-shadow: 0 20px 45px -22px hsla(258, 92%, 66%, 0.45);
+	/* Sidebar Active Highlight Metallic Effect */
+	[data-theme="pobre-lingo"] .sidebar-active {
+		background: linear-gradient(
+			to right,
+			hsla(158, 82%, 52%, 0.1) 0%,
+			hsla(158, 82%, 52%, 0.02) 100%
+		);
+		border-left: 3px solid hsl(158, 82%, 52%);
+		border-top: 1px solid hsla(158, 82%, 52%, 0.12);
+		border-right: 1px solid hsla(158, 82%, 52%, 0.03);
+		border-bottom: 1px solid hsla(158, 82%, 52%, 0.03);
+		@apply shadow-sm shadow-primary/5 rounded-l-none rounded-r-xl;
 	}
 
-	/* Sidebar navigation */
 	[data-theme="pobre-lingo"] .sidebar-menu-btn {
-		transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 		border: 1px solid transparent;
 		@apply rounded-xl;
 	}
 
 	[data-theme="pobre-lingo"] .sidebar-menu-btn:hover {
-		background: hsla(234, 24%, 14%, 0.75);
-		border-color: hsla(258, 40%, 40%, 0.25);
+		background: hsla(160, 15%, 12%, 0.5);
+		border-color: hsla(160, 15%, 20%, 0.4);
 		transform: translateX(2px);
 		color: hsl(var(--foreground));
 	}
@@ -259,25 +214,24 @@
 	[data-theme="pobre-lingo"] .sidebar-menu-btn.sidebar-active {
 		background: linear-gradient(
 			135deg,
-			hsla(258, 92%, 66%, 0.18) 0%,
-			hsla(42, 96%, 58%, 0.05) 100%
+			hsla(158, 82%, 52%, 0.12) 0%,
+			hsla(43, 96%, 56%, 0.03) 100%
 		);
-		border: 1px solid hsla(258, 92%, 70%, 0.3);
-		border-left: 4px solid hsl(var(--primary));
-		box-shadow: 0 6px 24px -8px hsla(258, 92%, 66%, 0.5);
+		border: 1px solid hsla(158, 82%, 52%, 0.25);
+		border-left: 4px solid hsl(158, 82%, 52%);
+		box-shadow: 0 4px 20px -5px hsla(158, 82%, 52%, 0.15);
 		color: hsl(var(--primary));
 		font-weight: 700;
 		@apply rounded-l-none rounded-r-xl;
 	}
 
-	/* Primary action button */
 	.glass-button {
-		@apply relative overflow-hidden bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:brightness-110;
+		@apply relative overflow-hidden bg-primary text-primary-foreground shadow-xl shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:brightness-110;
 	}
 
 	.glass-button::after {
 		content: "";
-		@apply absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+		@apply absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 transition-opacity duration-300;
 	}
 
 	.glass-button:hover::after {
@@ -290,26 +244,29 @@
 
 	.glass-button-surface::before {
 		content: "";
-		@apply absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100;
+		@apply absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500;
 	}
 
-	/* Touch-friendly target */
+	/* Touch-friendly utilities */
 	.touch-target {
 		@apply min-h-[44px] min-w-[44px];
 	}
 
+	/* Modern card stack effect */
 	.card-stack {
-		@apply shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_10px_rgba(0,0,0,0.04),0_12px_24px_rgba(0,0,0,0.04)];
+		@apply shadow-[0_1px_2px_rgba(0,0,0,0.05),0_4px_8px_rgba(0,0,0,0.05),0_8px_16px_rgba(0,0,0,0.05)];
 	}
 
+	/* Smooth scroll on mobile */
 	.smooth-scroll {
 		-webkit-overflow-scrolling: touch;
 		scroll-behavior: smooth;
 	}
 
+	/* Elegant themed scrollbar styles */
 	::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
+		width: 6px;
+		height: 6px;
 	}
 
 	::-webkit-scrollbar-track {
@@ -325,6 +282,13 @@
 		background: hsl(var(--primary));
 	}
 
+	/* PobreLingo custom premium card effects */
+	[data-theme="pobre-lingo"] .glass-card:hover {
+		border-color: hsla(158, 82%, 52%, 0.35);
+		box-shadow: 0 12px 30px -10px hsla(158, 82%, 52%, 0.18);
+	}
+
+	/* Form shapes and transition refinements for PobreLingo */
 	[data-theme="pobre-lingo"] input,
 	[data-theme="pobre-lingo"] textarea,
 	[data-theme="pobre-lingo"] select {
@@ -335,8 +299,8 @@
 	[data-theme="pobre-lingo"] input:focus,
 	[data-theme="pobre-lingo"] textarea:focus,
 	[data-theme="pobre-lingo"] select:focus {
-		border-color: hsl(var(--primary));
-		box-shadow: 0 0 0 2px hsla(258, 92%, 70%, 0.18);
+		border-color: hsl(158, 82%, 52%);
+		box-shadow: 0 0 0 2px hsla(158, 82%, 52%, 0.15);
 	}
 
 	[data-theme="pobre-lingo"]
@@ -351,25 +315,35 @@
 	}
 }
 
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground selection:bg-primary/30 selection:text-primary;
+	}
+}
+
 @utility pb-safe {
-	padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 @utility bottom-mobile-nav {
-	bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  bottom: calc(5.5rem + env(safe-area-inset-bottom));
 }
 
 @utility perspective-1000 {
-	perspective: 1000px;
+  perspective: 1000px;
 }
 
 @utility preserve-3d {
-	transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 @utility backface-hidden {
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes shake {
@@ -407,64 +381,29 @@
 }
 
 @layer utilities {
-	@keyframes float {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
 
-		50% {
-			transform: translateY(-8px);
-		}
-	}
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
 
-	.animate-float {
-		animation: float 4s ease-in-out infinite;
-	}
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(var(--primary), 0.2), 0 0 20px rgba(var(--primary), 0.1);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(var(--primary), 0.4), 0 0 30px rgba(var(--primary), 0.2);
+    }
+  }
 
-	@keyframes pulse-glow {
-		0%,
-		100% {
-			opacity: 0.5;
-			transform: scale(1);
-		}
-
-		50% {
-			opacity: 0.8;
-			transform: scale(1.05);
-		}
-	}
-
-	.animate-pulse-glow {
-		animation: pulse-glow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-	}
-
-	@keyframes aurora-drift {
-		0% {
-			transform: translate3d(0, 0, 0) scale(1);
-		}
-
-		50% {
-			transform: translate3d(4%, -6%, 0) scale(1.08);
-		}
-
-		100% {
-			transform: translate3d(0, 0, 0) scale(1);
-		}
-	}
-
-	.animate-aurora {
-		animation: aurora-drift 18s ease-in-out infinite;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	*,
-	::before,
-	::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
+  .animate-pulse-glow {
+    animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }

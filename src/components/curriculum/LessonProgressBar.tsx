@@ -101,11 +101,11 @@ export function LessonProgressBar({
 						</div>
 						<div className="flex items-center gap-2">
 							<Badge variant="secondary" className="flex items-center gap-1">
-								<Star className="h-3 w-3 text-brand-gold" />
+								<Star className="h-3 w-3 text-yellow-500" />
 								{lesson.xpReward} XP
 							</Badge>
 							{isCompleted && (
-								<Badge className="bg-brand-aqua flex items-center gap-1">
+								<Badge className="bg-green-500 flex items-center gap-1">
 									<CheckCircle2 className="h-3 w-3" />
 									Dominada
 								</Badge>
@@ -131,7 +131,7 @@ export function LessonProgressBar({
 					{/* Botões de ação */}
 					<div className="flex items-center justify-between gap-4">
 						<div className="flex items-center gap-2 text-sm">
-							<Trophy className="h-4 w-4 text-brand-gold" />
+							<Trophy className="h-4 w-4 text-yellow-600" />
 							<span>Nível {userLevel}</span>
 							<span className="text-muted-foreground">•</span>
 							<span>{totalXP} XP total</span>
@@ -141,7 +141,7 @@ export function LessonProgressBar({
 							{showCompleteButton && !isCompleted && (
 								<Button
 									onClick={handleComplete}
-									className="bg-brand-aqua hover:bg-brand-aqua/90"
+									className="bg-green-600 hover:bg-green-700"
 								>
 									<CheckCircle2 className="h-4 w-4 mr-2" />
 									Marcar como Dominada
@@ -160,7 +160,7 @@ export function LessonProgressBar({
 									<Link to="/">
 										<Button
 											variant="default"
-											className="bg-brand-gold hover:bg-brand-gold/90"
+											className="bg-yellow-600 hover:bg-yellow-700"
 										>
 											<Trophy className="h-4 w-4 mr-2" />
 											Módulo Completo!
@@ -214,7 +214,7 @@ export function QuickCompleteButton({
 
 	if (isCompleted) {
 		return (
-			<Badge className="bg-brand-aqua flex items-center gap-1">
+			<Badge className="bg-green-500 flex items-center gap-1">
 				<CheckCircle2 className={cn("h-3 w-3", size === "sm" && "h-2 w-2")} />
 				{size === "default" && "Dominada"}
 			</Badge>
@@ -225,7 +225,7 @@ export function QuickCompleteButton({
 		<Button
 			onClick={handleComplete}
 			size={size}
-			className="bg-brand-aqua hover:bg-brand-aqua/90"
+			className="bg-green-600 hover:bg-green-700"
 		>
 			<CheckCircle2
 				className={cn("mr-1", size === "sm" ? "h-3 w-3" : "h-4 w-4")}

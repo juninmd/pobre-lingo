@@ -60,13 +60,13 @@ export function UnitGroup({
 						</div>
 					</div>
 					{unit.difficulty === "avancado" && (
-						<div className="flex items-center gap-1.5 px-2 py-1 bg-brand-gold/10 text-brand-gold rounded-md border border-brand-gold/20 text-xs font-bold">
+						<div className="flex items-center gap-1.5 px-2 py-1 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 rounded-md border border-yellow-500/20 text-xs font-bold">
 							<Trophy className="w-3 h-3" />
 							<span className="hidden sm:inline">Expert</span>
 						</div>
 					)}
 					{isCompletedUnit && (
-						<div className="flex items-center gap-1 text-brand-aqua font-bold text-xs">
+						<div className="flex items-center gap-1 text-green-600 font-bold text-xs">
 							<Check className="w-4 h-4" />
 							<span>Completa</span>
 						</div>
@@ -78,12 +78,11 @@ export function UnitGroup({
 				{/* Vertical Spine Line */}
 				<div className="absolute left-4 md:left-4 -top-10 bottom-0 w-1 bg-border/50 rounded-full md:bg-gradient-to-b md:from-primary/20 md:via-border/50 md:to-transparent" />
 
-				<div className="flex flex-col gap-10 relative mt-4">
-					{modules.map((module, index) => (
+				<div className="flex flex-col gap-8 relative mt-4">
+					{modules.map((module) => (
 						<ModuleSection
 							key={module.id}
 							module={module}
-							index={index}
 							completedLessonsSet={completedLessonsSet}
 							firstIncompleteLessonId={firstIncompleteLessonId}
 						/>

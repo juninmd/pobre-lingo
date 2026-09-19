@@ -1,0 +1,2 @@
+src/lib/curriculumData.ts(1063,7): error TS2353: Object literal may only specify known properties, and 'unitId' does not exist in type 'Lesson'.
+src/lib/curriculumData.ts(1195,7): error TS2353: Object literal may only specify known properties, and 'unitId' does not exist in type 'Lesson'.

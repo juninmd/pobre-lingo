@@ -21,8 +21,6 @@ interface Message {
 	text_en: string;
 	text_pt?: string;
 	audio?: boolean;
-	/** When true, text_pt is shown as the primary (larger) text — used for feedback. */
-	ptPrimary?: boolean;
 }
 
 // Map modules/lessons to scenarios
@@ -49,18 +47,10 @@ const SCENARIO_MAP: Record<string, string> = {
 	// Intermediate / Advanced
 	"job-interview-sim": "job-interview",
 	"job-interview-sim-mid": "job-interview",
-	"job-interview-smalltalk": "job-interview-smalltalk",
 	"business-negotiation": "business-negotiation",
 	"business-negotiation-module": "business-negotiation",
 	"debate-tech": "debate-tech",
 	"debate-tech-module": "debate-tech",
-
-	// Travel & work additions
-	"immigration-desk": "immigration-desk",
-	"hotel-checkin": "hotel-checkin",
-	pharmacy: "pharmacy",
-	"restaurant-reservation": "restaurant-reservation",
-	"first-meeting-work": "first-meeting-work",
 };
 
 export default function ConversationExercise() {
@@ -68,7 +58,6 @@ export default function ConversationExercise() {
 	const [searchParams] = useSearchParams();
 	const moduleId = searchParams.get("module") || "";
 	const lessonId = searchParams.get("lesson") || "";
-	const scenarioParam = searchParams.get("scenario") || "";
 	const { completeLesson } = useCurriculumProgress();
 
 	const [history, setHistory] = useState<Message[]>([]);
@@ -78,9 +67,8 @@ export default function ConversationExercise() {
 
 	// Determine scenario
 	const scenarioKey = useMemo(() => {
-		if (SCENARIOS[scenarioParam]) return scenarioParam;
 		return SCENARIO_MAP[lessonId] || SCENARIO_MAP[moduleId] || "default";
-	}, [lessonId, moduleId, scenarioParam]);
+	}, [lessonId, moduleId]);
 
 	const steps = useMemo(() => {
 		return SCENARIOS[scenarioKey] || SCENARIOS.default;
@@ -177,11 +165,9 @@ export default function ConversationExercise() {
 					{
 						id: `mascot-feedback-${Date.now()}`,
 						speaker: "mascot",
-						text_en: option.feedback || "Try again.",
-						text_pt:
-							option.feedbackPt ||
-							"Isso não soa certo. Vamos tentar novamente.",
-						ptPrimary: true,
+						text_en:
+							option.feedback || "That doesn't sound right. Let's try again.",
+						text_pt: "Isso não soa certo. Vamos tentar novamente.",
 					},
 				]);
 				setTyping(false);
@@ -199,10 +185,9 @@ export default function ConversationExercise() {
 						variant="ghost"
 						size="icon"
 						onClick={() => navigate(-1)}
-						aria-label="Voltar"
 						className="hover:bg-primary/10 hover:text-primary transition-colors"
 					>
-						<ArrowLeft className="w-6 h-6" aria-hidden="true" />
+						<ArrowLeft className="w-6 h-6" />
 					</Button>
 					<div className="flex flex-col items-center">
 						<h1 className="text-xl font-bold tracking-tight text-gold">
@@ -213,20 +198,13 @@ export default function ConversationExercise() {
 						</p>
 					</div>
 					<div className="w-10 flex justify-end">
-						<div
-							className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"
-							aria-hidden="true"
-						/>
+						<div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
 					</div>
 				</div>
 			</header>
 
 			{/* Chat Area */}
-			<div
-				className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-48 max-w-5xl mx-auto w-full"
-				aria-live="polite"
-				role="log"
-			>
+			<div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-48 max-w-5xl mx-auto w-full">
 				{history.map((msg) => (
 					<div
 						key={msg.id}
@@ -275,20 +253,18 @@ export default function ConversationExercise() {
 									)}
 								>
 									<p className="text-lg font-medium leading-relaxed">
-										{msg.ptPrimary && msg.text_pt ? msg.text_pt : msg.text_en}
+										{msg.text_en}
 									</p>
 									{msg.speaker === "mascot" && (
 										<button
-											type="button"
 											onClick={() => tts.speak(msg.text_en)}
-											aria-label="Ouvir mensagem"
 											className="mt-1 p-1 rounded-full hover:bg-primary/20 text-primary transition-colors"
 										>
-											<Volume2 className="w-5 h-5" aria-hidden="true" />
+											<Volume2 className="w-5 h-5" />
 										</button>
 									)}
 								</div>
-								{(msg.ptPrimary ? msg.text_en : msg.text_pt) && (
+								{msg.text_pt && (
 									<div
 										className={cn(
 											"text-sm mt-3 border-t pt-2 opacity-80 italic font-light",
@@ -297,7 +273,7 @@ export default function ConversationExercise() {
 												: "border-primary/10",
 										)}
 									>
-										{msg.ptPrimary ? msg.text_en : msg.text_pt}
+										{msg.text_pt}
 									</div>
 								)}
 							</div>
@@ -306,16 +282,8 @@ export default function ConversationExercise() {
 				))}
 
 				{typing && (
-					<div
-						className="flex w-full justify-start animate-in fade-in slide-in-from-bottom-2 duration-300"
-						role="status"
-						aria-live="polite"
-					>
-						<span className="sr-only">Digitando...</span>
-						<div
-							className="flex gap-4 flex-row items-center"
-							aria-hidden="true"
-						>
+					<div className="flex w-full justify-start animate-in fade-in slide-in-from-bottom-2 duration-300">
+						<div className="flex gap-4 flex-row items-center">
 							<div className="shrink-0 w-12 h-12 rounded-xl bg-slate-900 border border-primary/20 flex items-center justify-center text-primary shadow-lg">
 								<Bot className="w-6 h-6 animate-bounce" />
 							</div>
@@ -345,7 +313,7 @@ export default function ConversationExercise() {
 								<h3 className="text-sm font-bold uppercase tracking-wider text-primary/70">
 									Escolha sua resposta
 								</h3>
-								<div className="flex gap-1" aria-hidden="true">
+								<div className="flex gap-1">
 									{steps.map((_, i) => (
 										<div
 											key={i}
@@ -365,7 +333,6 @@ export default function ConversationExercise() {
 								{currentStep?.options.map((option) => (
 									<button
 										key={option.id}
-										type="button"
 										disabled={typing}
 										onClick={() => handleOptionSelect(option)}
 										className={cn(
@@ -384,10 +351,7 @@ export default function ConversationExercise() {
 												{option.text_pt}
 											</span>
 										</div>
-										<div
-											className="ml-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all transform translate-x-0 sm:translate-x-3 sm:group-hover:translate-x-0"
-											aria-hidden="true"
-										>
+										<div className="ml-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-x-3 group-hover:translate-x-0">
 											<Send className="w-5 h-5 ml-1" />
 										</div>
 									</button>
@@ -395,13 +359,9 @@ export default function ConversationExercise() {
 							</div>
 						</div>
 					) : (
-						<div
-							className="flex flex-col items-center py-4 space-y-6"
-							role="status"
-							aria-live="polite"
-						>
-							<div className="w-20 h-20 rounded-full bg-brand-gold/20 flex items-center justify-center text-gold shadow-[0_0_20px_rgba(251,191,36,0.2)]">
-								<CheckCircle2 className="w-10 h-10" aria-hidden="true" />
+						<div className="flex flex-col items-center py-4 space-y-6">
+							<div className="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center text-gold shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+								<CheckCircle2 className="w-10 h-10" />
 							</div>
 							<div className="text-center">
 								<h2 className="text-2xl font-bold text-gold">

@@ -1,8 +1,3 @@
-import { grammarFoundationsBuild } from "./grammarFoundationsBuild";
-import { grammarFoundationsCore } from "./grammarFoundationsCore";
-import { grammarStructures } from "./grammarStructures";
-import { grammarTenses } from "./grammarTenses";
-
 export interface GrammarExample {
 	sentence_en: string;
 	translation_pt?: string; // Optional translation for clarity
@@ -31,10 +26,6 @@ export interface GrammarCategory {
 }
 
 export const grammarCategories: GrammarCategory[] = [
-	grammarFoundationsCore,
-	grammarFoundationsBuild,
-	grammarTenses,
-	grammarStructures,
 	{
 		id: "verbos",
 		name_pt: "Verbos e Tempos Verbais",

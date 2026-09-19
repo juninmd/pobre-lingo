@@ -16,8 +16,8 @@ export function QuizView({ lesson, onComplete, isCompleted }: QuizViewProps) {
 	return (
 		<div className="max-w-2xl mx-auto text-center space-y-8 py-10">
 			<div className="mb-8">
-				<div className="bg-brand-gold/15 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-					<Trophy className="w-12 h-12 text-brand-gold" />
+				<div className="bg-yellow-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+					<Trophy className="w-12 h-12 text-yellow-600" />
 				</div>
 				<h2 className="text-3xl font-bold mb-2">{lesson.title_pt}</h2>
 				<p className="text-muted-foreground text-lg">{lesson.description_pt}</p>
@@ -31,7 +31,7 @@ export function QuizView({ lesson, onComplete, isCompleted }: QuizViewProps) {
 					<p>Este quiz irá testar os conhecimentos adquiridos neste módulo.</p>
 					{isCompleted && (
 						<div className="flex justify-center">
-							<Badge className="bg-brand-aqua">
+							<Badge className="bg-green-500">
 								<CheckCircle2 className="h-3 w-3 mr-1" /> Aprovado
 							</Badge>
 						</div>

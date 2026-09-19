@@ -8,8 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData, type Lesson, type Module } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
-import { getNextIncompleteLessonAtLevel } from "@/lib/placement/startingPoint";
-import { loadProficiencyResult } from "@/lib/proficiency";
 import { cn } from "@/lib/utils";
 
 const getIcon = (name: string) => {
@@ -21,24 +19,12 @@ interface NextLesson {
 	module: Module;
 	lesson: Lesson;
 	link: string;
-	recommended: boolean;
 }
 
 export function ContinueLearningCard() {
 	const { isLessonCompleted } = useCurriculumProgress();
 
 	const next = useMemo((): NextLesson | null => {
-		const placement = loadProficiencyResult();
-		if (placement) {
-			const recommended = getNextIncompleteLessonAtLevel(
-				placement.level,
-				isLessonCompleted,
-			);
-			if (recommended) {
-				return { ...recommended, recommended: true };
-			}
-		}
-
 		for (const module of [...curriculumData.modules].sort(
 			(a, b) => a.order - b.order,
 		)) {
@@ -46,12 +32,7 @@ export function ContinueLearningCard() {
 				(a, b) => a.order - b.order,
 			)) {
 				if (!isLessonCompleted(module.id, lesson.id)) {
-					return {
-						module,
-						lesson,
-						link: getLessonLink(module, lesson),
-						recommended: false,
-					};
+					return { module, lesson, link: getLessonLink(module, lesson) };
 				}
 			}
 		}
@@ -60,16 +41,16 @@ export function ContinueLearningCard() {
 
 	if (!next) {
 		return (
-			<Card className="border-2 border-brand-aqua/40 bg-gradient-to-r from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/30 dark:to-brand-aqua/30">
+			<Card className="border-2 border-green-400/50 bg-gradient-to-r from-green-50/80 to-emerald-50/80 dark:from-green-950/30 dark:to-emerald-950/30">
 				<CardContent className="p-4 sm:p-5 flex items-center gap-4">
-					<div className="p-3 rounded-xl bg-brand-aqua/15 dark:bg-brand-aqua/40 text-brand-aqua">
+					<div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400">
 						<PartyPopper className="w-7 h-7" />
 					</div>
 					<div>
-						<p className="font-bold text-brand-aqua text-base">
+						<p className="font-bold text-green-700 dark:text-green-300 text-base">
 							Curso completo!
 						</p>
-						<p className="text-sm text-brand-aqua/80 dark:text-brand-aqua/70">
+						<p className="text-sm text-green-600/80 dark:text-green-400/70">
 							Você completou toda a jornada. Parabéns!
 						</p>
 					</div>
@@ -78,7 +59,7 @@ export function ContinueLearningCard() {
 		);
 	}
 
-	const { module, lesson, link, recommended } = next;
+	const { module, lesson, link } = next;
 	const ModuleIcon = getIcon(module.icon);
 
 	return (
@@ -103,7 +84,7 @@ export function ContinueLearningCard() {
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
 								<span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
-									{recommended ? "RECOMENDADO PARA VOCÊ" : "A SEGUIR"}
+									A SEGUIR
 								</span>
 								<p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
 									{module.title_pt}
@@ -117,7 +98,7 @@ export function ContinueLearningCard() {
 									<Clock className="w-3.5 h-3.5" />
 									Apenas {lesson.estimatedMinutes} min
 								</span>
-								<span className="flex items-center gap-1.5 text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded-md border border-brand-gold/20 shadow-sm">
+								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 shadow-sm">
 									<Star className="w-3.5 h-3.5 fill-current" />+
 									{lesson.xpReward} XP
 								</span>

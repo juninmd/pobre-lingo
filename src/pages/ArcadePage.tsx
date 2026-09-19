@@ -27,8 +27,8 @@ const games = [
 		description:
 			"O clássico jogo da forca. Adivinhe a palavra antes de perder todas as vidas!",
 		icon: AlertCircle,
-		color: "text-rose-500",
-		bgColor: "bg-rose-500/10",
+		color: "text-destructive",
+		bgColor: "bg-destructive/10",
 		href: "/games/hangman",
 		difficulty: "Médio",
 		cefr: "B1/B2",
@@ -39,8 +39,8 @@ const games = [
 		title: "Jogo da Memória",
 		description: "Encontre os pares de palavras entre inglês e português.",
 		icon: Grid,
-		color: "text-indigo-500",
-		bgColor: "bg-indigo-500/10",
+		color: "text-primary",
+		bgColor: "bg-primary/10",
 		href: "/games/memory-match",
 		difficulty: "Fácil",
 		cefr: "A1/A2",
@@ -52,8 +52,8 @@ const games = [
 		description:
 			"Encontre as palavras escondidas na grade antes do tempo acabar!",
 		icon: Search,
-		color: "text-pink-500",
-		bgColor: "bg-pink-500/10",
+		color: "text-brand-violet",
+		bgColor: "bg-brand-violet/10",
 		href: "/games/word-search",
 		difficulty: "Médio",
 		cefr: "B1/B2",
@@ -65,8 +65,8 @@ const games = [
 		description:
 			"Memorize vocabulário com cartões interativos. Ótimo para revisão!",
 		icon: GraduationCap,
-		color: "text-green-500",
-		bgColor: "bg-green-500/10",
+		color: "text-brand-aqua",
+		bgColor: "bg-brand-aqua/10",
 		href: "/games/flashcards",
 		difficulty: "Fácil",
 		cefr: "A1/A2",
@@ -78,8 +78,8 @@ const games = [
 		description:
 			"Desafio frenético! Combine pares, acumule combos e sobreviva ao tempo.",
 		icon: Zap,
-		color: "text-orange-500",
-		bgColor: "bg-orange-500/10",
+		color: "text-brand-gold",
+		bgColor: "bg-brand-gold/10",
 		href: "/games/speed-match",
 		difficulty: "Difícil",
 		cefr: "C1/C2",
@@ -90,8 +90,8 @@ const games = [
 		title: "Word Scramble",
 		description: "Desembaralhe as letras para encontrar a palavra correta.",
 		icon: Brain,
-		color: "text-purple-500",
-		bgColor: "bg-purple-500/10",
+		color: "text-brand-violet",
+		bgColor: "bg-brand-violet/10",
 		href: "/games/word-scramble",
 		difficulty: "Médio",
 		cefr: "B1/B2",
@@ -103,8 +103,8 @@ const games = [
 		description:
 			"Monte frases contra o tempo! Quanto mais rápido, mais pontos.",
 		icon: Zap,
-		color: "text-red-500",
-		bgColor: "bg-red-500/10",
+		color: "text-destructive",
+		bgColor: "bg-destructive/10",
 		href: "/games/sentence-rush",
 		difficulty: "Difícil",
 		cefr: "C1/C2",
@@ -116,8 +116,8 @@ const games = [
 		description:
 			"Treine seus ouvidos com frases faladas por nativos (ou robôs).",
 		icon: Headphones,
-		color: "text-blue-500",
-		bgColor: "bg-blue-500/10",
+		color: "text-primary",
+		bgColor: "bg-primary/10",
 		href: "/exercises/listening",
 		difficulty: "Difícil",
 		cefr: "B1/B2",
@@ -138,7 +138,7 @@ export default function ArcadePage() {
 							Divirta-se enquanto aprende com minigames rápidos!
 						</p>
 					</div>
-					<Trophy className="h-9 w-9 sm:h-10 sm:w-10 text-yellow-500 animate-pulse flex-shrink-0" />
+					<Trophy className="h-9 w-9 sm:h-10 sm:w-10 text-brand-gold animate-pulse flex-shrink-0" />
 				</div>
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -172,7 +172,7 @@ export default function ArcadePage() {
 									</div>
 									<Badge
 										variant="outline"
-										className="text-yellow-600 dark:text-yellow-500 border-yellow-200 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/30 text-xs font-semibold"
+										className="text-brand-gold border-brand-gold/30 bg-brand-gold/10 text-xs font-semibold"
 									>
 										+{game.xp}
 									</Badge>

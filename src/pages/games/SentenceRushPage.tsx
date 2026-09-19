@@ -130,7 +130,7 @@ export default function SentenceRushPage() {
 		toast({
 			title: "Correto! +10pts",
 			description: `+${bonusTime} segundos`,
-			className: "bg-green-500 text-white border-none",
+			className: "bg-brand-aqua text-white border-none",
 		});
 
 		// Next level
@@ -171,8 +171,8 @@ export default function SentenceRushPage() {
 				{/* Header */}
 				<div className="w-full flex justify-between items-center bg-card p-4 rounded-xl border shadow-sm">
 					<div className="flex items-center gap-3">
-						<div className="p-2 bg-yellow-100 rounded-full">
-							<Zap className="w-6 h-6 text-yellow-600 fill-yellow-600" />
+						<div className="p-2 bg-brand-gold/10 rounded-full">
+							<Zap className="w-6 h-6 text-brand-gold fill-brand-gold" />
 						</div>
 						<div>
 							<h1 className="font-bold text-xl leading-none">Sentence Rush</h1>
@@ -182,11 +182,15 @@ export default function SentenceRushPage() {
 						</div>
 					</div>
 
-					<div className="flex gap-6 font-mono font-bold text-xl">
+					<div
+						className="flex gap-6 font-mono font-bold text-xl"
+						aria-live="polite"
+						role="status"
+					>
 						<div
 							className={cn(
 								"flex items-center gap-2",
-								timeLeft < 10 && "text-red-500 animate-pulse",
+								timeLeft < 10 && "text-destructive animate-pulse",
 							)}
 						>
 							<Timer className="w-5 h-5" />
@@ -211,7 +215,7 @@ export default function SentenceRushPage() {
 								<p className="text-muted-foreground max-w-md">
 									Você tem 60 segundos. Monte o máximo de frases que conseguir.
 									Cada acerto dá{" "}
-									<span className="text-green-600 font-bold">+5 segundos</span>.
+									<span className="text-brand-aqua font-bold">+5 segundos</span>.
 								</p>
 							</div>
 							<Button
@@ -227,7 +231,10 @@ export default function SentenceRushPage() {
 					{isPlaying && (
 						<div className="flex flex-col gap-8 w-full animate-in fade-in slide-in-from-bottom-8 duration-500">
 							{/* Active Construction Area */}
-							<div className="min-h-[120px] bg-background border-2 border-dashed border-primary/30 rounded-2xl p-6 flex flex-wrap gap-3 items-center justify-center content-center shadow-inner transition-colors hover:border-primary/50">
+							<fieldset
+								className="min-h-[120px] bg-background border-2 border-dashed border-primary/30 rounded-2xl p-6 flex flex-wrap gap-3 items-center justify-center content-center shadow-inner transition-colors hover:border-primary/50"
+								aria-label="Frase montada"
+							>
 								{orderedWords.length === 0 && (
 									<span className="text-muted-foreground/50 text-lg font-medium select-none">
 										Toque nas palavras abaixo...
@@ -236,26 +243,32 @@ export default function SentenceRushPage() {
 								{orderedWords.map((word) => (
 									<button
 										key={`ordered-${word.id}`}
+										type="button"
+										aria-label={`Remover palavra "${word.text}" da frase`}
 										onClick={() => handleUndoWord(word)}
 										className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-bold text-lg shadow-md hover:bg-primary/90 active:scale-95 transition-all animate-in zoom-in duration-200"
 									>
 										{word.text}
 									</button>
 								))}
-							</div>
+							</fieldset>
 
 							{/* Word Bank */}
-							<div className="flex flex-wrap gap-3 justify-center">
+							<fieldset
+								className="flex flex-wrap gap-3 justify-center"
+								aria-label="Banco de palavras"
+							>
 								{shuffledWords.map((word) => (
 									<button
 										key={`shuffled-${word.id}`}
+										type="button"
 										onClick={() => handleWordClick(word)}
 										className="bg-card border border-border hover:border-primary/50 text-card-foreground px-4 py-3 rounded-xl font-medium text-lg shadow-sm hover:shadow-md active:scale-95 transition-all"
 									>
 										{word.text}
 									</button>
 								))}
-							</div>
+							</fieldset>
 
 							<div className="text-center">
 								<Button
@@ -279,7 +292,7 @@ export default function SentenceRushPage() {
 						<Card className="p-10 flex flex-col items-center text-center gap-6 animate-in zoom-in-95 duration-300 border-2 border-primary/20">
 							<div className="relative">
 								<Trophy className="w-24 h-24 text-yellow-500 mb-4 drop-shadow-lg" />
-								<div className="absolute -top-2 -right-2 bg-red-500 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center border-2 border-white shadow">
+								<div className="absolute -top-2 -right-2 bg-destructive text-white font-bold rounded-full w-10 h-10 flex items-center justify-center border-2 border-background shadow">
 									{score > 100 ? "S+" : score > 50 ? "A" : "B"}
 								</div>
 							</div>

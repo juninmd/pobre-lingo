@@ -1,19 +1,15 @@
-import { Coins, Lightbulb, RefreshCw } from "lucide-react";
+import { Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
-import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGamification } from "@/contexts/GamificationContext";
 import { TIPS } from "@/lib/tips";
 
 export function RightColumnWidgets() {
-	const { addGem } = useGamification();
-
 	const [currentTip, setCurrentTip] = useState(() => {
 		const dayOfYear = Math.floor(
 			(Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
@@ -25,23 +21,9 @@ export function RightColumnWidgets() {
 		return TIPS[dayOfYear % TIPS.length];
 	});
 
-	const [claimedTipReward, setClaimedTipReward] = useState(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
-		return localStorage.getItem("daily_tip_reward_claimed") === todayStr;
-	});
-
 	const refreshTip = () => {
 		const randomTip = TIPS[Math.floor(Math.random() * TIPS.length)];
 		setCurrentTip(randomTip);
-	};
-
-	const claimTipReward = () => {
-		if (!claimedTipReward) {
-			addGem(5);
-			setClaimedTipReward(true);
-			const todayStr = new Date().toISOString().split("T")[0];
-			localStorage.setItem("daily_tip_reward_claimed", todayStr);
-		}
 	};
 
 	return (
@@ -59,9 +41,6 @@ export function RightColumnWidgets() {
 
 				{/* Word of the Day - Microlearning */}
 				<WordOfTheDayWidget />
-
-				{/* Mindful Learning - Well-being */}
-				<MindfulWidget />
 
 				<CertificationPlanCard />
 
@@ -90,21 +69,6 @@ export function RightColumnWidgets() {
 						>
 							"{currentTip}"
 						</p>
-						<Button
-							variant={claimedTipReward ? "secondary" : "gamified"}
-							size="sm"
-							className="w-full text-xs font-bold shadow-sm"
-							disabled={claimedTipReward}
-							onClick={claimTipReward}
-						>
-							{claimedTipReward ? (
-								<>Resgatado!</>
-							) : (
-								<span className="flex items-center gap-1.5">
-									Entendi! (+5 <Coins className="w-3.5 h-3.5" />)
-								</span>
-							)}
-						</Button>
 					</CardContent>
 				</Card>
 			</div>

@@ -294,6 +294,8 @@ export default function WordSearchPage() {
 				<button
 					key={`${r}-${c}`}
 					type="button"
+					aria-pressed={isSelected}
+					aria-label={`Letra ${cell}, linha ${r + 1}, coluna ${c + 1}${isFound ? ", parte de palavra encontrada" : ""}`}
 					className={cn(
 						"w-[8.5vw] h-[8.5vw] max-w-[40px] max-h-[40px] sm:w-10 sm:h-10 flex items-center justify-center font-bold text-base sm:text-xl rounded-md cursor-pointer transition-all duration-100 select-none",
 						isFound
@@ -305,6 +307,12 @@ export default function WordSearchPage() {
 					onMouseDown={() => handleCellClick(r, c)}
 					onMouseEnter={() => handleCellHover(r, c)}
 					onMouseUp={() => selectionStart && handleCellClick(r, c)}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							e.preventDefault();
+							handleCellClick(r, c);
+						}
+					}}
 				>
 					{cell}
 				</button>
@@ -326,6 +334,8 @@ export default function WordSearchPage() {
 							"flex items-center gap-2 font-mono text-xl font-bold px-3 py-1 rounded-md",
 							timeLeft < 30 ? "bg-red-100 text-red-600" : "bg-muted",
 						)}
+						aria-live="polite"
+						role="status"
 					>
 						<Timer className="w-5 h-5" />
 						{formatTime(timeLeft)}
@@ -338,7 +348,11 @@ export default function WordSearchPage() {
 				<div className="relative p-4 bg-card rounded-xl shadow-lg border-4 border-muted select-none touch-none mx-auto">
 					{/* Overlay for Game Over / Win */}
 					{(gameOver || gameWon) && (
-						<div className="absolute inset-0 z-50 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-lg animate-in fade-in duration-300">
+						<div
+							className="absolute inset-0 z-50 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-lg animate-in fade-in duration-300"
+							aria-live="polite"
+							role="status"
+						>
 							<Pobrelingo
 								emotion={gameWon ? "excited" : "neutral"}
 								width={150}

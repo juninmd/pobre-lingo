@@ -29,7 +29,7 @@ export function ListeningExercise() {
 	const { toast } = useToast();
 
 	const exercises = useMemo(() => {
-		return lessonId ? getListeningExercisesForLesson(lessonId) : [];
+		return getListeningExercisesForLesson(lessonId ?? "");
 	}, [lessonId]);
 
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -120,38 +120,51 @@ export function ListeningExercise() {
 
 					<div className="flex justify-center py-8">
 						<Button
+							type="button"
 							size="lg"
 							className="h-24 w-24 rounded-full shadow-lg hover:scale-105 transition-transform"
 							onClick={handleSpeak}
+							aria-label="Ouvir frase"
 						>
-							<Volume2 className="h-10 w-10" />
+							<Volume2 className="h-10 w-10" aria-hidden="true" />
 						</Button>
 					</div>
 
-					<div className="space-y-3">
-						{currentItem.options.map((option, idx) => (
-							<div
-								key={idx}
-								className={`p-4 border-2 rounded-xl cursor-pointer transition-all font-medium ${
+					<div
+						className="space-y-3"
+						role="radiogroup"
+						aria-label="Opções de resposta"
+					>
+						{currentItem.options.map((option) => (
+							// biome-ignore lint/a11y/useSemanticElements: custom-styled option card; native <input type="radio"> would break the existing visual design (out of scope for this a11y pass)
+							<button
+								key={option}
+								type="button"
+								role="radio"
+								aria-checked={selectedOption === option}
+								disabled={!!isCorrect}
+								className={`w-full text-left p-4 border-2 rounded-xl transition-all font-medium focus-visible:ring-2 focus-visible:ring-ring ${
 									selectedOption === option
 										? "border-primary bg-primary/5 shadow-md"
 										: "border-muted hover:border-primary/50 hover:bg-accent"
-								}`}
+								} ${isCorrect ? "cursor-not-allowed" : "cursor-pointer"}`}
 								onClick={() => !isCorrect && setSelectedOption(option)}
 							>
 								{option}
-							</div>
+							</button>
 						))}
 					</div>
 
 					{isCorrect !== null && (
 						<div
+							role="status"
+							aria-live="polite"
 							className={`p-4 rounded-lg flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 ${isCorrect ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"}`}
 						>
 							{isCorrect ? (
-								<CheckCircle2 className="h-5 w-5" />
+								<CheckCircle2 className="h-5 w-5" aria-hidden="true" />
 							) : (
-								<AlertCircle className="h-5 w-5" />
+								<AlertCircle className="h-5 w-5" aria-hidden="true" />
 							)}
 							<p>
 								{isCorrect ? "Muito bem! Você acertou." : "Não foi dessa vez."}
@@ -160,11 +173,12 @@ export function ListeningExercise() {
 					)}
 				</CardContent>
 				<CardFooter className="justify-between pt-6 border-t">
-					<Button variant="ghost" disabled>
+					<Button type="button" variant="ghost" disabled>
 						Pular
 					</Button>
 					{isCorrect ? (
 						<Button
+							type="button"
 							onClick={handleNext}
 							className="w-32 font-bold animate-bounce-short"
 						>
@@ -172,6 +186,7 @@ export function ListeningExercise() {
 						</Button>
 					) : (
 						<Button
+							type="button"
 							onClick={handleCheck}
 							disabled={!selectedOption}
 							className="w-32 font-bold"

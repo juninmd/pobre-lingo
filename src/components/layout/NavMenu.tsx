@@ -1,17 +1,22 @@
 import {
+	AudioLines,
 	BookA,
+	Bot,
 	BookMarked,
 	BookOpen,
 	Brain,
 	CheckSquare,
 	Coins,
+	Compass,
 	FileText,
 	Gamepad2,
+	Gauge,
 	GraduationCap,
 	ListChecks,
 	Map as MapIcon,
 	Menu,
 	Moon,
+	PenLine,
 	Search as SearchIcon,
 	SearchX,
 	Settings,
@@ -30,6 +35,7 @@ import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,6 +84,18 @@ export const navGroups = [
 		],
 	},
 	{
+		title: "Habilidades",
+		items: [
+			{ href: "/reading", label: "Leitura & Escuta", icon: BookOpen },
+			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
+			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
+			{ href: "/fluency", label: "Fluência", icon: Gauge },
+			{ href: "/pronunciation", label: "Pronúncia", icon: AudioLines },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: Compass },
+		],
+	},
+	{
 		title: "Exercícios",
 		items: [
 			{
@@ -106,6 +124,7 @@ export const navGroups = [
 		title: "Status",
 		items: [
 			{ href: "/proficiency", label: "Teste de Nível", icon: GraduationCap },
+			{ href: "/checkpoints", label: "Checkpoints", icon: Trophy },
 			{ href: "/achievements", label: "Conquistas", icon: Trophy },
 			{ href: "/settings", label: "Configurações", icon: Settings },
 		],
@@ -139,21 +158,7 @@ export function NavMenu() {
 	return (
 		<>
 			<SidebarHeader className="p-3 border-b border-sidebar-border/50">
-				<div className="flex items-center gap-3">
-					<div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
-						<GraduationCap className="h-5 w-5 text-primary" />
-					</div>
-					{!isCollapsed && (
-						<div className="flex flex-col min-w-0">
-							<span className="font-bold text-base text-sidebar-foreground truncate tracking-tight [data-theme=pobre-lingo]:text-gold">
-								PobreLingo
-							</span>
-							<span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:font-semibold">
-								Aprenda Grátis
-							</span>
-						</div>
-					)}
-				</div>
+				<BrandMark variant="sidebar" compact={isCollapsed} />
 
 				{!isCollapsed && (
 					<div className="mt-4 relative">
@@ -163,7 +168,7 @@ export function NavMenu() {
 							placeholder="Buscar..."
 							value={sidebarSearchTerm}
 							onChange={(e) => setSidebarSearchTerm(e.target.value)}
-							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground rounded-lg focus-visible:ring-1 focus-visible:ring-primary/50 [data-theme=pobre-lingo]:rounded-xl [data-theme=pobre-lingo]:border-primary/20"
+							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/60 border-sidebar-border/60 placeholder:text-sidebar-foreground/60 text-sidebar-foreground rounded-lg focus-visible:ring-1 focus-visible:ring-primary/50 [data-theme=pobre-lingo]:rounded-xl [data-theme=pobre-lingo]:border-primary/20"
 						/>
 						{sidebarSearchTerm && (
 							<button
@@ -183,7 +188,7 @@ export function NavMenu() {
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 							{!isCollapsed && (
-								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 [data-theme=pobre-lingo]:text-accent/60 [data-theme=pobre-lingo]:tracking-[0.12em]">
+								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
 									{group.title}
 								</h3>
 							)}
@@ -225,7 +230,7 @@ export function NavMenu() {
 															{!isCollapsed && item.badge && (
 																<Badge
 																	variant="secondary"
-																	className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
+																	className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent/15 text-accent border border-accent/25"
 																>
 																	{item.badge}
 																</Badge>

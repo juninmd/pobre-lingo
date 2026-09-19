@@ -2,8 +2,8 @@ import { BookOpen, Sparkles, Loader2 } from "lucide-react";
 import React, { Suspense } from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
-
-const LazyUnitGroup = React.lazy(() => import("./timeline/UnitGroup").then(m => ({ default: m.UnitGroup })));
+import { LevelRoadmap } from "./LevelRoadmap";
+import { UnitGroup } from "./timeline/UnitGroup";
 
 export function LearningTimeline() {
 	const { completedLessons } = useCurriculumProgress();
@@ -37,9 +37,9 @@ export function LearningTimeline() {
 	}));
 
 	return (
-		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen overflow-x-hidden relative flex flex-col gap-8">
+		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-8">
 			{/* Intro / Header */}
-			<div className="mb-10 text-center space-y-2 pt-8 px-4">
+			<div className="mb-2 text-center space-y-2 pt-8 px-4">
 				<div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
 					<BookOpen className="w-8 h-8" />
 				</div>
@@ -52,17 +52,17 @@ export function LearningTimeline() {
 				</p>
 			</div>
 
-			<Suspense fallback={<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />}>
-				{unitsWithModules.map((unit) => (
-					<LazyUnitGroup
-						key={unit.id}
-						unit={unit}
-						modules={unit.modules}
-						completedLessonsSet={completedLessonsSet}
-						firstIncompleteLessonId={firstIncompleteLessonId}
-					/>
-				))}
-			</Suspense>
+			<LevelRoadmap completedLessons={completedLessonsSet} />
+
+			{unitsWithModules.map((unit) => (
+				<UnitGroup
+					key={unit.id}
+					unit={unit}
+					modules={unit.modules}
+					completedLessonsSet={completedLessonsSet}
+					firstIncompleteLessonId={firstIncompleteLessonId}
+				/>
+			))}
 
 			{/* End of Journey */}
 			<div className="text-center py-12 opacity-50">

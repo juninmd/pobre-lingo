@@ -173,7 +173,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 													<CardContent className="p-4 space-y-4">
 														{/* Explanation */}
 														<div className="flex gap-3">
-															<Lightbulb className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
+															<Lightbulb className="h-5 w-5 text-brand-gold shrink-0 mt-0.5" />
 															<div
 																className="text-sm text-muted-foreground leading-relaxed"
 																dangerouslySetInnerHTML={{
@@ -186,7 +186,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 														{rule.structure_format_pt && (
 															<div className="bg-muted/50 rounded-lg p-3 text-sm border border-muted">
 																<div className="flex items-center gap-2 mb-2 font-semibold text-foreground">
-																	<Puzzle className="h-4 w-4 text-blue-500" />
+																	<Puzzle className="h-4 w-4 text-primary" />
 																	Estrutura
 																</div>
 																<div
@@ -200,14 +200,14 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 														{/* Examples */}
 														<div>
 															<div className="flex items-center gap-2 mb-2 font-semibold text-foreground text-sm">
-																<CheckCircle2 className="h-4 w-4 text-green-500" />
+																<CheckCircle2 className="h-4 w-4 text-brand-aqua" />
 																Exemplos
 															</div>
 															<div className="space-y-2">
 																{rule.examples.slice(0, 3).map((ex, i) => (
 																	<div
 																		key={i}
-																		className="text-sm bg-green-50/50 dark:bg-green-950/10 p-2 rounded border border-green-100 dark:border-green-900/30"
+																		className="text-sm bg-brand-aqua/10 p-2 rounded border border-brand-aqua/20"
 																	>
 																		<p className="font-medium">
 																			{ex.sentence_en}
@@ -222,8 +222,8 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 														{/* Common Mistakes */}
 														{rule.common_mistakes_pt && (
-															<div className="bg-red-50/50 dark:bg-red-950/10 p-3 rounded-lg border border-red-100 dark:border-red-900/30">
-																<div className="flex items-center gap-2 mb-2 font-semibold text-red-700 dark:text-red-400 text-sm">
+															<div className="bg-destructive/10 p-3 rounded-lg border border-destructive/20">
+																<div className="flex items-center gap-2 mb-2 font-semibold text-destructive text-sm">
 																	<AlertTriangle className="h-4 w-4" />
 																	Atenção aos Erros
 																</div>

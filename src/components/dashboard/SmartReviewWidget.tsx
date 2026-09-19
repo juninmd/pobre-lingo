@@ -16,13 +16,13 @@ export function SmartReviewWidget() {
 	const hasDue = dueCards.length > 0;
 
 	return (
-		<Card className="glass-card w-full border border-amber-200/40 dark:border-amber-800/40 bg-amber-50/40 dark:bg-amber-950/15 shadow-sm backdrop-blur-md">
+		<Card className="glass-card w-full border border-brand-gold/20 dark:border-brand-gold/40 bg-brand-gold/10 dark:bg-brand-gold/15 shadow-sm backdrop-blur-md">
 			<CardHeader className="pb-3">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-amber-700 dark:text-amber-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-brand-gold">
 					<Brain className="w-4 h-4" />
 					Revisão Inteligente
 					{hasDue && (
-						<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-amber-600/80 bg-amber-500/15 px-2 py-0.5 rounded-full tabular-nums">
+						<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-brand-gold/80 bg-brand-gold/15 px-2 py-0.5 rounded-full tabular-nums">
 							{dueCards.length}
 						</span>
 					)}

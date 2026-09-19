@@ -21,10 +21,13 @@ export default defineConfig({
 			use: { ...devices["Pixel 5"] },
 		},
 	],
+	// Testa o build de produção: sem compilação sob demanda do dev server,
+	// que causava flakes de cold start (ERR_ABORTED, render lento).
 	webServer: {
-		command: "npm run dev",
+		command:
+			"npx vite build --logLevel error && npx vite preview --port 5173 --strictPort",
 		url: "http://localhost:5173",
 		reuseExistingServer: !process.env.CI,
-		timeout: 120 * 1000,
+		timeout: 300 * 1000,
 	},
 });

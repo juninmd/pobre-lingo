@@ -146,7 +146,7 @@ function WordList({
 							<button
 								onClick={() => onSendToSrs(entry)}
 								disabled={srsIds.has(`dictionary-${entry.id}`)}
-								className="p-1.5 text-muted-foreground/50 hover:text-amber-500 disabled:text-amber-500 disabled:cursor-default transition-colors rounded"
+								className="p-1.5 text-muted-foreground/50 hover:text-brand-gold disabled:text-brand-gold disabled:cursor-default transition-colors rounded"
 								title={
 									srsIds.has(`dictionary-${entry.id}`)
 										? "Já está na revisão espaçada"
@@ -158,7 +158,7 @@ function WordList({
 							</button>
 							<button
 								onClick={() => onRemove(entry.id)}
-								className="p-1.5 text-muted-foreground/50 hover:text-red-500 transition-colors rounded"
+								className="p-1.5 text-muted-foreground/50 hover:text-destructive transition-colors rounded"
 								aria-label="Remover"
 							>
 								<Trash2 className="w-4 h-4" />
@@ -203,7 +203,7 @@ function FlashcardReview({ entries }: { entries: DictionaryEntry[] }) {
 	if (done) {
 		return (
 			<div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
-				<Check className="w-16 h-16 text-green-500" />
+				<Check className="w-16 h-16 text-brand-aqua" />
 				<div>
 					<p className="text-2xl font-bold">Revisão concluída!</p>
 					<p className="text-muted-foreground mt-1">

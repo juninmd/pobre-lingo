@@ -199,7 +199,11 @@ export function CorrectSentenceIdentification() {
 					</div>
 
 					{showFeedback && (
-						<Alert className="mt-6 bg-primary/10 border-primary/30">
+						<Alert
+							role="status"
+							aria-live="polite"
+							className="mt-6 bg-primary/10 border-primary/30"
+						>
 							<AlertTitle className="font-semibold text-primary">
 								Explicação Detalhada
 							</AlertTitle>
@@ -265,14 +269,16 @@ export function CorrectSentenceIdentification() {
 				</CardContent>
 				<CardFooter className="flex flex-col sm:flex-row justify-between gap-2">
 					<Button
+						type="button"
 						onClick={handleSubmit}
 						disabled={selectedChoices.length === 0 || showFeedback}
 						className="bg-accent hover:bg-accent/90 text-accent-foreground"
 					>
 						Verificar Resposta
 					</Button>
-					<Button onClick={loadNewExercise} variant="secondary">
-						<RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
+					<Button type="button" onClick={loadNewExercise} variant="secondary">
+						<RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" /> Próximo
+						Exercício
 					</Button>
 				</CardFooter>
 			</Card>

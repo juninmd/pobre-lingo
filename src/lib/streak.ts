@@ -8,6 +8,7 @@
 
 import { differenceInCalendarDays, parseISO } from "date-fns";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
+import { publishLastStudyDay } from "@/lib/streakReminder";
 
 export const STREAK_KEY = "pobrelingo_streak";
 export const LAST_ACTIVITY_KEY = "pobrelingo_last_activity_date";
@@ -58,5 +59,6 @@ export function recordStreakActivity(now: Date = new Date()): number {
 
 	setLocalStorageItem(STREAK_KEY, next);
 	setLocalStorageItem(LAST_ACTIVITY_KEY, now.toISOString());
+	void publishLastStudyDay(now);
 	return next;
 }

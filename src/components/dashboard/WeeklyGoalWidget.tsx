@@ -35,14 +35,14 @@ export function WeeklyGoalWidget() {
 	const days = ["D", "S", "T", "Q", "Q", "S", "S"];
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-teal-50/50 to-emerald-50/50 dark:from-teal-950/20 dark:to-emerald-950/20 border-teal-200/50 dark:border-teal-800/50">
+		<Card className="glass-card bg-gradient-to-br from-brand-aqua/10 to-brand-aqua/10 dark:from-brand-aqua/20 dark:to-brand-aqua/20 border-brand-aqua/20 dark:border-brand-aqua/50">
 			<CardHeader className="pb-2 flex flex-row items-center justify-between">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-teal-700 dark:text-teal-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-brand-aqua">
 					<Calendar className="w-4 h-4" />
 					Meta Semanal
 				</CardTitle>
 				{isCompleted && (
-					<div className="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 p-1 rounded-full">
+					<div className="bg-brand-aqua/20 text-brand-aqua p-1 rounded-full">
 						<Check className="w-3.5 h-3.5" />
 					</div>
 				)}
@@ -50,27 +50,27 @@ export function WeeklyGoalWidget() {
 			<CardContent className="space-y-4">
 				<div className="flex justify-between items-end mb-1">
 					<div className="space-y-1">
-						<p className="text-2xl font-black text-teal-900 dark:text-teal-300">
+						<p className="text-2xl font-black text-brand-aqua">
 							{weeklyCount}{" "}
-							<span className="text-sm font-semibold text-teal-600/70 dark:text-teal-400/70">
+							<span className="text-sm font-semibold text-brand-aqua/70">
 								/ {WEEKLY_GOAL}
 							</span>
 						</p>
-						<p className="text-xs font-medium text-teal-700/80 dark:text-teal-400/80">
+						<p className="text-xs font-medium text-brand-aqua/80">
 							Lições concluídas nesta semana
 						</p>
 					</div>
 					<TrendingUp
-						className={`w-8 h-8 ${isCompleted ? "text-emerald-500" : "text-teal-400"} opacity-50`}
+						className={`w-8 h-8 ${isCompleted ? "text-brand-aqua" : "text-brand-aqua"} opacity-50`}
 					/>
 				</div>
 
 				<div className="space-y-1.5">
 					<Progress
 						value={progressPct}
-						className="h-2.5 bg-teal-100 dark:bg-teal-950"
+						className="h-2.5 bg-brand-aqua/15 dark:bg-brand-aqua/50"
 					/>
-					<div className="flex justify-between text-[10px] uppercase font-bold tracking-wider text-teal-600/60 dark:text-teal-400/60">
+					<div className="flex justify-between text-[10px] uppercase font-bold tracking-wider text-brand-aqua/60">
 						<span>Progresso</span>
 						<span>{progressPct}%</span>
 					</div>
@@ -85,9 +85,9 @@ export function WeeklyGoalWidget() {
 								<div
 									className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
 										idx === currentDay
-											? "bg-teal-500 text-white shadow-md ring-2 ring-teal-200 dark:ring-teal-800"
+											? "bg-brand-aqua text-white shadow-md ring-2 ring-brand-aqua/20 dark:ring-brand-aqua/70"
 											: idx < currentDay
-												? "bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400"
+												? "bg-brand-aqua/15 dark:bg-brand-aqua/50 text-brand-aqua"
 												: "bg-muted/50 text-muted-foreground"
 									}`}
 								>

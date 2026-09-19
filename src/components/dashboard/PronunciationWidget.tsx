@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useToast } from "@/hooks/use-toast";
+import { scoreSpeech } from "@/lib/speechMatch";
 
 const PRACTICE_PHRASES = [
 	{ text: "I love learning English", translation: "Eu amo aprender inglês" },
@@ -95,29 +96,13 @@ export function PronunciationWidget() {
 			setTranscript(resultTranscript);
 			setIsRecording(false);
 
-			// Simple scoring: check word overlap
-			const targetWords = currentPhrase.text
-				.toLowerCase()
-				.replace(/[?,.!]/g, "")
-				.split(" ");
-			const spokenWords = resultTranscript
-				.toLowerCase()
-				.replace(/[?,.!]/g, "")
-				.split(" ");
-
-			let matchCount = 0;
-			for (const word of targetWords) {
-				if (spokenWords.includes(word)) {
-					matchCount++;
-				}
-			}
-
-			const calculatedScore = Math.round(
-				(matchCount / targetWords.length) * 100,
+			const { score: calculatedScore, passed } = scoreSpeech(
+				currentPhrase.text,
+				resultTranscript,
 			);
 			setScore(calculatedScore);
 
-			if (calculatedScore > 70) {
+			if (passed) {
 				const earnedXp = Math.round(calculatedScore / 10);
 				addXp(earnedXp);
 				toast({
@@ -196,9 +181,9 @@ export function PronunciationWidget() {
 
 	if (!isSupported) {
 		return (
-			<Card className="glass-card bg-rose-50/50 dark:bg-rose-950/20 border-rose-200/50">
+			<Card className="glass-card bg-destructive/10 dark:bg-destructive/20 border-destructive/20">
 				<CardHeader className="pb-2">
-					<CardTitle className="text-sm font-bold flex items-center gap-2 text-rose-700">
+					<CardTitle className="text-sm font-bold flex items-center gap-2 text-destructive">
 						<AlertCircle className="w-4 h-4" />
 						Reconhecimento de Voz Indisponível
 					</CardTitle>
@@ -213,30 +198,30 @@ export function PronunciationWidget() {
 	}
 
 	return (
-		<Card className="glass-card bg-gradient-to-br from-sky-50/50 to-blue-50/50 dark:from-sky-950/20 dark:to-blue-950/20 border-sky-200/50 dark:border-sky-800/50 relative overflow-hidden group">
-			<div className="absolute -right-4 -top-4 w-24 h-24 bg-sky-500/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
+		<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/10 dark:from-primary/20 dark:to-primary/20 border-primary/20 dark:border-primary/50 relative overflow-hidden group">
+			<div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 			<CardHeader className="pb-2 flex flex-row items-center justify-between">
-				<CardTitle className="text-sm font-bold flex items-center gap-2 text-sky-700 dark:text-sky-400">
+				<CardTitle className="text-sm font-bold flex items-center gap-2 text-primary">
 					<Mic className="w-4 h-4" />
 					Prática de Pronúncia
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-sky-500/70 bg-sky-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[10px] uppercase font-bold tracking-widest text-primary/70 bg-primary/10 px-2 py-0.5 rounded-full">
 					IA Interativa
 				</span>
 			</CardHeader>
 			<CardContent className="space-y-4">
-				<div className="bg-white/60 dark:bg-black/30 p-4 rounded-xl border border-sky-100 dark:border-sky-900/50 text-center relative shadow-inner">
-					<p className="text-xl font-black text-sky-900 dark:text-sky-300 tracking-tight">
+				<div className="bg-white/60 dark:bg-black/30 p-4 rounded-xl border border-primary/15 dark:border-primary/50 text-center relative shadow-inner">
+					<p className="text-xl font-black text-primary tracking-tight">
 						"{currentPhrase.text}"
 					</p>
-					<p className="text-xs text-sky-600/70 dark:text-sky-400/70 mt-1 font-medium">
+					<p className="text-xs text-primary/70 mt-1 font-medium">
 						{currentPhrase.translation}
 					</p>
 
 					{score !== null && (
-						<div className="absolute -top-3 -right-3 bg-white dark:bg-slate-800 p-1.5 rounded-full shadow-lg border border-sky-100 flex items-center justify-center min-w-10 animate-in zoom-in">
+						<div className="absolute -top-3 -right-3 bg-white dark:bg-muted p-1.5 rounded-full shadow-lg border border-primary/15 flex items-center justify-center min-w-10 animate-in zoom-in">
 							<span
-								className={`text-xs font-bold ${score > 70 ? "text-green-500" : "text-amber-500"}`}
+								className={`text-xs font-bold ${score > 70 ? "text-brand-aqua" : "text-brand-gold"}`}
 							>
 								{score}%
 							</span>
@@ -260,7 +245,7 @@ export function PronunciationWidget() {
 						{[...Array(5)].map((_, i) => (
 							<span
 								key={i}
-								className="w-1.5 bg-sky-500 rounded-full animate-bounce"
+								className="w-1.5 bg-primary rounded-full animate-bounce"
 								style={{
 									height: `${i % 3 === 0 ? 80 : i % 2 === 0 ? 60 : 40}%`,
 									minHeight: "4px",
@@ -296,7 +281,7 @@ export function PronunciationWidget() {
 						className="px-3"
 						title="Próxima frase"
 					>
-						<Trophy className="w-4 h-4 text-sky-600" />
+						<Trophy className="w-4 h-4 text-primary" />
 					</Button>
 				</div>
 			</CardContent>

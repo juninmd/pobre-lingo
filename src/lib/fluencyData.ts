@@ -55,20 +55,62 @@ export const fluencyPrompts: FluencyPrompt[] = [
 	{
 		id: "c1-debate",
 		level: "C1",
-		prompt: "Discuss whether technology makes us more productive or more distracted.",
-		promptPt: "Discuta se a tecnologia nos torna mais produtivos ou mais distraídos.",
+		prompt:
+			"Discuss whether technology makes us more productive or more distracted.",
+		promptPt:
+			"Discuta se a tecnologia nos torna mais produtivos ou mais distraídos.",
 		tips: ["Use hedging: it seems, arguably", "Reconheça o outro lado"],
 	},
 ];
 
 /** Frases curtas para shadowing: ouça e repita imitando ritmo e entonação. */
 export const shadowingLines: ShadowingLine[] = [
-	{ id: "s-a1-1", level: "A1", en: "Nice to meet you.", pt: "Prazer em conhecê-lo." },
-	{ id: "s-a1-2", level: "A1", en: "How are you doing today?", pt: "Como você está hoje?" },
-	{ id: "s-a2-1", level: "A2", en: "I'd like a coffee, please.", pt: "Eu gostaria de um café, por favor." },
-	{ id: "s-a2-2", level: "A2", en: "Could you say that again?", pt: "Você poderia repetir isso?" },
-	{ id: "s-b1-1", level: "B1", en: "I've been working here for two years.", pt: "Eu trabalho aqui há dois anos." },
-	{ id: "s-b1-2", level: "B1", en: "That's exactly what I was thinking.", pt: "É exatamente o que eu estava pensando." },
-	{ id: "s-b2-1", level: "B2", en: "It depends on how you look at it.", pt: "Depende de como você encara isso." },
-	{ id: "s-c1-1", level: "C1", en: "I couldn't agree more, to be honest.", pt: "Não poderia concordar mais, sinceramente." },
+	{
+		id: "s-a1-1",
+		level: "A1",
+		en: "Nice to meet you.",
+		pt: "Prazer em conhecê-lo.",
+	},
+	{
+		id: "s-a1-2",
+		level: "A1",
+		en: "How are you doing today?",
+		pt: "Como você está hoje?",
+	},
+	{
+		id: "s-a2-1",
+		level: "A2",
+		en: "I'd like a coffee, please.",
+		pt: "Eu gostaria de um café, por favor.",
+	},
+	{
+		id: "s-a2-2",
+		level: "A2",
+		en: "Could you say that again?",
+		pt: "Você poderia repetir isso?",
+	},
+	{
+		id: "s-b1-1",
+		level: "B1",
+		en: "I've been working here for two years.",
+		pt: "Eu trabalho aqui há dois anos.",
+	},
+	{
+		id: "s-b1-2",
+		level: "B1",
+		en: "That's exactly what I was thinking.",
+		pt: "É exatamente o que eu estava pensando.",
+	},
+	{
+		id: "s-b2-1",
+		level: "B2",
+		en: "It depends on how you look at it.",
+		pt: "Depende de como você encara isso.",
+	},
+	{
+		id: "s-c1-1",
+		level: "C1",
+		en: "I couldn't agree more, to be honest.",
+		pt: "Não poderia concordar mais, sinceramente.",
+	},
 ];

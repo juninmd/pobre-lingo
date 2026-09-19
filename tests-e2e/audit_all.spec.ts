@@ -22,31 +22,19 @@ const ROUTES: Route[] = [
 	{ name: "rules", path: "/rules" },
 	{ name: "rules-category", path: "/rules/fundamentos-1" },
 	{ name: "rules-rule", path: "/rules/fundamentos-1/verb-to-be" },
-	{
-		name: "rules-rule-curriculum",
-		path: "/rules/fundamentos-1/verb-to-be?module=foundations&lesson=classes-de-palavras",
-	},
+	{ name: "rules-rule-curriculum", path: "/rules/fundamentos-1/verb-to-be?module=foundations&lesson=classes-de-palavras" },
 	{ name: "rules-tenses", path: "/rules/tempos-verbais" },
 	{ name: "vocabulary-vault", path: "/vocabulary" },
-	{
-		name: "vocabulary-lesson",
-		path: "/vocabulary/foundations/alphabet-pronunciation",
-	},
+	{ name: "vocabulary-lesson", path: "/vocabulary/foundations/alphabet-pronunciation" },
 	{ name: "quiz-lesson", path: "/quiz/verb-tenses/tenses-quiz" },
 	{ name: "reading", path: "/reading" },
 	{ name: "reading-view", path: "/reading/a1-my-morning" },
 	{ name: "fluency", path: "/fluency" },
-	{ name: "pronunciation", path: "/pronunciation" },
-	{ name: "tracks", path: "/tracks" },
-	{ name: "tutor", path: "/tutor" },
 	{ name: "writing", path: "/writing" },
 	{ name: "checkpoints", path: "/checkpoints" },
 	{ name: "proficiency", path: "/proficiency" },
 	{ name: "ex-sentence-ordering", path: "/exercises/sentence-ordering" },
-	{
-		name: "ex-sentence-identification",
-		path: "/exercises/sentence-identification",
-	},
+	{ name: "ex-sentence-identification", path: "/exercises/sentence-identification" },
 	{ name: "ex-find-incorrect-words", path: "/exercises/find-incorrect-words" },
 	{ name: "ex-news-comprehension", path: "/exercises/news-comprehension" },
 	{ name: "ex-matching-pairs", path: "/exercises/matching-pairs" },
@@ -77,9 +65,9 @@ for (const route of ROUTES) {
 		await page.waitForTimeout(2000);
 
 		const metrics = await page.evaluate(() => {
-			const scroller = document.querySelector(
-				".overflow-y-auto",
-			) as HTMLElement | null;
+			const scroller = document.querySelector(".overflow-y-auto") as
+				| HTMLElement
+				| null;
 			const vw = window.innerWidth;
 			const offenders: string[] = [];
 			document.querySelectorAll("*").forEach((el) => {

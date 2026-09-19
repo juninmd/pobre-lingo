@@ -29,7 +29,9 @@ export function ShadowingPanel({ level, onPractice }: ShadowingPanelProps) {
 					>
 						<div className="min-w-0">
 							<p className="font-medium truncate">{line.en}</p>
-							<p className="text-xs text-muted-foreground truncate">{line.pt}</p>
+							<p className="text-xs text-muted-foreground truncate">
+								{line.pt}
+							</p>
 						</div>
 						<Button
 							variant="ghost"

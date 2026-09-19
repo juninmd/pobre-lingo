@@ -123,13 +123,3 @@
 
 
 
-
-### [2026-09-19] Jules-Architect: Implementação do Benchmark (P0–P2, IA local sem chaves)
-- **Confiança:** removidos 31 widgets simulados (XP farmável); `PracticeHub` só com práticas reais. Fala validada por alinhamento LCS ≥70% (`speechMatch`). Manifest "Aprenda Inglês". LogRocket só com consentimento (LGPD). Restaurar backup validado (`lib/backup.ts`).
-- **Conteúdo:** ~2.700 palavras A1–C2 (`lib/vocab/*`), 60 leitores A1–C2 (`lib/readers/*`), 50 entradas viagem/trabalho no dicionário.
-- **SRS:** SM-2 → FSRS (`ts-fsrs`) com migração; recebe palavras das lições, regras estudadas, ditados errados e o cofre.
-- **Novas telas:** `/pronunciation` (pares mínimos para brasileiros), `/tracks` (Viagem/Trabalho), `/tutor` (IA local), nivelamento adaptativo com ponto de partida.
-- **IA sem chaves:** Chrome Prompt API (Gemini Nano) → fallback WebLLM (Qwen2.5-1.5B em worker); correção de redação com a mesma IA. web-llm em chunk próprio, fora do precache.
-- **Lembrete de ofensiva:** Periodic Background Sync no SW (`public/sw-reminders.js`), sem servidor push.
-- **Não feito:** conta/sync e ligas (exigem servidor; ranking falso repetiria os widgets falsos).
-- **Tests:** E2E agora roda contra `vite build && vite preview`; locators mobile filtram só visíveis. 73 unit + 284 e2e; Biome 276 → 186 erros (arquivos novos limpos).

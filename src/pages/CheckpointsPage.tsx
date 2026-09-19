@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCanDo } from "@/hooks/useCanDo";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { cefrConfig, type CEFRLevel } from "@/lib/curriculumData";
+import { type CEFRLevel, cefrConfig } from "@/lib/curriculumData";
 import { canDoStatements, checkpointQuestions } from "@/lib/levelCheckpoints";
 import { CEFR_ORDER, getLevelStages } from "@/lib/levels";
 import { cn } from "@/lib/utils";
@@ -39,7 +39,9 @@ export default function CheckpointsPage() {
 				{CEFR_ORDER.map((level) => {
 					const stage = stages.find((item) => item.level === level);
 					const statements = canDoStatements[level];
-					const checkedCount = statements.filter((item) => isChecked(item.id)).length;
+					const checkedCount = statements.filter((item) =>
+						isChecked(item.id),
+					).length;
 					const passed = isPassed(level);
 					const unlocked = level === "A1" || (stage?.percent ?? 0) > 0;
 

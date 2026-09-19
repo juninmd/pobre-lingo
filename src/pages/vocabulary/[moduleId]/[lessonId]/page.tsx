@@ -27,7 +27,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { useSrs } from "@/hooks/useSrs";
 import { triggerConfetti } from "@/lib/confetti";
 import { curriculumData } from "@/lib/curriculumData";
 import { getWordsByTopic } from "@/lib/dictionaryData";
@@ -266,7 +265,6 @@ export default function LessonPage() {
 	}>();
 	const navigate = useNavigate();
 	const { completeLesson, isLessonCompleted } = useCurriculumProgress();
-	const { enroll } = useSrs();
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [showTranslation, setShowTranslation] = useState(false);
@@ -294,18 +292,6 @@ export default function LessonPage() {
 	const completed = isLessonCompleted(moduleId!, lessonId!);
 
 	const handleComplete = () => {
-		enroll(
-			(lesson.vocabularyTopics ?? [])
-				.flatMap((topic) => getWordsByTopic(topic))
-				.map((entry) => ({
-					id: `dict-${entry.id}`,
-					source: "dictionary" as const,
-					front: entry.word,
-					back: entry.translation_pt,
-					hint: entry.example_sentence_en,
-					href: `/vocabulary/${moduleId}/${lessonId}`,
-				})),
-		);
 		if (!completed) {
 			completeLesson(moduleId!, lessonId!, lesson.xpReward);
 			navigate("/", { replace: true });

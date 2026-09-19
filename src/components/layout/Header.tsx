@@ -1,6 +1,7 @@
 import { Coins, GraduationCap, Menu, Moon, Sparkles, Sun } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { GlobalSearchTrigger } from "@/components/common/GlobalSearch";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +13,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { BrandMark } from "@/components/layout/BrandMark";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";

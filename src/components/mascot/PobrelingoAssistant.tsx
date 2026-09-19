@@ -117,7 +117,9 @@ export function PobrelingoAssistant() {
 			<Button
 				onClick={() => setIsOpen(!isOpen)}
 				aria-label={
-					isOpen ? "Fechar assistente Pobrelingo" : "Abrir assistente Pobrelingo"
+					isOpen
+						? "Fechar assistente Pobrelingo"
+						: "Abrir assistente Pobrelingo"
 				}
 				aria-expanded={isOpen}
 				className={cn(

@@ -173,29 +173,24 @@ export default function MatchingPairsPage() {
 					to="/"
 					className="flex items-center text-sm text-muted-foreground hover:text-primary"
 				>
-					<ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
+					<ArrowLeft className="mr-2 h-4 w-4" />
 					Voltar
 				</Link>
-				<div
-					className="flex items-center gap-2"
-					role="status"
-					aria-live="polite"
-				>
+				<div className="flex items-center gap-2">
 					<Heart
-						aria-hidden="true"
 						className={cn(
 							"h-6 w-6 fill-destructive text-destructive",
 							hearts === 0 && "animate-pulse",
 						)}
 					/>
-					<span className="font-bold text-lg">{hearts} vidas restantes</span>
+					<span className="font-bold text-lg">{hearts}</span>
 				</div>
 			</div>
 
 			<Card className="max-w-2xl mx-auto">
 				<CardHeader>
 					<CardTitle className="flex items-center gap-2 flex-wrap">
-						<Trophy className="h-6 w-6 text-brand-gold" aria-hidden="true" />
+						<Trophy className="h-6 w-6 text-brand-gold" />
 						<span>Par de Palavras: {exercise.topic}</span>
 						{cefrLevel && <CefrBadge level={cefrLevel} />}
 					</CardTitle>
@@ -205,11 +200,8 @@ export default function MatchingPairsPage() {
 				</CardHeader>
 				<CardContent>
 					{hearts <= 0 ? (
-						<div className="text-center py-10" role="status" aria-live="polite">
-							<Heart
-								aria-hidden="true"
-								className="h-16 w-16 mx-auto text-muted-foreground/40 mb-4"
-							/>
+						<div className="text-center py-10">
+							<Heart className="h-16 w-16 mx-auto text-muted-foreground/40 mb-4" />
 							<h3 className="text-xl font-bold mb-2">Sem vidas!</h3>
 							<p className="text-muted-foreground mb-6">
 								Você perdeu todas as suas vidas. Espere recarregar ou pratique
@@ -220,9 +212,9 @@ export default function MatchingPairsPage() {
 							</Button>
 						</div>
 					) : isCompleted ? (
-						<div className="text-center py-10" role="status" aria-live="polite">
+						<div className="text-center py-10">
 							<div className="h-20 w-20 bg-brand-gold/15 rounded-full flex items-center justify-center mx-auto mb-6">
-								<Trophy className="h-10 w-10 text-brand-gold" aria-hidden="true" />
+								<Trophy className="h-10 w-10 text-brand-gold" />
 							</div>
 							<h3 className="text-2xl font-bold mb-2">Parabéns!</h3>
 							<p className="text-muted-foreground mb-6">
@@ -230,12 +222,10 @@ export default function MatchingPairsPage() {
 							</p>
 							<div className="flex justify-center gap-4">
 								<Button
-									type="button"
 									onClick={() => window.location.reload()}
 									variant="outline"
 								>
-									<RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" /> Jogar
-									Novamente
+									<RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente
 								</Button>
 								<Button asChild>
 									<Link to="/">Continuar</Link>
@@ -243,46 +233,29 @@ export default function MatchingPairsPage() {
 							</div>
 						</div>
 					) : (
-						<fieldset
-							className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-0 p-0 m-0"
-							aria-label="Cartas do jogo da memória"
-						>
-							{cards.map((card, index) => {
-								const statusLabel =
-									card.status === "matched"
-										? "combinada"
-										: card.status === "selected"
-											? "selecionada"
-											: card.status === "error"
-												? "sem combinação"
-												: "não revelada";
-								return (
-									<button
-										type="button"
-										key={card.id}
-										onClick={() => handleCardClick(card)}
-										disabled={card.status === "matched"}
-										aria-pressed={
-											card.status === "selected" || card.status === "matched"
-										}
-										aria-label={`Carta ${index + 1}: ${card.text}, ${statusLabel}`}
-										className={cn(
-											"h-24 rounded-xl border-2 font-medium text-lg transition-all transform active:scale-95 flex items-center justify-center p-2 text-center shadow-sm focus-visible:ring-2 focus-visible:ring-ring",
-											card.status === "hidden" &&
-												"bg-card hover:border-primary/50",
-											card.status === "selected" &&
-												"border-primary bg-primary/10 scale-105 ring-2 ring-primary/20",
-											card.status === "matched" &&
-												"border-transparent bg-brand-aqua/15 text-brand-aqua opacity-50 cursor-default",
-											card.status === "error" &&
-												"border-destructive bg-destructive/10 text-destructive animate-shake",
-										)}
-									>
-										{card.text}
-									</button>
-								);
-							})}
-						</fieldset>
+						<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+							{cards.map((card) => (
+								<button
+									type="button"
+									key={card.id}
+									onClick={() => handleCardClick(card)}
+									disabled={card.status === "matched"}
+									className={cn(
+										"h-24 rounded-xl border-2 font-medium text-lg transition-all transform active:scale-95 flex items-center justify-center p-2 text-center shadow-sm",
+										card.status === "hidden" &&
+											"bg-card hover:border-primary/50",
+										card.status === "selected" &&
+											"border-primary bg-primary/10 scale-105 ring-2 ring-primary/20",
+										card.status === "matched" &&
+											"border-transparent bg-brand-aqua/15 text-brand-aqua opacity-50 cursor-default",
+										card.status === "error" &&
+											"border-destructive bg-destructive/10 text-destructive animate-shake",
+									)}
+								>
+									{card.text}
+								</button>
+							))}
+						</div>
 					)}
 				</CardContent>
 			</Card>

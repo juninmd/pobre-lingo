@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useGamification } from "@/contexts/GamificationContext";
 import { Textarea } from "@/components/ui/textarea";
+import { useGamification } from "@/contexts/GamificationContext";
 
 const PROMPT_SCENARIOS = [
 	{
@@ -123,7 +123,8 @@ export function AIPromptCraftingWidget() {
 								</span>
 							) : (
 								<>
-									<Terminal className="w-4 h-4" /> Enviar Prompt (+{scenario.xp} XP)
+									<Terminal className="w-4 h-4" /> Enviar Prompt (+{scenario.xp}{" "}
+									XP)
 								</>
 							)}
 						</Button>

@@ -15,8 +15,8 @@
 <p>
   <img alt="PWA" src="https://img.shields.io/badge/PWA-offline--ready-8B5CF6?style=flat-square" />
   <img alt="CEFR" src="https://img.shields.io/badge/CEFR-A1%E2%86%92C2-2DD4BF?style=flat-square" />
-  <img alt="E2E" src="https://img.shields.io/badge/Playwright-284%20e2e-45BA4B?logo=playwright&logoColor=white&style=flat-square" />
-  <img alt="Vitest" src="https://img.shields.io/badge/Vitest-73%20unit-6E9F18?logo=vitest&logoColor=white&style=flat-square" />
+  <img alt="E2E" src="https://img.shields.io/badge/Playwright-170%20e2e-45BA4B?logo=playwright&logoColor=white&style=flat-square" />
+  <img alt="Vitest" src="https://img.shields.io/badge/Vitest-50%20unit-6E9F18?logo=vitest&logoColor=white&style=flat-square" />
   <img alt="Custo" src="https://img.shields.io/badge/pre%C3%A7o-R%24%200-F5B301?style=flat-square" />
 </p>
 
@@ -49,22 +49,22 @@ O desenho pedagógico segue evidência, não moda:
 <td width="50%" valign="top">
 
 ### 🗺️ Trilha da Fluência
-15 capítulos mapeados em **A1 → C2**, com progresso por nível, marcador “Onde parei” e **nivelamento adaptativo** (banco de 72 questões) que já indica a lição por onde começar.
+15 capítulos mapeados em **A1 → C2**, com progresso por nível, marcador “Onde parei” e teste de nivelamento.
 
 ### 📚 Gramática para leigos
 **57 regras em 16 categorias** — do verbo TO BE à voz passiva — com estrutura, exemplos traduzidos, áudio e erros comuns.
 
 ### 📖 Leitura & Escuta
-**60 textos graduados A1–C2** com TTS sincronizado, play contínuo e tradução por linha.
+Textos graduados A1–C1 com TTS sincronizado, play contínuo e tradução por linha.
 
 </td>
 <td width="50%" valign="top">
 
 ### 🧠 Vocabulário
-**~2.700 palavras** por frequência (1k–5k), busca, metas por nível e revisão espaçada com **FSRS** — o mesmo algoritmo do Anki.
+Frequência 1k–5k, metas por nível e “palavras que já sei” persistidas.
 
 ### ✍️ Escrita & 🗣️ Fluência
-Ditado com diff palavra a palavra, redação com **correção por IA local**, técnica **4/3/2** cronometrada e *shadowing*.
+Ditado com diff palavra a palavra, redação com feedback, técnica **4/3/2** cronometrada e *shadowing*.
 
 ### 🏁 Checkpoints
 Checklist can-do + prova por nível: passou, libera o próximo.
@@ -72,18 +72,6 @@ Checklist can-do + prova por nível: passou, libera o próximo.
 </td>
 </tr>
 </table>
-
-### 🤖 Tutor de conversa com IA — sem chave, sem servidor
-
-Converse em situações reais (hotel, aeroporto, restaurante, entrevista, reunião) com uma IA que **roda no seu aparelho**: a IA embutida do Chrome (Gemini Nano) ou, sem ela, um modelo aberto (Qwen2.5) via WebGPU. Fale ou digite; a IA responde no papel e corrige seus erros em português.
-
-### 🗣️ Pronúncia para brasileiros
-
-TH, *ship/sheep*, schwa, -ed, o “i” a mais em *clubi*, H vs R e tonicidade: primeiro você **ouve e discrimina** pares mínimos, depois **produz** e o app confere o que foi reconhecido.
-
-### 🧭 Trilhas por objetivo
-
-**Viagem** e **Trabalho**: lições, leituras, conversas guiadas e simulações com o tutor numa sequência só.
 
 ### 🎮 Arcade
 
@@ -105,7 +93,7 @@ Oito jogos para fixar sem perceber: **Bubble Pop · Speed Match · Memory Match 
 
 <img src="docs/screenshots/mobile-home.png" width="240" alt="Versão mobile" />
 
-<sub>Mobile-first de verdade: auditado sem overflow horizontal em 41 rotas.</sub>
+<sub>Mobile-first de verdade: auditado sem overflow horizontal em 38 rotas.</sub>
 
 </div>
 
@@ -144,18 +132,15 @@ src/
 ├── lib/          # conteúdo e lógica pura
 │   ├── curriculumData.ts      # capítulos → módulos → lições
 │   ├── grammar*.ts            # 57 regras em 16 categorias
-│   ├── readers/ · vocab/      # 60 leitores e ~2.700 palavras A1–C2
-│   ├── srs*.ts · levels.ts    # repetição espaçada (FSRS) e níveis CEFR
-│   ├── ai/                    # tutor: IA do Chrome ou WebLLM, prompts
-│   ├── placement/             # nivelamento adaptativo
-│   ├── pronunciation/         # pares mínimos e tonicidade
+│   ├── gradedReaders*.ts      # leitores graduados A1–C1
+│   ├── coreVocabulary*.ts     # listas de frequência
+│   ├── srs.ts · levels.ts     # repetição espaçada e níveis CEFR
 │   └── tts.ts                 # Web Speech API
-└── Router.tsx    # 40 rotas
+└── Router.tsx    # 37 rotas
 tests-e2e/        # Playwright: auditoria de todas as telas + fluxos
 ```
 
-- **100% client-side**: progresso em `localStorage`, áudio via Web Speech API, IA no próprio aparelho — nada de servidor, conta ou chave.
-- **Seus dados, seu controle**: exporte e restaure o progresso em Configurações; gravação de sessão (LogRocket) só com consentimento explícito.
+- **100% client-side**: progresso em `localStorage`, áudio via Web Speech API — nada de servidor para estudar.
 - **Conteúdo como dados**: adicionar uma regra, leitura ou lição é editar um arquivo em `src/lib/` (veja [`docs/curriculum-system.md`](docs/curriculum-system.md)).
 - **Arquivos pequenos**: limite de 150 linhas por arquivo, separação de responsabilidades por feature.
 
@@ -167,15 +152,15 @@ Obsidian ink + violeta + aqua + ouro solar, tipografia **Sora** (títulos) + **I
 
 ## 🧪 Qualidade
 
-- **284 testes E2E** (contra o build de produção) — auditoria de 41 rotas em desktop **e** mobile (erro de JS, overflow horizontal, print de cada tela) + fluxos de estudo.
-- **73 testes unitários** — FSRS, validação de fala, backup, nivelamento adaptativo, trilhas, prompts da IA.
+- **170 testes E2E** — auditoria de 38 rotas em desktop **e** mobile (erro de JS, overflow horizontal, print de cada tela) + fluxos de estudo.
+- **50 testes unitários** — SRS, proficiência, lógica dos jogos.
 - **Integridade de conteúdo** — toda lição de gramática precisa resolver uma regra existente; o teste falha se um link quebrar.
 
 ---
 
 ## 🛣️ Roadmap
 
-Veja [`ROADMAP.md`](ROADMAP.md). Análise de concorrentes e lacunas em [`docs/benchmark-2026-09.md`](docs/benchmark-2026-09.md). Próximos passos: condicionais separados (zero → third), exercícios dedicados por regra e revisão nativa das traduções do vocabulário.
+Veja [`ROADMAP.md`](ROADMAP.md). Próximos passos: condicionais separados (zero → third), exercícios dedicados por regra, mais leitores graduados e correção de escrita com IA.
 
 ## 🤝 Contribuindo
 

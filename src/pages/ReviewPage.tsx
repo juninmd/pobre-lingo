@@ -39,8 +39,7 @@ const GRADE_BUTTONS: {
 	{
 		grade: GRADE_AGAIN,
 		label: "Errei",
-		className:
-			"border-destructive/40 text-destructive hover:bg-destructive/10",
+		className: "border-destructive/40 text-destructive hover:bg-destructive/10",
 	},
 	{
 		grade: GRADE_HARD,

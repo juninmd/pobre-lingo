@@ -13,7 +13,6 @@ import { useRef, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
-import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -43,8 +42,10 @@ import {
 	CATEGORY_LABELS,
 	type NotificationCategory,
 } from "@/lib/notifications";
-import { setStreakReminder } from "@/lib/streakReminder";
 import { cn } from "@/lib/utils";
+
+/** Chaves gravadas pelo app — base para exportar e apagar dados. */
+const APP_STORAGE_PREFIXES = ["pobrelingo_", "pl_", "daily_"];
 
 const THEME_OPTIONS: {
 	value: Theme;
@@ -62,6 +63,18 @@ const THEME_OPTIONS: {
 	},
 ];
 
+function collectAppStorage(): Record<string, string> {
+	const data: Record<string, string> = {};
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (!key) continue;
+		if (APP_STORAGE_PREFIXES.some((p) => key.startsWith(p))) {
+			data[key] = localStorage.getItem(key) ?? "";
+		}
+	}
+	return data;
+}
+
 export default function SettingsPage() {
 	const { theme, setTheme } = useTheme();
 	const {
@@ -72,6 +85,8 @@ export default function SettingsPage() {
 		enableBrowserNotifications,
 		notify,
 	} = useNotifications();
+	const [exported, setExported] = useState(false);
+	const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const permissionDenied = permission === "denied";
 	const unsupported = permission === "unsupported";
@@ -79,7 +94,6 @@ export default function SettingsPage() {
 	const handleToggleBrowser = async (checked: boolean) => {
 		if (!checked) {
 			updatePrefs({ browserEnabled: false });
-			void setStreakReminder(false);
 			return;
 		}
 		const granted = await enableBrowserNotifications();
@@ -90,6 +104,29 @@ export default function SettingsPage() {
 				body: "É assim que os avisos do PobreLingo vão aparecer para você.",
 			});
 		}
+	};
+
+	const handleExport = () => {
+		const blob = new Blob([JSON.stringify(collectAppStorage(), null, 2)], {
+			type: "application/json",
+		});
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement("a");
+		link.href = url;
+		link.download = `pobrelingo-backup-${new Date().toISOString().slice(0, 10)}.json`;
+		link.click();
+		URL.revokeObjectURL(url);
+
+		setExported(true);
+		if (exportTimer.current) clearTimeout(exportTimer.current);
+		exportTimer.current = setTimeout(() => setExported(false), 2500);
+	};
+
+	const handleReset = () => {
+		for (const key of Object.keys(collectAppStorage())) {
+			localStorage.removeItem(key);
+		}
+		window.location.href = "/";
 	};
 
 	return (
@@ -234,7 +271,62 @@ export default function SettingsPage() {
 				</CardContent>
 			</Card>
 
-			<DataSettingsCard />
+			{/* Dados ------------------------------------------------------------- */}
+			<Card className="glass-card">
+				<CardHeader>
+					<CardTitle className="flex items-center gap-2 text-lg">
+						<Download className="h-5 w-5 text-primary" />
+						Seus dados
+					</CardTitle>
+					<CardDescription>
+						Todo o seu progresso fica salvo apenas neste navegador. Exporte um
+						backup antes de limpar o cache ou trocar de aparelho.
+					</CardDescription>
+				</CardHeader>
+				<CardContent className="flex flex-col sm:flex-row gap-3">
+					<Button variant="outline" className="gap-2" onClick={handleExport}>
+						{exported ? (
+							<Check className="h-4 w-4 text-brand-aqua" />
+						) : (
+							<Download className="h-4 w-4" />
+						)}
+						{exported ? "Backup baixado" : "Exportar progresso"}
+					</Button>
+
+					<AlertDialog>
+						<AlertDialogTrigger asChild>
+							<Button
+								variant="outline"
+								className="gap-2 text-destructive border-destructive/40 hover:bg-destructive/10"
+							>
+								<Trash2 className="h-4 w-4" />
+								Apagar tudo
+							</Button>
+						</AlertDialogTrigger>
+						<AlertDialogContent>
+							<AlertDialogHeader>
+								<AlertDialogTitle className="flex items-center gap-2">
+									<AlertTriangle className="h-5 w-5 text-destructive" />
+									Apagar todo o progresso?
+								</AlertDialogTitle>
+								<AlertDialogDescription>
+									Ofensiva, XP, PobreCoins, conquistas, cards de revisão e
+									caderninho serão perdidos. Não dá para desfazer.
+								</AlertDialogDescription>
+							</AlertDialogHeader>
+							<AlertDialogFooter>
+								<AlertDialogCancel>Cancelar</AlertDialogCancel>
+								<AlertDialogAction
+									onClick={handleReset}
+									className="bg-destructive hover:bg-destructive/90"
+								>
+									Apagar tudo
+								</AlertDialogAction>
+							</AlertDialogFooter>
+						</AlertDialogContent>
+					</AlertDialog>
+				</CardContent>
+			</Card>
 		</PageContainer>
 	);
 }

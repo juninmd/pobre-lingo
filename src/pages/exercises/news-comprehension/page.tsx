@@ -80,36 +80,27 @@ export default function NewsComprehensionPage() {
 				{newsComprehensionExercises.map((exercise) => (
 					<Card
 						key={exercise.id}
-						className="cursor-pointer hover:shadow-md hover:border-primary/30 transition-all group p-0 focus-within:ring-2 focus-within:ring-ring"
+						className="cursor-pointer hover:shadow-md hover:border-primary/30 transition-all group"
+						onClick={() => setSelectedExercise(exercise)}
 					>
-						<button
-							type="button"
-							onClick={() => setSelectedExercise(exercise)}
-							className="w-full text-left focus:outline-none"
-							aria-label={`Abrir artigo: ${exercise.article.title}`}
-						>
-							<CardContent className="p-5">
-								<div className="flex items-start justify-between gap-4">
-									<div className="flex-1">
-										<h2 className="text-lg font-semibold group-hover:text-primary transition-colors mb-2">
-											{exercise.article.title}
-										</h2>
-										<div className="flex items-center gap-3 text-sm text-muted-foreground">
-											<span>{exercise.article.source}</span>
-											<span>•</span>
-											<span className="flex items-center gap-1">
-												<Clock className="h-3 w-3" aria-hidden="true" />
-												{exercise.article.date}
-											</span>
-										</div>
+						<CardContent className="p-5">
+							<div className="flex items-start justify-between gap-4">
+								<div className="flex-1">
+									<h2 className="text-lg font-semibold group-hover:text-primary transition-colors mb-2">
+										{exercise.article.title}
+									</h2>
+									<div className="flex items-center gap-3 text-sm text-muted-foreground">
+										<span>{exercise.article.source}</span>
+										<span>•</span>
+										<span className="flex items-center gap-1">
+											<Clock className="h-3 w-3" />
+											{exercise.article.date}
+										</span>
 									</div>
-									<ChevronRight
-										className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1"
-										aria-hidden="true"
-									/>
 								</div>
-							</CardContent>
-						</button>
+								<ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+							</div>
+						</CardContent>
 					</Card>
 				))}
 			</div>

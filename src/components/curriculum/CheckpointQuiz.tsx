@@ -13,7 +13,11 @@ interface CheckpointQuizProps {
 	onPass: () => void;
 }
 
-export function CheckpointQuiz({ level, questions, onPass }: CheckpointQuizProps) {
+export function CheckpointQuiz({
+	level,
+	questions,
+	onPass,
+}: CheckpointQuizProps) {
 	const [answers, setAnswers] = useState<Record<string, number>>({});
 	const answered = Object.keys(answers).length;
 	const correct = questions.filter(
@@ -33,7 +37,10 @@ export function CheckpointQuiz({ level, questions, onPass }: CheckpointQuizProps
 						{correct}/{questions.length} corretas
 					</span>
 				</div>
-				<Progress value={(answered / questions.length) * 100} className="h-1.5" />
+				<Progress
+					value={(answered / questions.length) * 100}
+					className="h-1.5"
+				/>
 
 				{questions.map((question) => {
 					const chosen = answers[question.id];
@@ -57,7 +64,10 @@ export function CheckpointQuiz({ level, questions, onPass }: CheckpointQuizProps
 											type="button"
 											disabled={isAnswered}
 											onClick={() =>
-												setAnswers((prev) => ({ ...prev, [question.id]: index }))
+												setAnswers((prev) => ({
+													...prev,
+													[question.id]: index,
+												}))
 											}
 											className={cn(
 												"flex items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm transition-colors",

@@ -2,7 +2,10 @@ import { useCallback, useMemo } from "react";
 import { usePersistentState } from "./usePersistentState";
 
 export function useKnownWords() {
-	const [ids, setIds] = usePersistentState<string[]>("pobrelingo_known_words", []);
+	const [ids, setIds] = usePersistentState<string[]>(
+		"pobrelingo_known_words",
+		[],
+	);
 
 	const known = useMemo(() => new Set(ids), [ids]);
 

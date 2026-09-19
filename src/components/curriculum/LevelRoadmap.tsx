@@ -73,9 +73,7 @@ export function LevelRoadmap({ completedLessons }: LevelRoadmapProps) {
 									<Lock className="h-3.5 w-3.5 text-muted-foreground" />
 								)}
 							</div>
-							<p className="text-xs font-bold leading-tight">
-								{stage.name}
-							</p>
+							<p className="text-xs font-bold leading-tight">{stage.name}</p>
 							<p className="text-[10px] text-muted-foreground mb-2">
 								{stage.completedCount}/{stage.lessonCount} lições
 							</p>

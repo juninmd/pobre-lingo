@@ -182,11 +182,7 @@ export default function SentenceRushPage() {
 						</div>
 					</div>
 
-					<div
-						className="flex gap-6 font-mono font-bold text-xl"
-						aria-live="polite"
-						role="status"
-					>
+					<div className="flex gap-6 font-mono font-bold text-xl">
 						<div
 							className={cn(
 								"flex items-center gap-2",
@@ -215,7 +211,8 @@ export default function SentenceRushPage() {
 								<p className="text-muted-foreground max-w-md">
 									Você tem 60 segundos. Monte o máximo de frases que conseguir.
 									Cada acerto dá{" "}
-									<span className="text-brand-aqua font-bold">+5 segundos</span>.
+									<span className="text-brand-aqua font-bold">+5 segundos</span>
+									.
 								</p>
 							</div>
 							<Button
@@ -231,10 +228,7 @@ export default function SentenceRushPage() {
 					{isPlaying && (
 						<div className="flex flex-col gap-8 w-full animate-in fade-in slide-in-from-bottom-8 duration-500">
 							{/* Active Construction Area */}
-							<fieldset
-								className="min-h-[120px] bg-background border-2 border-dashed border-primary/30 rounded-2xl p-6 flex flex-wrap gap-3 items-center justify-center content-center shadow-inner transition-colors hover:border-primary/50"
-								aria-label="Frase montada"
-							>
+							<div className="min-h-[120px] bg-background border-2 border-dashed border-primary/30 rounded-2xl p-6 flex flex-wrap gap-3 items-center justify-center content-center shadow-inner transition-colors hover:border-primary/50">
 								{orderedWords.length === 0 && (
 									<span className="text-muted-foreground/50 text-lg font-medium select-none">
 										Toque nas palavras abaixo...
@@ -243,32 +237,26 @@ export default function SentenceRushPage() {
 								{orderedWords.map((word) => (
 									<button
 										key={`ordered-${word.id}`}
-										type="button"
-										aria-label={`Remover palavra "${word.text}" da frase`}
 										onClick={() => handleUndoWord(word)}
 										className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-bold text-lg shadow-md hover:bg-primary/90 active:scale-95 transition-all animate-in zoom-in duration-200"
 									>
 										{word.text}
 									</button>
 								))}
-							</fieldset>
+							</div>
 
 							{/* Word Bank */}
-							<fieldset
-								className="flex flex-wrap gap-3 justify-center"
-								aria-label="Banco de palavras"
-							>
+							<div className="flex flex-wrap gap-3 justify-center">
 								{shuffledWords.map((word) => (
 									<button
 										key={`shuffled-${word.id}`}
-										type="button"
 										onClick={() => handleWordClick(word)}
 										className="bg-card border border-border hover:border-primary/50 text-card-foreground px-4 py-3 rounded-xl font-medium text-lg shadow-sm hover:shadow-md active:scale-95 transition-all"
 									>
 										{word.text}
 									</button>
 								))}
-							</fieldset>
+							</div>
 
 							<div className="text-center">
 								<Button

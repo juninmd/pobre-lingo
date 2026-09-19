@@ -5,12 +5,12 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
+import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
 import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
+import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
 import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
 import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
 import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
-import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
-import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
 import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
 import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
 import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
@@ -24,16 +24,16 @@ import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
 import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
 import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
 import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
-import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
-import { DogmeELTWidget } from "./DogmeELTWidget";
+import { AIPromptCraftingWidget } from "./AIPromptCraftingWidget";
 import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
+import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
+import { DogmeELTWidget } from "./DogmeELTWidget";
+import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
+import { HyFlexLearningWidget } from "./HyFlexLearningWidget";
 import { NeuroELTWidget } from "./NeuroELTWidget";
 import { PlurilingualismWidget } from "./PlurilingualismWidget";
-import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
-import { AIPromptCraftingWidget } from "./AIPromptCraftingWidget";
-import { HyFlexLearningWidget } from "./HyFlexLearningWidget";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -78,7 +78,10 @@ export function ImmersivePracticeSection() {
 					</TabsList>
 
 					<div className="space-y-8">
-						<TabsContent value="digital-ai" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+						<TabsContent
+							value="digital-ai"
+							className="mt-0 focus-visible:outline-none focus-visible:ring-0"
+						>
 							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 								<AIPromptCraftingWidget />
 								<AILanguagePartnerWidget />
@@ -92,7 +95,10 @@ export function ImmersivePracticeSection() {
 							</div>
 						</TabsContent>
 
-						<TabsContent value="social" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+						<TabsContent
+							value="social"
+							className="mt-0 focus-visible:outline-none focus-visible:ring-0"
+						>
 							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 								<LiveTutorWidget />
 								<CommunityChallengeWidget />
@@ -105,14 +111,20 @@ export function ImmersivePracticeSection() {
 							</div>
 						</TabsContent>
 
-						<TabsContent value="culture" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+						<TabsContent
+							value="culture"
+							className="mt-0 focus-visible:outline-none focus-visible:ring-0"
+						>
 							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 								<SocialMediaReelsWidget />
 								<PopCultureWidget />
 							</div>
 						</TabsContent>
 
-						<TabsContent value="methodologies" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+						<TabsContent
+							value="methodologies"
+							className="mt-0 focus-visible:outline-none focus-visible:ring-0"
+						>
 							<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 								<HyFlexLearningWidget />
 								<AIStudyCoachWidget />

@@ -1,13 +1,10 @@
 import {
-	AudioLines,
 	BookA,
-	Bot,
 	BookMarked,
 	BookOpen,
 	Brain,
 	CheckSquare,
 	Coins,
-	Compass,
 	FileText,
 	Gamepad2,
 	Gauge,
@@ -31,11 +28,11 @@ import {
 	GlobalSearch,
 	GlobalSearchTrigger,
 } from "@/components/common/GlobalSearch";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
-import { BrandMark } from "@/components/layout/BrandMark";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -90,9 +87,6 @@ export const navGroups = [
 			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
 			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
 			{ href: "/fluency", label: "Fluência", icon: Gauge },
-			{ href: "/pronunciation", label: "Pronúncia", icon: AudioLines },
-			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
-			{ href: "/tracks", label: "Trilhas por objetivo", icon: Compass },
 		],
 	},
 	{

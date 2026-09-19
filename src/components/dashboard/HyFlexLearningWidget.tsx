@@ -42,7 +42,7 @@ export function HyFlexLearningWidget() {
 		}
 	}, []);
 
-	const handleSelect = (mode: typeof LEARNING_MODES[0]) => {
+	const handleSelect = (mode: (typeof LEARNING_MODES)[0]) => {
 		if (claimedMode) return;
 		setIsSelecting(mode.id);
 		setTimeout(() => {

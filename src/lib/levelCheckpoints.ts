@@ -16,28 +16,58 @@ export const canDoStatements: Record<CEFRLevel, CanDoStatement[]> = {
 		{ id: "a1-3", text: "Consigo usar o verbo TO BE e o Present Simple." },
 	],
 	A2: [
-		{ id: "a2-1", text: "Consigo lidar com situações do dia a dia (compras, viagem)." },
-		{ id: "a2-2", text: "Consigo falar do passado com verbos regulares e irregulares." },
+		{
+			id: "a2-1",
+			text: "Consigo lidar com situações do dia a dia (compras, viagem).",
+		},
+		{
+			id: "a2-2",
+			text: "Consigo falar do passado com verbos regulares e irregulares.",
+		},
 		{ id: "a2-3", text: "Consigo falar de planos com going to." },
 	],
 	B1: [
-		{ id: "b1-1", text: "Consigo descrever experiências e justificar opiniões." },
-		{ id: "b1-2", text: "Consigo usar Present Perfect e condicionais básicas." },
+		{
+			id: "b1-1",
+			text: "Consigo descrever experiências e justificar opiniões.",
+		},
+		{
+			id: "b1-2",
+			text: "Consigo usar Present Perfect e condicionais básicas.",
+		},
 		{ id: "b1-3", text: "Consigo me virar em viagens e imprevistos." },
 	],
 	B2: [
-		{ id: "b2-1", text: "Consigo argumentar um ponto de vista com conectores." },
-		{ id: "b2-2", text: "Consigo entender textos complexos sobre temas conhecidos." },
+		{
+			id: "b2-1",
+			text: "Consigo argumentar um ponto de vista com conectores.",
+		},
+		{
+			id: "b2-2",
+			text: "Consigo entender textos complexos sobre temas conhecidos.",
+		},
 		{ id: "b2-3", text: "Consigo usar voz passiva e Past Perfect." },
 	],
 	C1: [
-		{ id: "c1-1", text: "Consigo me expressar com fluência sem muito esforço." },
-		{ id: "c1-2", text: "Consigo usar a língua com flexibilidade no trabalho e estudo." },
+		{
+			id: "c1-1",
+			text: "Consigo me expressar com fluência sem muito esforço.",
+		},
+		{
+			id: "c1-2",
+			text: "Consigo usar a língua com flexibilidade no trabalho e estudo.",
+		},
 		{ id: "c1-3", text: "Consigo compreender significados implícitos." },
 	],
 	C2: [
-		{ id: "c2-1", text: "Consigo entender praticamente tudo que ouço ou leio." },
-		{ id: "c2-2", text: "Consigo resumir e argumentar a partir de várias fontes." },
+		{
+			id: "c2-1",
+			text: "Consigo entender praticamente tudo que ouço ou leio.",
+		},
+		{
+			id: "c2-2",
+			text: "Consigo resumir e argumentar a partir de várias fontes.",
+		},
 		{ id: "c2-3", text: "Consigo me expressar com precisão e nuances." },
 	],
 };
@@ -98,7 +128,8 @@ export const checkpointQuestions: Record<CEFRLevel, CheckpointQuestion[]> = {
 		},
 		{
 			id: "cp-b1-3",
-			question: "Escolha o conector correto: I was tired, ___ I finished the work.",
+			question:
+				"Escolha o conector correto: I was tired, ___ I finished the work.",
 			options: ["but", "so", "because"],
 			answerIndex: 0,
 		},
@@ -158,7 +189,8 @@ export const checkpointQuestions: Record<CEFRLevel, CheckpointQuestion[]> = {
 		},
 		{
 			id: "cp-c2-3",
-			question: "Complete: ___ more carefully, she would have avoided the error.",
+			question:
+				"Complete: ___ more carefully, she would have avoided the error.",
 			options: ["Had she checked", "If she checked", "She had checked"],
 			answerIndex: 0,
 		},

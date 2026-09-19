@@ -16,12 +16,9 @@ test("vocabulario: marcar palavra como conhecida", async ({ page }) => {
 	await page.goto("/vocabulary");
 	await expect(page.getByText("Vocabulário Essencial")).toBeVisible();
 
-	const before = await page.getByRole("button", { name: /^Já sei/ }).count();
-	await page
-		.getByRole("button", { name: /^Já sei/ })
-		.first()
-		.click();
-	const after = await page.getByRole("button", { name: /^Já sei/ }).count();
+	const before = await page.getByRole("button", { name: "Sei" }).count();
+	await page.getByRole("button", { name: "Sei" }).first().click();
+	const after = await page.getByRole("button", { name: "Sei" }).count();
 	expect(after).toBe(before - 1);
 	await page.screenshot({ path: "e2e-screenshots/hub-vocabulary.png" });
 });

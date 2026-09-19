@@ -24,7 +24,10 @@ export default function FluencyPage() {
 					icon={Mic}
 				/>
 				<SpeakingExercise
-					phrases={lines.map((line) => ({ phrase: line.en, translation: line.pt }))}
+					phrases={lines.map((line) => ({
+						phrase: line.en,
+						translation: line.pt,
+					}))}
 					onComplete={() => setPracticing(false)}
 				/>
 				<Button

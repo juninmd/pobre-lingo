@@ -29,8 +29,7 @@ export const grammarFoundationsCore: GrammarCategory = {
 				},
 				{
 					sentence_en: "He speaks very fast.",
-					translation_pt:
-						"Ele fala muito rápido. (very e fast = advérbios)",
+					translation_pt: "Ele fala muito rápido. (very e fast = advérbios)",
 				},
 				{
 					sentence_en: "I love pizza.",
@@ -51,9 +50,15 @@ export const grammarFoundationsCore: GrammarCategory = {
 			structure_format_pt:
 				"I <strong>am</strong> &nbsp;|&nbsp; He / She / It <strong>is</strong> &nbsp;|&nbsp; You / We / They <strong>are</strong><br/>Negativa: am <strong>not</strong> / is <strong>not</strong> (isn't) / are <strong>not</strong> (aren't)<br/>Pergunta: <strong>Am</strong> I...? / <strong>Is</strong> he...? / <strong>Are</strong> you...?",
 			examples: [
-				{ sentence_en: "I am a student.", translation_pt: "Eu sou um estudante." },
+				{
+					sentence_en: "I am a student.",
+					translation_pt: "Eu sou um estudante.",
+				},
 				{ sentence_en: "She is tired.", translation_pt: "Ela está cansada." },
-				{ sentence_en: "We are at home.", translation_pt: "Nós estamos em casa." },
+				{
+					sentence_en: "We are at home.",
+					translation_pt: "Nós estamos em casa.",
+				},
 				{
 					sentence_en: "They aren't late.",
 					translation_pt: "Eles não estão atrasados.",
@@ -72,10 +77,16 @@ export const grammarFoundationsCore: GrammarCategory = {
 			structure_format_pt:
 				"I → <strong>am</strong> &nbsp;|&nbsp; he / she / it → <strong>is</strong> &nbsp;|&nbsp; you / we / they → <strong>are</strong>",
 			examples: [
-				{ sentence_en: "He is my brother.", translation_pt: "Ele é meu irmão." },
+				{
+					sentence_en: "He is my brother.",
+					translation_pt: "Ele é meu irmão.",
+				},
 				{ sentence_en: "It is cold today.", translation_pt: "Está frio hoje." },
 				{ sentence_en: "We are friends.", translation_pt: "Nós somos amigos." },
-				{ sentence_en: "They are teachers.", translation_pt: "Eles são professores." },
+				{
+					sentence_en: "They are teachers.",
+					translation_pt: "Eles são professores.",
+				},
 			],
 			common_mistakes_pt:
 				"Não use <em>he/she</em> para objetos:<br/>❌ My phone? She is new.<br/>✅ My phone? <strong>It</strong> is new.",
@@ -98,7 +109,10 @@ export const grammarFoundationsCore: GrammarCategory = {
 					sentence_en: "There are three cats here.",
 					translation_pt: "Tem três gatos aqui.",
 				},
-				{ sentence_en: "There isn't any milk.", translation_pt: "Não tem leite." },
+				{
+					sentence_en: "There isn't any milk.",
+					translation_pt: "Não tem leite.",
+				},
 				{
 					sentence_en: "Is there a bank near here?",
 					translation_pt: "Tem um banco perto daqui?",

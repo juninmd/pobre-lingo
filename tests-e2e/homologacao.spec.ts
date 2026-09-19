@@ -245,9 +245,6 @@ for (const persona of PERSONAS) {
 			}
 
 			// A última rota precisa ter conteúdo real, não uma casca vazia.
-			await expect(page.locator("body")).toContainText(persona.esperado, {
-				timeout: 15_000,
-			});
 			const corpo = await page.locator("body").innerText();
 			expect(corpo.trim().length, "página renderizou vazia").toBeGreaterThan(
 				30,

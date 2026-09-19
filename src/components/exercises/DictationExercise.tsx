@@ -4,9 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { useSrs } from "@/hooks/useSrs";
 import type { DictationItem } from "@/lib/dictationData";
-import { dictationReviewCard } from "@/lib/dictationReview";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +20,6 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 	const [input, setInput] = useState("");
 	const [checked, setChecked] = useState(false);
 	const [revealed, setRevealed] = useState(false);
-	const { addCard } = useSrs();
 
 	const item = items[index];
 	const expectedWords = useMemo(
@@ -33,12 +30,7 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 	const isCorrect = normalize(input) === normalize(item?.sentence ?? "");
 	const progress = ((index + (checked ? 1 : 0)) / items.length) * 100;
 
-	const check = () => {
-		setChecked(true);
-		if (item && !isCorrect) {
-			addCard(dictationReviewCard(item));
-		}
-	};
+	const check = () => setChecked(true);
 
 	const next = () => {
 		setIndex((value) => (value + 1) % items.length);
@@ -57,13 +49,12 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 						{item.level} · {index + 1}/{items.length}
 					</Badge>
 					<Button
-						type="button"
 						variant="outline"
 						size="sm"
 						className="gap-2"
 						onClick={() => tts.speak(item.sentence, "en-US", 0.85)}
 					>
-						<Play className="h-4 w-4" aria-hidden="true" />
+						<Play className="h-4 w-4" />
 						Ouvir
 					</Button>
 				</div>
@@ -77,12 +68,11 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 					onChange={(event) => setInput(event.target.value)}
 					rows={2}
 					placeholder="Digite a frase em inglês..."
-					aria-label="Digite a frase em inglês"
 					className="w-full rounded-xl border border-border bg-background/60 p-3 text-base outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
 				/>
 
 				{checked && (
-					<div className="space-y-2" role="status" aria-live="polite">
+					<div className="space-y-2">
 						<div
 							className={cn(
 								"flex items-center gap-2 text-sm font-semibold",
@@ -90,9 +80,9 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 							)}
 						>
 							{isCorrect ? (
-								<CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+								<CheckCircle2 className="h-4 w-4" />
 							) : (
-								<XCircle className="h-4 w-4" aria-hidden="true" />
+								<XCircle className="h-4 w-4" />
 							)}
 							{isCorrect ? "Perfeito!" : "Quase! Confira as diferenças:"}
 						</div>
@@ -125,22 +115,19 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 
 				<div className="flex flex-wrap justify-end gap-2">
 					<Button
-						type="button"
 						variant="ghost"
 						className="gap-2"
 						onClick={() => setRevealed(true)}
 					>
-						<Eye className="h-4 w-4" aria-hidden="true" />
+						<Eye className="h-4 w-4" />
 						Ver resposta
 					</Button>
 					{!checked ? (
-						<Button type="button" onClick={check} disabled={!input.trim()}>
+						<Button onClick={check} disabled={!input.trim()}>
 							Verificar
 						</Button>
 					) : (
-						<Button type="button" onClick={next}>
-							Próxima
-						</Button>
+						<Button onClick={next}>Próxima</Button>
 					)}
 				</div>
 			</CardContent>

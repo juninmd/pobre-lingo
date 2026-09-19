@@ -137,15 +137,8 @@ export default function FlashcardsPage() {
 							</CardContent>
 						</Card>
 					) : (
-						<button
-							type="button"
-							aria-pressed={isFlipped}
-							aria-label={
-								isFlipped
-									? "Carta virada, mostrando tradução em português. Toque para ver o inglês."
-									: "Carta mostrando palavra em inglês. Toque para ver a tradução."
-							}
-							className="w-full aspect-[4/3] relative cursor-pointer group transition-all duration-500 [transform-style:preserve-3d] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+						<div
+							className="w-full aspect-[4/3] relative cursor-pointer group transition-all duration-500 [transform-style:preserve-3d]"
 							onClick={handleFlip}
 							style={{
 								transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
@@ -191,7 +184,7 @@ export default function FlashcardsPage() {
 									</p>
 								</Card>
 							</div>
-						</button>
+						</div>
 					)}
 				</div>
 

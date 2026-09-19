@@ -43,10 +43,10 @@ export function CurriculumList() {
 								className={cn(
 									"absolute top-0 left-0 w-2 h-full",
 									unit.difficulty === "basico"
-										? "bg-brand-aqua"
+										? "bg-green-500"
 										: unit.difficulty === "intermediario"
-											? "bg-primary"
-											: "bg-brand-violet",
+											? "bg-blue-500"
+											: "bg-purple-500",
 								)}
 							/>
 
@@ -57,16 +57,16 @@ export function CurriculumList() {
 										className={cn(
 											"uppercase text-[10px] tracking-wider font-bold",
 											unit.difficulty === "basico"
-												? "text-brand-aqua border-brand-aqua/20 bg-brand-aqua/10"
+												? "text-green-600 border-green-200 bg-green-50"
 												: unit.difficulty === "intermediario"
-													? "text-primary border-primary/20 bg-primary/10"
-													: "text-brand-violet border-brand-violet/20 bg-brand-violet/10",
+													? "text-blue-600 border-blue-200 bg-blue-50"
+													: "text-purple-600 border-purple-200 bg-purple-50",
 										)}
 									>
 										Nível {unit.difficulty}
 									</Badge>
 									{unit.id === "unit-10" && (
-										<Trophy className="w-4 h-4 text-brand-gold" />
+										<Trophy className="w-4 h-4 text-yellow-500" />
 									)}
 								</div>
 								<h2 className="text-2xl font-bold tracking-tight">
@@ -107,7 +107,7 @@ export function CurriculumList() {
 												className={cn(
 													"p-3 rounded-lg transition-colors",
 													status === "completed"
-														? "bg-brand-aqua/15 text-brand-aqua dark:bg-brand-aqua/30"
+														? "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400"
 														: "bg-primary/10 text-primary",
 												)}
 											>
@@ -115,7 +115,7 @@ export function CurriculumList() {
 											</div>
 
 											{status === "completed" && (
-												<div className="bg-brand-aqua text-white rounded-full p-1">
+												<div className="bg-green-500 text-white rounded-full p-1">
 													<CheckCircle2 className="w-4 h-4" />
 												</div>
 											)}

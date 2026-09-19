@@ -12,7 +12,7 @@ import {
 	Tag,
 	Volume2,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
@@ -21,11 +21,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
-import { useSrs } from "@/hooks/useSrs";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
-import { curriculumData } from "@/lib/curriculumData";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";
-import { ruleReviewCards } from "@/lib/ruleReviewCards";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +35,6 @@ export default function RulePage() {
 	const navigate = useNavigate();
 	const { isLessonCompleted } = useCurriculumProgress();
 	const { isStudied, toggleStudied } = useStudiedRules();
-	const { enroll } = useSrs();
 	const [showTranslations, setShowTranslations] = useState(true);
 
 	// Parâmetros de currículo (se vindo da jornada de aprendizado)
@@ -48,44 +44,6 @@ export default function RulePage() {
 
 	const category = getCategoryById(categoryId!);
 	const rule = getRuleById(ruleId!);
-
-	// Mapa regra -> lição do currículo que a referencia, para nunca concluir a lição errada.
-	const ruleLessonMap = useMemo(() => {
-		const map = new Map<string, { moduleId: string; lessonId: string }>();
-		for (const module of curriculumData.modules) {
-			for (const lesson of module.lessons) {
-				for (const id of lesson.grammarRuleIds ?? []) {
-					if (!map.has(id)) {
-						map.set(id, { moduleId: module.id, lessonId: lesson.id });
-					}
-				}
-			}
-		}
-		return map;
-	}, []);
-
-	// Corrige o contexto quando a regra pertence a outra lição (ex.: vinda do "Próxima").
-	useEffect(() => {
-		if (!isFromCurriculum || !ruleId) return;
-		const target = ruleLessonMap.get(ruleId);
-		if (
-			target &&
-			(target.moduleId !== moduleId || target.lessonId !== lessonId)
-		) {
-			navigate(
-				`/rules/${categoryId}/${ruleId}?module=${target.moduleId}&lesson=${target.lessonId}`,
-				{ replace: true },
-			);
-		}
-	}, [
-		isFromCurriculum,
-		ruleId,
-		moduleId,
-		lessonId,
-		categoryId,
-		ruleLessonMap,
-		navigate,
-	]);
 
 	// Função para falar o texto em inglês
 	const speak = (text: string) => {
@@ -133,12 +91,11 @@ export default function RulePage() {
 			? rulesInThisCategory[currentRuleIndex + 1].id
 			: undefined;
 
-	// Construir URL apontando para a lição que realmente contém a regra de destino
+	// Construir URL mantendo parâmetros do currículo
 	const buildRuleUrl = (newRuleId: string) => {
 		const baseUrl = `/rules/${categoryId}/${newRuleId}`;
-		const target = ruleLessonMap.get(newRuleId);
-		if (target) {
-			return `${baseUrl}?module=${target.moduleId}&lesson=${target.lessonId}`;
+		if (isFromCurriculum) {
+			return `${baseUrl}?module=${moduleId}&lesson=${lessonId}`;
 		}
 		return baseUrl;
 	};
@@ -192,11 +149,7 @@ export default function RulePage() {
 						<Button
 							variant={isStudied(ruleId!) ? "default" : "outline"}
 							size="sm"
-							onClick={() => {
-								if (!isStudied(ruleId!))
-									enroll(ruleReviewCards(rule, window.location.pathname));
-								toggleStudied(ruleId!);
-							}}
+							onClick={() => toggleStudied(ruleId!)}
 							className={cn(
 								"flex items-center gap-2 transition-all",
 								isStudied(ruleId!) &&
@@ -334,7 +287,7 @@ export default function RulePage() {
 														<Button
 															variant="ghost"
 															size="icon"
-															className="h-7 w-7 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+															className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity"
 															onClick={() => speak(example.sentence_en)}
 														>
 															<Volume2 className="h-4 w-4 text-primary" />
@@ -348,7 +301,7 @@ export default function RulePage() {
 															<Button
 																variant="ghost"
 																size="icon"
-																className="h-6 w-6 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+																className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
 																onClick={() => speakPt(example.translation_pt!)}
 															>
 																<Volume2 className="h-3 w-3 text-muted-foreground" />

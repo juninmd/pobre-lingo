@@ -1,3 +1,4 @@
+import LogRocket from "logrocket";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
@@ -6,9 +7,8 @@ import "./globals.css";
 import { GamificationProvider } from "./contexts/GamificationContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { startAnalyticsIfConsented } from "./lib/analyticsConsent";
 
-void startAnalyticsIfConsented();
+LogRocket.init("g2noug/pobre-lingo");
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>

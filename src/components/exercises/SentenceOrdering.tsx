@@ -199,11 +199,9 @@ export function SentenceOrdering() {
 							orderedSentence.map((word, index) => (
 								<Button
 									key={`${word}-${index}-ordered`}
-									type="button"
 									variant="secondary"
 									className="text-base px-3 py-1 h-auto cursor-pointer bg-primary/10 text-primary hover:bg-primary/20"
 									onClick={() => handleOrderedWordClick(word, index)}
-									aria-label={`Remover palavra ${word} da frase`}
 								>
 									{word}
 								</Button>
@@ -219,11 +217,9 @@ export function SentenceOrdering() {
 						{shuffledWords.map((word, index) => (
 							<Button
 								key={`${word}-${index}-shuffled`}
-								type="button"
 								variant="outline"
 								className="text-base px-3 py-1 h-auto cursor-pointer hover:bg-accent/20 hover:border-accent text-foreground"
 								onClick={() => handleWordClick(word, index)}
-								aria-label={`Adicionar palavra ${word} à frase`}
 							>
 								{word}
 							</Button>
@@ -243,17 +239,12 @@ export function SentenceOrdering() {
 
 					{isCorrect !== null && (
 						<Alert
-							role="status"
-							aria-live="polite"
 							className={`mt-4 ${isCorrect ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10"}`}
 						>
 							{isCorrect ? (
-								<CheckCircle
-									className="h-5 w-5 text-green-500"
-									aria-hidden="true"
-								/>
+								<CheckCircle className="h-5 w-5 text-green-500" />
 							) : (
-								<XCircle className="h-5 w-5 text-red-500" aria-hidden="true" />
+								<XCircle className="h-5 w-5 text-red-500" />
 							)}
 							<AlertTitle
 								className={isCorrect ? "text-green-700" : "text-red-700"}
@@ -282,20 +273,18 @@ export function SentenceOrdering() {
 				<CardFooter className="flex flex-col sm:flex-row justify-between gap-2">
 					<div className="flex gap-2">
 						<Button
-							type="button"
 							onClick={handleCheckSentence}
 							disabled={orderedSentence.length === 0}
 							className="bg-accent hover:bg-accent/90 text-accent-foreground"
 						>
 							Verificar
 						</Button>
-						<Button type="button" onClick={handleShowAnswer} variant="outline">
+						<Button onClick={handleShowAnswer} variant="outline">
 							Mostrar Resposta
 						</Button>
 					</div>
-					<Button type="button" onClick={loadNewExercise} variant="secondary">
-						<RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" /> Próximo
-						Exercício
+					<Button onClick={loadNewExercise} variant="secondary">
+						<RefreshCw className="mr-2 h-4 w-4" /> Próximo Exercício
 					</Button>
 				</CardFooter>
 			</Card>

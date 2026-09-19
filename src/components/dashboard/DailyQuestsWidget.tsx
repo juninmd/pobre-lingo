@@ -97,7 +97,7 @@ export function DailyQuestsWidget() {
 			<CardHeader className="pb-3">
 				<div className="flex items-center justify-between">
 					<CardTitle className="text-lg font-bold flex items-center gap-2">
-						<Target className="w-5 h-5 text-destructive" />
+						<Target className="w-5 h-5 text-red-500" />
 						Missões Diárias
 					</CardTitle>
 					<span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">
@@ -108,22 +108,28 @@ export function DailyQuestsWidget() {
 			<CardContent className="space-y-5">
 				{/* Daily goal summary */}
 				<div
-					className={`rounded-xl p-3 flex flex-col gap-2 ${goalReached ? "bg-brand-aqua/10 border border-brand-aqua/20" : "bg-primary/5 border border-primary/15"}`}
+					className={`rounded-xl p-3 flex flex-col gap-2 ${goalReached ? "bg-green-500/10 border border-green-500/20" : "bg-primary/5 border border-primary/15"}`}
 				>
 					<div className="flex items-center justify-between text-sm font-semibold">
 						<span className="flex items-center gap-1.5 text-foreground">
 							<Flame
-								className={`w-4 h-4 ${goalReached ? "text-brand-aqua" : "text-primary"}`}
+								className={`w-4 h-4 ${goalReached ? "text-green-500" : "text-primary"}`}
 							/>
 							Meta do Dia
 						</span>
-						<span className={goalReached ? "text-brand-aqua" : "text-primary"}>
+						<span
+							className={
+								goalReached
+									? "text-green-600 dark:text-green-400"
+									: "text-primary"
+							}
+						>
 							{activityCount} / {DAILY_GOAL} atividades
 						</span>
 					</div>
 					<Progress value={dailyPct} className="h-2.5" />
 					{goalReached && (
-						<p className="text-xs text-brand-aqua font-medium text-center">
+						<p className="text-xs text-green-600 dark:text-green-400 font-medium text-center">
 							🎉 Meta alcançada! Incrível!
 						</p>
 					)}
@@ -135,17 +141,17 @@ export function DailyQuestsWidget() {
 						<div className="flex items-start justify-between">
 							<div className="flex items-center gap-2">
 								{quest.completed ? (
-									<CheckCircle2 className="w-5 h-5 text-brand-aqua shrink-0" />
+									<CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
 								) : (
 									<Circle className="w-5 h-5 text-muted-foreground/30 shrink-0" />
 								)}
 								<span
-									className={`text-sm font-medium ${quest.completed ? "text-muted-foreground line-through decoration-2 decoration-brand-aqua/50" : ""}`}
+									className={`text-sm font-medium ${quest.completed ? "text-muted-foreground line-through decoration-2 decoration-green-500/50" : ""}`}
 								>
 									{quest.title}
 								</span>
 							</div>
-							<div className="flex items-center gap-1 text-xs font-bold text-brand-gold bg-brand-gold/15 dark:bg-brand-gold/30 px-2 py-0.5 rounded-full border border-brand-gold/20 dark:border-brand-gold/70">
+							<div className="flex items-center gap-1 text-xs font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full border border-yellow-200 dark:border-yellow-800">
 								<Zap className="w-3 h-3 fill-current" />
 								{quest.reward}
 							</div>

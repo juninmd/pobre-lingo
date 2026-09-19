@@ -38,7 +38,7 @@ export function GrammarLessonView({
 					Regras Gramaticais
 				</h2>
 				{isCompleted && (
-					<Badge className="bg-brand-aqua">
+					<Badge className="bg-green-500">
 						<CheckCircle2 className="h-3 w-3 mr-1" /> Dominado
 					</Badge>
 				)}
@@ -73,7 +73,7 @@ export function GrammarLessonView({
 						</div>
 					</CardHeader>
 					<CardContent className="pt-6 space-y-6">
-						<div className="bg-primary/5 border border-primary/10 p-4 rounded-lg text-lg leading-relaxed">
+						<div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg text-lg leading-relaxed">
 							{rule?.explanation_pt}
 						</div>
 
@@ -111,12 +111,12 @@ export function GrammarLessonView({
 						</div>
 
 						{rule?.common_mistakes_pt && (
-							<div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
-								<h3 className="font-semibold text-destructive flex items-center gap-2 mb-2">
+							<div className="bg-red-50 dark:bg-red-950/10 border border-red-100 dark:border-red-900/30 rounded-lg p-4">
+								<h3 className="font-semibold text-red-700 dark:text-red-400 flex items-center gap-2 mb-2">
 									<AlertTriangle className="h-4 w-4" /> Erros Comuns
 								</h3>
 								<div
-									className="text-sm text-destructive"
+									className="text-sm text-red-800 dark:text-red-300"
 									dangerouslySetInnerHTML={{ __html: rule.common_mistakes_pt }}
 								/>
 							</div>

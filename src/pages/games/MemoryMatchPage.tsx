@@ -199,11 +199,7 @@ export default function MemoryMatchPage() {
 				</div>
 
 				{gameWon && (
-					<Card
-						className="w-full max-w-md p-6 bg-green-500/10 border-green-500/50 text-center animate-in zoom-in duration-300"
-						aria-live="polite"
-						role="status"
-					>
+					<Card className="w-full max-w-md p-6 bg-green-500/10 border-green-500/50 text-center animate-in zoom-in duration-300">
 						<div className="flex flex-col items-center gap-4">
 							<div className="p-3 bg-green-500 rounded-full text-white">
 								<Trophy className="h-8 w-8" />
@@ -239,22 +235,12 @@ export default function MemoryMatchPage() {
 
 				<div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-3 w-full max-w-2xl perspective-1000">
 					{cards.map((card, index) => (
-						<button
+						<div
 							key={card.id}
-							type="button"
 							onClick={() => handleCardClick(index)}
-							disabled={card.isMatched}
 							data-pair-id={card.wordId}
-							aria-pressed={card.isFlipped || card.isMatched}
-							aria-label={
-								card.isMatched
-									? `Carta ${index + 1}, combinada: ${card.content}`
-									: card.isFlipped
-										? `Carta ${index + 1}, virada: ${card.content}`
-										: `Carta ${index + 1}, virada para baixo`
-							}
 							className={`
-                aspect-[3/4] cursor-pointer transition-all duration-300 transform preserve-3d relative focus-visible:ring-2 focus-visible:ring-ring
+                aspect-[3/4] cursor-pointer transition-all duration-300 transform preserve-3d relative
                 ${card.isFlipped || card.isMatched ? "rotate-y-180" : ""}
                 ${card.isMatched ? "opacity-0 pointer-events-none" : "opacity-100"}
               `}
@@ -284,7 +270,7 @@ export default function MemoryMatchPage() {
 									{card.content}
 								</span>
 							</div>
-						</button>
+						</div>
 					))}
 				</div>
 			</div>

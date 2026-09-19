@@ -1,5 +1,3 @@
-import { dictionaryTravelWorkEntries } from "./dictionaryTravelWork";
-
 export interface DictionaryEntry {
 	id: string;
 	word: string;
@@ -21,7 +19,7 @@ export interface DictionaryEntry {
 	tags?: string[];
 }
 
-const coreDictionaryEntries: DictionaryEntry[] = [
+export const dictionaryEntries: DictionaryEntry[] = [
 	// --- EXISTING DICTIONARY ENTRIES (General) ---
 	{
 		id: "dict1",
@@ -1111,11 +1109,6 @@ const coreDictionaryEntries: DictionaryEntry[] = [
 		example_sentence_en: "I am streaming the game live.",
 		tags: ["internet-slang", "technology"],
 	},
-];
-
-export const dictionaryEntries: DictionaryEntry[] = [
-	...coreDictionaryEntries,
-	...dictionaryTravelWorkEntries,
 ];
 
 export const getWordsByTopic = (topic: string): DictionaryEntry[] => {

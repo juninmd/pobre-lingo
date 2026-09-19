@@ -225,12 +225,12 @@ export default function MatchMadnessPage() {
 				{/* Header Bar */}
 				<div className="flex items-center justify-between w-full bg-card p-4 rounded-xl shadow-sm border">
 					<div className="flex items-center gap-3">
-						<div className="bg-brand-gold/10 p-2 rounded-lg">
-							<Trophy className="w-6 h-6 text-brand-gold" />
+						<div className="bg-yellow-500/10 p-2 rounded-lg">
+							<Trophy className="w-6 h-6 text-yellow-600" />
 						</div>
 						<div className="flex flex-col">
 							<span className="text-xs text-muted-foreground font-bold uppercase">
-								Pontos
+								Score
 							</span>
 							<span className="text-2xl font-black">{score}</span>
 						</div>
@@ -241,7 +241,7 @@ export default function MatchMadnessPage() {
 							className={cn(
 								"flex items-center gap-1 font-bold px-3 py-1 rounded-full transition-all duration-300",
 								multiplier > 1
-									? "bg-brand-gold text-black scale-110"
+									? "bg-orange-500 text-white scale-110"
 									: "bg-muted text-muted-foreground",
 							)}
 						>
@@ -249,29 +249,25 @@ export default function MatchMadnessPage() {
 								className={cn("w-4 h-4", multiplier > 1 && "animate-pulse")}
 								fill="currentColor"
 							/>
-							<span>{streak} sequência</span>
+							<span>{streak} Streak</span>
 							{multiplier > 1 && (
-								<span className="bg-black/20 px-1 rounded ml-1">
+								<span className="bg-white/20 px-1 rounded ml-1">
 									x{multiplier}
 								</span>
 							)}
 						</div>
 					</div>
 
-					<div
-						className="flex items-center gap-3 text-right"
-						aria-live="polite"
-						role="status"
-					>
+					<div className="flex items-center gap-3 text-right">
 						<div className="flex flex-col items-end">
 							<span className="text-xs text-muted-foreground font-bold uppercase">
-								Tempo
+								Time
 							</span>
 							<span
 								className={cn(
 									"text-2xl font-mono font-bold",
 									timeLeft <= 10
-										? "text-destructive animate-pulse"
+										? "text-red-500 animate-pulse"
 										: "text-primary",
 								)}
 							>
@@ -287,8 +283,8 @@ export default function MatchMadnessPage() {
 				{/* Game Area */}
 				{!isPlaying && !gameOver && (
 					<Card className="w-full flex-1 flex flex-col items-center justify-center p-8 gap-6 text-center animate-in zoom-in duration-300">
-						<div className="bg-brand-gold rounded-full p-6 shadow-xl mb-4">
-							<Zap className="w-16 h-16 text-black fill-current" />
+						<div className="bg-yellow-500 rounded-full p-6 shadow-xl mb-4">
+							<Zap className="w-16 h-16 text-white fill-current" />
 						</div>
 						<div>
 							<h1 className="text-4xl font-black mb-2 tracking-tight">
@@ -296,19 +292,18 @@ export default function MatchMadnessPage() {
 							</h1>
 							<p className="text-lg text-muted-foreground max-w-md mx-auto">
 								Combine o máximo de pares possível antes que o tempo acabe! Cada
-								acerto dá <span className="text-brand-aqua font-bold">+2s</span>
-								. Erros tiram{" "}
-								<span className="text-destructive font-bold">-3s</span>.
+								acerto dá <span className="text-green-500 font-bold">+2s</span>.
+								Erros tiram <span className="text-red-500 font-bold">-3s</span>.
 							</p>
 						</div>
 						<div className="grid grid-cols-2 gap-4 w-full max-w-sm mt-4">
 							<div className="bg-muted/50 p-4 rounded-xl flex flex-col items-center">
-								<span className="text-2xl font-bold">Infinitos</span>
-								<span className="text-xs text-muted-foreground">Níveis</span>
+								<span className="text-2xl font-bold">Infinite</span>
+								<span className="text-xs text-muted-foreground">Levels</span>
 							</div>
 							<div className="bg-muted/50 p-4 rounded-xl flex flex-col items-center">
 								<span className="text-2xl font-bold">x4</span>
-								<span className="text-xs text-muted-foreground">Combo Máx</span>
+								<span className="text-xs text-muted-foreground">Max Combo</span>
 							</div>
 						</div>
 						<Button
@@ -316,7 +311,7 @@ export default function MatchMadnessPage() {
 							onClick={startGame}
 							className="w-full max-w-xs h-14 text-xl font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
 						>
-							Começar
+							START GAME
 						</Button>
 					</Card>
 				)}
@@ -324,7 +319,7 @@ export default function MatchMadnessPage() {
 				{gameOver && (
 					<Card className="w-full flex-1 flex flex-col items-center justify-center p-8 gap-6 animate-in zoom-in duration-300">
 						<div className="text-center">
-							<h2 className="text-3xl font-bold mb-2">Tempo esgotado!</h2>
+							<h2 className="text-3xl font-bold mb-2">Time's Up!</h2>
 							<p className="text-muted-foreground">
 								Você chegou ao Nível {level}
 							</p>
@@ -337,13 +332,13 @@ export default function MatchMadnessPage() {
 							</div>
 							<div className="flex justify-between items-center border-b pb-4">
 								<span className="text-muted-foreground">Melhor Combo</span>
-								<span className="text-xl font-bold text-brand-gold">
+								<span className="text-xl font-bold text-orange-500">
 									{maxStreak} 🔥
 								</span>
 							</div>
 							<div className="flex justify-between items-center">
 								<span className="text-muted-foreground">XP Ganho</span>
-								<span className="text-xl font-bold text-brand-gold">
+								<span className="text-xl font-bold text-yellow-500">
 									+{Math.floor(score / 5)} XP
 								</span>
 							</div>
@@ -361,10 +356,7 @@ export default function MatchMadnessPage() {
 				)}
 
 				{isPlaying && (
-					<fieldset
-						className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 flex-1 content-start mt-4"
-						aria-label="Cartas para combinar"
-					>
+					<div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 flex-1 content-start mt-4">
 						{cards.map((card) => {
 							const isSelected = selectedCards.includes(card.id);
 							const isError = card.error;
@@ -374,23 +366,16 @@ export default function MatchMadnessPage() {
 								<button
 									key={card.id}
 									onClick={() => handleCardClick(card.id)}
-									type="button"
-									aria-pressed={isSelected}
-									aria-label={
-										isMatched
-											? `Carta combinada: ${card.text}`
-											: `Carta: ${card.text}`
-									}
 									disabled={isMatched}
 									className={cn(
 										"relative h-24 sm:h-32 rounded-xl border-b-[6px] font-bold text-lg sm:text-xl transition-all duration-100 flex items-center justify-center p-2 select-none",
 										isMatched
 											? "opacity-0 scale-50 pointer-events-none"
 											: isError
-												? "bg-destructive border-destructive/70 text-white animate-shake"
+												? "bg-red-500 border-red-700 text-white animate-shake"
 												: isSelected
-													? "bg-primary border-primary/70 text-primary-foreground -translate-y-1"
-													: "bg-card border-border hover:border-primary/40 active:translate-y-[4px] active:border-b-0 shadow-sm",
+													? "bg-blue-500 border-blue-700 text-white -translate-y-1"
+													: "bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 active:translate-y-[4px] active:border-b-0 shadow-sm",
 									)}
 								>
 									<span className="break-words text-center leading-tight w-full">
@@ -399,7 +384,7 @@ export default function MatchMadnessPage() {
 								</button>
 							);
 						})}
-					</fieldset>
+					</div>
 				)}
 			</div>
 		</PageContainer>

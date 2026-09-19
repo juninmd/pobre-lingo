@@ -84,14 +84,12 @@ export function NewsComprehension({
 		return (
 			<PageContainer>
 				<Button
-					type="button"
 					onClick={onBackToList}
 					variant="outline"
 					size="sm"
 					className="mb-6"
 				>
-					<ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" /> Voltar à
-					Lista de Artigos
+					<ArrowLeft className="mr-2 h-4 w-4" /> Voltar à Lista de Artigos
 				</Button>
 				<Card className="w-full max-w-3xl mx-auto shadow-xl bg-card">
 					<CardHeader>
@@ -103,10 +101,7 @@ export function NewsComprehension({
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="text-center">
-						<PartyPopper
-							className="mx-auto h-16 w-16 text-accent mb-4"
-							aria-hidden="true"
-						/>
+						<PartyPopper className="mx-auto h-16 w-16 text-accent mb-4" />
 						<p className="text-xl text-foreground">
 							Você acertou {score} de {exercise.questions.length} perguntas.
 						</p>
@@ -115,12 +110,10 @@ export function NewsComprehension({
 							{((score / exercise.questions.length) * 100).toFixed(0)}%
 						</p>
 						<Button
-							type="button"
 							onClick={onBackToList}
 							className="mt-6 bg-primary hover:bg-primary/90"
 						>
-							<FileText className="mr-2 h-4 w-4" aria-hidden="true" /> Escolher
-							Outro Artigo
+							<FileText className="mr-2 h-4 w-4" /> Escolher Outro Artigo
 						</Button>
 					</CardContent>
 				</Card>
@@ -133,14 +126,12 @@ export function NewsComprehension({
 			<PageContainer>
 				<p>Carregando questão...</p>
 				<Button
-					type="button"
 					onClick={onBackToList}
 					variant="outline"
 					size="sm"
 					className="mt-4"
 				>
-					<ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" /> Voltar à
-					Lista
+					<ArrowLeft className="mr-2 h-4 w-4" /> Voltar à Lista
 				</Button>
 			</PageContainer>
 		);
@@ -218,26 +209,18 @@ export function NewsComprehension({
 
 						{showFeedback && (
 							<Alert
-								role="status"
-								aria-live="polite"
-								className={`mt-4 ${selectedAnswer === currentQuestion.correctAnswer ? "border-brand-aqua bg-brand-aqua/10" : "border-destructive bg-destructive/10"}`}
+								className={`mt-4 ${selectedAnswer === currentQuestion.correctAnswer ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10"}`}
 							>
 								{selectedAnswer === currentQuestion.correctAnswer ? (
-									<CheckCircle
-										className="h-5 w-5 text-brand-aqua"
-										aria-hidden="true"
-									/>
+									<CheckCircle className="h-5 w-5 text-green-500" />
 								) : (
-									<XCircle
-										className="h-5 w-5 text-destructive"
-										aria-hidden="true"
-									/>
+									<XCircle className="h-5 w-5 text-red-500" />
 								)}
 								<AlertTitle
 									className={
 										selectedAnswer === currentQuestion.correctAnswer
-											? "text-brand-aqua"
-											: "text-destructive"
+											? "text-green-700"
+											: "text-red-700"
 									}
 								>
 									{selectedAnswer === currentQuestion.correctAnswer
@@ -257,7 +240,6 @@ export function NewsComprehension({
 					<CardFooter>
 						{showFeedback ? (
 							<Button
-								type="button"
 								onClick={handleNextQuestion}
 								className="w-full bg-primary hover:bg-primary/90"
 							>
@@ -267,7 +249,6 @@ export function NewsComprehension({
 							</Button>
 						) : (
 							<Button
-								type="button"
 								onClick={handleAnswerSubmit}
 								disabled={!selectedAnswer}
 								className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"

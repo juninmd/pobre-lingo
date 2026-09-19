@@ -7,12 +7,12 @@ export default function ListeningPage() {
 	return (
 		<PageContainer>
 			<PageHeader
-				title="Prática de Escuta"
-				description="Melhore sua compreensão auditiva com áudio em inglês"
+				title="Listening Practice"
+				description="Improve your listening skills with native audio"
 				icon={Headphones}
-				iconClassName="text-primary"
+				iconClassName="text-indigo-500"
 				backLink="/"
-				backLabel="Voltar ao Início"
+				backLabel="Back to Home"
 			/>
 			<ListeningExercise />
 		</PageContainer>

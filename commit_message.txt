@@ -1,6 +1,0 @@
-test: fix act() warnings in dashboard widget tests
-
-- Wrap timer advancements in act() for ProjectBasedLearningWidget.test.tsx
-- Wrap timer advancements in act() for DataDrivenLearningWidget.test.tsx
-- Resolve "act is not defined" error when simulating state updates
-- Remove leftover backup file LessonCard.tsx.orig

@@ -20,9 +20,9 @@ export function CultureLessonView({
 }: CultureLessonViewProps) {
 	return (
 		<div className="max-w-3xl mx-auto space-y-6">
-			<Card className="border-t-4 border-t-teal-500 shadow-lg">
+			<Card className="border-t-4 border-t-brand-aqua shadow-lg">
 				<CardHeader className="text-center pb-2">
-					<Globe className="w-12 h-12 mx-auto text-teal-500 mb-4" />
+					<Globe className="w-12 h-12 mx-auto text-brand-aqua mb-4" />
 					<CardTitle className="text-3xl font-bold">
 						{lesson.title_pt}
 					</CardTitle>
@@ -32,12 +32,12 @@ export function CultureLessonView({
 				</CardHeader>
 				<CardContent className="space-y-6 pt-6 text-center">
 					{isCompleted && (
-						<Badge className="bg-green-500 mb-4 mx-auto">
+						<Badge className="bg-brand-aqua mb-4 mx-auto">
 							<CheckCircle2 className="h-3 w-3 mr-1" /> Leitura Concluída
 						</Badge>
 					)}
 
-					<div className="bg-teal-50 dark:bg-teal-950/20 p-8 rounded-xl text-lg leading-relaxed text-left">
+					<div className="bg-brand-aqua/10 p-8 rounded-xl text-lg leading-relaxed text-left">
 						<p className="mb-4">
 							<strong>Nota Cultural:</strong> {lesson.description_pt}
 						</p>

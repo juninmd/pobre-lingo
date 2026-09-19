@@ -269,10 +269,15 @@ export default function BubblePopPage() {
 					size="icon"
 					onClick={() => navigate("/")}
 					className="hover:bg-muted text-foreground"
+					aria-label="Voltar"
 				>
-					<ArrowLeft className="w-6 h-6" />
+					<ArrowLeft className="w-6 h-6" aria-hidden="true" />
 				</Button>
-				<div className="flex items-center gap-4">
+				<div
+					className="flex items-center gap-4"
+					aria-live="polite"
+					role="status"
+				>
 					<div className="flex flex-col items-center">
 						<span className="text-xs uppercase font-bold opacity-80">
 							Tempo
@@ -302,11 +307,12 @@ export default function BubblePopPage() {
 						setGameState(gameState === "paused" ? "playing" : "paused")
 					}
 					className="hover:bg-muted text-foreground"
+					aria-label={gameState === "paused" ? "Continuar jogo" : "Pausar jogo"}
 				>
 					{gameState === "paused" ? (
-						<Play className="w-6 h-6" />
+						<Play className="w-6 h-6" aria-hidden="true" />
 					) : (
-						<Pause className="w-6 h-6" />
+						<Pause className="w-6 h-6" aria-hidden="true" />
 					)}
 				</Button>
 			</div>
@@ -316,11 +322,14 @@ export default function BubblePopPage() {
 				{bubbles.map(
 					(bubble) =>
 						!bubble.isPopped && (
-							<div
+							<button
 								key={bubble.id}
+								type="button"
 								onClick={() => handleBubbleClick(bubble.id)}
+								aria-pressed={selectedBubbleId === bubble.id}
+								aria-label={`Bolha ${bubble.type === "en" ? "em inglês" : "em português"}: ${bubble.text}`}
 								className={cn(
-									"absolute rounded-full flex items-center justify-center text-center p-2 cursor-pointer shadow-xl border-4 transition-all duration-300",
+									"absolute rounded-full flex items-center justify-center text-center p-2 cursor-pointer shadow-xl border-4 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-ring",
 									bubble.color,
 									selectedBubbleId === bubble.id
 										? "scale-110 ring-4 ring-white z-50 brightness-110"
@@ -341,7 +350,7 @@ export default function BubblePopPage() {
 								<span className="font-bold text-white text-sm md:text-base leading-tight drop-shadow-md select-none pointer-events-none">
 									{bubble.text}
 								</span>
-							</div>
+							</button>
 						),
 				)}
 			</div>
@@ -387,7 +396,11 @@ export default function BubblePopPage() {
 
 			{/* Lost Modal */}
 			{gameState === "lost" && (
-				<div className="absolute inset-0 flex items-center justify-center bg-black/60 z-50 backdrop-blur-sm p-4">
+				<div
+					className="absolute inset-0 flex items-center justify-center bg-black/60 z-50 backdrop-blur-sm p-4"
+					aria-live="polite"
+					role="status"
+				>
 					<div className="bg-white dark:bg-slate-900 p-8 rounded-3xl max-w-sm text-center shadow-2xl border-4 border-red-500">
 						<h2 className="text-3xl font-black mb-2 text-red-500">
 							O tempo acabou!

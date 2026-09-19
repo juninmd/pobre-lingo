@@ -1,4 +1,4 @@
-import { RefreshCw, Target, TrendingUp } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CefrBadge } from "@/components/common/CefrBadge";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import {
 	CardFooter,
 	CardHeader,
 } from "@/components/ui/card";
+import { getStartingPoint } from "@/lib/placement/startingPoint";
 import type { ProficiencyResult } from "@/lib/proficiency";
 
 interface ResultCardProps {
@@ -16,6 +17,7 @@ interface ResultCardProps {
 }
 
 export function ResultCard({ result, onRestart }: ResultCardProps) {
+	const startingPoint = getStartingPoint(result.level);
 	return (
 		<Card className="border-primary/20 bg-primary/5">
 			<CardHeader className="text-center space-y-3">
@@ -82,9 +84,14 @@ export function ResultCard({ result, onRestart }: ResultCardProps) {
 					<RefreshCw className="mr-2 h-4 w-4" />
 					Refazer
 				</Button>
-				<Button asChild className="w-full sm:w-auto">
-					<Link to="/">Treinar meu nível</Link>
-				</Button>
+				{startingPoint && (
+					<Button asChild className="w-full sm:w-auto">
+						<Link to={startingPoint.href}>
+							Começar pelo nível {result.level}
+							<ArrowRight className="ml-2 h-4 w-4" />
+						</Link>
+					</Button>
+				)}
 			</CardFooter>
 		</Card>
 	);

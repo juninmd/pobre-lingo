@@ -21,9 +21,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { useSrs } from "@/hooks/useSrs";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
 import { curriculumData } from "@/lib/curriculumData";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";
+import { ruleReviewCards } from "@/lib/ruleReviewCards";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +38,7 @@ export default function RulePage() {
 	const navigate = useNavigate();
 	const { isLessonCompleted } = useCurriculumProgress();
 	const { isStudied, toggleStudied } = useStudiedRules();
+	const { enroll } = useSrs();
 	const [showTranslations, setShowTranslations] = useState(true);
 
 	// Parâmetros de currículo (se vindo da jornada de aprendizado)
@@ -189,7 +192,11 @@ export default function RulePage() {
 						<Button
 							variant={isStudied(ruleId!) ? "default" : "outline"}
 							size="sm"
-							onClick={() => toggleStudied(ruleId!)}
+							onClick={() => {
+								if (!isStudied(ruleId!))
+									enroll(ruleReviewCards(rule, window.location.pathname));
+								toggleStudied(ruleId!);
+							}}
 							className={cn(
 								"flex items-center gap-2 transition-all",
 								isStudied(ruleId!) &&

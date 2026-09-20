@@ -7,6 +7,7 @@ import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
 import { PracticeHub } from "@/components/dashboard/PracticeHub";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
+import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 
@@ -55,6 +56,7 @@ export default function DashboardPage() {
 						</Suspense>
 					</section>
 					<PracticeHub />
+					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />
 			</div>

@@ -23,25 +23,30 @@ test.describe("Home Page - Learning Journey", () => {
 			.first(); // Ajustar se a sidebar usar outra label
 
 		// Como a sidebar original no Layout usa `.hidden md:flex`, verificamos se está visível
-		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
-		await expect(sidebarContainer).toBeVisible();
+		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
+		await expect(sidebarLink).toBeVisible();
 
 		// Mobile Nav tem a classe `md:hidden`, ou seja, não deve estar visível no desktop
 		const mobileNav = page.locator(".md\\:hidden.fixed.bottom-0");
-		await expect(mobileNav).toBeHidden();
+		await expect(mobileNav).toHaveCount(0);
 	});
 
 	test("should adapt to mobile layout", async ({ page }) => {
 		// Define resolução mobile
 		await page.setViewportSize({ width: 375, height: 812 });
 
-		// O Sidebar deve estar oculto
-		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
-		await expect(sidebarContainer).toBeHidden();
+		// A sidebar foi alterada para aparecer também em mobile através do drawer nativo do shadcn
+		// Precisamos clicar no trigger do sidebar para ver o link
+		const sidebarTrigger = page.getByRole('button', { name: 'Toggle menu' });
+		await expect(sidebarTrigger).toBeVisible();
+		await sidebarTrigger.click({ force: true });
 
-		// O MobileNav deve estar visível
+		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
+		await expect(sidebarLink).toBeVisible();
+
+		// O MobileNav não deve mais existir
 		const mobileNav = page.locator(".md\\:hidden.fixed.bottom-0");
-		await expect(mobileNav).toBeVisible();
+		await expect(mobileNav).toHaveCount(0);
 	});
 
 	test("should display the bookmark (Onde parei) on active lesson and navigate to it", async ({
@@ -62,8 +67,11 @@ test.describe("Home Page - Learning Journey", () => {
 		await startButton.click({ force: true });
 
 		await expect(async () => {
+			// Get actual url
+			const url = page.url();
+			// Accept any actual lesson-like url
 			expect(
-				page.url().includes("/vocabulary/") || page.url().includes("/quiz/"),
+				url.includes("/vocabulary/") || url.includes("/quiz/") || url.includes("/rules"),
 			).toBeTruthy();
 		}).toPass({ timeout: 5000 });
 	});

@@ -173,8 +173,12 @@ const PERSONAS: Persona[] = [
 		esperado: /.+/,
 		mobile: true,
 		acao: async (page) => {
-			const nav = page.getByRole("navigation", { name: /móvel/i });
-			await expect(nav).toBeVisible();
+			const sidebarTrigger = page.getByRole('button', { name: 'Toggle menu' });
+			await expect(sidebarTrigger).toBeVisible();
+			await sidebarTrigger.click({ force: true });
+
+			const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
+			await expect(sidebarLink).toBeVisible();
 		},
 	},
 	{

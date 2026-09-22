@@ -1,0 +1,10 @@
+
+> pobre-lingo@0.1.0 preview /app
+> vite preview "--port" "5173"
+
+error when starting preview server:
+Error: The directory "dist" does not exist. Did you build your project?
+    at preview (file:///app/node_modules/.pnpm/vite@8.0.16_@types+node@25.9.3/node_modules/vite/dist/node/chunks/node.js:33862:198)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async CAC.<anonymous> (file:///app/node_modules/.pnpm/vite@8.0.16_@types+node@25.9.3/node_modules/vite/dist/node/cli.js:808:18)
+ ELIFECYCLE  Command failed with exit code 1.

@@ -49,5 +49,12 @@ export function useCanDo() {
 		[state.passed],
 	);
 
-	return { checked: state.checked, passed: state.passed, isChecked, isPassed, toggleChecked, markPassed };
+	return {
+		checked: state.checked,
+		passed: state.passed,
+		isChecked,
+		isPassed,
+		toggleChecked,
+		markPassed,
+	};
 }

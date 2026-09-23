@@ -126,14 +126,14 @@ export function AchievementsCard() {
 								<div
 									className={cn(
 										"mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-2",
-										achievement.unlocked
-											? "bg-card shadow-sm"
-											: "bg-muted",
+										achievement.unlocked ? "bg-card shadow-sm" : "bg-muted",
 									)}
 								>
 									<div
 										className={
-											achievement.unlocked ? achievement.color : "text-muted-foreground"
+											achievement.unlocked
+												? achievement.color
+												: "text-muted-foreground"
 										}
 									>
 										{achievement.icon}

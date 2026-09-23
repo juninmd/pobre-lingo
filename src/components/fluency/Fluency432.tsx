@@ -65,7 +65,9 @@ export function Fluency432({ level }: { level: CEFRLevel }) {
 						<Button
 							variant="ghost"
 							size="sm"
-							onClick={() => setPromptIndex((value) => (value + 1) % prompts.length)}
+							onClick={() =>
+								setPromptIndex((value) => (value + 1) % prompts.length)
+							}
 						>
 							Outro tema
 						</Button>
@@ -83,8 +85,15 @@ export function Fluency432({ level }: { level: CEFRLevel }) {
 				<Progress value={percent} className="h-2" />
 
 				<div className="flex flex-wrap justify-center gap-2">
-					<Button onClick={() => setRunning((value) => !value)} className="gap-2">
-						{running ? <Square className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+					<Button
+						onClick={() => setRunning((value) => !value)}
+						className="gap-2"
+					>
+						{running ? (
+							<Square className="h-4 w-4" />
+						) : (
+							<Play className="h-4 w-4" />
+						)}
 						{running ? "Pausar" : "Iniciar"}
 					</Button>
 					{ROUNDS.map((minutes, index) => (
@@ -97,13 +106,18 @@ export function Fluency432({ level }: { level: CEFRLevel }) {
 							{minutes} min
 						</Button>
 					))}
-					<Button variant="ghost" onClick={() => startRound(0)} className="gap-2">
+					<Button
+						variant="ghost"
+						onClick={() => startRound(0)}
+						className="gap-2"
+					>
 						<RotateCcw className="h-4 w-4" />
 						Reiniciar
 					</Button>
 				</div>
 				<p className="text-xs text-muted-foreground text-center">
-					Fale sem parar até o tempo acabar. Reduza o tempo a cada rodada, mantendo o conteúdo.
+					Fale sem parar até o tempo acabar. Reduza o tempo a cada rodada,
+					mantendo o conteúdo.
 				</p>
 			</CardContent>
 		</Card>

@@ -1,7 +1,7 @@
-import type { CEFRLevel } from "./curriculumData";
 import { coreWordsA1A2 } from "./coreVocabularyA1A2";
 import { coreWordsB1B2 } from "./coreVocabularyB1B2";
 import type { CoreWord } from "./coreVocabularyTypes";
+import type { CEFRLevel } from "./curriculumData";
 import { vocabA1B1 } from "./vocab/indexA1B1";
 import { vocabB2C2 } from "./vocab/indexB2C2";
 

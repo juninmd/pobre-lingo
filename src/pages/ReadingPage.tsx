@@ -1,9 +1,9 @@
-import { BookOpen, Clock, CheckCircle2, Globe2 } from "lucide-react";
+import { BookOpen, CheckCircle2, Clock, Globe2 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CefrBadge } from "@/components/common/CefrBadge";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
-import { CefrBadge } from "@/components/common/CefrBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,16 +37,18 @@ export default function ReadingPage() {
 			</PageHeader>
 
 			<div className="flex flex-wrap gap-2 mb-5">
-				{(["todos", "A1", "A2", "B1", "B2", "C1", "C2"] as const).map((item) => (
-					<Button
-						key={item}
-						size="sm"
-						variant={item === level ? "default" : "outline"}
-						onClick={() => setLevel(item)}
-					>
-						{item === "todos" ? "Todos" : item}
-					</Button>
-				))}
+				{(["todos", "A1", "A2", "B1", "B2", "C1", "C2"] as const).map(
+					(item) => (
+						<Button
+							key={item}
+							size="sm"
+							variant={item === level ? "default" : "outline"}
+							onClick={() => setLevel(item)}
+						>
+							{item === "todos" ? "Todos" : item}
+						</Button>
+					),
+				)}
 			</div>
 
 			<div className="grid gap-4 sm:grid-cols-2">
@@ -68,7 +70,10 @@ export default function ReadingPage() {
 										{reader.titlePt}
 									</p>
 								</div>
-								<CefrBadge level={reader.level} showDescriptionOnHover={false} />
+								<CefrBadge
+									level={reader.level}
+									showDescriptionOnHover={false}
+								/>
 							</div>
 							<div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
 								<Badge variant="outline" className="gap-1">

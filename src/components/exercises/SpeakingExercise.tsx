@@ -153,7 +153,12 @@ export function SpeakingExercise({
 						<Volume2 className="mr-2 h-5 w-5" aria-hidden="true" /> Ouvir
 					</Button>
 
-					<Button type="button" onClick={handleNext} size="lg" className="w-full">
+					<Button
+						type="button"
+						onClick={handleNext}
+						size="lg"
+						className="w-full"
+					>
 						Eu disse corretamente{" "}
 						<CheckCircle2 className="ml-2 h-5 w-5" aria-hidden="true" />
 					</Button>
@@ -235,7 +240,8 @@ export function SpeakingExercise({
 							{feedback === "correct" && (
 								<div className="flex flex-col items-center text-green-600 gap-2">
 									<span className="flex items-center font-bold">
-										<CheckCircle2 className="mr-2" aria-hidden="true" /> Perfeito!
+										<CheckCircle2 className="mr-2" aria-hidden="true" />{" "}
+										Perfeito!
 									</span>
 									<Button
 										type="button"

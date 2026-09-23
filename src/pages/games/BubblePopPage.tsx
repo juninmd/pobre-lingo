@@ -285,7 +285,9 @@ export default function BubblePopPage() {
 						<span
 							className={cn(
 								"text-2xl font-black tabular-nums",
-								timeLeft < 10 ? "text-destructive animate-pulse" : "text-foreground",
+								timeLeft < 10
+									? "text-destructive animate-pulse"
+									: "text-foreground",
 							)}
 						>
 							{timeLeft}s

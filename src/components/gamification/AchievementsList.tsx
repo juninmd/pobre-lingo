@@ -19,7 +19,10 @@ export function AchievementsList() {
 		<Card className="w-full">
 			<CardHeader>
 				<CardTitle className="flex items-center gap-2">
-					<LucideIcons.Medal className="w-6 h-6 text-yellow-500" aria-hidden="true" />
+					<LucideIcons.Medal
+						className="w-6 h-6 text-yellow-500"
+						aria-hidden="true"
+					/>
 					Conquistas
 				</CardTitle>
 			</CardHeader>
@@ -70,7 +73,10 @@ export function AchievementsList() {
 
 								{isUnlocked && (
 									<div className="absolute top-2 right-2">
-										<CheckCircle className="w-4 h-4 text-green-500" aria-hidden="true" />
+										<CheckCircle
+											className="w-4 h-4 text-green-500"
+											aria-hidden="true"
+										/>
 										<span className="sr-only">Conquista desbloqueada</span>
 									</div>
 								)}

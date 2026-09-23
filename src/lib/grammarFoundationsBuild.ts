@@ -22,7 +22,10 @@ export const grammarFoundationsBuild: GrammarCategory = {
 					sentence_en: "I called him yesterday.",
 					translation_pt: "Eu liguei para ele ontem.",
 				},
-				{ sentence_en: "Please help us.", translation_pt: "Por favor, nos ajude." },
+				{
+					sentence_en: "Please help us.",
+					translation_pt: "Por favor, nos ajude.",
+				},
 				{
 					sentence_en: "I saw them at the party.",
 					translation_pt: "Eu os vi na festa.",
@@ -41,7 +44,10 @@ export const grammarFoundationsBuild: GrammarCategory = {
 			structure_format_pt:
 				"Pessoa + <strong>'s</strong> + coisa → Maria<strong>'s</strong> house (a casa da Maria)<br/>Plural terminado em -s: só o apóstrofo → my parents<strong>'</strong> house",
 			examples: [
-				{ sentence_en: "This is Ana's phone.", translation_pt: "Este é o telefone da Ana." },
+				{
+					sentence_en: "This is Ana's phone.",
+					translation_pt: "Este é o telefone da Ana.",
+				},
 				{
 					sentence_en: "My brother's room is big.",
 					translation_pt: "O quarto do meu irmão é grande.",
@@ -98,7 +104,10 @@ export const grammarFoundationsBuild: GrammarCategory = {
 			structure_format_pt:
 				"many + plural (books, friends)<br/>much + incontável (water, money, time)<br/>a lot of + os dois (mais natural na afirmativa)",
 			examples: [
-				{ sentence_en: "I have many friends.", translation_pt: "Eu tenho muitos amigos." },
+				{
+					sentence_en: "I have many friends.",
+					translation_pt: "Eu tenho muitos amigos.",
+				},
 				{
 					sentence_en: "She doesn't have much time.",
 					translation_pt: "Ela não tem muito tempo.",
@@ -134,7 +143,10 @@ export const grammarFoundationsBuild: GrammarCategory = {
 					sentence_en: "Turn left at the corner.",
 					translation_pt: "Vire à esquerda na esquina.",
 				},
-				{ sentence_en: "Please, be quiet.", translation_pt: "Por favor, fique quieto." },
+				{
+					sentence_en: "Please, be quiet.",
+					translation_pt: "Por favor, fique quieto.",
+				},
 			],
 			common_mistakes_pt:
 				"Não use sujeito no imperativo:<br/>❌ You close the door!<br/>✅ <strong>Close</strong> the door!<br/><br/>Para soar educado, adicione <em>please</em>.",

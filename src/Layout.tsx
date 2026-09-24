@@ -12,7 +12,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
-import { MobileNav } from "./components/layout/MobileNav";
 import { NavMenu } from "./components/layout/NavMenu";
 
 export default function Layout() {
@@ -66,11 +65,6 @@ export default function Layout() {
 				</SidebarInset>
 			</SidebarProvider>
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-			{isMobile && (
-				<div className="md:hidden">
-					<MobileNav />
-				</div>
-			)}
 			<PWAInstallPrompt />
 			<PobrelingoAssistant />
 			<Toaster />

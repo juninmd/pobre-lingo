@@ -37,7 +37,7 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 	return (
 		<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-1.5 sm:gap-3 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 			<div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-				<div className="hidden md:block">
+				<div>
 					<SidebarTrigger asChild>
 						<Button
 							variant="ghost"

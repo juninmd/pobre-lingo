@@ -36,7 +36,7 @@ export function TrendWidget({
     addXp(xpReward);
     notify({
       title: "Trend Explorada!",
-      description: `Você ganhou ${xpReward} XP.`,
+      body: `Você ganhou ${xpReward} XP.`,
       category: "achievement",
     });
     setCompleted(true);

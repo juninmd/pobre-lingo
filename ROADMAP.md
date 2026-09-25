@@ -21,6 +21,8 @@ A robust, stable, and Antigravity-compliant project ready for scale.
 Updated roadmap timestamp
 
 ## Recent Updates (2024 UI & Methods)
+- [x] **Teaching Trends**: Added all 2024/2025 ELT trends (Translanguaging, Mindful ELT, Critical Pedagogy, etc) widgets to Dashboard.
+- [x] **UI Trends**: Extracted PracticeHub to an ImmersivePracticeSection utilizing modern shadcn/radix Tabs.
 - [x] **UI Trends**: Integrated Gamified, Spatial, and Glassmorphic aesthetics (`globals.css`, Dashboard).
 - [x] **Teaching Trends**: Added AI Language Partner and Social Media Reels (Nano-learning) widgets to Dashboard.
 - [x] **Teaching Trends**: Added Project-Based Learning (PBL) and Data-Driven Learning (DDL) widgets to Dashboard.

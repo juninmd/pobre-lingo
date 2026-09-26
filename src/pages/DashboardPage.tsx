@@ -5,7 +5,7 @@ import { SEO } from "@/components/common/SEO";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
-import { PracticeHub } from "@/components/dashboard/PracticeHub";
+import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
@@ -54,7 +54,7 @@ export default function DashboardPage() {
 							<LearningTimeline />
 						</Suspense>
 					</section>
-					<PracticeHub />
+					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />
 			</div>

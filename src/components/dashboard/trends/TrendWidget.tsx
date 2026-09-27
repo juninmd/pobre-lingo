@@ -21,8 +21,8 @@ export function TrendWidget({ title, description, icon, xpReward = 10, actionTex
             addXp(xpReward);
             notify({
                 title: "Prática Concluída!",
-                message: `Você ganhou ${xpReward} XP.`,
-                type: "success",
+                body: `Você ganhou ${xpReward} XP.`,
+
                 category: "achievement"
             });
             setCompleted(true);

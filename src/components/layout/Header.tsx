@@ -78,7 +78,7 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 						className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 backdrop-blur-xl border border-primary/20 text-primary font-sans shadow-sm transition-all hover:bg-primary/15"
 						title="Nível"
 					>
-						<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={2.5} />
+						<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={1.5} />
 						<span className="text-[13px] font-semibold tracking-tight">
 							Nvl {userLevel}
 						</span>
@@ -91,7 +91,7 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 					>
 						<Coins
 							className="h-4 w-4 text-amber-500 group-hover:animate-bounce"
-							strokeWidth={2.5}
+							strokeWidth={1.5}
 						/>
 						<span className="text-[13px] font-bold tabular-nums tracking-tight">
 							{gems}

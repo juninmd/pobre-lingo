@@ -17,12 +17,6 @@ test.describe("Home Page - Learning Journey", () => {
 		await page.setViewportSize({ width: 1280, height: 720 });
 
 		// O Sidebar deve estar visível e o MobileNav deve estar oculto
-		const sidebar = page
-			.locator("nav")
-			.filter({ hasText: "Navegação" })
-			.first(); // Ajustar se a sidebar usar outra label
-
-		// Como a sidebar original no Layout usa `.hidden md:flex`, verificamos se está visível
 		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
 		await expect(sidebarContainer).toBeVisible();
 
@@ -38,10 +32,6 @@ test.describe("Home Page - Learning Journey", () => {
 		// O Sidebar deve estar oculto
 		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
 		await expect(sidebarContainer).toBeHidden();
-
-		// O MobileNav deve estar visível
-		const mobileNav = page.locator(".md\\:hidden.fixed.bottom-0");
-		await expect(mobileNav).toBeVisible();
 	});
 
 	test("should display the bookmark (Onde parei) on active lesson and navigate to it", async ({

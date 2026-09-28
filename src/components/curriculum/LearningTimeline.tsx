@@ -3,7 +3,10 @@ import React from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
 import { LevelRoadmap } from "./LevelRoadmap";
-import { UnitGroup } from "./timeline/UnitGroup";
+
+const LazyUnitGroup = React.lazy(() =>
+	import("./timeline/UnitGroup").then((m) => ({ default: m.UnitGroup })),
+);
 
 export function LearningTimeline() {
 	const { completedLessons } = useCurriculumProgress();
@@ -37,7 +40,7 @@ export function LearningTimeline() {
 	}));
 
 	return (
-		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-8">
+		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-6">
 			{/* Intro / Header */}
 			<div className="mb-2 text-center space-y-2 pt-8 px-4">
 				<div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
@@ -55,13 +58,19 @@ export function LearningTimeline() {
 			<LevelRoadmap completedLessons={completedLessonsSet} />
 
 			{unitsWithModules.map((unit) => (
-				<UnitGroup
+				<React.Suspense
 					key={unit.id}
-					unit={unit}
-					modules={unit.modules}
-					completedLessonsSet={completedLessonsSet}
-					firstIncompleteLessonId={firstIncompleteLessonId}
-				/>
+					fallback={
+						<div className="h-32 mb-12 animate-pulse bg-muted/40 rounded-2xl w-full max-w-2xl mx-auto border border-border/40" />
+					}
+				>
+					<LazyUnitGroup
+						unit={unit}
+						modules={unit.modules}
+						completedLessonsSet={completedLessonsSet}
+						firstIncompleteLessonId={firstIncompleteLessonId}
+					/>
+				</React.Suspense>
 			))}
 
 			{/* End of Journey */}

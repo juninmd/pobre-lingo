@@ -1,15 +1,17 @@
-import { Scale } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function CriticalPedagogyWidget() {
 	return (
 		<TrendWidget
+			id="critical-pedagogy"
 			title="Pedagogia Crítica"
-			description="Língua e poder"
-			icon={Scale}
-			xpReward={15}
-			actionText="Analisar Texto"
-			content={<><p>Quem conta a história? Qual é o viés?</p><p className="mt-2 text-xs">Leia as entrelinhas de notícias e discursos.</p></>}
-		/>
+			description="Pense criticamente sobre a linguagem e a sociedade."
+			icon="Shield"
+			actionText="Refletir"
+		>
+			<p className="text-sm text-muted-foreground">
+				Reflexão: Como a escolha das palavras pode mudar a percepção de uma notícia?
+			</p>
+		</TrendWidget>
 	);
 }

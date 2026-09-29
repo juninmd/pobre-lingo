@@ -1,15 +1,17 @@
-import { MessageSquare } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function DogmeELTWidget() {
 	return (
 		<TrendWidget
+			id="dogme-elt"
 			title="Dogme ELT"
-			description="Foco na comunicação real"
-			icon={MessageSquare}
-			xpReward={15}
-			actionText="Iniciar Conversa Livre"
-			content={<><p>Sem livros didáticos, apenas a língua emergente.</p><p className="mt-2 text-xs">Fale sobre o seu dia e aprenda com os erros.</p></>}
-		/>
+			description="Ensino focado na conversação real, sem materiais prontos."
+			icon="MessageSquare"
+			actionText="Iniciar Conversa"
+		>
+			<p className="text-sm text-muted-foreground">
+				Desafio: Pense em um assunto que ocorreu hoje e tente explicá-lo em inglês.
+			</p>
+		</TrendWidget>
 	);
 }

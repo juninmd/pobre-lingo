@@ -1,15 +1,17 @@
-import { Search } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function InquiryBasedLearningWidget() {
 	return (
 		<TrendWidget
-			title="Ensino Investigativo"
-			description="Curiosidade move o inglês"
-			icon={Search}
-			xpReward={15}
-			actionText="Investigar Tópico"
-			content={<><p>Por que o 'k' em 'knight' é mudo?</p><p className="mt-2 text-xs">Faça perguntas e descubra a língua.</p></>}
-		/>
+			id="inquiry-based-learning"
+			title="Inquiry-Based Learning"
+			description="Aprenda através de perguntas e investigação."
+			icon="Lightbulb"
+			actionText="Investigar"
+		>
+			<p className="text-sm text-muted-foreground">
+				Pergunta: Por que algumas palavras no plural em inglês não recebem 's'?
+			</p>
+		</TrendWidget>
 	);
 }

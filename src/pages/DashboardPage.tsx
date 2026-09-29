@@ -17,17 +17,8 @@ import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
-import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
+import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
 import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
-import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
-import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
-import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
-import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
-import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
-import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
-import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedLearningWidget";
-import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
-import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
@@ -117,7 +108,6 @@ export default function DashboardPage() {
 							<LearningTimeline />
 						</Suspense>
 					</section>
-					<PracticeHub />
 					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />

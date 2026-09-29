@@ -1,15 +1,17 @@
-import { Newspaper } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function AuthenticMaterialsWidget() {
 	return (
 		<TrendWidget
+			id="authentic-materials"
 			title="Materiais Autênticos"
-			description="Inglês do mundo real"
-			icon={Newspaper}
-			xpReward={15}
-			actionText="Analisar Material"
-			content={<><p>Leia notícias, assista vlogs, ouça podcasts.</p><p className="mt-2 text-xs">Inglês sem filtro, feito para nativos.</p></>}
-		/>
+			description="Aprenda com conteúdos criados para nativos."
+			icon="BookOpen"
+			actionText="Ouvir Podcast"
+		>
+			<p className="text-sm text-muted-foreground">
+				Pratique escutando um trecho de um noticiário ou podcast real.
+			</p>
+		</TrendWidget>
 	);
 }

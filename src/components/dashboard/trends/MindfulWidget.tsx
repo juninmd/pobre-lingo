@@ -1,15 +1,17 @@
-import { Brain } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function MindfulWidget() {
 	return (
 		<TrendWidget
-			title="Mindfulness no Inglês"
-			description="Foco e redução de estresse"
-			icon={Brain}
-			xpReward={10}
-			actionText="Respirar"
-			content={<><p className="italic">"I am capable of learning English."</p><p className="mt-2 text-xs">Afirmações positivas e atenção plena na prática.</p></>}
-		/>
+			id="mindfulness"
+			title="Mindfulness & SEL"
+			description="Aprendizado socioemocional e atenção plena."
+			icon="Heart"
+			actionText="Respirar e Focar"
+		>
+			<p className="text-sm italic text-muted-foreground text-center my-2">
+				"I am capable of learning difficult things."
+			</p>
+		</TrendWidget>
 	);
 }

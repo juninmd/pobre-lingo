@@ -1,15 +1,17 @@
-import { Globe } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function GlobalEnglishesWidget() {
 	return (
 		<TrendWidget
-			title="Inglês Global (ELF)"
-			description="O inglês é do mundo"
-			icon={Globe}
-			xpReward={10}
+			id="global-englishes"
+			title="Global Englishes"
+			description="O inglês como língua franca. Sotaques e variações."
+			icon="Globe"
 			actionText="Ouvir Sotaques"
-			content={<><p>Entenda indianos, australianos, escoceses...</p><p className="mt-2 text-xs">Comunicação é mais importante que 'sotaque perfeito'.</p></>}
-		/>
+		>
+			<p className="text-sm text-muted-foreground">
+				Aprenda a entender falantes de diferentes partes do mundo, não apenas de países nativos.
+			</p>
+		</TrendWidget>
 	);
 }

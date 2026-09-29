@@ -1,15 +1,17 @@
-import { Laptop } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
 export function HyFlexLearningWidget() {
 	return (
 		<TrendWidget
-			title="Ensino Híbrido Flexível"
-			description="Estude onde e como quiser"
-			icon={Laptop}
-			xpReward={10}
-			actionText="Acessar Turma"
-			content={<><p>Combine aulas síncronas e atividades assíncronas.</p><p className="mt-2 text-xs">Você decide seu ritmo de estudo diário.</p></>}
-		/>
+			id="hyflex-learning"
+			title="HyFlex Learning"
+			description="Estudo híbrido flexível. Combine online e offline."
+			icon="Network"
+			actionText="Registrar Estudo"
+		>
+			<p className="text-sm text-muted-foreground">
+				Dica: Alterne entre exercícios no app e leitura de livros físicos.
+			</p>
+		</TrendWidget>
 	);
 }

@@ -133,3 +133,10 @@
 - **Lembrete de ofensiva:** Periodic Background Sync no SW (`public/sw-reminders.js`), sem servidor push.
 - **Não feito:** conta/sync e ligas (exigem servidor; ranking falso repetiria os widgets falsos).
 - **Tests:** E2E agora roda contra `vite build && vite preview`; locators mobile filtram só visíveis. 73 unit + 284 e2e; Biome 276 → 186 erros (arquivos novos limpos).
+
+### [$(date +%Y-%m-%d)] Jules-Architect: Immersive Practice Section & ELT Trends
+- **Feature:** Replaced the legacy `PracticeHub` with a modern, tabbed `ImmersivePracticeSection` on the Dashboard to showcase 2025 English Language Teaching (ELT) methodologies.
+- **Content:** Added 13 new interactive widgets spanning 5 categories (Digital & IA, Conexão Humana & Social, Cultura & Mundo, Metodologias, Essenciais): `AIPromptCraftingWidget`, `HyFlexLearningWidget`, `DogmeELTWidget`, `AuthenticMaterialsWidget`, `GlobalEnglishesWidget`, `LexicalApproachWidget`, `TranslanguagingWidget`, `ExperientialLearningWidget`, `InquiryBasedLearningWidget`, `GreenELTWidget`, `DEIBWidget`, `MindfulWidget`, and `CriticalPedagogyWidget`.
+- **Gamification:** All widgets inherit a `TrendWidget` wrapper and connect to `GamificationContext` and `NotificationContext`, awarding XP for engagement (e.g., "Missão: [Metodologia] -> Você ganhou +[X] XP pela prática!").
+- **Verification:** Frontend verified via Playwright scripts recording interactions with tabs, confirming responsive `TabsList` rendering, and gamification feedback execution. 147 Vitest unit tests (including all new widgets) and 88 E2E Playwright tests passing on chromium and mobile views.
+- **Constraints Maintained:** 100% test coverage for new components, `<150 lines` per file enforced via reusable wrapping.

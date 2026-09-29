@@ -1,97 +1,113 @@
+import { lazy, Suspense } from "react";
+import { Loader2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PracticeHub } from "@/components/dashboard/PracticeHub";
-import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
-import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
-import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
-import { DEIBWidget } from "./trends/DEIBWidget";
-import { DogmeELTWidget } from "./trends/DogmeELTWidget";
-import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
-import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
-import { GreenELTWidget } from "./trends/GreenELTWidget";
-import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
-import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
-import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
-import { MindfulWidget } from "./trends/MindfulWidget";
-import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
+import { AIPromptCraftingWidget } from "./AIPromptCraftingWidget";
+import { HyFlexLearningWidget } from "./HyFlexLearningWidget";
+import { AILanguagePartnerWidget } from "./AILanguagePartnerWidget";
+import { SocialMediaReelsWidget } from "./SocialMediaReelsWidget";
+import { GreenELTWidget } from "./GreenELTWidget";
+import { DEIBWidget } from "./DEIBWidget";
+import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
+import { ExperientialLearningWidget } from "./ExperientialLearningWidget";
+import { InquiryBasedLearningWidget } from "./InquiryBasedLearningWidget";
+import { GlobalEnglishesWidget } from "./GlobalEnglishesWidget";
+import { LexicalApproachWidget } from "./LexicalApproachWidget";
+import { DogmeELTWidget } from "./DogmeELTWidget";
+import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
+import { TranslanguagingWidget } from "./TranslanguagingWidget";
+import { SpacedRepetitionWidget } from "./SpacedRepetitionWidget";
+import { MindfulWidget } from "./MindfulWidget";
 
-/**
- * ImmersivePracticeSection organizes ELT trends and practice tools into tabs.
- */
+const LearningTimeline = lazy(() =>
+	import("@/components/curriculum/LearningTimeline").then((m) => ({
+		default: m.LearningTimeline,
+	})),
+);
+
 export function ImmersivePracticeSection() {
 	return (
-		<section
-			aria-labelledby="immersive-practice-title"
-			className="space-y-6 mt-8"
-		>
-			<h3
-				id="immersive-practice-title"
-				className="text-2xl font-bold text-foreground tracking-tight"
-			>
-				Tendências 2025 & Prática Imersiva
-			</h3>
+		<section className="space-y-6 mt-8">
+			<div className="flex flex-col gap-2">
+				<h2 className="text-2xl font-bold tracking-tight text-foreground">
+					Tendências 2025 & Prática Imersiva
+				</h2>
+				<p className="text-muted-foreground">
+					Explore as metodologias de ensino de inglês mais recentes e eficientes.
+				</p>
+			</div>
 
-			<Tabs defaultValue="digital-ia" className="w-full">
-				<TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 h-auto gap-2 p-1 bg-muted/50 rounded-xl">
-					<TabsTrigger value="digital-ia" className="rounded-lg py-2">
+			<Tabs defaultValue="digital" className="w-full">
+				<TabsList className="w-full flex flex-wrap h-auto gap-2 p-1 bg-muted/50 rounded-xl mb-6">
+					<TabsTrigger value="digital" className="flex-1 min-w-[120px] rounded-lg">
 						Digital & IA
 					</TabsTrigger>
-					<TabsTrigger value="social" className="rounded-lg py-2">
-						Conexão Social
+					<TabsTrigger value="social" className="flex-1 min-w-[120px] rounded-lg">
+						Social & Conexão
 					</TabsTrigger>
-					<TabsTrigger value="cultura" className="rounded-lg py-2">
-						Cultura & Mundo
+					<TabsTrigger value="cultura" className="flex-1 min-w-[120px] rounded-lg">
+						Cultura & Global
 					</TabsTrigger>
-					<TabsTrigger value="metodologias" className="rounded-lg py-2">
+					<TabsTrigger value="metodologias" className="flex-1 min-w-[120px] rounded-lg">
 						Metodologias
 					</TabsTrigger>
-					<TabsTrigger value="essenciais" className="rounded-lg py-2">
-						Essenciais
+					<TabsTrigger value="essenciais" className="flex-1 min-w-[120px] rounded-lg">
+						Prática Essencial
 					</TabsTrigger>
 				</TabsList>
 
-				<div className="mt-6">
-					<TabsContent
-						value="digital-ia"
-						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
-					>
+				<TabsContent value="digital" className="mt-0 focus-visible:outline-none">
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 						<AIPromptCraftingWidget />
 						<HyFlexLearningWidget />
-					</TabsContent>
+						<AILanguagePartnerWidget />
+						<SpacedRepetitionWidget />
+					</div>
+				</TabsContent>
 
-					<TabsContent
-						value="social"
-						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
-					>
+				<TabsContent value="social" className="mt-0 focus-visible:outline-none">
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+						<SocialMediaReelsWidget />
 						<GreenELTWidget />
 						<DEIBWidget />
-						<MindfulWidget />
 						<CriticalPedagogyWidget />
-					</TabsContent>
+					</div>
+				</TabsContent>
 
-					<TabsContent
-						value="cultura"
-						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
-					>
-						<AuthenticMaterialsWidget />
+				<TabsContent value="cultura" className="mt-0 focus-visible:outline-none">
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 						<GlobalEnglishesWidget />
-					</TabsContent>
-
-					<TabsContent
-						value="metodologias"
-						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
-					>
-						<LexicalApproachWidget />
 						<TranslanguagingWidget />
-						<DogmeELTWidget />
+						<AuthenticMaterialsWidget />
+						<MindfulWidget />
+					</div>
+				</TabsContent>
+
+				<TabsContent value="metodologias" className="mt-0 focus-visible:outline-none">
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 						<ExperientialLearningWidget />
 						<InquiryBasedLearningWidget />
-					</TabsContent>
+						<LexicalApproachWidget />
+						<DogmeELTWidget />
+					</div>
+				</TabsContent>
 
-					<TabsContent value="essenciais" className="outline-none">
+				<TabsContent value="essenciais" className="mt-0 focus-visible:outline-none">
+					<div className="bg-card/30 rounded-xl p-4 border border-border/50">
 						<PracticeHub />
-					</TabsContent>
-				</div>
+					</div>
+				</TabsContent>
 			</Tabs>
+
+			<div className="pt-8">
+				<Suspense
+					fallback={
+						<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />
+					}
+				>
+					<LearningTimeline />
+				</Suspense>
+			</div>
 		</section>
 	);
 }

@@ -1,14 +1,3 @@
-import {
-	Coins,
-	Flame,
-	GraduationCap,
-	Lightbulb,
-	Loader2,
-	RefreshCw,
-	Sparkles,
-	Trophy,
-} from "lucide-react";
-import { lazy, Suspense, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
@@ -30,11 +19,7 @@ import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { TIPS } from "@/lib/tips";
 import { cn } from "@/lib/utils";
 
-const LearningTimeline = lazy(() =>
-	import("@/components/curriculum/LearningTimeline").then((m) => ({
-		default: m.LearningTimeline,
-	})),
-);
+
 
 export default function DashboardPage() {
 	const { overallProgress } = useCurriculumProgress();
@@ -96,18 +81,10 @@ export default function DashboardPage() {
 			<MascotGreeting />
 			<DashboardStats />
 
-			<div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-				{/* Left Column: Learning Timeline */}
-				<div className="lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
-					<section>
-						<Suspense
-							fallback={
-								<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />
-							}
-						>
-							<LearningTimeline />
-						</Suspense>
-					</section>
+			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
+					<FluencyJourneyCard />
+					<ContinueLearningCard />
 					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />

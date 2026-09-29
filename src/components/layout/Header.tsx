@@ -1,6 +1,7 @@
 import { CircleDashed, GraduationCap, Menu, Moon, Sparkles, Sun } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { GlobalSearchTrigger } from "@/components/common/GlobalSearch";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { Button } from "@/components/ui/button";
 import {

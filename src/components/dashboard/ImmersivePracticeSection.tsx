@@ -1,71 +1,118 @@
+import {
+	AILanguagePartnerWidget,
+	AIPromptCraftingWidget,
+	AuthenticMaterialsWidget,
+	CLILWidget,
+	CriticalPedagogyWidget,
+	DEIBWidget,
+	DogmeELTWidget,
+	ExperientialLearningWidget,
+	GlobalEnglishesWidget,
+	GreenELTWidget,
+	HyFlexLearningWidget,
+	InquiryBasedLearningWidget,
+	LexicalApproachWidget,
+	MindfulWidget,
+	SocialMediaReelsWidget,
+	TranslanguagingWidget,
+} from "@/components/dashboard/elt-trends";
+import { PracticeHub } from "@/components/dashboard/PracticeHub";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
-import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
-import { CLILWidget } from "./trends/CLILWidget";
-import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
-import { DEIBWidget } from "./trends/DEIBWidget";
-import { DogmeELTWidget } from "./trends/DogmeELTWidget";
-import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
-import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
-import { GreenELTWidget } from "./trends/GreenELTWidget";
-import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
-import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
-import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
-import { MindfulWidget } from "./trends/MindfulWidget";
-import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
-import { PracticeHub } from "./PracticeHub";
 
 export function ImmersivePracticeSection() {
 	return (
-		<section className="mt-8 space-y-6">
-			<div>
-				<h3 className="text-2xl font-bold text-foreground tracking-tight mb-2">
-					Tendências 2025 & Prática Imersiva
-				</h3>
-				<p className="text-muted-foreground">
-					Explore novas metodologias e expanda seus horizontes além da gramática.
-				</p>
-			</div>
+		<section
+			aria-labelledby="immersive-practice-title"
+			className="space-y-6 mt-8"
+		>
+			<h3
+				id="immersive-practice-title"
+				className="text-2xl font-black tracking-tight"
+			>
+				Tendências 2025 & Prática Imersiva
+			</h3>
 
-			<Tabs defaultValue="practice" className="w-full">
-				<TabsList className="w-full flex flex-wrap justify-start h-auto p-1 bg-muted/50 rounded-xl mb-4 gap-1">
-					<TabsTrigger value="practice" className="flex-1 rounded-lg">Essencial</TabsTrigger>
-					<TabsTrigger value="digital" className="flex-1 rounded-lg">Digital & IA</TabsTrigger>
-					<TabsTrigger value="social" className="flex-1 rounded-lg">Social</TabsTrigger>
-					<TabsTrigger value="cultura" className="flex-1 rounded-lg">Cultura</TabsTrigger>
-					<TabsTrigger value="metodologias" className="flex-1 rounded-lg">Metodologias</TabsTrigger>
+			<Tabs defaultValue="praticas" className="w-full">
+				<TabsList className="w-full grid grid-cols-2 lg:grid-cols-5 h-auto rounded-xl p-1 bg-card/50 backdrop-blur-md border border-border">
+					<TabsTrigger
+						value="praticas"
+						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
+					>
+						Essenciais
+					</TabsTrigger>
+					<TabsTrigger
+						value="digital"
+						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
+					>
+						Digital & IA
+					</TabsTrigger>
+					<TabsTrigger
+						value="social"
+						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
+					>
+						Social
+					</TabsTrigger>
+					<TabsTrigger
+						value="cultura"
+						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
+					>
+						Cultura
+					</TabsTrigger>
+					<TabsTrigger
+						value="metodologias"
+						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
+					>
+						Metodologias
+					</TabsTrigger>
 				</TabsList>
 
-				<TabsContent value="practice" className="mt-0 outline-none animate-in fade-in-50 duration-500">
+				<TabsContent
+					value="praticas"
+					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
+				>
 					<PracticeHub />
 				</TabsContent>
 
-				<TabsContent value="digital" className="mt-0 outline-none animate-in fade-in-50 duration-500 space-y-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<TabsContent
+					value="digital"
+					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
+				>
+					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
 						<AIPromptCraftingWidget />
 						<HyFlexLearningWidget />
+						<AILanguagePartnerWidget />
 					</div>
 				</TabsContent>
 
-				<TabsContent value="social" className="mt-0 outline-none animate-in fade-in-50 duration-500 space-y-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<TabsContent
+					value="social"
+					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
+				>
+					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+						<SocialMediaReelsWidget />
 						<GreenELTWidget />
 						<DEIBWidget />
-						<MindfulWidget />
 						<CriticalPedagogyWidget />
+						<MindfulWidget />
 					</div>
 				</TabsContent>
 
-				<TabsContent value="cultura" className="mt-0 outline-none animate-in fade-in-50 duration-500 space-y-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<TabsContent
+					value="cultura"
+					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
+				>
+					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+						<GlobalEnglishesWidget />
 						<AuthenticMaterialsWidget />
 						<TranslanguagingWidget />
-						<GlobalEnglishesWidget />
 					</div>
 				</TabsContent>
 
-				<TabsContent value="metodologias" className="mt-0 outline-none animate-in fade-in-50 duration-500 space-y-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<TabsContent
+					value="metodologias"
+					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
+				>
+					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
 						<DogmeELTWidget />
 						<LexicalApproachWidget />
 						<ExperientialLearningWidget />

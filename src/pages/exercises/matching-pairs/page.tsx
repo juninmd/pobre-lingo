@@ -212,9 +212,12 @@ export default function MatchingPairsPage() {
 							</Button>
 						</div>
 					) : isCompleted ? (
-						<div className="text-center py-10">
-							<div className="h-20 w-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-								<Trophy className="h-10 w-10 text-yellow-600" />
+						<div className="text-center py-10" role="status" aria-live="polite">
+							<div className="h-20 w-20 bg-brand-gold/15 rounded-full flex items-center justify-center mx-auto mb-6">
+								<Trophy
+									className="h-10 w-10 text-brand-gold"
+									aria-hidden="true"
+								/>
 							</div>
 							<h3 className="text-2xl font-bold mb-2">Parabéns!</h3>
 							<p className="text-muted-foreground mb-6">
@@ -225,7 +228,8 @@ export default function MatchingPairsPage() {
 									onClick={() => window.location.reload()}
 									variant="outline"
 								>
-									<RefreshCw className="mr-2 h-4 w-4" /> Jogar Novamente
+									<RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" />{" "}
+									Jogar Novamente
 								</Button>
 								<Button asChild>
 									<Link to="/">Continuar</Link>

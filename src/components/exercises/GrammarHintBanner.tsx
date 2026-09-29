@@ -27,8 +27,14 @@ export function GrammarHintBanner({
 	if (links.length === 0) return null;
 
 	return (
-		<Alert className="bg-amber-50/80 border-amber-300 dark:bg-amber-950/30 dark:border-amber-700 animate-in fade-in slide-in-from-top-2 duration-300">
-			<BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+		<Alert
+			role="status"
+			className="bg-amber-50/80 border-amber-300 dark:bg-amber-950/30 dark:border-amber-700 animate-in fade-in slide-in-from-top-2 duration-300"
+		>
+			<BookOpen
+				className="w-4 h-4 text-amber-600 dark:text-amber-400"
+				aria-hidden="true"
+			/>
 			<AlertDescription className="flex items-center justify-between gap-2">
 				<span className="text-sm text-amber-800 dark:text-amber-200">
 					<span className="font-semibold">Dica gramatical: </span>

@@ -211,7 +211,8 @@ export default function SentenceRushPage() {
 								<p className="text-muted-foreground max-w-md">
 									Você tem 60 segundos. Monte o máximo de frases que conseguir.
 									Cada acerto dá{" "}
-									<span className="text-green-600 font-bold">+5 segundos</span>.
+									<span className="text-brand-aqua font-bold">+5 segundos</span>
+									.
 								</p>
 							</div>
 							<Button

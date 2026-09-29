@@ -14,14 +14,8 @@ test.describe('Home / Interactive Journey Book', () => {
 		await page.setViewportSize({ width: 1280, height: 720 });
 
 		// O Sidebar deve estar visível e o MobileNav deve estar oculto
-		const sidebar = page
-			.locator("nav")
-			.filter({ hasText: "Navegação" })
-			.first(); // Ajustar se a sidebar usar outra label
-
-		// Como a sidebar original no Layout usa `.hidden md:flex`, verificamos se está visível
-		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
-		await expect(sidebarLink).toBeVisible();
+		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
+		await expect(sidebarContainer).toBeVisible();
 
 		// Mobile Nav tem a classe `md:hidden`, ou seja, não deve estar visível no desktop
 		const mobileNav = page.locator(".md\\:hidden.fixed.bottom-0");
@@ -34,10 +28,6 @@ test.describe('Home / Interactive Journey Book', () => {
 		// O Sidebar deve estar oculto ou não montado na renderização inicial responsiva
 		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
 		await expect(sidebarContainer).toBeHidden();
-
-		// A UI unificada deve ter o trigger de mobile visible
-		const menuButton = page.locator('button[aria-label="Toggle menu"], button[aria-expanded="false"] .lucide-menu').first();
-        // Just verify sidebar is hidden on mobile, since mobile nav is removed. The toggle button is managed by Shadcn Sidebar.
 	});
 
 	test("should display the bookmark (Onde parei) on active lesson and navigate to it", async ({

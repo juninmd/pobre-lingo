@@ -15,10 +15,6 @@ import { NavMenu } from "./components/layout/NavMenu";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {
-	//	const { theme, setTheme } = useTheme();
-	//	const { gems } = useGamification();
-	//	const { userLevel } = useCurriculumProgress();
-
 	const [searchOpen, setSearchOpen] = useState(false);
 
 	// Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
@@ -33,8 +29,6 @@ export default function Layout() {
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
 	}, []);
-
-	// Determinar título da página atual
 
 	return (
 		<div className="font-body antialiased h-svh overflow-hidden bg-background text-foreground flex flex-col">

@@ -1,17 +1,17 @@
+import { Leaf } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * GreenELTWidget implements the Green ELT ELT trend.
+ */
 export function GreenELTWidget() {
 	return (
 		<TrendWidget
-			id="green-elt"
 			title="Green ELT"
-			description="Aprenda inglês enquanto debate sustentabilidade."
-			icon="Leaf"
-			actionText="Ler sobre Sustentabilidade"
-		>
-			<p className="text-sm text-muted-foreground">
-				Vocabulário útil: Carbon footprint, Renewable energy, Sustainable development.
-			</p>
-		</TrendWidget>
+			description="Pratique inglês discutindo sustentabilidade e meio ambiente."
+			icon={Leaf}
+			actionText="Aprender sobre Sustentabilidade"
+			successMessage="Você praticou vocabulário verde! +5 XP"
+		/>
 	);
 }

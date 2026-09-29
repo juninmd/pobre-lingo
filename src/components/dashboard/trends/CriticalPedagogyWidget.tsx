@@ -1,17 +1,17 @@
+import { Scale } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * CriticalPedagogyWidget implements the Pedagogia Crítica ELT trend.
+ */
 export function CriticalPedagogyWidget() {
 	return (
 		<TrendWidget
-			id="critical-pedagogy"
 			title="Pedagogia Crítica"
-			description="Pense criticamente sobre a linguagem e a sociedade."
-			icon="Shield"
-			actionText="Refletir"
-		>
-			<p className="text-sm text-muted-foreground">
-				Reflexão: Como a escolha das palavras pode mudar a percepção de uma notícia?
-			</p>
-		</TrendWidget>
+			description="Questione o papel do inglês no mundo e o poder por trás das palavras."
+			icon={Scale}
+			actionText="Refletir Criticamente"
+			successMessage="Reflexão crítica realizada! +5 XP"
+		/>
 	);
 }

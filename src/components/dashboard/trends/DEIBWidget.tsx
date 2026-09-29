@@ -1,17 +1,17 @@
+import { HeartHandshake } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * DEIBWidget implements the DEIB no Inglês ELT trend.
+ */
 export function DEIBWidget() {
 	return (
 		<TrendWidget
-			id="deib"
-			title="DEIB"
-			description="Diversidade, Equidade, Inclusão e Pertencimento."
-			icon="Users"
-			actionText="Explorar Cultura"
-		>
-			<p className="text-sm text-muted-foreground">
-				Aprenda a se comunicar de forma inclusiva e respeitosa em inglês.
-			</p>
-		</TrendWidget>
+			title="DEIB no Inglês"
+			description="Diversidade, Equidade, Inclusão e Pertencimento na linguagem."
+			icon={HeartHandshake}
+			actionText="Estudar Inclusão"
+			successMessage="Você explorou inglês inclusivo! +5 XP"
+		/>
 	);
 }

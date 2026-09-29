@@ -1,17 +1,17 @@
+import { MessageCircle } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * DogmeELTWidget implements the Dogme ELT ELT trend.
+ */
 export function DogmeELTWidget() {
 	return (
 		<TrendWidget
-			id="dogme-elt"
 			title="Dogme ELT"
-			description="Ensino focado na conversação real, sem materiais prontos."
-			icon="MessageSquare"
-			actionText="Iniciar Conversa"
-		>
-			<p className="text-sm text-muted-foreground">
-				Desafio: Pense em um assunto que ocorreu hoje e tente explicá-lo em inglês.
-			</p>
-		</TrendWidget>
+			description="Foco na conversação emergente, sem depender de materiais didáticos pesados."
+			icon={MessageCircle}
+			actionText="Conversar Livremente"
+			successMessage="Você praticou inglês livre! +5 XP"
+		/>
 	);
 }

@@ -1,24 +1,22 @@
-import {
-	AILanguagePartnerWidget,
-	AIPromptCraftingWidget,
-	AuthenticMaterialsWidget,
-	CLILWidget,
-	CriticalPedagogyWidget,
-	DEIBWidget,
-	DogmeELTWidget,
-	ExperientialLearningWidget,
-	GlobalEnglishesWidget,
-	GreenELTWidget,
-	HyFlexLearningWidget,
-	InquiryBasedLearningWidget,
-	LexicalApproachWidget,
-	MindfulWidget,
-	SocialMediaReelsWidget,
-	TranslanguagingWidget,
-} from "@/components/dashboard/elt-trends";
-import { PracticeHub } from "@/components/dashboard/PracticeHub";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { PracticeHub } from "@/components/dashboard/PracticeHub";
+import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
+import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
+import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
+import { DEIBWidget } from "./trends/DEIBWidget";
+import { DogmeELTWidget } from "./trends/DogmeELTWidget";
+import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
+import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
+import { GreenELTWidget } from "./trends/GreenELTWidget";
+import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
+import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
+import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
+import { MindfulWidget } from "./trends/MindfulWidget";
+import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 
+/**
+ * ImmersivePracticeSection organizes ELT trends and practice tools into tabs.
+ */
 export function ImmersivePracticeSection() {
 	return (
 		<section
@@ -27,99 +25,72 @@ export function ImmersivePracticeSection() {
 		>
 			<h3
 				id="immersive-practice-title"
-				className="text-2xl font-black tracking-tight"
+				className="text-2xl font-bold text-foreground tracking-tight"
 			>
 				Tendências 2025 & Prática Imersiva
 			</h3>
 
-			<Tabs defaultValue="praticas" className="w-full">
-				<TabsList className="w-full grid grid-cols-2 lg:grid-cols-5 h-auto rounded-xl p-1 bg-card/50 backdrop-blur-md border border-border">
-					<TabsTrigger
-						value="praticas"
-						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
-					>
-						Essenciais
-					</TabsTrigger>
-					<TabsTrigger
-						value="digital"
-						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
-					>
+			<Tabs defaultValue="digital-ia" className="w-full">
+				<TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 h-auto gap-2 p-1 bg-muted/50 rounded-xl">
+					<TabsTrigger value="digital-ia" className="rounded-lg py-2">
 						Digital & IA
 					</TabsTrigger>
-					<TabsTrigger
-						value="social"
-						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
-					>
-						Social
+					<TabsTrigger value="social" className="rounded-lg py-2">
+						Conexão Social
 					</TabsTrigger>
-					<TabsTrigger
-						value="cultura"
-						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
-					>
-						Cultura
+					<TabsTrigger value="cultura" className="rounded-lg py-2">
+						Cultura & Mundo
 					</TabsTrigger>
-					<TabsTrigger
-						value="metodologias"
-						className="rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold py-2.5"
-					>
+					<TabsTrigger value="metodologias" className="rounded-lg py-2">
 						Metodologias
+					</TabsTrigger>
+					<TabsTrigger value="essenciais" className="rounded-lg py-2">
+						Essenciais
 					</TabsTrigger>
 				</TabsList>
 
-				<TabsContent
-					value="praticas"
-					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
-				>
-					<PracticeHub />
-				</TabsContent>
-
-				<TabsContent
-					value="digital"
-					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
-				>
-					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+				<div className="mt-6">
+					<TabsContent
+						value="digital-ia"
+						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
+					>
 						<AIPromptCraftingWidget />
 						<HyFlexLearningWidget />
-						<AILanguagePartnerWidget />
-					</div>
-				</TabsContent>
+					</TabsContent>
 
-				<TabsContent
-					value="social"
-					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
-				>
-					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-						<SocialMediaReelsWidget />
+					<TabsContent
+						value="social"
+						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
+					>
 						<GreenELTWidget />
 						<DEIBWidget />
-						<CriticalPedagogyWidget />
 						<MindfulWidget />
-					</div>
-				</TabsContent>
+						<CriticalPedagogyWidget />
+					</TabsContent>
 
-				<TabsContent
-					value="cultura"
-					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
-				>
-					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-						<GlobalEnglishesWidget />
+					<TabsContent
+						value="cultura"
+						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
+					>
 						<AuthenticMaterialsWidget />
-						<TranslanguagingWidget />
-					</div>
-				</TabsContent>
+						<GlobalEnglishesWidget />
+					</TabsContent>
 
-				<TabsContent
-					value="metodologias"
-					className="mt-4 focus-visible:outline-none focus-visible:ring-0"
-				>
-					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-						<DogmeELTWidget />
+					<TabsContent
+						value="metodologias"
+						className="grid grid-cols-1 sm:grid-cols-2 gap-4 outline-none"
+					>
 						<LexicalApproachWidget />
+						<TranslanguagingWidget />
+						<DogmeELTWidget />
 						<ExperientialLearningWidget />
 						<InquiryBasedLearningWidget />
-						<CLILWidget />
-					</div>
-				</TabsContent>
+					</TabsContent>
+
+					<TabsContent value="essenciais" className="outline-none">
+						<PracticeHub />
+					</TabsContent>
+				</div>
 			</Tabs>
 		</section>
 	);

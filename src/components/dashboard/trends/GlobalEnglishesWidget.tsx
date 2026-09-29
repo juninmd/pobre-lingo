@@ -1,17 +1,17 @@
+import { Earth } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * GlobalEnglishesWidget implements the Global Englishes (ELF) ELT trend.
+ */
 export function GlobalEnglishesWidget() {
 	return (
 		<TrendWidget
-			id="global-englishes"
-			title="Global Englishes"
-			description="O inglês como língua franca. Sotaques e variações."
-			icon="Globe"
-			actionText="Ouvir Sotaques"
-		>
-			<p className="text-sm text-muted-foreground">
-				Aprenda a entender falantes de diferentes partes do mundo, não apenas de países nativos.
-			</p>
-		</TrendWidget>
+			title="Global Englishes (ELF)"
+			description="Prepare-se para ouvir sotaques do mundo todo, não apenas de nativos."
+			icon={Earth}
+			actionText="Treinar Ouvidos"
+			successMessage="Você treinou compreensão global! +5 XP"
+		/>
 	);
 }

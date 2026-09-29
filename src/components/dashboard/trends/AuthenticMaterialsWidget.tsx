@@ -1,17 +1,17 @@
+import { Globe } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * AuthenticMaterialsWidget implements the Materiais Autênticos ELT trend.
+ */
 export function AuthenticMaterialsWidget() {
 	return (
 		<TrendWidget
-			id="authentic-materials"
 			title="Materiais Autênticos"
-			description="Aprenda com conteúdos criados para nativos."
-			icon="BookOpen"
-			actionText="Ouvir Podcast"
-		>
-			<p className="text-sm text-muted-foreground">
-				Pratique escutando um trecho de um noticiário ou podcast real.
-			</p>
-		</TrendWidget>
+			description="Aprenda com podcasts, notícias e vídeos feitos para nativos."
+			icon={Globe}
+			actionText="Explorar Conteúdo"
+			successMessage="Você explorou materiais do mundo real! +5 XP"
+		/>
 	);
 }

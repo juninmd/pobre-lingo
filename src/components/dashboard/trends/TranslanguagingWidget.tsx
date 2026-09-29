@@ -1,24 +1,17 @@
+import { ArrowRightLeft } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * TranslanguagingWidget implements the Translanguaging ELT trend.
+ */
 export function TranslanguagingWidget() {
 	return (
 		<TrendWidget
-			id="translanguaging"
 			title="Translanguaging"
-			description="Use o português como ponte para entender o inglês."
-			icon="Globe"
-			actionText="Comparar Idiomas"
-		>
-			<div className="grid grid-cols-2 gap-2 text-sm">
-				<div className="bg-muted p-2 rounded-md">
-					<p className="font-semibold text-primary">PT-BR</p>
-					<p>Saudade</p>
-				</div>
-				<div className="bg-muted p-2 rounded-md">
-					<p className="font-semibold text-primary">EN</p>
-					<p>I miss you (feeling)</p>
-				</div>
-			</div>
-		</TrendWidget>
+			description="Use seu português estrategicamente para construir pontes com o inglês."
+			icon={ArrowRightLeft}
+			actionText="Comparar Estruturas"
+			successMessage="Você fez conexões bilíngues! +5 XP"
+		/>
 	);
 }

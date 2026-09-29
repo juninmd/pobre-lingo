@@ -1,89 +1,60 @@
-import { Bot, Leaf, Globe, Heart, Brain, Users, BookOpen, MessageSquare, Target, Lightbulb, Puzzle, Trees, Network, Shield } from "lucide-react";
-import React, { useState } from "react";
+import { type LucideIcon } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
 
 interface TrendWidgetProps {
-	id: string;
 	title: string;
 	description: string;
-	icon: "Bot" | "Leaf" | "Globe" | "Heart" | "Brain" | "Users" | "BookOpen" | "MessageSquare" | "Target" | "Lightbulb" | "Puzzle" | "Trees" | "Network" | "Shield";
+	icon: LucideIcon;
 	actionText: string;
-	onInteract?: () => void;
-	children?: React.ReactNode;
+	successMessage: string;
 }
 
-const iconMap = {
-	Bot,
-	Leaf,
-	Globe,
-	Heart,
-	Brain,
-	Users,
-	BookOpen,
-	MessageSquare,
-	Target,
-	Lightbulb,
-	Puzzle,
-	Trees,
-	Network,
-	Shield,
-};
-
 export function TrendWidget({
-	id,
 	title,
 	description,
-	icon,
+	icon: Icon,
 	actionText,
-	onInteract,
-	children,
+	successMessage,
 }: TrendWidgetProps) {
 	const { addXp } = useGamification();
 	const { notify } = useNotifications();
-	const [completed, setCompleted] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
-	const IconComponent = iconMap[icon];
-
-	const handleInteraction = () => {
-		if (completed) return;
-
-		setCompleted(true);
-		addXp(10);
-		notify({
-			title: "Prática Concluída!",
-			body: `Você ganhou 10 XP por explorar: ${title}`,
-			category: "quest",
-			dedupeKey: `trend-${id}-${Date.now()}`
-		});
-
-		if (onInteract) {
-			onInteract();
-		}
+	const handleAction = () => {
+		setIsLoading(true);
+		// Simulate network request
+		setTimeout(() => {
+			addXp(5);
+			notify({
+				category: "content",
+				title: title,
+				body: successMessage,
+			});
+			setIsLoading(false);
+		}, 600);
 	};
 
 	return (
-		<Card className="glass-card hover:shadow-xl transition-all duration-300">
-			<CardHeader className="pb-2">
-				<CardTitle className="text-lg flex items-center gap-2">
-					<IconComponent className="w-5 h-5 text-primary" />
-					{title}
-				</CardTitle>
-				<CardDescription>{description}</CardDescription>
-			</CardHeader>
-			<CardContent className="space-y-4">
-				{children}
-				<Button
-					onClick={handleInteraction}
-					disabled={completed}
-					className="w-full sm:w-auto"
-					variant={completed ? "secondary" : "default"}
-				>
-					{completed ? "Praticado hoje" : actionText}
-				</Button>
-			</CardContent>
-		</Card>
+		<div className="glass-card bg-card/50 p-4 rounded-xl border border-border flex flex-col items-start gap-3 transition-colors hover:border-primary/50">
+			<div className="flex items-center gap-3">
+				<span className="rounded-lg bg-primary/10 p-2 text-primary">
+					<Icon className="h-5 w-5" aria-hidden="true" />
+				</span>
+				<h4 className="font-semibold text-foreground">{title}</h4>
+			</div>
+			<p className="text-sm text-muted-foreground flex-1">{description}</p>
+			<Button
+				variant="secondary"
+				size="sm"
+				className="w-full mt-2"
+				onClick={handleAction}
+				disabled={isLoading}
+			>
+				{isLoading ? "Processando..." : actionText}
+			</Button>
+		</div>
 	);
 }

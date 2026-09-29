@@ -1,17 +1,17 @@
+import { Briefcase } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
+/**
+ * ExperientialLearningWidget implements the Aprendizado Experiencial ELT trend.
+ */
 export function ExperientialLearningWidget() {
 	return (
 		<TrendWidget
-			id="experiential-learning"
-			title="Experiential Learning"
-			description="Aprenda fazendo. Aplique o inglês em situações práticas."
-			icon="Target"
-			actionText="Simular Situação"
-		>
-			<p className="text-sm text-muted-foreground">
-				Simulação de hoje: Pedindo um café em uma cafeteria movimentada.
-			</p>
-		</TrendWidget>
+			title="Aprendizado Experiencial"
+			description="Aprenda fazendo: simule situações da vida real e reflita sobre a experiência."
+			icon={Briefcase}
+			actionText="Iniciar Simulação"
+			successMessage="Experiência prática concluída! +5 XP"
+		/>
 	);
 }

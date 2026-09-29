@@ -47,8 +47,8 @@ Todo componente deve suportar modo escuro. Use o modificador `dark:` do Tailwind
 ### Mobile-First e Safe Areas
 O aplicativo é usado em mobile (PWA).
 *   **Safe Area:** Use a classe utilitária `.pb-safe` (definida em `globals.css`) para garantir que o conteúdo não fique escondido atrás da barra de navegação do iPhone (`env(safe-area-inset-bottom)`).
-*   **Navegação:** Em mobile, a navegação é inferior (`MobileNav`). Em desktop, é lateral (`Sidebar`). O layout deve se adaptar automaticamente (`hidden md:flex`, etc.).
-*   **Padding:** Certifique-se de que a última seção da página tenha `pb-24` ou similar em mobile para não ficar atrás da `MobileNav` fixa.
+*   **Navegação:** A navegação foi unificada utilizando a `Sidebar` tanto para mobile (via menu toggle no Header) quanto para desktop. O layout original inferior (`MobileNav`) foi permanentemente descontinuado para evitar duplicidade de navegação.
+*   **Padding:** Garanta que a página flua normalmente com um padding bottom razoável (`pb-8` ou `pb-12`), já que não há mais barras fixas interferindo.
 
 ## 4. Convenções de Código
 

@@ -9,7 +9,6 @@ import {
 	SidebarProvider,
 } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
 import { NavMenu } from "./components/layout/NavMenu";
@@ -21,7 +20,6 @@ export default function Layout() {
 	//	const { userLevel } = useCurriculumProgress();
 
 	const [searchOpen, setSearchOpen] = useState(false);
-	const isMobile = useIsMobile();
 
 	// Atalho de teclado para abrir pesquisa (Cmd+K ou Ctrl+K)
 	useEffect(() => {
@@ -45,12 +43,11 @@ export default function Layout() {
 				defaultOpen
 				className="h-full overflow-hidden flex flex-row w-full"
 			>
-				{/* Sidebar only visible on lg and up */}
+				{/* Ensure sidebar is used as primary nav on mobile properly by using standard responsive classes or using a sheet trigger for mobile which Shadcn sidebar natively supports. For simplicity we hide it visually when standard sidebar is collapsed on mobile, but rely on shadcn's internal mobile drawer support via <SidebarTrigger> inside Header */}
 				<Sidebar
-					collapsible="none"
 					variant="sidebar"
 					side="left"
-					className="hidden md:flex border-r border-border/40"
+					className="border-r border-border/40"
 				>
 					<NavMenu />
 				</Sidebar>

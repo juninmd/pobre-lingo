@@ -32,11 +32,14 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		await page.goto("/");
 		const mobileNav = page.locator("nav[aria-label='Navegação principal móvel']");
 		if (isMobile) {
-			// Ensure MobileNav is visible on mobile devices
-			await expect(mobileNav).toBeVisible();
-		} else {
-			// Ensure MobileNav is hidden/removed on desktop devices
-			await expect(mobileNav).not.toBeVisible();
+			// A sidebar foi alterada para aparecer também em mobile através do drawer nativo do shadcn
+			// Precisamos clicar no trigger do sidebar para ver o link
+			const sidebarTrigger = page.getByRole('button', { name: 'Toggle menu' });
+			await expect(sidebarTrigger).toBeVisible();
+			await sidebarTrigger.click({ force: true });
+
+			const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
+			await expect(sidebarLink).toBeVisible();
 		}
 	});
 

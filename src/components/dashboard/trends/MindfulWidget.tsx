@@ -1,17 +1,13 @@
-import { Flower } from "lucide-react";
+import { Heart } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
 
-/**
- * MindfulWidget implements the Mindfulness & Inglês ELT trend.
- */
 export function MindfulWidget() {
-	return (
-		<TrendWidget
-			title="Mindfulness & Inglês"
-			description="Afirmações positivas e relaxamento para reduzir a ansiedade ao falar."
-			icon={Flower}
-			actionText="Respirar e Falar"
-			successMessage="Prática mindful concluída! +5 XP"
-		/>
-	);
+    return (
+        <TrendWidget
+            title="Mindful Learning"
+            description="Afirmações diárias e foco no aprendizado."
+            icon={<Heart className="w-4 h-4" />}
+            xpReward={10}
+        />
+    );
 }

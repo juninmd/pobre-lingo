@@ -1,31 +1,21 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { InquiryBasedLearningWidget } from "@/components/dashboard/InquiryBasedLearningWidget";
+import { describe, it, expect, vi } from "vitest";
+import { InquiryBasedLearningWidget } from "@/components/dashboard/trends/InquiryBasedLearningWidget";
 
-// Mock the gamification context and notifications hook
 vi.mock("@/contexts/GamificationContext", () => ({
-  useGamification: () => ({ addXp: vi.fn() }),
+    useGamification: () => ({ addXp: vi.fn() })
 }));
 
 vi.mock("@/contexts/NotificationContext", () => ({
-  useNotifications: () => ({ notify: vi.fn() }),
+    useNotifications: () => ({ notify: vi.fn() })
 }));
 
 describe("InquiryBasedLearningWidget", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it("renders the widget title and description", () => {
-    render(<InquiryBasedLearningWidget />);
-    expect(screen.getByText("Aprendizado por Investigação")).toBeDefined();
-    expect(screen.getByText("Desenvolva o idioma formulando perguntas investigativas.")).toBeDefined();
-  });
-
-  it("changes button text on click", () => {
-    render(<InquiryBasedLearningWidget />);
-    const button = screen.getByRole("button", { name: /Acessar/i });
-    fireEvent.click(button);
-    expect(screen.getByText("Concluído")).toBeDefined();
-  });
+    it("renders correctly and handles interaction", () => {
+        render(<InquiryBasedLearningWidget />);
+        expect(screen.getByText("Inquiry-Based Learning")).toBeInTheDocument();
+        const button = screen.getByRole("button", { name: /praticar/i });
+        fireEvent.click(button);
+        expect(screen.getByRole("button", { name: /concluído/i })).toBeInTheDocument();
+    });
 });

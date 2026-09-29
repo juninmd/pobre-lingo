@@ -85,6 +85,15 @@ export default function DashboardPage() {
 				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
 					<FluencyJourneyCard />
 					<ContinueLearningCard />
+					<section>
+						<Suspense
+							fallback={
+								<Loader2 className="w-8 h-8 animate-spin mx-auto my-12 text-primary" />
+							}
+						>
+							<LearningTimeline />
+						</Suspense>
+					</section>
 					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />

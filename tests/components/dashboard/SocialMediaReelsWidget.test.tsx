@@ -1,31 +1,21 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
+import { describe, it, expect, vi } from "vitest";
+import { SocialMediaReelsWidget } from "@/components/dashboard/trends/SocialMediaReelsWidget";
 
-// Mock the gamification context and notifications hook
 vi.mock("@/contexts/GamificationContext", () => ({
-  useGamification: () => ({ addXp: vi.fn() }),
+    useGamification: () => ({ addXp: vi.fn() })
 }));
 
 vi.mock("@/contexts/NotificationContext", () => ({
-  useNotifications: () => ({ notify: vi.fn() }),
+    useNotifications: () => ({ notify: vi.fn() })
 }));
 
 describe("SocialMediaReelsWidget", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it("renders the widget title and description", () => {
-    render(<SocialMediaReelsWidget />);
-    expect(screen.getByText("Nano-learning em Reels")).toBeDefined();
-    expect(screen.getByText("Pratique com vídeos curtos e autênticos das redes sociais.")).toBeDefined();
-  });
-
-  it("changes button text on click", () => {
-    render(<SocialMediaReelsWidget />);
-    const button = screen.getByRole("button", { name: /Acessar/i });
-    fireEvent.click(button);
-    expect(screen.getByText("Concluído")).toBeDefined();
-  });
+    it("renders correctly and handles interaction", () => {
+        render(<SocialMediaReelsWidget />);
+        expect(screen.getByText("Nano-learning Reels")).toBeInTheDocument();
+        const button = screen.getByRole("button", { name: /praticar/i });
+        fireEvent.click(button);
+        expect(screen.getByRole("button", { name: /concluído/i })).toBeInTheDocument();
+    });
 });

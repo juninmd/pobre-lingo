@@ -1,13 +1,12 @@
-import { ArrowRightLeft } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
+import { Lightbulb } from "lucide-react";
 
 export function TranslanguagingWidget() {
     return (
         <TrendWidget
             title="Translanguaging"
-            description="Faça pontes cognitivas entre português e inglês."
-            icon={<ArrowRightLeft className="w-4 h-4" />}
-            xpReward={10}
+            description="Conexões cognitivas entre o português e o inglês."
+            icon={<Lightbulb className="h-5 w-5" aria-hidden="true" />}
         />
     );
 }

@@ -1,13 +1,12 @@
-import { Bot } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
+import { Lightbulb } from "lucide-react";
 
 export function AIPromptCraftingWidget() {
     return (
         <TrendWidget
             title="Prompt Engineering"
-            description="Aprenda a criar prompts efetivos para praticar inglês com IAs."
-            icon={<Bot className="w-4 h-4" />}
-            xpReward={10}
+            description="Aprenda a criar prompts eficientes para IA em inglês."
+            icon={<Lightbulb className="h-5 w-5" aria-hidden="true" />}
         />
     );
 }

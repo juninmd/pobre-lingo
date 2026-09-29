@@ -1,13 +1,12 @@
-import { Leaf } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
+import { Lightbulb } from "lucide-react";
 
 export function GreenELTWidget() {
     return (
         <TrendWidget
             title="Green ELT"
-            description="Aprenda vocabulário sobre sustentabilidade e meio ambiente."
-            icon={<Leaf className="w-4 h-4" />}
-            xpReward={10}
+            description="Sustentabilidade e inglês ambiental."
+            icon={<Lightbulb className="h-5 w-5" aria-hidden="true" />}
         />
     );
 }

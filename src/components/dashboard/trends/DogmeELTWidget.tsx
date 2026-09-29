@@ -1,13 +1,12 @@
-import { MessageSquare } from "lucide-react";
 import { TrendWidget } from "./TrendWidget";
+import { Lightbulb } from "lucide-react";
 
 export function DogmeELTWidget() {
     return (
         <TrendWidget
             title="Dogme ELT"
-            description="Conversação focada no aluno, sem materiais prévios."
-            icon={<MessageSquare className="w-4 h-4" />}
-            xpReward={10}
+            description="Aprendizado focado em conversação e materiais gerados pelo aluno."
+            icon={<Lightbulb className="h-5 w-5" aria-hidden="true" />}
         />
     );
 }

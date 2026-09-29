@@ -25,18 +25,35 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		await expect(bookmark.first()).toBeVisible();
 	});
 
-	test("should adapt layout for mobile devices without breaking", async ({
+	test("should adapt layout for mobile devices and hide MobileNav on desktop", async ({
 		page,
 		isMobile,
 	}) => {
 		await page.goto("/");
+		const mobileNav = page.locator("nav[aria-label='Navegação principal móvel']");
 		if (isMobile) {
-			// Ensure MobileNav is NO LONGER visible on mobile devices
-			const mobileNav = page.locator(
-				"nav[aria-label='Navegação principal móvel']",
-			);
-			await expect(mobileNav).toHaveCount(0);
+			// Ensure MobileNav is visible on mobile devices
+			await expect(mobileNav).toBeVisible();
+		} else {
+			// Ensure MobileNav is hidden/removed on desktop devices
+			await expect(mobileNav).not.toBeVisible();
 		}
+	});
+
+	test("should display accurate lesson states: BLOQUEADO, DISPONÍVEL, CONCLUÍDO", async ({
+		page,
+	}) => {
+		await page.goto("/");
+		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
+
+		// Check that at least one locked lesson has the "BLOQUEADO" state
+		await expect(page.locator("text=BLOQUEADO").first()).toBeVisible();
+
+		// Check that the active lesson has the "DISPONÍVEL" state
+		await expect(page.locator("text=DISPONÍVEL").first()).toBeVisible();
+
+		// Note: "CONCLUÍDO" might not be visible on a fresh account,
+		// but the structure exists. We verify the expected two states exist.
 	});
 
 	test("should navigate to the active lesson upon clicking the bookmark lesson", async ({

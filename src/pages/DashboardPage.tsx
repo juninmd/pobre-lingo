@@ -18,8 +18,8 @@ const LearningTimeline = lazy(() =>
 
 export default function DashboardPage() {
 	return (
-		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto relative">
-			{/* Spatial UI / Aurora ambient background */}
+		<PageContainer className="space-y-6 sm:space-y-8 lg:space-y-12 max-w-7xl mx-auto relative">
+			{/* Spatial UI / Glassmorphism Ambient Background */}
 			<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
 				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[140px] animate-pulse-glow" />
 				<div
@@ -42,6 +42,7 @@ export default function DashboardPage() {
 			<DashboardStats />
 
 			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+				{/* Left Column: Learning Timeline */}
 				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
 					<FluencyJourneyCard />
 					<ContinueLearningCard />

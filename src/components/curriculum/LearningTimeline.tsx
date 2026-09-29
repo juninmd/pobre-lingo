@@ -1,5 +1,5 @@
-import { BookOpen, Sparkles } from "lucide-react";
-import React from "react";
+import { BookOpen, Sparkles, Loader2 } from "lucide-react";
+import React, { Suspense } from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
 import { LevelRoadmap } from "./LevelRoadmap";

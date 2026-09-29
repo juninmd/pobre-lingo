@@ -1,121 +1,102 @@
-import { Sparkles } from "lucide-react";
-import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
-import { AIStudyCoachWidget } from "@/components/dashboard/AIStudyCoachWidget";
-import { CLILWidget } from "@/components/dashboard/CLILWidget";
-import { CommunicativeRoleplayWidget } from "@/components/dashboard/CommunicativeRoleplayWidget";
-import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
-import { DataDrivenLearningWidget } from "@/components/dashboard/DataDrivenLearningWidget";
-import { DEIBWidget } from "@/components/dashboard/DEIBWidget";
-import { GlobalEnglishesWidget } from "@/components/dashboard/GlobalEnglishesWidget";
-import { GreenELTWidget } from "@/components/dashboard/GreenELTWidget";
-import { InteractiveAudioWidget } from "@/components/dashboard/InteractiveAudioWidget";
-import { LexicalApproachWidget } from "@/components/dashboard/LexicalApproachWidget";
-import { LiveTutorWidget } from "@/components/dashboard/LiveTutorWidget";
-import { MicroLessonWidget } from "@/components/dashboard/MicroLessonWidget";
-import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
-import { PeerReviewWidget } from "@/components/dashboard/PeerReviewWidget";
-import { PopCultureWidget } from "@/components/dashboard/PopCultureWidget";
-import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedLearningWidget";
-import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
-import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
-import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
-import { SpacedRepetitionWidget } from "@/components/dashboard/SpacedRepetitionWidget";
-import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
-import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
-import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
-import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
-import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
-import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
-import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
-import { DogmeELTWidget } from "./DogmeELTWidget";
-import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
-import { NeuroELTWidget } from "./NeuroELTWidget";
-import { PlurilingualismWidget } from "./PlurilingualismWidget";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { useNotifications } from "@/contexts/NotificationContext";
+import { useGamification } from "@/contexts/GamificationContext";
+import {
+	BrainCircuit, Smartphone, Laptop, Sparkles, MessageSquare,
+	Leaf, Heart, Users, Scale, Globe, BookOpen, Languages, Map,
+	Puzzle, Search, Beaker, type LucideIcon
+} from "lucide-react";
+
+export function TrendWidget({ title, description, icon: Icon, actionText = "Explorar" }: { title: string, description: string, icon: LucideIcon, actionText?: string }) {
+	const { notify } = useNotifications();
+	const { addXp } = useGamification();
+
+	const handleAction = () => {
+		addXp(10);
+		notify({
+			title: "Recurso explorado!",
+			body: `Você ganhou 10 XP explorando ${title}. Em breve mais novidades!`,
+			category: "achievement",
+		});
+	};
+
+	return (
+		<div className="flex h-full items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/60">
+			<span className="rounded-lg bg-primary/10 p-2 text-primary">
+				<Icon className="h-5 w-5" aria-hidden="true" />
+			</span>
+			<div className="flex flex-col min-w-0 flex-1">
+				<span className="block font-semibold text-foreground">{title}</span>
+				<span className="block text-sm text-muted-foreground mb-2">{description}</span>
+				<Button variant="outline" size="sm" onClick={handleAction} className="w-fit">{actionText}</Button>
+			</div>
+		</div>
+	);
+}
+
+// Digital & IA
+export const AIPromptCraftingWidget = () => <TrendWidget title="Prompt Engineering" description="Aprenda a falar com IAs em inglês." icon={BrainCircuit} />
+export const HyFlexLearningWidget = () => <TrendWidget title="HyFlex Learning" description="Ensino híbrido e flexível adaptado a você." icon={Laptop} />
+export const AILanguagePartnerWidget = () => <TrendWidget title="AI Language Partner" description="Treine conversa livre com IA inteligente." icon={Sparkles} />
+export const SocialMediaReelsWidget = () => <TrendWidget title="Social Media Reels" description="Aprenda com pílulas e vídeos curtos." icon={Smartphone} />
+
+// Social
+export const GreenELTWidget = () => <TrendWidget title="Green ELT" description="Vocabulário de ecologia e sustentabilidade." icon={Leaf} />
+export const DEIBWidget = () => <TrendWidget title="DEIB" description="Inglês com diversidade e inclusão global." icon={Users} />
+export const MindfulWidget = () => <TrendWidget title="Mindfulness" description="Afirmações diárias e ensino socioemocional." icon={Heart} />
+export const CriticalPedagogyWidget = () => <TrendWidget title="Pedagogia Crítica" description="Reflita criticamente sobre a língua." icon={Scale} />
+
+// Cultura
+export const DogmeELTWidget = () => <TrendWidget title="Dogme ELT" description="Prática autêntica sem materiais guiados." icon={MessageSquare} />
+export const AuthenticMaterialsWidget = () => <TrendWidget title="Materiais Autênticos" description="Textos nativos e conteúdo do mundo real." icon={Map} />
+export const GlobalEnglishesWidget = () => <TrendWidget title="Global Englishes" description="Sotaques diversos e ELF." icon={Globe} />
+export const TranslanguagingWidget = () => <TrendWidget title="Translanguaging" description="Crie pontes comparando inglês e português." icon={Languages} />
+
+// Metodologias
+export const LexicalApproachWidget = () => <TrendWidget title="Abordagem Lexical" description="Aprenda por chunks (blocos)." icon={BookOpen} />
+export const ExperientialLearningWidget = () => <TrendWidget title="Experiential Learning" description="Aprenda fazendo e refletindo na prática." icon={Puzzle} />
+export const InquiryBasedLearningWidget = () => <TrendWidget title="Inquiry-Based" description="Aprenda investigando problemas." icon={Search} />
+export const CLILWidget = () => <TrendWidget title="CLIL" description="Integração de conteúdo não linguístico." icon={Beaker} />
 
 export function ImmersivePracticeSection() {
 	return (
-		<>
-			{/* Prática Imersiva Section */}
-			<section className="space-y-6 sm:space-y-8 mt-8">
-				<div className="flex items-center gap-2 mb-4">
-					<div className="p-1.5 bg-primary/10 rounded-lg">
-						<Sparkles className="w-5 h-5 text-primary" />
-					</div>
-					<h3 className="text-2xl font-bold text-foreground tracking-tight">
-						Tendências 2025 & Prática Imersiva
-					</h3>
-				</div>
-
-				<div className="space-y-8">
-					{/* Category 1: Imersão Digital & IA */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>🤖</span> Imersão Digital & IA
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<AILanguagePartnerWidget />
-							<InteractiveAudioWidget />
-							<RealWorldARWidget />
-							<PronunciationWidget />
-							<DataDrivenLearningWidget />
-							<VirtualImmersionWidget />
-							<FlippedClassroomWidget />
-							<AdaptiveLearningWidget />
-						</div>
-					</div>
-
-					{/* Category 2: Conexão Humana & Social */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>👥</span> Conexão Humana & Social
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<LiveTutorWidget />
-							<CommunityChallengeWidget />
-							<PeerReviewWidget />
-							<MindfulWidget />
-							<DEIBWidget />
-							<GreenELTWidget />
-							<PlurilingualismWidget />
-							<CriticalPedagogyWidget />
-						</div>
-					</div>
-
-					{/* Category 3: Nano-Learning & Cultura */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>📱</span> Nano-Learning & Cultura
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<SocialMediaReelsWidget />
-							<PopCultureWidget />
-						</div>
-					</div>
-
-					{/* Category 4: Metodologias Ativas */}
-					<div className="space-y-3">
-						<h4 className="text-sm font-black text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-							<span>🧠</span> Metodologias Ativas
-						</h4>
-						<div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-							<AIStudyCoachWidget />
-							<CommunicativeRoleplayWidget />
-							<TranslanguagingWidget />
-							<TaskMissionWidget />
-							<ProjectBasedLearningWidget />
-							<CLILWidget />
-							<StorytellingWidget />
-							<MicroLessonWidget />
-							<GlobalEnglishesWidget />
-							<LexicalApproachWidget />
-							<SpacedRepetitionWidget />
-							<DogmeELTWidget />
-							<AuthenticMaterialsWidget />
-							<NeuroELTWidget />
-						</div>
-					</div>
-				</div>
-			</section>
-		</>
+		<section aria-labelledby="immersive-practice-title" className="space-y-4 mt-8">
+			<h3 id="immersive-practice-title" className="text-2xl font-bold text-foreground tracking-tight">
+				Tendências 2025 & Prática Imersiva
+			</h3>
+			<Tabs defaultValue="digital" className="w-full">
+				<TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto">
+					<TabsTrigger value="digital" className="py-2">Digital & IA</TabsTrigger>
+					<TabsTrigger value="social" className="py-2">Conexão Social</TabsTrigger>
+					<TabsTrigger value="cultura" className="py-2">Cultura</TabsTrigger>
+					<TabsTrigger value="metodologias" className="py-2">Metodologias</TabsTrigger>
+				</TabsList>
+				<TabsContent value="digital" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+					<AIPromptCraftingWidget />
+					<HyFlexLearningWidget />
+					<AILanguagePartnerWidget />
+					<SocialMediaReelsWidget />
+				</TabsContent>
+				<TabsContent value="social" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+					<GreenELTWidget />
+					<DEIBWidget />
+					<MindfulWidget />
+					<CriticalPedagogyWidget />
+				</TabsContent>
+				<TabsContent value="cultura" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+					<DogmeELTWidget />
+					<AuthenticMaterialsWidget />
+					<GlobalEnglishesWidget />
+					<TranslanguagingWidget />
+				</TabsContent>
+				<TabsContent value="metodologias" className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+					<LexicalApproachWidget />
+					<ExperientialLearningWidget />
+					<InquiryBasedLearningWidget />
+					<CLILWidget />
+				</TabsContent>
+			</Tabs>
+		</section>
 	);
 }

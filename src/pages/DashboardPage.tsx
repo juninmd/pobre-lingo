@@ -29,14 +29,7 @@ import { ProjectBasedLearningWidget } from "@/components/dashboard/ProjectBasedL
 import { PronunciationWidget } from "@/components/dashboard/PronunciationWidget";
 import { RealWorldARWidget } from "@/components/dashboard/RealWorldARWidget";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
-import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
-import { SocialMediaReelsWidget } from "@/components/dashboard/SocialMediaReelsWidget";
-import { StorytellingWidget } from "@/components/dashboard/StorytellingWidget";
-import { TaskMissionWidget } from "@/components/dashboard/TaskMissionWidget";
-import { TranslanguagingWidget } from "@/components/dashboard/TranslanguagingWidget";
-import { VirtualImmersionWidget } from "@/components/dashboard/VirtualImmersionWidget";
-import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
-import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
+import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";
@@ -124,6 +117,7 @@ export default function DashboardPage() {
 							<LearningTimeline />
 						</Suspense>
 					</section>
+					<PracticeHub />
 					<ImmersivePracticeSection />
 				</div>
 				<RightColumnWidgets />

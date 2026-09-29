@@ -40,7 +40,7 @@ export function AchievementsCard() {
 			description: "Complete sua primeira lição",
 			icon: <Star className="h-6 w-6" />,
 			unlocked: progress.completedLessons > 0,
-			color: "text-brand-gold",
+			color: "text-yellow-600",
 		},
 		{
 			id: "beginner",
@@ -48,7 +48,7 @@ export function AchievementsCard() {
 			description: "Complete o primeiro módulo",
 			icon: <Target className="h-6 w-6" />,
 			unlocked: progress.completedModules > 0,
-			color: "text-brand-aqua",
+			color: "text-green-600",
 		},
 		{
 			id: "dedicated",
@@ -56,7 +56,7 @@ export function AchievementsCard() {
 			description: "Alcance o nível 5",
 			icon: <Flame className="h-6 w-6" />,
 			unlocked: userLevel >= 5,
-			color: "text-brand-gold",
+			color: "text-orange-600",
 		},
 		{
 			id: "advanced",
@@ -64,7 +64,7 @@ export function AchievementsCard() {
 			description: "Complete 50% do currículo",
 			icon: <Award className="h-6 w-6" />,
 			unlocked: progress.overallPercentage >= 50,
-			color: "text-primary",
+			color: "text-blue-600",
 		},
 		{
 			id: "expert",
@@ -72,7 +72,7 @@ export function AchievementsCard() {
 			description: "Alcance o nível 10",
 			icon: <Zap className="h-6 w-6" />,
 			unlocked: userLevel >= 10,
-			color: "text-brand-violet",
+			color: "text-purple-600",
 		},
 		{
 			id: "master",
@@ -80,7 +80,7 @@ export function AchievementsCard() {
 			description: "Complete todo o currículo",
 			icon: <Crown className="h-6 w-6" />,
 			unlocked: progress.overallPercentage === 100,
-			color: "text-brand-gold",
+			color: "text-yellow-700",
 		},
 		{
 			id: "xp-500",
@@ -88,7 +88,7 @@ export function AchievementsCard() {
 			description: "Ganhe 500 XP",
 			icon: <Medal className="h-6 w-6" />,
 			unlocked: totalXP >= 500,
-			color: "text-primary",
+			color: "text-cyan-600",
 		},
 		{
 			id: "xp-1000",
@@ -96,7 +96,7 @@ export function AchievementsCard() {
 			description: "Ganhe 1000 XP",
 			icon: <Trophy className="h-6 w-6" />,
 			unlocked: totalXP >= 1000,
-			color: "text-destructive",
+			color: "text-red-600",
 		},
 	];
 
@@ -118,8 +118,8 @@ export function AchievementsCard() {
 							className={cn(
 								"relative p-4 rounded-lg border-2 transition-all",
 								achievement.unlocked
-									? "bg-gradient-to-br from-brand-gold/15 to-brand-gold/5 border-brand-gold/40 shadow-md"
-									: "bg-muted/40 border-border opacity-60",
+									? "bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-yellow-300 dark:border-yellow-700 shadow-md"
+									: "bg-gray-50 dark:bg-muted/20 border-gray-200 dark:border-border opacity-60",
 							)}
 						>
 							<div className="text-center">
@@ -127,13 +127,13 @@ export function AchievementsCard() {
 									className={cn(
 										"mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-2",
 										achievement.unlocked
-											? "bg-card shadow-sm"
-											: "bg-muted",
+											? "bg-white dark:bg-card shadow-sm"
+											: "bg-gray-100 dark:bg-muted",
 									)}
 								>
 									<div
 										className={
-											achievement.unlocked ? achievement.color : "text-muted-foreground"
+											achievement.unlocked ? achievement.color : "text-gray-400"
 										}
 									>
 										{achievement.icon}

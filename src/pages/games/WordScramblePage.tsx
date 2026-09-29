@@ -218,7 +218,6 @@ export default function WordScramblePage() {
 								}}
 								onKeyDown={(e) => e.key === "Enter" && handleCheck()}
 								placeholder="Digite sua resposta..."
-								aria-label="Digite a palavra desembaralhada"
 								className={cn(
 									"text-center text-lg uppercase h-12 tracking-widest",
 									feedback === "success" &&
@@ -234,7 +233,6 @@ export default function WordScramblePage() {
 								size="lg"
 								onClick={handleCheck}
 								disabled={!guess}
-								aria-live="polite"
 							>
 								{feedback === "success" ? (
 									<span className="flex items-center gap-2">

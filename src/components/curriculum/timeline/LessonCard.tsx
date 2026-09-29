@@ -55,7 +55,7 @@ export function LessonCard({
 		status === "active" &&
 			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent scale-[1.02] ring-2 ring-primary/30 hover:scale-[1.03]",
 		status === "completed" &&
-			"border-brand-aqua/30 bg-brand-aqua/5 hover:bg-brand-aqua/10",
+			"border-green-500/20 bg-green-500/5 hover:bg-green-500/10",
 		status !== "locked" &&
 			"hover:border-primary/30 hover:shadow-md cursor-pointer",
 	);
@@ -81,7 +81,7 @@ export function LessonCard({
 				className={cn(
 					"absolute left-[14px] md:left-[30px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 transition-all duration-300 z-10",
 					status === "completed"
-						? "bg-brand-aqua border-brand-aqua"
+						? "bg-green-500 border-green-500"
 						: status === "active"
 							? "bg-primary border-primary animate-pulse shadow-[0_0_10px_rgba(var(--primary),0.5)]"
 							: "bg-muted border-muted-foreground/30",

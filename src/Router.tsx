@@ -66,21 +66,6 @@ const NotebookPage = React.lazy(() => import("./pages/NotebookPage"));
 const ReviewPage = React.lazy(() => import("./pages/ReviewPage"));
 const SettingsPage = React.lazy(() => import("./pages/SettingsPage"));
 const AchievementsPage = React.lazy(() => import("./pages/AchievementsPage"));
-const ReadingPage = React.lazy(() => import("./pages/ReadingPage"));
-const ReadingViewPage = React.lazy(() => import("./pages/ReadingViewPage"));
-const VocabularyVaultPage = React.lazy(
-	() => import("./pages/VocabularyVaultPage"),
-);
-const FluencyPage = React.lazy(() => import("./pages/FluencyPage"));
-const PronunciationPage = React.lazy(() => import("./pages/PronunciationPage"));
-const TracksPage = React.lazy(() => import("./pages/TracksPage"));
-const TutorPage = React.lazy(() => import("./pages/TutorPage"));
-const LibraryPage = React.lazy(() => import("./pages/LibraryPage"));
-const LibraryReaderPage = React.lazy(() => import("./pages/LibraryReaderPage"));
-const ListeningLabPage = React.lazy(() => import("./pages/ListeningLabPage"));
-const ProgressPage = React.lazy(() => import("./pages/ProgressPage"));
-const WritingPage = React.lazy(() => import("./pages/WritingPage"));
-const CheckpointsPage = React.lazy(() => import("./pages/CheckpointsPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
 // Loading component
@@ -186,102 +171,6 @@ const router = createBrowserRouter([
 			{
 				path: "curriculum",
 				element: <Navigate to="/" replace />,
-			},
-			{
-				path: "vocabulary",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<VocabularyVaultPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "reading",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<ReadingPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "reading/:readerId",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<ReadingViewPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "fluency",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<FluencyPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "pronunciation",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<PronunciationPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "tracks",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<TracksPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "tutor",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<TutorPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "library",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<LibraryPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "library/:id",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<LibraryReaderPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "listening-lab",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<ListeningLabPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "writing",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<WritingPage />
-					</Suspense>
-				),
-			},
-			{
-				path: "checkpoints",
-				element: (
-					<Suspense fallback={<PageLoader />}>
-						<CheckpointsPage />
-					</Suspense>
-				),
 			},
 			{
 				path: "vocabulary/:moduleId/:lessonId",

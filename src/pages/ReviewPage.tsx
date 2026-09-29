@@ -40,22 +40,26 @@ const GRADE_BUTTONS: {
 	{
 		grade: GRADE_AGAIN,
 		label: "Errei",
-		className: "border-destructive/40 text-destructive hover:bg-destructive/10",
+		className:
+			"border-red-300 text-red-700 hover:bg-red-50 dark:border-red-800/60 dark:text-red-400 dark:hover:bg-red-950/30",
 	},
 	{
 		grade: GRADE_HARD,
 		label: "Difícil",
-		className: "border-brand-gold/40 text-brand-gold hover:bg-brand-gold/10",
+		className:
+			"border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-800/60 dark:text-amber-400 dark:hover:bg-amber-950/30",
 	},
 	{
 		grade: GRADE_GOOD,
 		label: "Bom",
-		className: "border-primary/40 text-primary hover:bg-primary/10",
+		className:
+			"border-blue-300 text-blue-700 hover:bg-blue-50 dark:border-blue-800/60 dark:text-blue-400 dark:hover:bg-blue-950/30",
 	},
 	{
 		grade: GRADE_EASY,
 		label: "Fácil",
-		className: "border-brand-aqua/50 text-brand-aqua hover:bg-brand-aqua/10",
+		className:
+			"border-emerald-300 text-emerald-700 hover:bg-emerald-50 dark:border-emerald-800/60 dark:text-emerald-400 dark:hover:bg-emerald-950/30",
 	},
 ];
 
@@ -115,7 +119,7 @@ export default function ReviewPage() {
 
 			<PageHeader
 				icon={Brain}
-				iconClassName="text-brand-gold"
+				iconClassName="text-amber-500"
 				title="Revisão Inteligente"
 				description="Repetição espaçada: cada card volta no momento em que você está prestes a esquecê-lo."
 			/>
@@ -125,25 +129,25 @@ export default function ReviewPage() {
 					icon={Brain}
 					value={stats.due}
 					label="Para hoje"
-					tone="text-brand-gold"
+					tone="text-amber-600 dark:text-amber-400"
 				/>
 				<StatTile
 					icon={Layers}
 					value={stats.total}
 					label="Total"
-					tone="text-primary"
+					tone="text-blue-600 dark:text-blue-400"
 				/>
 				<StatTile
 					icon={Sparkles}
 					value={stats.learning}
 					label="Aprendendo"
-					tone="text-brand-violet"
+					tone="text-purple-600 dark:text-purple-400"
 				/>
 				<StatTile
 					icon={CheckCircle2}
 					value={stats.mature}
 					label="Memorizados"
-					tone="text-brand-aqua"
+					tone="text-emerald-600 dark:text-emerald-400"
 				/>
 			</section>
 
@@ -165,7 +169,7 @@ export default function ReviewPage() {
 									setReviewedIds((prev) => [...prev, current.id]);
 									setRevealed(false);
 								}}
-								className="flex items-center gap-1 text-muted-foreground/60 hover:text-destructive transition-colors"
+								className="flex items-center gap-1 text-muted-foreground/60 hover:text-red-500 transition-colors"
 							>
 								<Trash2 className="h-3 w-3" />
 								Já sei isso
@@ -201,11 +205,11 @@ export default function ReviewPage() {
 							</Button>
 						) : (
 							<div className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
-								<div className="rounded-2xl border border-brand-aqua/30 bg-brand-aqua/10 p-4 text-center">
-									<p className="text-[10px] uppercase tracking-widest font-bold text-brand-aqua/80 mb-1">
+								<div className="rounded-2xl border border-emerald-200/70 dark:border-emerald-800/50 bg-emerald-50/60 dark:bg-emerald-950/20 p-4 text-center">
+									<p className="text-[10px] uppercase tracking-widest font-bold text-emerald-700/70 dark:text-emerald-400/70 mb-1">
 										Resposta
 									</p>
-									<p className="text-lg font-bold text-brand-aqua text-balance">
+									<p className="text-lg font-bold text-emerald-800 dark:text-emerald-300 text-balance">
 										{current.back}
 									</p>
 								</div>
@@ -272,8 +276,8 @@ function EmptyState({ nextDueAt }: { nextDueAt: string | null }) {
 	return (
 		<Card className="glass-card border-dashed">
 			<CardContent className="p-8 text-center space-y-3">
-				<div className="mx-auto w-14 h-14 rounded-2xl bg-brand-aqua/10 flex items-center justify-center">
-					<CheckCircle2 className="h-7 w-7 text-brand-aqua" />
+				<div className="mx-auto w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+					<CheckCircle2 className="h-7 w-7 text-emerald-500" />
 				</div>
 				<h2 className="text-lg font-bold">Nada para revisar agora</h2>
 				<p className="text-sm text-muted-foreground max-w-sm mx-auto leading-relaxed">
@@ -304,10 +308,10 @@ function EmptyState({ nextDueAt }: { nextDueAt: string | null }) {
 function SessionSummary({ total, hits }: { total: number; hits: number }) {
 	const accuracy = total > 0 ? Math.round((hits / total) * 100) : 0;
 	return (
-		<Card className="glass-card border-2 border-brand-aqua/30 bg-brand-aqua/10">
+		<Card className="glass-card border-2 border-emerald-300/50 dark:border-emerald-800/50 bg-emerald-50/40 dark:bg-emerald-950/20">
 			<CardContent className="p-8 text-center space-y-3">
-				<div className="mx-auto w-14 h-14 rounded-2xl bg-brand-aqua/15 flex items-center justify-center">
-					<Sparkles className="h-7 w-7 text-brand-aqua" />
+				<div className="mx-auto w-14 h-14 rounded-2xl bg-emerald-500/15 flex items-center justify-center">
+					<Sparkles className="h-7 w-7 text-emerald-500" />
 				</div>
 				<h2 className="text-xl font-extrabold">Sessão concluída!</h2>
 				<p className="text-sm text-muted-foreground">

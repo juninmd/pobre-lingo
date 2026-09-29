@@ -13,14 +13,12 @@ const getIcon = (name: string) => {
 
 interface ModuleSectionProps {
 	module: Module;
-	index: number;
 	completedLessonsSet: Set<string>;
 	firstIncompleteLessonId: string | null;
 }
 
 export function ModuleSection({
 	module,
-	index,
 	completedLessonsSet,
 	firstIncompleteLessonId,
 }: ModuleSectionProps) {
@@ -42,7 +40,7 @@ export function ModuleSection({
 				<div className="flex flex-col pt-1">
 					<div className="flex items-center gap-2 mb-0.5">
 						<span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-							Módulo {index + 1}
+							Capítulo {module.order}
 						</span>
 						<CefrBadge
 							level={getCEFRLevel(module.unitId)}

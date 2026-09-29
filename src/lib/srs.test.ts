@@ -1,13 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
-	enrollCards,
 	GRADE_AGAIN,
 	GRADE_EASY,
 	GRADE_GOOD,
-	GRADE_HARD,
 	getDueCards,
 	getSrsStats,
-	previewInterval,
 	type ReviewCard,
 	scheduleCard,
 	upsertCard,
@@ -31,80 +28,63 @@ function makeCard(overrides: Partial<ReviewCard> = {}): ReviewCard {
 	};
 }
 
-const DAY = 86_400_000;
-const dueIn = (card: ReviewCard) =>
-	new Date(card.dueAt).getTime() - NOW.getTime();
-
-describe("scheduleCard (FSRS)", () => {
-	it("agenda um card novo respondido corretamente para o futuro", () => {
+describe("scheduleCard", () => {
+	it("agenda a primeira revisão bem-sucedida para o dia seguinte", () => {
 		const next = scheduleCard(makeCard(), GRADE_GOOD, NOW);
-		expect(dueIn(next)).toBeGreaterThan(0);
+
 		expect(next.repetitions).toBe(1);
-		expect(next.fsrs?.reps).toBe(1);
+		expect(next.intervalDays).toBe(1);
+		expect(new Date(next.dueAt).getTime()).toBe(NOW.getTime() + 86_400_000);
 	});
 
-	it("espaça cada vez mais quando o aluno continua acertando", () => {
-		let card = makeCard();
-		const gaps: number[] = [];
-		let now = NOW;
-		for (let i = 0; i < 4; i++) {
-			card = scheduleCard(card, GRADE_GOOD, now);
-			gaps.push(new Date(card.dueAt).getTime() - now.getTime());
-			now = new Date(card.dueAt);
-		}
-		for (let i = 1; i < gaps.length; i++) {
-			expect(gaps[i]).toBeGreaterThan(gaps[i - 1]);
-		}
-		expect(gaps.at(-1)).toBeGreaterThan(7 * DAY);
-	});
-
-	it("dá intervalos maiores para respostas mais fáceis", () => {
-		const reviewed = scheduleCard(
-			scheduleCard(makeCard(), GRADE_GOOD, NOW),
+	it("usa o intervalo fixo de 6 dias na segunda revisão", () => {
+		const next = scheduleCard(
+			makeCard({ repetitions: 1, intervalDays: 1 }),
 			GRADE_GOOD,
-			new Date(NOW.getTime() + 2 * DAY),
+			NOW,
 		);
-		const later = new Date(reviewed.dueAt);
-		const hard = scheduleCard(reviewed, GRADE_HARD, later).intervalDays;
-		const good = scheduleCard(reviewed, GRADE_GOOD, later).intervalDays;
-		const easy = scheduleCard(reviewed, GRADE_EASY, later).intervalDays;
-		expect(hard).toBeLessThan(good);
-		expect(good).toBeLessThan(easy);
+
+		expect(next.repetitions).toBe(2);
+		expect(next.intervalDays).toBe(6);
 	});
 
-	it("traz de volta ainda na sessão e conta lapso quando o aluno erra", () => {
-		const mature = makeCard({
-			repetitions: 5,
-			intervalDays: 30,
+	it("multiplica pelo ease factor a partir da terceira revisão", () => {
+		const card = makeCard({
+			repetitions: 2,
+			intervalDays: 6,
 			easeFactor: 2.5,
-			lastReviewedAt: new Date(NOW.getTime() - 30 * DAY).toISOString(),
 		});
-		const next = scheduleCard(mature, GRADE_AGAIN, NOW);
+
+		const next = scheduleCard(card, GRADE_GOOD, NOW);
+
+		// ease permanece 2.5 para nota 4 → 6 * 2.5 = 15
+		expect(next.easeFactor).toBeCloseTo(2.5, 5);
+		expect(next.intervalDays).toBe(15);
+	});
+
+	it("reaprende em minutos e conta lapso quando o usuário erra", () => {
+		const card = makeCard({ repetitions: 4, intervalDays: 30, lapses: 1 });
+
+		const next = scheduleCard(card, GRADE_AGAIN, NOW);
+
 		expect(next.repetitions).toBe(0);
-		expect(next.lapses).toBe(1);
-		expect(dueIn(next)).toBeLessThanOrEqual(DAY);
+		expect(next.intervalDays).toBe(0);
+		expect(next.lapses).toBe(2);
+		expect(new Date(next.dueAt).getTime()).toBe(NOW.getTime() + 10 * 60_000);
 	});
 
-	it("migra cards do SM-2 mantendo o que o aluno já consolidou", () => {
-		const legacyMature = makeCard({
-			repetitions: 5,
-			intervalDays: 60,
-			lastReviewedAt: new Date(NOW.getTime() - 60 * DAY).toISOString(),
-		});
-		const next = scheduleCard(legacyMature, GRADE_GOOD, NOW);
-		expect(next.intervalDays).toBeGreaterThan(30);
-	});
-});
+	it("nunca deixa o ease factor cair abaixo de 1.3", () => {
+		let card = makeCard({ easeFactor: 1.3 });
+		for (let i = 0; i < 5; i++) {
+			card = scheduleCard(card, GRADE_AGAIN, NOW);
+		}
 
-describe("previewInterval", () => {
-	it("mostra minutos para erro e dias para acerto em um card maduro", () => {
-		const mature = makeCard({
-			repetitions: 5,
-			intervalDays: 30,
-			lastReviewedAt: new Date(Date.now() - 30 * DAY).toISOString(),
-		});
-		expect(previewInterval(mature, GRADE_AGAIN)).toMatch(/min$/);
-		expect(previewInterval(mature, GRADE_GOOD)).toMatch(/dias|mês|meses/);
+		expect(card.easeFactor).toBeGreaterThanOrEqual(1.3);
+	});
+
+	it("aumenta o ease factor quando a resposta é fácil", () => {
+		const next = scheduleCard(makeCard(), GRADE_EASY, NOW);
+		expect(next.easeFactor).toBeGreaterThan(2.5);
 	});
 });
 
@@ -139,35 +119,10 @@ describe("upsertCard", () => {
 		expect(cards).toHaveLength(1);
 		expect(cards[0].repetitions).toBe(0);
 		expect(cards[0].lapses).toBe(1);
-		expect(
-			new Date(cards[0].dueAt).getTime() - NOW.getTime(),
-		).toBeLessThanOrEqual(10 * 60_000);
-	});
-});
-
-describe("enrollCards", () => {
-	it("adds studied items without penalising cards the learner already has", () => {
-		const existing = makeCard({ id: "cat", repetitions: 4, intervalDays: 20 });
-		const cards = enrollCards(
-			[existing],
-			[
-				{ id: "cat", source: "vocabulary", front: "cat", back: "gato" },
-				{ id: "dog", source: "vocabulary", front: "dog", back: "cachorro" },
-			],
-			NOW,
+		expect(cards[0].easeFactor).toBeCloseTo(2.3, 5);
+		expect(new Date(cards[0].dueAt).getTime()).toBe(
+			NOW.getTime() + 10 * 60_000,
 		);
-		expect(cards).toHaveLength(2);
-		expect(cards[0]).toBe(existing);
-		expect(cards[1].id).toBe("dog");
-	});
-
-	it("returns the same list when nothing is new, so storage is not rewritten", () => {
-		const cards = [makeCard()];
-		expect(
-			enrollCards(cards, [
-				{ id: "card-1", source: "quiz", front: "a", back: "b" },
-			]),
-		).toBe(cards);
 	});
 });
 

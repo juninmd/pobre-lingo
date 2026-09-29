@@ -26,7 +26,7 @@ export function LessonCardContent({
 						status === "locked"
 							? "bg-muted text-muted-foreground/50 border border-muted-foreground/10"
 							: status === "completed"
-								? "bg-brand-aqua text-white shadow-lg shadow-brand-aqua/20"
+								? "bg-green-500 text-white shadow-lg shadow-green-500/20"
 								: "bg-primary text-primary-foreground shadow-lg shadow-primary/30",
 					)}
 				>
@@ -59,7 +59,7 @@ export function LessonCardContent({
 						</span>
 					)}
 					{status === "completed" && (
-						<span className="flex items-center text-brand-gold text-[10px] md:text-xs font-bold ml-auto bg-brand-gold/10 px-1.5 py-0.5 rounded-md">
+						<span className="flex items-center text-amber-500 text-[10px] md:text-xs font-bold ml-auto bg-amber-500/10 px-1.5 py-0.5 rounded-md">
 							<Star className="w-3 h-3 mr-0.5 fill-current" />
 							{lesson.xpReward} XP
 						</span>
@@ -100,7 +100,7 @@ export function LessonCardContent({
 					</Button>
 				)}
 				{status === "completed" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-brand-aqua bg-brand-aqua/10 px-3 py-1.5 rounded-full border border-brand-aqua/20">
+					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
 						<Check className="w-3 h-3 stroke-[3]" /> CONCLUÍDO
 					</div>
 				)}

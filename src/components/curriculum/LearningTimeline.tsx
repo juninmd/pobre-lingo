@@ -2,11 +2,7 @@ import { BookOpen, Sparkles, Loader2 } from "lucide-react";
 import React, { Suspense } from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
-import { LevelRoadmap } from "./LevelRoadmap";
-
-const LazyUnitGroup = React.lazy(() =>
-	import("./timeline/UnitGroup").then((m) => ({ default: m.UnitGroup })),
-);
+import { UnitGroup } from "./timeline/UnitGroup";
 
 export function LearningTimeline() {
 	const { completedLessons } = useCurriculumProgress();
@@ -40,9 +36,9 @@ export function LearningTimeline() {
 	}));
 
 	return (
-		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-6">
+		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen overflow-x-hidden relative flex flex-col gap-8">
 			{/* Intro / Header */}
-			<div className="mb-2 text-center space-y-2 pt-8 px-4">
+			<div className="mb-10 text-center space-y-2 pt-8 px-4">
 				<div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
 					<BookOpen className="w-8 h-8" />
 				</div>
@@ -54,8 +50,6 @@ export function LearningTimeline() {
 					inglês.
 				</p>
 			</div>
-
-			<LevelRoadmap completedLessons={completedLessonsSet} />
 
 			{unitsWithModules.map((unit) => (
 				<React.Suspense

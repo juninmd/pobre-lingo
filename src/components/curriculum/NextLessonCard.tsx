@@ -37,50 +37,50 @@ const lessonTypeConfig = {
 	grammar: {
 		label: "Gramática",
 		icon: BookOpen,
-		color: "text-primary",
-		bgColor: "bg-primary/10",
+		color: "text-blue-600",
+		bgColor: "bg-blue-100",
 	},
 	vocabulary: {
 		label: "Vocabulário",
 		icon: Star,
-		color: "text-brand-violet",
-		bgColor: "bg-brand-violet/10",
+		color: "text-purple-600",
+		bgColor: "bg-purple-100",
 	},
 	exercise: {
 		label: "Exercício",
 		icon: Target,
-		color: "text-brand-aqua",
-		bgColor: "bg-brand-aqua/10",
+		color: "text-green-600",
+		bgColor: "bg-green-100",
 	},
 	reading: {
 		label: "Leitura",
 		icon: BookOpen,
-		color: "text-primary",
-		bgColor: "bg-primary/10",
+		color: "text-cyan-600",
+		bgColor: "bg-cyan-100",
 	},
 	quiz: {
 		label: "Quiz",
 		icon: Trophy,
-		color: "text-brand-gold",
-		bgColor: "bg-brand-gold/10",
+		color: "text-yellow-600",
+		bgColor: "bg-yellow-100",
 	},
 	culture: {
 		label: "Cultura",
 		icon: Globe,
-		color: "text-brand-aqua",
-		bgColor: "bg-brand-aqua/10",
+		color: "text-teal-600",
+		bgColor: "bg-teal-100",
 	},
 	listening: {
 		label: "Escuta",
 		icon: Headphones,
-		color: "text-primary",
-		bgColor: "bg-primary/10",
+		color: "text-indigo-600",
+		bgColor: "bg-indigo-100",
 	},
 	speaking: {
 		label: "Fala",
 		icon: Mic,
-		color: "text-destructive",
-		bgColor: "bg-destructive/10",
+		color: "text-rose-600",
+		bgColor: "bg-rose-100",
 	},
 };
 
@@ -112,11 +112,11 @@ export function NextLessonCard() {
 	// Se todas as lições estão completas
 	if (!nextLesson) {
 		return (
-			<Card className="bg-gradient-to-br from-brand-gold/15 to-brand-gold/5 border-brand-gold/30 overflow-hidden">
+			<Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 overflow-hidden">
 				<CardHeader className="pb-2">
 					<div className="flex items-center gap-2">
-						<div className="p-2 rounded-full bg-brand-gold/15">
-							<Trophy className="h-6 w-6 text-brand-gold" />
+						<div className="p-2 rounded-full bg-yellow-100">
+							<Trophy className="h-6 w-6 text-yellow-600" />
 						</div>
 						<div>
 							<CardTitle className="text-xl">Parabéns! 🎉</CardTitle>
@@ -175,7 +175,7 @@ export function NextLessonCard() {
 
 			<CardHeader className="pb-2 relative">
 				<div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-					<Zap className="h-4 w-4 text-brand-gold" />
+					<Zap className="h-4 w-4 text-yellow-500" />
 					<span>Continue sua jornada</span>
 				</div>
 				<CardTitle className="text-2xl flex items-center gap-3">
@@ -201,7 +201,7 @@ export function NextLessonCard() {
 						{lesson.estimatedMinutes} min
 					</Badge>
 					<Badge variant="secondary" className="flex items-center gap-1">
-						<Star className="h-3 w-3 text-brand-gold" />+{lesson.xpReward} XP
+						<Star className="h-3 w-3 text-yellow-500" />+{lesson.xpReward} XP
 					</Badge>
 					<Badge variant="outline" className={config.color}>
 						{config.label}

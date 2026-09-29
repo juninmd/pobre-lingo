@@ -412,7 +412,6 @@
 		100% {
 			transform: translateY(0);
 		}
-
 		50% {
 			transform: translateY(-8px);
 		}
@@ -425,46 +424,18 @@
 	@keyframes pulse-glow {
 		0%,
 		100% {
-			opacity: 0.5;
-			transform: scale(1);
+			box-shadow:
+				0 0 10px rgba(var(--primary), 0.2),
+				0 0 20px rgba(var(--primary), 0.1);
 		}
-
 		50% {
-			opacity: 0.8;
-			transform: scale(1.05);
+			box-shadow:
+				0 0 20px rgba(var(--primary), 0.4),
+				0 0 30px rgba(var(--primary), 0.2);
 		}
 	}
 
 	.animate-pulse-glow {
-		animation: pulse-glow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-	}
-
-	@keyframes aurora-drift {
-		0% {
-			transform: translate3d(0, 0, 0) scale(1);
-		}
-
-		50% {
-			transform: translate3d(4%, -6%, 0) scale(1.08);
-		}
-
-		100% {
-			transform: translate3d(0, 0, 0) scale(1);
-		}
-	}
-
-	.animate-aurora {
-		animation: aurora-drift 18s ease-in-out infinite;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	*,
-	::before,
-	::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
+		animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	}
 }

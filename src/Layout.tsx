@@ -57,8 +57,8 @@ export default function Layout() {
 				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0 flex-1 w-full">
 					<Header onSearchOpen={() => setSearchOpen(true)} />
 
-					<div className="flex-1 overflow-y-auto overflow-x-hidden bg-muted/5 dark:bg-background smooth-scroll min-h-0">
-						<div className="container mx-auto px-3 pt-4 pb-32 sm:pb-28 lg:pb-8 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
+					<div className="flex-1 overflow-y-auto bg-muted/5 dark:bg-background smooth-scroll min-h-0">
+						<div className="container mx-auto px-3 pt-4 pb-32 md:pb-8 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
 							<Outlet />
 						</div>
 					</div>

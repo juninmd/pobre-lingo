@@ -28,9 +28,7 @@ import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
 import { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
 import { DogmeELTWidget } from "./DogmeELTWidget";
-import { ExperientialLearningWidget } from "./ExperientialLearningWidget";
 import { FlippedClassroomWidget } from "./FlippedClassroomWidget";
-import { InquiryBasedLearningWidget } from "./InquiryBasedLearningWidget";
 import { NeuroELTWidget } from "./NeuroELTWidget";
 import { PlurilingualismWidget } from "./PlurilingualismWidget";
 
@@ -114,8 +112,6 @@ export function ImmersivePracticeSection() {
 							<DogmeELTWidget />
 							<AuthenticMaterialsWidget />
 							<NeuroELTWidget />
-							<ExperientialLearningWidget />
-							<InquiryBasedLearningWidget />
 						</div>
 					</div>
 				</div>

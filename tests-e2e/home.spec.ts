@@ -4,28 +4,68 @@ test.describe('Home / Interactive Journey Book', () => {
   test('should render the timeline structure successfully', async ({ page }) => {
     await page.goto('/');
 
-    // Verify header title logic based on path
-    const title = page.locator('h1.font-headline');
-    await expect(title).toHaveText(/PobreLingo|Minha Jornada/i);
+	test("should render home properly and display desktop layout", async ({
+		page,
+		isMobile,
+	}) => {
+		test.skip(isMobile, "Desktop only test");
 
-    // Timeline spine indicator / module list
-    await expect(page.locator('.max-w-2xl').first()).toBeVisible();
-    await expect(page.getByText('Sua Jornada', { exact: true })).toBeVisible();
+		// Define resolução desktop
+		await page.setViewportSize({ width: 1280, height: 720 });
 
-    // Responsive structure
-    const isMobile = await page.evaluate(() => window.innerWidth < 768);
-    if (!isMobile) {
-      // Sidebar should be visible on desktop
-      await expect(page.getByRole('navigation', { name: /sidebar/i }).or(page.locator('.md\\:flex.border-r'))).toBeVisible();
-    }
-  });
+		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
+		await expect(sidebarContainer).toBeVisible();
 
   test('should not show legacy MobileNav component on desktop', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Reason: Only applicable to desktop');
     await page.goto('/');
 
-    // We removed MobileNav entirely, so it should not exist at all, or at least not be visible on desktop
-    const mobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
-    await expect(mobileNav).toHaveCount(0);
-  });
+	test("should adapt to mobile layout", async ({ page, isMobile }) => {
+		test.skip(!isMobile, "Mobile only test");
+
+		// Define resolução mobile
+		await page.setViewportSize({ width: 375, height: 812 });
+
+		// O Sidebar deve estar oculto
+		const sidebarContainer = page.locator(".hidden.md\\:flex.border-r");
+		await expect(sidebarContainer).toBeHidden();
+
+		// O MobileNav deve estar visível
+		const mobileNav = page.locator(".md\\:hidden.fixed.bottom-0");
+		await expect(mobileNav).toBeVisible();
+	});
+
+	test("should display the bookmark (Onde parei) on active lesson and navigate to it", async ({
+		page,
+	}) => {
+		// Espera a página carregar
+		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
+		await expect(page.locator(".max-w-2xl").first()).toBeVisible();
+
+		// Procura pelo texto "Onde parei"
+		const bookmark = page
+			.locator(".max-w-2xl")
+			.locator('text="Onde parei"')
+			.first();
+		await expect(bookmark).toBeVisible();
+
+		// Verifica se o card da lição ativa tem o botão DISPONÍVEL
+		const startButton = page
+			.locator(".max-w-2xl")
+			.locator('text="DISPONÍVEL"')
+			.first();
+		await expect(startButton).toBeVisible();
+
+		// Clica na lição ativa para verificar a navegação
+		await startButton.click({ force: true });
+
+		await expect(async () => {
+			expect(
+				page.url().includes("/vocabulary/") ||
+					page.url().includes("/quiz/") ||
+					page.url().includes("/grammar/") ||
+					page.url().includes("/speaking/"),
+			).toBeTruthy();
+		}).toPass({ timeout: 5000 });
+	});
 });

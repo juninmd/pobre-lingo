@@ -37,7 +37,7 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 	return (
 		<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-1.5 sm:gap-3 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 			<div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-				<div className="hidden md:block">
+				<div>
 					<SidebarTrigger asChild>
 						<Button
 							variant="ghost"
@@ -50,7 +50,7 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 					</SidebarTrigger>
 				</div>
 
-				<BrandMark className="md:hidden shrink-0" />
+				<BrandMark className="hidden sm:block md:hidden shrink-0" />
 
 				<Separator
 					orientation="vertical"
@@ -75,25 +75,23 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 				<div className="flex items-center gap-2 sm:gap-4 font-sans">
 					{/* Level Badge */}
 					<div
-						className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 backdrop-blur-xl border border-primary/20 text-primary font-sans shadow-sm transition-all hover:bg-primary/15"
+						className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary font-sans font-medium shadow-sm transition-all hover:bg-primary/15"
 						title="Nível"
 					>
-						<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={2.5} />
-						<span className="text-[13px] font-semibold tracking-tight">
-							Nvl {userLevel}
-						</span>
+						<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={1.5} />
+						<span className="text-[13px] tracking-tight">Nvl {userLevel}</span>
 					</div>
 
 					{/* Gems / PobreCoins */}
 					<div
-						className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-amber-50/50 dark:bg-amber-950/40 backdrop-blur-xl border border-amber-200/30 dark:border-amber-800/40 text-amber-700 dark:text-amber-400 font-sans shadow-sm transition-all group cursor-default hover:bg-amber-50/70 dark:hover:bg-amber-900/50"
+						className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50/50 dark:bg-amber-950/40 backdrop-blur-md border border-amber-200/30 dark:border-amber-800/40 text-amber-700 dark:text-amber-400 font-sans font-medium shadow-sm transition-all group cursor-default hover:bg-amber-50/70 dark:hover:bg-amber-900/50"
 						title="Pobrecoins"
 					>
 						<Coins
 							className="h-4 w-4 text-amber-500 group-hover:animate-bounce"
-							strokeWidth={2.5}
+							strokeWidth={1.5}
 						/>
-						<span className="text-[13px] font-bold tabular-nums tracking-tight">
+						<span className="text-[13px] tabular-nums tracking-tight">
 							{gems}
 						</span>
 					</div>

@@ -31,11 +31,11 @@ test.describe("Learning Timeline (Journey Book)", () => {
 	}) => {
 		await page.goto("/");
 		if (isMobile) {
-			// Ensure MobileNav is visible on mobile devices
+			// Ensure MobileNav is NO LONGER visible on mobile devices
 			const mobileNav = page.locator(
 				"nav[aria-label='Navegação principal móvel']",
 			);
-			await expect(mobileNav).toBeVisible();
+			await expect(mobileNav).toHaveCount(0);
 		}
 	});
 

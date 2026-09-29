@@ -331,13 +331,7 @@ export default function ConversationExercise() {
 			</div>
 
 			{/* Options Area */}
-			{/*
-			  Options Area — o pb precisa limpar a MobileNav, que também é
-			  fixed no rodapé e tem z-index maior (z-[100] contra z-40 daqui).
-			  Com o pb-8 anterior a última alternativa ficava embaixo da barra:
-			  no celular ela era intocável e o toque caía no item de navegação.
-			*/}
-			<div className="fixed bottom-0 left-0 right-0 z-40 pb-28 lg:pb-8 pt-4 px-4 sm:px-6">
+			<div className="fixed bottom-0 left-0 right-0 z-40 pb-8 pt-4 px-4 sm:px-6">
 				<div className="max-w-3xl mx-auto glass rounded-2xl border border-primary/10 shadow-2xl p-4 md:p-6 overflow-hidden relative">
 					{!isCompleted ? (
 						<div className="space-y-4">

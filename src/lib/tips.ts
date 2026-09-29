@@ -65,6 +65,8 @@ export const TIPS = [
 	"Materiais Autênticos: Aprenda com coisas reais, como menus de restaurantes, cupons, bilhetes de trem e propagandas.",
 	"Green ELT: Pratique vocabulário sobre sustentabilidade e meio ambiente, um tópico cada vez mais comum em exames de proficiência.",
 	"DEIB (Diversity, Equity, Inclusion & Belonging): Aprenda a usar linguagem inclusiva em inglês, como o uso do 'they' singular.",
+	"Experiential Learning: Aprenda fazendo! Transforme tarefas cotidianas em experiências ativas, como cozinhar seguindo uma receita em inglês.",
+	"Inquiry-Based Learning: Seja curioso! Em vez de apenas ler regras, questione o porquê de uma estrutura gramatical e tente descobrir a resposta investigando.",
 
 	// CULTURA E DICAS GERAIS
 	"Microlearning: Aproveite os 10 minutos na fila ou no ônibus para fazer uma lição rápida.",

@@ -1,12 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
 import { BrowserRouter } from "react-router-dom";
+import { describe, expect, it, vi } from "vitest";
 import { Header } from "./Header";
 
 // Mock dependencies
 vi.mock("@/contexts/GamificationContext", () => ({
 	useGamification: () => ({ gems: 42, addXP: vi.fn() }),
-	GamificationProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+	GamificationProvider: ({ children }: { children: React.ReactNode }) => (
+		<>{children}</>
+	),
 }));
 
 vi.mock("@/contexts/ThemeContext", () => ({
@@ -18,15 +20,21 @@ vi.mock("@/hooks/useCurriculumProgress", () => ({
 }));
 
 vi.mock("@/components/ui/sidebar", () => ({
-	SidebarTrigger: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+	SidebarTrigger: ({ children }: { children: React.ReactNode }) => (
+		<div>{children}</div>
+	),
 }));
 
 vi.mock("@/components/notifications/NotificationCenter", () => ({
-	NotificationCenter: () => <div data-testid="notification-center">Notifications</div>,
+	NotificationCenter: () => (
+		<div data-testid="notification-center">Notifications</div>
+	),
 }));
 
 vi.mock("@/components/common/GlobalSearch", () => ({
-	GlobalSearchTrigger: () => <button data-testid="search-trigger">Search</button>,
+	GlobalSearchTrigger: () => (
+		<button data-testid="search-trigger">Search</button>
+	),
 }));
 
 describe("Header", () => {
@@ -35,7 +43,7 @@ describe("Header", () => {
 		render(
 			<BrowserRouter>
 				<Header onSearchOpen={onSearchOpen} />
-			</BrowserRouter>
+			</BrowserRouter>,
 		);
 
 		// The title falls back to "PobreLingo" if the path doesn't match an item in allNavItems

@@ -1,8 +1,14 @@
-import { BookOpen, Sparkles, Loader2 } from "lucide-react";
+import { BookOpen, Loader2, Sparkles } from "lucide-react";
 import React, { Suspense } from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
 import { UnitGroup } from "./timeline/UnitGroup";
+
+const LazyUnitGroup = React.lazy(() =>
+	import("./timeline/UnitGroup").then((module) => ({
+		default: module.UnitGroup,
+	})),
+);
 
 export function LearningTimeline() {
 	const { completedLessons } = useCurriculumProgress();

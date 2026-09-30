@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
 import { BrowserRouter } from "react-router-dom";
+import { describe, expect, it, vi } from "vitest";
 import { ImmersivePracticeSection } from "./ImmersivePracticeSection";
 
 // Mock the widgets since they have their own tests
@@ -49,11 +49,11 @@ describe("ImmersivePracticeSection", () => {
 		render(
 			<BrowserRouter>
 				<ImmersivePracticeSection />
-			</BrowserRouter>
+			</BrowserRouter>,
 		);
 
 		expect(
-			screen.getByText("Tendências 2025 & Prática Imersiva")
+			screen.getByText("Tendências 2025 & Prática Imersiva"),
 		).toBeInTheDocument();
 
 		// By default 'digital' tab is active

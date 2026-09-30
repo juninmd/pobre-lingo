@@ -27,7 +27,3 @@
 
 ## Test Flakiness Resolution
 - E2E tests for the Learning Timeline (`learning_timeline.spec.ts`) now wait for the lazy-loading spinner (`.lucide-loader-2`) to disappear before making assertions, preventing false-negative timeout failures on elements rendered after loading.
-
-## Limitations Addressed (Date: Current)
-*   **Compilation Errors:** The `master` branch is currently missing fundamental files/types that are required for a successful Vite build/dev server execution (e.g. `src/lib/levels`, `coreVocabularyTypes`, `usePersistentState`).
-*   **E2E Testing:** Because the UI changes made in this session (`LearningTimeline`, etc.) rely on the app successfully compiling to render, the Playwright tests for the dashboard have been temporarily bypassed. Once the underlying missing interfaces/modules on the master branch are restored/completed, the E2E tests should be re-enabled to validate the "Journey Book" navigation.

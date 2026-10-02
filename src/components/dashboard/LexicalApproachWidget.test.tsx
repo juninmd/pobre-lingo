@@ -35,6 +35,6 @@ describe("LexicalApproachWidget", () => {
 		const button = screen.getByRole("button");
 		fireEvent.click(button);
 
-		expect(screen.getByText("Praticado (+15 XP)")).toBeInTheDocument();
+		expect(screen.getByText("Concluído")).toBeInTheDocument();
 	});
 });

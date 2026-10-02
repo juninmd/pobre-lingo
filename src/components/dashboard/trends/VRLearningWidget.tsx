@@ -8,7 +8,6 @@ export function VRLearningWidget() {
             description="Experimente simulações imersivas em realidade virtual."
             icon={<Glasses className="w-4 h-4" />}
             xpReward={10}
-            actionText="Praticar"
         />
     );
 }

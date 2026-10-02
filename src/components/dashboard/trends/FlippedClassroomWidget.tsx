@@ -5,10 +5,9 @@ export function FlippedClassroomWidget() {
     return (
         <TrendWidget
             title="Flipped Classroom"
-            description="Estude a teoria em casa e pratique ativamente na aula."
+            description="Estude a teoria em casa e pratique intensamente na aula."
             icon={<BookOpen className="w-4 h-4" />}
             xpReward={10}
-            actionText="Praticar"
         />
     );
 }

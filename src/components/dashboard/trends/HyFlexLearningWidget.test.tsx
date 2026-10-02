@@ -38,7 +38,7 @@ describe("HyFlexLearningWidget", () => {
 
 		expect(mockAddXp).toHaveBeenCalled();
 		expect(mockNotify).toHaveBeenCalledWith(
-			expect.objectContaining({ category: "achievement" }),
+			expect.objectContaining({ category: "quest" }),
 		);
 	});
 

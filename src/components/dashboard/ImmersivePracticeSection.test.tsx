@@ -43,12 +43,6 @@ vi.mock("./trends/MindfulWidget", () => ({
 vi.mock("./trends/TranslanguagingWidget", () => ({
 	TranslanguagingWidget: () => <div data-testid="trans-widget" />,
 }));
-vi.mock("./trends/NanoLearningWidget", () => ({
-	NanoLearningWidget: () => <div data-testid="nano-widget" />,
-}));
-vi.mock("./trends/VRLearningWidget", () => ({
-	VRLearningWidget: () => <div data-testid="vr-widget" />,
-}));
 
 describe("ImmersivePracticeSection", () => {
 	it("renders section title and tabs", () => {

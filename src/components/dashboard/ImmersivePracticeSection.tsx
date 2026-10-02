@@ -13,11 +13,6 @@ import { GreenELTWidget } from "./trends/GreenELTWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
 import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
-import { NanoLearningWidget } from "./trends/NanoLearningWidget";
-import { GamificationWidget } from "./trends/GamificationWidget";
-import { TBLTWidget } from "./trends/TBLTWidget";
-import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
-import { VRLearningWidget } from "./trends/VRLearningWidget";
 
 export function ImmersivePracticeSection() {
     return (
@@ -40,8 +35,6 @@ export function ImmersivePracticeSection() {
                 <TabsContent value="digital" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <AIPromptCraftingWidget />
                     <HyFlexLearningWidget />
-                    <NanoLearningWidget />
-                    <VRLearningWidget />
                 </TabsContent>
 
                 <TabsContent value="social" className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -62,9 +55,6 @@ export function ImmersivePracticeSection() {
                     <TranslanguagingWidget />
                     <ExperientialLearningWidget />
                     <InquiryBasedLearningWidget />
-                    <GamificationWidget />
-                    <TBLTWidget />
-                    <FlippedClassroomWidget />
                 </TabsContent>
 
                 <TabsContent value="essenciais">

@@ -13,7 +13,7 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("MindfulWidget", () => {
     it("renders correctly and handles interaction", () => {
         render(<MindfulWidget />);
-        expect(screen.getByText("Mindfulness")).toBeInTheDocument();
+        expect(screen.getByText("Mindful Learning")).toBeInTheDocument();
         const button = screen.getByRole("button", { name: /praticar/i });
         fireEvent.click(button);
         expect(screen.getByRole("button", { name: /concluído/i })).toBeInTheDocument();

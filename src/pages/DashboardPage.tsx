@@ -1,3 +1,7 @@
+import { useState, Suspense } from "react";
+import { Loader2 } from "lucide-react";
+import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
+import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
@@ -9,7 +13,6 @@ import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
 import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
-import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
 import { Button } from "@/components/ui/button";

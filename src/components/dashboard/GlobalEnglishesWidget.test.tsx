@@ -41,12 +41,12 @@ describe("GlobalEnglishesWidget", () => {
 		const button = screen.getByRole("button");
 		fireEvent.click(button);
 
-		expect(screen.getByText("Concluído")).toBeInTheDocument();
+		expect(screen.getByText("Ouvindo...")).toBeInTheDocument();
 
 		act(() => {
 			vi.advanceTimersByTime(2000);
 		});
 
-		expect(screen.getByText("Concluído")).toBeInTheDocument();
+		expect(screen.getByText("Concluído (+20 XP)")).toBeInTheDocument();
 	});
 });

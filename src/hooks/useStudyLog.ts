@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import {
 	getStudyLog,

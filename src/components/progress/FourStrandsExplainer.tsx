@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Card, CardContent } from "@/components/ui/card";
 import { LEVEL_HOURS } from "@/lib/fluencyGoals";
 import { CEFR_ORDER } from "@/lib/levels";

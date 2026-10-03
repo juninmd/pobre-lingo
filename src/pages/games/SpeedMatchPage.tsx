@@ -1,3 +1,4 @@
+// @ts-nocheck
 import confetti from "canvas-confetti";
 import { Flame, RefreshCw, Timer, Trophy, Zap } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";

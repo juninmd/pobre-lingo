@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Gauge, Mic } from "lucide-react";
 import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";

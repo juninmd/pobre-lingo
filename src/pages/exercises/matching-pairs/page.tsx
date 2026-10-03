@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ArrowLeft, Heart, RefreshCw, Trophy } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";

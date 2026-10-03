@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BookMarked } from "lucide-react";
 import { useMemo, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";

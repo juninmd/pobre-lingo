@@ -9,3 +9,7 @@ describe("DogmeELTWidget", () => {
 		expect(screen.getByText("TREND 2025")).toBeInTheDocument();
 	});
 });
+
+vi.mock("@/contexts/NotificationContext", () => ({ useNotifications: () => ({ notify: vi.fn() }), NotificationProvider: ({ children }: any) => <>{children}</> }));
+
+vi.mock("@/contexts/GamificationContext", () => ({ useGamification: () => ({ addXp: vi.fn(), gems: 0, addGem: vi.fn() }), GamificationProvider: ({ children }: any) => <>{children}</> }));

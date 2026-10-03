@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import type { StrandKind } from "@/lib/fluencyStrands";

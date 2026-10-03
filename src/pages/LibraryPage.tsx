@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BookOpenText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";

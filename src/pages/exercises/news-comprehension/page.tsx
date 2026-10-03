@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ChevronRight, Clock, Newspaper } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";

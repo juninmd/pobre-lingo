@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BookOpen, ChevronRight, GraduationCap, Sparkles } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";

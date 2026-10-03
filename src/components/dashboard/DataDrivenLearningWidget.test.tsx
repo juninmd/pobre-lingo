@@ -64,3 +64,7 @@ describe("DataDrivenLearningWidget", () => {
 		expect(screen.getByText("Analisado!")).toBeInTheDocument();
 	});
 });
+
+vi.mock("@/contexts/NotificationContext", () => ({ useNotifications: () => ({ notify: vi.fn() }), NotificationProvider: ({ children }: any) => <>{children}</> }));
+
+vi.mock("@/contexts/GamificationContext", () => ({ useGamification: () => ({ addXp: vi.fn(), gems: 0, addGem: vi.fn() }), GamificationProvider: ({ children }: any) => <>{children}</> }));

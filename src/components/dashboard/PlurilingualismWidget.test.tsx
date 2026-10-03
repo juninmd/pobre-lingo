@@ -62,3 +62,5 @@ describe("PlurilingualismWidget", () => {
 		expect(mockAddXp).not.toHaveBeenCalled();
 	});
 });
+
+vi.mock("@/contexts/NotificationContext", () => ({ useNotifications: () => ({ notify: vi.fn() }), NotificationProvider: ({ children }: any) => <>{children}</> }));

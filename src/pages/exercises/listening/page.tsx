@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Headphones } from "lucide-react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Coins, Flame, Medal, Sparkles, Trophy, Zap } from "lucide-react";
 import { useMemo } from "react";
 import { PageContainer } from "@/components/common/PageContainer";

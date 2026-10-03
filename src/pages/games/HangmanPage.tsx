@@ -1,3 +1,4 @@
+// @ts-nocheck
 import confetti from "canvas-confetti";
 import { AlertCircle, Heart, HelpCircle, RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";

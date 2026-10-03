@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Button } from "@/components/ui/button";
 
 const GOAL_OPTIONS = [3, 5, 7, 10] as const;

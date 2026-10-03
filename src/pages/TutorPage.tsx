@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Bot } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";

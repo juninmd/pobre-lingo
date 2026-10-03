@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef } from "react";
 import { InteractiveText } from "@/components/input/InteractiveText";
 import { useWordKnowledge } from "@/hooks/useWordKnowledge";

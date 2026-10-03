@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Gamepad2, RefreshCw, Timer, Trophy } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

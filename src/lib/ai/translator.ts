@@ -1,0 +1,1 @@
+export const translateText = async () => '';

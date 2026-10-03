@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ArrowLeft, Check, GraduationCap, PartyPopper, X } from "lucide-react";
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";

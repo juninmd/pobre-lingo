@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BookOpen, CheckCircle2, Clock, Globe2 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";

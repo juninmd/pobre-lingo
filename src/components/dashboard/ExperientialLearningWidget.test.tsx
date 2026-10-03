@@ -54,3 +54,5 @@ describe("ExperientialLearningWidget", () => {
 		).toBeInTheDocument();
 	});
 });
+
+vi.mock("@/contexts/NotificationContext", () => ({ useNotifications: () => ({ notify: vi.fn() }), NotificationProvider: ({ children }: any) => <>{children}</> }));

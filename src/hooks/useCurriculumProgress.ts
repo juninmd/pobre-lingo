@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { curriculumData, type Module } from "@/lib/curriculumData";

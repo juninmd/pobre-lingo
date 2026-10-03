@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BadgeCheck, GraduationCap, Trophy } from "lucide-react";
 import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";

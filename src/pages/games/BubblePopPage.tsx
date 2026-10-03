@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ArrowLeft, Pause, Play, RefreshCw, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

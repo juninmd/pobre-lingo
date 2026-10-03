@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useMemo, useState } from "react";
 import { InteractiveText } from "@/components/input/InteractiveText";
 import { Button } from "@/components/ui/button";

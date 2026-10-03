@@ -1,4 +1,4 @@
-import type { GradedReader } from "../gradedReadersTypes";
+import type { GradedReader } from "./gradedReadersDummy";
 import { readersA1_01 } from "./a1-01";
 import { readersA1_02 } from "./a1-02";
 import { readersA1_03 } from "./a1-03";

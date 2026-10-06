@@ -8,6 +8,7 @@ import {
 import Layout from "./Layout";
 
 // Lazy loading components
+const ProgressPage = React.lazy(() => import("./pages/ProgressPage"));
 const DictionaryPage = React.lazy(() => import("./pages/DictionaryPage"));
 const DashboardPage = React.lazy(() => import("./pages/DashboardPage"));
 const FindIncorrectWordsPage = React.lazy(

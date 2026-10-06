@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { describe, expect, it, vi } from "vitest";
 import { MobileNav } from "./MobileNav";
 
 vi.mock("@/hooks/useSrs", () => ({
@@ -12,7 +12,7 @@ describe("MobileNav", () => {
 		render(
 			<BrowserRouter>
 				<MobileNav />
-			</BrowserRouter>
+			</BrowserRouter>,
 		);
 
 		expect(screen.getByText("Jornada")).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("MobileNav", () => {
 		render(
 			<BrowserRouter>
 				<MobileNav />
-			</BrowserRouter>
+			</BrowserRouter>,
 		);
 
 		// Expect badge '3' from mocked useSrs
@@ -37,7 +37,7 @@ describe("MobileNav", () => {
 		const { container } = render(
 			<MemoryRouter initialEntries={["/review"]}>
 				<MobileNav />
-			</MemoryRouter>
+			</MemoryRouter>,
 		);
 
 		// Revisa item should be active, looking at specific aria-current flag

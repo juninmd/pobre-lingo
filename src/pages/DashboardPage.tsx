@@ -1,13 +1,13 @@
-import { useState, Suspense } from "react";
 import { Loader2 } from "lucide-react";
-import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
-import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
+import React, { Suspense, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
+import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
 import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
+import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
@@ -21,8 +21,6 @@ import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { TIPS } from "@/lib/tips";
 import { cn } from "@/lib/utils";
-
-
 
 export default function DashboardPage() {
 	const { overallProgress } = useCurriculumProgress();

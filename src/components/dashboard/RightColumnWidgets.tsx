@@ -2,7 +2,7 @@ import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
-import { MindfulWidget } from "@/components/dashboard/MindfulWidget";
+import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";

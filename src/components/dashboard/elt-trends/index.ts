@@ -1,0 +1,16 @@
+export { AILanguagePartnerWidget } from "./AILanguagePartnerWidget";
+export { AIPromptCraftingWidget } from "./AIPromptCraftingWidget";
+export { AuthenticMaterialsWidget } from "./AuthenticMaterialsWidget";
+export { CLILWidget } from "./CLILWidget";
+export { CriticalPedagogyWidget } from "./CriticalPedagogyWidget";
+export { DEIBWidget } from "./DEIBWidget";
+export { DogmeELTWidget } from "./DogmeELTWidget";
+export { ExperientialLearningWidget } from "./ExperientialLearningWidget";
+export { GlobalEnglishesWidget } from "./GlobalEnglishesWidget";
+export { GreenELTWidget } from "./GreenELTWidget";
+export { HyFlexLearningWidget } from "./HyFlexLearningWidget";
+export { InquiryBasedLearningWidget } from "./InquiryBasedLearningWidget";
+export { LexicalApproachWidget } from "./LexicalApproachWidget";
+export { MindfulWidget } from "./MindfulWidget";
+export { SocialMediaReelsWidget } from "./SocialMediaReelsWidget";
+export { TranslanguagingWidget } from "./TranslanguagingWidget";

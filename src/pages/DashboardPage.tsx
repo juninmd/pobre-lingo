@@ -1,6 +1,8 @@
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
+import { AILanguagePartnerWidget } from "@/components/dashboard/AILanguagePartnerWidget";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
+import { CLILWidget } from "@/components/dashboard/CLILWidget";
 import { CommunityChallengeWidget } from "@/components/dashboard/CommunityChallengeWidget";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";

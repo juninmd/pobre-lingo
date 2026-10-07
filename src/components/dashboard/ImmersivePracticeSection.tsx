@@ -1,18 +1,31 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { PracticeHub } from "./PracticeHub";
+import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
+import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
 import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
+import { CLILWidget } from "./trends/CLILWidget";
+import { CommunicativeRoleplayWidget } from "./trends/CommunicativeRoleplayWidget";
 import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
+import { DDLWidget } from "./trends/DDLWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
 import { DogmeELTWidget } from "./trends/DogmeELTWidget";
 import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
+import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
+import { GamificationWidget } from "./trends/GamificationWidget";
 import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
 import { GreenELTWidget } from "./trends/GreenELTWidget";
 import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
 import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
 import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
+import { NanoLearningWidget } from "./trends/NanoLearningWidget";
+import { PBLWidget } from "./trends/PBLWidget";
+import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
+import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
+import { TBLTWidget } from "./trends/TBLTWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
+import { VRLearningWidget } from "./trends/VRLearningWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -66,6 +79,11 @@ export function ImmersivePracticeSection() {
 				>
 					<AIPromptCraftingWidget />
 					<HyFlexLearningWidget />
+					<AILanguagePartnerWidget />
+					<AIStudyCoachWidget />
+					<VRLearningWidget />
+					<SocialMediaReelsWidget />
+					<NanoLearningWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -95,6 +113,14 @@ export function ImmersivePracticeSection() {
 					<TranslanguagingWidget />
 					<ExperientialLearningWidget />
 					<InquiryBasedLearningWidget />
+					<TBLTWidget />
+					<CLILWidget />
+					<PBLWidget />
+					<DDLWidget />
+					<FlippedClassroomWidget />
+					<GamificationWidget />
+					<SpacedRepetitionWidget />
+					<CommunicativeRoleplayWidget />
 				</TabsContent>
 
 				<TabsContent value="essenciais">

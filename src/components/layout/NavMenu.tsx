@@ -1,14 +1,21 @@
 import {
+	AudioLines,
 	BookA,
 	BookMarked,
 	BookOpen,
+	Bot,
 	Brain,
 	CheckSquare,
+	Compass,
 	FileText,
 	Gamepad2,
+	Gauge,
 	GraduationCap,
+	LibraryBig,
 	ListChecks,
+	type LucideIcon,
 	Map as MapIcon,
+	PenLine,
 	Search as SearchIcon,
 	SearchX,
 	Settings,
@@ -34,13 +41,33 @@ import {
 import { cn } from "@/lib/utils";
 
 // Agrupamento de navegação por categorias
-export const navGroups = [
+type NavItem = {
+	href: string;
+	label: string;
+	icon: LucideIcon;
+	badge?: string;
+};
+
+export const navGroups: { title: string; items: NavItem[] }[] = [
 	{
 		title: "Principal",
 		items: [
 			{ href: "/", label: "Minha Jornada", icon: MapIcon },
 			{ href: "/review", label: "Revisar", icon: Brain, badge: "SRS" },
 			{ href: "/arcade", label: "Arcade", icon: Gamepad2, badge: "Fun" },
+		],
+	},
+	{
+		title: "Habilidades",
+		items: [
+			{ href: "/reading", label: "Leitura & Escuta", icon: BookOpen },
+			{ href: "/library", label: "Biblioteca", icon: LibraryBig },
+			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
+			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
+			{ href: "/fluency", label: "Fluência", icon: Gauge },
+			{ href: "/pronunciation", label: "Pronúncia", icon: AudioLines },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: Compass },
 		],
 	},
 	{
@@ -80,6 +107,7 @@ export const navGroups = [
 		title: "Status",
 		items: [
 			{ href: "/proficiency", label: "Teste de Nível", icon: GraduationCap },
+			{ href: "/checkpoints", label: "Checkpoints", icon: Trophy },
 			{ href: "/achievements", label: "Conquistas", icon: Trophy },
 			{ href: "/settings", label: "Configurações", icon: Settings },
 		],
@@ -157,7 +185,7 @@ export function NavMenu() {
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 							{!isCollapsed && (
-								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 [data-theme=pobre-lingo]:text-accent/60 [data-theme=pobre-lingo]:tracking-[0.12em]">
+								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
 									{group.title}
 								</h3>
 							)}

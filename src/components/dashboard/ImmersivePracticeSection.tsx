@@ -1,5 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { PracticeHub } from "./PracticeHub";
+import { NeuroELTWidget } from "./trends/NeuroELTWidget";
+import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
@@ -121,6 +123,8 @@ export function ImmersivePracticeSection() {
 					<GamificationWidget />
 					<SpacedRepetitionWidget />
 					<CommunicativeRoleplayWidget />
+					<NeuroELTWidget />
+					<PlurilingualismWidget />
 				</TabsContent>
 
 				<TabsContent value="essenciais">

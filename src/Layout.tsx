@@ -41,6 +41,7 @@ export default function Layout() {
 			>
 				{/* Ensure sidebar is used as primary nav on mobile properly by using standard responsive classes or using a sheet trigger for mobile which Shadcn sidebar natively supports. For simplicity we hide it visually when standard sidebar is collapsed on mobile, but rely on shadcn's internal mobile drawer support via <SidebarTrigger> inside Header */}
 				<Sidebar
+					collapsible="none"
 					variant="sidebar"
 					side="left"
 					className="border-r border-border/40"

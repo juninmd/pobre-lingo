@@ -46,11 +46,11 @@ export function LessonCard({
 	);
 
 	const wrapperClass = cn(
-		"flex items-center gap-4 p-5 rounded-xl border transition-all duration-300 bg-card/60 backdrop-blur-md",
+		"flex items-center gap-4 p-5 rounded-xl border transition-all duration-300 bg-card/60 backdrop-blur-xl",
 		status === "locked" &&
 			"opacity-60 grayscale cursor-not-allowed border-dashed bg-muted/20",
 		status === "active" &&
-			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent scale-[1.02] ring-2 ring-primary/30 hover:scale-[1.03] backdrop-blur-xl",
+			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent scale-[1.02] ring-2 ring-primary/30 hover:scale-[1.03] backdrop-blur-2xl",
 		status === "completed" &&
 			"border-green-500/20 bg-green-500/5 hover:bg-green-500/10",
 		status !== "locked" &&
@@ -63,12 +63,12 @@ export function LessonCard({
 			className={cn(
 				"relative pl-8 md:pl-16 py-2 group",
 				isFirstActive &&
-					"animate-in slide-in-from-bottom-2 fade-in duration-700 ease-out fill-mode-both",
+					"animate-in zoom-in-90 fade-in duration-700 ease-out fill-mode-both",
 			)}
 		>
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
-				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-pulse whitespace-nowrap flex items-center gap-1.5">
+				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-bounce-short whitespace-nowrap flex items-center gap-1.5">
 					<LucideIcons.BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>

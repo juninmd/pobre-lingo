@@ -36,9 +36,9 @@ export function LearningTimeline() {
 	}));
 
 	return (
-		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-12">
+		<div className="w-full max-w-2xl mx-auto pb-32 min-h-screen relative flex flex-col gap-8">
 			{/* Intro / Header */}
-			<div className="mb-10 text-center space-y-2 pt-8 px-4">
+			<div className="mb-8 text-center space-y-2 pt-8 px-4">
 				<div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-2">
 					<BookOpen className="w-8 h-8" />
 				</div>

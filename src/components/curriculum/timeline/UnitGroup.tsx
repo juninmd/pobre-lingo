@@ -27,11 +27,11 @@ export function UnitGroup({
 	);
 
 	return (
-		<div className="mb-12 md:mb-20">
+		<div className="mb-8 md:mb-12">
 			{/* Unit Sticky Header */}
 			<div
 				className={cn(
-					"sticky top-0 z-20 py-4 px-4 -mx-4 mb-10 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
+					"sticky top-0 z-20 py-4 px-4 -mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
 					isActiveUnit
 						? "bg-card/95 border-primary/30 shadow-md shadow-primary/5"
 						: "bg-muted/95 border-border/40 grayscale",
@@ -74,11 +74,11 @@ export function UnitGroup({
 				</div>
 			</div>
 
-			<div className="relative pl-4 md:pl-0 mt-4">
+			<div className="relative pl-4 md:pl-0 mt-2">
 				{/* Vertical Spine Line */}
 				<div className="absolute left-8 md:left-8 top-0 bottom-0 w-1 bg-border/50 md:bg-gradient-to-b md:from-primary/30 md:via-border/50 md:to-transparent z-0" />
 
-				<div className="flex flex-col gap-10 relative mt-4">
+				<div className="flex flex-col gap-6 relative mt-2">
 					{modules.map((module) => (
 						<ModuleSection
 							key={module.id}

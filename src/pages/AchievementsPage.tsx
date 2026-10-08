@@ -198,7 +198,7 @@ function StatCard({
 				<span className={cn("text-2xl font-extrabold tabular-nums", tone)}>
 					{value}
 				</span>
-				<span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-muted-foreground">
+				<span className="text-[11px] sm:text-[11px] uppercase font-bold tracking-widest text-muted-foreground">
 					{label}
 				</span>
 			</CardContent>

@@ -61,7 +61,7 @@ export function InteractiveAudioWidget() {
 					<Headphones className="w-4 h-4" />
 					Immersive Audio
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-teal-500/70 bg-teal-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-teal-500/70 bg-teal-500/10 px-2 py-0.5 rounded-full">
 					Trend 2025
 				</span>
 			</CardHeader>

@@ -45,7 +45,7 @@ export function CoreWordCard({
 						</Button>
 					</div>
 					<p className="text-sm text-muted-foreground">{word.translation}</p>
-					<Badge variant="outline" className="mt-2 text-[10px] gap-1">
+					<Badge variant="outline" className="mt-2 text-[11px] gap-1">
 						<Layers className="h-3 w-3" aria-hidden="true" />
 						{BAND_LABELS[word.band]}
 					</Badge>

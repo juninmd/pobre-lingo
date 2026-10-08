@@ -104,7 +104,7 @@ export function PopCultureWidget() {
 					<Clapperboard className="w-4 h-4" />
 					Inglês na Cultura Pop
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-violet-500/70 bg-violet-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-violet-500/70 bg-violet-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Sparkles className="w-3 h-3" />
 					Trend
 				</span>

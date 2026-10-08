@@ -161,7 +161,7 @@ export function DailyQuestsWidget() {
 								value={Math.min((quest.progress / quest.total) * 100, 100)}
 								className="h-2.5"
 							/>
-							<div className="flex justify-between mt-1 text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
+							<div className="flex justify-between mt-1 text-[11px] text-muted-foreground uppercase font-bold tracking-wider">
 								<span>
 									{Math.min(quest.progress, quest.total)} / {quest.total}
 								</span>

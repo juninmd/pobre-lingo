@@ -49,6 +49,9 @@ export default defineConfig({
 				],
 			},
 			workbox: {
+				importScripts: ["sw-reminders.js"],
+				// O motor de IA (~6 MB) só baixa para quem abrir o tutor.
+				globIgnores: ["**/web-llm-*.js", "**/webllm.worker-*.js"],
 				globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
 				runtimeCaching: [
 					{
@@ -96,6 +99,13 @@ export default defineConfig({
 			output: {
 				manualChunks(id) {
 					if (id.includes("node_modules")) {
+						// Carregados sob demanda: fora do vendor para não pesar no primeiro acesso.
+						if (id.includes("@mlc-ai")) {
+							return "web-llm";
+						}
+						if (id.includes("logrocket")) {
+							return "logrocket";
+						}
 						if (id.includes("lucide-react")) {
 							return "lucide";
 						}

@@ -73,7 +73,7 @@ export function NotificationCenter() {
 				>
 					<Bell className={cn("h-5 w-5", unreadCount > 0 && "text-primary")} />
 					{unreadCount > 0 && (
-						<span className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums">
+						<span className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-500 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums">
 							{unreadCount > 9 ? "9+" : unreadCount}
 						</span>
 					)}
@@ -90,7 +90,7 @@ export function NotificationCenter() {
 						<Bell className="h-4 w-4 text-primary" />
 						<span className="font-semibold text-sm">Notificações</span>
 						{unreadCount > 0 && (
-							<span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+							<span className="text-[11px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
 								{unreadCount} nova{unreadCount === 1 ? "" : "s"}
 							</span>
 						)}
@@ -184,7 +184,7 @@ export function NotificationCenter() {
 												<p className="text-xs text-muted-foreground leading-relaxed">
 													{item.body}
 												</p>
-												<p className="text-[10px] uppercase tracking-wider text-muted-foreground/60 pt-0.5">
+												<p className="text-[11px] uppercase tracking-wider text-muted-foreground/60 pt-0.5">
 													{formatDistanceToNow(new Date(item.createdAt), {
 														addSuffix: true,
 														locale: ptBR,

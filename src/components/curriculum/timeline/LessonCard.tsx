@@ -34,6 +34,7 @@ export function LessonCard({
 				cardRef.current?.scrollIntoView({
 					behavior: "smooth",
 					block: "center",
+					inline: "nearest",
 				});
 			}, 500);
 			return () => clearTimeout(timer);
@@ -62,12 +63,12 @@ export function LessonCard({
 			className={cn(
 				"relative pl-8 md:pl-16 py-2 group",
 				isFirstActive &&
-					"animate-in slide-in-from-right-4 fade-in zoom-in-95 duration-700 ease-out fill-mode-both",
+					"animate-in slide-in-from-bottom-2 fade-in duration-700 ease-out fill-mode-both",
 			)}
 		>
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
-				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-pulse whitespace-nowrap flex items-center gap-1.5">
+				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-pulse whitespace-nowrap flex items-center gap-1.5">
 					<LucideIcons.BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>

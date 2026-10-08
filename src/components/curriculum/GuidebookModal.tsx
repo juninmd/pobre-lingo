@@ -160,7 +160,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 																<Badge
 																	key={t}
 																	variant="secondary"
-																	className="text-[10px] h-5"
+																	className="text-[11px] h-5"
 																>
 																	{t}
 																</Badge>

@@ -22,7 +22,7 @@ export function SmartReviewWidget() {
 					<Brain className="w-4 h-4" />
 					Revisão Inteligente
 					{hasDue && (
-						<span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-amber-600/80 bg-amber-500/15 px-2 py-0.5 rounded-full tabular-nums">
+						<span className="ml-auto text-[11px] uppercase tracking-widest font-bold text-amber-600/80 bg-amber-500/15 px-2 py-0.5 rounded-full tabular-nums">
 							{dueCards.length}
 						</span>
 					)}

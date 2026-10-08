@@ -70,7 +70,7 @@ export function WeeklyGoalWidget() {
 						value={progressPct}
 						className="h-2.5 bg-teal-100 dark:bg-teal-950"
 					/>
-					<div className="flex justify-between text-[10px] uppercase font-bold tracking-wider text-teal-600/60 dark:text-teal-400/60">
+					<div className="flex justify-between text-[11px] uppercase font-bold tracking-wider text-teal-600/60 dark:text-teal-400/60">
 						<span>Progresso</span>
 						<span>{progressPct}%</span>
 					</div>
@@ -83,7 +83,7 @@ export function WeeklyGoalWidget() {
 						return (
 							<div key={dayKey} className="flex flex-col items-center gap-1">
 								<div
-									className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
+									className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all ${
 										idx === currentDay
 											? "bg-teal-500 text-white shadow-md ring-2 ring-teal-200 dark:ring-teal-800"
 											: idx < currentDay

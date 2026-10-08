@@ -166,7 +166,7 @@ export default function ArcadePage() {
 										<Badge variant="secondary" className="font-normal text-xs">
 											{game.difficulty}
 										</Badge>
-										<Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] font-black">
+										<Badge className="bg-primary/10 text-primary border border-primary/20 text-[11px] font-black">
 											{game.cefr}
 										</Badge>
 									</div>

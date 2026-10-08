@@ -86,7 +86,7 @@ export function StorytellingWidget() {
 					<BookOpen className="w-4 h-4" />
 					História Interativa
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-pink-500/70 bg-pink-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-pink-500/70 bg-pink-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Target className="w-3 h-3" />
 					TPRS
 				</span>

@@ -220,7 +220,7 @@ export function PronunciationWidget() {
 					<Mic className="w-4 h-4" />
 					Prática de Pronúncia
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-sky-500/70 bg-sky-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-sky-500/70 bg-sky-500/10 px-2 py-0.5 rounded-full">
 					IA Interativa
 				</span>
 			</CardHeader>

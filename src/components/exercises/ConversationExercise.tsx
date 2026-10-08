@@ -193,7 +193,7 @@ export default function ConversationExercise() {
 						<h1 className="text-xl font-bold tracking-tight text-gold">
 							Prática de Conversa
 						</h1>
-						<p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
+						<p className="text-[11px] uppercase tracking-widest text-muted-foreground font-semibold">
 							Simulação Realista
 						</p>
 					</div>

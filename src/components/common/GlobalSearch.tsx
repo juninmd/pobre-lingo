@@ -352,19 +352,19 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
 					<div className="border-t p-2 flex items-center justify-between text-xs text-muted-foreground bg-muted/30">
 						<div className="flex items-center gap-3">
 							<span className="flex items-center gap-1">
-								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[10px] font-mono">
+								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[11px] font-mono">
 									↑↓
 								</kbd>
 								navegar
 							</span>
 							<span className="flex items-center gap-1">
-								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[10px] font-mono">
+								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[11px] font-mono">
 									Enter
 								</kbd>
 								selecionar
 							</span>
 							<span className="flex items-center gap-1">
-								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[10px] font-mono">
+								<kbd className="px-1.5 py-0.5 bg-muted rounded text-[11px] font-mono">
 									Esc
 								</kbd>
 								fechar
@@ -428,7 +428,7 @@ function SearchResultItem({
 								key={tag}
 								variant="secondary"
 								className={cn(
-									"text-[10px] px-1.5 py-0 h-4",
+									"text-[11px] px-1.5 py-0 h-4",
 									isSelected &&
 										"bg-primary-foreground/20 text-primary-foreground",
 								)}
@@ -460,7 +460,7 @@ export function GlobalSearchTrigger({ onClick }: { onClick: () => void }) {
 			<Search className="mr-2 h-4 w-4" />
 			<span className="hidden lg:inline-flex">Pesquisar...</span>
 			<span className="inline-flex lg:hidden">Pesquisar</span>
-			<kbd className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+			<kbd className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[11px] font-medium opacity-100 sm:flex">
 				<span className="text-xs">⌘</span>K
 			</kbd>
 		</Button>

@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { BrandMark } from "@/components/layout/BrandMark";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -141,21 +142,7 @@ export function NavMenu() {
 	return (
 		<>
 			<SidebarHeader className="p-3 border-b border-sidebar-border/50">
-				<div className="flex items-center gap-3">
-					<div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
-						<GraduationCap className="h-5 w-5 text-primary" />
-					</div>
-					{!isCollapsed && (
-						<div className="flex flex-col min-w-0">
-							<span className="font-bold text-base text-sidebar-foreground truncate tracking-tight [data-theme=pobre-lingo]:text-gold">
-								PobreLingo
-							</span>
-							<span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:font-semibold">
-								Aprenda Grátis
-							</span>
-						</div>
-					)}
-				</div>
+				<BrandMark variant="sidebar" compact={isCollapsed} />
 
 				{!isCollapsed && (
 					<div className="mt-4 relative">
@@ -185,7 +172,7 @@ export function NavMenu() {
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 							{!isCollapsed && (
-								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
+								<h3 className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
 									{group.title}
 								</h3>
 							)}
@@ -222,7 +209,7 @@ export function NavMenu() {
 															{!isCollapsed && item.badge && (
 																<Badge
 																	variant="secondary"
-																	className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
+																	className="ml-auto text-[11px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
 																>
 																	{item.badge}
 																</Badge>

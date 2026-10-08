@@ -45,7 +45,7 @@ export function ModuleSection({
 						<CefrBadge
 							level={getCEFRLevel(module.unitId)}
 							showDescriptionOnHover={false}
-							className="px-1.5 py-0 text-[8px] sm:text-[9px]"
+							className="px-1.5 py-0 text-[11px] sm:text-[11px]"
 						/>
 					</div>
 					<h3 className="text-xl md:text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors">

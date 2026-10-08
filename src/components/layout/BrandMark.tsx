@@ -31,7 +31,7 @@ export function BrandMark({
 					</span>
 					<span
 						className={cn(
-							"text-[10px] font-semibold uppercase tracking-[0.14em]",
+							"text-[11px] font-semibold uppercase tracking-[0.14em]",
 							subtitleClass,
 						)}
 					>

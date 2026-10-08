@@ -57,7 +57,7 @@ export function LevelRoadmap({ completedLessons }: LevelRoadmapProps) {
 							<div className="flex items-center justify-between mb-2">
 								<Badge
 									className={cn(
-										"text-[10px] font-black px-1.5 py-0 shadow-sm",
+										"text-[11px] font-black px-1.5 py-0 shadow-sm",
 										config.badgeClass,
 									)}
 								>
@@ -74,12 +74,12 @@ export function LevelRoadmap({ completedLessons }: LevelRoadmapProps) {
 								)}
 							</div>
 							<p className="text-xs font-bold leading-tight">{stage.name}</p>
-							<p className="text-[10px] text-muted-foreground mb-2">
+							<p className="text-[11px] text-muted-foreground mb-2">
 								{stage.completedCount}/{stage.lessonCount} lições
 							</p>
 							<Progress value={stage.percent} className="h-1.5" />
 							{stage.status === "current" && (
-								<span className="mt-1.5 block text-[10px] font-bold text-primary">
+								<span className="mt-1.5 block text-[11px] font-bold text-primary">
 									Você está aqui
 								</span>
 							)}

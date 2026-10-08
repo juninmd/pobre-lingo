@@ -297,7 +297,7 @@ export function CurriculumProgressCard() {
 										<Star className="h-3 w-3 text-yellow-500" />+
 										{nextLesson.lesson.xpReward} XP
 									</span>
-									<Badge variant="outline" className="text-[10px]">
+									<Badge variant="outline" className="text-[11px]">
 										{lessonTypeConfig[nextLesson.lesson.type].label}
 									</Badge>
 								</div>

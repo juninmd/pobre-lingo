@@ -10,28 +10,32 @@ test.describe("Learning Journey - Interactive Book Interface", () => {
 		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 	});
 
-	test("should render home properly and display desktop layout without MobileNav", async ({
+	test("should render home properly and display desktop layout without old MobileNav", async ({
 		page, isMobile
 	}) => {
 		test.skip(isMobile, "Desktop test only");
 
 		await page.setViewportSize({ width: 1280, height: 720 });
 
-		const sidebarContainer = page.locator('.hidden.md\\:flex.border-r').first();
-		await expect(sidebarContainer).toBeVisible();
+		// Verify Sidebar link exists instead of specific hidden classes
+		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
+		await expect(sidebarLink).toBeVisible();
 
-		const mobileNav = page.locator('.md\\:hidden nav');
-		await expect(mobileNav).toBeHidden();
+		// Old mobile nav should be gone
+		const oldMobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
+		await expect(oldMobileNav).toHaveCount(0);
 	});
 
-	test("should break elegantly to mobile layout (stack vertical)", async ({ page, isMobile }) => {
+	test("should break elegantly to mobile layout with unified sidebar trigger", async ({ page, isMobile }) => {
 		test.skip(!isMobile, "Mobile test only");
 
-		const sidebarContainer = page.locator('.hidden.md\\:flex.border-r').first();
-		await expect(sidebarContainer).toBeHidden();
+		// Mobile should show a sidebar trigger
+		const sidebarTrigger = page.getByRole("button", { name: "Toggle menu" });
+		await expect(sidebarTrigger).toBeVisible();
 
-		const mobileNav = page.locator('.md\\:hidden nav').first();
-		await expect(mobileNav).toBeVisible();
+		// Old MobileNav should not exist
+		const oldMobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
+		await expect(oldMobileNav).toHaveCount(0);
 	});
 
 	test("should display 'Onde parei' bookmark and navigate to active lesson", async ({

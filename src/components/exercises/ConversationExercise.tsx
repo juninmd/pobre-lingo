@@ -110,9 +110,14 @@ export default function ConversationExercise() {
 	}, [currentStep]);
 
 	// Auto-scroll
+	// "nearest" evita rolar sem necessidade e deixar a 1ª mensagem sob o cabeçalho.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: rola quando chega mensagem nova
 	useEffect(() => {
-		chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, []);
+		chatEndRef.current?.scrollIntoView({
+			behavior: "smooth",
+			block: "nearest",
+		});
+	}, [history.length]);
 
 	const handleOptionSelect = (option: ConversationOption) => {
 		if (typing) return; // Prevent clicking while mascot is "typing"
@@ -179,7 +184,7 @@ export default function ConversationExercise() {
 	return (
 		<div className="min-h-screen bg-background text-foreground flex flex-col">
 			{/* Header */}
-			<header className="sticky top-0 z-30 glass border-b border-primary/10 p-4">
+			<header className="sticky top-0 z-30 glass bg-background/95 border-b border-primary/10 p-4">
 				<div className="max-w-5xl mx-auto flex items-center justify-between">
 					<Button
 						variant="ghost"
@@ -204,7 +209,7 @@ export default function ConversationExercise() {
 			</header>
 
 			{/* Chat Area */}
-			<div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-48 max-w-5xl mx-auto w-full">
+			<div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-4 md:pb-48 max-w-5xl mx-auto w-full">
 				{history.map((msg) => (
 					<div
 						key={msg.id}
@@ -296,12 +301,12 @@ export default function ConversationExercise() {
 						</div>
 					</div>
 				)}
-				<div ref={chatEndRef} />
+				<div ref={chatEndRef} className="scroll-mb-56" />
 			</div>
 
 			{/* Options Area */}
-			<div className="fixed bottom-0 left-0 right-0 z-40 pb-8 pt-4 px-4 sm:px-6">
-				<div className="max-w-3xl mx-auto glass rounded-2xl border border-primary/10 shadow-2xl p-4 md:p-6 overflow-hidden relative">
+			<div className="md:sticky md:bottom-0 z-30 pb-4 md:pb-8 pt-4 px-0 sm:px-2">
+				<div className="max-w-3xl mx-auto glass bg-background/95 rounded-2xl border border-primary/10 shadow-2xl p-4 md:p-6 overflow-hidden relative">
 					{!isCompleted ? (
 						<div className="space-y-4">
 							<div className="flex items-center justify-between mb-2">

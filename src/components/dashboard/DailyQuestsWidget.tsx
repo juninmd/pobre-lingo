@@ -95,12 +95,12 @@ export function DailyQuestsWidget() {
 	return (
 		<Card className="w-full border-2 shadow-sm bg-card/50 backdrop-blur-sm">
 			<CardHeader className="pb-3">
-				<div className="flex items-center justify-between">
-					<CardTitle className="text-lg font-bold flex items-center gap-2">
+				<div className="flex flex-wrap items-center justify-between gap-2">
+					<CardTitle className="text-lg font-bold flex items-center gap-2 whitespace-nowrap">
 						<Target className="w-5 h-5 text-red-500" />
 						Missões Diárias
 					</CardTitle>
-					<span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">
+					<span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded whitespace-nowrap">
 						Reseta à meia-noite
 					</span>
 				</div>

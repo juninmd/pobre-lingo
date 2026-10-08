@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles, Volume2, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,6 +14,23 @@ import { Pobrelingo } from "./Pobrelingo";
 
 export function PobrelingoAssistant() {
 	const [isOpen, setIsOpen] = useState(false);
+	// No mobile o botão flutuante cobre o conteúdo: recolhe ao rolar e volta ao parar.
+	const [tucked, setTucked] = useState(false);
+
+	useEffect(() => {
+		let timer: ReturnType<typeof setTimeout>;
+		const onScroll = () => {
+			setTucked(true);
+			clearTimeout(timer);
+			timer = setTimeout(() => setTucked(false), 1200);
+		};
+		// scroll não propaga: captura para pegar o contêiner de rolagem do layout.
+		document.addEventListener("scroll", onScroll, true);
+		return () => {
+			document.removeEventListener("scroll", onScroll, true);
+			clearTimeout(timer);
+		};
+	}, []);
 	const { streak } = useGamification();
 	const { isLessonCompleted } = useCurriculumProgress();
 	const [tip] = useState(() => TIPS[Math.floor(Math.random() * TIPS.length)]);
@@ -45,7 +62,12 @@ export function PobrelingoAssistant() {
 	};
 
 	return (
-		<div className="fixed bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none">
+		<div
+			className={cn(
+				"fixed bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none transition-transform duration-300",
+				tucked && !isOpen && "max-md:translate-x-[calc(100%+1rem)]",
+			)}
+		>
 			{isOpen && (
 				<Card className="w-80 glass-card border-primary/20 bg-background/95 backdrop-blur-xl shadow-2xl pointer-events-auto animate-in slide-in-from-bottom-5 duration-300">
 					<CardContent className="p-4 relative">
@@ -108,7 +130,7 @@ export function PobrelingoAssistant() {
 				}
 				aria-expanded={isOpen}
 				className={cn(
-					"h-14 w-14 rounded-full shadow-2xl pointer-events-auto flex items-center justify-center transition-all duration-300 scale-100 hover:scale-105 active:scale-95 border border-primary/20 bg-primary text-primary-foreground",
+					"h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl pointer-events-auto flex items-center justify-center transition-all duration-300 scale-100 hover:scale-105 active:scale-95 border border-primary/20 bg-primary text-primary-foreground",
 					isOpen ? "bg-zinc-800 border-zinc-700 text-white" : "",
 				)}
 			>

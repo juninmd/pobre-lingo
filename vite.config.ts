@@ -16,12 +16,13 @@ export default defineConfig({
 				"pwa-512x512.svg",
 			],
 			manifest: {
-				name: "PobreLingo - Aprenda Português",
+				name: "PobreLingo - Aprenda Inglês",
 				short_name: "PobreLingo",
-				description: "Aplicativo grátis e infinito para aprender português",
+				description: "Aplicativo grátis e infinito para aprender inglês",
 				theme_color: "#22c55e", // Updated to match the new mascot color (green-500)
 				background_color: "#ffffff",
 				display: "standalone",
+				lang: "pt-BR",
 				orientation: "portrait",
 				scope: "/",
 				start_url: "/",

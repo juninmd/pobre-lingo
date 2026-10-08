@@ -2,8 +2,8 @@ import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
-import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { Button } from "@/components/ui/button";
@@ -60,10 +60,15 @@ export function RightColumnWidgets() {
 				{/* Word of the Day - Microlearning */}
 				<WordOfTheDayWidget />
 
-				{/* Mindful Learning - Well-being */}
-				<MindfulWidget />
-
-				<CertificationPlanCard />
+				<details className="group rounded-xl border border-border/50 p-3">
+					<summary className="cursor-pointer text-sm font-semibold text-muted-foreground focus-visible:outline-2 focus-visible:outline-primary">
+						Explorar mais
+					</summary>
+					<div className="mt-3 space-y-3 sm:space-y-4">
+						<MindfulWidget />
+						<CertificationPlanCard />
+					</div>
+				</details>
 
 				{/* Tip of the Day */}
 				<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 border-l-4 border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all hover:-translate-y-1 duration-300 sticky top-20 sm:top-24 backdrop-blur-xl relative overflow-hidden group">

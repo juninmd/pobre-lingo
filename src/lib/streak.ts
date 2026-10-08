@@ -11,6 +11,8 @@ import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 export const STREAK_KEY = "pobrelingo_streak";
 export const LAST_ACTIVITY_KEY = "pobrelingo_last_activity_date";
+/** Dias perdidos tolerados antes de zerar a ofensiva. */
+export const GRACE_DAYS = 1;
 
 function parseDate(iso: string | null): Date | null {
 	if (!iso) return null;
@@ -29,8 +31,10 @@ export function readStreak(now: Date = new Date()): number {
 	);
 
 	if (!lastActivity) return 0;
-	// Mais de um dia sem atividade: a sequência foi quebrada.
-	return differenceInCalendarDays(now, lastActivity) > 1 ? 0 : stored;
+	// Tolera um dia perdido; só quebra após mais de um dia sem estudar.
+	return differenceInCalendarDays(now, lastActivity) > GRACE_DAYS + 1
+		? 0
+		: stored;
 }
 
 export function readLastActivityDate(): string | null {
@@ -53,7 +57,7 @@ export function recordStreakActivity(now: Date = new Date()): number {
 	} else {
 		const gap = differenceInCalendarDays(now, lastActivity);
 		if (gap === 0) return stored; // já contabilizado hoje
-		next = gap === 1 ? stored + 1 : 1;
+		next = gap <= GRACE_DAYS + 1 ? stored + 1 : 1;
 	}
 
 	setLocalStorageItem(STREAK_KEY, next);

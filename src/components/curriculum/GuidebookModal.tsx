@@ -38,7 +38,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 	unitModules.forEach((module) => {
 		module.lessons.forEach((lesson) => {
 			if (lesson.grammarRuleIds) {
-				lesson.grammarRuleIds.forEach((id) => grammarRuleIds.add(id));
+				for (const id of lesson.grammarRuleIds) grammarRuleIds.add(id);
 			}
 		});
 	});
@@ -160,7 +160,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 																<Badge
 																	key={t}
 																	variant="secondary"
-																	className="text-[10px] h-5"
+																	className="text-[11px] h-5"
 																>
 																	{t}
 																</Badge>

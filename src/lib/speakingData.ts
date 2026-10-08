@@ -61,7 +61,7 @@ export const speakingData: Record<string, SpeakingPhrase[]> = {
 		},
 		{
 			phrase: "I have been studying English for five years",
-			translation: "Eu tenho estudado inglês por cinco anos",
+			translation: "Estudo inglês há cinco anos",
 		},
 		{
 			phrase: "If I had known, I would have come earlier",
@@ -83,11 +83,11 @@ export const speakingData: Record<string, SpeakingPhrase[]> = {
 		},
 		{
 			phrase: "Let me play devil's advocate for a moment.",
-			translation: "Deixe-me fazer o advogado do diabo por um momento.",
+			translation: "Deixe-me bancar o advogado do diabo por um momento.",
 		},
 		{
 			phrase: "There are two sides to every story.",
-			translation: "Existem dois lados para toda história.",
+			translation: "Toda história tem dois lados.",
 		},
 		{
 			phrase: "I am convinced that we can find a solution.",

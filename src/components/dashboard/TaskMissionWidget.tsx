@@ -115,7 +115,7 @@ export function TaskMissionWidget() {
 					<Target className="w-4 h-4" />
 					Missão Prática
 				</CardTitle>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
 					<Briefcase className="w-3 h-3" />
 					Mundo Real
 				</span>

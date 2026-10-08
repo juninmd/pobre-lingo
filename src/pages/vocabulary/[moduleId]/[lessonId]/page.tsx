@@ -27,6 +27,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { triggerConfetti } from "@/lib/confetti";
 import { curriculumData } from "@/lib/curriculumData";
 import { getWordsByTopic } from "@/lib/dictionaryData";
@@ -49,7 +50,7 @@ interface CardState {
 }
 
 function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
-	const { hearts, loseHeart, addGem, addStreak } = useGamification();
+	const { loseHeart, addGem, addStreak } = useGamification();
 	const [cards, setCards] = useState<CardState[]>([]);
 	const [selectedCards, setSelectedCards] = useState<CardState[]>([]);
 	const [isProcessing, setIsProcessing] = useState(false);
@@ -197,6 +198,7 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
 					<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 						{cards.map((card) => (
 							<button
+								type="button"
 								key={card.id}
 								onClick={() => handleCardClick(card)}
 								disabled={card.status === "matched"}
@@ -222,7 +224,6 @@ function MatchingPairsGame({ onComplete }: { onComplete: () => void }) {
 }
 
 function ReadingLessonWrapper({
-	onComplete,
 	navigate,
 	xpReward,
 	moduleId,

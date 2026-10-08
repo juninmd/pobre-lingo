@@ -11,7 +11,9 @@ import {
 import { Toaster } from "@/components/ui/toaster";
 import { SEO } from "./components/common/SEO";
 import { Header } from "./components/layout/Header";
+import { MobileNav } from "./components/layout/MobileNav";
 import { NavMenu } from "./components/layout/NavMenu";
+import { OfflineIndicator } from "./components/layout/OfflineIndicator";
 
 // Agrupamento de navegação por categorias
 export default function Layout() {
@@ -48,6 +50,7 @@ export default function Layout() {
 				</Sidebar>
 
 				<SidebarInset className="flex flex-col h-full overflow-hidden min-h-0 flex-1 w-full">
+					<OfflineIndicator />
 					<Header onSearchOpen={() => setSearchOpen(true)} />
 
 					<div className="flex-1 overflow-y-auto bg-muted/5 dark:bg-background smooth-scroll min-h-0">
@@ -57,6 +60,7 @@ export default function Layout() {
 					</div>
 				</SidebarInset>
 			</SidebarProvider>
+			<MobileNav />
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
 			<PWAInstallPrompt />
 			<PobrelingoAssistant />

@@ -16,14 +16,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
-import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getReaderById } from "@/lib/gradedReaders";
-import { recordWordsRead } from "@/lib/studyLogStore";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
 export default function ReadingViewPage() {
-	useStudyTimer("reading");
 	const { readerId } = useParams<{ readerId: string }>();
 	const reader = getReaderById(readerId ?? "");
 	const { isRead, markRead } = useReadingProgress();
@@ -76,14 +73,6 @@ export default function ReadingViewPage() {
 	};
 
 	const finish = () => {
-		if (!isRead(reader.id)) {
-			recordWordsRead(
-				reader.lines.reduce(
-					(sum, line) => sum + line.en.split(/\s+/).length,
-					0,
-				),
-			);
-		}
 		markRead(reader.id);
 		navigate("/reading");
 	};

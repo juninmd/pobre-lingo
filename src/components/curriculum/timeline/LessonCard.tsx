@@ -1,12 +1,8 @@
 import * as LucideIcons from "lucide-react";
-import { Check, Lock, Play, Star } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CefrBadge } from "@/components/common/CefrBadge";
-import { Button } from "@/components/ui/button";
 import type { Lesson, Module } from "@/lib/curriculumData";
-import { getCEFRLevel } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
 import { LessonCardContent } from "./LessonCardContent";
@@ -38,6 +34,7 @@ export function LessonCard({
 				cardRef.current?.scrollIntoView({
 					behavior: "smooth",
 					block: "center",
+					inline: "nearest",
 				});
 			}, 500);
 			return () => clearTimeout(timer);
@@ -71,7 +68,7 @@ export function LessonCard({
 		>
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
-				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-bounce-short whitespace-nowrap flex items-center gap-1.5">
+				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-bounce-short whitespace-nowrap flex items-center gap-1.5">
 					<LucideIcons.BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>

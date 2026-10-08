@@ -20,7 +20,9 @@ describe("NeuroELTWidget", () => {
 
 		expect(screen.getByText("NeuroELT")).toBeInTheDocument();
 		expect(
-			screen.getByText("Ensino baseado em neurociência para otimizar aprendizado."),
+			screen.getByText(
+				"Ensino baseado em neurociência para otimizar aprendizado.",
+			),
 		).toBeInTheDocument();
 	});
 });

@@ -2,8 +2,8 @@ import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
-import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
+import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { Button } from "@/components/ui/button";
@@ -60,13 +60,18 @@ export function RightColumnWidgets() {
 				{/* Word of the Day - Microlearning */}
 				<WordOfTheDayWidget />
 
-				{/* Mindful Learning - Well-being */}
-				<MindfulWidget />
-
-				<CertificationPlanCard />
+				<details className="group rounded-xl border border-border/50 p-3">
+					<summary className="cursor-pointer text-sm font-semibold text-muted-foreground focus-visible:outline-2 focus-visible:outline-primary">
+						Explorar mais
+					</summary>
+					<div className="mt-3 space-y-3 sm:space-y-4">
+						<MindfulWidget />
+						<CertificationPlanCard />
+					</div>
+				</details>
 
 				{/* Tip of the Day */}
-				<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 border-l-4 border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all hover:-translate-y-1 duration-300 sticky top-20 sm:top-24 backdrop-blur-xl relative overflow-hidden group">
+				<Card className="glass-card bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 border-l-4 border-l-primary hover:shadow-xl hover:shadow-primary/10 transition-all hover:-translate-y-1 duration-300 backdrop-blur-xl relative overflow-hidden group">
 					<div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl transition-all duration-700 group-hover:scale-150" />
 					<CardHeader className="pb-2 sm:pb-3 flex flex-row items-center justify-between space-y-0 relative z-10">
 						<CardTitle className="text-sm sm:text-base md:text-lg flex items-center gap-2 text-primary font-bold">

@@ -144,6 +144,7 @@ export function OnboardingModal() {
 					</div>
 
 					<button
+						type="button"
 						onClick={completeOnboarding}
 						className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors text-center mt-1"
 					>

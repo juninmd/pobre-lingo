@@ -15,7 +15,7 @@ const getIcon = (name: string) => {
 };
 
 export function CurriculumList() {
-	const { getModuleProgress, isModuleUnlocked } = useCurriculumProgress();
+	const { getModuleProgress } = useCurriculumProgress();
 
 	const getStatus = (moduleId: string) => {
 		const progress = getModuleProgress(moduleId);
@@ -55,7 +55,7 @@ export function CurriculumList() {
 									<Badge
 										variant="outline"
 										className={cn(
-											"uppercase text-[10px] tracking-wider font-bold",
+											"uppercase text-[11px] tracking-wider font-bold",
 											unit.difficulty === "basico"
 												? "text-green-600 border-green-200 bg-green-50"
 												: unit.difficulty === "intermediario"

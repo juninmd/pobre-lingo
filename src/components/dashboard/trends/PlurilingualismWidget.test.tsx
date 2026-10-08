@@ -20,7 +20,9 @@ describe("PlurilingualismWidget", () => {
 
 		expect(screen.getByText("Plurilingualism")).toBeInTheDocument();
 		expect(
-			screen.getByText("Valorize e use todos os seus repertórios linguísticos."),
+			screen.getByText(
+				"Valorize e use todos os seus repertórios linguísticos.",
+			),
 		).toBeInTheDocument();
 	});
 });

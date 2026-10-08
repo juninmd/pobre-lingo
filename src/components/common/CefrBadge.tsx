@@ -25,7 +25,7 @@ export function CefrBadge({
 	const badge = (
 		<Badge
 			className={cn(
-				"font-black tracking-wide text-[10px] sm:text-xs px-2 py-0.5 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 border cursor-help select-none",
+				"font-black tracking-wide text-[11px] sm:text-xs px-2 py-0.5 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 border cursor-help select-none",
 				config.badgeClass,
 				config.borderColor,
 				className,

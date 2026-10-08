@@ -34,7 +34,7 @@ export function LearningStreakDisplay({
 							{streak === 1 ? "dia" : "dias"}
 						</span>
 					</div>
-					<p className="text-[10px] opacity-60 truncate">
+					<p className="text-[11px] opacity-60 truncate">
 						{streak > 0 ? "Continue assim!" : "Comece hoje!"}
 					</p>
 				</div>

@@ -52,6 +52,7 @@ export function GrammarHintBanner({
 				</span>
 				{onDismiss && (
 					<button
+						type="button"
 						onClick={onDismiss}
 						className="shrink-0 text-amber-600/70 hover:text-amber-800 dark:text-amber-400/70 dark:hover:text-amber-200 transition-colors"
 						aria-label="Fechar dica"

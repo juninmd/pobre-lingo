@@ -1,4 +1,3 @@
-import type { CEFRLevel } from "../curriculumData";
 import type { FluencyPrompt } from "../fluencyData";
 
 /** Prompts extra de fala cronometrada 4/3/2: 10 por nível, do cotidiano ao abstrato. */

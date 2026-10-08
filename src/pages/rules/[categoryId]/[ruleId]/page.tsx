@@ -20,8 +20,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,6 @@ export default function RulePage() {
 	}>();
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
-	const { isLessonCompleted } = useCurriculumProgress();
 	const { isStudied, toggleStudied } = useStudiedRules();
 	const [showTranslations, setShowTranslations] = useState(true);
 
@@ -392,6 +391,7 @@ export default function RulePage() {
 						<div className="flex items-center gap-2">
 							{rulesInThisCategory.map((r, idx) => (
 								<button
+									type="button"
 									key={r.id}
 									onClick={() => navigate(buildRuleUrl(r.id))}
 									className={cn(

@@ -1,7 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { PracticeHub } from "./PracticeHub";
-import { NeuroELTWidget } from "./trends/NeuroELTWidget";
-import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
@@ -22,7 +20,9 @@ import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget"
 import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
 import { NanoLearningWidget } from "./trends/NanoLearningWidget";
+import { NeuroELTWidget } from "./trends/NeuroELTWidget";
 import { PBLWidget } from "./trends/PBLWidget";
+import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
 import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";

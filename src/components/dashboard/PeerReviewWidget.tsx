@@ -2,7 +2,6 @@ import {
 	CheckCircle2,
 	MessageSquare,
 	Mic,
-	Sparkles,
 	Star,
 	ThumbsUp,
 	Users,

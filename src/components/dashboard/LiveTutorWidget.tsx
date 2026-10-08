@@ -48,7 +48,7 @@ export function LiveTutorWidget() {
 						Tutoria ao Vivo
 					</CardTitle>
 				</div>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-red-500/70 bg-red-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-red-500/70 bg-red-500/10 px-2 py-0.5 rounded-full">
 					Conexão Humana
 				</span>
 			</CardHeader>

@@ -31,10 +31,10 @@ export function UnitGroup({
 			{/* Unit Sticky Header */}
 			<div
 				className={cn(
-					"sticky top-[4.5rem] z-20 py-4 px-4 -mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
+					"sticky top-0 z-20 py-4 px-4 -mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
 					isActiveUnit
-						? "bg-card/70 border-primary/30 shadow-md shadow-primary/5"
-						: "bg-muted/40 border-border/40 grayscale opacity-80",
+						? "bg-card/95 border-primary/30 shadow-md shadow-primary/5"
+						: "bg-muted/95 border-border/40 grayscale",
 				)}
 			>
 				<div className="container max-w-2xl mx-auto flex items-center justify-between gap-4">

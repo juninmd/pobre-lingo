@@ -45,7 +45,7 @@ export function LessonCardContent({
 				<div className="flex items-center gap-2 mb-1">
 					<span
 						className={cn(
-							"text-[10px] md:text-xs font-bold uppercase tracking-wider",
+							"text-xs font-bold uppercase tracking-wider",
 							status === "locked"
 								? "text-muted-foreground/50"
 								: "text-primary/80",
@@ -54,12 +54,12 @@ export function LessonCardContent({
 						{lesson.type}
 					</span>
 					{lesson.estimatedMinutes && (
-						<span className="text-[10px] md:text-xs text-muted-foreground bg-muted px-1.5 rounded-sm">
+						<span className="text-xs text-muted-foreground bg-muted px-1.5 rounded-sm">
 							{lesson.estimatedMinutes}m
 						</span>
 					)}
 					{status === "completed" && (
-						<span className="flex items-center text-amber-500 text-[10px] md:text-xs font-bold ml-auto bg-amber-500/10 px-1.5 py-0.5 rounded-md">
+						<span className="flex items-center text-amber-500 text-[11px] md:text-xs font-bold ml-auto bg-amber-500/10 px-1.5 py-0.5 rounded-md">
 							<Star className="w-3 h-3 mr-0.5 fill-current" />
 							{lesson.xpReward} XP
 						</span>
@@ -67,7 +67,7 @@ export function LessonCardContent({
 				</div>
 				<h4
 					className={cn(
-						"font-bold text-sm md:text-base leading-tight md:leading-snug truncate",
+						"font-bold text-sm md:text-base leading-tight md:leading-snug line-clamp-2",
 						status === "locked" ? "text-muted-foreground" : "text-foreground",
 					)}
 				>
@@ -80,15 +80,16 @@ export function LessonCardContent({
 					<CefrBadge
 						level={getCEFRLevel(module.unitId)}
 						showDescriptionOnHover={false}
-						className="px-1 py-0 text-[8px] sm:text-[9px]"
+						className="px-1 py-0 text-[11px] sm:text-[11px]"
 					/>
 				</div>
 			</div>
 
 			<div className="flex-shrink-0 ml-2">
 				{status === "locked" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-full border border-muted-foreground/10">
-						<Lock className="w-3 h-3" /> BLOQUEADO
+					<div className="flex items-center gap-1 text-[11px] font-bold text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-full border border-muted-foreground/10">
+						<Lock className="w-3 h-3" aria-label="Bloqueado" />
+						<span className="hidden sm:inline">BLOQUEADO</span>
 					</div>
 				)}
 				{status === "active" && (
@@ -96,12 +97,17 @@ export function LessonCardContent({
 						size="sm"
 						className="rounded-full shadow-lg shadow-primary/25 animate-pulse font-bold px-4 hover:scale-105 transition-transform"
 					>
-						DISPONÍVEL <Play className="w-3 h-3 ml-1 fill-current" />
+						<span className="hidden sm:inline">DISPONÍVEL</span>
+						<Play
+							className="w-3 h-3 sm:ml-1 fill-current"
+							aria-label="Iniciar lição"
+						/>
 					</Button>
 				)}
 				{status === "completed" && (
-					<div className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
-						<Check className="w-3 h-3 stroke-[3]" /> CONCLUÍDO
+					<div className="flex items-center gap-1 text-[11px] font-bold text-green-600 bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
+						<Check className="w-3 h-3 stroke-[3]" aria-label="Concluído" />
+						<span className="hidden sm:inline">CONCLUÍDO</span>
 					</div>
 				)}
 			</div>

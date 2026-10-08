@@ -44,7 +44,9 @@ export function ExerciseExample() {
 	return (
 		<>
 			{/* Seu exercício aqui */}
-			<button onClick={handleExerciseComplete}>Completar Exercício</button>
+			<button type="button" onClick={handleExerciseComplete}>
+				Completar Exercício
+			</button>
 
 			{/* Dialog de conclusão */}
 			{showCompletion && (

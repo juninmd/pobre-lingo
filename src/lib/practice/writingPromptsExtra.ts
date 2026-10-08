@@ -1,4 +1,3 @@
-import type { CEFRLevel } from "../curriculumData";
 import type { WritingPrompt } from "../dictationData";
 
 /** Prompts de escrita extra: 9 gêneros por nível (mensagem, carta, história, descrição, review, opinião, reclamação, relatório, carta de apresentação/resumo/dissertação). */

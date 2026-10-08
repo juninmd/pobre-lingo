@@ -1,6 +1,4 @@
 import type { CEFRLevel } from "./curriculumData";
-import { fluencyPromptsExtra } from "./practice/fluencyPromptsExtra";
-import { shadowingExtra } from "./practice/shadowingExtra";
 
 export type FluencyPrompt = {
 	id: string;
@@ -63,7 +61,6 @@ export const fluencyPrompts: FluencyPrompt[] = [
 			"Discuta se a tecnologia nos torna mais produtivos ou mais distraídos.",
 		tips: ["Use hedging: it seems, arguably", "Reconheça o outro lado"],
 	},
-	...fluencyPromptsExtra,
 ];
 
 /** Frases curtas para shadowing: ouça e repita imitando ritmo e entonação. */
@@ -116,5 +113,4 @@ export const shadowingLines: ShadowingLine[] = [
 		en: "I couldn't agree more, to be honest.",
 		pt: "Não poderia concordar mais, sinceramente.",
 	},
-	...shadowingExtra,
 ];

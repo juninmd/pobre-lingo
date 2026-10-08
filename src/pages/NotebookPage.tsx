@@ -123,6 +123,7 @@ function WordList({
 						<div className="min-w-0 flex-1">
 							<div className="flex items-center gap-2 mb-1">
 								<button
+									type="button"
 									onClick={() => tts.speak(entry.word)}
 									className="font-bold text-base hover:text-primary transition-colors"
 									title="Ouvir"
@@ -144,6 +145,7 @@ function WordList({
 						</div>
 						<div className="shrink-0 flex flex-col gap-1">
 							<button
+								type="button"
 								onClick={() => onSendToSrs(entry)}
 								disabled={srsIds.has(`dictionary-${entry.id}`)}
 								className="p-1.5 text-muted-foreground/50 hover:text-amber-500 disabled:text-amber-500 disabled:cursor-default transition-colors rounded"
@@ -157,6 +159,7 @@ function WordList({
 								<Brain className="w-4 h-4" />
 							</button>
 							<button
+								type="button"
 								onClick={() => onRemove(entry.id)}
 								className="p-1.5 text-muted-foreground/50 hover:text-red-500 transition-colors rounded"
 								aria-label="Remover"

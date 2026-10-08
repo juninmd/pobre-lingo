@@ -1,77 +1,74 @@
 import {
+	AudioLines,
 	BookA,
 	BookMarked,
 	BookOpen,
 	Bot,
 	Brain,
 	CheckSquare,
-	Coins,
+	Compass,
 	FileText,
 	Gamepad2,
+	Gauge,
 	GraduationCap,
-	Headphones,
 	LibraryBig,
 	ListChecks,
+	type LucideIcon,
 	Map as MapIcon,
-	Menu,
-	Moon,
+	PenLine,
 	Search as SearchIcon,
 	SearchX,
 	Settings,
 	Sparkles,
-	Sun,
-	TrendingUp,
 	Trophy,
 	X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import {
-	GlobalSearch,
-	GlobalSearchTrigger,
-} from "@/components/common/GlobalSearch";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { BrandMark } from "@/components/layout/BrandMark";
-import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
-import { NotificationCenter } from "@/components/notifications/NotificationCenter";
-import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import {
-	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
 	SidebarInput,
-	SidebarInset,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-	SidebarProvider,
-	SidebarTrigger,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/toaster";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { cn } from "@/lib/utils";
 
 // Agrupamento de navegação por categorias
-export const navGroups = [
+type NavItem = {
+	href: string;
+	label: string;
+	icon: LucideIcon;
+	badge?: string;
+};
+
+export const navGroups: { title: string; items: NavItem[] }[] = [
 	{
 		title: "Principal",
 		items: [
 			{ href: "/", label: "Minha Jornada", icon: MapIcon },
 			{ href: "/review", label: "Revisar", icon: Brain, badge: "SRS" },
 			{ href: "/arcade", label: "Arcade", icon: Gamepad2, badge: "Fun" },
+		],
+	},
+	{
+		title: "Habilidades",
+		items: [
+			{ href: "/reading", label: "Leitura & Escuta", icon: BookOpen },
+			{ href: "/library", label: "Biblioteca", icon: LibraryBig },
+			{ href: "/vocabulary", label: "Vocabulário", icon: BookMarked },
+			{ href: "/writing", label: "Escrita & Ditado", icon: PenLine },
+			{ href: "/fluency", label: "Fluência", icon: Gauge },
+			{ href: "/pronunciation", label: "Pronúncia", icon: AudioLines },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: Compass },
 		],
 	},
 	{
@@ -111,6 +108,7 @@ export const navGroups = [
 		title: "Status",
 		items: [
 			{ href: "/proficiency", label: "Teste de Nível", icon: GraduationCap },
+			{ href: "/checkpoints", label: "Checkpoints", icon: Trophy },
 			{ href: "/achievements", label: "Conquistas", icon: Trophy },
 			{ href: "/settings", label: "Configurações", icon: Settings },
 		],
@@ -144,21 +142,7 @@ export function NavMenu() {
 	return (
 		<>
 			<SidebarHeader className="p-3 border-b border-sidebar-border/50">
-				<div className="flex items-center gap-3">
-					<div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
-						<GraduationCap className="h-5 w-5 text-primary" />
-					</div>
-					{!isCollapsed && (
-						<div className="flex flex-col min-w-0">
-							<span className="font-bold text-base text-sidebar-foreground truncate tracking-tight [data-theme=pobre-lingo]:text-gold">
-								PobreLingo
-							</span>
-							<span className="text-[10px] text-sidebar-foreground/70 uppercase tracking-wider [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:font-semibold">
-								Aprenda Grátis
-							</span>
-						</div>
-					)}
-				</div>
+				<BrandMark variant="sidebar" compact={isCollapsed} />
 
 				{!isCollapsed && (
 					<div className="mt-4 relative">
@@ -188,7 +172,7 @@ export function NavMenu() {
 					{filteredGroups.map((group, groupIndex) => (
 						<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 							{!isCollapsed && (
-								<h3 className="px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40 [data-theme=pobre-lingo]:text-accent/60 [data-theme=pobre-lingo]:tracking-[0.12em]">
+								<h3 className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
 									{group.title}
 								</h3>
 							)}
@@ -225,7 +209,7 @@ export function NavMenu() {
 															{!isCollapsed && item.badge && (
 																<Badge
 																	variant="secondary"
-																	className="ml-auto text-[9px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
+																	className="ml-auto text-[11px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
 																>
 																	{item.badge}
 																</Badge>

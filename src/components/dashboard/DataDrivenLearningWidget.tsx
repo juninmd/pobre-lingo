@@ -49,7 +49,7 @@ export function DataDrivenLearningWidget() {
 						Data-Driven Learning
 					</CardTitle>
 				</div>
-				<span className="text-[10px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full">
+				<span className="text-[11px] uppercase font-bold tracking-widest text-cyan-500/70 bg-cyan-500/10 px-2 py-0.5 rounded-full">
 					Imersão Digital
 				</span>
 			</CardHeader>

@@ -83,10 +83,10 @@ export function ContinueLearningCard() {
 						{/* Content */}
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
-								<span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
+								<span className="px-2 py-0.5 rounded text-[11px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
 									A SEGUIR
 								</span>
-								<p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
+								<p className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
 									{module.title_pt}
 								</p>
 							</div>

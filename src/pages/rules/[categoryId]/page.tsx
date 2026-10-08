@@ -82,7 +82,7 @@ export default function CategoryPage() {
 											{studied && (
 												<Badge
 													variant="outline"
-													className="text-[10px] px-1.5 py-0 h-5 bg-green-500/10 text-green-600 border-green-500/30"
+													className="text-[11px] px-1.5 py-0 h-5 bg-green-500/10 text-green-600 border-green-500/30"
 												>
 													Estudado
 												</Badge>

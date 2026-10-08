@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 import {
+	enrollCards,
 	getDueCards,
 	getSrsStats,
 	loadCards,
@@ -62,6 +63,15 @@ export function useSrs() {
 		});
 	}, []);
 
+	/** Inscreve itens recém-estudados sem penalizar os que já existem. */
+	const enroll = useCallback((inputs: NewCardInput[]) => {
+		setCards((prev) => {
+			const next = enrollCards(prev, inputs);
+			if (next !== prev) saveCards(next);
+			return next;
+		});
+	}, []);
+
 	/** Aplica a nota do usuário e reagenda o card. */
 	const gradeCard = useCallback((id: string, grade: ReviewGrade) => {
 		setCards((prev) => {
@@ -87,5 +97,14 @@ export function useSrs() {
 	const dueCards = useMemo(() => getDueCards(cards), [cards]);
 	const stats = useMemo(() => getSrsStats(cards), [cards]);
 
-	return { cards, dueCards, stats, addCard, gradeCard, removeCard, resetCards };
+	return {
+		cards,
+		dueCards,
+		stats,
+		addCard,
+		enroll,
+		gradeCard,
+		removeCard,
+		resetCards,
+	};
 }

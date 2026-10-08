@@ -180,7 +180,7 @@ export default function ReviewPage() {
 
 					<CardContent className="p-5 sm:p-8 space-y-6">
 						<div className="text-center space-y-3 min-h-[7rem] flex flex-col justify-center">
-							<p className="text-[10px] uppercase tracking-widest font-bold text-primary/70">
+							<p className="text-[11px] uppercase tracking-widest font-bold text-primary/70">
 								{current.source}
 							</p>
 							<p className="text-xl sm:text-2xl font-bold leading-snug text-balance">
@@ -206,7 +206,7 @@ export default function ReviewPage() {
 						) : (
 							<div className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
 								<div className="rounded-2xl border border-emerald-200/70 dark:border-emerald-800/50 bg-emerald-50/60 dark:bg-emerald-950/20 p-4 text-center">
-									<p className="text-[10px] uppercase tracking-widest font-bold text-emerald-700/70 dark:text-emerald-400/70 mb-1">
+									<p className="text-[11px] uppercase tracking-widest font-bold text-emerald-700/70 dark:text-emerald-400/70 mb-1">
 										Resposta
 									</p>
 									<p className="text-lg font-bold text-emerald-800 dark:text-emerald-300 text-balance">
@@ -230,7 +230,7 @@ export default function ReviewPage() {
 												)}
 											>
 												<span className="text-sm font-bold">{label}</span>
-												<span className="text-[10px] opacity-70 tabular-nums">
+												<span className="text-[11px] opacity-70 tabular-nums">
 													{previewInterval(current, grade)}
 												</span>
 											</button>
@@ -264,7 +264,7 @@ function StatTile({
 				<span className={cn("text-2xl font-extrabold tabular-nums", tone)}>
 					{value}
 				</span>
-				<span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-muted-foreground">
+				<span className="text-[11px] sm:text-[11px] uppercase font-bold tracking-widest text-muted-foreground">
 					{label}
 				</span>
 			</CardContent>

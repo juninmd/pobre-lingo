@@ -7,7 +7,7 @@ import {
 	FileText,
 	Home,
 	ListChecks,
-	Map,
+	Map as MapIcon,
 	Search,
 	SearchX,
 	TrendingUp,
@@ -48,7 +48,7 @@ const navPages: SearchResult[] = [
 		title: "Jornada de Aprendizado",
 		subtitle: "Trilha de estudo personalizada",
 		href: "/curriculum",
-		icon: Map,
+		icon: MapIcon,
 	},
 	{
 		type: "page",
@@ -391,6 +391,7 @@ function SearchResultItem({
 
 	return (
 		<button
+			type="button"
 			onClick={onClick}
 			className={cn(
 				"w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors",

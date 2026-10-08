@@ -15,7 +15,7 @@ const getIcon = (name: string) => {
 };
 
 export function CurriculumList() {
-	const { getModuleProgress, isModuleUnlocked } = useCurriculumProgress();
+	const { getModuleProgress } = useCurriculumProgress();
 
 	const getStatus = (moduleId: string) => {
 		const progress = getModuleProgress(moduleId);

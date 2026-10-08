@@ -51,6 +51,7 @@ export function TrendWidget({
 			</div>
 			{content && <div className="w-full text-sm mt-2">{content}</div>}
 			<button
+				type="button"
 				onClick={handleAction}
 				disabled={completed}
 				className="mt-auto w-full rounded-md bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 disabled:opacity-50 disabled:pointer-events-none transition-colors"

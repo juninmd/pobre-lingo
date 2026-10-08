@@ -1,1 +1,3 @@
-export function TutorSession() { return null; }
+export function TutorSession() {
+	return null;
+}

@@ -1,5 +1,10 @@
-vi.mock("@/contexts/GamificationContext", () => ({ useGamification: () => ({ addXp: vi.fn() }) }));
-vi.mock("@/contexts/NotificationContext", () => ({ useNotifications: () => ({ notify: vi.fn() }) }));
+vi.mock("@/contexts/GamificationContext", () => ({
+	useGamification: () => ({ addXp: vi.fn() }),
+}));
+vi.mock("@/contexts/NotificationContext", () => ({
+	useNotifications: () => ({ notify: vi.fn() }),
+}));
+
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";

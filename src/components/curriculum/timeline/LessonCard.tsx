@@ -1,12 +1,8 @@
 import * as LucideIcons from "lucide-react";
-import { Check, Lock, Play, Star } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CefrBadge } from "@/components/common/CefrBadge";
-import { Button } from "@/components/ui/button";
 import type { Lesson, Module } from "@/lib/curriculumData";
-import { getCEFRLevel } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
 import { LessonCardContent } from "./LessonCardContent";

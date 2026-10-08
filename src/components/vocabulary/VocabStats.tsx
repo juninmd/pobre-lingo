@@ -1,1 +1,3 @@
-export function VocabStats() { return null; }
+export function VocabStats() {
+	return null;
+}

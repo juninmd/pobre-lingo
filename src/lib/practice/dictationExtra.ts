@@ -1,4 +1,3 @@
-import type { CEFRLevel } from "../curriculumData";
 import type { DictationItem } from "../dictationData";
 
 /** Ditado extra: 15 frases por nível, comprimento crescente, conteúdo do dia a dia e trabalho. */

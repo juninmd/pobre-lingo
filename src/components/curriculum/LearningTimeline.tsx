@@ -1,5 +1,5 @@
-import { BookOpen, Loader2, Sparkles } from "lucide-react";
-import React, { Suspense } from "react";
+import { BookOpen, Sparkles } from "lucide-react";
+import React from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
 import { UnitGroup } from "./timeline/UnitGroup";

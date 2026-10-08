@@ -1,4 +1,4 @@
-import { AlertCircle, Mic, MicOff, Star, Trophy } from "lucide-react";
+import { AlertCircle, Mic, MicOff, Trophy } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

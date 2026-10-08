@@ -257,6 +257,7 @@ export default function ConversationExercise() {
 									</p>
 									{msg.speaker === "mascot" && (
 										<button
+											type="button"
 											onClick={() => tts.speak(msg.text_en)}
 											className="mt-1 p-1 rounded-full hover:bg-primary/20 text-primary transition-colors"
 										>
@@ -326,6 +327,7 @@ export default function ConversationExercise() {
 							<div className="grid gap-3">
 								{currentStep?.options.map((option) => (
 									<button
+										type="button"
 										key={option.id}
 										disabled={typing}
 										onClick={() => handleOptionSelect(option)}

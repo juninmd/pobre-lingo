@@ -26,7 +26,7 @@ export default function HangmanPage() {
 	const lessonId = searchParams.get("lesson");
 	const { completeLesson } = useCurriculumProgress();
 
-	const { addXp, addGem } = useGamification();
+	const { addXp } = useGamification();
 	const { logActivity } = useActivityLog();
 	const { toast } = useToast();
 	const [currentEntry, setCurrentEntry] = useState(WORD_POOL[0]);
@@ -227,6 +227,7 @@ export default function HangmanPage() {
 
 							return (
 								<button
+									type="button"
 									key={letter}
 									disabled={isGuessed || status !== "playing"}
 									onClick={() => handleGuess(letter)}

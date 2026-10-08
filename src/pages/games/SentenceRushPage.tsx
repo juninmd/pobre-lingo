@@ -236,6 +236,7 @@ export default function SentenceRushPage() {
 								)}
 								{orderedWords.map((word) => (
 									<button
+										type="button"
 										key={`ordered-${word.id}`}
 										onClick={() => handleUndoWord(word)}
 										className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-bold text-lg shadow-md hover:bg-primary/90 active:scale-95 transition-all animate-in zoom-in duration-200"
@@ -249,6 +250,7 @@ export default function SentenceRushPage() {
 							<div className="flex flex-wrap gap-3 justify-center">
 								{shuffledWords.map((word) => (
 									<button
+										type="button"
 										key={`shuffled-${word.id}`}
 										onClick={() => handleWordClick(word)}
 										className="bg-card border border-border hover:border-primary/50 text-card-foreground px-4 py-3 rounded-xl font-medium text-lg shadow-sm hover:shadow-md active:scale-95 transition-all"

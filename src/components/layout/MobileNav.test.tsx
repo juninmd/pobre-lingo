@@ -34,7 +34,7 @@ describe("MobileNav", () => {
 	});
 
 	it("applies active state classes for the current path", () => {
-		const { container } = render(
+		render(
 			<MemoryRouter initialEntries={["/review"]}>
 				<MobileNav />
 			</MemoryRouter>,

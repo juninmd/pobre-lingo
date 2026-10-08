@@ -364,6 +364,7 @@ export default function MatchMadnessPage() {
 
 							return (
 								<button
+									type="button"
 									key={card.id}
 									onClick={() => handleCardClick(card.id)}
 									disabled={isMatched}

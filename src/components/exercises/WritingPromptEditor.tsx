@@ -1,1 +1,3 @@
-export function WritingPromptEditor() { return null; }
+export function WritingPromptEditor() {
+	return null;
+}

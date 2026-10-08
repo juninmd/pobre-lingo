@@ -1,1 +1,3 @@
-export function CoreWordCard() { return null; }
+export function CoreWordCard() {
+	return null;
+}

@@ -1,1 +1,3 @@
-export function DictationExercise() { return null; }
+export function DictationExercise() {
+	return null;
+}

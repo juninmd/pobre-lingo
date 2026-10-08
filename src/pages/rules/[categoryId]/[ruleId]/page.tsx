@@ -34,7 +34,6 @@ export default function RulePage() {
 	}>();
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
-	const { isLessonCompleted } = useCurriculumProgress();
 	const { isStudied, toggleStudied } = useStudiedRules();
 	const [showTranslations, setShowTranslations] = useState(true);
 
@@ -392,6 +391,7 @@ export default function RulePage() {
 						<div className="flex items-center gap-2">
 							{rulesInThisCategory.map((r, idx) => (
 								<button
+									type="button"
 									key={r.id}
 									onClick={() => navigate(buildRuleUrl(r.id))}
 									className={cn(

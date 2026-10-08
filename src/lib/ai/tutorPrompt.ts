@@ -1,2 +1,2 @@
 export const vocabTutorprompt = [];
-export const tutorPrompt = '';
+export const tutorPrompt = "";

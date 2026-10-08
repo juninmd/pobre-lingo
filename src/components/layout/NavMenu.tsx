@@ -2,66 +2,35 @@ import {
 	BookA,
 	BookMarked,
 	BookOpen,
-	Bot,
 	Brain,
 	CheckSquare,
-	Coins,
 	FileText,
 	Gamepad2,
 	GraduationCap,
-	Headphones,
-	LibraryBig,
 	ListChecks,
 	Map as MapIcon,
-	Menu,
-	Moon,
 	Search as SearchIcon,
 	SearchX,
 	Settings,
 	Sparkles,
-	Sun,
-	TrendingUp,
 	Trophy,
 	X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import {
-	GlobalSearch,
-	GlobalSearchTrigger,
-} from "@/components/common/GlobalSearch";
-import { BrandMark } from "@/components/layout/BrandMark";
-import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
-import { NotificationCenter } from "@/components/notifications/NotificationCenter";
-import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { LearningStreakDisplay } from "@/components/streaks/LearningStreakDisplay";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import {
-	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
 	SidebarInput,
-	SidebarInset,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-	SidebarProvider,
-	SidebarTrigger,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/toaster";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { cn } from "@/lib/utils";
 
 // Agrupamento de navegação por categorias

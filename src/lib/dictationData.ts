@@ -1,6 +1,4 @@
 import type { CEFRLevel } from "./curriculumData";
-import { dictationExtra } from "./practice/dictationExtra";
-import { writingPromptsExtra } from "./practice/writingPromptsExtra";
 
 export type DictationItem = {
 	id: string;
@@ -92,7 +90,6 @@ export const dictations: DictationItem[] = [
 		sentence: "He had already left when we arrived.",
 		translation: "Ele já tinha saído quando chegamos.",
 	},
-	...dictationExtra,
 ];
 
 export const writingPrompts: WritingPrompt[] = [
@@ -128,7 +125,6 @@ export const writingPrompts: WritingPrompt[] = [
 		minWords: 80,
 		keywords: ["however", "therefore", "although"],
 	},
-	...writingPromptsExtra,
 ];
 
 export function getDictationsByLevel(level: CEFRLevel): DictationItem[] {

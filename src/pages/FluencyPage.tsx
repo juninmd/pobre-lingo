@@ -6,12 +6,10 @@ import { SpeakingExercise } from "@/components/exercises/SpeakingExercise";
 import { Fluency432 } from "@/components/fluency/Fluency432";
 import { ShadowingPanel } from "@/components/fluency/ShadowingPanel";
 import { Button } from "@/components/ui/button";
-import { useStudyTimer } from "@/hooks/useStudyLog";
 import type { CEFRLevel } from "@/lib/curriculumData";
 import { shadowingLines } from "@/lib/fluencyData";
 
 export default function FluencyPage() {
-	useStudyTimer("speaking");
 	const [tab, setTab] = useState<"432" | "shadowing">("432");
 	const [level, setLevel] = useState<CEFRLevel>("A1");
 	const [practicing, setPracticing] = useState(false);

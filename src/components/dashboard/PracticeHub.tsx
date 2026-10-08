@@ -5,9 +5,7 @@ import {
 	Compass,
 	Flag,
 	Gamepad2,
-	Headphones,
 	Library,
-	LibraryBig,
 	type LucideIcon,
 	Mic,
 	PenLine,
@@ -23,18 +21,6 @@ type PracticeLink = {
 };
 
 const PRACTICES: PracticeLink[] = [
-	{
-		to: "/library",
-		title: "Leitor livre",
-		description: "Leia qualquer texto ou artigo, tocando nas palavras",
-		icon: LibraryBig,
-	},
-	{
-		to: "/listening-lab",
-		title: "Laboratório de escuta",
-		description: "Áudio real de nativos e seus vídeos com legenda",
-		icon: Headphones,
-	},
 	{
 		to: "/tutor",
 		title: "Tutor de conversa",

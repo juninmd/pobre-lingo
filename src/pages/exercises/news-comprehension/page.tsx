@@ -7,7 +7,6 @@ import { LessonProgressBar } from "@/components/curriculum/LessonProgressBar";
 import { NewsComprehension } from "@/components/exercises/NewsComprehension";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { newsComprehensionExercises } from "@/lib/exerciseData";
 
 export default function NewsComprehensionPage() {

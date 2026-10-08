@@ -27,6 +27,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { triggerConfetti } from "@/lib/confetti";
 import { curriculumData } from "@/lib/curriculumData";
 import { getWordsByTopic } from "@/lib/dictionaryData";

@@ -3,6 +3,8 @@ import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
 
 interface TrendWidgetProps {
+	id?: string;
+	children?: ReactNode;
 	title: string;
 	description: string;
 	icon: ReactNode;
@@ -18,6 +20,7 @@ export function TrendWidget({
 	xpReward = 10,
 	actionText = "Praticar",
 	content,
+	children,
 }: TrendWidgetProps) {
 	const { addXp } = useGamification();
 	const { notify } = useNotifications();
@@ -49,7 +52,9 @@ export function TrendWidget({
 					</span>
 				</div>
 			</div>
-			{content && <div className="w-full text-sm mt-2">{content}</div>}
+			{(content ?? children) && (
+				<div className="w-full text-sm mt-2">{content ?? children}</div>
+			)}
 			<button
 				type="button"
 				onClick={handleAction}

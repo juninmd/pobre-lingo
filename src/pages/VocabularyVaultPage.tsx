@@ -8,7 +8,6 @@ import { CoreWordCard } from "@/components/vocabulary/CoreWordCard";
 import { VocabStats } from "@/components/vocabulary/VocabStats";
 import { useKnownWords } from "@/hooks/useKnownWords";
 import { useSrs } from "@/hooks/useSrs";
-import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getWordsByLevel, LEVEL_ORDER } from "@/lib/coreVocabulary";
 import type { CEFRLevel } from "@/lib/curriculumData";
 
@@ -17,7 +16,6 @@ const PAGE_SIZE = 60;
 const vocabCardId = (wordId: string) => `core-${wordId}`;
 
 export default function VocabularyVaultPage() {
-	useStudyTimer("study");
 	const [level, setLevel] = useState<CEFRLevel>("A1");
 	const { isKnown, toggleKnown, ids } = useKnownWords();
 	const [query, setQuery] = useState("");

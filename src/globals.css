@@ -3,6 +3,10 @@
 
 @layer base {
 	:root {
+		/* Signature triad */
+		--brand-violet: 258 88% 66%;
+		--brand-aqua: 172 80% 48%;
+		--brand-gold: 42 95% 58%;
 		--background: 0 0% 100%;
 		/* White */
 		--foreground: 220 10% 15%;

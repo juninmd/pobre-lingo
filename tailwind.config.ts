@@ -11,9 +11,10 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				body: ["Inter", "sans-serif"],
-				headline: ["Inter", "sans-serif"],
-				sans: ["Inter", "sans-serif"],
+				body: ["Inter", "system-ui", "sans-serif"],
+				headline: ["Sora", "Inter", "system-ui", "sans-serif"],
+				sans: ["Inter", "system-ui", "sans-serif"],
+				display: ["Sora", "Inter", "system-ui", "sans-serif"],
 				code: ["monospace"],
 			},
 			colors: {
@@ -50,6 +51,11 @@ export default {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
+				brand: {
+					violet: "hsl(var(--brand-violet))",
+					aqua: "hsl(var(--brand-aqua))",
+					gold: "hsl(var(--brand-gold))",
+				},
 				chart: {
 					"1": "hsl(var(--chart-1))",
 					"2": "hsl(var(--chart-2))",

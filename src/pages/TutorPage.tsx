@@ -11,7 +11,7 @@ import { loadProficiencyResult } from "@/lib/proficiency";
 export default function TutorPage() {
 	const [params, setParams] = useSearchParams();
 	const scenario = getScenario(params.get("scenario"));
-	const level = loadProficiencyResult()?.level ?? "A2";
+	const level = loadProficiencyResult()?.level ?? "A1";
 
 	return (
 		<PageContainer className="max-w-3xl mx-auto space-y-6">

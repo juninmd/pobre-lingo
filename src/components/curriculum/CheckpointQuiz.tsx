@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 interface CheckpointQuizProps {
 	level: CEFRLevel;
 	questions: CheckpointQuestion[];
-	onPass: () => void;
+	onPass: () => boolean;
 }
 
 export function CheckpointQuiz({
@@ -24,14 +24,14 @@ export function CheckpointQuiz({
 		(question) => answers[question.id] === question.answerIndex,
 	).length;
 	const finished = answered === questions.length;
-	const passed = correct === questions.length;
+	const passed = questions.length > 0 && correct === questions.length;
 
 	return (
 		<Card className="glass-card">
 			<CardContent className="p-5 space-y-5">
 				<div className="flex items-center justify-between">
 					<h3 className="font-headline text-lg font-bold">
-						Checkpoint {level}
+						Checagem de conteúdo {level}
 					</h3>
 					<span className="text-sm text-muted-foreground">
 						{correct}/{questions.length} corretas
@@ -90,14 +90,27 @@ export function CheckpointQuiz({
 					);
 				})}
 
+				{finished && !passed && (
+					<div className="space-y-2" role="status">
+						<p>
+							Há respostas para revisar. Compare as opções destacadas antes de
+							tentar novamente.
+						</p>
+						<Button variant="outline" onClick={() => setAnswers({})}>
+							Revisar e tentar novamente
+						</Button>
+					</div>
+				)}
 				<div className="flex justify-end">
 					<Button
-						onClick={onPass}
+						onClick={() => onPass()}
 						disabled={!finished || !passed}
 						className="gap-2"
 					>
 						<Check className="h-4 w-4" />
-						{passed ? "Concluir checkpoint" : "Acerte tudo para concluir"}
+						{passed
+							? "Salvar checagem de conteúdo"
+							: "Acerte tudo para concluir"}
 					</Button>
 				</div>
 			</CardContent>

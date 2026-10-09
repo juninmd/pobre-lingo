@@ -1,16 +1,13 @@
 import { useMemo } from "react";
-import {
-	assumedKnownIds,
-	createKnownPredicate,
-} from "@/lib/input/knownPredicate";
+import { createKnownPredicate } from "@/lib/input/knownPredicate";
 import { loadProficiencyResult } from "@/lib/proficiency";
 import { useKnownWords } from "./useKnownWords";
 
-/** Palavras conhecidas (marcadas + presumidas pelo nível) para leitura e escuta. */
+/** Only learner-marked words are treated as known; placement is a study suggestion. */
 export function useWordKnowledge() {
 	const { known, toggleKnown } = useKnownWords();
 	const level = useMemo(() => loadProficiencyResult()?.level ?? null, []);
-	const assumed = useMemo(() => assumedKnownIds(level), [level]);
+	const assumed = useMemo(() => new Set<string>(), []);
 	const isKnown = useMemo(
 		() => createKnownPredicate(known, assumed),
 		[known, assumed],

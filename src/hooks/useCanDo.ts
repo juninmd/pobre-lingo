@@ -1,60 +1,33 @@
-import { useCallback } from "react";
+import { useState } from "react";
+import { CAN_DO_KEY, type CanDoState, readCanDo } from "@/lib/canDo";
 import type { CEFRLevel } from "@/lib/curriculumData";
-import { usePersistentState } from "./usePersistentState";
-
-type CanDoState = {
-	checked: string[];
-	passed: CEFRLevel[];
-};
-
-const EMPTY: CanDoState = { checked: [], passed: [] };
+import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 export function useCanDo() {
-	const [state, setState] = usePersistentState<CanDoState>(
-		"pobrelingo_cando",
-		EMPTY,
+	const [state, setState] = useState(() =>
+		readCanDo(getLocalStorageItem<unknown>(CAN_DO_KEY, null)),
 	);
-
-	const toggleChecked = useCallback(
-		(id: string) => {
-			setState((prev) => ({
-				...prev,
-				checked: prev.checked.includes(id)
-					? prev.checked.filter((item) => item !== id)
-					: [...prev.checked, id],
-			}));
-		},
-		[setState],
-	);
-
-	const markPassed = useCallback(
-		(level: CEFRLevel) => {
-			setState((prev) => ({
-				...prev,
-				passed: prev.passed.includes(level)
-					? prev.passed
-					: [...prev.passed, level],
-			}));
-		},
-		[setState],
-	);
-
-	const isChecked = useCallback(
-		(id: string) => state.checked.includes(id),
-		[state.checked],
-	);
-
-	const isPassed = useCallback(
-		(level: CEFRLevel) => state.passed.includes(level),
-		[state.passed],
-	);
-
+	const commit = (next: CanDoState) => {
+		const valid = readCanDo(next);
+		setLocalStorageItem(CAN_DO_KEY, valid);
+		const stored = readCanDo(getLocalStorageItem<unknown>(CAN_DO_KEY, null));
+		const saved = JSON.stringify(valid) === JSON.stringify(stored);
+		if (saved) setState(stored);
+		return saved;
+	};
 	return {
 		checked: state.checked,
 		passed: state.passed,
-		isChecked,
-		isPassed,
-		toggleChecked,
-		markPassed,
+		isChecked: (id: string) => state.checked.includes(id),
+		isPassed: (level: CEFRLevel) => state.passed.includes(level),
+		toggleChecked: (id: string) =>
+			commit({
+				...state,
+				checked: state.checked.includes(id)
+					? state.checked.filter((value) => value !== id)
+					: [...state.checked, id],
+			}),
+		markPassed: (level: CEFRLevel) =>
+			commit({ ...state, passed: [...new Set([...state.passed, level])] }),
 	};
 }

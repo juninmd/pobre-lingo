@@ -23,11 +23,11 @@ const STEPS = [
 		icon: GraduationCap,
 		iconColor: "text-blue-500",
 		iconBg: "bg-blue-50 dark:bg-blue-950/40",
-		title: "Descubra seu nível",
+		title: "Comece do zero",
 		description:
-			"Faça um teste rápido de 10 minutos para sabermos qual é o seu nível atual de inglês e personalizar sua jornada.",
-		cta: "Fazer o teste",
-		href: "/proficiency",
+			"Não sabe nada de inglês? Comece com olá e seu nome, em uma aula explicada em português. Se já estuda inglês, o teste de nível continua disponível no menu.",
+		cta: "Minha primeira aula",
+		href: "/course/hello",
 	},
 	{
 		icon: BookOpen,

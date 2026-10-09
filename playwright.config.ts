@@ -8,7 +8,7 @@ export default defineConfig({
 	workers: process.env.CI ? 1 : undefined,
 	reporter: "html",
 	use: {
-		baseURL: "http://localhost:5173",
+		baseURL: "http://localhost:5187",
 		trace: "on-first-retry",
 	},
 	projects: [
@@ -22,9 +22,10 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: "npm run dev",
-		url: "http://localhost:5173",
-		reuseExistingServer: !process.env.CI,
+		command:
+			"node node_modules/vite/bin/vite.js build && node node_modules/vite/bin/vite.js preview --port 5187 --strictPort",
+		url: "http://localhost:5187",
+		reuseExistingServer: false,
 		timeout: 120 * 1000,
 	},
 });

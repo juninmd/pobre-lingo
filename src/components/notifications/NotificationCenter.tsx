@@ -81,7 +81,7 @@ export function NotificationCenter() {
 					{unreadCount > 0 && (
 						<span
 							aria-hidden="true"
-							className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-500 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums"
+							className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-600 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums"
 						>
 							{badgeCount}
 						</span>

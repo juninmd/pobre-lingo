@@ -95,7 +95,7 @@ export default function AchievementsPage() {
 					icon={Coins}
 					value={gems}
 					label="PobreCoins"
-					tone="text-yellow-600 dark:text-yellow-400"
+					tone="text-yellow-700 dark:text-yellow-400"
 				/>
 				<StatCard
 					icon={Sparkles}

@@ -280,7 +280,7 @@ export default function RulePage() {
 									>
 										<CardContent className="p-4">
 											<div className="flex items-start gap-3">
-												<span className="flex-shrink-0 w-7 h-7 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 flex items-center justify-center text-sm font-medium">
+												<span className="flex-shrink-0 w-7 h-7 rounded-full bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 flex items-center justify-center text-sm font-medium">
 													{index + 1}
 												</span>
 												<div className="flex-1 min-w-0">

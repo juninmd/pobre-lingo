@@ -52,11 +52,11 @@ export function WeeklyGoalWidget() {
 					<div className="space-y-1">
 						<p className="text-2xl font-black text-teal-900 dark:text-teal-300">
 							{weeklyCount}{" "}
-							<span className="text-sm font-semibold text-teal-600/70 dark:text-teal-400/70">
+							<span className="text-sm font-semibold text-teal-700 dark:text-teal-400">
 								/ {WEEKLY_GOAL}
 							</span>
 						</p>
-						<p className="text-xs font-medium text-teal-700/80 dark:text-teal-400/80">
+						<p className="text-xs font-medium text-teal-800 dark:text-teal-300">
 							Lições concluídas nesta semana
 						</p>
 					</div>
@@ -71,7 +71,7 @@ export function WeeklyGoalWidget() {
 						className="h-2.5 bg-teal-100 dark:bg-teal-950"
 						aria-label="Meta semanal"
 					/>
-					<div className="flex justify-between text-[11px] uppercase font-bold tracking-wider text-teal-600/60 dark:text-teal-400/60">
+					<div className="flex justify-between text-[11px] uppercase font-bold tracking-wider text-teal-800 dark:text-teal-300">
 						<span>Progresso</span>
 						<span>{progressPct}%</span>
 					</div>
@@ -86,9 +86,9 @@ export function WeeklyGoalWidget() {
 								<div
 									className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all ${
 										idx === currentDay
-											? "bg-teal-500 text-white shadow-md ring-2 ring-teal-200 dark:ring-teal-800"
+											? "bg-teal-700 text-white shadow-md ring-2 ring-teal-200 dark:ring-teal-800"
 											: idx < currentDay
-												? "bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400"
+												? "bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-400"
 												: "bg-muted/50 text-muted-foreground"
 									}`}
 								>

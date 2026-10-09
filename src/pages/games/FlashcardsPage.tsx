@@ -162,7 +162,7 @@ export default function FlashcardsPage() {
 											{currentCard.word}
 										</h2>
 										{currentCard.phonetic_transcription_en && (
-											<span className="text-muted-foreground/60 font-mono text-lg">
+											<span className="text-muted-foreground font-mono text-lg">
 												{currentCard.phonetic_transcription_en}
 											</span>
 										)}
@@ -217,7 +217,7 @@ export default function FlashcardsPage() {
 						</Button>
 						<Button
 							size="lg"
-							className="h-16 text-lg bg-green-700 hover:bg-green-800"
+							className="h-16 text-lg bg-green-700 hover:bg-green-800 text-white"
 							onClick={(e: React.MouseEvent) => {
 								e.stopPropagation();
 								handleResponse(true);

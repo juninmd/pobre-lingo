@@ -157,7 +157,7 @@ export function DailyQuestsWidget() {
 									{quest.title}
 								</span>
 							</div>
-							<div className="flex items-center gap-1 text-xs font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full border border-yellow-200 dark:border-yellow-800">
+							<div className="flex items-center gap-1 text-xs font-bold text-yellow-800 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full border border-yellow-200 dark:border-yellow-800">
 								<Zap className="w-3 h-3 fill-current" />
 								{quest.reward}
 							</div>

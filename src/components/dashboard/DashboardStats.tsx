@@ -26,7 +26,7 @@ export function DashboardStats() {
 							<span className="text-2xl sm:text-3xl md:text-4xl font-extrabold block text-orange-600 dark:text-orange-400 bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 bg-clip-text [.bg-clip-text_&]:text-transparent drop-shadow-sm">
 								{overallProgress.streak}
 							</span>
-							<span className="text-[0.625rem] sm:text-xs text-orange-800/70 dark:text-orange-200/70 uppercase font-black tracking-widest mt-0.5 block">
+							<span className="text-[0.625rem] sm:text-xs text-orange-800/90 dark:text-orange-200/90 uppercase font-black tracking-widest mt-0.5 block">
 								Dias Seguidos
 							</span>
 						</div>
@@ -45,7 +45,7 @@ export function DashboardStats() {
 							<span className="text-2xl sm:text-3xl md:text-4xl font-extrabold block text-yellow-600 dark:text-yellow-400 bg-gradient-to-br from-yellow-600 to-amber-600 dark:from-yellow-400 dark:to-amber-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums drop-shadow-sm">
 								{gems}
 							</span>
-							<span className="text-[0.625rem] sm:text-xs text-yellow-800/70 dark:text-yellow-200/70 uppercase font-black tracking-widest mt-0.5 block">
+							<span className="text-[0.625rem] sm:text-xs text-yellow-800/90 dark:text-yellow-200/90 uppercase font-black tracking-widest mt-0.5 block">
 								PobreCoins
 							</span>
 						</div>
@@ -64,7 +64,7 @@ export function DashboardStats() {
 							<span className="text-2xl sm:text-3xl md:text-4xl font-extrabold block text-blue-600 dark:text-blue-400 bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums drop-shadow-sm">
 								{overallProgress.userLevel}
 							</span>
-							<span className="text-[0.625rem] sm:text-xs text-blue-800/70 dark:text-blue-200/70 uppercase font-black tracking-widest mt-0.5 block">
+							<span className="text-[0.625rem] sm:text-xs text-blue-800/90 dark:text-blue-200/90 uppercase font-black tracking-widest mt-0.5 block">
 								Nível
 							</span>
 						</div>
@@ -83,7 +83,7 @@ export function DashboardStats() {
 							<span className="text-2xl sm:text-3xl md:text-4xl font-extrabold block text-green-600 dark:text-green-400 bg-gradient-to-br from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text [.bg-clip-text_&]:text-transparent tabular-nums drop-shadow-sm">
 								{overallProgress.overallPercentage}%
 							</span>
-							<span className="text-[0.625rem] sm:text-xs text-green-800/70 dark:text-green-200/70 uppercase font-black tracking-widest mt-0.5 block">
+							<span className="text-[0.625rem] sm:text-xs text-green-800/90 dark:text-green-200/90 uppercase font-black tracking-widest mt-0.5 block">
 								Completo
 							</span>
 						</div>

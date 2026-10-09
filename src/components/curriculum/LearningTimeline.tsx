@@ -68,7 +68,7 @@ export function LearningTimeline() {
 			))}
 
 			{/* End of Journey */}
-			<div className="text-center py-12 opacity-50">
+			<div className="text-center py-12 text-muted-foreground">
 				<Sparkles className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
 				<p className="text-sm font-medium">To be continued...</p>
 			</div>

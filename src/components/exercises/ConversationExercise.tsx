@@ -58,6 +58,7 @@ export default function ConversationExercise() {
 	const [searchParams] = useSearchParams();
 	const moduleId = searchParams.get("module") || "";
 	const lessonId = searchParams.get("lesson") || "";
+	const scenarioParam = searchParams.get("scenario") || "";
 	const { completeLesson } = useCurriculumProgress();
 
 	const [history, setHistory] = useState<Message[]>([]);
@@ -66,9 +67,11 @@ export default function ConversationExercise() {
 	const [typing, setTyping] = useState(false);
 
 	// Determine scenario
+	// Track steps link here as ?scenario=<id>; hasOwn keeps "constructor" and friends out.
 	const scenarioKey = useMemo(() => {
+		if (Object.hasOwn(SCENARIOS, scenarioParam)) return scenarioParam;
 		return SCENARIO_MAP[lessonId] || SCENARIO_MAP[moduleId] || "default";
-	}, [lessonId, moduleId]);
+	}, [lessonId, moduleId, scenarioParam]);
 
 	const steps = useMemo(() => {
 		return SCENARIOS[scenarioKey] || SCENARIOS.default;

@@ -63,9 +63,9 @@ export default function ReadingPage() {
 						<CardContent className="p-5 flex flex-col gap-3">
 							<div className="flex items-start justify-between gap-3">
 								<div className="min-w-0">
-									<h3 className="font-headline text-lg font-bold truncate">
+									<h2 className="font-headline text-lg font-bold truncate">
 										{reader.title}
-									</h3>
+									</h2>
 									<p className="text-sm text-muted-foreground">
 										{reader.titlePt}
 									</p>

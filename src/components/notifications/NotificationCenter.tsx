@@ -57,6 +57,8 @@ export function NotificationCenter() {
 	} = useNotifications();
 	const [open, setOpen] = useState(false);
 
+	const badgeCount = unreadCount > 99 ? "99+" : String(unreadCount);
+
 	const showPermissionPrompt =
 		permission === "default" ||
 		(permission === "granted" && !prefs.browserEnabled);
@@ -67,17 +69,21 @@ export function NotificationCenter() {
 				<Button
 					variant="ghost"
 					size="icon"
+					// Same figure as the badge, no parentheses: both are needed for the visible text to match the name (WCAG 2.5.3).
 					aria-label={
 						unreadCount > 0
-							? `Notificações (${unreadCount} não lidas)`
+							? `Notificações, ${badgeCount} ${unreadCount === 1 ? "não lida" : "não lidas"}`
 							: "Notificações"
 					}
 					className="relative h-11 w-11 md:h-9 md:w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95"
 				>
 					<Bell className={cn("h-5 w-5", unreadCount > 0 && "text-primary")} />
 					{unreadCount > 0 && (
-						<span className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-500 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums">
-							{unreadCount > 9 ? "9+" : unreadCount}
+						<span
+							aria-hidden="true"
+							className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-600 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums"
+						>
+							{badgeCount}
 						</span>
 					)}
 				</Button>
@@ -236,7 +242,7 @@ export function NotificationCenter() {
 													e.stopPropagation();
 													remove(item.id);
 												}}
-												className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity text-muted-foreground/50 hover:text-foreground p-1"
+												className="absolute top-2 right-2 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 focus:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-1"
 											>
 												<X className="h-3 w-3" />
 											</button>

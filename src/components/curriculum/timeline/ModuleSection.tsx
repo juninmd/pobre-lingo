@@ -75,6 +75,7 @@ export function ModuleSection({
 							lesson={lesson}
 							status={status}
 							isFirstActive={isFirstActive}
+							autoScroll={completedLessonsSet.size > 0}
 						/>
 					);
 				})}

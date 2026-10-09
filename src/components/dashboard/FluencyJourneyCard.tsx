@@ -38,7 +38,7 @@ export function FluencyJourneyCard() {
 		return (
 			<Card className="glass-card">
 				<CardContent className="p-4 sm:p-5 space-y-3">
-					<div className="flex items-center gap-2 text-brand-violet">
+					<div className="flex items-center gap-2 text-violet-700 dark:text-violet-300">
 						<Compass className="h-4 w-4" />
 						<p className="font-display font-bold text-sm">Rumo à fluência</p>
 					</div>
@@ -60,7 +60,7 @@ export function FluencyJourneyCard() {
 		<Card className="glass-card">
 			<CardContent className="p-4 sm:p-5 space-y-3">
 				<div className="flex items-center justify-between gap-2">
-					<div className="flex items-center gap-2 text-brand-violet">
+					<div className="flex items-center gap-2 text-violet-700 dark:text-violet-300">
 						<Compass className="h-4 w-4" />
 						<p className="font-display font-bold text-sm">Rumo à fluência</p>
 					</div>

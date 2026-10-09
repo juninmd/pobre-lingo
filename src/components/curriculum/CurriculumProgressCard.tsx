@@ -197,7 +197,11 @@ export function CurriculumProgressCard() {
 							{overallProgress.totalLessons} lições
 						</span>
 					</div>
-					<Progress value={overallProgress.overallPercentage} className="h-3" />
+					<Progress
+						value={overallProgress.overallPercentage}
+						className="h-3"
+						aria-label="Progresso geral do curso"
+					/>
 				</div>
 
 				{/* Progresso por Nível */}

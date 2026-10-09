@@ -51,8 +51,9 @@ export default function Layout() {
 					<div
 						ref={scrollContainer}
 						id={MAIN_CONTENT_ID}
-						tabIndex={-1}
-						className="flex-1 overflow-y-auto bg-muted/5 dark:bg-background smooth-scroll min-h-0 focus:outline-none"
+						// biome-ignore lint/a11y/noNoninteractiveTabindex: a scroller must take focus so keyboard users can scroll pages with no links (Chrome skips it with tabindex=-1)
+						tabIndex={0}
+						className="flex-1 overflow-y-auto bg-muted/5 dark:bg-background smooth-scroll min-h-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
 					>
 						<div className="container mx-auto px-3 pt-4 pb-32 sm:pb-28 lg:pb-8 sm:px-6 sm:py-6 lg:px-8 max-w-7xl animate-in fade-in duration-500">
 							<Outlet />

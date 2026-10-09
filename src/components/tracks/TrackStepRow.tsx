@@ -38,10 +38,10 @@ export function TrackStepRow({
 			<Link
 				to={step.href}
 				className="min-w-0 flex-1 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
-				aria-label={`${step.title}${done ? " (concluído)" : ""}`}
 			>
 				<p className="truncate text-sm font-medium text-foreground">
 					{step.title}
+					{done && <span className="sr-only"> (concluído)</span>}
 				</p>
 				<p className="text-xs text-muted-foreground">{step.minutes} min</p>
 			</Link>

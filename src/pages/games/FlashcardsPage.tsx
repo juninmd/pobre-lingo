@@ -158,11 +158,11 @@ export default function FlashcardsPage() {
 										<span className="text-sm uppercase tracking-widest text-muted-foreground mb-4">
 											Inglês
 										</span>
-										<h3 className="text-4xl md:text-5xl font-black text-center mb-4">
+										<h2 className="text-4xl md:text-5xl font-black text-center mb-4">
 											{currentCard.word}
-										</h3>
+										</h2>
 										{currentCard.phonetic_transcription_en && (
-											<span className="text-muted-foreground/60 font-mono text-lg">
+											<span className="text-muted-foreground font-mono text-lg">
 												{currentCard.phonetic_transcription_en}
 											</span>
 										)}
@@ -184,9 +184,9 @@ export default function FlashcardsPage() {
 										<span className="text-sm uppercase tracking-widest text-primary mb-4">
 											Português
 										</span>
-										<h3 className="text-4xl md:text-5xl font-black text-center text-primary mb-4">
+										<h2 className="text-4xl md:text-5xl font-black text-center text-primary mb-4">
 											{currentCard.translation_pt}
-										</h3>
+										</h2>
 										<p className="text-lg text-muted-foreground text-center mb-6">
 											{currentCard.meaning_en}
 										</p>
@@ -217,7 +217,7 @@ export default function FlashcardsPage() {
 						</Button>
 						<Button
 							size="lg"
-							className="h-16 text-lg bg-green-600 hover:bg-green-700"
+							className="h-16 text-lg bg-green-700 hover:bg-green-800 text-white"
 							onClick={(e: React.MouseEvent) => {
 								e.stopPropagation();
 								handleResponse(true);

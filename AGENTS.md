@@ -31,6 +31,12 @@
 
 ## 📅 Session Logs
 
+### [2026-10-09] Spark-Frontend / Bolt-Automation: UI audit, a11y fixes and dependency refresh
+- **Action:** Audited every route (desktop + mobile, light/dark/pobre-lingo) with axe-core plus an overflow and console check. Fixed: sidebar items painted `bg-primary` (`SidebarMenuButton` must stay a plain element, never wrap `Button`), WCAG AA contrast tokens, `Progress` never forwarding `value`, unnamed icon buttons, mobile horizontal scroll, clipped next-lesson CTA, word search (blank cells, no touch selection), `?scenario=` ignored by the conversation page.
+- **Action:** Updated every dependency to latest, majors included (TypeScript 7, vite-plugin-pwa 2, jest-dom 7, jsdom 30, @types/node 26, Biome 2.5). Tests load matchers via `@testing-library/jest-dom/vitest` (the bare import breaks Vitest 5 types).
+- **Note:** Do not use `[data-theme=pobre-lingo]:` as a Tailwind variant: v4 compiles it to an empty `:is()`, so those classes do nothing.
+- **Note:** e2e specs already failing before this session (stale after the Journey Book redesign): `virtual_immersion`, `study_flow` "jornada mostra a trilha", `benchmark_features` "painel", and the mobile "Atalhos" bottom-bar checks in `journey` / `learning_timeline`.
+
 ### [2026-10-08] Jules-Architect: Validation of Interactive Journey Book
 - **Action:** Audited codebase for requested UI/UX refactoring (Interactive Journey Book).
 - **Findings:** The requested features (`LearningTimeline`, MobileNav visibility logic, removed START popups, gamified header, "Onde parei" bookmark, and associated Playwright tests) are already fully implemented and verified as passing.

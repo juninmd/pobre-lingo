@@ -209,9 +209,10 @@ export function SpeakingExercise({
 							onClick={playAudio}
 							variant="secondary"
 							size="lg"
+							aria-label="Ouvir a frase"
 							className="rounded-full w-16 h-16 p-0"
 						>
-							<Volume2 className="h-8 w-8" />
+							<Volume2 className="h-8 w-8" aria-hidden="true" />
 						</Button>
 
 						<Button
@@ -219,9 +220,10 @@ export function SpeakingExercise({
 							disabled={isListening || feedback === "correct"}
 							variant={isListening ? "destructive" : "default"}
 							size="lg"
+							aria-label={isListening ? "Ouvindo…" : "Falar no microfone"}
 							className={`rounded-full w-24 h-24 p-0 shadow-lg transition-all ${isListening ? "animate-pulse" : ""}`}
 						>
-							<Mic className="h-10 w-10" />
+							<Mic className="h-10 w-10" aria-hidden="true" />
 						</Button>
 					</div>
 

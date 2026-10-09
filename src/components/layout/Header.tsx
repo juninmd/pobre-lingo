@@ -65,6 +65,8 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 					className="h-6 hidden md:block bg-border/60"
 				/>
 
+				<h1 className="sr-only sm:hidden">{getCurrentPageTitle()}</h1>
+
 				<div className="hidden sm:flex items-center gap-2 min-w-0">
 					<div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 						<GraduationCap className="h-4 w-4 text-primary" />

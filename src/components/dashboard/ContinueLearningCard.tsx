@@ -64,13 +64,13 @@ export function ContinueLearningCard() {
 	const ModuleIcon = getIcon(module.icon, BookOpen);
 
 	return (
-		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] active:scale-[0.98]">
+		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group @container hover:scale-[1.02] active:scale-[0.98]">
 			{/* Shimmer effect */}
 			<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
 
 			<CardContent className="p-4 sm:p-5 md:p-6 relative z-10">
-				<div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-					<div className="flex items-center gap-4 flex-1 w-full">
+				<div className="flex flex-col @2xl:flex-row items-start @2xl:items-center gap-4 @2xl:gap-6">
+					<div className="flex items-center gap-4 flex-1 w-full min-w-0">
 						{/* Module Icon */}
 						<div
 							className={cn(
@@ -84,7 +84,7 @@ export function ContinueLearningCard() {
 						{/* Content */}
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
-								<span className="px-2 py-0.5 rounded text-[11px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
+								<span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded text-[11px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
 									A SEGUIR
 								</span>
 								<p className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
@@ -99,7 +99,7 @@ export function ContinueLearningCard() {
 									<Clock className="w-3.5 h-3.5" />
 									Apenas {lesson.estimatedMinutes} min
 								</span>
-								<span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 shadow-sm">
+								<span className="flex items-center gap-1.5 text-amber-800 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 shadow-sm">
 									<Star className="w-3.5 h-3.5 fill-current" />+
 									{lesson.xpReward} XP
 								</span>
@@ -112,12 +112,9 @@ export function ContinueLearningCard() {
 						asChild
 						variant="gamified"
 						size="lg"
-						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn h-12 sm:h-14 px-6 relative overflow-hidden"
+						className="w-full @2xl:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn h-12 sm:h-14 px-6 relative overflow-hidden"
 					>
-						<Link
-							to={link}
-							aria-label={`Continuar aprendendo: ${lesson.title_pt}`}
-						>
+						<Link to={link} aria-label={`Começar agora: ${lesson.title_pt}`}>
 							<div className="absolute inset-0 bg-white/20 dark:bg-white/10 w-full h-full -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite] pointer-events-none" />
 							<Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
 							<span className="text-sm sm:text-base">Começar Agora</span>

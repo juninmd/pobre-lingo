@@ -129,7 +129,11 @@ export function DailyQuestsWidget() {
 							{activityCount} / {DAILY_GOAL} atividades
 						</span>
 					</div>
-					<Progress value={dailyPct} className="h-2.5" />
+					<Progress
+						value={dailyPct}
+						className="h-2.5"
+						aria-label="Meta diária de atividades"
+					/>
 					{goalReached && (
 						<p className="text-xs text-green-600 dark:text-green-400 font-medium text-center">
 							🎉 Meta alcançada! Incrível!
@@ -153,7 +157,7 @@ export function DailyQuestsWidget() {
 									{quest.title}
 								</span>
 							</div>
-							<div className="flex items-center gap-1 text-xs font-bold text-yellow-600 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full border border-yellow-200 dark:border-yellow-800">
+							<div className="flex items-center gap-1 text-xs font-bold text-yellow-800 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400 px-2 py-0.5 rounded-full border border-yellow-200 dark:border-yellow-800">
 								<Zap className="w-3 h-3 fill-current" />
 								{quest.reward}
 							</div>
@@ -162,6 +166,7 @@ export function DailyQuestsWidget() {
 							<Progress
 								value={Math.min((quest.progress / quest.total) * 100, 100)}
 								className="h-2.5"
+								aria-label={`Progresso da missão: ${quest.title}`}
 							/>
 							<div className="flex justify-between mt-1 text-[11px] text-muted-foreground uppercase font-bold tracking-wider">
 								<span>

@@ -31,7 +31,7 @@ export function AchievementsList() {
 									"relative flex items-center p-4 rounded-xl border transition-all duration-300",
 									isUnlocked
 										? "bg-gradient-to-br from-yellow-50 to-white dark:from-yellow-900/10 dark:to-background border-yellow-200 dark:border-yellow-900/30 shadow-sm"
-										: "bg-muted/40 border-transparent opacity-70 grayscale",
+										: "bg-muted/40 border-transparent grayscale",
 								)}
 							>
 								<div
@@ -50,14 +50,17 @@ export function AchievementsList() {
 								</div>
 
 								<div className="flex-1 min-w-0">
-									<h4
+									<h2
 										className={cn(
 											"font-bold text-sm truncate",
 											isUnlocked ? "text-foreground" : "text-muted-foreground",
 										)}
 									>
 										{achievement.title}
-									</h4>
+										{!isUnlocked && (
+											<span className="sr-only"> (bloqueada)</span>
+										)}
+									</h2>
 									<p className="text-xs text-muted-foreground line-clamp-2">
 										{achievement.description}
 									</p>

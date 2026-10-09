@@ -58,6 +58,7 @@ export default function ConversationExercise() {
 	const [searchParams] = useSearchParams();
 	const moduleId = searchParams.get("module") || "";
 	const lessonId = searchParams.get("lesson") || "";
+	const scenarioParam = searchParams.get("scenario") || "";
 	const { completeLesson } = useCurriculumProgress();
 
 	const [history, setHistory] = useState<Message[]>([]);
@@ -66,9 +67,11 @@ export default function ConversationExercise() {
 	const [typing, setTyping] = useState(false);
 
 	// Determine scenario
+	// Track steps link here as ?scenario=<id>; hasOwn keeps "constructor" and friends out.
 	const scenarioKey = useMemo(() => {
+		if (Object.hasOwn(SCENARIOS, scenarioParam)) return scenarioParam;
 		return SCENARIO_MAP[lessonId] || SCENARIO_MAP[moduleId] || "default";
-	}, [lessonId, moduleId]);
+	}, [lessonId, moduleId, scenarioParam]);
 
 	const steps = useMemo(() => {
 		return SCENARIOS[scenarioKey] || SCENARIOS.default;
@@ -190,9 +193,10 @@ export default function ConversationExercise() {
 						variant="ghost"
 						size="icon"
 						onClick={() => navigate(-1)}
+						aria-label="Voltar"
 						className="hover:bg-primary/10 hover:text-primary transition-colors"
 					>
-						<ArrowLeft className="w-6 h-6" />
+						<ArrowLeft className="w-6 h-6" aria-hidden="true" />
 					</Button>
 					<div className="flex flex-col items-center">
 						<h1 className="text-xl font-bold tracking-tight text-gold">
@@ -264,9 +268,10 @@ export default function ConversationExercise() {
 										<button
 											type="button"
 											onClick={() => tts.speak(msg.text_en)}
+											aria-label="Ouvir a mensagem"
 											className="mt-1 p-1 rounded-full hover:bg-primary/20 text-primary transition-colors"
 										>
-											<Volume2 className="w-5 h-5" />
+											<Volume2 className="w-5 h-5" aria-hidden="true" />
 										</button>
 									)}
 								</div>
@@ -310,9 +315,9 @@ export default function ConversationExercise() {
 					{!isCompleted ? (
 						<div className="space-y-4">
 							<div className="flex items-center justify-between mb-2">
-								<h3 className="text-sm font-bold uppercase tracking-wider text-primary/70">
+								<h2 className="text-sm font-bold uppercase tracking-wider text-primary">
 									Escolha sua resposta
-								</h3>
+								</h2>
 								<div className="flex gap-1">
 									{steps.map((_, i) => (
 										<div

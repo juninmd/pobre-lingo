@@ -11,6 +11,21 @@ interface LessonCardProps {
 	lesson: Lesson;
 	status: "locked" | "active" | "completed";
 	isFirstActive: boolean;
+	/** Jump to this card on mount: only for learners who have a place to return to. */
+	autoScroll?: boolean;
+}
+
+/** Already on screen: scrolling would only push the page title under the header. */
+function isFullyVisible(el: HTMLElement) {
+	let parent = el.parentElement;
+	while (parent && !/(auto|scroll)/.test(getComputedStyle(parent).overflowY)) {
+		parent = parent.parentElement;
+	}
+	const box = el.getBoundingClientRect();
+	const view = parent?.getBoundingClientRect();
+	const top = view?.top ?? 0;
+	const bottom = view?.bottom ?? window.innerHeight;
+	return box.top >= top && box.bottom <= bottom;
 }
 
 export function LessonCard({
@@ -18,22 +33,28 @@ export function LessonCard({
 	lesson,
 	status,
 	isFirstActive,
+	autoScroll = false,
 }: LessonCardProps) {
 	const link = getLessonLink(module, lesson);
 	const cardRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (isFirstActive && cardRef.current) {
+		if (isFirstActive && autoScroll && cardRef.current) {
 			const timer = setTimeout(() => {
-				cardRef.current?.scrollIntoView({
-					behavior: "smooth",
+				const card = cardRef.current;
+				if (!card || isFullyVisible(card)) return;
+				const reduceMotion = window.matchMedia(
+					"(prefers-reduced-motion: reduce)",
+				).matches;
+				card.scrollIntoView({
+					behavior: reduceMotion ? "auto" : "smooth",
 					block: "center",
 					inline: "nearest",
 				});
 			}, 500);
 			return () => clearTimeout(timer);
 		}
-	}, [isFirstActive]);
+	}, [isFirstActive, autoScroll]);
 
 	const content = (
 		<LessonCardContent module={module} lesson={lesson} status={status} />
@@ -42,7 +63,7 @@ export function LessonCard({
 	const wrapperClass = cn(
 		"flex items-center gap-4 p-5 rounded-xl border transition-all duration-300 bg-card/60 backdrop-blur-xl",
 		status === "locked" &&
-			"opacity-60 grayscale cursor-not-allowed border-dashed bg-muted/20",
+			"grayscale cursor-not-allowed border-dashed bg-muted/20",
 		status === "active" &&
 			"border-primary/40 shadow-xl shadow-primary/10 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent scale-[1.02] ring-2 ring-primary/30 hover:scale-[1.03] backdrop-blur-2xl",
 		status === "completed" &&

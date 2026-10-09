@@ -131,7 +131,7 @@ export default function HangmanPage() {
 						</Badge>
 						<Badge
 							variant="outline"
-							className="text-lg px-3 py-1 text-red-500 bg-white dark:bg-slate-900"
+							className="text-lg px-3 py-1 text-red-600 dark:text-red-400 bg-white dark:bg-slate-900"
 						>
 							<Heart className="w-4 h-4 mr-1 fill-current" /> {lives}
 						</Badge>

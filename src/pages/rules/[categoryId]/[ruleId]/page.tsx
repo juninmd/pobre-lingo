@@ -142,7 +142,11 @@ export default function RulePage() {
 								{currentRuleIndex + 1}/{totalRules}
 							</span>
 						</div>
-						<Progress value={progressPercentage} className="h-2" />
+						<Progress
+							value={progressPercentage}
+							className="h-2"
+							aria-label={`Regra ${currentRuleIndex + 1} de ${totalRules}`}
+						/>
 					</div>
 
 					<div className="flex items-center gap-2">
@@ -159,12 +163,12 @@ export default function RulePage() {
 							{isStudied(ruleId!) ? (
 								<>
 									<CheckCircle2 className="h-4 w-4" />
-									<span className="hidden sm:inline">Estudado</span>
+									<span className="sr-only sm:not-sr-only">Estudado</span>
 								</>
 							) : (
 								<>
 									<Circle className="h-4 w-4" />
-									<span className="hidden sm:inline">Marcar</span>
+									<span className="sr-only sm:not-sr-only">Marcar</span>
 								</>
 							)}
 						</Button>
@@ -176,7 +180,7 @@ export default function RulePage() {
 							className="flex items-center gap-2"
 						>
 							<Languages className="h-4 w-4" />
-							<span className="hidden sm:inline">
+							<span className="sr-only sm:not-sr-only">
 								{showTranslations ? "Ocultar" : "Mostrar"}
 							</span>
 						</Button>
@@ -276,7 +280,7 @@ export default function RulePage() {
 									>
 										<CardContent className="p-4">
 											<div className="flex items-start gap-3">
-												<span className="flex-shrink-0 w-7 h-7 rounded-full bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 flex items-center justify-center text-sm font-medium">
+												<span className="flex-shrink-0 w-7 h-7 rounded-full bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 flex items-center justify-center text-sm font-medium">
 													{index + 1}
 												</span>
 												<div className="flex-1 min-w-0">
@@ -287,10 +291,14 @@ export default function RulePage() {
 														<Button
 															variant="ghost"
 															size="icon"
-															className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity"
+															aria-label="Ouvir o exemplo em inglês"
+															className="h-7 w-7 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
 															onClick={() => speak(example.sentence_en)}
 														>
-															<Volume2 className="h-4 w-4 text-primary" />
+															<Volume2
+																className="h-4 w-4 text-primary"
+																aria-hidden="true"
+															/>
 														</Button>
 													</div>
 													{showTranslations && example.translation_pt && (
@@ -301,10 +309,14 @@ export default function RulePage() {
 															<Button
 																variant="ghost"
 																size="icon"
-																className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+																aria-label="Ouvir a tradução em português"
+																className="h-6 w-6 pointer-fine:opacity-0 pointer-fine:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
 																onClick={() => speakPt(example.translation_pt!)}
 															>
-																<Volume2 className="h-3 w-3 text-muted-foreground" />
+																<Volume2
+																	className="h-3 w-3 text-muted-foreground"
+																	aria-hidden="true"
+																/>
 															</Button>
 														</div>
 													)}
@@ -382,7 +394,7 @@ export default function RulePage() {
 								className="flex items-center gap-2"
 							>
 								<ChevronLeft className="h-4 w-4" />
-								<span className="hidden sm:inline">Anterior</span>
+								<span className="sr-only sm:not-sr-only">Anterior</span>
 							</Button>
 						) : (
 							<div />
@@ -411,7 +423,7 @@ export default function RulePage() {
 								variant="default"
 								className="flex items-center gap-2"
 							>
-								<span className="hidden sm:inline">Próxima</span>
+								<span className="sr-only sm:not-sr-only">Próxima</span>
 								<ChevronRight className="h-4 w-4" />
 							</Button>
 						) : (
@@ -421,7 +433,7 @@ export default function RulePage() {
 								className="flex items-center gap-2"
 							>
 								<CheckCircle2 className="h-4 w-4" />
-								<span className="hidden sm:inline">Concluir</span>
+								<span className="sr-only sm:not-sr-only">Concluir</span>
 							</Button>
 						)}
 					</div>

@@ -220,6 +220,7 @@ export function NextLessonCard() {
 					<Progress
 						value={moduleProgress.completionPercentage}
 						className="h-2"
+						aria-label="Progresso do módulo"
 					/>
 				</div>
 

@@ -30,11 +30,11 @@ export function LearningStreakDisplay({
 				<div className="flex-1 min-w-0">
 					<div className="flex items-baseline gap-1.5">
 						<span className="text-lg font-bold">{streak}</span>
-						<span className="text-xs opacity-70">
+						<span className="text-xs opacity-80">
 							{streak === 1 ? "dia" : "dias"}
 						</span>
 					</div>
-					<p className="text-[11px] opacity-60 truncate">
+					<p className="text-[11px] opacity-80 truncate">
 						{streak > 0 ? "Continue assim!" : "Comece hoje!"}
 					</p>
 				</div>

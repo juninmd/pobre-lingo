@@ -156,7 +156,7 @@ export default function ArcadePage() {
 								<CardTitle className="flex items-center gap-2 text-lg sm:text-xl pr-12">
 									{game.title}
 								</CardTitle>
-								<CardDescription className="line-clamp-2 text-sm min-h-[40px] sm:min-h-[48px]">
+								<CardDescription className="line-clamp-2 text-sm min-h-10">
 									{game.description}
 								</CardDescription>
 							</CardHeader>
@@ -172,7 +172,7 @@ export default function ArcadePage() {
 									</div>
 									<Badge
 										variant="outline"
-										className="text-yellow-600 dark:text-yellow-500 border-yellow-200 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/30 text-xs font-semibold"
+										className="text-yellow-800 dark:text-yellow-500 border-yellow-200 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/30 text-xs font-semibold"
 									>
 										+{game.xp}
 									</Badge>

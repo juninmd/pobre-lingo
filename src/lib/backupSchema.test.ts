@@ -60,13 +60,12 @@ describe("curriculum progress shape", () => {
 });
 
 describe.each(["pobrelingo_total_xp", "pobrelingo_user_level"])("%s", (key) => {
-	it.each([
-		"0",
-		"250",
-		"3",
-	])("accepts %s as written by setLocalStorageItem", (raw) => {
-		expect(hasValidShape(key, raw)).toBe(true);
-	});
+	it.each(["0", "250", "3"])(
+		"accepts %s as written by setLocalStorageItem",
+		(raw) => {
+			expect(hasValidShape(key, raw)).toBe(true);
+		},
+	);
 
 	it.each([
 		["a negative number", "-1"],

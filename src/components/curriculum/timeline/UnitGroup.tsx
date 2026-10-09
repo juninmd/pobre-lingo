@@ -31,7 +31,7 @@ export function UnitGroup({
 			{/* Unit Sticky Header */}
 			<div
 				className={cn(
-					"sticky top-0 z-20 py-4 px-4 -mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
+					"sticky top-0 z-20 py-4 px-3 -mx-3 sm:px-4 sm:-mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
 					isActiveUnit
 						? "bg-card/95 border-primary/30 shadow-md shadow-primary/5"
 						: "bg-muted/95 border-border/40 grayscale",
@@ -44,7 +44,7 @@ export function UnitGroup({
 								"flex items-center justify-center w-8 h-8 rounded-lg font-bold text-sm",
 								isActiveUnit
 									? "bg-primary text-primary-foreground"
-									: "bg-muted-foreground/20 text-muted-foreground",
+									: "bg-background text-muted-foreground border border-border",
 							)}
 						>
 							{unit.order}
@@ -60,9 +60,9 @@ export function UnitGroup({
 						</div>
 					</div>
 					{unit.difficulty === "avancado" && (
-						<div className="flex items-center gap-1.5 px-2 py-1 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 rounded-md border border-yellow-500/20 text-xs font-bold">
+						<div className="flex items-center gap-1.5 px-2 py-1 bg-yellow-500/10 text-yellow-800 dark:text-yellow-400 rounded-md border border-yellow-500/20 text-xs font-bold">
 							<Trophy className="w-3 h-3" />
-							<span className="hidden sm:inline">Expert</span>
+							<span className="sr-only sm:not-sr-only">Expert</span>
 						</div>
 					)}
 					{isCompletedUnit && (

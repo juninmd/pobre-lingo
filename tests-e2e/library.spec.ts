@@ -59,7 +59,9 @@ test("colar texto, ler, marcar palavra e concluir a leitura", async ({
 }) => {
 	await page.goto("/library");
 	await expect(
-		page.getByRole("heading", { name: "Leitor livre" }),
+		page
+			.locator("#main-content")
+			.getByRole("heading", { name: "Leitor livre" }),
 	).toBeVisible();
 
 	await page

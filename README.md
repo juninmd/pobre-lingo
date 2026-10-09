@@ -10,13 +10,14 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 
 Versions as declared in `package.json`:
 
-- React `^19.2.7`, react-dom `^19.2.7`
+- React `^19.3.0`, react-dom `^19.3.0`
 - react-router-dom `^7.18.4`
-- Vite `^8.0.16`, vite-plugin-pwa `^1.3.0`
-- TypeScript `^6.0.3`
-- Tailwind CSS `^4.3.0`, Radix UI and shadcn-style components in `src/components/ui/`
+- Vite `^8.3.4`, vite-plugin-pwa `^2.0.0`
+- TypeScript `^7.0.2` (native compiler: `tsc` has no programmatic JS API until 7.1)
+- Tailwind CSS `^4.3.3`, Radix UI and shadcn-style components in `src/components/ui/`
 - `@mlc-ai/web-llm` `0.2.85` (pinned), `ts-fsrs` `5.4.2` (pinned)
-- Biome `2.4.16`, Vitest `^4.1.8`, Playwright `^1.60.0`
+- Biome `2.5.15`, Vitest `^5.0.3`, jsdom `^30.1.2`, Playwright `^1.64.0`
+- Node 22.22.2 or newer (jsdom 30); Netlify builds with Node 22
 - Package manager: pnpm (`packageManager`: `pnpm@8.14.3`). Do not use npm or yarn.
 
 ## Scripts
@@ -35,7 +36,7 @@ E2E: `pnpm exec playwright test`. `playwright.config.ts` sets `webServer` to run
 
 PWA icons: `node scripts/generate-pwa-icons.mjs` regenerates the PNGs in `public/` from `public/pwa-512x512.svg` (needs the Playwright Chromium install).
 
-CI (`.github/workflows/verify.yml`, runs on `master`): `pnpm install --frozen-lockfile`, `pnpm exec tsc --noEmit`, `pnpm exec biome lint src/`, `pnpm run build`, `pnpm run test:run`. It does not run e2e.
+CI (`.github/workflows/verify.yml`, triggers on `master`, but its job is switched off with `if: false`): `pnpm install --frozen-lockfile`, `pnpm exec tsc --noEmit`, `pnpm exec biome lint src/`, `pnpm run build`, `pnpm run test:run`. It does not run e2e.
 
 ## Layout
 

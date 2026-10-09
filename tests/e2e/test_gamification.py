@@ -82,7 +82,7 @@ def test_speed_match_integration():
             raise e
 
         # 5. Start Game
-        start_button = page.get_by_role("button", name="START GAME")
+        start_button = page.get_by_role("button", name="COMEÇAR")
         start_button.click()
 
         # 6. Verify Game Elements

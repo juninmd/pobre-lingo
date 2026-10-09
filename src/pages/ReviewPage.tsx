@@ -175,7 +175,11 @@ export default function ReviewPage() {
 								Já sei isso
 							</button>
 						</div>
-						<Progress value={progressPct} className="h-1.5" />
+						<Progress
+							value={progressPct}
+							className="h-1.5"
+							aria-label="Progresso da revisão"
+						/>
 					</div>
 
 					<CardContent className="p-5 sm:p-8 space-y-6">

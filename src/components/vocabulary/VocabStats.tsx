@@ -34,7 +34,7 @@ export function VocabStats({
 					<p className="text-xs uppercase tracking-widest text-muted-foreground">
 						Meta do nível {level}
 					</p>
-					<p className="text-3xl font-headline font-extrabold text-brand-gold">
+					<p className="text-3xl font-headline font-extrabold text-amber-700 dark:text-brand-gold">
 						{LEVEL_VOCAB_TARGETS[level].toLocaleString("pt-BR")}
 					</p>
 					<p className="text-[11px] text-muted-foreground">
@@ -47,7 +47,7 @@ export function VocabStats({
 					<p className="text-xs uppercase tracking-widest text-muted-foreground">
 						Deck {level}
 					</p>
-					<p className="text-3xl font-headline font-extrabold text-brand-aqua">
+					<p className="text-3xl font-headline font-extrabold text-teal-700 dark:text-brand-aqua">
 						{knownHere}/{total}
 					</p>
 					<Progress value={percent} className="h-1.5 mt-2" />

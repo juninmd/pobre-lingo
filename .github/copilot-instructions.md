@@ -4,7 +4,7 @@
 English learning PWA with a pt-BR UI: grammar rules, interactive exercises, dictionary, gamified streaks. **Client-side only**: no backend API, all progress in localStorage, AI tutor runs in the browser (Chrome Prompt API, falling back to WebLLM). Deployed on Netlify (`netlify.toml`, publishes `dist/`).
 
 ## Tech Stack
-- **Build**: Vite 8 + TypeScript 6 + React 19 | **Package Manager**: pnpm only (`packageManager` field; never npm/yarn)
+- **Build**: Vite 8 + TypeScript 7 + React 19 | **Package Manager**: pnpm only (`packageManager` field; never npm/yarn)
 - **Styling**: Tailwind CSS 4 + shadcn/ui (Radix), config in `components.json` | **Routing**: react-router-dom 7
 - **Lint/format**: Biome 2 (`biome.json`, tabs, double quotes) | **Tests**: Vitest (unit), Playwright (e2e)
 - **State**: React Context (`src/contexts/`), custom hooks (`src/hooks/`), localStorage | **Icons**: lucide-react

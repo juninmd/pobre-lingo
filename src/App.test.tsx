@@ -76,9 +76,7 @@ describe("App shell", () => {
 		const labels = screen
 			.getAllByRole("navigation")
 			.map((n) => n.getAttribute("aria-label"));
-		expect(labels).toEqual(
-			expect.arrayContaining(["Menu principal", "Atalhos"]),
-		);
+		expect(labels).toEqual(["Menu principal"]);
 		expect(
 			screen.getByRole("link", { name: "Pular para o conteúdo" }),
 		).toBeInTheDocument();

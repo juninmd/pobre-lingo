@@ -18,11 +18,14 @@ import { GreenELTWidget } from "./trends/GreenELTWidget";
 import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
 import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
 import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
+import { MALLWidget } from "./trends/MALLWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
+import { MultimodalLearningWidget } from "./trends/MultimodalLearningWidget";
 import { NanoLearningWidget } from "./trends/NanoLearningWidget";
 import { NeuroELTWidget } from "./trends/NeuroELTWidget";
 import { PBLWidget } from "./trends/PBLWidget";
 import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
+import { SELWidget } from "./trends/SELWidget";
 import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
@@ -86,6 +89,7 @@ export function ImmersivePracticeSection() {
 					<VRLearningWidget />
 					<SocialMediaReelsWidget />
 					<NanoLearningWidget />
+					<MALLWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -96,6 +100,7 @@ export function ImmersivePracticeSection() {
 					<DEIBWidget />
 					<CriticalPedagogyWidget />
 					<MindfulWidget />
+					<SELWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -125,6 +130,7 @@ export function ImmersivePracticeSection() {
 					<CommunicativeRoleplayWidget />
 					<NeuroELTWidget />
 					<PlurilingualismWidget />
+					<MultimodalLearningWidget />
 				</TabsContent>
 
 				<TabsContent value="essenciais">

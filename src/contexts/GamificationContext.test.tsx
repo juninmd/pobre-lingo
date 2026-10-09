@@ -34,21 +34,17 @@ describe("GamificationProvider", () => {
 		expect(result.current.unlockedAchievements).toEqual([]);
 	});
 
-	it.each([
-		"abc",
-		"NaN",
-		"-5",
-		"null",
-		"Infinity",
-		'{"a":1}',
-	])("mounts with xp, gems and level at defaults when the counters hold %s", (raw) => {
-		localStorage.setItem("pl_xp", raw);
-		localStorage.setItem("pl_gems", raw);
-		const { result } = mount();
-		expect(result.current.xp).toBe(0);
-		expect(result.current.gems).toBe(0);
-		expect(result.current.level).toBe(1);
-	});
+	it.each(["abc", "NaN", "-5", "null", "Infinity", '{"a":1}'])(
+		"mounts with xp, gems and level at defaults when the counters hold %s",
+		(raw) => {
+			localStorage.setItem("pl_xp", raw);
+			localStorage.setItem("pl_gems", raw);
+			const { result } = mount();
+			expect(result.current.xp).toBe(0);
+			expect(result.current.gems).toBe(0);
+			expect(result.current.level).toBe(1);
+		},
+	);
 
 	it("loads valid stored progress", () => {
 		localStorage.setItem("pl_xp", "250");

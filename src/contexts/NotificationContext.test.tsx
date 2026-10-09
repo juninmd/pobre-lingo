@@ -44,18 +44,14 @@ describe("NotificationProvider", () => {
 	});
 	afterEach(() => vi.restoreAllMocks());
 
-	it.each([
-		"x",
-		"null",
-		"5",
-		"[]",
-		'{"categories":"x"}',
-		"{oops",
-	])("mounts with default prefs when the stored prefs are %s", (raw) => {
-		localStorage.setItem(NOTIFICATION_PREFS_KEY, raw);
-		const { result } = mount();
-		expect(result.current.prefs).toEqual(DEFAULT_PREFS);
-	});
+	it.each(["x", "null", "5", "[]", '{"categories":"x"}', "{oops"])(
+		"mounts with default prefs when the stored prefs are %s",
+		(raw) => {
+			localStorage.setItem(NOTIFICATION_PREFS_KEY, raw);
+			const { result } = mount();
+			expect(result.current.prefs).toEqual(DEFAULT_PREFS);
+		},
+	);
 
 	it("keeps valid stored prefs and repairs only the broken fields", () => {
 		localStorage.setItem(
@@ -73,17 +69,15 @@ describe("NotificationProvider", () => {
 		expect(prefs.categories.review).toBe(true);
 	});
 
-	it.each([
-		"x",
-		"null",
-		'{"a":1}',
-		"7",
-	])("mounts with an empty inbox when the stored inbox is %s", (raw) => {
-		muteAllCategories();
-		localStorage.setItem(NOTIFICATIONS_KEY, raw);
-		const { result } = mount();
-		expect(result.current.notifications).toEqual([]);
-	});
+	it.each(["x", "null", '{"a":1}', "7"])(
+		"mounts with an empty inbox when the stored inbox is %s",
+		(raw) => {
+			muteAllCategories();
+			localStorage.setItem(NOTIFICATIONS_KEY, raw);
+			const { result } = mount();
+			expect(result.current.notifications).toEqual([]);
+		},
+	);
 
 	it("drops malformed inbox entries but keeps the good ones", () => {
 		muteAllCategories();

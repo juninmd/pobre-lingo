@@ -18,15 +18,14 @@ describe("ThemeProvider", () => {
 		expect(document.documentElement.classList.contains("dark")).toBe(true);
 	});
 
-	it.each([
-		"x",
-		"Dark",
-		"null",
-	])("falls back to the default theme when storage holds %j", (raw) => {
-		localStorage.setItem("test-theme", raw);
-		const { result } = renderHook(() => useTheme(), { wrapper });
-		expect(result.current.theme).toBe("light");
-	});
+	it.each(["x", "Dark", "null"])(
+		"falls back to the default theme when storage holds %j",
+		(raw) => {
+			localStorage.setItem("test-theme", raw);
+			const { result } = renderHook(() => useTheme(), { wrapper });
+			expect(result.current.theme).toBe("light");
+		},
+	);
 
 	it("still mounts when storage access is blocked", () => {
 		vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {

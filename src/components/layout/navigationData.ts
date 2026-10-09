@@ -87,8 +87,8 @@ export const navGroups: NavigationGroup[] = [
 			{ href: "/writing", label: "Escrita e ditado", icon: FileText },
 			{ href: "/fluency", label: "Fluência", icon: TrendingUp },
 			{ href: "/pronunciation", label: "Pronúncia", icon: Headphones },
-			{ href: "/tracks", label: "Viagem e trabalho", icon: MapIcon },
-			{ href: "/tutor", label: "Tutor local", icon: Bot },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: MapIcon },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
 			{ href: "/checkpoints", label: "Checkpoints", icon: CheckSquare },
 			{ href: "/library", label: "Leitor livre", icon: LibraryBig },
 			{

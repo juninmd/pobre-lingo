@@ -53,7 +53,7 @@ export function SearchResultItem({
 								key={tag}
 								variant="secondary"
 								className={cn(
-									"text-[10px] px-1.5 py-0 h-4",
+									"text-[11px] px-1.5 py-0 h-4",
 									isSelected &&
 										"bg-primary-foreground/20 text-primary-foreground",
 								)}

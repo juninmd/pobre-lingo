@@ -39,6 +39,7 @@ export function BrandMark({
 					</span>
 				</div>
 			)}
+			{compact && <span className="sr-only">PobreLingo</span>}
 		</div>
 	);
 }

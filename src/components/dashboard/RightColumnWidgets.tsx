@@ -1,5 +1,6 @@
 import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
+import { CalmPracticeCard } from "@/components/dashboard/CalmPracticeCard";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
@@ -59,6 +60,7 @@ export function RightColumnWidgets() {
 
 				{/* Word of the Day - Microlearning */}
 				<WordOfTheDayWidget />
+				<CalmPracticeCard />
 
 				<details className="group rounded-xl border border-border/50 p-3">
 					<summary className="cursor-pointer text-sm font-semibold text-muted-foreground focus-visible:outline-2 focus-visible:outline-primary">

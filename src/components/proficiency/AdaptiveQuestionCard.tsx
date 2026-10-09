@@ -5,15 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useQuestionAudio } from "@/hooks/useQuestionAudio";
 import { MAX_ITEMS } from "@/lib/placement/adaptive";
 import type { PlacementItem } from "@/lib/placement/types";
-import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 
 interface AdaptiveQuestionCardProps {
 	item: PlacementItem;
 	index: number;
-	onAnswer: (optionIndex: number) => void;
+	onAnswer: (optionIndex: number | null) => void;
 }
 
 export function AdaptiveQuestionCard({
@@ -22,10 +22,11 @@ export function AdaptiveQuestionCard({
 	onAnswer,
 }: AdaptiveQuestionCardProps) {
 	const [selected, setSelected] = useState<string | null>(null);
+	const audio = useQuestionAudio();
 	const progress = Math.round((index / MAX_ITEMS) * 100);
 
 	const submit = () => {
-		if (selected === null) return;
+		if (selected === null || (item.audioText && !audio.heard)) return;
 		const optionIndex = Number(selected);
 		setSelected(null);
 		onAnswer(optionIndex);
@@ -38,7 +39,7 @@ export function AdaptiveQuestionCard({
 					<span>
 						Questão {index + 1} (até {MAX_ITEMS})
 					</span>
-					<span aria-live="polite">Nível {item.level}</span>
+					<span aria-live="polite">Conteúdo {item.level}</span>
 				</div>
 				<Progress value={progress} className="h-2" />
 			</div>
@@ -55,7 +56,8 @@ export function AdaptiveQuestionCard({
 								variant="outline"
 								size="icon"
 								aria-label="Ouvir áudio da questão"
-								onClick={() => tts.speak(item.audioText ?? "")}
+								disabled={!audio.supported || audio.status === "playing"}
+								onClick={() => audio.play(item.audioText ?? "")}
 							>
 								<Volume2 className="h-4 w-4" />
 							</Button>
@@ -63,6 +65,15 @@ export function AdaptiveQuestionCard({
 					</CardTitle>
 				</CardHeader>
 				<CardContent className="space-y-4">
+					{item.audioText && (
+						<p role="status" className="text-sm text-muted-foreground">
+							{audio.status === "playing"
+								? "Ouça até o final antes de responder."
+								: audio.status === "error" || !audio.supported
+									? "Não foi possível tocar uma voz em inglês. Pule esta questão sem avaliar a escuta."
+									: "Ouça o áudio em inglês. Se não conseguir ouvir, pule sem avaliar."}
+						</p>
+					)}
 					<RadioGroup
 						value={selected ?? ""}
 						onValueChange={setSelected}
@@ -93,11 +104,20 @@ export function AdaptiveQuestionCard({
 					</RadioGroup>
 					<Button
 						onClick={submit}
-						disabled={selected === null}
+						disabled={selected === null || (!!item.audioText && !audio.heard)}
 						className="w-full"
 					>
 						{index === MAX_ITEMS - 1 ? "Finalizar" : "Próxima"}
 					</Button>
+					{item.audioText && (
+						<Button
+							variant="outline"
+							className="w-full h-auto whitespace-normal"
+							onClick={() => onAnswer(null)}
+						>
+							Não consegui ouvir — pular sem avaliar
+						</Button>
+					)}
 				</CardContent>
 			</Card>
 		</div>

@@ -10,7 +10,7 @@ export interface AdaptiveAnswer {
 	itemId: string;
 	level: CEFRLevel;
 	skill: PlacementSkill;
-	correct: boolean;
+	correct: boolean | null;
 }
 
 export interface AdaptiveState {
@@ -23,7 +23,7 @@ export interface AdaptiveState {
 
 export function createAdaptiveState(): AdaptiveState {
 	return {
-		currentLevel: "A2",
+		currentLevel: "A1",
 		streakCorrect: 0,
 		askedIds: [],
 		answers: [],
@@ -56,17 +56,32 @@ export function pickNextItem(
 	const ranked = [...candidates].sort((a, b) => {
 		const diff = skillUsage(a.skill) - skillUsage(b.skill);
 		if (diff !== 0) return diff;
-		return rng() - 0.5;
+		return 0;
 	});
-	return ranked[0];
+	const leastUsed = skillUsage(ranked[0].skill);
+	const balanced = ranked.filter(
+		(item) => skillUsage(item.skill) === leastUsed,
+	);
+	return balanced[
+		Math.min(
+			balanced.length - 1,
+			Math.max(0, Math.floor(rng() * balanced.length)),
+		)
+	];
 }
 
-/** Applies an answer to the state: 2 correct in a row moves the level up, 1 wrong moves it down. */
+/** Promote after three observed items; unavailable audio contributes no ability evidence. */
 export function applyAnswer(
 	state: AdaptiveState,
 	item: PlacementItem,
-	correct: boolean,
+	correct: boolean | null,
 ): AdaptiveState {
+	if (
+		isComplete(state) ||
+		state.askedIds.includes(item.id) ||
+		item.level !== state.currentLevel
+	)
+		return state;
 	const answers = [
 		...state.answers,
 		{ itemId: item.id, level: item.level, skill: item.skill, correct },
@@ -77,13 +92,19 @@ export function applyAnswer(
 	let currentLevel = state.currentLevel;
 	let streakCorrect = state.streakCorrect;
 
-	if (correct) {
+	if (correct === true) {
 		streakCorrect += 1;
-		if (streakCorrect >= 2) {
+		const observed = answers.filter(
+			(a) => a.level === item.level && a.correct !== null,
+		);
+		if (
+			observed.length >= MIN_ITEMS_PER_LEVEL &&
+			observed.filter((a) => a.correct).length / observed.length >= PASS_RATIO
+		) {
 			streakCorrect = 0;
 			currentLevel = CEFR_ORDER[Math.min(idx + 1, CEFR_ORDER.length - 1)];
 		}
-	} else {
+	} else if (correct === false) {
 		streakCorrect = 0;
 		currentLevel = CEFR_ORDER[Math.max(idx - 1, 0)];
 	}
@@ -97,19 +118,18 @@ export function applyAnswer(
 	};
 }
 
-/**
- * Final level = highest CEFR level with >= 3 answered items there and >= 2/3 correct.
- * Falls back to A1 when no level meets the bar.
- */
+/** Suggested band requires a continuous chain of observed foundational content. */
 export function computeFinalLevel(answers: AdaptiveAnswer[]): CEFRLevel {
 	let result: CEFRLevel = "A1";
 	for (const level of CEFR_ORDER) {
-		const atLevel = answers.filter((a) => a.level === level);
-		if (atLevel.length < MIN_ITEMS_PER_LEVEL) continue;
+		const atLevel = answers.filter(
+			(a) => a.level === level && a.correct !== null,
+		);
+		if (atLevel.length < MIN_ITEMS_PER_LEVEL) break;
 		const correct = atLevel.filter((a) => a.correct).length;
 		if (correct / atLevel.length >= PASS_RATIO) {
 			result = level;
-		}
+		} else break;
 	}
 	return result;
 }

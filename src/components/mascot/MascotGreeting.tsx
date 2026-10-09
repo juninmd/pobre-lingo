@@ -132,9 +132,9 @@ export function MascotGreeting({
 							currentStyles.bubble,
 						)}
 					>
-						<h3 className={cn("text-lg font-bold mb-1", currentStyles.title)}>
+						<h2 className={cn("text-lg font-bold mb-1", currentStyles.title)}>
 							Vamos lá!
-						</h3>
+						</h2>
 						<p className="text-muted-foreground text-sm sm:text-base mb-3">
 							{greeting}
 						</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Slot } from "@radix-ui/react-slot";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeft } from "lucide-react";
 import * as React from "react";
 import { Button as ActualUiButtonComponent } from "@/components/ui/button";
@@ -544,19 +544,13 @@ const sidebarMenuButtonVariants = cva(
 		variants: {
 			variant: {
 				default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-				destructive: "", // Adicionado para compatibilidade de tipo
 				outline:
 					"bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
-				secondary: "", // Adicionado para compatibilidade de tipo
-				ghost: "", // Adicionado para compatibilidade de tipo
-				link: "", // Adicionado para compatibilidade de tipo
-				gamified: "", // Adicionado para compatibilidade de tipo
 			},
 			size: {
 				default: "h-8 text-sm",
 				sm: "h-7 text-xs",
 				lg: "h-12 text-sm group-data-[collapsible=icon]:!p-0",
-				icon: "", // Adicionado para compatibilidade de tipo
 			},
 		},
 		defaultVariants: {
@@ -566,32 +560,32 @@ const sidebarMenuButtonVariants = cva(
 	},
 );
 
-const defaultSidebarButtonVariant = "default";
-const defaultSidebarButtonSize = "default";
+type SidebarMenuButtonProps = React.ComponentPropsWithoutRef<"button"> &
+	VariantProps<typeof sidebarMenuButtonVariants> & {
+		asChild?: boolean;
+		isActive?: boolean;
+		tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+	};
 
-type SidebarMenuButtonProps = React.ComponentProps<
-	typeof ActualUiButtonComponent
-> & {
-	isActive?: boolean;
-	tooltip?: string | React.ComponentProps<typeof TooltipContent>;
-};
-
+// A plain element, not `Button`: the Button variants paint `bg-primary` on every
+// item, which only went unnoticed while the sidebar and primary shared one blue.
 const SidebarMenuButton = React.forwardRef<
-	HTMLButtonElement | HTMLAnchorElement,
+	HTMLButtonElement,
 	SidebarMenuButtonProps
 >(
 	(
 		{
-			isActive,
+			asChild = false,
+			isActive = false,
 			tooltip,
-			children,
 			className,
-			variant = defaultSidebarButtonVariant,
-			size = defaultSidebarButtonSize,
+			variant,
+			size,
 			...props
 		},
 		ref,
 	) => {
+		const Comp = asChild ? Slot : "button";
 		const [hasMounted, setHasMounted] = React.useState(false);
 		const { isMobile, state: sidebarState } = useSidebar();
 
@@ -600,16 +594,14 @@ const SidebarMenuButton = React.forwardRef<
 		}, []);
 
 		const buttonElement = (
-			<ActualUiButtonComponent
-				ref={ref as React.ForwardedRef<HTMLButtonElement & HTMLAnchorElement>}
-				variant={variant}
-				size={size}
+			<Comp
+				ref={ref}
+				data-sidebar="menu-button"
+				data-size={size}
+				data-active={isActive}
 				className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
-				data-active={!!isActive}
 				{...props}
-			>
-				{children}
-			</ActualUiButtonComponent>
+			/>
 		);
 
 		if (!tooltip || !hasMounted) {

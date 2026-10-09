@@ -230,7 +230,7 @@ export default function MatchMadnessPage() {
 						</div>
 						<div className="flex flex-col">
 							<span className="text-xs text-muted-foreground font-bold uppercase">
-								Score
+								Pontos
 							</span>
 							<span className="text-2xl font-black">{score}</span>
 						</div>
@@ -249,7 +249,7 @@ export default function MatchMadnessPage() {
 								className={cn("w-4 h-4", multiplier > 1 && "animate-pulse")}
 								fill="currentColor"
 							/>
-							<span>{streak} Streak</span>
+							<span>{streak} em sequência</span>
 							{multiplier > 1 && (
 								<span className="bg-white/20 px-1 rounded ml-1">
 									x{multiplier}
@@ -261,7 +261,7 @@ export default function MatchMadnessPage() {
 					<div className="flex items-center gap-3 text-right">
 						<div className="flex flex-col items-end">
 							<span className="text-xs text-muted-foreground font-bold uppercase">
-								Time
+								Tempo
 							</span>
 							<span
 								className={cn(
@@ -292,18 +292,27 @@ export default function MatchMadnessPage() {
 							</h1>
 							<p className="text-lg text-muted-foreground max-w-md mx-auto">
 								Combine o máximo de pares possível antes que o tempo acabe! Cada
-								acerto dá <span className="text-green-500 font-bold">+2s</span>.
-								Erros tiram <span className="text-red-500 font-bold">-3s</span>.
+								acerto dá{" "}
+								<span className="text-green-700 dark:text-green-400 font-bold">
+									+2s
+								</span>
+								. Erros tiram{" "}
+								<span className="text-red-600 dark:text-red-400 font-bold">
+									-3s
+								</span>
+								.
 							</p>
 						</div>
 						<div className="grid grid-cols-2 gap-4 w-full max-w-sm mt-4">
 							<div className="bg-muted/50 p-4 rounded-xl flex flex-col items-center">
-								<span className="text-2xl font-bold">Infinite</span>
-								<span className="text-xs text-muted-foreground">Levels</span>
+								<span className="text-2xl font-bold">Infinitos</span>
+								<span className="text-xs text-muted-foreground">Níveis</span>
 							</div>
 							<div className="bg-muted/50 p-4 rounded-xl flex flex-col items-center">
 								<span className="text-2xl font-bold">x4</span>
-								<span className="text-xs text-muted-foreground">Max Combo</span>
+								<span className="text-xs text-muted-foreground">
+									Combo máximo
+								</span>
 							</div>
 						</div>
 						<Button
@@ -311,7 +320,7 @@ export default function MatchMadnessPage() {
 							onClick={startGame}
 							className="w-full max-w-xs h-14 text-xl font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
 						>
-							START GAME
+							COMEÇAR
 						</Button>
 					</Card>
 				)}
@@ -319,7 +328,7 @@ export default function MatchMadnessPage() {
 				{gameOver && (
 					<Card className="w-full flex-1 flex flex-col items-center justify-center p-8 gap-6 animate-in zoom-in duration-300">
 						<div className="text-center">
-							<h2 className="text-3xl font-bold mb-2">Time's Up!</h2>
+							<h2 className="text-3xl font-bold mb-2">Tempo esgotado!</h2>
 							<p className="text-muted-foreground">
 								Você chegou ao Nível {level}
 							</p>

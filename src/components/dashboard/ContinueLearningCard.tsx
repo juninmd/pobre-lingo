@@ -70,7 +70,7 @@ export function ContinueLearningCard() {
 
 			<CardContent className="p-4 sm:p-5 md:p-6 relative z-10">
 				<div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-					<div className="flex items-center gap-4 flex-1 w-full">
+					<div className="flex items-center gap-4 flex-1 w-full min-w-0">
 						{/* Module Icon */}
 						<div
 							className={cn(
@@ -114,10 +114,7 @@ export function ContinueLearningCard() {
 						size="lg"
 						className="w-full sm:w-auto shrink-0 gap-2 font-black text-base rounded-xl group/btn h-12 sm:h-14 px-6 relative overflow-hidden"
 					>
-						<Link
-							to={link}
-							aria-label={`Continuar aprendendo: ${lesson.title_pt}`}
-						>
+						<Link to={link} aria-label={`Começar agora: ${lesson.title_pt}`}>
 							<div className="absolute inset-0 bg-white/20 dark:bg-white/10 w-full h-full -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite] pointer-events-none" />
 							<Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
 							<span className="text-sm sm:text-base">Começar Agora</span>

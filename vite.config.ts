@@ -21,7 +21,7 @@ export default defineConfig({
 				short_name: "PobreLingo",
 				description: "Aplicativo grátis e infinito para aprender inglês",
 				// Light-theme primary (hsl 210 90% 50%); keep in sync with index.html.
-				theme_color: "#0d80f2",
+				theme_color: "#0b6bcb",
 				background_color: "#ffffff",
 				display: "standalone",
 				lang: "pt-BR",

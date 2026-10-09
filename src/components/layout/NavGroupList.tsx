@@ -25,7 +25,7 @@ export function NavGroupList({
 			{groups.map((group, groupIndex) => (
 				<div key={group.title} className={groupIndex > 0 ? "mt-4" : ""}>
 					{!isCollapsed && (
-						<h3 className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-sidebar-foreground/55 [data-theme=pobre-lingo]:text-accent/80 [data-theme=pobre-lingo]:tracking-[0.12em]">
+						<h3 className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-sidebar-foreground/80">
 							{group.title}
 						</h3>
 					)}
@@ -45,7 +45,7 @@ export function NavGroupList({
 													"justify-start h-10 transition-all duration-300 rounded-lg group [data-theme=pobre-lingo]:sidebar-menu-btn",
 													isActive
 														? "bg-primary/10 text-primary font-bold shadow-sm [data-theme=pobre-lingo]:sidebar-active"
-														: "hover:bg-sidebar-accent/50 text-sidebar-foreground/80 hover:translate-x-1",
+														: "hover:bg-sidebar-accent/50 text-sidebar-foreground/90 hover:translate-x-1",
 												)}
 												onClick={handleLinkClick}
 											>
@@ -62,7 +62,12 @@ export function NavGroupList({
 													{!isCollapsed && item.badge && (
 														<Badge
 															variant="secondary"
-															className="ml-auto text-[11px] px-1.5 py-0 h-4 bg-accent/20 text-accent-foreground border-0"
+															className={cn(
+																"ml-auto text-[11px] px-1.5 py-0 h-4 border-0",
+																isActive
+																	? "bg-sidebar-primary-foreground/10 text-sidebar-primary-foreground"
+																	: "bg-white/15 text-sidebar-foreground",
+															)}
 														>
 															{item.badge}
 														</Badge>
@@ -73,7 +78,7 @@ export function NavGroupList({
 									);
 								})
 							: !isCollapsed && (
-									<p className="px-3 py-2 text-xs text-sidebar-foreground/50">
+									<p className="px-3 py-2 text-xs text-sidebar-foreground/80">
 										Nenhum item encontrado
 									</p>
 								)}

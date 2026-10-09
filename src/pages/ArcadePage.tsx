@@ -156,7 +156,7 @@ export default function ArcadePage() {
 								<CardTitle className="flex items-center gap-2 text-lg sm:text-xl pr-12">
 									{game.title}
 								</CardTitle>
-								<CardDescription className="line-clamp-2 text-sm min-h-[40px] sm:min-h-[48px]">
+								<CardDescription className="line-clamp-2 text-sm min-h-10">
 									{game.description}
 								</CardDescription>
 							</CardHeader>

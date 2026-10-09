@@ -117,6 +117,7 @@ export default function AchievementsPage() {
 						<Progress
 							value={Math.max(0, Math.min(levelProgress, 100))}
 							className="h-2.5"
+							aria-label="Progresso para o próximo nível"
 						/>
 						<p className="text-xs text-muted-foreground tabular-nums">
 							{Math.max(0, nextLevelFloor - xp)} XP para o nível {level + 1}
@@ -132,7 +133,11 @@ export default function AchievementsPage() {
 						</CardTitle>
 					</CardHeader>
 					<CardContent className="space-y-2">
-						<Progress value={achievementPct} className="h-2.5" />
+						<Progress
+							value={achievementPct}
+							className="h-2.5"
+							aria-label="Conquistas desbloqueadas"
+						/>
 						<p className="text-xs text-muted-foreground tabular-nums">
 							{unlockedCount} de {ACHIEVEMENTS_LIST.length} conquistas
 							desbloqueadas

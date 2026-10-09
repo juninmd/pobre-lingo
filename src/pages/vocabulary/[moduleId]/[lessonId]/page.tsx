@@ -230,7 +230,11 @@ export default function LessonPage() {
 										{currentIndex + 1} / {allWords.length}
 									</span>
 								</div>
-								<Progress value={progress} className="h-2" />
+								<Progress
+									value={progress}
+									className="h-2"
+									aria-label="Progresso da lição"
+								/>
 								<div className="mt-2 text-sm text-muted-foreground">
 									{mastered.size} palavras dominadas
 								</div>
@@ -262,8 +266,13 @@ export default function LessonPage() {
 											<h2 className="text-4xl font-bold mb-4">
 												{currentWord.word}
 											</h2>
-											<Button variant="ghost" size="sm" onClick={handleSpeak}>
-												<Volume2 className="h-5 w-5" />
+											<Button
+												variant="ghost"
+												size="sm"
+												onClick={handleSpeak}
+												aria-label="Ouvir a pronúncia"
+											>
+												<Volume2 className="h-5 w-5" aria-hidden="true" />
 											</Button>
 										</div>
 

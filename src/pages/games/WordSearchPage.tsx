@@ -126,12 +126,15 @@ export default function WordSearchPage() {
 
 	// Initialize Game
 	const startNewGame = useCallback(() => {
-		// Pick 6 random words
-		const shuffled = [...dictionaryEntries].sort(() => 0.5 - Math.random());
-		const selected = shuffled.slice(0, 6).map((e) => e.word);
-
-		// Only use words that fit (<= 10 chars)
-		const validWords = selected.filter((w) => w.length <= 10 && w.length > 2);
+		// Letters only (a space or hyphen would leave a blank cell) and short enough for the grid.
+		const pool = [
+			...new Set(
+				dictionaryEntries
+					.map((e) => e.word.toLowerCase())
+					.filter((w) => /^[a-z]{3,10}$/.test(w)),
+			),
+		];
+		const validWords = pool.sort(() => 0.5 - Math.random()).slice(0, 6);
 
 		// Generate Grid
 		const { grid: newGrid, placedWords } = generateGrid(validWords);
@@ -302,9 +305,20 @@ export default function WordSearchPage() {
 								? "bg-primary text-primary-foreground scale-105 shadow-lg z-10"
 								: "bg-muted/50 hover:bg-muted text-foreground",
 					)}
+					// Mouse: press the first letter and release on the last (drag), or
+					// click both ends. Touch has no drag, so a tap must keep the start.
 					onMouseDown={() => handleCellClick(r, c)}
 					onMouseEnter={() => handleCellHover(r, c)}
-					onMouseUp={() => selectionStart && handleCellClick(r, c)}
+					onMouseUp={() => {
+						const moved =
+							selectionStart &&
+							(selectionStart.r !== r || selectionStart.c !== c);
+						if (moved) handleCellClick(r, c);
+					}}
+					// Keyboard activation (detail 0) never fires the mouse events above.
+					onClick={(e) => {
+						if (e.detail === 0) handleCellClick(r, c);
+					}}
 				>
 					{cell}
 				</button>
@@ -381,10 +395,10 @@ export default function WordSearchPage() {
 
 				{/* Word List */}
 				<div className="w-full lg:w-64 bg-card border rounded-xl p-6 shadow-sm">
-					<h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+					<h2 className="text-lg font-bold mb-4 flex items-center gap-2">
 						<Trophy className="w-5 h-5 text-yellow-500" />
 						Palavras
-					</h3>
+					</h2>
 					<div className="flex flex-wrap lg:flex-col gap-2">
 						{words.map((word) => (
 							<div

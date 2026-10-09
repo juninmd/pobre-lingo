@@ -15,7 +15,7 @@ export function BrandMark({
 }: BrandMarkProps) {
 	const subtitleClass =
 		variant === "sidebar"
-			? "text-sidebar-foreground/70"
+			? "text-sidebar-foreground/80"
 			: "text-muted-foreground";
 
 	return (

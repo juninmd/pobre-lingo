@@ -46,9 +46,7 @@ export function LessonCardContent({
 					<span
 						className={cn(
 							"text-xs font-bold uppercase tracking-wider",
-							status === "locked"
-								? "text-muted-foreground/50"
-								: "text-primary/80",
+							status === "locked" ? "text-muted-foreground" : "text-primary",
 						)}
 					>
 						{lesson.type}

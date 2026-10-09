@@ -129,7 +129,11 @@ export function DailyQuestsWidget() {
 							{activityCount} / {DAILY_GOAL} atividades
 						</span>
 					</div>
-					<Progress value={dailyPct} className="h-2.5" />
+					<Progress
+						value={dailyPct}
+						className="h-2.5"
+						aria-label="Meta diária de atividades"
+					/>
 					{goalReached && (
 						<p className="text-xs text-green-600 dark:text-green-400 font-medium text-center">
 							🎉 Meta alcançada! Incrível!
@@ -162,6 +166,7 @@ export function DailyQuestsWidget() {
 							<Progress
 								value={Math.min((quest.progress / quest.total) * 100, 100)}
 								className="h-2.5"
+								aria-label={`Progresso da missão: ${quest.title}`}
 							/>
 							<div className="flex justify-between mt-1 text-[11px] text-muted-foreground uppercase font-bold tracking-wider">
 								<span>

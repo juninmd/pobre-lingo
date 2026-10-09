@@ -47,7 +47,7 @@ export function NavMenu() {
 					<div className="mt-4 relative">
 						<SearchIcon
 							aria-hidden="true"
-							className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-sidebar-foreground/50"
+							className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-sidebar-foreground/80"
 						/>
 						<SidebarInput
 							type="search"
@@ -55,14 +55,14 @@ export function NavMenu() {
 							placeholder="Buscar..."
 							value={sidebarSearchTerm}
 							onChange={(e) => setSidebarSearchTerm(e.target.value)}
-							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/50 text-sidebar-foreground rounded-lg focus-visible:ring-1 focus-visible:ring-primary/50 [data-theme=pobre-lingo]:rounded-xl [data-theme=pobre-lingo]:border-primary/20"
+							className="w-full pl-8 h-8 text-xs bg-sidebar-accent/30 border-sidebar-border/50 placeholder:text-sidebar-foreground/80 text-sidebar-foreground rounded-lg focus-visible:ring-1 focus-visible:ring-primary/50 [data-theme=pobre-lingo]:rounded-xl [data-theme=pobre-lingo]:border-primary/20"
 						/>
 						{sidebarSearchTerm && (
 							<button
 								type="button"
 								onClick={() => setSidebarSearchTerm("")}
 								aria-label="Limpar busca do menu"
-								className="absolute right-2 top-1/2 -translate-y-1/2 text-sidebar-foreground/50 hover:text-sidebar-foreground"
+								className="absolute right-2 top-1/2 -translate-y-1/2 text-sidebar-foreground/80 hover:text-sidebar-foreground"
 							>
 								<X className="h-3.5 w-3.5" aria-hidden="true" />
 							</button>

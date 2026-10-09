@@ -24,9 +24,9 @@ export function FocusPicker({ bestScores, onSelect }: FocusPickerProps) {
 						<Card className="h-full transition-colors hover:border-primary">
 							<CardContent className="p-5 space-y-2">
 								<div className="flex items-start justify-between gap-2">
-									<h3 className="font-semibold text-foreground">
+									<h2 className="font-semibold text-foreground">
 										{focus.title}
-									</h3>
+									</h2>
 									{best !== undefined && (
 										<span
 											className={cn(

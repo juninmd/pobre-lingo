@@ -40,6 +40,7 @@ export function CheckpointQuiz({
 				<Progress
 					value={(answered / questions.length) * 100}
 					className="h-1.5"
+					aria-label="Perguntas respondidas"
 				/>
 
 				{questions.map((question) => {

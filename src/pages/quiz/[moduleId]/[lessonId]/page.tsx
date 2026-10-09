@@ -314,7 +314,11 @@ export default function QuizLessonPage() {
 								Questão {currentQuestion + 1} de {questions.length}
 							</span>
 						</div>
-						<Progress value={progress} className="h-2" />
+						<Progress
+							value={progress}
+							className="h-2"
+							aria-label="Progresso do quiz"
+						/>
 					</CardContent>
 				</Card>
 

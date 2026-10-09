@@ -69,6 +69,7 @@ export function WeeklyGoalWidget() {
 					<Progress
 						value={progressPct}
 						className="h-2.5 bg-teal-100 dark:bg-teal-950"
+						aria-label="Meta semanal"
 					/>
 					<div className="flex justify-between text-[11px] uppercase font-bold tracking-wider text-teal-600/60 dark:text-teal-400/60">
 						<span>Progresso</span>

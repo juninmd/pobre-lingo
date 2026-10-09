@@ -19,6 +19,8 @@ export function AppSidebar() {
 			collapsible={isMobile ? "offcanvas" : "none"}
 			variant="sidebar"
 			side="left"
+			role="complementary"
+			aria-label="Barra lateral"
 			// CSS-hidden below md too, so there is no flash before isMobile resolves.
 			className="hidden md:flex border-r border-border/40"
 		>

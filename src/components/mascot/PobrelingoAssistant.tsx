@@ -76,8 +76,9 @@ export function PobrelingoAssistant() {
 							size="icon"
 							className="absolute top-2 right-2 h-7 w-7 text-muted-foreground hover:text-foreground"
 							onClick={() => setIsOpen(false)}
+							aria-label="Fechar dica"
 						>
-							<X className="h-4 w-4" />
+							<X className="h-4 w-4" aria-hidden="true" />
 						</Button>
 						<div className="flex gap-3 items-start mt-2">
 							<Pobrelingo
@@ -96,8 +97,9 @@ export function PobrelingoAssistant() {
 										size="icon"
 										className="h-5 w-5 text-muted-foreground hover:text-primary"
 										onClick={handleSpeak}
+										aria-label="Ouvir a dica"
 									>
-										<Volume2 className="h-3.5 w-3.5" />
+										<Volume2 className="h-3.5 w-3.5" aria-hidden="true" />
 									</Button>
 								</div>
 								<div className="relative bg-muted/50 dark:bg-zinc-800/80 p-3 rounded-2xl rounded-tl-none border border-border/40 text-xs sm:text-sm leading-relaxed text-foreground">

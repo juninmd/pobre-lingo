@@ -204,7 +204,7 @@ export default function WordScramblePage() {
 							<div className="text-4xl font-mono font-bold tracking-[0.2em] text-primary break-all">
 								{scrambled}
 							</div>
-							<div className="text-sm font-medium text-purple-600 bg-purple-50 dark:bg-purple-900/20 py-2 px-4 rounded-lg inline-block">
+							<div className="text-sm font-medium text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/20 py-2 px-4 rounded-lg inline-block">
 								Tradução: {currentWord.translation}
 							</div>
 						</div>

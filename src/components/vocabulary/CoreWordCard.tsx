@@ -31,9 +31,9 @@ export function CoreWordCard({
 			<CardContent className="p-4 flex items-start justify-between gap-3">
 				<div className="min-w-0">
 					<div className="flex items-center gap-2">
-						<h3 className="font-headline text-lg font-bold truncate" lang="en">
+						<h2 className="font-headline text-lg font-bold truncate" lang="en">
 							{word.word}
-						</h3>
+						</h2>
 						<Button
 							variant="ghost"
 							size="icon"

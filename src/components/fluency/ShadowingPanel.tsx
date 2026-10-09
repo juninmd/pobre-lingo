@@ -37,8 +37,9 @@ export function ShadowingPanel({ level, onPractice }: ShadowingPanelProps) {
 							variant="ghost"
 							size="icon"
 							onClick={() => tts.speak(line.en, "en-US", 0.9)}
+							aria-label={`Ouvir: ${line.en}`}
 						>
-							<Play className="h-4 w-4 text-primary" />
+							<Play className="h-4 w-4 text-primary" aria-hidden="true" />
 						</Button>
 					</div>
 				))}

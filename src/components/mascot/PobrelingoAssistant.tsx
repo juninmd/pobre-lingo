@@ -82,8 +82,8 @@ export function PobrelingoAssistant() {
 						</Button>
 						<div className="flex gap-3 items-start mt-2">
 							<Pobrelingo
-								width={64}
-								height={64}
+								width={72}
+								height={72}
 								emotion="winking"
 								className="shrink-0"
 							/>
@@ -140,7 +140,7 @@ export function PobrelingoAssistant() {
 					<X className="h-6 w-6" />
 				) : (
 					<div className="relative flex items-center justify-center">
-						<Pobrelingo width={44} height={44} emotion="excited" />
+						<Pobrelingo width={48} height={48} emotion="happy" />
 						<div className="absolute -top-1 -right-1 flex h-3 w-3">
 							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
 							<span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>

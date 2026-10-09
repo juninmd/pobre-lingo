@@ -355,8 +355,8 @@ export default function WordSearchPage() {
 						<div className="absolute inset-0 z-50 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-lg animate-in fade-in duration-300">
 							<Pobrelingo
 								emotion={gameWon ? "excited" : "neutral"}
-								width={150}
-								height={150}
+								width={144}
+								height={144}
 								className="mb-4"
 							/>
 							<h2 className="text-4xl font-black mb-2 uppercase">

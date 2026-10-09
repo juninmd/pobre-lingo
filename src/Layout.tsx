@@ -8,7 +8,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { SEO } from "./components/common/SEO";
 import { AppSidebar } from "./components/layout/AppSidebar";
 import { Header } from "./components/layout/Header";
-import { MobileNav } from "./components/layout/MobileNav";
 import { OfflineIndicator } from "./components/layout/OfflineIndicator";
 import { MAIN_CONTENT_ID, SkipLink } from "./components/layout/SkipLink";
 
@@ -61,7 +60,6 @@ export default function Layout() {
 					</div>
 				</SidebarInset>
 			</SidebarProvider>
-			<MobileNav />
 			<GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
 			<PWAInstallPrompt />
 			<PobrelingoAssistant />

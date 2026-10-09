@@ -1,5 +1,5 @@
-import { BookOpen, Sparkles, Loader2 } from "lucide-react";
-import React, { Suspense } from "react";
+import { BookOpen, Sparkles } from "lucide-react";
+import React from "react";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
 import { UnitGroup } from "./timeline/UnitGroup";
@@ -58,7 +58,7 @@ export function LearningTimeline() {
 						<div className="h-32 mb-12 animate-pulse bg-muted/40 rounded-2xl w-full max-w-2xl mx-auto border border-border/40" />
 					}
 				>
-					<LazyUnitGroup
+					<UnitGroup
 						unit={unit}
 						modules={unit.modules}
 						completedLessonsSet={completedLessonsSet}

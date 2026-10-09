@@ -1,117 +1,97 @@
-import { BadgeCheck, GraduationCap, Trophy } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
-import { QuestionCard } from "@/components/proficiency/QuestionCard";
+import { AdaptiveQuestionCard } from "@/components/proficiency/AdaptiveQuestionCard";
 import { ResultCard } from "@/components/proficiency/ResultCard";
 import { Button } from "@/components/ui/button";
 import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import { useGamification } from "@/contexts/GamificationContext";
+	applyAnswer,
+	createAdaptiveState,
+	isComplete,
+	pickNextItem,
+} from "@/lib/placement/adaptive";
+import { placementBank } from "@/lib/placement/bank";
 import {
-	calculateProficiency,
 	loadProficiencyResult,
 	type ProficiencyResult,
 	saveProficiencyResult,
 } from "@/lib/proficiency";
-import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
+import { calculateProficiencyFromAdaptive } from "@/lib/proficiencyAdaptive";
 
 export default function ProficiencyTestPage() {
-	const { level: appLevel, xp, streak } = useGamification();
 	const [started, setStarted] = useState(false);
-	const [index, setIndex] = useState(0);
-	const [answers, setAnswers] = useState<Record<number, string>>({});
-	const [result, setResult] = useState<ProficiencyResult | null>(() =>
-		loadProficiencyResult(),
+	const [state, setState] = useState(createAdaptiveState);
+	const [item, setItem] = useState(() => pickNextItem(placementBank, state));
+	const [result, setResult] = useState<ProficiencyResult | null>(
+		loadProficiencyResult,
 	);
-	const question = proficiencyQuestions[index];
-
+	const [saveError, setSaveError] = useState(false);
 	const start = () => {
+		const initial = createAdaptiveState();
+		setState(initial);
+		setItem(pickNextItem(placementBank, initial));
 		setStarted(true);
-		setIndex(0);
-		setAnswers({});
+		setSaveError(false);
 	};
-
-	const next = () => {
-		if (index < proficiencyQuestions.length - 1) {
-			setIndex((current) => current + 1);
-			return;
+	const answer = (optionIndex: number | null) => {
+		if (!item) return;
+		const next = applyAnswer(
+			state,
+			item,
+			optionIndex === null ? null : optionIndex === item.answer,
+		);
+		setState(next);
+		const following = isComplete(next)
+			? null
+			: pickNextItem(placementBank, next);
+		setItem(following);
+		if (!following) {
+			const calculated = calculateProficiencyFromAdaptive(next.answers);
+			setResult(calculated);
+			setSaveError(!saveProficiencyResult(calculated));
+			setStarted(false);
 		}
-		const calculated = calculateProficiency(answers);
-		setResult(calculated);
-		saveProficiencyResult(calculated);
-		setStarted(false);
 	};
-
-	if (result && !started) {
-		return (
-			<PageContainer>
-				<div className="mx-auto max-w-2xl">
-					<ResultCard result={result} onRestart={start} />
-				</div>
-			</PageContainer>
-		);
-	}
-
-	if (started) {
-		return (
-			<PageContainer>
-				<div className="mx-auto max-w-2xl">
-					<QuestionCard
-						question={question}
-						index={index}
-						total={proficiencyQuestions.length}
-						value={answers[question.id] || ""}
-						onAnswer={(value) =>
-							setAnswers((current) => ({ ...current, [question.id]: value }))
-						}
-						onNext={next}
-					/>
-				</div>
-			</PageContainer>
-		);
-	}
-
 	return (
-		<PageContainer>
-			<div className="mx-auto max-w-2xl space-y-6">
-				<Card className="border-primary/20">
-					<CardHeader className="text-center">
-						<div className="mx-auto mb-2 rounded-full bg-primary/10 p-4">
-							<GraduationCap className="h-10 w-10 text-primary" />
-						</div>
-						<CardTitle className="text-2xl">Diagnóstico CEFR</CardTitle>
-					</CardHeader>
-					<CardContent className="space-y-4 text-center text-sm text-muted-foreground">
-						<p>
-							Descubra seu nível provável A1-C2 e receba um plano diário ligado
-							a IELTS, TOEFL iBT e Cambridge.
-						</p>
-						<div className="flex flex-wrap justify-center gap-3 font-medium">
-							<span className="inline-flex items-center gap-1">
-								<Trophy className="h-4 w-4 text-yellow-600" /> {xp} XP
-							</span>
-							<span>App nível {appLevel}</span>
-							<span>{streak} dias seguidos</span>
-						</div>
-						{result && (
-							<p className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1 text-green-700 dark:text-green-300">
-								<BadgeCheck className="h-4 w-4" /> Último resultado:{" "}
-								{result.level}
-							</p>
-						)}
-					</CardContent>
-					<CardFooter className="justify-center">
-						<Button size="lg" onClick={start} className="w-full sm:w-auto">
-							Começar diagnóstico
-						</Button>
-					</CardFooter>
-				</Card>
-			</div>
+		<PageContainer className="max-w-2xl mx-auto space-y-6">
+			{saveError && (
+				<p role="alert">
+					Não foi possível salvar a sugestão neste navegador. O resultado
+					continua abaixo; permita o armazenamento ou libere espaço para salvar.
+				</p>
+			)}
+			{result && !started ? (
+				<ResultCard
+					result={result}
+					onRestart={start}
+					onSave={() => setSaveError(!saveProficiencyResult(result))}
+				/>
+			) : started && item ? (
+				<AdaptiveQuestionCard
+					key={item.id}
+					item={item}
+					index={state.answers.length}
+					onAnswer={answer}
+				/>
+			) : (
+				<section className="space-y-4 rounded-xl border border-border p-5">
+					<h1 className="text-2xl font-bold">Encontre um ponto de estudo</h1>
+					<p>
+						Já conhece um pouco de inglês? Responda até 20 questões para
+						escolher conteúdos de revisão. O percurso ajusta a dificuldade pelas
+						respostas.
+					</p>
+					<p className="text-sm text-muted-foreground">
+						Esta checagem usa estruturas, vocabulário, leitura e escuta com voz
+						sintetizada. Não avalia sua fala, escrita livre ou interação e não
+						fornece certificação ou equivalência de exames.
+					</p>
+					<Button onClick={start}>Começar checagem de conteúdo</Button>
+					<Link to="/course/hello" className="block text-primary underline">
+						Sei zero: começar minha primeira aula
+					</Link>
+				</section>
+			)}
 		</PageContainer>
 	);
 }

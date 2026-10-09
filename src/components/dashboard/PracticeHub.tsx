@@ -80,7 +80,7 @@ const PRACTICES: PracticeLink[] = [
 	{
 		to: "/checkpoints",
 		title: "Checkpoints",
-		description: "Prove seu nível e libere o próximo",
+		description: "Revise objetivos e faça checagens de conteúdo por nível",
 		icon: Flag,
 	},
 	{

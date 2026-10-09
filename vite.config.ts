@@ -16,9 +16,9 @@ export default defineConfig({
 				"pwa-512x512.svg",
 			],
 			manifest: {
-				name: "PobreLingo - Aprenda Português",
+				name: "PobreLingo - Aprenda Inglês",
 				short_name: "PobreLingo",
-				description: "Aplicativo grátis e infinito para aprender português",
+				description: "Aplicativo grátis e infinito para aprender inglês",
 				theme_color: "#22c55e", // Updated to match the new mascot color (green-500)
 				background_color: "#ffffff",
 				display: "standalone",
@@ -48,6 +48,7 @@ export default defineConfig({
 				],
 			},
 			workbox: {
+				globIgnores: ["**/webllm*"],
 				globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
 				runtimeCaching: [
 					{
@@ -94,6 +95,7 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
+					if (id.includes("@mlc-ai/web-llm")) return "webllm";
 					if (id.includes("node_modules")) {
 						if (id.includes("lucide-react")) {
 							return "lucide";

@@ -1,141 +1,50 @@
-import type { CEFRLevel } from "@/lib/curriculumData";
-import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
+import type { CEFRLevel } from "./curriculumData";
+import { CEFR_ORDER } from "./levels";
+import { proficiencyProfiles } from "./proficiencyProfiles";
+import { proficiencyQuestions } from "./proficiencyQuestions";
+import type { ProficiencyResult, SkillReport } from "./proficiencyTypes";
 
-export const PROFICIENCY_RESULT_KEY = "pobrelingo_proficiency_result";
-
-export interface ProficiencyResult {
-	level: CEFRLevel;
-	score: number;
-	total: number;
-	date: string;
-	ielts: string;
-	toefl: string;
-	cambridge: string;
-	focus: string;
-	dailyPlan: string[];
-	skillReports: SkillReport[];
-	weakestSkill: string;
-	todayTip: string;
-	confidence: "baixa" | "media" | "alta";
-}
-
-export interface SkillReport {
-	skill: string;
-	correct: number;
-	total: number;
-	percent: number;
-}
-
-const profiles: Record<
-	CEFRLevel,
-	Omit<
-		ProficiencyResult,
-		| "level"
-		| "score"
-		| "total"
-		| "date"
-		| "skillReports"
-		| "weakestSkill"
-		| "todayTip"
-		| "confidence"
-	> & { tips: string[] }
-> = {
-	A1: {
-		ielts: "pre-IELTS",
-		toefl: "abaixo do iBT B1",
-		cambridge: "Pre A1-A1",
-		focus: "frases de sobrevivência, verbo to be e vocabulário essencial.",
-		dailyPlan: ["10 palavras úteis", "5 frases em voz alta", "1 lição A1"],
-		tips: ["Fale 5 frases sobre sua rotina usando I am / I have / I like."],
-	},
-	A2: {
-		ielts: "3.0-3.5",
-		toefl: "abaixo do iBT B1",
-		cambridge: "A2 Key",
-		focus: "passado simples, perguntas, rotina e descrições curtas.",
-		dailyPlan: ["1 diálogo curto", "10 min de listening lento", "1 quiz A2"],
-		tips: ["Conte ontem em 6 frases: I went, I saw, I ate, I worked."],
-	},
-	B1: {
-		ielts: "4.0-5.0",
-		toefl: "42-71",
-		cambridge: "B1 Preliminary",
-		focus: "conversas reais, leitura curta e controle de tempos verbais.",
-		dailyPlan: ["1 notícia fácil", "shadowing por 5 min", "1 resposta escrita"],
-		tips: [
-			"Resuma uma notícia em 80 palavras e grave sua opinião em voz alta.",
-		],
-	},
-	B2: {
-		ielts: "5.5-6.5",
-		toefl: "72-94",
-		cambridge: "B2 First",
-		focus: "argumentação, fluência, phrasal verbs e precisão gramatical.",
-		dailyPlan: ["1 speaking prompt", "20 min input nativo", "corrigir 5 erros"],
-		tips: [
-			"Defenda uma opinião por 2 minutos usando however, although e therefore.",
-		],
-	},
-	C1: {
-		ielts: "7.0-8.0",
-		toefl: "95-114",
-		cambridge: "C1 Advanced",
-		focus: "nuance, escrita formal, coesão e velocidade de prova.",
-		dailyPlan: ["1 essay outline", "10 collocations", "1 leitura complexa"],
-		tips: ["Reescreva um parágrafo em tom formal e depois em tom natural."],
-	},
-	C2: {
-		ielts: "8.5-9.0",
-		toefl: "115-120",
-		cambridge: "C2 Proficiency",
-		focus: "precisão quase nativa, estilo, inferência e timing de exame.",
-		dailyPlan: [
-			"1 simulado cronometrado",
-			"reescrever 1 texto",
-			"debater 1 tema",
-		],
-		tips: ["Cronometre uma resposta estilo prova e corte palavras vagas."],
-	},
-};
+export {
+	loadProficiencyResult,
+	PROFICIENCY_RESULT_KEY,
+	saveProficiencyResult,
+} from "./proficiencyStorage";
+export type { ProficiencyResult, SkillReport } from "./proficiencyTypes";
 
 export function calculateProficiency(
 	answers: Record<number, string>,
 	now = new Date(),
 ): ProficiencyResult {
 	const correct = proficiencyQuestions.filter(
-		(question) => answers[question.id] === question.correctAnswer,
+		(q) => answers[q.id] === q.correctAnswer,
 	);
-	const score = correct.length;
-	const level = inferLevel(correct.map((question) => question.cefr));
+	const level = inferLevel(correct.map((q) => q.cefr));
 	const skillReports = buildSkillReports(answers);
-	const weakestSkill = [...skillReports].sort(
-		(a, b) => a.percent - b.percent,
-	)[0].skill;
 	return {
+		version: 2,
+		basis: "recognition",
 		level,
-		score,
+		score: correct.length,
 		total: proficiencyQuestions.length,
 		date: now.toISOString().split("T")[0],
 		skillReports,
-		weakestSkill,
+		weakestSkill:
+			[...skillReports].sort((a, b) => (a.percent ?? 0) - (b.percent ?? 0))[0]
+				?.skill ?? null,
+		focus: proficiencyProfiles[level].focus,
+		dailyPlan: proficiencyProfiles[level].dailyPlan,
 		todayTip: getDailyTip(level, now),
-		confidence: score >= 10 ? "alta" : score >= 7 ? "media" : "baixa",
-		...profiles[level],
 	};
 }
 
 export function buildSkillReports(
 	answers: Record<number, string>,
 ): SkillReport[] {
-	const skills = [
-		...new Set(proficiencyQuestions.map((question) => question.skill)),
-	];
+	const skills = [...new Set(proficiencyQuestions.map((q) => q.skill))];
 	return skills.map((skill) => {
-		const questions = proficiencyQuestions.filter(
-			(question) => question.skill === skill,
-		);
+		const questions = proficiencyQuestions.filter((q) => q.skill === skill);
 		const correct = questions.filter(
-			(question) => answers[question.id] === question.correctAnswer,
+			(q) => answers[q.id] === q.correctAnswer,
 		).length;
 		return {
 			skill,
@@ -146,43 +55,20 @@ export function buildSkillReports(
 	});
 }
 
-export function getDailyTip(level: CEFRLevel, now = new Date()): string {
-	const tips = profiles[level].tips;
-	const day = Math.floor(
-		(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) -
-			Date.UTC(now.getFullYear(), 0, 0)) /
-			86400000,
-	);
+export function getDailyTip(level: CEFRLevel, now = new Date()) {
+	const tips = proficiencyProfiles[level].tips;
+	const day = Math.floor(now.getTime() / 86400000);
 	return tips[day % tips.length];
 }
 
+/** Requires evidence in every preceding band; this is a content recommendation only. */
 export function inferLevel(passedLevels: CEFRLevel[]): CEFRLevel {
-	const levels: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
-	let unlocked: CEFRLevel = "A1";
-
-	for (const level of levels) {
+	let suggested: CEFRLevel = "A1";
+	for (const level of CEFR_ORDER) {
 		const total = proficiencyQuestions.filter((q) => q.cefr === level).length;
 		const passed = passedLevels.filter((value) => value === level).length;
-		if (total > 0 && passed / total >= 0.5) {
-			unlocked = level;
-		}
+		if (!total || passed / total < 0.75) break;
+		suggested = level;
 	}
-
-	return unlocked;
-}
-
-export function loadProficiencyResult(): ProficiencyResult | null {
-	try {
-		const raw = localStorage.getItem(PROFICIENCY_RESULT_KEY);
-		const parsed = raw ? JSON.parse(raw) : null;
-		return parsed?.skillReports ? parsed : null;
-	} catch {
-		return null;
-	}
-}
-
-export function saveProficiencyResult(result: ProficiencyResult): void {
-	try {
-		localStorage.setItem(PROFICIENCY_RESULT_KEY, JSON.stringify(result));
-	} catch {}
+	return suggested;
 }

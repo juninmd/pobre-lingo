@@ -22,6 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { useStudiedRules } from "@/hooks/useStudiedRules";
+import { useStudyTimer } from "@/hooks/useStudyLog";
 import { getCategoryById, getRuleById } from "@/lib/grammarRules";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";

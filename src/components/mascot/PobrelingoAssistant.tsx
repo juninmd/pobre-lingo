@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles, Volume2, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { Pobrelingo } from "./Pobrelingo";
 
 export function PobrelingoAssistant() {
+	const { pathname } = useLocation();
 	const [isOpen, setIsOpen] = useState(false);
 	const { streak } = useGamification();
 	const { isLessonCompleted } = useCurriculumProgress();
@@ -44,6 +45,7 @@ export function PobrelingoAssistant() {
 		tts.speak(speechText, "pt-BR");
 	};
 
+	if (pathname.startsWith("/course")) return null;
 	return (
 		<div className="fixed bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none">
 			{isOpen && (

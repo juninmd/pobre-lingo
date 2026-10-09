@@ -8,14 +8,18 @@ import {
 	CardFooter,
 	CardHeader,
 } from "@/components/ui/card";
+import { getStartingPoint } from "@/lib/placement/startingPoint";
 import type { ProficiencyResult } from "@/lib/proficiency";
+import { SKILL_LABELS } from "@/lib/proficiencyTypes";
 
 interface ResultCardProps {
 	result: ProficiencyResult;
 	onRestart: () => void;
+	onSave: () => void;
 }
 
-export function ResultCard({ result, onRestart }: ResultCardProps) {
+export function ResultCard({ result, onRestart, onSave }: ResultCardProps) {
+	const startingPoint = getStartingPoint(result.level);
 	return (
 		<Card className="border-primary/20 bg-primary/5">
 			<CardHeader className="text-center space-y-3">
@@ -23,19 +27,18 @@ export function ResultCard({ result, onRestart }: ResultCardProps) {
 					<CefrBadge level={result.level} className="text-sm px-3 py-1" />
 				</div>
 				<h1 className="text-2xl font-black">
-					Seu nível provável é {result.level}
+					Sugestão de conteúdo: {result.level}
 				</h1>
 				<p className="text-sm text-muted-foreground">
-					{result.score}/{result.total} acertos. Diagnóstico para estudo, não
-					certificado oficial. Confiança {result.confidence}.
+					{result.score}/{result.total} acertos nas questões avaliadas. Este
+					resultado orienta o estudo; não comprova domínio de nível ou fluência.
 				</p>
 			</CardHeader>
 			<CardContent className="space-y-4">
-				<div className="grid gap-2 sm:grid-cols-3 text-sm">
-					<Metric label="IELTS" value={result.ielts} />
-					<Metric label="TOEFL iBT" value={result.toefl} />
-					<Metric label="Cambridge" value={result.cambridge} />
-				</div>
+				<p className="text-sm text-muted-foreground">
+					Fala, escrita livre e interação não foram avaliadas. Questões de áudio
+					puladas não entram no placar. Não há equivalência com exames.
+				</p>
 				<div className="rounded-lg border bg-background p-4">
 					<div className="flex items-center gap-2 font-bold">
 						<Target className="h-4 w-4 text-primary" />
@@ -46,19 +49,24 @@ export function ResultCard({ result, onRestart }: ResultCardProps) {
 				<div className="rounded-lg border bg-background p-4">
 					<div className="flex items-center gap-2 font-bold">
 						<TrendingUp className="h-4 w-4 text-primary" />
-						Habilidades
+						Resultados desta checagem
 					</div>
 					<div className="mt-3 grid gap-2 sm:grid-cols-2">
 						{result.skillReports.map((report) => (
 							<Metric
 								key={report.skill}
-								label={report.skill}
-								value={`${report.percent}% (${report.correct}/${report.total})`}
+								label={SKILL_LABELS[report.skill]}
+								value={
+									report.percent === null
+										? "Não avaliado"
+										: `${report.correct}/${report.total} acertos`
+								}
 							/>
 						))}
 					</div>
 					<p className="mt-3 text-xs text-muted-foreground">
-						Mais fraca agora: {result.weakestSkill}.
+						Use os acertos e erros destes trechos para escolher o que revisar.
+						Eles não medem sua capacidade geral de comunicação.
 					</p>
 				</div>
 				<div className="rounded-lg border bg-background p-4">
@@ -83,7 +91,12 @@ export function ResultCard({ result, onRestart }: ResultCardProps) {
 					Refazer
 				</Button>
 				<Button asChild className="w-full sm:w-auto">
-					<Link to="/">Treinar meu nível</Link>
+					<Link to={startingPoint?.href ?? "/course"}>
+						Revisar conteúdo sugerido
+					</Link>
+				</Button>
+				<Button variant="outline" onClick={onSave}>
+					Salvar resultado
 				</Button>
 			</CardFooter>
 		</Card>

@@ -1,19 +1,20 @@
-import * as LucideIcons from "lucide-react";
-import { ArrowRight, Clock, PartyPopper, Play, Star } from "lucide-react";
-import type React from "react";
+import {
+	ArrowRight,
+	BookOpen,
+	Clock,
+	PartyPopper,
+	Play,
+	Star,
+} from "lucide-react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData, type Lesson, type Module } from "@/lib/curriculumData";
+import { getIcon } from "@/lib/iconMap";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
-
-const getIcon = (name: string) => {
-	const icons = LucideIcons as unknown as Record<string, React.ElementType>;
-	return icons[name] || LucideIcons.BookOpen;
-};
 
 interface NextLesson {
 	module: Module;
@@ -60,7 +61,7 @@ export function ContinueLearningCard() {
 	}
 
 	const { module, lesson, link } = next;
-	const ModuleIcon = getIcon(module.icon);
+	const ModuleIcon = getIcon(module.icon, BookOpen);
 
 	return (
 		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] active:scale-[0.98]">

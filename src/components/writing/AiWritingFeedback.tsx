@@ -66,7 +66,7 @@ export function AiWritingFeedback({
 	};
 
 	return (
-		<div className="space-y-3">
+		<div className="space-y-3" data-private>
 			<Button
 				type="button"
 				variant="outline"

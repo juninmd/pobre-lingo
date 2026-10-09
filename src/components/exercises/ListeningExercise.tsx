@@ -1,3 +1,4 @@
+import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { AlertCircle, CheckCircle2, Volume2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -121,6 +122,7 @@ export function ListeningExercise() {
 					<div className="flex justify-center py-8">
 						<Button
 							size="lg"
+							aria-label="Ouvir a frase"
 							className="h-24 w-24 rounded-full shadow-lg hover:scale-105 transition-transform"
 							onClick={handleSpeak}
 						>
@@ -128,21 +130,27 @@ export function ListeningExercise() {
 						</Button>
 					</div>
 
-					<div className="space-y-3">
-						{currentItem.options.map((option, idx) => (
-							<div
-								key={idx}
-								className={`p-4 border-2 rounded-xl cursor-pointer transition-all font-medium ${
+					<RadioGroupPrimitive.Root
+						aria-label="Opções de resposta"
+						className="space-y-3"
+						value={selectedOption ?? ""}
+						onValueChange={setSelectedOption}
+						disabled={isCorrect === true}
+					>
+						{currentItem.options.map((option) => (
+							<RadioGroupPrimitive.Item
+								key={option}
+								value={option}
+								className={`block w-full text-left p-4 border-2 rounded-xl cursor-pointer transition-all font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
 									selectedOption === option
 										? "border-primary bg-primary/5 shadow-md"
 										: "border-muted hover:border-primary/50 hover:bg-accent"
 								}`}
-								onClick={() => !isCorrect && setSelectedOption(option)}
 							>
 								{option}
-							</div>
+							</RadioGroupPrimitive.Item>
 						))}
-					</div>
+					</RadioGroupPrimitive.Root>
 
 					{isCorrect !== null && (
 						<div

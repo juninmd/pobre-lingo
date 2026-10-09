@@ -19,6 +19,7 @@ export function TutorSession({ scenario, level }: TutorSessionProps) {
 				providerLabel={tutor.providerLabel}
 				error={tutor.error}
 				onStart={tutor.start}
+				onRetry={tutor.retry}
 			/>
 		);
 	}

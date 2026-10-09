@@ -1,30 +1,8 @@
-import {
-	AlertTriangle,
-	Bell,
-	Check,
-	Download,
-	Moon,
-	Palette,
-	Sparkles,
-	Sun,
-	Trash2,
-} from "lucide-react";
-import { useRef, useState } from "react";
+import { Bell, Check, Moon, Palette, Sparkles, Sun } from "lucide-react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
 import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
-import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
 	Card,

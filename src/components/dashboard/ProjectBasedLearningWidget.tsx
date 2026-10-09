@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 /**
  * ProjectBasedLearningWidget component
@@ -15,7 +16,7 @@ export function ProjectBasedLearningWidget() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_pbl_claimed") === todayStr);
 	}, []);
 
@@ -28,7 +29,7 @@ export function ProjectBasedLearningWidget() {
 			setIsSubmitting(false);
 			setClaimed(true);
 			addXp(40);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_pbl_claimed", todayStr);
 		}, 1000);
 	};

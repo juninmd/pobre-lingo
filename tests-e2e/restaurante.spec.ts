@@ -9,7 +9,7 @@ import { expect, type Page, test } from "@playwright/test";
  * final, então cada padrão exercita um caminho distinto da máquina de estados.
  */
 
-const BASE_URL = process.env.SMOKE_BASE_URL ?? "http://localhost:5173";
+const BASE_URL = process.env.SMOKE_BASE_URL ?? "http://localhost:5187";
 
 // O atendimento tem atrasos propositais (o mascote "digita" ~800ms por fala) e
 // são três passos, cada um podendo começar com uma resposta errada. Somado à

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const TBLT_SCENARIOS = [
 	{
@@ -94,7 +95,7 @@ export function TaskMissionWidget() {
 		setScenario(TBLT_SCENARIOS[dayOfYear % TBLT_SCENARIOS.length]);
 
 		// Check if claimed today
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_task_mission_claimed") === todayStr);
 	}, []);
 
@@ -102,7 +103,7 @@ export function TaskMissionWidget() {
 		if (!claimed) {
 			addXp(scenario.xp);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_task_mission_claimed", todayStr);
 		}
 	};

@@ -20,7 +20,7 @@ export function LibraryParagraph({
 }: LibraryParagraphProps) {
 	const tokens = useMemo(() => tokenizeText(text), [text]);
 	return (
-		<div className="space-y-2">
+		<div className="space-y-2" data-private>
 			<InteractiveText
 				tokens={tokens}
 				isKnown={isKnown}

@@ -1,6 +1,5 @@
-import confetti from "canvas-confetti";
 import { Play, RefreshCw, Timer, Trophy, Zap } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
 import { sentenceOrderingExercises } from "@/lib/exerciseData";
 import { cn } from "@/lib/utils";
 
@@ -144,25 +144,30 @@ export default function SentenceRushPage() {
 		}
 	};
 
-	const endGame = (completedAll = false) => {
-		setIsPlaying(false);
-		setGameOver(true);
-		logActivity();
-		if (score > 50 || completedAll) {
-			confetti();
-			if (moduleId && lessonId) {
-				completeLesson(moduleId, lessonId, Math.max(score, 50));
+	const endGame = useCallback(
+		(completedAll = false) => {
+			setIsPlaying(false);
+			setGameOver(true);
+			logActivity();
+			if (score > 50 || completedAll) {
+				fireConfetti();
+				if (moduleId && lessonId) {
+					completeLesson(moduleId, lessonId, Math.max(score, 50));
+				}
 			}
-		}
-	};
+		},
+		[score, moduleId, lessonId, completeLesson, logActivity],
+	);
+
+	// Own effect: re-creating the interval on every render restarted the 1s tick.
+	useEffect(() => {
+		if (!isPlaying) return;
+		const timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
+		return () => clearInterval(timer);
+	}, [isPlaying]);
 
 	useEffect(() => {
-		if (isPlaying && timeLeft > 0) {
-			const timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
-			return () => clearInterval(timer);
-		} else if (timeLeft === 0 && isPlaying) {
-			endGame();
-		}
+		if (isPlaying && timeLeft === 0) endGame();
 	}, [isPlaying, timeLeft, endGame]);
 
 	return (

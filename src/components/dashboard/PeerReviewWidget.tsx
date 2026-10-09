@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function PeerReviewWidget() {
 	const { addXp } = useGamification();
@@ -19,7 +20,7 @@ export function PeerReviewWidget() {
 	const [step, setStep] = useState(0); // 0: initial, 1: listening, 2: reviewing, 3: done
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_peer_review_claimed") === todayStr);
 		if (localStorage.getItem("daily_peer_review_claimed") === todayStr) {
 			setStep(3);
@@ -44,7 +45,7 @@ export function PeerReviewWidget() {
 			setStep(3);
 			setClaimed(true);
 			addXp(25);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_peer_review_claimed", todayStr);
 		}, 1500);
 	};

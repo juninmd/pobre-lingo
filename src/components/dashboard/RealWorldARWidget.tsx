@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function RealWorldARWidget() {
 	const { addXp } = useGamification();
@@ -21,7 +22,7 @@ export function RealWorldARWidget() {
 	} | null>(null);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_ar_scan_claimed") === todayStr);
 	}, []);
 
@@ -38,7 +39,7 @@ export function RealWorldARWidget() {
 			setTimeout(() => {
 				setClaimed(true);
 				addXp(15);
-				const todayStr = new Date().toISOString().split("T")[0];
+				const todayStr = localDay();
 				localStorage.setItem("daily_ar_scan_claimed", todayStr);
 			}, 1500);
 		}, 2000);

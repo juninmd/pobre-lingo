@@ -6,18 +6,19 @@
  * rápido e o consolidado some do caminho. Persistido em localStorage.
  */
 
-import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
+import { getLocalStorageItem } from "@/lib/localStorage";
+import { capCards } from "@/lib/srsCap";
 import { scheduleCard } from "@/lib/srsScheduler";
 import {
 	GRADE_AGAIN,
 	type NewCardInput,
 	type ReviewCard,
 } from "@/lib/srsTypes";
+import { parseCards } from "@/lib/srsValidation";
 
 export { previewInterval, scheduleCard } from "@/lib/srsScheduler";
 
-const CARDS_KEY = "pobrelingo_srs_cards";
-const MAX_CARDS = 500;
+export const CARDS_KEY = "pobrelingo_srs_cards";
 
 /** Campo legado do SM-2, mantido para cards antigos e backups. */
 const DEFAULT_EASE_FACTOR = 2.5;
@@ -37,11 +38,7 @@ export {
 } from "@/lib/srsTypes";
 
 export function loadCards(): ReviewCard[] {
-	return getLocalStorageItem<ReviewCard[]>(CARDS_KEY, []);
-}
-
-export function saveCards(cards: ReviewCard[]): void {
-	setLocalStorageItem(CARDS_KEY, cards);
+	return parseCards(getLocalStorageItem<unknown>(CARDS_KEY, []));
 }
 
 function createCard(input: NewCardInput, now: Date): ReviewCard {
@@ -76,14 +73,7 @@ export function upsertCard(
 		);
 	}
 
-	const appended = [...cards, createCard(input, now)];
-	if (appended.length <= MAX_CARDS) return appended;
-
-	// Ao estourar o teto, descarta os cards mais consolidados (intervalo maior),
-	// que são justamente os que o usuário menos precisa rever.
-	return [...appended]
-		.sort((a, b) => a.intervalDays - b.intervalDays)
-		.slice(0, MAX_CARDS);
+	return capCards([...cards, createCard(input, now)]);
 }
 
 /**
@@ -98,9 +88,7 @@ export function enrollCards(
 	const known = new Set(cards.map((card) => card.id));
 	const fresh = inputs.filter((input) => !known.has(input.id));
 	if (fresh.length === 0) return cards;
-	return [...cards, ...fresh.map((input) => createCard(input, now))].slice(
-		-MAX_CARDS,
-	);
+	return capCards([...cards, ...fresh.map((input) => createCard(input, now))]);
 }
 
 /** Cards vencidos, mais atrasados primeiro. */

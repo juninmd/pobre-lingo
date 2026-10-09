@@ -1,5 +1,9 @@
 import confetti from "canvas-confetti";
 
+/** The only way to fire confetti: the library skips the burst for users who prefer reduced motion. */
+export const fireConfetti = (options: confetti.Options = {}) =>
+	confetti({ ...options, disableForReducedMotion: true });
+
 export const triggerConfetti = () => {
 	const count = 200;
 	const defaults = {
@@ -7,7 +11,7 @@ export const triggerConfetti = () => {
 	};
 
 	function fire(particleRatio: number, opts: confetti.Options) {
-		confetti({
+		fireConfetti({
 			...defaults,
 			...opts,
 			particleCount: Math.floor(count * particleRatio),

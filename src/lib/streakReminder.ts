@@ -4,6 +4,8 @@
  * O SW não lê localStorage, então a data do último estudo vai para o Cache API.
  */
 
+import { localDay } from "./localDay";
+
 export const REMINDER_CACHE = "pobrelingo-meta";
 export const LAST_STUDY_URL = "/__pobrelingo/last-study";
 export const REMINDER_TAG = "streak-reminder";
@@ -16,12 +18,8 @@ type PeriodicSyncRegistration = ServiceWorkerRegistration & {
 	};
 };
 
-/** Data local (YYYY-MM-DD), a mesma que o SW compara. */
-export function localDay(date: Date = new Date()): string {
-	const month = String(date.getMonth() + 1).padStart(2, "0");
-	const day = String(date.getDate()).padStart(2, "0");
-	return `${date.getFullYear()}-${month}-${day}`;
-}
+/** Same local day the SW compares; kept as a re-export for existing importers. */
+export { localDay };
 
 export async function publishLastStudyDay(date: Date = new Date()) {
 	if (typeof caches === "undefined") return;

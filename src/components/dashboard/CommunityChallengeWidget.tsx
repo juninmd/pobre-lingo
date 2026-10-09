@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function CommunityChallengeWidget() {
 	const { addXp } = useGamification();
@@ -10,7 +11,7 @@ export function CommunityChallengeWidget() {
 	const [progress, setProgress] = useState(0);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(
 			localStorage.getItem("daily_community_challenge_claimed") === todayStr,
 		);
@@ -22,7 +23,7 @@ export function CommunityChallengeWidget() {
 		if (!claimed) {
 			addXp(20);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_community_challenge_claimed", todayStr);
 		}
 	};

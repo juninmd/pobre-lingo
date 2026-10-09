@@ -1,16 +1,10 @@
-import * as LucideIcons from "lucide-react";
-import type React from "react";
+import { BookOpen } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import type { Lesson, Module } from "@/lib/curriculumData";
 import { getLessonLink } from "@/lib/lessonLink";
 import { cn } from "@/lib/utils";
 import { LessonCardContent } from "./LessonCardContent";
-
-const _getIcon = (name: string) => {
-	const icons = LucideIcons as unknown as Record<string, React.ElementType>;
-	return icons[name] || LucideIcons.HelpCircle;
-};
 
 interface LessonCardProps {
 	module: Module;
@@ -69,7 +63,7 @@ export function LessonCard({
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
 				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-bounce-short whitespace-nowrap flex items-center gap-1.5">
-					<LucideIcons.BookOpen className="w-3 h-3" />
+					<BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>
 			)}

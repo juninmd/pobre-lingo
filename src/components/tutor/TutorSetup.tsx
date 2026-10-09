@@ -13,6 +13,7 @@ type TutorSetupProps = {
 	providerLabel: string | null;
 	error: string | null;
 	onStart: () => void;
+	onRetry: () => void;
 };
 
 export function TutorSetup({
@@ -22,6 +23,7 @@ export function TutorSetup({
 	providerLabel,
 	error,
 	onStart,
+	onRetry,
 }: TutorSetupProps) {
 	if (phase === "detecting") {
 		return (
@@ -32,6 +34,20 @@ export function TutorSetup({
 				<Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
 				Verificando se o seu aparelho roda IA…
 			</p>
+		);
+	}
+
+	// Error with no provider: detection itself failed, so there is nothing to start yet.
+	if (phase === "error" && providerLabel === null) {
+		return (
+			<Card className="glass-card">
+				<CardContent className="p-5 space-y-3">
+					<p role="alert" className="text-sm text-destructive">
+						{error}
+					</p>
+					<Button onClick={onRetry}>Tentar de novo</Button>
+				</CardContent>
+			</Card>
 		);
 	}
 

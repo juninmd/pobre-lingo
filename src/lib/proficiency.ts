@@ -1,70 +1,50 @@
-import type { CEFRLevel } from "@/lib/curriculumData";
-import { proficiencyProfiles } from "@/lib/proficiencyProfiles";
-import { proficiencyQuestions } from "@/lib/proficiencyQuestions";
+import type { CEFRLevel } from "./curriculumData";
+import { CEFR_ORDER } from "./levels";
+import { proficiencyProfiles } from "./proficiencyProfiles";
+import { proficiencyQuestions } from "./proficiencyQuestions";
+import type { ProficiencyResult, SkillReport } from "./proficiencyTypes";
 
-export const PROFICIENCY_RESULT_KEY = "pobrelingo_proficiency_result";
-
-export interface ProficiencyResult {
-	level: CEFRLevel;
-	score: number;
-	total: number;
-	date: string;
-	ielts: string;
-	toefl: string;
-	cambridge: string;
-	focus: string;
-	dailyPlan: string[];
-	skillReports: SkillReport[];
-	weakestSkill: string;
-	todayTip: string;
-	confidence: "baixa" | "media" | "alta";
-}
-
-export interface SkillReport {
-	skill: string;
-	correct: number;
-	total: number;
-	percent: number;
-}
+export {
+	loadProficiencyResult,
+	PROFICIENCY_RESULT_KEY,
+	saveProficiencyResult,
+} from "./proficiencyStorage";
+export type { ProficiencyResult, SkillReport } from "./proficiencyTypes";
 
 export function calculateProficiency(
 	answers: Record<number, string>,
 	now = new Date(),
 ): ProficiencyResult {
 	const correct = proficiencyQuestions.filter(
-		(question) => answers[question.id] === question.correctAnswer,
+		(q) => answers[q.id] === q.correctAnswer,
 	);
-	const score = correct.length;
-	const level = inferLevel(correct.map((question) => question.cefr));
+	const level = inferLevel(correct.map((q) => q.cefr));
 	const skillReports = buildSkillReports(answers);
-	const weakestSkill = [...skillReports].sort(
-		(a, b) => a.percent - b.percent,
-	)[0].skill;
 	return {
+		version: 2,
+		basis: "recognition",
 		level,
-		score,
+		score: correct.length,
 		total: proficiencyQuestions.length,
 		date: now.toISOString().split("T")[0],
 		skillReports,
-		weakestSkill,
+		weakestSkill:
+			[...skillReports].sort((a, b) => (a.percent ?? 0) - (b.percent ?? 0))[0]
+				?.skill ?? null,
+		focus: proficiencyProfiles[level].focus,
+		dailyPlan: proficiencyProfiles[level].dailyPlan,
 		todayTip: getDailyTip(level, now),
-		confidence: score >= 10 ? "alta" : score >= 7 ? "media" : "baixa",
-		...proficiencyProfiles[level],
 	};
 }
 
 export function buildSkillReports(
 	answers: Record<number, string>,
 ): SkillReport[] {
-	const skills = [
-		...new Set(proficiencyQuestions.map((question) => question.skill)),
-	];
+	const skills = [...new Set(proficiencyQuestions.map((q) => q.skill))];
 	return skills.map((skill) => {
-		const questions = proficiencyQuestions.filter(
-			(question) => question.skill === skill,
-		);
+		const questions = proficiencyQuestions.filter((q) => q.skill === skill);
 		const correct = questions.filter(
-			(question) => answers[question.id] === question.correctAnswer,
+			(q) => answers[q.id] === q.correctAnswer,
 		).length;
 		return {
 			skill,
@@ -75,43 +55,20 @@ export function buildSkillReports(
 	});
 }
 
-export function getDailyTip(level: CEFRLevel, now = new Date()): string {
+export function getDailyTip(level: CEFRLevel, now = new Date()) {
 	const tips = proficiencyProfiles[level].tips;
-	const day = Math.floor(
-		(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) -
-			Date.UTC(now.getFullYear(), 0, 0)) /
-			86400000,
-	);
+	const day = Math.floor(now.getTime() / 86400000);
 	return tips[day % tips.length];
 }
 
+/** Requires evidence in every preceding band; this is a content recommendation only. */
 export function inferLevel(passedLevels: CEFRLevel[]): CEFRLevel {
-	const levels: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
-	let unlocked: CEFRLevel = "A1";
-
-	for (const level of levels) {
+	let suggested: CEFRLevel = "A1";
+	for (const level of CEFR_ORDER) {
 		const total = proficiencyQuestions.filter((q) => q.cefr === level).length;
 		const passed = passedLevels.filter((value) => value === level).length;
-		if (total > 0 && passed / total >= 0.5) {
-			unlocked = level;
-		}
+		if (!total || passed / total < 0.75) break;
+		suggested = level;
 	}
-
-	return unlocked;
-}
-
-export function loadProficiencyResult(): ProficiencyResult | null {
-	try {
-		const raw = localStorage.getItem(PROFICIENCY_RESULT_KEY);
-		const parsed = raw ? JSON.parse(raw) : null;
-		return parsed?.skillReports ? parsed : null;
-	} catch {
-		return null;
-	}
-}
-
-export function saveProficiencyResult(result: ProficiencyResult): void {
-	try {
-		localStorage.setItem(PROFICIENCY_RESULT_KEY, JSON.stringify(result));
-	} catch {}
+	return suggested;
 }

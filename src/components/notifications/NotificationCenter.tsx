@@ -23,7 +23,10 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useNotifications } from "@/contexts/NotificationContext";
-import type { NotificationCategory } from "@/lib/notifications";
+import {
+	isSafeInternalHref,
+	type NotificationCategory,
+} from "@/lib/notifications";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_STYLES: Record<
@@ -69,7 +72,7 @@ export function NotificationCenter() {
 							? `Notificações (${unreadCount} não lidas)`
 							: "Notificações"
 					}
-					className="relative h-9 w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95"
+					className="relative h-11 w-11 md:h-9 md:w-9 text-muted-foreground hover:text-foreground transition-all hover:bg-muted/50 active:scale-95"
 				>
 					<Bell className={cn("h-5 w-5", unreadCount > 0 && "text-primary")} />
 					{unreadCount > 0 && (
@@ -206,7 +209,7 @@ export function NotificationCenter() {
 												"hover:bg-muted/50",
 											)}
 										>
-											{item.href ? (
+											{isSafeInternalHref(item.href) ? (
 												<Link
 													to={item.href}
 													onClick={() => {

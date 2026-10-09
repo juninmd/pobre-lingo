@@ -141,14 +141,19 @@ test("nivelamento adaptativo termina e indica por onde começar", async ({
 	page,
 }) => {
 	await page.goto("/proficiency");
-	await page.getByRole("button", { name: "Começar diagnóstico" }).click();
+	await page.getByRole("button", { name: "Começar checagem de conteúdo" }).click();
 	const next = page.getByRole("button", { name: /^(Próxima|Finalizar)$/ });
+	const skip = page.getByRole("button", { name: /pular sem avaliar/ });
 	for (let i = 0; i < 25 && (await next.isVisible()); i++) {
+		if (await skip.isVisible()) {
+			await skip.click();
+			continue;
+		}
 		await page.getByRole("radio").first().click();
 		await next.click();
 	}
 	await expect(
-		page.getByRole("link", { name: /Começar pelo nível/ }),
+		page.getByRole("link", { name: "Revisar conteúdo sugerido" }),
 	).toBeVisible();
 	await page.screenshot({ path: "e2e-screenshots/feat-placement.png" });
 });

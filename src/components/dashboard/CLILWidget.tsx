@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const CLIL_TOPICS = [
 	{
@@ -60,7 +61,7 @@ export function CLILWidget() {
 		);
 		setTopic(CLIL_TOPICS[dayOfYear % CLIL_TOPICS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_clil_claimed") === todayStr);
 	}, []);
 
@@ -72,7 +73,7 @@ export function CLILWidget() {
 		if (isCorrect) {
 			addXp(topic.xp);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_clil_claimed", todayStr);
 		}
 	};

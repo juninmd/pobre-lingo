@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 /**
  * DataDrivenLearningWidget component
@@ -15,7 +16,7 @@ export function DataDrivenLearningWidget() {
 	const [isAnalyzing, setIsAnalyzing] = useState(false);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_ddl_claimed") === todayStr);
 	}, []);
 
@@ -28,7 +29,7 @@ export function DataDrivenLearningWidget() {
 			setIsAnalyzing(false);
 			setClaimed(true);
 			addXp(35);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_ddl_claimed", todayStr);
 		}, 1000);
 	};

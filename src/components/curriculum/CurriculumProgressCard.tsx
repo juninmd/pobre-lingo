@@ -1,10 +1,10 @@
-import * as LucideIcons from "lucide-react";
 import {
 	ArrowRight,
 	Award,
 	BookOpen,
 	Clock,
 	Flame,
+	Globe,
 	Mic,
 	Play,
 	Star,
@@ -60,7 +60,7 @@ const lessonTypeConfig = {
 	},
 	culture: {
 		label: "Cultura",
-		icon: LucideIcons.Globe,
+		icon: Globe,
 		color: "text-teal-600 dark:text-teal-400",
 		bgColor: "bg-teal-100 dark:bg-teal-900/30",
 	},

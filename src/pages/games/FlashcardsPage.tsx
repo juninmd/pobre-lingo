@@ -137,54 +137,66 @@ export default function FlashcardsPage() {
 							</CardContent>
 						</Card>
 					) : (
-						<div
-							className="w-full aspect-[4/3] relative cursor-pointer group transition-all duration-500 [transform-style:preserve-3d]"
+						<button
+							type="button"
 							onClick={handleFlip}
-							style={{
-								transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-							}}
+							className="block w-full aspect-[4/3] relative cursor-pointer group rounded-lg [perspective:1000px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 						>
-							{/* Front (English) */}
-							<div className="absolute inset-0 [backface-visibility:hidden]">
-								<Card className="w-full h-full flex flex-col items-center justify-center p-8 border-2 border-primary/10 hover:border-primary/30 shadow-lg bg-gradient-to-br from-background to-muted transition-colors">
-									<span className="text-sm uppercase tracking-widest text-muted-foreground mb-4">
-										Inglês
-									</span>
-									<h3 className="text-4xl md:text-5xl font-black text-center mb-4">
-										{currentCard.word}
-									</h3>
-									{currentCard.phonetic_transcription_en && (
-										<span className="text-muted-foreground/60 font-mono text-lg">
-											{currentCard.phonetic_transcription_en}
+							{/* 3D context on the inner div: Firefox mishandles preserve-3d on a button itself. */}
+							<div
+								className="absolute inset-0 transition-all duration-500 [transform-style:preserve-3d]"
+								style={{
+									transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+								}}
+							>
+								{/* Front (English) */}
+								<div
+									aria-hidden={isFlipped}
+									className="absolute inset-0 [backface-visibility:hidden]"
+								>
+									<Card className="w-full h-full flex flex-col items-center justify-center p-8 border-2 border-primary/10 hover:border-primary/30 shadow-lg bg-gradient-to-br from-background to-muted transition-colors">
+										<span className="text-sm uppercase tracking-widest text-muted-foreground mb-4">
+											Inglês
 										</span>
-									)}
-									<p className="mt-8 text-sm text-muted-foreground text-center italic max-w-md">
-										"{currentCard.example_sentence_en}"
-									</p>
-									<div className="absolute bottom-4 text-xs text-muted-foreground animate-pulse">
-										Toque para virar
-									</div>
-								</Card>
-							</div>
+										<h3 className="text-4xl md:text-5xl font-black text-center mb-4">
+											{currentCard.word}
+										</h3>
+										{currentCard.phonetic_transcription_en && (
+											<span className="text-muted-foreground/60 font-mono text-lg">
+												{currentCard.phonetic_transcription_en}
+											</span>
+										)}
+										<p className="mt-8 text-sm text-muted-foreground text-center italic max-w-md">
+											"{currentCard.example_sentence_en}"
+										</p>
+										<div className="absolute bottom-4 text-xs text-muted-foreground animate-pulse">
+											Toque para virar
+										</div>
+									</Card>
+								</div>
 
-							{/* Back (Portuguese) */}
-							<div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-								<Card className="w-full h-full flex flex-col items-center justify-center p-8 border-2 border-primary/10 shadow-lg bg-primary/5">
-									<span className="text-sm uppercase tracking-widest text-primary mb-4">
-										Português
-									</span>
-									<h3 className="text-4xl md:text-5xl font-black text-center text-primary mb-4">
-										{currentCard.translation_pt}
-									</h3>
-									<p className="text-lg text-muted-foreground text-center mb-6">
-										{currentCard.meaning_en}
-									</p>
-									<p className="text-sm text-muted-foreground text-center italic max-w-md">
-										"{currentCard.example_sentence_pt}"
-									</p>
-								</Card>
+								{/* Back (Portuguese) */}
+								<div
+									aria-hidden={!isFlipped}
+									className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]"
+								>
+									<Card className="w-full h-full flex flex-col items-center justify-center p-8 border-2 border-primary/10 shadow-lg bg-primary/5">
+										<span className="text-sm uppercase tracking-widest text-primary mb-4">
+											Português
+										</span>
+										<h3 className="text-4xl md:text-5xl font-black text-center text-primary mb-4">
+											{currentCard.translation_pt}
+										</h3>
+										<p className="text-lg text-muted-foreground text-center mb-6">
+											{currentCard.meaning_en}
+										</p>
+										<p className="text-sm text-muted-foreground text-center italic max-w-md">
+											"{currentCard.example_sentence_pt}"
+										</p>
+									</Card>
+								</div>
 							</div>
-						</div>
+						</button>
 					)}
 				</div>
 

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function VirtualImmersionWidget() {
 	const { addXp } = useGamification();
@@ -11,7 +12,7 @@ export function VirtualImmersionWidget() {
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_vr_immersion_claimed") === todayStr);
 	}, []);
 
@@ -22,7 +23,7 @@ export function VirtualImmersionWidget() {
 			setIsPlaying(false);
 			setClaimed(true);
 			addXp(20);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_vr_immersion_claimed", todayStr);
 		}, 2000); // Simulate VR experience loading/playing
 	};

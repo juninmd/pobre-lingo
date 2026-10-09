@@ -50,7 +50,7 @@ export function TutorChat({ turns, thinking, error, onSend }: TutorChatProps) {
 
 	return (
 		<div className="space-y-4">
-			<ol aria-live="polite" className="space-y-3">
+			<ol aria-live="polite" className="space-y-3" data-private>
 				{turns.map((turn, index) => (
 					<li
 						// biome-ignore lint/suspicious/noArrayIndexKey: turns are append-only

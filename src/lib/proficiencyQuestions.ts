@@ -2,7 +2,7 @@ import type { CEFRLevel } from "@/lib/curriculumData";
 
 export interface ProficiencyQuestion {
 	id: number;
-	skill: "grammar" | "vocabulary" | "reading" | "certification";
+	skill: "grammar" | "vocabulary" | "reading";
 	cefr: CEFRLevel;
 	question: string;
 	options: string[];
@@ -68,12 +68,16 @@ export const proficiencyQuestions: ProficiencyQuestion[] = [
 	},
 	{
 		id: 8,
-		skill: "certification",
+		skill: "reading",
 		cefr: "B2",
 		question:
-			"Which skill is usually weakest when you can read well but freeze in interviews?",
-		options: ["Speaking fluency", "Spelling only", "Alphabet"],
-		correctAnswer: "Speaking fluency",
+			'Qual é a ideia de: "Although the proposal is costly, we should consider it."',
+		options: [
+			"Considerar a proposta apesar do custo",
+			"Rejeitar a proposta por ser barata",
+			"O custo ainda não foi informado",
+		],
+		correctAnswer: "Considerar a proposta apesar do custo",
 	},
 	{
 		id: 9,
@@ -101,14 +105,16 @@ export const proficiencyQuestions: ProficiencyQuestion[] = [
 	},
 	{
 		id: 12,
-		skill: "certification",
+		skill: "reading",
 		cefr: "C2",
-		question: "What should a C2 candidate train most before a formal exam?",
+		question:
+			'Interprete: "She is not so much opposed to the plan as concerned about its cost."',
 		options: [
-			"Task timing and precision",
-			"Only basic colors",
-			"The verb to be",
+			"O foco da preocupação dela é o custo, mais que uma oposição ao plano",
+			"Ela se opõe totalmente ao plano por razões não financeiras",
+			"Ela considera o custo irrelevante",
 		],
-		correctAnswer: "Task timing and precision",
+		correctAnswer:
+			"O foco da preocupação dela é o custo, mais que uma oposição ao plano",
 	},
 ];

@@ -1,114 +1,20 @@
 import type React from "react";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { usePersistentState } from "@/hooks/usePersistentState";
+import { ACHIEVEMENTS_LIST, AUTO_UNLOCK_RULES } from "@/lib/achievementsData";
+import { isNonNegativeNumber, isStringArray } from "@/lib/storageGuards";
 import { readStreak, recordStreakActivity } from "@/lib/streak";
 
-export interface Achievement {
-	id: string;
-	title: string;
-	description: string;
-	icon: string; // Lucide icon name
-	condition?: (stats: { xp: number; streak: number; gems: number }) => boolean;
-}
-
-export const ACHIEVEMENTS_LIST: Achievement[] = [
-	{
-		id: "first_steps",
-		title: "Primeiros Passos",
-		description: "Ganhe seus primeiros 50 XP.",
-		icon: "Footprints",
-	},
-	{
-		id: "streak_3",
-		title: "Em Chamas",
-		description: "Alcance uma ofensiva de 3 dias.",
-		icon: "Flame",
-	},
-	{
-		id: "streak_7",
-		title: "Hábito Formado",
-		description: "Alcance uma ofensiva de 7 dias.",
-		icon: "CalendarCheck",
-	},
-	{
-		id: "rich",
-		title: "Acumulador",
-		description: "Junte 100 PobreCoins.",
-		icon: "Coins",
-	},
-	{
-		id: "scholar",
-		title: "Estudioso",
-		description: "Chegue ao Nível 5.",
-		icon: "GraduationCap",
-	},
-	{
-		id: "master",
-		title: "Mestre",
-		description: "Chegue ao Nível 10.",
-		icon: "Crown",
-	},
-	{
-		id: "streak_14",
-		title: "Duas Semanas",
-		description: "Alcance uma ofensiva de 14 dias.",
-		icon: "CalendarRange",
-	},
-	{
-		id: "streak_30",
-		title: "Inabalável",
-		description: "Alcance uma ofensiva de 30 dias.",
-		icon: "ShieldCheck",
-	},
-	{
-		id: "xp_1000",
-		title: "Maratonista",
-		description: "Acumule 1.000 XP.",
-		icon: "Zap",
-	},
-	{
-		id: "xp_5000",
-		title: "Poliglota em Treino",
-		description: "Acumule 5.000 XP.",
-		icon: "Rocket",
-	},
-	{
-		id: "gems_500",
-		title: "Cofre Cheio",
-		description: "Junte 500 PobreCoins.",
-		icon: "Gem",
-	},
-	{
-		id: "legend",
-		title: "Lenda do PobreLingo",
-		description: "Chegue ao Nível 20.",
-		icon: "Sparkles",
-	},
-];
-
-/** Regras de desbloqueio automático, avaliadas a cada mudança de estado. */
-const AUTO_UNLOCK_RULES: {
-	id: string;
-	test: (s: {
-		xp: number;
-		streak: number;
-		gems: number;
-		level: number;
-	}) => boolean;
-}[] = [
-	{ id: "first_steps", test: (s) => s.xp >= 50 },
-	{ id: "streak_3", test: (s) => s.streak >= 3 },
-	{ id: "streak_7", test: (s) => s.streak >= 7 },
-	{ id: "streak_14", test: (s) => s.streak >= 14 },
-	{ id: "streak_30", test: (s) => s.streak >= 30 },
-	{ id: "rich", test: (s) => s.gems >= 100 },
-	{ id: "gems_500", test: (s) => s.gems >= 500 },
-	{ id: "xp_1000", test: (s) => s.xp >= 1000 },
-	{ id: "xp_5000", test: (s) => s.xp >= 5000 },
-	{ id: "scholar", test: (s) => s.level >= 5 },
-	{ id: "master", test: (s) => s.level >= 10 },
-	{ id: "legend", test: (s) => s.level >= 20 },
-];
+export type { Achievement } from "@/lib/achievementsData";
+export { ACHIEVEMENTS_LIST } from "@/lib/achievementsData";
 
 interface GamificationContextType {
 	hearts: number;
@@ -133,6 +39,12 @@ const GamificationContext = createContext<GamificationContextType | undefined>(
 	undefined,
 );
 
+const maxHearts = Infinity;
+
+// Infinite lives: the logic never decreases hearts.
+// User requested: "as pessoas podem errar a vontade"
+const loseHeart = () => {};
+
 export function GamificationProvider({
 	children,
 }: {
@@ -140,58 +52,49 @@ export function GamificationProvider({
 }) {
 	const { notify } = useNotifications();
 
-	// Infinite hearts: we keep the state for compatibility but logic won't decrease it
+	// Hearts are not persisted; the state stays for API compatibility.
 	const [hearts, setHearts] = useState<number>(Infinity);
-	const maxHearts = Infinity;
 
-	const [gems, setGems] = useState<number>(() => {
-		if (typeof window === "undefined") return 0;
-		const stored = localStorage.getItem("pl_gems");
-		return stored ? parseInt(stored, 10) : 0;
-	});
+	// Persisted counters validate on read, so a bad value never reaches render.
+	const [gems, setGems] = usePersistentState("pl_gems", 0, isNonNegativeNumber);
+	const [xp, setXp] = usePersistentState("pl_xp", 0, isNonNegativeNumber);
+	const [unlockedAchievements, setUnlockedAchievements] = usePersistentState<
+		string[]
+	>("pl_achievements", [], isStringArray);
 
 	// Ofensiva vem da fonte única (lib/streak), alimentada por estudo real.
 	const [streak, setStreak] = useState<number>(() => readStreak());
 
-	const [xp, setXp] = useState<number>(() => {
-		if (typeof window === "undefined") return 0;
-		const stored = localStorage.getItem("pl_xp");
-		return stored ? parseInt(stored, 10) : 0;
-	});
-
-	const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(
-		() => {
-			if (typeof window === "undefined") return [];
-			const stored = localStorage.getItem("pl_achievements");
-			return stored ? JSON.parse(stored) : [];
-		},
-	);
-
-	// Derived state for level
 	// Formula: Level = floor(sqrt(xp / 100)) + 1
 	const level = Math.floor(Math.sqrt(xp / 100)) + 1;
 
-	// Save to localStorage whenever state changes
-	useEffect(() => {
-		localStorage.setItem("pl_gems", gems.toString());
-		localStorage.setItem("pl_xp", xp.toString());
-		localStorage.setItem(
-			"pl_achievements",
-			JSON.stringify(unlockedAchievements),
-		);
-		// Streak é derivado de lib/streak; hearts não são mais persistidos.
-	}, [gems, xp, unlockedAchievements]);
-
-	// Mantém a ofensiva sincronizada com as lições concluídas em outras telas.
+	// Mantém a ofensiva sincronizada com as lições concluídas em outras telas/abas.
 	useEffect(() => {
 		const sync = () => setStreak(readStreak());
 		const interval = setInterval(sync, 30_000);
 		document.addEventListener("visibilitychange", sync);
+		window.addEventListener("storage", sync);
 		return () => {
 			clearInterval(interval);
 			document.removeEventListener("visibilitychange", sync);
+			window.removeEventListener("storage", sync);
 		};
 	}, []);
+
+	const announceAchievement = useCallback(
+		(id: string) => {
+			const achievement = ACHIEVEMENTS_LIST.find((a) => a.id === id);
+			if (!achievement) return;
+			notify({
+				category: "achievement",
+				title: `🏆 Conquista desbloqueada: ${achievement.title}`,
+				body: achievement.description,
+				href: "/achievements",
+				dedupeKey: `achievement:${id}`,
+			});
+		},
+		[notify],
+	);
 
 	// Check auto-unlocks based on stats
 	useEffect(() => {
@@ -202,20 +105,18 @@ export function GamificationProvider({
 		).map((rule) => rule.id);
 
 		if (newUnlocks.length > 0) {
-			setUnlockedAchievements((prev) => [...prev, ...newUnlocks]);
-			for (const id of newUnlocks) {
-				const achievement = ACHIEVEMENTS_LIST.find((a) => a.id === id);
-				if (!achievement) continue;
-				notify({
-					category: "achievement",
-					title: `🏆 Conquista desbloqueada: ${achievement.title}`,
-					body: achievement.description,
-					href: "/achievements",
-					dedupeKey: `achievement:${id}`,
-				});
-			}
+			setUnlockedAchievements((prev) => [...new Set([...prev, ...newUnlocks])]);
+			for (const id of newUnlocks) announceAchievement(id);
 		}
-	}, [xp, streak, gems, level, unlockedAchievements, notify]);
+	}, [
+		xp,
+		streak,
+		gems,
+		level,
+		unlockedAchievements,
+		setUnlockedAchievements,
+		announceAchievement,
+	]);
 
 	// Aviso de novo nível: dedupe por nível para não repetir a cada render.
 	useEffect(() => {
@@ -229,67 +130,72 @@ export function GamificationProvider({
 		});
 	}, [level, notify]);
 
-	const loseHeart = () => {
-		// Infinite lives: do nothing
-		// User requested: "as pessoas podem errar a vontade"
-	};
+	const refillHearts = useCallback(() => setHearts(Infinity), []);
 
-	const refillHearts = () => {
-		setHearts(Infinity);
-	};
+	const addGem = useCallback(
+		(amount: number) => setGems((prev) => prev + amount),
+		[setGems],
+	);
 
-	const addGem = (amount: number) => {
-		setGems((prev) => prev + amount);
-	};
-
-	const addStreak = () => {
+	const addStreak = useCallback(() => {
 		const previous = readStreak();
 		const next = recordStreakActivity();
 		setStreak(next);
 		// Recompensa diária só na primeira atividade do dia.
 		if (next > previous) addGem(10);
-	};
+	}, [addGem]);
 
-	const addXp = (amount: number) => {
-		setXp((prev) => prev + amount);
-	};
+	const addXp = useCallback(
+		(amount: number) => setXp((prev) => prev + amount),
+		[setXp],
+	);
 
-	const unlockAchievement = (id: string) => {
-		if (unlockedAchievements.includes(id)) return;
-		setUnlockedAchievements((prev) => [...prev, id]);
-		const achievement = ACHIEVEMENTS_LIST.find((a) => a.id === id);
-		if (achievement) {
-			notify({
-				category: "achievement",
-				title: `🏆 Conquista desbloqueada: ${achievement.title}`,
-				body: achievement.description,
-				href: "/achievements",
-				dedupeKey: `achievement:${id}`,
-			});
-		}
-	};
+	const unlockAchievement = useCallback(
+		(id: string) => {
+			if (unlockedAchievements.includes(id)) return;
+			setUnlockedAchievements((prev) => [...new Set([...prev, id])]);
+			announceAchievement(id);
+		},
+		[unlockedAchievements, setUnlockedAchievements, announceAchievement],
+	);
+
+	const value = useMemo<GamificationContextType>(
+		() => ({
+			hearts,
+			maxHearts,
+			gems,
+			streak,
+			xp,
+			level,
+			unlockedAchievements,
+			setHearts,
+			setGems,
+			setStreak,
+			loseHeart,
+			refillHearts,
+			addGem,
+			addStreak,
+			addXp,
+			unlockAchievement,
+		}),
+		[
+			hearts,
+			gems,
+			streak,
+			xp,
+			level,
+			unlockedAchievements,
+			setGems,
+			refillHearts,
+			addGem,
+			addStreak,
+			addXp,
+			unlockAchievement,
+		],
+	);
 
 	return (
-		<GamificationContext.Provider
-			value={{
-				hearts,
-				maxHearts,
-				gems,
-				streak,
-				xp,
-				level,
-				unlockedAchievements,
-				setHearts,
-				setGems,
-				setStreak,
-				loseHeart,
-				refillHearts,
-				addGem,
-				addStreak,
-				addXp,
-				unlockAchievement,
-			}}
-		>
+		<GamificationContext.Provider value={value}>
 			{children}
 		</GamificationContext.Provider>
 	);

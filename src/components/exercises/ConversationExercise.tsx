@@ -1,4 +1,3 @@
-import confetti from "canvas-confetti";
 import {
 	ArrowLeft,
 	Bot,
@@ -11,6 +10,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
 import { type ConversationOption, SCENARIOS } from "@/lib/conversationData";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
@@ -151,7 +151,7 @@ export default function ConversationExercise() {
 						},
 					]);
 					setIsCompleted(true);
-					confetti({
+					fireConfetti({
 						particleCount: 150,
 						spread: 80,
 						origin: { y: 0.6 },

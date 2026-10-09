@@ -45,28 +45,55 @@ type Engine = Awaited<
 	ReturnType<typeof import("@mlc-ai/web-llm").CreateWebWorkerMLCEngine>
 >;
 
+const DISPOSED_MESSAGE = "O tutor foi encerrado antes de carregar o modelo.";
+
 export function createWebLlmProvider(): AiProvider {
 	let engine: Engine | null = null;
 	let worker: Worker | null = null;
+	let loading: Promise<void> | null = null;
+	let disposed = false;
 	let system = "";
+
+	// Terminates only the worker we still own, so a second call is a no-op.
+	function release(target: Worker) {
+		if (worker !== target) return;
+		worker = null;
+		target.terminate();
+	}
+
+	async function loadEngine(onProgress?: ProgressHandler) {
+		const model = await pickModel();
+		if (!model) throw new Error("Seu navegador não tem WebGPU.");
+		const { CreateWebWorkerMLCEngine } = await import("@mlc-ai/web-llm");
+		if (disposed) throw new Error(DISPOSED_MESSAGE);
+		const created = new Worker(new URL("./webllm.worker.ts", import.meta.url), {
+			type: "module",
+		});
+		worker = created;
+		try {
+			const loaded = await CreateWebWorkerMLCEngine(created, model, {
+				initProgressCallback: (report) =>
+					onProgress?.(report.progress, report.text),
+			});
+			if (disposed) throw new Error(DISPOSED_MESSAGE);
+			engine = loaded;
+		} catch (cause) {
+			release(created);
+			throw cause;
+		}
+	}
 
 	return {
 		id: "webllm",
 		label: "Qwen2.5 no seu aparelho (WebGPU)",
 		speaksPortuguese: true,
-		async load(systemPrompt: string, onProgress?: ProgressHandler) {
+		load(systemPrompt: string, onProgress?: ProgressHandler) {
 			system = systemPrompt;
-			if (engine) return;
-			const model = await pickModel();
-			if (!model) throw new Error("Seu navegador não tem WebGPU.");
-			const { CreateWebWorkerMLCEngine } = await import("@mlc-ai/web-llm");
-			worker = new Worker(new URL("./webllm.worker.ts", import.meta.url), {
-				type: "module",
+			if (engine) return Promise.resolve();
+			loading ??= loadEngine(onProgress).finally(() => {
+				loading = null;
 			});
-			engine = await CreateWebWorkerMLCEngine(worker, model, {
-				initProgressCallback: (report) =>
-					onProgress?.(report.progress, report.text),
-			});
+			return loading;
 		},
 		async reply(history: ChatMessage[], onText?: (text: string) => void) {
 			if (!engine) throw new Error("Modelo não carregado.");
@@ -84,10 +111,10 @@ export function createWebLlmProvider(): AiProvider {
 			return text;
 		},
 		dispose() {
+			disposed = true;
 			void engine?.unload();
-			worker?.terminate();
+			if (worker) release(worker);
 			engine = null;
-			worker = null;
 		},
 	};
 }

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const COACHING_TIPS = [
 	{
@@ -42,7 +43,7 @@ export function AIStudyCoachWidget() {
 		);
 		setTip(COACHING_TIPS[dayOfYear % COACHING_TIPS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_ai_coach_claimed") === todayStr);
 	}, []);
 
@@ -53,7 +54,7 @@ export function AIStudyCoachWidget() {
 			setIsAnalyzing(false);
 			setClaimed(true);
 			addXp(tip.xp);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_ai_coach_claimed", todayStr);
 		}, 1500); // Simulate AI thinking
 	};

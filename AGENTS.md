@@ -26,12 +26,12 @@
 
 ## 🤝 Interaction Protocol
 - Follow the **Plan -> Act -> Validate** cycle for every task.
-- Consult `gemini.md` for project-specific instructions.
+- Consult `README.md` for run, test, and layout commands; this file holds agent rules only.
 - Ensure to check if features are already implemented to avoid duplicate work and safely transition to completion when verifying existing states (e.g. Learning Timeline).
 
 ## 📅 Session Logs
 
-### [Current Date] Jules-Architect: Validation of Interactive Journey Book
+### [2026-10-08] Jules-Architect: Validation of Interactive Journey Book
 - **Action:** Audited codebase for requested UI/UX refactoring (Interactive Journey Book).
 - **Findings:** The requested features (`LearningTimeline`, MobileNav visibility logic, removed START popups, gamified header, "Onde parei" bookmark, and associated Playwright tests) are already fully implemented and verified as passing.
 - **Next Steps:** Proceeding with standard validation checks and closing the session as the state is already compliant with the user's request.
@@ -41,8 +41,9 @@
 - **Action:** Created `LiveTutorWidget.tsx` to satisfy the "Live Human Connection" trend requirement.
 - **Findings:** Successfully modernized the dashboard layout. Ensured all new structural elements are thoroughly tested via Playwright E2E.
 - **Next Steps:** Maintain the structured grid layout for future widget additions.
+- **Note:** Files at the root of `src/components/dashboard/` (outside `trends/`) (`LiveTutorWidget`, `ProjectBasedLearningWidget`, `DataDrivenLearningWidget`, `AdaptiveLearningWidget`, `FlippedClassroomWidget`) have no importers. PBL, DDL and Flipped are superseded by `src/components/dashboard/trends/` (`PBLWidget`, `DDLWidget`, `FlippedClassroomWidget`); LiveTutor and Adaptive have no `trends/` counterpart.
 
-### [Current Date] Jules-Architect: Interface Enhancement & Trend Implementation
+### [2026-10-07] Jules-Architect: Interface Enhancement & Trend Implementation
 - **Action:** Researched modern English teaching trends and identified Project-Based Learning (PBL) and Data-Driven Learning (DDL).
 - **Action:** Created `ProjectBasedLearningWidget` and `DataDrivenLearningWidget`.
 - **Action:** Integrated new widgets into the `DashboardPage` and verified all tests pass.

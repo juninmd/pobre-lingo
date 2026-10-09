@@ -1,15 +1,9 @@
-import * as LucideIcons from "lucide-react";
-import type React from "react";
 import { CefrBadge } from "@/components/common/CefrBadge";
 import type { Module } from "@/lib/curriculumData";
 import { getCEFRLevel } from "@/lib/curriculumData";
+import { getIcon } from "@/lib/iconMap";
 import { cn } from "@/lib/utils";
 import { LessonCard } from "./LessonCard";
-
-const getIcon = (name: string) => {
-	const icons = LucideIcons as unknown as Record<string, React.ElementType>;
-	return icons[name] || LucideIcons.HelpCircle;
-};
 
 interface ModuleSectionProps {
 	module: Module;

@@ -52,9 +52,12 @@ export async function chromeAiStatus(): Promise<ProviderStatus> {
 	}
 }
 
+const DISPOSED_MESSAGE = "O tutor foi encerrado antes de carregar o modelo.";
+
 export function createChromeProvider(): AiProvider {
 	let session: PromptSession | null = null;
 	let sentCount = 0;
+	let disposed = false;
 
 	return {
 		id: "chrome",
@@ -64,7 +67,8 @@ export function createChromeProvider(): AiProvider {
 			const api = getApi();
 			if (!api) throw new Error("A IA embutida do Chrome não está disponível.");
 			session?.destroy();
-			session = await api.create({
+			session = null;
+			const created = await api.create({
 				...LANGUAGE_OPTIONS,
 				initialPrompts: [{ role: "system", content: system }],
 				monitor(monitor) {
@@ -73,6 +77,12 @@ export function createChromeProvider(): AiProvider {
 					);
 				},
 			});
+			// dispose() ran while the model was loading: nobody owns this session.
+			if (disposed) {
+				created.destroy();
+				throw new Error(DISPOSED_MESSAGE);
+			}
+			session = created;
 			sentCount = 0;
 		},
 		async reply(history: ChatMessage[], onText?: (text: string) => void) {
@@ -83,16 +93,18 @@ export function createChromeProvider(): AiProvider {
 				.filter((message) => message.role === "user")
 				.map((message) => message.content)
 				.join("\n");
-			sentCount = history.length + 1;
 			let text = "";
 			for await (const chunk of session.promptStreaming(pending)) {
 				// Versões antigas mandavam o texto acumulado; as novas, só o trecho.
 				text = chunk.startsWith(text) ? chunk : text + chunk;
 				onText?.(text);
 			}
+			// Só avança após o sucesso: num turno falho a mensagem é reenviada.
+			sentCount = history.length + 1;
 			return text;
 		},
 		dispose() {
+			disposed = true;
 			session?.destroy();
 			session = null;
 		},

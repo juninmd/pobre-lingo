@@ -210,6 +210,12 @@ const Sidebar = React.forwardRef<
 							} as React.CSSProperties
 						}
 						side={side}
+						aria-describedby={undefined}
+						// Keep focus on the drawer: the search field would raise the on-screen keyboard over the nav.
+						onOpenAutoFocus={(event) => {
+							event.preventDefault();
+							(event.currentTarget as HTMLElement).focus();
+						}}
 					>
 						<ShadcnSheetHeader className="p-4 border-b border-sidebar-border">
 							<ShadcnSheetTitle>Menu</ShadcnSheetTitle>

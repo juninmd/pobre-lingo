@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 
 export type Theme = "dark" | "light" | "pobre-lingo";
 
@@ -20,14 +27,26 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+const THEMES: readonly Theme[] = ["dark", "light", "pobre-lingo"];
+
+/** Storage may be blocked or hold a stale/edited value: never trust it. */
+function readTheme(storageKey: string, fallback: Theme): Theme {
+	try {
+		const stored = localStorage.getItem(storageKey);
+		return THEMES.find((theme) => theme === stored) ?? fallback;
+	} catch {
+		return fallback;
+	}
+}
+
 export function ThemeProvider({
 	children,
 	defaultTheme = "light",
 	storageKey = "vite-ui-theme",
 	...props
 }: ThemeProviderProps) {
-	const [theme, setTheme] = useState<Theme>(
-		() => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
+	const [theme, setTheme] = useState<Theme>(() =>
+		readTheme(storageKey, defaultTheme),
 	);
 
 	useEffect(() => {
@@ -44,13 +63,22 @@ export function ThemeProvider({
 		}
 	}, [theme]);
 
-	const value = {
-		theme,
-		setTheme: (theme: Theme) => {
-			localStorage.setItem(storageKey, theme);
-			setTheme(theme);
+	const changeTheme = useCallback(
+		(next: Theme) => {
+			try {
+				localStorage.setItem(storageKey, next);
+			} catch {
+				// Storage is full or blocked: the theme still applies for this session.
+			}
+			setTheme(next);
 		},
-	};
+		[storageKey],
+	);
+
+	const value = useMemo(
+		() => ({ theme, setTheme: changeTheme }),
+		[theme, changeTheme],
+	);
 
 	return (
 		<ThemeProviderContext.Provider {...props} value={value}>

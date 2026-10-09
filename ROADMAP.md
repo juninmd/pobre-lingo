@@ -18,7 +18,6 @@
 
 ## 🎯 v1.0 Milestone
 A robust, stable, and Antigravity-compliant project ready for scale.
-Updated roadmap timestamp
 
 ## Recent Updates (2024 UI & Methods)
 - [x] **Teaching Trends**: Added all 2024/2025 ELT trends (Translanguaging, Mindful ELT, Critical Pedagogy, etc) widgets to Dashboard.

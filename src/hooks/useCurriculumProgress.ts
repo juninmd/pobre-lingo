@@ -90,55 +90,45 @@ export function useCurriculumProgress() {
 		return newStreak;
 	}, []);
 
-	// Marcar lição como concluída
+	// Marcar lição como concluída. Lê o armazenamento (não o estado do render) para
+	// não perder XP em chamadas no mesmo lote; efeitos ficam fora do updater, que o
+	// React pode reexecutar.
 	const completeLesson = useCallback(
 		(moduleId: string, lessonId: string, xpReward: number) => {
-			setCompletedLessons((prev) => {
-				// Verificar se já foi concluída
-				const alreadyCompleted = prev.some(
-					(l) => l.moduleId === moduleId && l.lessonId === lessonId,
-				);
+			const prev = getLocalStorageItem<LessonProgress[]>(
+				PROGRESS_STORAGE_KEY,
+				[],
+			);
+			const alreadyCompleted = prev.some(
+				(l) => l.moduleId === moduleId && l.lessonId === lessonId,
+			);
+			if (alreadyCompleted) return;
 
-				if (alreadyCompleted) {
-					return prev;
-				}
-
-				const newProgress: LessonProgress = {
+			const updated: LessonProgress[] = [
+				...prev,
+				{
 					moduleId,
 					lessonId,
 					completed: true,
 					completedAt: new Date().toISOString(),
 					xpEarned: xpReward,
-				};
+				},
+			];
+			const newXP = getLocalStorageItem<number>(XP_STORAGE_KEY, 0) + xpReward;
+			const newLevel = calculateLevel(newXP);
 
-				const updated = [...prev, newProgress];
-				setLocalStorageItem(PROGRESS_STORAGE_KEY, updated);
+			setLocalStorageItem(PROGRESS_STORAGE_KEY, updated);
+			setLocalStorageItem(XP_STORAGE_KEY, newXP);
+			setLocalStorageItem(LEVEL_STORAGE_KEY, newLevel);
+			setCompletedLessons(updated);
+			setTotalXP(newXP);
+			setUserLevel(newLevel);
 
-				// Atualizar XP
-				const newXP = totalXP + xpReward;
-				setTotalXP(newXP);
-				setLocalStorageItem(XP_STORAGE_KEY, newXP);
-
-				// Atualizar nível
-				const newLevel = calculateLevel(newXP);
-				setUserLevel(newLevel);
-				setLocalStorageItem(LEVEL_STORAGE_KEY, newLevel);
-
-				// Atualizar Streak
-				updateStreak();
-
-				// Log activity for daily goal tracking
-				logActivity();
-
-				return updated;
-			});
+			updateStreak();
+			// Log activity for daily goal tracking
+			logActivity();
 		},
-		[
-			totalXP,
-			calculateLevel,
-			updateStreak, // Log activity for daily goal tracking
-			logActivity,
-		],
+		[calculateLevel, updateStreak, logActivity],
 	);
 
 	// Verificar se uma lição está concluída

@@ -1,5 +1,8 @@
 /*
   X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: camera=(), geolocation=(), payment=(), usb=(), microphone=(self)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.logr-in.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy-Report-Only: connect-src 'self' https://simple.wikipedia.org https://api.tatoeba.org https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://r.logr-in.com https://r.logr-ingest.com https://r.logrocket.io https://r.lr-ingest.io https://r.lr-in.com https://r.lr-in-prod.com https://r.lr-intake.com https://r.lr-ingest.com

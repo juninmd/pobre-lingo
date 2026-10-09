@@ -428,13 +428,27 @@
 	}
 }
 
+/* Reduced motion: no animation unless an element opts in via --animation-reduced.
+   Forcing 0.01ms durations instead makes looping animations flash. Radix
+   Presence unmounts at once when animation-name is none. */
+@property --animation-reduced {
+	syntax: "*";
+	inherits: false;
+	initial-value: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
+		animation: var(--animation-reduced) !important;
 		transition-duration: 0.01ms !important;
+		transition-delay: 0s !important;
 		scroll-behavior: auto !important;
+	}
+
+	/* A loading spinner is state feedback: keep it, but slower. */
+	.animate-spin {
+		--animation-reduced: spin 2.5s linear infinite;
 	}
 }

@@ -19,7 +19,7 @@ export function MobileNav() {
 
 	return (
 		<nav
-			aria-label="Navegação principal"
+			aria-label="Atalhos"
 			className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-border bg-background/95 backdrop-blur pb-safe"
 		>
 			<ul className="flex items-stretch justify-around">

@@ -17,24 +17,19 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		await expect(page.locator("body")).toBeVisible();
 	});
 
-	test("should adapt layout for mobile devices and use generic Sidebar instead of MobileNav", async ({ page, isMobile }) => {
+	test("should adapt layout for mobile devices with a drawer sidebar and bottom bar", async ({ page, isMobile }) => {
 		await page.goto("/");
 
-		// The Shadcn Sidebar component handles both responsive states gracefully.
-		// On mobile, standard sidebar hides (unless triggered via button) and relies on sheet mechanism.
-		// Old MobileNav should no longer exist.
-		const mobileNav = page.locator("nav[aria-label='Navegação principal móvel']");
-		await expect(mobileNav).toHaveCount(0); // Should be permanently removed
+		const bottomNav = page.getByRole("navigation", { name: "Atalhos" });
 
 		if (isMobile) {
-			await expect(page.locator("body")).toBeVisible();
-			// On mobile, check if sidebar trigger in header is visible
-			const sidebarTrigger = page.getByRole("button", { name: "Toggle menu" });
+			const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
 			await expect(sidebarTrigger).toBeVisible();
+			await expect(bottomNav).toBeVisible();
 		} else {
-			// On desktop, the main nav should be visible within the Sidebar
 			const desktopNav = page.getByRole("link", { name: "Minha Jornada" });
 			await expect(desktopNav).toBeVisible();
+			await expect(bottomNav).toBeHidden();
 		}
 	});
 

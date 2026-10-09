@@ -1,17 +1,15 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 import {
 	enrollCards,
 	getDueCards,
 	getSrsStats,
-	loadCards,
 	type NewCardInput,
-	type ReviewCard,
 	type ReviewGrade,
-	saveCards,
 	scheduleCard,
 	upsertCard,
 } from "@/lib/srs";
+import { getCards, subscribeCards, updateCards } from "@/lib/srsStore";
 
 const MIGRATION_FLAG = "pobrelingo_srs_migrated_v1";
 const LEGACY_WRONG_KEY = "pobrelingo_wrong_answers";
@@ -21,78 +19,66 @@ interface LegacyWrongAnswer {
 	exerciseType: string;
 	question: string;
 	correctAnswer: string;
-	wrongCount: number;
-	lastWrongAt: string;
 }
+
+const isLegacyWrongAnswer = (item: unknown): item is LegacyWrongAnswer =>
+	typeof item === "object" &&
+	item !== null &&
+	["id", "exerciseType", "question", "correctAnswer"].every(
+		(field) => typeof (item as Record<string, unknown>)[field] === "string",
+	);
 
 /**
- * Importa os erros registrados pelo sistema antigo para o SRS, uma única vez.
- * Sem isso o usuário existente abriria a revisão com a fila vazia.
+ * Imports errors recorded by the legacy system into SRS, once. Without it,
+ * existing users would open review with an empty queue.
  */
-function migrateLegacyWrongAnswers(): ReviewCard[] {
-	const cards = loadCards();
-	if (getLocalStorageItem<boolean>(MIGRATION_FLAG, false)) return cards;
+function migrateLegacyWrongAnswers(): void {
+	if (getLocalStorageItem<boolean>(MIGRATION_FLAG, false)) return;
 
-	const legacy = getLocalStorageItem<LegacyWrongAnswer[]>(LEGACY_WRONG_KEY, []);
-	let migrated = cards;
-	for (const item of legacy) {
-		if (migrated.some((c) => c.id === item.id)) continue;
-		migrated = upsertCard(migrated, {
-			id: item.id,
-			source: "exercise",
-			front: item.question,
-			back: item.correctAnswer,
-			hint: item.exerciseType,
-		});
-	}
-
-	if (migrated !== cards) saveCards(migrated);
+	const stored = getLocalStorageItem<unknown>(LEGACY_WRONG_KEY, []);
+	const legacy = Array.isArray(stored)
+		? stored.filter(isLegacyWrongAnswer)
+		: [];
+	updateCards((cards) => {
+		let migrated = cards;
+		for (const item of legacy) {
+			if (migrated.some((c) => c.id === item.id)) continue;
+			migrated = upsertCard(migrated, {
+				id: item.id,
+				source: "exercise",
+				front: item.question,
+				back: item.correctAnswer,
+				hint: item.exerciseType,
+			});
+		}
+		return migrated;
+	});
 	setLocalStorageItem(MIGRATION_FLAG, true);
-	return migrated;
 }
 
+/** Registers an item for future review (typically after a mistake). */
+const addCard = (input: NewCardInput) =>
+	updateCards((cards) => upsertCard(cards, input));
+
+/** Enrolls newly studied items without penalizing existing ones. */
+const enroll = (inputs: NewCardInput[]) =>
+	updateCards((cards) => enrollCards(cards, inputs));
+
+/** Applies the user's grade and reschedules the card. */
+const gradeCard = (id: string, grade: ReviewGrade) =>
+	updateCards((cards) =>
+		cards.map((c) => (c.id === id ? scheduleCard(c, grade) : c)),
+	);
+
+const removeCard = (id: string) =>
+	updateCards((cards) => cards.filter((c) => c.id !== id));
+
+const resetCards = () => updateCards(() => []);
+
 export function useSrs() {
-	const [cards, setCards] = useState<ReviewCard[]>(migrateLegacyWrongAnswers);
-
-	/** Registra um item para revisão futura (tipicamente após um erro). */
-	const addCard = useCallback((input: NewCardInput) => {
-		setCards((prev) => {
-			const next = upsertCard(prev, input);
-			saveCards(next);
-			return next;
-		});
-	}, []);
-
-	/** Inscreve itens recém-estudados sem penalizar os que já existem. */
-	const enroll = useCallback((inputs: NewCardInput[]) => {
-		setCards((prev) => {
-			const next = enrollCards(prev, inputs);
-			if (next !== prev) saveCards(next);
-			return next;
-		});
-	}, []);
-
-	/** Aplica a nota do usuário e reagenda o card. */
-	const gradeCard = useCallback((id: string, grade: ReviewGrade) => {
-		setCards((prev) => {
-			const next = prev.map((c) => (c.id === id ? scheduleCard(c, grade) : c));
-			saveCards(next);
-			return next;
-		});
-	}, []);
-
-	const removeCard = useCallback((id: string) => {
-		setCards((prev) => {
-			const next = prev.filter((c) => c.id !== id);
-			saveCards(next);
-			return next;
-		});
-	}, []);
-
-	const resetCards = useCallback(() => {
-		setCards([]);
-		saveCards([]);
-	}, []);
+	// Runs before the first snapshot so legacy items already show up.
+	useState(migrateLegacyWrongAnswers);
+	const cards = useSyncExternalStore(subscribeCards, getCards, getCards);
 
 	const dueCards = useMemo(() => getDueCards(cards), [cards]);
 	const stats = useMemo(() => getSrsStats(cards), [cards]);

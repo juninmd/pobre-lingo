@@ -1,11 +1,12 @@
-import confetti from "canvas-confetti";
-import { differenceInCalendarDays, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 import { CheckCircle2, Circle, Flame, Target, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { DAILY_GOAL, useActivityLog } from "@/hooks/useActivityLog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
+import { localDay } from "@/lib/localDay";
 
 interface Quest {
 	id: number;
@@ -29,18 +30,19 @@ export function DailyQuestsWidget() {
 
 	const activityCount = todayCount();
 
+	// Part of the memo deps so the quests reset when the local day rolls over.
+	const today = localDay();
 	const todaysStats = useMemo(() => {
-		const today = new Date();
 		const todayLessons = completedLessons.filter((l) => {
 			if (!l.completedAt) return false;
-			return differenceInCalendarDays(today, parseISO(l.completedAt)) === 0;
+			return localDay(parseISO(l.completedAt)) === today;
 		});
 		const xpToday = todayLessons.reduce(
 			(acc, lesson) => acc + (lesson.xpEarned || 0),
 			0,
 		);
 		return { lessons: todayLessons.length, xp: xpToday };
-	}, [completedLessons]);
+	}, [completedLessons, today]);
 
 	const quests: Quest[] = [
 		{
@@ -79,10 +81,10 @@ export function DailyQuestsWidget() {
 	useEffect(() => {
 		if (goalReached) {
 			const hasCelebrated = localStorage.getItem("daily_goal_celebrated_today");
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 
 			if (hasCelebrated !== todayStr) {
-				confetti({
+				fireConfetti({
 					particleCount: 100,
 					spread: 70,
 					origin: { y: 0.6 },

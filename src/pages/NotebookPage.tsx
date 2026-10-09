@@ -230,7 +230,8 @@ function FlashcardReview({ entries }: { entries: DictionaryEntry[] }) {
 			</p>
 
 			{/* Card */}
-			<div
+			<button
+				type="button"
 				onClick={() => setFlipped((f) => !f)}
 				className="w-full min-h-[220px] cursor-pointer rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 flex flex-col items-center justify-center p-8 gap-4 select-none active:scale-[0.98] transition-transform shadow-lg"
 			>
@@ -260,7 +261,7 @@ function FlashcardReview({ entries }: { entries: DictionaryEntry[] }) {
 						)}
 					</div>
 				)}
-			</div>
+			</button>
 
 			{/* Navigation */}
 			<div className="flex items-center gap-4">
@@ -269,6 +270,7 @@ function FlashcardReview({ entries }: { entries: DictionaryEntry[] }) {
 					size="icon"
 					onClick={prev}
 					disabled={index === 0}
+					aria-label="Palavra anterior"
 				>
 					<ChevronLeft className="w-5 h-5" />
 				</Button>

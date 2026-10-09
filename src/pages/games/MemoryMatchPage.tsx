@@ -1,4 +1,3 @@
-import confetti from "canvas-confetti";
 import {
 	ArrowLeft,
 	ArrowRight,
@@ -13,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 
 interface MemoryCard {
@@ -146,7 +146,7 @@ export default function MemoryMatchPage() {
 	const handleWin = () => {
 		setGameWon(true);
 		logActivity();
-		confetti({
+		fireConfetti({
 			particleCount: 150,
 			spread: 70,
 			origin: { y: 0.6 },
@@ -233,45 +233,52 @@ export default function MemoryMatchPage() {
 					</Card>
 				)}
 
-				<div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-3 w-full max-w-2xl perspective-1000">
-					{cards.map((card, index) => (
-						<div
-							key={card.id}
-							onClick={() => handleCardClick(index)}
-							data-pair-id={card.wordId}
-							className={`
-                aspect-[3/4] cursor-pointer transition-all duration-300 transform preserve-3d relative
-                ${card.isFlipped || card.isMatched ? "rotate-y-180" : ""}
-                ${card.isMatched ? "opacity-0 pointer-events-none" : "opacity-100"}
-              `}
-							style={{
-								transformStyle: "preserve-3d",
-								transform:
-									card.isFlipped || card.isMatched
-										? "rotateY(180deg)"
-										: "rotateY(0deg)",
-								opacity: card.isMatched ? 0.6 : 1,
-							}}
-						>
-							{/* Front of card (Hidden state) */}
-							<div className="absolute inset-0 w-full h-full backface-hidden bg-primary/10 border-2 border-primary/20 rounded-xl flex items-center justify-center hover:bg-primary/20 transition-colors shadow-sm">
-								<Shuffle className="h-8 w-8 text-primary/40" />
-							</div>
-
-							{/* Back of card (Revealed state) */}
-							<div
-								className={`
-                  absolute inset-0 w-full h-full backface-hidden rounded-xl flex items-center justify-center p-2 text-center shadow-md border-2
-                  ${card.type === "en" ? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-100" : "bg-green-50 border-green-200 text-green-700 dark:bg-green-900/30 dark:border-green-700 dark:text-green-100"}
-                `}
-								style={{ transform: "rotateY(180deg)" }}
+				<div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-3 w-full max-w-2xl">
+					{cards.map((card, index) => {
+						const isRevealed = card.isFlipped || card.isMatched;
+						return (
+							// 3D flip lives on the inner span: Firefox mishandles preserve-3d on a button itself.
+							<button
+								type="button"
+								key={card.id}
+								onClick={() => handleCardClick(index)}
+								disabled={card.isMatched}
+								aria-label={
+									isRevealed ? card.content : "Carta virada para baixo"
+								}
+								data-pair-id={card.wordId}
+								className="aspect-[3/4] cursor-pointer relative perspective-1000 transition-opacity duration-300 disabled:pointer-events-none"
+								style={{ opacity: card.isMatched ? 0.6 : 1 }}
 							>
-								<span className="font-semibold text-sm sm:text-base break-words leading-tight select-none">
-									{card.content}
+								<span
+									className="absolute inset-0 block transition-transform duration-300 preserve-3d"
+									style={{
+										transformStyle: "preserve-3d",
+										transform: isRevealed ? "rotateY(180deg)" : "rotateY(0deg)",
+									}}
+								>
+									{/* Front of card (Hidden state) */}
+									<span className="absolute inset-0 w-full h-full backface-hidden bg-primary/10 border-2 border-primary/20 rounded-xl flex items-center justify-center hover:bg-primary/20 transition-colors shadow-sm">
+										<Shuffle className="h-8 w-8 text-primary/40" />
+									</span>
+
+									{/* Back of card (Revealed state) */}
+									<span
+										className={`absolute inset-0 w-full h-full backface-hidden rounded-xl flex items-center justify-center p-2 text-center shadow-md border-2 ${
+											card.type === "en"
+												? "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-100"
+												: "bg-green-50 border-green-200 text-green-700 dark:bg-green-900/30 dark:border-green-700 dark:text-green-100"
+										}`}
+										style={{ transform: "rotateY(180deg)" }}
+									>
+										<span className="font-semibold text-sm sm:text-base break-words leading-tight select-none">
+											{card.content}
+										</span>
+									</span>
 								</span>
-							</div>
-						</div>
-					))}
+							</button>
+						);
+					})}
 				</div>
 			</div>
 		</PageContainer>

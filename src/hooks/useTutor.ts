@@ -20,6 +20,9 @@ export type TutorPhase =
 	| "thinking"
 	| "error";
 
+const DETECTION_ERROR =
+	"Não foi possível verificar a IA do seu aparelho. Confira sua conexão e tente de novo.";
+
 export function useTutor(scenario: TutorScenario, level: CEFRLevel) {
 	const providerRef = useRef<AiProvider | null>(null);
 	const [status, setStatus] = useState<ProviderStatus>("unavailable");
@@ -29,20 +32,39 @@ export function useTutor(scenario: TutorScenario, level: CEFRLevel) {
 	});
 	const [turns, setTurns] = useState<TutorTurn[]>([]);
 	const [error, setError] = useState<string | null>(null);
+	// Run token: a result is applied only if no newer run or teardown happened.
+	const detectRun = useRef(0);
+
+	const detect = useCallback(() => {
+		const run = ++detectRun.current;
+		selectProvider()
+			.then(({ provider, status: found }) => {
+				if (run !== detectRun.current) return provider?.dispose();
+				providerRef.current = provider;
+				setStatus(found);
+				setPhase(provider ? "idle" : "unavailable");
+			})
+			.catch(() => {
+				// Offline, the WebLLM chunk is not precached and its import rejects.
+				if (run !== detectRun.current) return;
+				setError(DETECTION_ERROR);
+				setPhase("error");
+			});
+	}, []);
 
 	useEffect(() => {
-		let cancelled = false;
-		selectProvider().then(({ provider, status: found }) => {
-			if (cancelled) return provider?.dispose();
-			providerRef.current = provider;
-			setStatus(found);
-			setPhase(provider ? "idle" : "unavailable");
-		});
+		detect();
 		return () => {
-			cancelled = true;
+			detectRun.current++;
 			providerRef.current?.dispose();
 		};
-	}, []);
+	}, [detect]);
+
+	const retry = useCallback(() => {
+		setError(null);
+		setPhase("detecting");
+		detect();
+	}, [detect]);
 
 	const start = useCallback(async () => {
 		const provider = providerRef.current;
@@ -108,5 +130,6 @@ export function useTutor(scenario: TutorScenario, level: CEFRLevel) {
 		providerLabel: providerRef.current?.label ?? null,
 		start,
 		send,
+		retry,
 	};
 }

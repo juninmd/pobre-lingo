@@ -4,6 +4,11 @@ vi.mock("@/contexts/NotificationContext", () => ({
 
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { localDay } from "@/lib/localDay";
+import {
+	EVENING_LOCAL_DAY,
+	setupLocalEvening,
+} from "@/test-utils/localEvening";
 import { CommunicativeRoleplayWidget } from "./CommunicativeRoleplayWidget";
 
 const mockAddXp = vi.fn();
@@ -51,7 +56,7 @@ describe("CommunicativeRoleplayWidget", () => {
 	});
 
 	it("does not allow multiple claims on the same day", () => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		localStorage.setItem("daily_communicative_roleplay_claimed", todayStr);
 
 		render(<CommunicativeRoleplayWidget />);
@@ -62,5 +67,39 @@ describe("CommunicativeRoleplayWidget", () => {
 		fireEvent.click(claimedText); // clicking shouldn't award xp again
 
 		expect(mockAddXp).not.toHaveBeenCalled();
+	});
+});
+
+describe("CommunicativeRoleplayWidget daily claim at local evening", () => {
+	setupLocalEvening();
+	beforeEach(() => {
+		vi.clearAllMocks();
+		localStorage.clear();
+	});
+
+	it("keeps a claim made earlier the same local day (UTC already rolled over)", () => {
+		localStorage.setItem(
+			"daily_communicative_roleplay_claimed",
+			EVENING_LOCAL_DAY,
+		);
+
+		render(<CommunicativeRoleplayWidget />);
+
+		expect(screen.getByText(/Prática Concluída/i)).toBeInTheDocument();
+		expect(mockAddXp).not.toHaveBeenCalled();
+	});
+
+	it("records the claim under the local day so a reload cannot claim twice", () => {
+		render(<CommunicativeRoleplayWidget />);
+
+		fireEvent.click(screen.getByText(/Gravar Resposta/i));
+		act(() => {
+			vi.advanceTimersByTime(3000);
+		});
+
+		expect(mockAddXp).toHaveBeenCalledTimes(1);
+		expect(localStorage.getItem("daily_communicative_roleplay_claimed")).toBe(
+			EVENING_LOCAL_DAY,
+		);
 	});
 });

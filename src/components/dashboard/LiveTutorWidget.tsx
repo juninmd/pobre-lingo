@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function LiveTutorWidget() {
 	const { addXp } = useGamification();
@@ -11,7 +12,7 @@ export function LiveTutorWidget() {
 	const [isConnecting, setIsConnecting] = useState(false);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_live_tutor_claimed") === todayStr);
 	}, []);
 
@@ -24,7 +25,7 @@ export function LiveTutorWidget() {
 			setIsConnecting(false);
 			setClaimed(true);
 			addXp(30);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_live_tutor_claimed", todayStr);
 		}, 2000);
 	};

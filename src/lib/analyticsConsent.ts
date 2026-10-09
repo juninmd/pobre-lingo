@@ -18,9 +18,17 @@ export function setAnalyticsConsent(granted: boolean) {
 	localStorage.setItem(CONSENT_KEY, granted ? "granted" : "denied");
 }
 
+/** Typed text, tutor chat and imported/essay content must never reach a replay. */
+export const LOGROCKET_OPTIONS = {
+	dom: {
+		inputSanitizer: true,
+		textSanitizer: "[data-private], [data-private] *",
+	},
+};
+
 /** Carrega o LogRocket sob demanda, só com consentimento. */
 export async function startAnalyticsIfConsented() {
 	if (!hasAnalyticsConsent()) return;
 	const { default: LogRocket } = await import("logrocket");
-	LogRocket.init(LOGROCKET_APP_ID);
+	LogRocket.init(LOGROCKET_APP_ID, LOGROCKET_OPTIONS);
 }

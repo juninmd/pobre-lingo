@@ -112,3 +112,21 @@ test("wrong independent answers do not unlock the next lesson", async ({
 		page.getByRole("heading", { name: "Prepare-se para esta aula" }),
 	).toBeVisible();
 });
+
+test("course is discoverable by keyboard search", async ({ page }) => {
+	await page.goto("/course/hello");
+	await page.getByRole("button", { name: "Pesquisar", exact: true }).click();
+	await page
+		.getByRole("textbox", { name: "Pesquisar páginas e regras" })
+		.fill("Curso guiado");
+	await expect(
+		page.getByRole("button", { name: "Curso guiado" }),
+	).toBeVisible();
+	await page
+		.getByRole("textbox", { name: "Pesquisar páginas e regras" })
+		.press("Enter");
+	await expect(page).toHaveURL(/\/course$/);
+	await expect(
+		page.getByRole("heading", { name: "Seu curso guiado de inglês" }),
+	).toBeVisible();
+});

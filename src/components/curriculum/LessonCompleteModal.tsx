@@ -1,9 +1,9 @@
-import confetti from "canvas-confetti";
 import { ArrowRight, Flame, Star, Trophy } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { fireConfetti } from "@/lib/confetti";
 
 interface LessonCompleteModalProps {
 	isOpen: boolean;
@@ -25,14 +25,14 @@ export function LessonCompleteModal({
 			const end = Date.now() + duration;
 
 			const frame = () => {
-				confetti({
+				fireConfetti({
 					particleCount: 2,
 					angle: 60,
 					spread: 55,
 					origin: { x: 0 },
 					colors: ["#22c55e", "#eab308", "#3b82f6"],
 				});
-				confetti({
+				fireConfetti({
 					particleCount: 2,
 					angle: 120,
 					spread: 55,

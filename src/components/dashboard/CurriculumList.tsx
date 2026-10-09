@@ -1,4 +1,3 @@
-import * as LucideIcons from "lucide-react";
 import { CheckCircle2, ChevronRight, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { GuidebookModal } from "@/components/curriculum/GuidebookModal";
@@ -6,13 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { curriculumData } from "@/lib/curriculumData";
+import { getIcon } from "@/lib/iconMap";
 import { cn } from "@/lib/utils";
-
-// Helper to get icon component dynamically
-const getIcon = (name: string) => {
-	// @ts-expect-error - Dynamic access to Lucide icons
-	return LucideIcons[name] || LucideIcons.HelpCircle;
-};
 
 export function CurriculumList() {
 	const { getModuleProgress } = useCurriculumProgress();

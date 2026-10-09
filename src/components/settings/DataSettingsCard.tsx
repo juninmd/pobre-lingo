@@ -15,22 +15,29 @@ import {
 	hasAnalyticsConsent,
 	setAnalyticsConsent,
 } from "@/lib/analyticsConsent";
-import { collectAppStorage, parseBackup, restoreBackup } from "@/lib/backup";
+import { collectBackupData, parseBackup, restoreBackup } from "@/lib/backup";
+import { localDay } from "@/lib/localDay";
+import { SKIPPED_NOTICE_MS, skippedMessage } from "@/lib/restoreNotice";
+
+const goHome = () => {
+	window.location.href = "/";
+};
 
 export function DataSettingsCard() {
 	const [exported, setExported] = useState(false);
 	const [importError, setImportError] = useState<string | null>(null);
+	const [skippedNotice, setSkippedNotice] = useState<string | null>(null);
 	const [consent, setConsent] = useState(hasAnalyticsConsent);
 	const fileInput = useRef<HTMLInputElement>(null);
 
 	const handleExport = () => {
-		const blob = new Blob([JSON.stringify(collectAppStorage(), null, 2)], {
+		const blob = new Blob([JSON.stringify(collectBackupData(), null, 2)], {
 			type: "application/json",
 		});
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement("a");
 		link.href = url;
-		link.download = `pobrelingo-backup-${new Date().toISOString().slice(0, 10)}.json`;
+		link.download = `pobrelingo-backup-${localDay()}.json`;
 		link.click();
 		URL.revokeObjectURL(url);
 		setExported(true);
@@ -40,13 +47,35 @@ export function DataSettingsCard() {
 		const file = event.target.files?.[0];
 		event.target.value = "";
 		if (!file) return;
-		const result = parseBackup(await file.text());
-		if (!result.ok) {
-			setImportError(result.error);
+		let text: string;
+		try {
+			text = await file.text();
+		} catch {
+			setImportError("Não foi possível ler o arquivo de backup.");
 			return;
 		}
-		restoreBackup(result.entries);
-		window.location.href = "/";
+		const parsed = parseBackup(text);
+		if (!parsed.ok) {
+			setImportError(parsed.error);
+			return;
+		}
+		const restored = restoreBackup(
+			parsed.entries,
+			localStorage,
+			parsed.skipped,
+		);
+		if (!restored.ok) {
+			setImportError(restored.error);
+			return;
+		}
+		setImportError(null);
+		if (restored.skipped.length === 0) {
+			goHome();
+			return;
+		}
+		// The reload still runs if the user leaves: in-memory state is stale after a restore.
+		setSkippedNotice(skippedMessage(restored.skipped.length));
+		setTimeout(goHome, SKIPPED_NOTICE_MS);
 	};
 
 	const handleConsent = (checked: boolean) => {
@@ -99,12 +128,18 @@ export function DataSettingsCard() {
 						{importError}
 					</p>
 				)}
+				{skippedNotice && (
+					<p role="status" className="text-sm text-muted-foreground">
+						{skippedNotice} Recarregando com o restante do backup…
+					</p>
+				)}
 				<div className="flex items-start justify-between gap-4">
 					<Label htmlFor="analytics-consent" className="space-y-1">
 						<span className="block font-semibold">Ajudar a melhorar o app</span>
 						<span className="block text-sm font-normal text-muted-foreground">
-							Grava sessões anônimas (LogRocket) para achar bugs. Desligado por
-							padrão; vale a partir da próxima abertura do app.
+							Grava sessões (LogRocket) para achar bugs. Textos digitados, o
+							chat com o tutor e seus textos importados são ocultados. Desligado
+							por padrão; vale a partir da próxima abertura do app.
 						</span>
 					</Label>
 					<Switch

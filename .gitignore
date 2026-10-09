@@ -58,3 +58,14 @@ debug_screenshot.png
 # Local validation artifacts
 e2e-screenshots/
 temp/
+*.log
+/tsc_output.txt
+/*.png
+/.modified
+/self_created_tools/
+/verification/
+/commit_message.txt
+/plan.md
+/plan.txt
+/patch*.diff
+/scratch_*.json

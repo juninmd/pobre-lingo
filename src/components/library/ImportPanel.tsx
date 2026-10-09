@@ -76,7 +76,7 @@ export function ImportPanel({ onImport }: ImportPanelProps) {
 	}
 
 	return (
-		<Tabs defaultValue="paste">
+		<Tabs defaultValue="paste" data-private>
 			<TabsList>
 				<TabsTrigger value="paste">Colar texto</TabsTrigger>
 				<TabsTrigger value="file">Arquivo</TabsTrigger>

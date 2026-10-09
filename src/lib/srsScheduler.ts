@@ -25,9 +25,8 @@ function toRating(grade: ReviewGrade): Grade {
 /** Converte um card do SM-2 antigo sem perder o que o aluno já consolidou. */
 function fromLegacy(card: ReviewCard, now: Date): Card {
 	const empty = createEmptyCard(now);
-	if (card.repetitions === 0 || !card.lastReviewedAt) {
-		return { ...empty, due: new Date(card.dueAt) };
-	}
+	if (card.repetitions === 0 || !card.lastReviewedAt)
+		return freshCard(card, now);
 	// Ease 1.3 (difícil) → dificuldade 10; ease 3.0 (fácil) → 1.
 	const difficulty = Math.min(
 		10,
@@ -44,6 +43,11 @@ function fromLegacy(card: ReviewCard, now: Date): Card {
 		last_review: new Date(card.lastReviewedAt),
 		due: new Date(card.dueAt),
 	};
+}
+
+/** No history to trust: schedules as a never-reviewed card, keeping its due date. */
+function freshCard(card: ReviewCard, now: Date): Card {
+	return { ...createEmptyCard(now), due: new Date(card.dueAt) };
 }
 
 function toFsrsCard(card: ReviewCard, now: Date): Card {
@@ -71,13 +75,36 @@ function toFsrsState(card: Card): FsrsState {
 	};
 }
 
+function tryNext(
+	build: () => Card,
+	now: Date,
+	rating: Grade,
+): Card | undefined {
+	try {
+		return scheduler.next(build(), now, rating).card;
+	} catch {
+		// ts-fsrs throws on stored state it rejects; the caller falls back.
+		return undefined;
+	}
+}
+
+/** No stored value may crash the page: FSRS state, then legacy SM-2, then a fresh card. */
+function nextCard(card: ReviewCard, grade: ReviewGrade, now: Date): Card {
+	const rating = toRating(grade);
+	return (
+		tryNext(() => toFsrsCard(card, now), now, rating) ??
+		tryNext(() => fromLegacy(card, now), now, rating) ??
+		scheduler.next(freshCard(card, now), now, rating).card
+	);
+}
+
 /** Aplica a nota e devolve o card reagendado. Função pura. */
 export function scheduleCard(
 	card: ReviewCard,
 	grade: ReviewGrade,
 	now: Date = new Date(),
 ): ReviewCard {
-	const next = scheduler.next(toFsrsCard(card, now), now, toRating(grade)).card;
+	const next = nextCard(card, grade, now);
 	const failed = grade < 3;
 	return {
 		...card,

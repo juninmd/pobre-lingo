@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { localDay } from "@/lib/localDay";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 export const DAILY_GOAL = 5;
@@ -9,10 +10,6 @@ interface ActivityEntry {
 	count: number;
 }
 
-function todayStr(): string {
-	return new Date().toISOString().slice(0, 10);
-}
-
 function getLog(): ActivityEntry[] {
 	return getLocalStorageItem<ActivityEntry[]>(ACTIVITY_LOG_KEY, []);
 }
@@ -21,7 +18,7 @@ function saveLog(log: ActivityEntry[]): void {
 	// Keep only last 30 days
 	const cutoff = new Date();
 	cutoff.setDate(cutoff.getDate() - 30);
-	const cutoffStr = cutoff.toISOString().slice(0, 10);
+	const cutoffStr = localDay(cutoff);
 	const pruned = log.filter((e) => e.date >= cutoffStr);
 	setLocalStorageItem(ACTIVITY_LOG_KEY, pruned);
 }
@@ -29,7 +26,7 @@ function saveLog(log: ActivityEntry[]): void {
 export function useActivityLog() {
 	const logActivity = useCallback(() => {
 		const log = getLog();
-		const today = todayStr();
+		const today = localDay();
 		const existing = log.find((e) => e.date === today);
 		if (existing) {
 			existing.count += 1;
@@ -41,7 +38,7 @@ export function useActivityLog() {
 
 	const todayCount = useCallback((): number => {
 		const log = getLog();
-		const today = todayStr();
+		const today = localDay();
 		return log.find((e) => e.date === today)?.count ?? 0;
 	}, []);
 

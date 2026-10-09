@@ -50,7 +50,7 @@ export function DictationExercise({ items }: { items: DictationItem[] }) {
 	if (!item) return null;
 
 	return (
-		<Card className="glass-card">
+		<Card className="glass-card" data-private>
 			<CardContent className="p-5 space-y-4">
 				<div className="flex items-center justify-between">
 					<Badge variant="secondary">

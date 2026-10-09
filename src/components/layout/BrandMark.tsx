@@ -25,7 +25,7 @@ export function BrandMark({
 				<span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/20" />
 			</div>
 			{!compact && (
-				<div className="hidden md:flex min-w-0 flex-col">
+				<div className="flex min-w-0 flex-col">
 					<span className="font-headline text-base font-extrabold tracking-tight text-gradient-primary truncate">
 						PobreLingo
 					</span>
@@ -39,6 +39,7 @@ export function BrandMark({
 					</span>
 				</div>
 			)}
+			{compact && <span className="sr-only">PobreLingo</span>}
 		</div>
 	);
 }

@@ -77,7 +77,7 @@ for (const route of ROUTES) {
 
 		await page.goto(route.path);
 		await expect(page.locator("#root")).toBeVisible();
-		await page.waitForTimeout(2000);
+		await page.waitForLoadState("networkidle");
 
 		const metrics = await page.evaluate(() => {
 			const scroller = document.querySelector(
@@ -116,5 +116,11 @@ for (const route of ROUTES) {
 				`AUDIT ${prefix} ${route.name} ${JSON.stringify({ errors, metrics })}`,
 			);
 		}
+
+		// Hard failures: an uncaught error or a sideways-scrolling page is what users actually feel.
+		expect(errors, "uncaught page errors").toEqual([]);
+		expect(metrics.docScroll, "page scrolls horizontally").toBeLessThanOrEqual(
+			metrics.vw + 1,
+		);
 	});
 }

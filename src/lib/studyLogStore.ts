@@ -54,7 +54,7 @@ export function recordWordsRead(words: number) {
 
 export function subscribeStudyLog(onChange: () => void): () => void {
 	const onStorage = (event: StorageEvent) => {
-		if (event.key === STUDY_LOG_KEY) onChange();
+		if (event.key === null || event.key === STUDY_LOG_KEY) onChange();
 	};
 	window.addEventListener(EVENT, onChange);
 	window.addEventListener("storage", onStorage);

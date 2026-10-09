@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const TPRS_STORIES = [
 	{
@@ -61,7 +62,7 @@ export function StorytellingWidget() {
 		setStory(TPRS_STORIES[dayOfYear % TPRS_STORIES.length]);
 
 		// Check if claimed today
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_storytelling_claimed") === todayStr);
 	}, []);
 
@@ -73,7 +74,7 @@ export function StorytellingWidget() {
 		if (isCorrect) {
 			addXp(story.xp);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_storytelling_claimed", todayStr);
 		}
 	};

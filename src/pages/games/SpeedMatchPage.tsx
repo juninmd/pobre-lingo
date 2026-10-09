@@ -1,4 +1,3 @@
-import confetti from "canvas-confetti";
 import { Flame, RefreshCw, Timer, Trophy, Zap } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
@@ -6,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useActivityLog } from "@/hooks/useActivityLog";
+import { fireConfetti } from "@/lib/confetti";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 import {
 	calculateMultiplier,
@@ -96,7 +96,7 @@ export default function MatchMadnessPage() {
 		setCards(generateBoard());
 
 		// Confetti for level up
-		confetti({
+		fireConfetti({
 			particleCount: 50,
 			spread: 60,
 			origin: { y: 0.7 },

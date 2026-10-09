@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const POP_CULTURE_ITEMS = [
 	{
@@ -80,7 +81,7 @@ export function PopCultureWidget() {
 		);
 		setItem(POP_CULTURE_ITEMS[dayOfYear % POP_CULTURE_ITEMS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_pop_culture_claimed") === todayStr);
 	}, []);
 
@@ -88,7 +89,7 @@ export function PopCultureWidget() {
 		if (!claimed) {
 			addXp(item.xp);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_pop_culture_claimed", todayStr);
 		}
 	};

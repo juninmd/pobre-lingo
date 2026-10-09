@@ -53,13 +53,13 @@ test("fluencia: iniciar a rodada 4/3/2", async ({ page }) => {
 
 test("checkpoint: acertar tudo aprova o nivel A1", async ({ page }) => {
 	await page.goto("/checkpoints");
-	await page.getByRole("button", { name: "Fazer checkpoint" }).first().click();
+	await page.getByRole("button", { name: "Fazer checagem A1" }).first().click();
 	await page.getByRole("button", { name: "I am", exact: true }).click();
 	await page.getByRole("button", { name: "drinks", exact: true }).click();
 	await page
 		.getByRole("button", { name: "There is a book.", exact: true })
 		.click();
-	await page.getByRole("button", { name: /Concluir checkpoint/ }).click();
-	await expect(page.getByText("Aprovado").first()).toBeVisible();
+	await page.getByRole("button", { name: /Salvar checagem de conteúdo/ }).click();
+	await expect(page.getByText("Checagem de conteúdo concluída").first()).toBeVisible();
 	await page.screenshot({ path: "e2e-screenshots/hub-checkpoint.png" });
 });

@@ -1,4 +1,3 @@
-import confetti from "canvas-confetti";
 import { AlertCircle, Heart, HelpCircle, RefreshCw } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
@@ -10,6 +9,7 @@ import { useGamification } from "@/contexts/GamificationContext";
 import { useToast } from "@/hooks/use-toast";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +61,7 @@ export default function HangmanPage() {
 			setStatus("won");
 			setStreak((s) => s + 1);
 			logActivity();
-			confetti({
+			fireConfetti({
 				particleCount: 100,
 				spread: 70,
 				origin: { y: 0.6 },
@@ -366,6 +366,7 @@ function HangmanDrawing({ lives }: { lives: number }) {
 
 	return (
 		<svg
+			aria-hidden="true"
 			viewBox="0 0 300 300"
 			className="w-full h-full max-w-[200px] text-slate-800 dark:text-slate-200"
 		>

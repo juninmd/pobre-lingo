@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const PLURI_TIPS = [
 	{
@@ -42,7 +43,7 @@ export function PlurilingualismWidget() {
 		);
 		setTip(PLURI_TIPS[dayOfYear % PLURI_TIPS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_pluri_claimed") === todayStr);
 	}, []);
 
@@ -53,7 +54,7 @@ export function PlurilingualismWidget() {
 			setIsReflecting(false);
 			setClaimed(true);
 			addXp(tip.xp);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_pluri_claimed", todayStr);
 		}, 2000); // Simulate reflection
 	};

@@ -14,7 +14,7 @@ export function ShareStreakButtons({ streak }: ShareStreakButtonsProps) {
 
 	const handleShareWhatsApp = () => {
 		const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-		window.open(whatsappUrl, "_blank");
+		window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 	};
 
 	const handleCopyToClipboard = () => {

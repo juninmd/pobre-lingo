@@ -57,6 +57,7 @@ export function recordStreakActivity(now: Date = new Date()): number {
 	} else {
 		const gap = differenceInCalendarDays(now, lastActivity);
 		if (gap === 0) return stored; // já contabilizado hoje
+		// Grace by design: a gap of up to GRACE_DAYS + 1 calendar days still extends the streak.
 		next = gap <= GRACE_DAYS + 1 ? stored + 1 : 1;
 	}
 

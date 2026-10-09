@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	enrollCards,
 	GRADE_AGAIN,
@@ -7,6 +7,7 @@ import {
 	GRADE_HARD,
 	getDueCards,
 	getSrsStats,
+	loadCards,
 	previewInterval,
 	type ReviewCard,
 	scheduleCard,
@@ -207,5 +208,111 @@ describe("getDueCards / getSrsStats", () => {
 		expect(stats.mature).toBe(1);
 		expect(stats.learning).toBe(1);
 		expect(stats.nextDueAt).toBe("2026-08-02T00:00:00.000Z");
+	});
+});
+
+describe("card cap", () => {
+	const crowded = () =>
+		Array.from({ length: 500 }, (_, i) =>
+			makeCard({ id: `c${i}`, intervalDays: i, createdAt: NOW.toISOString() }),
+		);
+	const fresh = {
+		id: "new",
+		source: "vocabulary",
+		front: "a",
+		back: "b",
+	} as const;
+
+	it("enroll evicts the best-consolidated card, never the ones the learner needs most", () => {
+		const cards = enrollCards(crowded(), [fresh], NOW);
+
+		const ids = cards.map((c) => c.id);
+		expect(cards).toHaveLength(500);
+		expect(ids).toContain("c0");
+		expect(ids).toContain("new");
+		expect(ids).not.toContain("c499");
+	});
+
+	it("upsert evicts the same way once the cap is hit", () => {
+		const ids = upsertCard(crowded(), fresh, NOW).map((c) => c.id);
+
+		expect(ids).toHaveLength(500);
+		expect(ids).toContain("c0");
+		expect(ids).toContain("new");
+		expect(ids).not.toContain("c499");
+	});
+
+	it("keeps a brand-new card even when every card is equally unlearned", () => {
+		const flat = Array.from({ length: 500 }, (_, i) =>
+			makeCard({
+				id: `f${i}`,
+				createdAt: `2026-01-01T00:00:${String(i % 60).padStart(2, "0")}.000Z`,
+			}),
+		);
+
+		const ids = enrollCards(flat, [fresh], NOW).map((c) => c.id);
+
+		expect(ids).toHaveLength(500);
+		expect(ids).toContain("new");
+	});
+});
+
+describe("loadCards", () => {
+	beforeEach(() => localStorage.clear());
+
+	const store = (cards: unknown) =>
+		localStorage.setItem("pobrelingo_srs_cards", JSON.stringify(cards));
+
+	it("drops cards whose dates would crash the scheduler", () => {
+		vi.spyOn(console, "warn").mockImplementation(() => {});
+		store([
+			makeCard({ id: "ok" }),
+			makeCard({ id: "bad-due", dueAt: "garbage" }),
+			makeCard({ id: "bad-created", createdAt: "garbage" }),
+			{ id: "no-front", dueAt: NOW.toISOString() },
+			"not-a-card",
+			null,
+		]);
+
+		expect(loadCards().map((c) => c.id)).toEqual(["ok"]);
+		expect(() => scheduleCard(loadCards()[0], GRADE_GOOD, NOW)).not.toThrow();
+	});
+
+	it("keeps a card whose last-review date is corrupt, minus that date", () => {
+		store([makeCard({ id: "r", repetitions: 2, lastReviewedAt: "garbage" })]);
+
+		const [card] = loadCards();
+
+		expect(card.id).toBe("r");
+		expect(card.lastReviewedAt).toBeUndefined();
+		expect(() => scheduleCard(card, GRADE_GOOD, NOW)).not.toThrow();
+	});
+
+	it("falls back to the legacy schedule when the stored FSRS state is corrupt", () => {
+		store([
+			makeCard({
+				id: "fsrs-bad",
+				repetitions: 3,
+				intervalDays: 10,
+				lastReviewedAt: NOW.toISOString(),
+				fsrs: { stability: "x", last_review: "garbage" } as never,
+			}),
+		]);
+
+		const [card] = loadCards();
+
+		expect(card.id).toBe("fsrs-bad");
+		expect(card.fsrs).toBeUndefined();
+		expect(() => scheduleCard(card, GRADE_GOOD, NOW)).not.toThrow();
+	});
+
+	it.each([
+		["a string", '"x"'],
+		["an object", '{"a":1}'],
+		["the string null", "null"],
+		["a number", "5"],
+	])("returns an empty queue when the key holds %s", (_label, raw) => {
+		localStorage.setItem("pobrelingo_srs_cards", raw);
+		expect(loadCards()).toEqual([]);
 	});
 });

@@ -10,32 +10,36 @@ test.describe("Learning Journey - Interactive Book Interface", () => {
 		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 	});
 
-	test("should render home properly and display desktop layout without old MobileNav", async ({
+	test("should render home with the persistent sidebar and no bottom bar on desktop", async ({
 		page, isMobile
 	}) => {
 		test.skip(isMobile, "Desktop test only");
 
 		await page.setViewportSize({ width: 1280, height: 720 });
 
-		// Verify Sidebar link exists instead of specific hidden classes
 		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
 		await expect(sidebarLink).toBeVisible();
 
-		// Old mobile nav should be gone
-		const oldMobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
-		await expect(oldMobileNav).toHaveCount(0);
+		// The bottom bar is mobile-only: in the DOM but hidden from md up.
+		const bottomNav = page.getByRole("navigation", { name: "Atalhos" });
+		await expect(bottomNav).toBeHidden();
 	});
 
-	test("should break elegantly to mobile layout with unified sidebar trigger", async ({ page, isMobile }) => {
+	test("should use a drawer behind the menu trigger plus a bottom bar on mobile", async ({ page, isMobile }) => {
 		test.skip(!isMobile, "Mobile test only");
 
-		// Mobile should show a sidebar trigger
-		const sidebarTrigger = page.getByRole("button", { name: "Toggle menu" });
+		const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
 		await expect(sidebarTrigger).toBeVisible();
 
-		// Old MobileNav should not exist
-		const oldMobileNav = page.locator('.md\\:hidden.fixed.bottom-0');
-		await expect(oldMobileNav).toHaveCount(0);
+		// The sidebar is not pinned on mobile: content keeps the full width.
+		const viewportWidth = page.viewportSize()?.width ?? 0;
+		const mainBox = await page.locator("main").boundingBox();
+		expect(mainBox?.width).toBeGreaterThanOrEqual(viewportWidth - 1);
+
+		await expect(page.getByRole("navigation", { name: "Atalhos" })).toBeVisible();
+
+		await sidebarTrigger.click();
+		await expect(page.getByRole("dialog").getByRole("link", { name: "Minha Jornada" })).toBeVisible();
 	});
 
 	test("should display 'Onde parei' bookmark and navigate to active lesson", async ({
@@ -48,10 +52,11 @@ test.describe("Learning Journey - Interactive Book Interface", () => {
 		const bookmark = timelineContainer.locator('text="Onde parei"');
 		await expect(bookmark).toBeVisible();
 
-		const startButton = timelineContainer.locator('text="DISPONÍVEL"').first();
+		// The "DISPONÍVEL" label is sm:inline only; on mobile the play icon is the visible control.
+		const startButton = timelineContainer.getByLabel("Iniciar lição").first();
 		await expect(startButton).toBeVisible();
 
-		await startButton.click({ force: true });
+		await startButton.click();
 
 		await expect(async () => {
 			expect(

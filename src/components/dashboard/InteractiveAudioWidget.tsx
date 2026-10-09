@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 export function InteractiveAudioWidget() {
 	const { addXp } = useGamification();
@@ -12,7 +13,7 @@ export function InteractiveAudioWidget() {
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(
 			localStorage.getItem("daily_interactive_audio_claimed") === todayStr,
 		);
@@ -45,7 +46,7 @@ export function InteractiveAudioWidget() {
 		if (!claimed && progress === 100) {
 			addXp(15);
 			setClaimed(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_interactive_audio_claimed", todayStr);
 		}
 	};

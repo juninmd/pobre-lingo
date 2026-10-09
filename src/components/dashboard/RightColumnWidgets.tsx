@@ -1,14 +1,15 @@
 import { Coins, Lightbulb, RefreshCw } from "lucide-react";
 import { useState } from "react";
+import { CalmPracticeCard } from "@/components/dashboard/CalmPracticeCard";
 import { CertificationPlanCard } from "@/components/dashboard/CertificationPlanCard";
 import { DailyQuestsWidget } from "@/components/dashboard/DailyQuestsWidget";
 import { SmartReviewWidget } from "@/components/dashboard/SmartReviewWidget";
-import { MindfulWidget } from "@/components/dashboard/trends/MindfulWidget";
 import { WeeklyGoalWidget } from "@/components/dashboard/WeeklyGoalWidget";
 import { WordOfTheDayWidget } from "@/components/dashboard/WordOfTheDayWidget";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 import { TIPS } from "@/lib/tips";
 
 export function RightColumnWidgets() {
@@ -26,7 +27,7 @@ export function RightColumnWidgets() {
 	});
 
 	const [claimedTipReward, setClaimedTipReward] = useState(() => {
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		return localStorage.getItem("daily_tip_reward_claimed") === todayStr;
 	});
 
@@ -39,7 +40,7 @@ export function RightColumnWidgets() {
 		if (!claimedTipReward) {
 			addGem(5);
 			setClaimedTipReward(true);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_tip_reward_claimed", todayStr);
 		}
 	};
@@ -59,13 +60,13 @@ export function RightColumnWidgets() {
 
 				{/* Word of the Day - Microlearning */}
 				<WordOfTheDayWidget />
+				<CalmPracticeCard />
 
 				<details className="group rounded-xl border border-border/50 p-3">
 					<summary className="cursor-pointer text-sm font-semibold text-muted-foreground focus-visible:outline-2 focus-visible:outline-primary">
 						Explorar mais
 					</summary>
 					<div className="mt-3 space-y-3 sm:space-y-4">
-						<MindfulWidget />
 						<CertificationPlanCard />
 					</div>
 				</details>

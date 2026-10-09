@@ -17,7 +17,7 @@ async function remindIfIdle() {
 	if (lastDay === localDay(new Date())) return;
 	await self.registration.showNotification("Sua ofensiva está esperando 🔥", {
 		body: "Cinco minutos de inglês hoje mantêm a sequência viva.",
-		icon: "/pwa-192x192.svg",
+		icon: "/pwa-192x192.png",
 		tag: REMINDER_TAG,
 		data: { href: "/" },
 	});

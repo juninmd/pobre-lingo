@@ -3,8 +3,12 @@ import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useToast } from "@/hooks/use-toast";
+import { claimOncePerDay } from "@/lib/claimOncePerDay";
 import { cn } from "@/lib/utils";
 import { Pobrelingo } from "./Pobrelingo";
+
+const DAILY_BONUS_KEY = "pobrelingo_mascot_bonus_day";
+const DAILY_BONUS_XP = 5;
 
 interface MascotGreetingProps {
 	message?: string;
@@ -99,19 +103,27 @@ export function MascotGreeting({
 			)}
 		>
 			<CardContent className="p-6 flex items-center gap-6 relative z-10">
-				<div
-					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 hover:rotate-3 active:scale-95 transition-all duration-300 hover:drop-shadow-xl"
+				<button
+					type="button"
+					aria-label="Coletar bônus diário de XP"
+					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 hover:rotate-3 active:scale-95 transition-all duration-300 hover:drop-shadow-xl rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 					onClick={() => {
-						addXp(5);
+						if (!claimOncePerDay(DAILY_BONUS_KEY)) {
+							toast({
+								title: "Bônus de hoje já coletado",
+								description: "Volte amanhã para ganhar mais XP.",
+							});
+							return;
+						}
+						addXp(DAILY_BONUS_XP);
 						toast({
 							title: "Bônus Diário!",
-							description:
-								"PobreLingo está animado para aprender com você hoje! +5 XP",
+							description: `PobreLingo está animado para aprender com você hoje! +${DAILY_BONUS_XP} XP`,
 						});
 					}}
 				>
 					<Pobrelingo width={120} height={120} emotion="excited" />
-				</div>
+				</button>
 
 				<div className="flex-1">
 					<div

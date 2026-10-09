@@ -12,6 +12,7 @@ const PobreLingoLogo: FC<PobreLingoLogoProps> = ({
 	return (
 		<div className={`flex items-center ${className}`}>
 			<svg
+				aria-hidden="true"
 				className={`${iconSize} text-primary`}
 				viewBox="0 0 24 24"
 				fill="none"

@@ -4,12 +4,12 @@ import { expect, type Page, test } from "@playwright/test";
  * Homologação: 20 usuários simulados, cada um em contexto isolado (storage
  * próprio), percorrendo uma jornada distinta contra o ambiente publicado.
  *
- * O alvo é definido por SMOKE_BASE_URL; sem ela, cai no dev server local.
+ * O alvo é definido por SMOKE_BASE_URL; sem ela, usa o preview de produção que o Playwright sobe (porta 5187).
  * Cada persona falha se a página não renderizar, se houver erro de JS não
  * capturado ou se algum recurso da própria origem responder >= 400.
  */
 
-const BASE_URL = process.env.SMOKE_BASE_URL ?? "http://localhost:5173";
+const BASE_URL = process.env.SMOKE_BASE_URL ?? "http://localhost:5187";
 
 interface Persona {
 	id: number;
@@ -106,7 +106,7 @@ const PERSONAS: Persona[] = [
 		id: 9,
 		nome: "Usuário fazendo o teste de proficiência",
 		rotas: ["/proficiency"],
-		esperado: /Nível|Proficiência|Teste/i,
+		esperado: /Encontre um ponto de estudo|Nível|Proficiência|Teste/i,
 	},
 	{
 		id: 10,
@@ -173,7 +173,7 @@ const PERSONAS: Persona[] = [
 		esperado: /.+/,
 		mobile: true,
 		acao: async (page) => {
-			const sidebarTrigger = page.getByRole('button', { name: 'Toggle menu' });
+			const sidebarTrigger = page.getByRole('button', { name: 'Alternar menu' });
 			await expect(sidebarTrigger).toBeVisible();
 			await sidebarTrigger.click({ force: true });
 

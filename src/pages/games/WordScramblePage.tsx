@@ -1,4 +1,3 @@
-import confetti from "canvas-confetti";
 import {
 	ArrowLeft,
 	ArrowRight,
@@ -17,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useActivityLog } from "@/hooks/useActivityLog";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { fireConfetti } from "@/lib/confetti";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 import { cn } from "@/lib/utils";
 
@@ -93,7 +93,7 @@ export default function WordScramblePage() {
 			const newSolved = wordsSolved + 1;
 			setWordsSolved(newSolved);
 
-			confetti({
+			fireConfetti({
 				particleCount: 50,
 				spread: 50,
 				origin: { y: 0.7 },
@@ -120,7 +120,7 @@ export default function WordScramblePage() {
 	const handleLevelComplete = () => {
 		setGameComplete(true);
 		logActivity();
-		confetti({
+		fireConfetti({
 			particleCount: 200,
 			spread: 100,
 			origin: { y: 0.5 },

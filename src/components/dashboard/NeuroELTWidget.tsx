@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const NEURO_TIPS = [
 	{
@@ -42,7 +43,7 @@ export function NeuroELTWidget() {
 		);
 		setTip(NEURO_TIPS[dayOfYear % NEURO_TIPS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(localStorage.getItem("daily_neuro_elt_claimed") === todayStr);
 	}, []);
 
@@ -53,7 +54,7 @@ export function NeuroELTWidget() {
 			setIsCalibrating(false);
 			setClaimed(true);
 			addXp(tip.xp);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_neuro_elt_claimed", todayStr);
 		}, 2000); // Simulate calibration
 	};

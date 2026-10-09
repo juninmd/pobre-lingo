@@ -1,85 +1,82 @@
 # PobreLingo - AI Coding Agent Instructions
 
 ## Project Overview
-Portuguese language learning SPA: grammar rules, interactive exercises, dictionary, gamified streaks. **Client-side only** with Firebase hosting—no backend API.
+English learning PWA with a pt-BR UI: grammar rules, interactive exercises, dictionary, gamified streaks. **Client-side only**: no backend API, all progress in localStorage, AI tutor runs in the browser (Chrome Prompt API, falling back to WebLLM). Deployed on Netlify (`netlify.toml`, publishes `dist/`).
 
 ## Tech Stack
-- **Build**: Vite + TypeScript + React 18 | **Package Manager**: pnpm only (never npm/yarn)
-- **Styling**: Tailwind CSS + shadcn/ui (Radix) | **Routing**: React Router v6
-- **State**: React Context, custom hooks, localStorage | **Icons**: Lucide React
+- **Build**: Vite 8 + TypeScript 6 + React 19 | **Package Manager**: pnpm only (`packageManager` field; never npm/yarn)
+- **Styling**: Tailwind CSS 4 + shadcn/ui (Radix), config in `components.json` | **Routing**: react-router-dom 7
+- **Lint/format**: Biome 2 (`biome.json`, tabs, double quotes) | **Tests**: Vitest (unit), Playwright (e2e)
+- **State**: React Context (`src/contexts/`), custom hooks (`src/hooks/`), localStorage | **Icons**: lucide-react
 
 ## Commands
 ```bash
-pnpm install && pnpm dev    # Dev server at localhost:5173
-pnpm build                  # TypeScript check + production build → dist/
-pnpm lint                   # ESLint
+pnpm install        # install (pnpm 8.14.3 per packageManager)
+pnpm dev            # Vite dev server
+pnpm build          # vite build -> dist/ (no separate tsc step)
+pnpm lint           # biome check src/
+pnpm test:run       # vitest run (unit tests)
 ```
+Playwright e2e (`tests-e2e/`) builds and serves the production bundle on port 5187 (see `playwright.config.ts`).
 
 ## Architecture
 
-### Routing (`src/Router.tsx`)
-Pages in `src/pages/` follow Next.js-like naming with React Router underneath:
-- `[categoryId]` folders → `:categoryId` params (e.g., `rules/[categoryId]/page.tsx` → `/rules/:categoryId`)
-- All routes defined explicitly in `src/Router.tsx`
+### Routing (`src/pageRoutes.ts`, `src/Router.tsx`)
+- `src/pageRoutes.ts` is the route table: each entry maps a `path` to a lazy-loaded `Component`.
+- `src/Router.tsx` builds the browser router from that table, under `Layout`, with a Suspense fallback.
+- Pages live in `src/pages/`; dynamic segments use `:param` (e.g. `rules/[categoryId]` -> `rules/:categoryId`).
 
-### Data Layer (static imports, no API)
-| File | Content |
-|------|---------|
-| `src/lib/grammarRules.ts` | 748 lines of bilingual grammar rules with `GrammarCategory[]` |
-| `src/lib/exerciseData.ts` | Four exercise types: `SentenceOrdering`, `CorrectSentenceIdentification`, `FindIncorrectWords`, `NewsComprehension` |
-| `src/lib/curriculumData.ts` | Progressive learning path with modules, lessons, XP rewards |
-| `src/lib/dictionaryData.ts` | Dictionary entries |
+### Data Layer (static modules, no API)
+| File | Lines | Content |
+|------|-------|---------|
+| `src/lib/grammarRules.ts` | 1631 | Bilingual grammar rules (`GrammarCategory[]`) |
+| `src/lib/exerciseData.ts` | 1310 | Exercise types (`SentenceOrderingExercise`, `FindIncorrectWordsExercise`, `NewsComprehensionExercise`, ...) |
+| `src/lib/curriculumData.ts` | 2638 | Learning path: modules, lessons, XP |
+| `src/lib/dictionaryData.ts` | 1127 | Dictionary entries |
 
-### Key Hooks
-- `useLearningStreak()` - Consecutive day tracking via localStorage + date-fns
-- `useCurriculumProgress()` - XP, levels, lesson completion state
-- `useBookmarkedRules()` - Grammar rule favorites
-- `useToast()` - Feedback notifications
+Line counts from `wc -l`; these modules are exempt from the 150-line target.
+
+### Key Hooks (`src/hooks/`)
+- `useLearningStreak()`: consecutive-day tracking
+- `useCurriculumProgress()`: XP, levels, lesson completion
+- `useBookmarkedRules()`: grammar rule favorites
+- `useToast()` (`use-toast.ts`): feedback notifications
 
 ### Component Patterns
+Exercise components live in `src/components/exercises/` (see `SentenceOrdering.tsx`). Use `Card`, lucide icons and `useToast` for feedback.
 
-**Exercise Component Template** (see [SentenceOrdering.tsx](src/components/exercises/SentenceOrdering.tsx)):
-```tsx
-const [currentExercise, setCurrentExercise] = useState<ExerciseType | null>(null);
-const loadNewExercise = () => { /* randomize from exerciseData */ };
-// Use Card, CheckCircle/XCircle icons, useToast for feedback
-```
-
-**shadcn/ui Components** (`src/components/ui/`): Don't modify structure—use as-is with `cn()` utility.
+**shadcn/ui components** (`src/components/ui/`): vendored; use as-is with the `cn()` utility.
 
 ## Conventions
 
 ### Bilingual Content
-All content requires Portuguese + English fields:
-```typescript
-{ title_pt: 'Present Simple', title_en: 'Present Simple', explanation_pt: '...', examples: [{ sentence_en: '...', translation_pt: '...' }] }
-```
+Content carries Portuguese and English fields (`*_pt` / `*_en`), e.g. `title_pt`, `title_en`, `explanation_pt`.
 
 ### Styling
 - Use `cn()` from `src/lib/utils.ts` for className merging
-- Theme colors in `src/globals.css` (HSL variables)
-- Three theme modes: `light`, `dark`, `pobre-lingo`
+- Theme colors are CSS variables in `src/globals.css`
+- Theme modes (`src/contexts/ThemeContext.tsx`): `light`, `dark`, `pobre-lingo`
 
 ### LocalStorage
-Always use helpers for SSR safety:
+Use the helpers, never raw `localStorage`:
 ```typescript
-import { getLocalStorageItem, setLocalStorageItem } from '@/lib/localStorage';
-// Keys prefixed: 'pobrelingo_streak_count', 'pobrelingo_curriculum_progress'
+import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
+// Keys are prefixed "pobrelingo_" (e.g. streak and course progress)
 ```
 
 ### Adding Features
 
-**New Grammar Rule**: Add to `grammarCategories` in `grammarRules.ts`—pages auto-display via dynamic routing.
+**New grammar rule**: add to `grammarCategories` in `src/lib/grammarRules.ts`; the rule pages render via the dynamic routes.
 
-**New Exercise Type**:
-1. Define interface in `exerciseData.ts`
-2. Create component in `src/components/exercises/`
-3. Create page in `src/pages/exercises/{name}/page.tsx`
-4. Add route in `Router.tsx` + nav link in `Layout.tsx` (`navGroups`)
+**New exercise type**:
+1. Define the interface in `src/lib/exerciseData.ts`
+2. Create the component in `src/components/exercises/`
+3. Create the page in `src/pages/exercises/{name}/page.tsx`
+4. Add the route to `src/pageRoutes.ts` and the nav entry to `src/components/layout/navigationData.ts`
 
 ## Don'ts
-- ❌ `npm`/`yarn` → use `pnpm`
-- ❌ Direct `localStorage` access → use `src/lib/localStorage.ts` helpers
-- ❌ Backend API calls → this is a static SPA
-- ❌ Modify `src/components/ui/` structure
-- ❌ Inline styles → use Tailwind + `cn()`
+- `npm`/`yarn`: use `pnpm`
+- Raw `localStorage` access: use `src/lib/localStorage.ts` helpers
+- Backend API calls: this is a static SPA
+- Changing the structure of `src/components/ui/`
+- Inline styles: use Tailwind + `cn()`

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
+import { localDay } from "@/lib/localDay";
 
 const ROLEPLAY_SCENARIOS = [
 	{
@@ -45,7 +46,7 @@ export function CommunicativeRoleplayWidget() {
 		);
 		setScenario(ROLEPLAY_SCENARIOS[dayOfYear % ROLEPLAY_SCENARIOS.length]);
 
-		const todayStr = new Date().toISOString().split("T")[0];
+		const todayStr = localDay();
 		setClaimed(
 			localStorage.getItem("daily_communicative_roleplay_claimed") === todayStr,
 		);
@@ -58,7 +59,7 @@ export function CommunicativeRoleplayWidget() {
 			setIsRecording(false);
 			setClaimed(true);
 			addXp(scenario.xp);
-			const todayStr = new Date().toISOString().split("T")[0];
+			const todayStr = localDay();
 			localStorage.setItem("daily_communicative_roleplay_claimed", todayStr);
 		}, 3000); // Simulate recording for 3 seconds
 	};

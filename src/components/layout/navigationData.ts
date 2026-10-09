@@ -39,6 +39,26 @@ export const navGroups: NavigationGroup[] = [
 		],
 	},
 	{
+		title: "Habilidades",
+		items: [
+			{ href: "/reading", label: "Leitura e escuta", icon: BookOpen },
+			{ href: "/vocabulary", label: "Vocabulário", icon: BookA },
+			{ href: "/writing", label: "Escrita e ditado", icon: FileText },
+			{ href: "/fluency", label: "Fluência", icon: TrendingUp },
+			{ href: "/pronunciation", label: "Pronúncia", icon: Headphones },
+			{ href: "/tracks", label: "Trilhas por objetivo", icon: MapIcon },
+			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
+			{ href: "/checkpoints", label: "Checkpoints", icon: CheckSquare },
+			{ href: "/library", label: "Leitor livre", icon: LibraryBig },
+			{
+				href: "/listening-lab",
+				label: "Laboratório de escuta",
+				icon: Headphones,
+			},
+			{ href: "/progress", label: "Meu progresso", icon: TrendingUp },
+		],
+	},
+	{
 		title: "Referência",
 		items: [
 			{ href: "/rules", label: "Regras", icon: BookOpen },
@@ -77,26 +97,6 @@ export const navGroups: NavigationGroup[] = [
 			{ href: "/proficiency", label: "Teste de Nível", icon: GraduationCap },
 			{ href: "/achievements", label: "Conquistas", icon: Trophy },
 			{ href: "/settings", label: "Configurações", icon: Settings },
-		],
-	},
-	{
-		title: "Habilidades",
-		items: [
-			{ href: "/reading", label: "Leitura e escuta", icon: BookOpen },
-			{ href: "/vocabulary", label: "Vocabulário", icon: BookA },
-			{ href: "/writing", label: "Escrita e ditado", icon: FileText },
-			{ href: "/fluency", label: "Fluência", icon: TrendingUp },
-			{ href: "/pronunciation", label: "Pronúncia", icon: Headphones },
-			{ href: "/tracks", label: "Viagem e trabalho", icon: MapIcon },
-			{ href: "/tutor", label: "Tutor local", icon: Bot },
-			{ href: "/checkpoints", label: "Checkpoints", icon: CheckSquare },
-			{ href: "/library", label: "Leitor livre", icon: LibraryBig },
-			{
-				href: "/listening-lab",
-				label: "Laboratório de escuta",
-				icon: Headphones,
-			},
-			{ href: "/progress", label: "Meu progresso", icon: TrendingUp },
 		],
 	},
 ];

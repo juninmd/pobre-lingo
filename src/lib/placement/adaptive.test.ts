@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { MAX_ITEMS, runAdaptiveSession } from "./adaptive";
+import {
+	applyAnswer,
+	computeFinalLevel,
+	createAdaptiveState,
+	MAX_ITEMS,
+	runAdaptiveSession,
+} from "./adaptive";
 import { placementBank } from "./bank";
 import type { PlacementItem } from "./types";
 
@@ -22,6 +28,28 @@ const LEVEL_RANK: Record<string, number> = {
 };
 
 describe("runAdaptiveSession", () => {
+	it("does not classify isolated advanced answers as foundational evidence", () => {
+		expect(
+			computeFinalLevel(
+				Array.from({ length: 3 }, (_, i) => ({
+					itemId: `advanced-${i}`,
+					level: "C2",
+					skill: "reading",
+					correct: true,
+				})),
+			),
+		).toBe("A1");
+	});
+	it("cannot promote from missing audio or duplicate answers", () => {
+		const initial = createAdaptiveState();
+		const item = placementBank.find(
+			(question) => question.level === "A1" && question.skill === "listening",
+		);
+		if (!item) throw new Error("Missing A1 listening item");
+		const skipped = applyAnswer(initial, item, null);
+		expect(skipped.currentLevel).toBe("A1");
+		expect(applyAnswer(skipped, item, true)).toBe(skipped);
+	});
 	it("a perfect learner (always correct) climbs to C2", () => {
 		const state = runAdaptiveSession(placementBank, () => true, seededRng(1));
 		expect(state.finalLevel).toBe("C2");

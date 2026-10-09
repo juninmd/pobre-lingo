@@ -1,6 +1,8 @@
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { usePersistentState } from "@/hooks/usePersistentState";
+import { localDay } from "@/lib/localDay";
 
 interface TrendWidgetProps {
 	id?: string;
@@ -14,6 +16,7 @@ interface TrendWidgetProps {
 }
 
 export function TrendWidget({
+	id,
 	title,
 	description,
 	icon,
@@ -24,7 +27,12 @@ export function TrendWidget({
 }: TrendWidgetProps) {
 	const { addXp } = useGamification();
 	const { notify } = useNotifications();
-	const [completed, setCompleted] = useState(false);
+	// One key per widget holding its last completion day: persists across reloads, stays bounded.
+	const [doneDay, setDoneDay] = usePersistentState<string | null>(
+		`pl_trend_done_${id ?? title}`,
+		null,
+	);
+	const completed = doneDay === localDay();
 
 	const handleAction = () => {
 		if (!completed) {
@@ -35,7 +43,7 @@ export function TrendWidget({
 
 				category: "achievement",
 			});
-			setCompleted(true);
+			setDoneDay(localDay());
 		}
 	};
 

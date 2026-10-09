@@ -1,16 +1,11 @@
-import * as LucideIcons from "lucide-react";
-import { CheckCircle, Lock } from "lucide-react";
+import { Award, CheckCircle, Lock, Medal } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	ACHIEVEMENTS_LIST,
 	useGamification,
 } from "@/contexts/GamificationContext";
+import { getIcon } from "@/lib/iconMap";
 import { cn } from "@/lib/utils";
-
-const getIcon = (name: string) => {
-	// @ts-expect-error
-	return LucideIcons[name] || LucideIcons.Award;
-};
 
 export function AchievementsList() {
 	const { unlockedAchievements } = useGamification();
@@ -19,10 +14,7 @@ export function AchievementsList() {
 		<Card className="w-full">
 			<CardHeader>
 				<CardTitle className="flex items-center gap-2">
-					<LucideIcons.Medal
-						className="w-6 h-6 text-yellow-500"
-						aria-hidden="true"
-					/>
+					<Medal className="w-6 h-6 text-yellow-500" aria-hidden="true" />
 					Conquistas
 				</CardTitle>
 			</CardHeader>
@@ -30,7 +22,7 @@ export function AchievementsList() {
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 					{ACHIEVEMENTS_LIST.map((achievement) => {
 						const isUnlocked = unlockedAchievements.includes(achievement.id);
-						const Icon = getIcon(achievement.icon);
+						const Icon = getIcon(achievement.icon, Award);
 
 						return (
 							<div

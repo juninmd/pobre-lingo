@@ -26,7 +26,7 @@ const SCREENS: Screen[] = [
 		expect: /Alfabeto/,
 	},
 	{ name: "13-quiz-lesson", path: "/quiz/verb-tenses/tenses-quiz" },
-	{ name: "14-proficiency", path: "/proficiency", expect: /Nível|Teste/ },
+	{ name: "14-proficiency", path: "/proficiency", expect: /Encontre um ponto de estudo|Nível|Teste/ },
 	{ name: "15-ex-find-incorrect", path: "/exercises/find-incorrect-words" },
 	{ name: "16-ex-news-comprehension", path: "/exercises/news-comprehension" },
 	{

@@ -38,7 +38,7 @@ export function WritingPromptEditor({ prompt }: { prompt: WritingPrompt }) {
 	};
 
 	return (
-		<Card className="glass-card">
+		<Card className="glass-card" data-private>
 			<CardHeader>
 				<CardTitle className="flex items-center gap-2">
 					<Lightbulb className="h-5 w-5 text-primary" />

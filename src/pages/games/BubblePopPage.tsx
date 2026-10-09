@@ -152,7 +152,6 @@ export default function BubblePopPage() {
 		function _animate(time: number) {
 			if (gameState !== "playing") return;
 
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const _delta = time - lastTimeRef.current;
 			lastTimeRef.current = time;
 
@@ -212,17 +211,6 @@ export default function BubblePopPage() {
 		}
 	};
 
-	// Check Win
-	useEffect(() => {
-		if (
-			gameState === "playing" &&
-			bubbles.length > 0 &&
-			bubbles.every((b) => b.isPopped)
-		) {
-			handleWin();
-		}
-	}, [bubbles, gameState, handleWin]);
-
 	const handleBubbleClick = (clickedId: string) => {
 		if (gameState !== "playing") return;
 		const clickedBubble = bubbles.find((b) => b.id === clickedId);
@@ -242,6 +230,9 @@ export default function BubblePopPage() {
 
 			if (selectedBubble && selectedBubble.matchId === clickedBubble.matchId) {
 				// MATCH!
+				const remaining = bubbles.filter(
+					(b) => !b.isPopped && b.id !== clickedId && b.id !== selectedBubbleId,
+				);
 				setBubbles((prev) =>
 					prev.map((b) =>
 						b.id === clickedId || b.id === selectedBubbleId
@@ -251,7 +242,7 @@ export default function BubblePopPage() {
 				);
 				setScore((prev) => prev + 100);
 				setSelectedBubbleId(null);
-				// Play sound if possible
+				if (remaining.length === 0) handleWin();
 			} else {
 				// MISMATCH
 				// Shake effect could be added here
@@ -268,6 +259,7 @@ export default function BubblePopPage() {
 					variant="ghost"
 					size="icon"
 					onClick={() => navigate("/")}
+					aria-label="Voltar ao início"
 					className="hover:bg-white/20 text-white"
 				>
 					<ArrowLeft className="w-6 h-6" />
@@ -303,6 +295,7 @@ export default function BubblePopPage() {
 					onClick={() =>
 						setGameState(gameState === "paused" ? "playing" : "paused")
 					}
+					aria-label={gameState === "paused" ? "Continuar jogo" : "Pausar jogo"}
 					className="hover:bg-white/20 text-white"
 				>
 					{gameState === "paused" ? (
@@ -318,9 +311,11 @@ export default function BubblePopPage() {
 				{bubbles.map(
 					(bubble) =>
 						!bubble.isPopped && (
-							<div
+							<button
+								type="button"
 								key={bubble.id}
 								onClick={() => handleBubbleClick(bubble.id)}
+								aria-pressed={selectedBubbleId === bubble.id}
 								className={cn(
 									"absolute rounded-full flex items-center justify-center text-center p-2 cursor-pointer shadow-xl border-4 transition-all duration-300",
 									bubble.color,
@@ -338,12 +333,12 @@ export default function BubblePopPage() {
 								}}
 							>
 								{/* Shine effect */}
-								<div className="absolute top-2 left-3 w-1/3 h-1/4 bg-white/40 rounded-full blur-sm" />
+								<span className="absolute top-2 left-3 w-1/3 h-1/4 bg-white/40 rounded-full blur-sm" />
 
 								<span className="font-bold text-white text-sm md:text-base leading-tight drop-shadow-md select-none pointer-events-none">
 									{bubble.text}
 								</span>
-							</div>
+							</button>
 						),
 				)}
 			</div>
@@ -375,7 +370,7 @@ export default function BubblePopPage() {
 			{/* Paused Modal */}
 			{gameState === "paused" && (
 				<div className="absolute inset-0 flex items-center justify-center bg-black/40 z-50 backdrop-blur-sm">
-					<div className="bg-white p-6 rounded-2xl text-center shadow-xl">
+					<div className="bg-card text-card-foreground p-6 rounded-2xl text-center shadow-xl">
 						<h2 className="text-xl font-bold mb-4">Pausado</h2>
 						<div className="flex gap-4">
 							<Button variant="outline" onClick={() => navigate("/")}>

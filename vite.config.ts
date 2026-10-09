@@ -11,15 +11,17 @@ export default defineConfig({
 			registerType: "autoUpdate",
 			includeAssets: [
 				"favicon.svg",
-				"apple-touch-icon.svg",
-				"pwa-192x192.svg",
-				"pwa-512x512.svg",
+				"apple-touch-icon.png",
+				"pwa-192x192.png",
+				"pwa-512x512.png",
+				"pwa-maskable-512x512.png",
 			],
 			manifest: {
 				name: "PobreLingo - Aprenda Inglês",
 				short_name: "PobreLingo",
 				description: "Aplicativo grátis e infinito para aprender inglês",
-				theme_color: "#22c55e", // Updated to match the new mascot color (green-500)
+				// Light-theme primary (hsl 210 90% 50%); keep in sync with index.html.
+				theme_color: "#0d80f2",
 				background_color: "#ffffff",
 				display: "standalone",
 				lang: "pt-BR",
@@ -29,21 +31,21 @@ export default defineConfig({
 				categories: ["education", "language"],
 				icons: [
 					{
-						src: "pwa-192x192.svg",
+						src: "pwa-192x192.png",
 						sizes: "192x192",
-						type: "image/svg+xml",
+						type: "image/png",
 						purpose: "any",
 					},
 					{
-						src: "pwa-512x512.svg",
+						src: "pwa-512x512.png",
 						sizes: "512x512",
-						type: "image/svg+xml",
+						type: "image/png",
 						purpose: "any",
 					},
 					{
-						src: "pwa-512x512.svg",
+						src: "pwa-maskable-512x512.png",
 						sizes: "512x512",
-						type: "image/svg+xml",
+						type: "image/png",
 						purpose: "maskable",
 					},
 				],
@@ -85,7 +87,7 @@ export default defineConfig({
 				],
 			},
 			devOptions: {
-				enabled: true,
+				enabled: false,
 			},
 		}),
 	],
@@ -114,9 +116,6 @@ export default defineConfig({
 						}
 						if (id.includes("recharts") || id.includes("d3")) {
 							return "recharts";
-						}
-						if (id.includes("firebase")) {
-							return "firebase";
 						}
 						return "vendor";
 					}

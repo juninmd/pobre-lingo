@@ -35,7 +35,10 @@ export function FocusSession({
 		[focus],
 	);
 	const isStressFocus = focus === "word-stress";
-	const [step, setStep] = useState<Step>("listen");
+	const hasPairs = pairs.length > 0;
+	const [step, setStep] = useState<Step>(
+		isStressFocus && !hasPairs ? "stress" : "listen",
+	);
 	const { addXp } = useGamification();
 	const { addCard } = useSrs();
 
@@ -67,7 +70,7 @@ export function FocusSession({
 		onExit();
 	};
 
-	if (!info || pairs.length === 0) return null;
+	if (!info || (!hasPairs && !isStressFocus)) return null;
 
 	return (
 		<div className="space-y-6">

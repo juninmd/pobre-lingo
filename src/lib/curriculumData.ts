@@ -1251,7 +1251,7 @@ export const curriculumData: LearningPath = {
 					order: 4,
 				},
 				{
-					id: "tenses-quiz",
+					id: "past-present-quiz",
 					title_pt: "Quiz: Tempos Verbais",
 					title_en: "Quiz: Verb Tenses",
 					description_pt: "Teste seu domínio dos tempos verbais",

@@ -4,12 +4,14 @@ import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
 import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
+import { CALLWidget } from "./trends/CALLWidget";
 import { CLILWidget } from "./trends/CLILWidget";
 import { CommunicativeRoleplayWidget } from "./trends/CommunicativeRoleplayWidget";
 import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
 import { DDLWidget } from "./trends/DDLWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
 import { DogmeELTWidget } from "./trends/DogmeELTWidget";
+import { EdutainmentWidget } from "./trends/EdutainmentWidget";
 import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
 import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
 import { GamificationWidget } from "./trends/GamificationWidget";
@@ -30,10 +32,8 @@ import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
-import { VRLearningWidget } from "./trends/VRLearningWidget";
 import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
-import { EdutainmentWidget } from "./trends/EdutainmentWidget";
-import { CALLWidget } from "./trends/CALLWidget";
+import { VRLearningWidget } from "./trends/VRLearningWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -49,31 +49,11 @@ export function ImmersivePracticeSection() {
 			</h3>
 			<Tabs defaultValue="digital">
 				<TabsList className="flex flex-wrap gap-2 mb-4">
-					<TabsTrigger
-						value="digital"
-					>
-						Digital & IA
-					</TabsTrigger>
-					<TabsTrigger
-						value="social"
-					>
-						Conexão Humana & Social
-					</TabsTrigger>
-					<TabsTrigger
-						value="cultura"
-					>
-						Cultura
-					</TabsTrigger>
-					<TabsTrigger
-						value="metodologias"
-					>
-						Metodologias
-					</TabsTrigger>
-					<TabsTrigger
-						value="essenciais"
-					>
-						Essenciais
-					</TabsTrigger>
+					<TabsTrigger value="digital">Digital & IA</TabsTrigger>
+					<TabsTrigger value="social">Conexão Humana & Social</TabsTrigger>
+					<TabsTrigger value="cultura">Cultura</TabsTrigger>
+					<TabsTrigger value="metodologias">Metodologias</TabsTrigger>
+					<TabsTrigger value="essenciais">Essenciais</TabsTrigger>
 				</TabsList>
 
 				<TabsContent

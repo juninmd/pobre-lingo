@@ -31,13 +31,9 @@ describe("CALLWidget", () => {
 
 	it("renders title and description", () => {
 		render(<CALLWidget />);
+		expect(screen.getByText("CALL")).toBeInTheDocument();
 		expect(
-			screen.getByText("CALL"),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(
-				/Computer-Assisted Language Learning/i,
-			),
+			screen.getByText(/Computer-Assisted Language Learning/i),
 		).toBeInTheDocument();
 	});
 

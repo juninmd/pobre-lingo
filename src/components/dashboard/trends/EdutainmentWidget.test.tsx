@@ -31,14 +31,8 @@ describe("EdutainmentWidget", () => {
 
 	it("renders title and description", () => {
 		render(<EdutainmentWidget />);
-		expect(
-			screen.getByText("Edutainment"),
-		).toBeInTheDocument();
-		expect(
-			screen.getByText(
-				/Aprenda inglês combinando/i,
-			),
-		).toBeInTheDocument();
+		expect(screen.getByText("Edutainment")).toBeInTheDocument();
+		expect(screen.getByText(/Aprenda inglês combinando/i)).toBeInTheDocument();
 	});
 
 	it("handles practice action correctly", () => {

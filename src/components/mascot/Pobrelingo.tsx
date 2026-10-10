@@ -22,7 +22,10 @@ interface PobrelingoProps {
 	emotion?: Emotion;
 	/** Idle bob, blinking, wing flaps. Reduced-motion users get the still pose. */
 	animated?: boolean;
+	/** Accessible name, unless `decorative` hides the image. */
 	title?: string;
+	/** For art next to text or a labelled control that already says the same thing. */
+	decorative?: boolean;
 }
 
 function Sprite({
@@ -53,6 +56,7 @@ export function Pobrelingo({
 	emotion = "happy",
 	animated = true,
 	title = "Pobrelingo, o mascote",
+	decorative = false,
 }: PobrelingoProps) {
 	const face = FACES[emotion];
 	const flaps = animated && face.wings === "flap";
@@ -64,14 +68,21 @@ export function Pobrelingo({
 			style={{ width, height }}
 		>
 			{/* Inline size: icon rules like `[&_svg]:size-4` on a parent Button must not shrink the sprite. */}
+			{/* overflow visible: the hop lifts the crest's top pixel one unit past the viewBox. */}
 			<svg
 				viewBox={`0 0 ${SPRITE_SIZE} ${SPRITE_SIZE}`}
-				role="img"
-				aria-label={title}
+				role={decorative ? undefined : "img"}
+				aria-label={decorative ? undefined : title}
+				aria-hidden={decorative || undefined}
 				shapeRendering="crispEdges"
-				style={{ display: "block", width: "100%", height: "100%" }}
+				style={{
+					display: "block",
+					width: "100%",
+					height: "100%",
+					overflow: "visible",
+				}}
 			>
-				<title>{title}</title>
+				{!decorative && <title>{title}</title>}
 				<Sprite layers={[SHADOW]} />
 				<g
 					className={

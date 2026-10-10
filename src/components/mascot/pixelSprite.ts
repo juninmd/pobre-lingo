@@ -19,6 +19,7 @@ const cache = new WeakMap<Layer, Record<string, string>>();
 /**
  * One SVG path per palette key. Horizontal runs of one key become a single
  * rectangle, so a 24x24 sprite stays at a few dozen path segments.
+ * Memoised per layer object: the art is converted once, not on every render.
  */
 export function layerPaths(source: Layer): Record<string, string> {
 	const cached = cache.get(source);

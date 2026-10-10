@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PracticeHub } from "./PracticeHub";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
@@ -31,6 +31,9 @@ import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
+import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
+import { EdutainmentWidget } from "./trends/EdutainmentWidget";
+import { CALLWidget } from "./trends/CALLWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -48,31 +51,26 @@ export function ImmersivePracticeSection() {
 				<TabsList className="flex flex-wrap gap-2 mb-4">
 					<TabsTrigger
 						value="digital"
-						className="px-4 py-2 rounded-md bg-muted data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
 					>
 						Digital & IA
 					</TabsTrigger>
 					<TabsTrigger
 						value="social"
-						className="px-4 py-2 rounded-md bg-muted data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
 					>
 						Conexão Humana & Social
 					</TabsTrigger>
 					<TabsTrigger
 						value="cultura"
-						className="px-4 py-2 rounded-md bg-muted data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
 					>
 						Cultura
 					</TabsTrigger>
 					<TabsTrigger
 						value="metodologias"
-						className="px-4 py-2 rounded-md bg-muted data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
 					>
 						Metodologias
 					</TabsTrigger>
 					<TabsTrigger
 						value="essenciais"
-						className="px-4 py-2 rounded-md bg-muted data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
 					>
 						Essenciais
 					</TabsTrigger>
@@ -90,6 +88,7 @@ export function ImmersivePracticeSection() {
 					<SocialMediaReelsWidget />
 					<NanoLearningWidget />
 					<MALLWidget />
+					<CALLWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -131,6 +130,8 @@ export function ImmersivePracticeSection() {
 					<NeuroELTWidget />
 					<PlurilingualismWidget />
 					<MultimodalLearningWidget />
+					<VisualThinkingWidget />
+					<EdutainmentWidget />
 				</TabsContent>
 
 				<TabsContent value="essenciais">

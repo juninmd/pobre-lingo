@@ -106,7 +106,7 @@ export function MascotGreeting({
 				<button
 					type="button"
 					aria-label="Coletar bônus diário de XP"
-					className="flex-shrink-0 animate-bounce-slow cursor-pointer hover:scale-110 hover:rotate-3 active:scale-95 transition-all duration-300 hover:drop-shadow-xl rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+					className="flex-shrink-0 cursor-pointer rounded-lg transition-transform duration-150 hover:-translate-y-1 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 					onClick={() => {
 						if (!claimOncePerDay(DAILY_BONUS_KEY)) {
 							toast({
@@ -122,7 +122,12 @@ export function MascotGreeting({
 						});
 					}}
 				>
-					<Pobrelingo width={120} height={120} emotion="excited" />
+					<Pobrelingo
+						width={120}
+						height={120}
+						emotion="excited"
+						className="block"
+					/>
 				</button>
 
 				<div className="flex-1">

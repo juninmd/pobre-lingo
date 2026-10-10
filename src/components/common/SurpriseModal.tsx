@@ -83,9 +83,7 @@ export function SurpriseModal({ open, onOpenChange }: SurpriseModalProps) {
 				</DialogHeader>
 
 				<div className="flex flex-col items-center p-6 space-y-6">
-					<div className="animate-bounce">
-						<Pobrelingo width={120} height={120} emotion="excited" />
-					</div>
+					<Pobrelingo width={120} height={120} emotion="excited" />
 
 					<div className="text-center p-4 bg-card rounded-xl shadow-sm border border-yellow-200 dark:border-yellow-900/50">
 						<p className="text-lg font-medium text-foreground leading-relaxed">

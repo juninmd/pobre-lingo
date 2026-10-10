@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-10-09] Spark-Frontend: Pixel art mascot
+- **Action:** Replaced the vector blob in `src/components/mascot/Pobrelingo.tsx` with a 24x24 pixel art bird. The art is data: `pobrelingoArt.ts` (palette, body, wings), `pobrelingoFaces.ts` (eyes and beaks per emotion), `pixelSprite.ts` (rows to SVG paths). Same props and the four emotions, plus `animated` and `title`.
+- **Note:** Show it at multiples of 24 (48, 72, 96, 120, 144) so every sprite pixel has the same size. Animations are `steps()` keyframes (`pl-*` in `globals.css`) and stop under the global reduced-motion rule. The SVG is sized inline on purpose: a parent `Button` squeezed the old mascot to 16px through `[&_svg]:size-4`.
+
 ### [2026-10-09] Spark-Frontend / Bolt-Automation: UI audit, a11y fixes and dependency refresh
 - **Action:** Audited every route (desktop + mobile, light/dark/pobre-lingo) with axe-core plus an overflow and console check. Fixed: sidebar items painted `bg-primary` (`SidebarMenuButton` must stay a plain element, never wrap `Button`), WCAG AA contrast tokens, `Progress` never forwarding `value`, unnamed icon buttons, mobile horizontal scroll, clipped next-lesson CTA, word search (blank cells, no touch selection), `?scenario=` ignored by the conversation page.
 - **Action:** Updated every dependency to latest, majors included (TypeScript 7, vite-plugin-pwa 2, jest-dom 7, jsdom 30, @types/node 26, Biome 2.5). Tests load matchers via `@testing-library/jest-dom/vitest` (the bare import breaks Vitest 5 types).

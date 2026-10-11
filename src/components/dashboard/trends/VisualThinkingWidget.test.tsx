@@ -35,9 +35,7 @@ describe("VisualThinkingWidget", () => {
 			screen.getByText("Sketchnoting & Visual Thinking"),
 		).toBeInTheDocument();
 		expect(
-			screen.getByText(
-				/Use desenhos simples e mapas visuais/i,
-			),
+			screen.getByText(/Use desenhos simples e mapas visuais/i),
 		).toBeInTheDocument();
 	});
 

@@ -358,6 +358,7 @@ export default function WordSearchPage() {
 								width={144}
 								height={144}
 								className="mb-4"
+								decorative
 							/>
 							<h2 className="text-4xl font-black mb-2 uppercase">
 								{gameWon ? "Vitória!" : "Tempo Esgotado!"}

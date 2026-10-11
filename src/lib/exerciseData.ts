@@ -97,7 +97,7 @@ export const sentenceOrderingExercises: SentenceOrderingExercise[] = [
 		translation_pt: "O gato está no tapete.",
 		topic: "Prepositions of Place",
 		difficulty: "easy",
-		grammarRuleIds: ["prepositions-place"],
+		grammarRuleIds: ["prepositions-of-place"],
 	},
 	{
 		id: "so2",
@@ -530,8 +530,7 @@ export const correctSentenceIdentificationExercises: CorrectSentenceIdentificati
 				{
 					id: "csi11a",
 					sentence: "To swim is good exercise.",
-					isCorrect: true,
-					translation_pt: "Nadar é um bom exercício.",
+					isCorrect: false,
 				},
 				{
 					id: "csi11b",
@@ -542,7 +541,7 @@ export const correctSentenceIdentificationExercises: CorrectSentenceIdentificati
 				{ id: "csi11c", sentence: "Swim is good exercise.", isCorrect: false },
 			],
 			explanation:
-				"Tanto o infinitivo com 'to' (To swim) quanto o gerúndio (Swimming) podem funcionar como sujeito de uma frase. A forma base do verbo (Swim) sozinha não pode.",
+				"O gerúndio (-ing) funciona como sujeito: 'Swimming is good exercise'. O infinitivo com 'to' (To swim) também pode ser sujeito, mas não é gerúndio, por isso não é a resposta desta pergunta. A forma base do verbo (Swim) sozinha não pode ser sujeito.",
 			topic: "Gerunds and Infinitives as Subjects",
 			difficulty: "medium",
 		},

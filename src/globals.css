@@ -386,7 +386,8 @@
 
 /* Pixel mascot: each animation steps between whole sprite pixels (1 SVG unit)
    so nothing is ever drawn between pixels. The reduced-motion rule below turns
-   them all off and leaves the still pose (open eyes, wings raised). */
+   them all off and leaves the still pose (open eyes; wings raised only in the
+   excited pose). */
 @keyframes pl-bob {
 	50% {
 		transform: translateY(-1px);
@@ -460,8 +461,9 @@
 	animation: pl-first-half 1.2s steps(1, end) infinite;
 }
 
+/* No base opacity: with reduced motion the animation is off, and the still pose
+   needs this sparkle visible (its 0% keyframe hides it for the first half). */
 .pl-twinkle-b {
-	opacity: 0;
 	animation: pl-second-half 1.2s steps(1, end) infinite;
 }
 

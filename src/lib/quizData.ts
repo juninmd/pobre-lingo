@@ -1,12 +1,11 @@
-export interface QuizQuestion {
-	question: string;
-	options: string[];
-	correctAnswer: number;
-	explanation: string;
-}
+import { quizBanks } from "@/lib/quizBanks";
+import type { QuizQuestion } from "@/lib/quizBanks/types";
 
-// Question bank, per quiz
+export type { QuizQuestion };
+
+// Question bank, per quiz (keyed by curriculum lesson id)
 export const quizData: Record<string, QuizQuestion[]> = {
+	...quizBanks,
 	"foundations-quiz": [
 		{
 			question: 'Qual é a forma correta do Present Simple para "he/she/it"?',
@@ -336,10 +335,11 @@ export const quizData: Record<string, QuizQuestion[]> = {
 				'"Used to" descreve estados e hábitos passados, "would" apenas hábitos.',
 		},
 		{
-			question: 'Complete: "The book ___ by millions"',
+			question: 'Complete: "The book ___ by millions last year"',
 			options: ["read", "was read", "is read", "has read"],
 			correctAnswer: 1,
-			explanation: "Voz passiva no passado: was/were + particípio passado.",
+			explanation:
+				'Com "last year" (passado), usamos was/were + particípio passado. "Is read" é presente e não combina com essa expressão de tempo.',
 		},
 	],
 };

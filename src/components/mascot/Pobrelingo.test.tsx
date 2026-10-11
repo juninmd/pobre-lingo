@@ -1,9 +1,51 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Pobrelingo } from "./Pobrelingo";
-import { FACES } from "./pobrelingoFaces";
+import { type Layer, layerPaths } from "./pixelSprite";
+import {
+	BODY,
+	PALETTE,
+	SHADOW,
+	SPARKLES,
+	WINGS_DOWN,
+	WINGS_UP,
+} from "./pobrelingoArt";
+import { type Emotion, FACES } from "./pobrelingoFaces";
 
-const emotions = Object.keys(FACES) as (keyof typeof FACES)[];
+const emotions = Object.keys(FACES) as Emotion[];
+
+/** Every drawn path's `d`, mapped to the fill it was given. */
+function drawn(container: HTMLElement) {
+	return new Map(
+		Array.from(container.querySelectorAll("path"), (p): [string, string] => [
+			p.getAttribute("d") ?? "",
+			p.getAttribute("fill") ?? "",
+		]),
+	);
+}
+
+/** Each path a layer produces is drawn, in the palette colour of its key. */
+function expectDrawn(fills: Map<string, string>, l: Layer) {
+	for (const [key, d] of Object.entries(layerPaths(l))) {
+		expect(fills.get(d), `key ${key}`).toBe(PALETTE[key]);
+	}
+}
+
+function layersOf(emotion: Emotion): Layer[] {
+	const face = FACES[emotion];
+	const wings =
+		face.wings === "flap" ? [...WINGS_UP, ...WINGS_DOWN] : WINGS_DOWN;
+	return [
+		SHADOW,
+		BODY,
+		...wings,
+		...face.fixed,
+		...face.open,
+		...face.shut,
+		face.beak,
+		...(face.sparkles ? SPARKLES : []),
+	];
+}
 
 describe("Pobrelingo", () => {
 	it("is an image named after the mascot", () => {
@@ -20,9 +62,20 @@ describe("Pobrelingo", () => {
 		).toBeInTheDocument();
 	});
 
-	it.each(emotions)("draws the %s pose", (emotion) => {
+	it("can be hidden from assistive tech when a label already says the same", () => {
+		const { container } = render(<Pobrelingo decorative />);
+		expect(screen.queryByRole("img")).toBeNull();
+		expect(container.querySelector("svg")).toHaveAttribute(
+			"aria-hidden",
+			"true",
+		);
+		expect(container.querySelector("title")).toBeNull();
+	});
+
+	it.each(emotions)("draws every layer of the %s pose", (emotion) => {
 		const { container } = render(<Pobrelingo emotion={emotion} />);
-		expect(container.querySelectorAll("path").length).toBeGreaterThan(10);
+		const fills = drawn(container);
+		for (const l of layersOf(emotion)) expectDrawn(fills, l);
 	});
 
 	it("draws different faces for different emotions", () => {
@@ -45,6 +98,8 @@ describe("Pobrelingo", () => {
 		});
 		// Inline: a parent Button's `[&_svg]:size-4` once shrank the mascot to 16px.
 		expect(svg).toHaveStyle({ width: "100%", height: "100%" });
+		// The hop lifts the crest's top pixel one unit past the viewBox.
+		expect(svg).toHaveStyle({ overflow: "visible" });
 	});
 
 	it("idles with a bob and blinks", () => {
@@ -64,14 +119,15 @@ describe("Pobrelingo", () => {
 		expect(container.querySelector(".pl-twinkle-b")).not.toBeNull();
 	});
 
-	it("blinks only the open eye when winking", () => {
-		// The winking eye is drawn outside both blink groups, so it never opens.
-		expect(FACES.winking.open).toHaveLength(1);
-		expect(FACES.winking.shut).toHaveLength(1);
-		expect(FACES.winking.fixed).toHaveLength(1);
+	it("keeps the winking eye out of the blink groups", () => {
 		const { container } = render(<Pobrelingo emotion="winking" />);
-		expect(container.querySelectorAll(".pl-eyes-open")).toHaveLength(1);
-		expect(container.querySelectorAll(".pl-eyes-shut")).toHaveLength(1);
+		const blinking = Array.from(
+			container.querySelectorAll(".pl-eyes-open path, .pl-eyes-shut path"),
+			(p) => p.getAttribute("d"),
+		);
+		for (const d of Object.values(layerPaths(FACES.winking.fixed[0]))) {
+			expect(blinking).not.toContain(d);
+		}
 	});
 
 	it("holds one still pose when animation is off", () => {
@@ -90,7 +146,10 @@ describe("Pobrelingo", () => {
 		]) {
 			expect(container.querySelector(`.${name}`), name).toBeNull();
 		}
-		// Still excited: sparkles are shown together rather than twinkling.
-		expect(container.innerHTML).toContain("#ffd84d");
+		// Still excited: raised wings and both sparkles, with no blink layer.
+		const fills = drawn(container);
+		for (const l of [...WINGS_UP, ...SPARKLES, ...FACES.excited.open]) {
+			expectDrawn(fills, l);
+		}
 	});
 });

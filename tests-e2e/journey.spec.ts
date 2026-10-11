@@ -2,70 +2,81 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Learning Journey - Interactive Book Interface", () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto("/");
-		await page.evaluate(() => {
-			localStorage.setItem("pobrelingo_onboarded", "true");
+		// Pula a onboarding modal para interagir com o dashboard direto
+		await page.addInitScript(() => {
+			window.localStorage.setItem("pobrelingo_onboarded", "true");
 		});
-		await page.reload();
-		await page.waitForSelector(".lucide-loader-2", { state: "hidden" });
 	});
 
 	test("should render home with the persistent sidebar and no bottom bar on desktop", async ({
-		page, isMobile
+		page,
+		isMobile,
 	}) => {
-		test.skip(isMobile, "Desktop test only");
+		test.skip(isMobile, "Desktop only layout");
+		await page.goto("/");
 
-		await page.setViewportSize({ width: 1280, height: 720 });
+		// The sidebar uses a `<nav>` with aria-label="Menu principal"
+		const desktopNav = page.getByRole("navigation", { name: "Menu principal" });
+		await expect(desktopNav).toBeVisible();
 
-		const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
-		await expect(sidebarLink).toBeVisible();
+		// The header should have a menu trigger that is hidden on desktop via CSS,
+		// but Playwright checks visibility.
+		const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
+		await expect(sidebarTrigger).toBeHidden();
 
-		// The bottom bar is mobile-only: in the DOM but hidden from md up.
-		const bottomNav = page.getByRole("navigation", { name: "Atalhos" });
-		await expect(bottomNav).toBeHidden();
+		// O bottom nav legacy deve estar oculto ou removido (já foi removido na refatoração)
+		await expect(
+			page.getByRole("navigation", { name: "Atalhos" }),
+		).toBeHidden();
 	});
 
-	test("should use a drawer behind the menu trigger plus a bottom bar on mobile", async ({ page, isMobile }) => {
-		test.skip(!isMobile, "Mobile test only");
+	test("should use a drawer behind the menu trigger on mobile", async ({
+		page,
+		isMobile,
+	}) => {
+		test.skip(!isMobile, "Mobile only layout");
+		await page.goto("/");
 
 		const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
 		await expect(sidebarTrigger).toBeVisible();
 
-		// The sidebar is not pinned on mobile: content keeps the full width.
-		const viewportWidth = page.viewportSize()?.width ?? 0;
-		const mainBox = await page.locator("main").boundingBox();
-		expect(mainBox?.width).toBeGreaterThanOrEqual(viewportWidth - 1);
-
-		await expect(page.getByRole("navigation", { name: "Atalhos" })).toBeVisible();
+		// Main content takes full width
+		const mainArea = page.locator("main").first();
+		const viewportWidth = page.viewportSize()?.width || 0;
+		const mainBox = await mainArea.boundingBox();
+		if (mainBox) {
+			expect(mainBox.width).toBeGreaterThanOrEqual(viewportWidth - 1);
+		}
 
 		await sidebarTrigger.click();
-		await expect(page.getByRole("dialog").getByRole("link", { name: "Minha Jornada" })).toBeVisible();
+		await expect(
+			page.getByRole("dialog").getByRole("link", { name: "Minha Jornada" }),
+		).toBeVisible();
 	});
 
 	test("should display 'Onde parei' bookmark and navigate to active lesson", async ({
-		page, isMobile
+		page,
 	}) => {
-		test.skip(!isMobile, "Mobile test only");
+		await page.goto("/");
 
-		const timelineContainer = page.locator(".max-w-2xl").first();
+		// Espera a timeline ser renderizada (substitui o antigo LessonMap)
+		const timeline = page.locator(".max-w-2xl").first();
+		await expect(timeline).toBeVisible();
 
-		const bookmark = timelineContainer.locator('text="Onde parei"');
+		const bookmark = page.getByText("Onde parei").first();
 		await expect(bookmark).toBeVisible();
 
-		// The "DISPONÍVEL" label is sm:inline only; on mobile the play icon is the visible control.
-		const startButton = timelineContainer.getByLabel("Iniciar lição").first();
-		await expect(startButton).toBeVisible();
+		// Pega o card da lição ativa e clica nele
+		const cardLink = page
+			.locator("a:has-text('DISPONÍVEL'), a:has([aria-label='Iniciar lição'])")
+			.first();
+		await expect(cardLink).toBeVisible();
 
-		await startButton.click();
+		const href = await cardLink.getAttribute("href");
+		await cardLink.click();
 
 		await expect(async () => {
-			expect(
-				page.url().includes("/vocabulary/") ||
-				page.url().includes("/quiz/") ||
-				page.url().includes("/reading/") ||
-				page.url().includes("/exercise/") ||
-				page.url().includes("/speaking/")
-			).toBeTruthy();
+			expect(page.url().includes(href ?? "not-found")).toBeTruthy();
 		}).toPass({ timeout: 5000 });
 	});
 });

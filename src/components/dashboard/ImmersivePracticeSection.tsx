@@ -1,17 +1,27 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
+import { InteractiveAudioWidget } from "./InteractiveAudioWidget";
+import { PopCultureWidget } from "./PopCultureWidget";
 import { PracticeHub } from "./PracticeHub";
+import { RealWorldARWidget } from "./RealWorldARWidget";
+import { StorytellingWidget } from "./StorytellingWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
+import { AudioLingualWidget } from "./trends/AudioLingualWidget";
 import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
+import { BlendedLearningWidget } from "./trends/BlendedLearningWidget";
 import { CALLWidget } from "./trends/CALLWidget";
 import { CLILWidget } from "./trends/CLILWidget";
+import { CLTWidget } from "./trends/CLTWidget";
 import { CommunicativeRoleplayWidget } from "./trends/CommunicativeRoleplayWidget";
 import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
 import { DDLWidget } from "./trends/DDLWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
+import { DirectMethodWidget } from "./trends/DirectMethodWidget";
 import { DogmeELTWidget } from "./trends/DogmeELTWidget";
 import { EdutainmentWidget } from "./trends/EdutainmentWidget";
+import { ESPWidget } from "./trends/ESPWidget";
 import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget";
 import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
 import { GamificationWidget } from "./trends/GamificationWidget";
@@ -28,12 +38,16 @@ import { NeuroELTWidget } from "./trends/NeuroELTWidget";
 import { PBLWidget } from "./trends/PBLWidget";
 import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
 import { SELWidget } from "./trends/SELWidget";
+import { SilentWayWidget } from "./trends/SilentWayWidget";
 import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
+import { SuggestopediaWidget } from "./trends/SuggestopediaWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
+import { TPRWidget } from "./trends/TPRWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
+import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -53,6 +67,7 @@ export function ImmersivePracticeSection() {
 					<TabsTrigger value="social">Conexão Humana & Social</TabsTrigger>
 					<TabsTrigger value="cultura">Cultura</TabsTrigger>
 					<TabsTrigger value="metodologias">Metodologias</TabsTrigger>
+					<TabsTrigger value="interativas">Interativas</TabsTrigger>
 					<TabsTrigger value="essenciais">Essenciais</TabsTrigger>
 				</TabsList>
 
@@ -112,6 +127,26 @@ export function ImmersivePracticeSection() {
 					<MultimodalLearningWidget />
 					<VisualThinkingWidget />
 					<EdutainmentWidget />
+					<TPRWidget />
+					<CLTWidget />
+					<SuggestopediaWidget />
+					<AudioLingualWidget />
+					<DirectMethodWidget />
+					<SilentWayWidget />
+					<ESPWidget />
+					<BlendedLearningWidget />
+				</TabsContent>
+
+				<TabsContent
+					value="interativas"
+					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+				>
+					<AdaptiveLearningWidget />
+					<RealWorldARWidget />
+					<InteractiveAudioWidget />
+					<VirtualImmersionWidget />
+					<StorytellingWidget />
+					<PopCultureWidget />
 				</TabsContent>
 
 				<TabsContent value="essenciais">

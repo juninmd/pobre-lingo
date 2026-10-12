@@ -9,6 +9,7 @@
 - [x] **Feature Expansion**: Transition to "Interactive Journey Book" timeline. (Completed)
 - [x] **Feature Expansion**: Implement core business logic and missing functionalities (PBL, DDL).
 - [ ] **Testing Suite**: Increase test coverage to at least 80%.
+- [x] **Teaching Trends**: Added 2025 ELT trends (Agentic Learning, Trauma-Informed ELT, Bite-sized Learning, Flipped Learning 3.0, Immersive Storytelling).
 - [x] **Optimization**: Improve performance and reduce technical debt (Dashboard/Layout/Timeline Refactoring).
 
 ## 🚀 Phase 3: Polish & Scale (Future)

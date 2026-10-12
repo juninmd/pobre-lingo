@@ -48,6 +48,11 @@ import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
 import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
+import { BiteSizedLearningWidget } from "./trends/BiteSizedLearningWidget";
+import { FlippedLearning30Widget } from "./trends/FlippedLearning30Widget";
+import { ImmersiveStorytellingWidget } from "./trends/ImmersiveStorytellingWidget";
+import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
+import { TraumaInformedELTWidget } from "./trends/TraumaInformedELTWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -83,6 +88,7 @@ export function ImmersivePracticeSection() {
 					<SocialMediaReelsWidget />
 					<NanoLearningWidget />
 					<MALLWidget />
+					<BiteSizedLearningWidget />
 					<CALLWidget />
 				</TabsContent>
 
@@ -95,6 +101,7 @@ export function ImmersivePracticeSection() {
 					<CriticalPedagogyWidget />
 					<MindfulWidget />
 					<SELWidget />
+					<TraumaInformedELTWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -119,6 +126,7 @@ export function ImmersivePracticeSection() {
 					<PBLWidget />
 					<DDLWidget />
 					<FlippedClassroomWidget />
+					<FlippedLearning30Widget />
 					<GamificationWidget />
 					<SpacedRepetitionWidget />
 					<CommunicativeRoleplayWidget />
@@ -135,6 +143,7 @@ export function ImmersivePracticeSection() {
 					<SilentWayWidget />
 					<ESPWidget />
 					<BlendedLearningWidget />
+					<AgenticLearningWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -146,6 +155,7 @@ export function ImmersivePracticeSection() {
 					<InteractiveAudioWidget />
 					<VirtualImmersionWidget />
 					<StorytellingWidget />
+					<ImmersiveStorytellingWidget />
 					<PopCultureWidget />
 				</TabsContent>
 

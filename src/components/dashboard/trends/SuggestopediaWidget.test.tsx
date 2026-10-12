@@ -15,9 +15,7 @@ describe("SuggestopediaWidget", () => {
 		render(<SuggestopediaWidget />);
 		expect(screen.getByText("Suggestopedia")).toBeInTheDocument();
 		expect(
-			screen.getByText(
-				"Aprendizado acelerado usando relaxamento e música.",
-			),
+			screen.getByText("Aprendizado acelerado usando relaxamento e música."),
 		).toBeInTheDocument();
 	});
 });

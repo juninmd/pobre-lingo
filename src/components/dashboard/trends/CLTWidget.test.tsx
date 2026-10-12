@@ -13,7 +13,9 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("CLTWidget", () => {
 	it("renders title and description", () => {
 		render(<CLTWidget />);
-		expect(screen.getByText("Communicative Language Teaching")).toBeInTheDocument();
+		expect(
+			screen.getByText("Communicative Language Teaching"),
+		).toBeInTheDocument();
 		expect(
 			screen.getByText(
 				"Foco na comunicação real e interação em situações práticas.",

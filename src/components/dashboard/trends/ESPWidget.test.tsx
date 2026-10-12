@@ -13,11 +13,11 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("ESPWidget", () => {
 	it("renders title and description", () => {
 		render(<ESPWidget />);
-		expect(screen.getByText("English for Specific Purposes")).toBeInTheDocument();
 		expect(
-			screen.getByText(
-				"Inglês focado em áreas profissionais e acadêmicas.",
-			),
+			screen.getByText("English for Specific Purposes"),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText("Inglês focado em áreas profissionais e acadêmicas."),
 		).toBeInTheDocument();
 	});
 });

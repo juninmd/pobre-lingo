@@ -15,9 +15,7 @@ describe("DirectMethodWidget", () => {
 		render(<DirectMethodWidget />);
 		expect(screen.getByText("Direct Method")).toBeInTheDocument();
 		expect(
-			screen.getByText(
-				"Aprenda a pensar em inglês sem o uso de tradução.",
-			),
+			screen.getByText("Aprenda a pensar em inglês sem o uso de tradução."),
 		).toBeInTheDocument();
 	});
 });

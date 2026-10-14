@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ImmersiveStorytellingWidget } from "./ImmersiveStorytellingWidget";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
+import { ImmersiveStorytellingWidget } from "./ImmersiveStorytellingWidget";
 
 describe("ImmersiveStorytellingWidget", () => {
 	it("renders correctly", () => {
@@ -11,9 +11,13 @@ describe("ImmersiveStorytellingWidget", () => {
 				<GamificationProvider>
 					<ImmersiveStorytellingWidget />
 				</GamificationProvider>
-			</NotificationProvider>
+			</NotificationProvider>,
 		);
 		expect(screen.getByText("Immersive Storytelling")).toBeInTheDocument();
-		expect(screen.getByText("Contação de histórias envolventes e interativas para ensino.")).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Contação de histórias envolventes e interativas para ensino.",
+			),
+		).toBeInTheDocument();
 	});
 });

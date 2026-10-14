@@ -15,7 +15,7 @@ export function HeaderStats({ gems, userLevel }: HeaderStatsProps) {
 					title="Nível"
 				>
 					<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={1.5} />
-					<span className="text-[13px] font-semibold tracking-tight">
+					<span className="font-semibold tracking-tight">
 						Nvl {userLevel}
 					</span>
 				</div>
@@ -29,7 +29,7 @@ export function HeaderStats({ gems, userLevel }: HeaderStatsProps) {
 						className="h-4 w-4 text-amber-500 group-hover:animate-bounce"
 						strokeWidth={1.5}
 					/>
-					<span className="text-[13px] tabular-nums tracking-tight">
+					<span className="font-semibold tabular-nums tracking-tight">
 						{gems}
 					</span>
 				</div>

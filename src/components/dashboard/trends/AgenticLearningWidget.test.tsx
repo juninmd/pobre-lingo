@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { AgenticLearningWidget } from "./AgenticLearningWidget";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
+import { AgenticLearningWidget } from "./AgenticLearningWidget";
 
 describe("AgenticLearningWidget", () => {
 	it("renders correctly", () => {
@@ -11,9 +11,13 @@ describe("AgenticLearningWidget", () => {
 				<GamificationProvider>
 					<AgenticLearningWidget />
 				</GamificationProvider>
-			</NotificationProvider>
+			</NotificationProvider>,
 		);
 		expect(screen.getByText("Agentic Learning")).toBeInTheDocument();
-		expect(screen.getByText("Foco na autonomia do aluno, permitindo que ele guie sua própria jornada de aprendizado.")).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Foco na autonomia do aluno, permitindo que ele guie sua própria jornada de aprendizado.",
+			),
+		).toBeInTheDocument();
 	});
 });

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { BiteSizedLearningWidget } from "./BiteSizedLearningWidget";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
+import { BiteSizedLearningWidget } from "./BiteSizedLearningWidget";
 
 describe("BiteSizedLearningWidget", () => {
 	it("renders correctly", () => {
@@ -11,9 +11,13 @@ describe("BiteSizedLearningWidget", () => {
 				<GamificationProvider>
 					<BiteSizedLearningWidget />
 				</GamificationProvider>
-			</NotificationProvider>
+			</NotificationProvider>,
 		);
 		expect(screen.getByText("Bite-sized Learning")).toBeInTheDocument();
-		expect(screen.getByText("Lições curtas e focadas para máxima retenção de conteúdo.")).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Lições curtas e focadas para máxima retenção de conteúdo.",
+			),
+		).toBeInTheDocument();
 	});
 });

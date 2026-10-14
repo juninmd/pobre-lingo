@@ -76,9 +76,9 @@ export function UnitGroup({
 
 			<div className="relative pl-4 md:pl-0 mt-2">
 				{/* Vertical Spine Line */}
-				<div className="absolute left-8 md:left-8 top-0 bottom-0 w-1 bg-border/50 md:bg-gradient-to-b md:from-primary/30 md:via-border/50 md:to-transparent z-0" />
+				<div className="absolute left-8 md:left-8 -top-4 -bottom-4 w-1 bg-border/50 md:bg-gradient-to-b md:from-primary/30 md:via-border/50 md:to-transparent z-0" />
 
-				<div className="flex flex-col gap-6 relative mt-2">
+				<div className="flex flex-col gap-8 relative mt-2">
 					{modules.map((module) => (
 						<ModuleSection
 							key={module.id}

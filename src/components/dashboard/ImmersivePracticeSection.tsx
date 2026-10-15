@@ -7,6 +7,9 @@ import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
+import { TeacherpreneurshipWidget } from "./trends/TeacherpreneurshipWidget";
+import { MediationWidget } from "./trends/MediationWidget";
+import { WellBeingWidget } from "./trends/WellBeingWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
 import { AudioLingualWidget } from "./trends/AudioLingualWidget";
@@ -80,6 +83,7 @@ export function ImmersivePracticeSection() {
 					value="digital"
 					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
 				>
+					<TeacherpreneurshipWidget />
 					<AIPromptCraftingWidget />
 					<HyFlexLearningWidget />
 					<AILanguagePartnerWidget />
@@ -96,6 +100,7 @@ export function ImmersivePracticeSection() {
 					value="social"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<WellBeingWidget />
 					<GreenELTWidget />
 					<DEIBWidget />
 					<CriticalPedagogyWidget />
@@ -116,6 +121,7 @@ export function ImmersivePracticeSection() {
 					value="metodologias"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<MediationWidget />
 					<DogmeELTWidget />
 					<LexicalApproachWidget />
 					<TranslanguagingWidget />

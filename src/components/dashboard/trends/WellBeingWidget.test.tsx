@@ -20,9 +20,7 @@ describe("WellBeingWidget", () => {
 		render(<WellBeingWidget />);
 
 		// Verify title is present
-		expect(
-			screen.getByText("Well-Being in ELT"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Well-Being in ELT")).toBeInTheDocument();
 
 		// Verify description is present
 		expect(

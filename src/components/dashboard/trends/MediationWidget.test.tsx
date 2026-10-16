@@ -20,9 +20,7 @@ describe("MediationWidget", () => {
 		render(<MediationWidget />);
 
 		// Verify title is present
-		expect(
-			screen.getByText("Language Mediation"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Language Mediation")).toBeInTheDocument();
 
 		// Verify description is present
 		expect(

@@ -15,9 +15,7 @@ export function HeaderStats({ gems, userLevel }: HeaderStatsProps) {
 					title="Nível"
 				>
 					<GraduationCap className="h-4 w-4 opacity-70" strokeWidth={1.5} />
-					<span className="font-semibold tracking-tight">
-						Nvl {userLevel}
-					</span>
+					<span className="font-semibold tracking-tight">Nvl {userLevel}</span>
 				</div>
 
 				{/* Gems / PobreCoins */}

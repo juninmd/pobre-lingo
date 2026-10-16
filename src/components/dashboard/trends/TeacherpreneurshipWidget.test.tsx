@@ -20,9 +20,7 @@ describe("TeacherpreneurshipWidget", () => {
 		render(<TeacherpreneurshipWidget />);
 
 		// Verify title is present
-		expect(
-			screen.getByText("Teacherpreneurship"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Teacherpreneurship")).toBeInTheDocument();
 
 		// Verify description is present
 		expect(

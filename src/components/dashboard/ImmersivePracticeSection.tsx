@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AdaptiveLearningWidget } from "./AdaptiveLearningWidget";
 import { InteractiveAudioWidget } from "./InteractiveAudioWidget";
@@ -7,9 +8,6 @@ import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
-import { TeacherpreneurshipWidget } from "./trends/TeacherpreneurshipWidget";
-import { MediationWidget } from "./trends/MediationWidget";
-import { WellBeingWidget } from "./trends/WellBeingWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
 import { AudioLingualWidget } from "./trends/AudioLingualWidget";
@@ -31,13 +29,16 @@ import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget"
 import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
 import { FlippedLearning30Widget } from "./trends/FlippedLearning30Widget";
 import { GamificationWidget } from "./trends/GamificationWidget";
+import { GlobalCitizenshipWidget } from "./trends/GlobalCitizenshipWidget";
 import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
 import { GreenELTWidget } from "./trends/GreenELTWidget";
 import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
 import { ImmersiveStorytellingWidget } from "./trends/ImmersiveStorytellingWidget";
+import { InclusivePracticesWidget } from "./trends/InclusivePracticesWidget";
 import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
 import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
 import { MALLWidget } from "./trends/MALLWidget";
+import { MediationWidget } from "./trends/MediationWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
 import { MultimodalLearningWidget } from "./trends/MultimodalLearningWidget";
 import { NanoLearningWidget } from "./trends/NanoLearningWidget";
@@ -50,11 +51,13 @@ import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
 import { SuggestopediaWidget } from "./trends/SuggestopediaWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
+import { TeacherpreneurshipWidget } from "./trends/TeacherpreneurshipWidget";
 import { TPRWidget } from "./trends/TPRWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 import { TraumaInformedELTWidget } from "./trends/TraumaInformedELTWidget";
 import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
+import { WellBeingWidget } from "./trends/WellBeingWidget";
 import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
 
 export function ImmersivePracticeSection() {
@@ -63,12 +66,15 @@ export function ImmersivePracticeSection() {
 			aria-labelledby="immersive-practice-title"
 			className="space-y-4 mt-8"
 		>
-			<h3
-				id="immersive-practice-title"
-				className="text-2xl font-bold text-foreground tracking-tight"
-			>
-				Tendências 2025 & Prática Imersiva
-			</h3>
+			<div className="flex items-center gap-2 mb-2">
+				<Sparkles className="h-6 w-6 text-primary animate-pulse" />
+				<h3
+					id="immersive-practice-title"
+					className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+				>
+					Tendências 2025 & Prática Imersiva
+				</h3>
+			</div>
 			<Tabs defaultValue="digital">
 				<TabsList className="flex flex-wrap gap-2 mb-4">
 					<TabsTrigger value="digital">Digital & IA</TabsTrigger>
@@ -100,6 +106,8 @@ export function ImmersivePracticeSection() {
 					value="social"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<InclusivePracticesWidget />
+					<GlobalCitizenshipWidget />
 					<WellBeingWidget />
 					<GreenELTWidget />
 					<DEIBWidget />

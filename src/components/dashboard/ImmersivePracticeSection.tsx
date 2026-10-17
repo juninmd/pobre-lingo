@@ -7,6 +7,10 @@ import { PracticeHub } from "./PracticeHub";
 import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
+import { EMIWidget } from "./trends/EMIWidget";
+import { DecolonialELTWidget } from "./trends/DecolonialELTWidget";
+import { ICCWidget } from "./trends/ICCWidget";
+import { CollaborativeLearningWidget } from "./trends/CollaborativeLearningWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
@@ -115,6 +119,8 @@ export function ImmersivePracticeSection() {
 					<MindfulWidget />
 					<SELWidget />
 					<TraumaInformedELTWidget />
+					<DecolonialELTWidget />
+					<CollaborativeLearningWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -123,6 +129,7 @@ export function ImmersivePracticeSection() {
 				>
 					<AuthenticMaterialsWidget />
 					<GlobalEnglishesWidget />
+					<ICCWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -158,6 +165,7 @@ export function ImmersivePracticeSection() {
 					<ESPWidget />
 					<BlendedLearningWidget />
 					<AgenticLearningWidget />
+					<EMIWidget />
 				</TabsContent>
 
 				<TabsContent

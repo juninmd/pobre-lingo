@@ -13,9 +13,7 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("CollaborativeLearningWidget", () => {
 	it("renders title and description", () => {
 		render(<CollaborativeLearningWidget />);
-		expect(
-			screen.getByText("Collaborative Learning"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Collaborative Learning")).toBeInTheDocument();
 		expect(
 			screen.getByText(
 				"Trabalho em grupo e aprendizado mútuo entre os estudantes.",

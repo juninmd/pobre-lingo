@@ -13,9 +13,7 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("DecolonialELTWidget", () => {
 	it("renders title and description", () => {
 		render(<DecolonialELTWidget />);
-		expect(
-			screen.getByText("Decolonial ELT"),
-		).toBeInTheDocument();
+		expect(screen.getByText("Decolonial ELT")).toBeInTheDocument();
 		expect(
 			screen.getByText(
 				"Desconstrução de hierarquias e foco em vozes locais no ensino.",

@@ -6,6 +6,12 @@ import { PopCultureWidget } from "./PopCultureWidget";
 import { PracticeHub } from "./PracticeHub";
 import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
+import { CRTWidget } from "./trends/CRTWidget";
+import { GrammarTranslationWidget } from "./trends/GrammarTranslationWidget";
+import { NaturalApproachWidget } from "./trends/NaturalApproachWidget";
+import { PPPWidget } from "./trends/PPPWidget";
+import { TTTWidget } from "./trends/TTTWidget";
+import { UDLWidget } from "./trends/UDLWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AIEthicsWidget } from "./trends/AIEthicsWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
@@ -172,6 +178,12 @@ export function ImmersivePracticeSection() {
 					<AgenticLearningWidget />
 					<EMIWidget />
 					<EFLPedagogyWidget />
+					<PPPWidget />
+					<TTTWidget />
+					<NaturalApproachWidget />
+					<GrammarTranslationWidget />
+					<UDLWidget />
+					<CRTWidget />
 				</TabsContent>
 
 				<TabsContent

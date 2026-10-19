@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
+const shortcutIcon = [
+	{ src: "pwa-192x192.png", sizes: "192x192", type: "image/png" },
+];
+
 export default defineConfig({
 	plugins: [
 		react(),
@@ -26,9 +30,16 @@ export default defineConfig({
 				display: "standalone",
 				lang: "pt-BR",
 				orientation: "portrait",
+				id: "/",
 				scope: "/",
 				start_url: "/",
+				display_override: ["standalone", "minimal-ui"],
 				categories: ["education", "language"],
+				shortcuts: [
+					{ name: "Revisão de hoje", url: "/review", icons: shortcutIcon },
+					{ name: "Meu progresso", url: "/progress", icons: shortcutIcon },
+					{ name: "Tutor de IA", url: "/tutor", icons: shortcutIcon },
+				],
 				icons: [
 					{
 						src: "pwa-192x192.png",
@@ -52,6 +63,9 @@ export default defineConfig({
 			},
 			workbox: {
 				importScripts: ["sw-reminders.js"],
+				cleanupOutdatedCaches: true,
+				// Abre o app offline em qualquer rota, mas nunca serve o index no lugar do cache de meta.
+				navigateFallbackDenylist: [/^\/__pobrelingo/],
 				// O motor de IA (~6 MB) só baixa para quem abrir o tutor.
 				globIgnores: ["**/web-llm-*.js", "**/webllm.worker-*.js"],
 				globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],

@@ -1,10 +1,10 @@
 # Pobre Lingo
 
-English learning PWA with a pt-BR interface (grammar rules, exercises, games, dictionary, dashboard). Local-first: all progress lives in the browser's localStorage. No backend, no accounts, no API keys.
+English learning PWA with a pt-BR interface (grammar rules, exercises, games, dictionary, dashboard). Local-first: all progress lives in the browser's localStorage and works offline (installable PWA). Optionally it syncs to a small API (`server/`, Postgres in the k8s cluster) with no accounts: a secret sync code identifies the data.
 
 - **AI tutor**: runs in the browser. Uses Chrome's built-in Prompt API when available, otherwise the open model via WebLLM (WebGPU). See `src/lib/ai/selectProvider.ts`.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
-- **Deploy**: Netlify (`netlify.toml`, publishes `dist/`).
+- **Deploy**: Netlify (`netlify.toml`, publishes `dist/`). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
 ## Stack
 
@@ -38,6 +38,24 @@ PWA icons: `node scripts/generate-pwa-icons.mjs` regenerates the PNGs in `public
 
 CI (`.github/workflows/verify.yml`, triggers on `master`, but its job is switched off with `if: false`): `pnpm install --frozen-lockfile`, `pnpm exec tsc --noEmit`, `pnpm exec biome lint src/`, `pnpm run build`, `pnpm run test:run`. It does not run e2e.
 
+## Progress sync API
+
+Opt-in, from Settings > Sincronização na nuvem. The browser keeps working offline; sync only moves the same snapshot that the file backup uses (`collectBackupData`).
+
+- `VITE_API_URL` (build time) sets the API base URL; defaults to `https://pobre-lingo-api.antonio-code.duckdns.org`. Set it to an empty string to hide the feature.
+- Client: `src/lib/cloudSync/` (`client.ts` HTTP, `engine.ts` reconcile/conflicts, `meta.ts` sync code and last-synced version). `useBackgroundSync` (mounted in `Layout`) syncs on open, on `online`, on focus and every 5 min. `plsync_*` keys are outside the backup prefixes on purpose.
+- Conflicts: a version number gives optimistic concurrency. If both sides changed, the user picks cloud or this device; an empty local state is never pushed.
+- Server: `server/` (Node 22, `pg`). Run with `DATABASE_URL=postgres://... node server/index.mjs` (`PORT`, `ALLOWED_ORIGIN` optional). Table `progress` is created on start; only the SHA-256 of the sync code is stored.
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | `/health` | Pings the database |
+| GET | `/v1/progress` | `Authorization: Bearer <code>`; 404 if none |
+| PUT | `/v1/progress` | `{ data, baseVersion }`; 409 with `current` on version mismatch |
+| DELETE | `/v1/progress` | Removes the snapshot |
+
+Server tests run with the rest (`pnpm test:run`, `server/*.test.mjs`).
+
 ## Layout
 
 ```
@@ -49,7 +67,8 @@ src/
   components/       feature folders (dashboard, exercises, layout, ...); ui/ is vendored shadcn
   contexts/         ThemeContext, GamificationContext, NotificationContext, ActiveLessonContext
   hooks/            custom hooks (streaks, progress, SRS, tutor, ...)
-  lib/              domain data, storage helpers, SRS, AI providers (lib/ai/)
+  lib/              domain data, storage helpers, SRS, AI providers (lib/ai/), cloud sync (lib/cloudSync/)
+server/             progress sync API (Node + Postgres), own package.json and Dockerfile
 tests-e2e/          Playwright specs
 tests/              Vitest component tests (tests/components/)
 ```

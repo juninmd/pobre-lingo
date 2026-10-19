@@ -5,6 +5,7 @@ import { PobrelingoAssistant } from "@/components/mascot/PobrelingoAssistant";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
+import { useBackgroundSync } from "@/hooks/useBackgroundSync";
 import { SEO } from "./components/common/SEO";
 import { AppSidebar } from "./components/layout/AppSidebar";
 import { Header } from "./components/layout/Header";
@@ -16,6 +17,7 @@ export default function Layout() {
 	const [searchOpen, setSearchOpen] = useState(false);
 	const scrollContainer = useRef<HTMLDivElement>(null);
 	const { pathname } = useLocation();
+	useBackgroundSync();
 	useLayoutEffect(() => {
 		if (pathname)
 			scrollContainer.current?.scrollTo({ top: 0, behavior: "instant" });

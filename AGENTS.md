@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-10-19] Jules-Architect / Bolt-Automation: PWA hardening and cloud progress sync
+- **Action:** Manifest gained `id`, `display_override` and shortcuts; Workbox cleans old caches. Added opt-in sync of the backup snapshot to `server/` (Node + Postgres, deployed from `juninmd/app-charts/pobre-lingo-api`). Client in `src/lib/cloudSync/`, UI in `CloudSyncCard`.
+- **Note:** `plsync_*` keys must stay outside `APP_STORAGE_PREFIXES`, or the sync code would leak into backup files. Never push an empty snapshot. The API needs the `pobre_lingo_api_database_password` key in `sops-master-secret` before the first deploy.
+
 ### [2026-10-09] Spark-Frontend: Pixel art mascot
 - **Action:** Replaced the vector blob in `src/components/mascot/Pobrelingo.tsx` with a 24x24 pixel art bird. The art is data: `pobrelingoArt.ts` (palette, body, wings), `pobrelingoFaces.ts` (eyes and beaks per emotion), `pixelSprite.ts` (rows to SVG paths). Same props and the four emotions, plus `animated` and `title`.
 - **Note:** Show it at multiples of 24 (48, 72, 96, 120, 144) so every sprite pixel has the same size. Animations are `steps()` keyframes (`pl-*` in `globals.css`) and stop under the global reduced-motion rule. The SVG is sized inline on purpose: a parent `Button` squeezed the old mascot to 16px through `[&_svg]:size-4`.

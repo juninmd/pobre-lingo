@@ -2,6 +2,7 @@ import { Bell, Check, Moon, Palette, Sparkles, Sun } from "lucide-react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
+import { CloudSyncCard } from "@/components/settings/CloudSyncCard";
 import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -212,6 +213,7 @@ export default function SettingsPage() {
 				</CardContent>
 			</Card>
 
+			<CloudSyncCard />
 			<DataSettingsCard />
 		</PageContainer>
 	);

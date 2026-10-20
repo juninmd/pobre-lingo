@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { GrammarTranslationWidget } from "./GrammarTranslationWidget";
-import { NotificationProvider } from "@/contexts/NotificationContext";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { GamificationProvider } from "@/contexts/GamificationContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
+import { GrammarTranslationWidget } from "./GrammarTranslationWidget";
 
 // Mock the hooks
 vi.mock("@/contexts/GamificationContext", async (importOriginal) => {

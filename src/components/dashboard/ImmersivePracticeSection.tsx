@@ -6,12 +6,6 @@ import { PopCultureWidget } from "./PopCultureWidget";
 import { PracticeHub } from "./PracticeHub";
 import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
-import { CRTWidget } from "./trends/CRTWidget";
-import { GrammarTranslationWidget } from "./trends/GrammarTranslationWidget";
-import { NaturalApproachWidget } from "./trends/NaturalApproachWidget";
-import { PPPWidget } from "./trends/PPPWidget";
-import { TTTWidget } from "./trends/TTTWidget";
-import { UDLWidget } from "./trends/UDLWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AIEthicsWidget } from "./trends/AIEthicsWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
@@ -22,16 +16,20 @@ import { AuthenticMaterialsWidget } from "./trends/AuthenticMaterialsWidget";
 import { BiteSizedLearningWidget } from "./trends/BiteSizedLearningWidget";
 import { BlendedLearningWidget } from "./trends/BlendedLearningWidget";
 import { CALLWidget } from "./trends/CALLWidget";
+import { CBLTWidget } from "./trends/CBLTWidget";
 import { CLILWidget } from "./trends/CLILWidget";
 import { CLTWidget } from "./trends/CLTWidget";
 import { CollaborativeLearningWidget } from "./trends/CollaborativeLearningWidget";
 import { CommunicativeRoleplayWidget } from "./trends/CommunicativeRoleplayWidget";
+import { ContentBasedInstructionWidget } from "./trends/ContentBasedInstructionWidget";
+import { CRTWidget } from "./trends/CRTWidget";
 import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
 import { DDLWidget } from "./trends/DDLWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
 import { DecolonialELTWidget } from "./trends/DecolonialELTWidget";
 import { DirectMethodWidget } from "./trends/DirectMethodWidget";
 import { DogmeELTWidget } from "./trends/DogmeELTWidget";
+import { EclecticApproachWidget } from "./trends/EclecticApproachWidget";
 import { EdutainmentWidget } from "./trends/EdutainmentWidget";
 import { EFLPedagogyWidget } from "./trends/EFLPedagogyWidget";
 import { EMIWidget } from "./trends/EMIWidget";
@@ -42,6 +40,7 @@ import { FlippedLearning30Widget } from "./trends/FlippedLearning30Widget";
 import { GamificationWidget } from "./trends/GamificationWidget";
 import { GlobalCitizenshipWidget } from "./trends/GlobalCitizenshipWidget";
 import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
+import { GrammarTranslationWidget } from "./trends/GrammarTranslationWidget";
 import { GreenELTWidget } from "./trends/GreenELTWidget";
 import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
 import { ICCWidget } from "./trends/ICCWidget";
@@ -55,19 +54,26 @@ import { MicrocredentialsWidget } from "./trends/MicrocredentialsWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
 import { MultimodalLearningWidget } from "./trends/MultimodalLearningWidget";
 import { NanoLearningWidget } from "./trends/NanoLearningWidget";
+import { NaturalApproachWidget } from "./trends/NaturalApproachWidget";
 import { NeuroELTWidget } from "./trends/NeuroELTWidget";
 import { PBLWidget } from "./trends/PBLWidget";
 import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
+import { PPPWidget } from "./trends/PPPWidget";
+import { ProjectBasedLearningWidget } from "./trends/ProjectBasedLearningWidget";
 import { SELWidget } from "./trends/SELWidget";
 import { SilentWayWidget } from "./trends/SilentWayWidget";
 import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
 import { SpacedRepetitionWidget } from "./trends/SpacedRepetitionWidget";
+import { StoryBasedApproachWidget } from "./trends/StoryBasedApproachWidget";
 import { SuggestopediaWidget } from "./trends/SuggestopediaWidget";
+import { TaskBasedLanguageTeachingWidget } from "./trends/TaskBasedLanguageTeachingWidget";
 import { TBLTWidget } from "./trends/TBLTWidget";
 import { TeacherpreneurshipWidget } from "./trends/TeacherpreneurshipWidget";
 import { TPRWidget } from "./trends/TPRWidget";
 import { TranslanguagingWidget } from "./trends/TranslanguagingWidget";
 import { TraumaInformedELTWidget } from "./trends/TraumaInformedELTWidget";
+import { TTTWidget } from "./trends/TTTWidget";
+import { UDLWidget } from "./trends/UDLWidget";
 import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
 import { WellBeingWidget } from "./trends/WellBeingWidget";
@@ -147,6 +153,12 @@ export function ImmersivePracticeSection() {
 					value="metodologias"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<EclecticApproachWidget />
+					<CBLTWidget />
+					<StoryBasedApproachWidget />
+					<TaskBasedLanguageTeachingWidget />
+					<ProjectBasedLearningWidget />
+					<ContentBasedInstructionWidget />
 					<MediationWidget />
 					<DogmeELTWidget />
 					<LexicalApproachWidget />

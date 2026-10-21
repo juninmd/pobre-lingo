@@ -6,6 +6,10 @@ import { PopCultureWidget } from "./PopCultureWidget";
 import { PracticeHub } from "./PracticeHub";
 import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
+import { GenAIWidget } from "./trends/GenAIWidget";
+import { PodcastingWidget } from "./trends/PodcastingWidget";
+import { PhenomenonBasedLearningWidget } from "./trends/PhenomenonBasedLearningWidget";
+import { ActionOrientedApproachWidget } from "./trends/ActionOrientedApproachWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AIEthicsWidget } from "./trends/AIEthicsWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
@@ -108,6 +112,7 @@ export function ImmersivePracticeSection() {
 					value="digital"
 					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
 				>
+					<GenAIWidget />
 					<TeacherpreneurshipWidget />
 					<AIPromptCraftingWidget />
 					<HyFlexLearningWidget />
@@ -153,6 +158,8 @@ export function ImmersivePracticeSection() {
 					value="metodologias"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<PhenomenonBasedLearningWidget />
+					<ActionOrientedApproachWidget />
 					<EclecticApproachWidget />
 					<CBLTWidget />
 					<StoryBasedApproachWidget />
@@ -202,6 +209,7 @@ export function ImmersivePracticeSection() {
 					value="interativas"
 					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
 				>
+					<PodcastingWidget />
 					<AdaptiveLearningWidget />
 					<RealWorldARWidget />
 					<InteractiveAudioWidget />

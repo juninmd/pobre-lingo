@@ -1,0 +1,20 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-21T12:00:00Z" },
+  "title": "Pobre Lingo UI Prototype",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1360, "h": 2400, "title": "Minha Jornada · desktop", "expand": "fill", "is_interactive": true },
+    "Mobile.dc.html": { "x": 1440, "y": 0, "w": 390, "h": 2600, "title": "Minha Jornada · mobile", "is_interactive": true },
+    "Menu.dc.html": { "x": 1910, "y": 0, "w": 390, "h": 844, "title": "Menu · mobile", "is_interactive": true },
+    "Lesson.dc.html": { "x": 2380, "y": 0, "w": 390, "h": 844, "title": "Exercício · mobile", "is_interactive": true },
+    "Sistema.dc.html": { "x": 1440, "y": 2680, "w": 1330, "h": 900, "title": "Pesquisa, avisos e onboarding", "is_interactive": true },
+    "Pobrelingo.dc.html": { "x": 0, "y": 2520, "w": 96, "h": 96, "title": "Componente · Pobrelingo" }
+  },
+  "order": ["Main.dc.html", "Mobile.dc.html", "Menu.dc.html", "Lesson.dc.html", "Sistema.dc.html", "Pobrelingo.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -260, "text": "Pobre Lingo — melhorias de UI", "kind": "title1", "maxW": 2770 }
+  },
+  "designSystems": []
+}

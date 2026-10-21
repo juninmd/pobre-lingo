@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Minha Jornada desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px}
+.h2{margin:0;font:600 18px Sora,Inter,sans-serif}
+.h3{margin:0;font:600 15px Sora,Inter,sans-serif;display:flex;align-items:center;gap:8px}
+.muted{color:var(--muted)}
+.cap{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:12px;min-height:40px;padding:0 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;box-sizing:border-box}
+.nav:hover{background:var(--surface2);color:var(--text)}
+.nav[aria-current="page"]{background:var(--psoft);color:var(--ptext);font-weight:600}
+.grp{border:0;padding:0;margin:0}
+.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:36px;padding:0 12px;border-radius:8px}
+.grp>summary::-webkit-details-marker{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:12px;font:600 14px Inter,system-ui,sans-serif;cursor:pointer;border:1px solid transparent;text-decoration:none;box-sizing:border-box}
+.btn-p{background:var(--primary);color:var(--onprimary)}
+.btn-p:hover{filter:brightness(1.08)}
+.btn-s{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-s:hover{background:var(--surface2)}
+.btn[disabled]{background:var(--surface2);color:var(--muted);cursor:default;filter:none}
+.ibtn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;position:relative;padding:0}
+.ibtn:hover{background:var(--surface2)}
+.pill{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;font-weight:600;font-size:14px;background:var(--surface);border:1px solid var(--border)}
+.tile{display:flex;gap:12px;padding:14px;min-height:44px;border-radius:14px;background:var(--surface);border:1px solid var(--border);text-decoration:none;color:var(--text)}
+.tile:hover{border-color:var(--primary);background:var(--surface2)}
+.step{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:8px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);font-family:inherit;font-size:15px;color:var(--text);cursor:pointer;text-align:left;box-sizing:border-box}
+.step:hover{border-color:var(--primary)}
+.tabbtn{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font:500 14px Inter,system-ui,sans-serif;cursor:pointer}
+.tabbtn[aria-selected="true"]{background:var(--primary);color:var(--onprimary);border-color:var(--primary);font-weight:600}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:999px;background:var(--surface2);color:var(--text);font-size:13px;text-decoration:none;border:1px solid var(--border)}
+.chip:hover{border-color:var(--primary)}
+.link{font-size:14px;font-weight:600;color:var(--ptext);min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
+.menu{position:absolute;right:0;top:52px;z-index:5;min-width:180px;padding:6px;border-radius:12px;background:var(--surface);border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:8px;background:none;color:var(--text);font:500 14px Inter,system-ui,sans-serif;cursor:pointer;text-align:left}
+.menu button:hover{background:var(--surface2)}
+details>summary{cursor:pointer}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="{{rootVars}}">
+<div style="display:flex;flex-wrap:wrap;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:15px;min-height:2400px">
+
+<aside style="flex:1 1 248px;max-width:272px;box-sizing:border-box;padding:20px 12px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:8px;padding:0 8px 8px">
+<dc-import name="Pobrelingo" size="48" emotion="happy" animated="{{false}}" hint-size="48px,48px"></dc-import>
+<span style="font:700 20px Sora,Inter,sans-serif;letter-spacing:-0.02em">Pobre Lingo</span>
+</div>
+<nav aria-label="Principal" style="display:flex;flex-direction:column;gap:8px">
+<details class="grp" open><summary><span class="cap">Principal</span></summary>
+<a class="nav" href="#" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/></svg>Minha Jornada</a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5"/></svg>Curso guiado</a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V4a3 3 0 0 0-3 0zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg><span style="flex:1">Revisar</span><span style="font-size:11px;font-weight:600;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:1px 8px">SRS</span></a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="4"/><path d="M7 10v5M4.5 12.5h5M16 11h.01M18 14h.01"/></svg><span style="flex:1">Arcade</span><span style="font-size:11px;font-weight:600;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:1px 8px">Fun</span></a>
+</details>
+<details class="grp" open><summary><span class="cap">Habilidades</span></summary>
+<sc-for list="{{navSkills}}" as="n" hint-placeholder-count="11"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"/></svg>{{n.label}}</a></sc-for>
+</details>
+<details class="grp" open><summary><span class="cap">Referência</span></summary>
+<sc-for list="{{navRef}}" as="n" hint-placeholder-count="3"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"/></svg>{{n.label}}</a></sc-for>
+</details>
+<details class="grp" open><summary><span class="cap">Exercícios</span></summary>
+<sc-for list="{{navEx}}" as="n" hint-placeholder-count="5"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"/></svg>{{n.label}}</a></sc-for>
+</details>
+<details class="grp" open><summary><span class="cap">Status</span></summary>
+<sc-for list="{{navStatus}}" as="n" hint-placeholder-count="3"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"/></svg>{{n.label}}</a></sc-for>
+</details>
+</nav>
+<div class="card" style="margin-top:auto;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:50%;background:var(--good);flex:none"></span>Sincronizado · funciona offline</div>
+</aside>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:0 40px 48px;display:flex;flex-direction:column;gap:28px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+<div style="display:flex;align-items:center;gap:10px;min-width:0"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/></svg><h1 style="margin:0;font:600 18px Sora,Inter,sans-serif">Minha Jornada</h1></div>
+<div style="flex:1 1 260px;display:flex;justify-content:center">
+<button type="button" class="ibtn" style="width:100%;max-width:420px;justify-content:flex-start;gap:10px;padding:0 14px;color:var(--muted);font:400 14px Inter,system-ui,sans-serif" aria-label="Pesquisar páginas e regras"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg><span style="flex:1;text-align:left">Pesquisar páginas, regras gramaticais...</span><kbd style="font:600 11px Inter,sans-serif;border:1px solid var(--border);border-radius:6px;padding:2px 6px">Ctrl K</kbd></button>
+</div>
+<div style="display:flex;align-items:center;gap:8px">
+<div class="pill" title="Nível"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5"/></svg>Nvl 3</div>
+<div class="pill" title="Pobrecoins"><svg class="i" viewBox="0 0 24 24" style="color:var(--goldtext)" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.5h-3a1.8 1.8 0 0 0 0 3.5h4"/></svg><span style="font-variant-numeric:tabular-nums">{{coins}}</span></div>
+<button type="button" class="ibtn" aria-label="Notificações, 2 não lidas"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M10 21h4"/></svg><span style="position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--bad);border:2px solid var(--surface)"></span></button>
+<div style="position:relative">
+<button type="button" class="ibtn" aria-label="Alternar tema" aria-haspopup="menu" aria-expanded="{{themeOpen}}" onClick="{{toggleThemeMenu}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="{{themeIcon}}"/></svg></button>
+<sc-if value="{{themeOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="menu">
+<button type="button" role="menuitem" onClick="{{setLight}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>Claro</button>
+<button type="button" role="menuitem" onClick="{{setDark}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z"/></svg>Escuro</button>
+<div style="height:1px;background:var(--border);margin:4px 0"></div>
+<button type="button" role="menuitem" onClick="{{setPl}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>PobreLingo</button>
+</div>
+</sc-if>
+</div>
+</div>
+</header>
+
+<section aria-label="Saudação" class="card" style="padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+<dc-import name="Pobrelingo" size="96" emotion="{{mascotEmotion}}" hint-size="96px,96px"></dc-import>
+<div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:12px">
+<div style="background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:12px 16px;font-size:15px"><b style="font-weight:600">Oi!</b> Consistência vence a intensidade. Vamos praticar um pouco?</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+<span style="font-size:13px;font-weight:600">Nível 3</span>
+<div role="progressbar" aria-label="XP até o próximo nível" aria-valuenow="120" aria-valuemin="0" aria-valuemax="300" style="flex:1 1 160px;height:10px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="width:40%;height:100%;background:var(--primary);border-radius:999px"></div></div>
+<span class="muted" style="font-size:13px">120 / 300 XP</span>
+</div>
+</div>
+<button type="button" class="btn btn-p" disabled="{{bonusClaimed}}" onClick="{{claimBonus}}">{{bonusLabel}}</button>
+</section>
+
+<section aria-label="Estatísticas" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+<div class="card" style="padding:16px;display:flex;align-items:center;gap:12px"><svg class="i" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--flame)" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><div><div style="font:700 24px Sora,Inter,sans-serif;line-height:1">12</div><div class="cap" style="margin-top:4px">Dias seguidos</div></div></div>
+<div class="card" style="padding:16px;display:flex;align-items:center;gap:12px"><svg class="i" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--goldtext)" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.5h-3a1.8 1.8 0 0 0 0 3.5h4"/></svg><div><div style="font:700 24px Sora,Inter,sans-serif;line-height:1;font-variant-numeric:tabular-nums">{{coins}}</div><div class="cap" style="margin-top:4px">PobreCoins</div></div></div>
+<div class="card" style="padding:16px;display:flex;align-items:center;gap:12px"><svg class="i" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--ptext)" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5"/></svg><div><div style="font:700 24px Sora,Inter,sans-serif;line-height:1">3</div><div class="cap" style="margin-top:4px">Nível</div></div></div>
+<div class="card" style="padding:16px;display:flex;align-items:center;gap:12px"><svg class="i" viewBox="0 0 24 24" style="width:28px;height:28px;color:var(--good)" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><div><div style="font:700 24px Sora,Inter,sans-serif;line-height:1">18%</div><div class="cap" style="margin-top:4px">Completo</div></div></div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+<div style="flex:3 1 460px;min-width:0;display:flex;flex-direction:column;gap:28px">
+
+<section aria-labelledby="h-cont" class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px;border-color:var(--primary)">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--psoft);color:var(--ptext);border-radius:999px;padding:4px 10px">Onde parei</span><span class="muted" style="font-size:13px">Módulo 2 · Verbos no passado</span></div>
+<h2 id="h-cont" style="margin:0;font:700 24px Sora,Inter,sans-serif;letter-spacing:-0.02em">Present Perfect · lição 4</h2>
+<div style="display:flex;align-items:center;gap:12px"><div role="progressbar" aria-label="Progresso da lição" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="flex:1;max-width:320px;height:10px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="width:60%;height:100%;background:var(--primary);border-radius:999px"></div></div><span class="muted" style="font-size:13px;font-weight:600">60%</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:4px"><a class="btn btn-p" href="Lesson.dc.html" aria-label="Começar agora: Present Perfect, lição 4">Começar agora<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</section>
+
+<section aria-labelledby="h-plan" style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 id="h-plan" class="h2">Plano de hoje</h2><span class="muted" style="font-size:13px">{{stepsDone}} de 3 feitos · {{doneMin}} de 15 min</span></div>
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+<button class="step" type="button" onClick="{{s.toggle}}" aria-pressed="{{s.done}}">
+<span style="{{s.badgeStyle}}"><sc-if value="{{s.done}}" hint-placeholder-val="{{ false }}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></sc-if><sc-if value="{{s.notDone}}" hint-placeholder-val="{{ true }}"><span style="font-weight:600">{{s.n}}</span></sc-if></span>
+<span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="{{s.titleStyle}}">{{s.title}}</span><span class="muted" style="font-size:13px">{{s.sub}}</span></span>
+<span class="muted" style="font-size:13px;font-weight:600">{{s.time}}</span>
+</button>
+</sc-for>
+</section>
+
+<section aria-labelledby="h-flu" class="card" style="padding:20px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 id="h-flu" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Rumo à fluência</h2><span class="muted" style="font-size:13px;font-weight:600">A2 → B1</span></div>
+<div role="progressbar" aria-label="Progresso até B1" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="height:8px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="width:38%;height:100%;background:var(--primary)"></div></div>
+<p class="muted" style="margin:0;font-size:13px">No ritmo atual: ~14 semanas até B1.</p>
+<div style="display:flex;gap:28px;font-size:13px"><div><b style="font-size:20px;font-family:Sora,Inter,sans-serif;color:var(--ptext)">1.240</b><div class="muted">palavras lidas</div></div><div><b style="font-size:20px;font-family:Sora,Inter,sans-serif;color:var(--goldtext)">312</b><div class="muted">palavras conhecidas</div></div></div>
+<a class="btn btn-s" href="#">Treinar escuta, seu ponto mais fraco</a>
+<a class="link" href="#" style="min-height:36px">Ainda sem nível? Faça o nivelamento</a>
+</section>
+
+<section aria-labelledby="h-path" style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h2 id="h-path" class="h2">Sua trilha</h2><a class="link" href="#">Ver curso completo</a></div>
+<div class="card" style="padding:20px;overflow-x:auto">
+<ol style="list-style:none;margin:0;padding:0;display:flex;align-items:flex-start;min-width:560px">
+<sc-for list="{{path}}" as="p" hint-placeholder-count="6">
+<li style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;text-align:center">
+<span style="position:absolute;top:17px;left:-50%;width:100%;height:3px;background:{{p.lineColor}}"></span>
+<span style="{{p.dotStyle}}">{{p.mark}}</span>
+<span style="{{p.labelStyle}}">{{p.label}}</span>
+<sc-if value="{{p.here}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;background:var(--primary);color:var(--onprimary);border-radius:999px;padding:2px 8px">Você está aqui</span></sc-if>
+</li>
+</sc-for>
+</ol>
+<p class="muted" style="margin:16px 0 0;text-align:center;font-size:13px">To be continued...</p>
+</div>
+</section>
+
+<section aria-labelledby="h-imm" style="display:flex;flex-direction:column;gap:12px">
+<h2 id="h-imm" class="h2">Prática imersiva e tendências 2025</h2>
+<div role="tablist" aria-label="Categorias de prática" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6"><button type="button" role="tab" class="tabbtn" aria-selected="{{t.on}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+</div>
+<sc-if value="{{isEssentials}}" hint-placeholder-val="{{ true }}">
+<div role="tabpanel" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px">
+<sc-for list="{{hub}}" as="h" hint-placeholder-count="11">
+<a class="tile" href="#"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext);margin-top:2px" aria-hidden="true"><path d="{{h.icon}}"/></svg><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">{{h.title}}</b><span class="muted" style="font-size:13px">{{h.desc}}</span></span></a>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{notEssentials}}" hint-placeholder-val="{{ false }}">
+<div role="tabpanel" class="card" style="padding:16px;display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="12"><a class="chip" href="#">{{c}}</a></sc-for>
+</div>
+</sc-if>
+</section>
+</div>
+
+<div style="flex:2 1 300px;min-width:0;display:flex;flex-direction:column;gap:20px">
+
+<section aria-labelledby="h-sr" class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 id="h-sr" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--goldtext)" aria-hidden="true"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V4a3 3 0 0 0-3 0zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg>Revisão inteligente<span style="margin-left:auto;font-size:12px;font-weight:600;background:var(--goldsoft);color:var(--goldtext);border-radius:999px;padding:2px 10px">12</span></h2>
+<p class="muted" style="margin:0;font-size:13px">12 cards estão no ponto certo de revisão</p>
+<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px"><li style="font-size:13px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:var(--surface2)">thrive</li><li style="font-size:13px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:var(--surface2)">I've already eaten</li><li style="font-size:13px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:var(--surface2)">look forward to</li></ul>
+<a class="btn btn-p" href="#">Revisar agora<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</section>
+
+<section aria-labelledby="h-q" class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 id="h-q" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--good)" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Missões diárias</h2>
+<div style="border-radius:12px;padding:12px;background:var(--psoft);display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--ptext)"><span>Meta diária de atividades</span><span>{{doneMin}} de 15</span></div><div role="progressbar" aria-label="Meta diária de atividades" aria-valuenow="{{doneMin}}" aria-valuemin="0" aria-valuemax="15" style="height:8px;border-radius:999px;background:var(--surface);overflow:hidden"><div style="{{goalBar}}"></div></div></div>
+<sc-for list="{{quests}}" as="q" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:14px"><span style="{{q.style}}">{{q.title}}</span><span class="muted" style="font-size:12px;font-weight:600">{{q.progress}}/{{q.total}} · +{{q.reward}}</span></div><div role="progressbar" aria-label="{{q.title}}" aria-valuenow="{{q.pct}}" aria-valuemin="0" aria-valuemax="100" style="height:6px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="{{q.bar}}"></div></div></div>
+</sc-for>
+</section>
+
+<section aria-labelledby="h-wk" class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 id="h-wk" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Meta semanal<span class="muted" style="margin-left:auto;font-size:13px">5 / 7</span></h2>
+<div role="progressbar" aria-label="Meta semanal" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="height:8px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="width:71%;height:100%;background:var(--primary)"></div></div>
+<div style="display:flex;justify-content:space-between;gap:4px">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7"><div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="{{d.dotStyle}}">{{d.mark}}</span><span style="{{d.labelStyle}}">{{d.day}}</span></div></sc-for>
+</div>
+</section>
+
+<section aria-labelledby="h-word" class="card" style="padding:18px;display:flex;flex-direction:column;gap:10px">
+<h2 id="h-word" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5"/></svg>Palavra do dia · A2</h2>
+<p lang="en" style="margin:0;font:700 26px Sora,Inter,sans-serif">thrive</p>
+<p class="muted" style="margin:0;font-size:13px">/θraɪv/ · verbo</p>
+<button type="button" class="btn btn-s" aria-expanded="{{revealed}}" aria-controls="meaning" onClick="{{toggleWord}}">{{revealLabel}}</button>
+<div id="meaning" hidden="{{hideMeaning}}" style="font-size:14px">prosperar, florescer · “Plants <b>thrive</b> in the sun.”</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn btn-s" aria-label="Ouvir palavra do dia"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Ouvir</button><a class="link" href="#">Ver vocabulário</a></div>
+</section>
+
+<section aria-labelledby="h-calm" class="card" style="padding:18px;display:flex;flex-direction:column;gap:10px">
+<h2 id="h-calm" class="h3"><svg class="i" viewBox="0 0 24 24" style="color:var(--ptext)" aria-hidden="true"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg>Fale no seu ritmo</h2>
+<p style="margin:0;font-size:14px">Antes de falar, faça uma pausa. Escolha uma expressão da sua aula, ouça e repita devagar. Se esquecer, volte ao exemplo e tente novamente.</p>
+<p style="margin:0;font-size:14px">Você pode pedir “Please repeat” ou “Speak slowly, please”. Errar faz parte da prática; comparar tentativas ajuda a perceber o que melhorar.</p>
+<a class="btn btn-s" href="#">Praticar uma expressão da minha aula</a>
+</section>
+
+<details class="card" style="padding:14px 18px">
+<summary class="h3" style="min-height:44px;display:flex;align-items:center">Explorar mais</summary>
+<div style="display:flex;flex-direction:column;gap:10px;padding-top:8px">
+<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-weight:600">Plano de certificação</b><span style="font-size:12px;font-weight:700;background:var(--psoft);color:var(--ptext);border-radius:8px;padding:2px 10px">B1</span></div>
+<p class="muted" style="margin:0;font-size:13px">Foco: tempos verbais do passado e escuta de falas rápidas.</p>
+<p style="margin:0;font-size:13px"><b>Hoje:</b> leia um texto curto e anote 3 palavras novas.</p>
+<ul style="margin:0;padding-left:18px;font-size:13px"><li>1 lição guiada</li><li>10 cards de revisão</li><li>1 ditado curto</li></ul>
+<div style="display:flex;flex-wrap:wrap;gap:8px"><a class="btn btn-s" href="#">Checar conteúdos</a><a class="link" href="#">Atualizar sugestão</a></div>
+</div>
+</details>
+
+<section aria-labelledby="h-tip" class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px;background:var(--psoft);border-color:var(--primary)">
+<div style="display:flex;align-items:center;justify-content:space-between"><h2 id="h-tip" class="h3" style="color:var(--ptext)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.800 1-2.500A6 6 0 0 0 12 3z"/></svg>Dica do Dia</h2><button type="button" class="ibtn" aria-label="Nova dica" onClick="{{nextTip}}" style="background:transparent;border-color:transparent;color:var(--ptext)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></button></div>
+<p style="margin:0;font-style:italic;font-weight:500;font-size:14px">“{{tip}}”</p>
+<button type="button" class="btn btn-p" disabled="{{tipClaimed}}" onClick="{{claimTip}}">{{tipLabel}}</button>
+</section>
+</div>
+</div>
+
+<div style="position:sticky;bottom:16px;align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end;gap:8px;margin-top:auto">
+<sc-if value="{{assistOpen}}" hint-placeholder-val="{{ false }}">
+<div class="card" role="dialog" aria-label="Assistente Pobrelingo" style="width:280px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.18)">
+<p style="margin:0;font-size:14px">Sensacional! Ofensiva de 12 dias! Minha dica de hoje: “{{tip}}”</p>
+<div style="display:flex;gap:8px"><button type="button" class="btn btn-s" aria-label="Ouvir a dica"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7"/></svg>Ouvir</button><button type="button" class="btn btn-s" aria-label="Fechar dica" onClick="{{toggleAssist}}">Fechar</button></div>
+</div>
+</sc-if>
+<button type="button" class="ibtn" aria-label="{{assistLabel}}" onClick="{{toggleAssist}}" style="width:64px;height:64px;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.18)"><dc-import name="Pobrelingo" size="48" emotion="winking" animated="{{false}}" hint-size="48px,48px"></dc-import></button>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","default":"light","options":["light","dark","pobre-lingo"]},"mascotEmotion":{"editor":"enum","default":"happy","options":["happy","excited","neutral","winking"]},"$preview":{"width":1360,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: [false, false, false], tab: 'essenciais', theme: null, themeOpen: false, bonus: false, coins: 240, revealed: false, tipIdx: 0, tipClaimed: false, assist: false };
+  }
+  renderVals() {
+    const themes = {
+      light: { bg:'#F6F8FB', surface:'#FFFFFF', surface2:'#EEF2F7', text:'#17202B', muted:'#5B6676', border:'#DFE5EC', primary:'#0A6ECC', onprimary:'#FFFFFF', psoft:'#E6F0FB', ptext:'#075AA8', good:'#12805C', gold:'#F5B93A', goldtext:'#8A5F00', goldsoft:'#FDF3DC', flame:'#C2410C', bad:'#B42318' },
+      dark: { bg:'#12151B', surface:'#1B2029', surface2:'#252B37', text:'#EEF2F7', muted:'#A0AABA', border:'#323A49', primary:'#4C9CF6', onprimary:'#0A1220', psoft:'#16283F', ptext:'#7DB6FA', good:'#34C58A', gold:'#FBBF24', goldtext:'#FBBF24', goldsoft:'#3A2F12', flame:'#FB923C', bad:'#F87171' },
+      'pobre-lingo': { bg:'#050A08', surface:'#0D1713', surface2:'#16231D', text:'#F4F8F6', muted:'#9DB0A8', border:'#243630', primary:'#34D399', onprimary:'#04100B', psoft:'#0F2A21', ptext:'#34D399', good:'#34D399', gold:'#FBBF24', goldtext:'#FBBF24', goldsoft:'#33290E', flame:'#FB923C', bad:'#F87171' },
+    };
+    const themeKey = this.state.theme || this.props.theme || 'light';
+    const v = themes[themeKey] || themes.light;
+    const rootVars = Object.keys(v).map((k) => `--${k}:${v[k]}`).join(';');
+    const ICON = {
+      book: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5', pencil: 'M4 20l1-4L16 5l3 3L8 19z', chart: 'M4 20V10M10 20V4M16 20v-8M22 20H2',
+      phones: 'M3 14v-2a9 9 0 0 1 18 0v2M21 15a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-5H5a2 2 0 0 0-2 2z', chat: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+      map: 'M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14', check: 'M4 4h16v16H4zM8 12l3 3 5-6', mic: 'M9 2h6v12H9zM5 10v1a7 7 0 0 0 14 0v-1M12 18v4', lib: 'M4 4v16M9 4v16M14 6l5 14',
+      trend: 'M3 17l6-6 4 4 8-8M15 7h6v6', cap: 'M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5', trophy: 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z', gear: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM19 12l2 1-2 3-2-1-2 1-1 2h-4l-1-2-2-1-2 1-2-3 2-1v-2l-2-1 2-3 2 1 2-1 1-2h4l1 2 2 1 2-1 2 3-2 1z',
+      list: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01', search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5', file: 'M6 3h9l4 4v14H6zM14 3v5h5', game: 'M2 7h20v11H2zM7 10v5M4.500 12.500h5', note: 'M5 3h12a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2zM9 8h6',
+    };
+    const mk = (label, icon) => ({ label, icon: ICON[icon] });
+    const navSkills = [mk('Leitura e escuta','book'), mk('Vocabulário','book'), mk('Escrita e ditado','file'), mk('Fluência','trend'), mk('Pronúncia','phones'), mk('Trilhas por objetivo','map'), mk('Tutor de conversa','chat'), mk('Checkpoints','check'), mk('Leitor livre','lib'), mk('Laboratório de escuta','phones'), mk('Meu progresso','trend')];
+    const navRef = [mk('Regras','book'), mk('Dicionário','book'), mk('Caderninho','note')];
+    const navEx = [mk('Ordenar Frases','list'), mk('Identificar Frases','check'), mk('Encontrar Erros','search'), mk('Interpretação','file'), mk('Teste de Nível','cap')];
+    const navStatus = [mk('Teste de Nível','cap'), mk('Conquistas','trophy'), mk('Configurações','gear')];
+    navEx.pop();
+
+    const stepMin = [4, 6, 5];
+    const doneMin = Math.min(15, 8 + stepMin.reduce((a, m, i) => a + (this.state.done[i] ? m : 0), 0));
+    const defs = [
+      { n: 1, title: 'Revisão rápida', sub: '12 cartões vencidos', time: '4 min' },
+      { n: 2, title: 'Present Perfect · lição 4', sub: '3 exercícios restantes', time: '6 min' },
+      { n: 3, title: 'Conversa com o tutor', sub: 'Tema: viagens', time: '5 min' },
+    ];
+    const steps = defs.map((s, i) => {
+      const done = this.state.done[i];
+      return { ...s, done, notDone: !done,
+        toggle: () => { const d = this.state.done.slice(); d[i] = !d[i]; this.setState({ done: d }); },
+        badgeStyle: 'width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:14px;' + (done ? 'background:var(--good);color:var(--surface)' : 'background:var(--surface2);color:var(--text)'),
+        titleStyle: 'font-weight:600;' + (done ? 'text-decoration:line-through;color:var(--muted)' : '') };
+    });
+    const nodes = [['Fundamentos','done'],['Present Simple','done'],['Past Simple','done'],['Present Perfect','now'],['Future','lock'],['Modais','lock']];
+    const path = nodes.map(([label, s], i) => ({ label, here: s === 'now', mark: s === 'done' ? '✓' : String(i + 1),
+      lineColor: i === 0 ? 'transparent' : (s === 'lock' ? 'var(--border)' : 'var(--primary)'),
+      dotStyle: 'position:relative;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;box-sizing:border-box;' + (s === 'done' ? 'background:var(--primary);color:var(--onprimary)' : s === 'now' ? 'background:var(--surface);color:var(--ptext);border:3px solid var(--primary)' : 'background:var(--surface2);color:var(--muted)'),
+      labelStyle: 'font-size:13px;' + (s === 'now' ? 'font-weight:600' : s === 'lock' ? 'color:var(--muted)' : '') }));
+
+    const hub = [
+      ['Leitor livre','Leia qualquer texto ou artigo, tocando nas palavras','lib'], ['Laboratório de escuta','Áudio real de nativos e seus vídeos com legenda','phones'], ['Tutor de conversa','Converse com uma IA que roda no seu aparelho','chat'],
+      ['Pronúncia','TH, schwa, -ed e os sons que o brasileiro troca','mic'], ['Trilhas por objetivo','Inglês para viagem e para o trabalho','map'], ['Leitura e escuta','Textos graduados com áudio','book'],
+      ['Vocabulário','As palavras mais frequentes, por nível','book'], ['Fluência','Meta semanal e previsão até o seu alvo','trend'], ['Escrita e ditado','Ditado e redação com correção','pencil'],
+      ['Checkpoints','Revise objetivos e faça checagens por nível','check'], ['Arcade','Jogos para fixar vocabulário','game'],
+    ].map(([title, desc, ic]) => ({ title, desc, icon: ICON[ic] }));
+    const CH = {
+      digital: ['Teacherpreneurship','Prompt crafting com IA','HyFlex','Parceiro de idiomas IA','Coach de estudo IA','Realidade virtual','Reels e redes sociais','Nano-learning','MALL (mobile)','Bite-sized learning','CALL','Ética da IA','Microcredenciais'],
+      social: ['Práticas inclusivas','Cidadania global','Bem-estar','Green ELT','DEIB','Pedagogia crítica','Mindfulness','SEL','Trauma-informed ELT','Decolonial ELT','Aprendizado colaborativo'],
+      cultura: ['Materiais autênticos','Global Englishes','ICC (intercultural)'],
+      metodologias: ['Eclectic Approach','CBLT','Story-Based','Task-Based','Project-Based','Content-Based','Mediação','Dogme ELT','Abordagem lexical','Translanguaging','Experiential','Inquiry-Based','TBLT','CLIL','PBL','DDL','Flipped Classroom','Flipped Learning 3.0','Gamificação','Repetição espaçada','Roleplay comunicativo','NeuroELT','Plurilinguismo','Multimodal','Visual Thinking','Edutainment','TPR','CLT','Suggestopedia','Audio-Lingual','Direct Method','Silent Way','ESP','Blended learning','Agentic learning','EMI','EFL Pedagogy','PPP','TTT','Natural Approach','Grammar-Translation','UDL','CRT'],
+      interativas: ['Aprendizado adaptativo','Realidade aumentada','Áudio interativo','Imersão virtual','Storytelling','Storytelling imersivo','Cultura pop'],
+    };
+    const tabDefs = [['digital','Digital & IA'],['social','Conexão Humana & Social'],['cultura','Cultura'],['metodologias','Metodologias'],['interativas','Interativas'],['essenciais','Essenciais']];
+    const tabs = tabDefs.map(([id, label]) => ({ label, on: this.state.tab === id, pick: () => this.setState({ tab: id }) }));
+
+    const quests = [['Complete 1 Lição',1,1,10],['Ganhe 50 XP',34,50,20],['Complete 3 Lições',1,3,30]].map(([title, p, total, reward]) => {
+      const pct = Math.round(Math.min(1, p / total) * 100); const ok = p >= total;
+      return { title, progress: Math.min(p, total), total, reward, pct, style: ok ? 'text-decoration:line-through;color:var(--muted)' : 'font-weight:500', bar: `height:100%;width:${pct}%;background:${ok ? 'var(--good)' : 'var(--primary)'}` };
+    });
+    const wk = [[1,'D'],[1,'S'],[0,'T'],[1,'Q'],[1,'Q'],[1,'S'],[0,'S']];
+    const week = wk.map(([on, day], i) => ({ day, mark: on ? '✓' : '', dotStyle: 'width:24px;height:24px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;' + (on ? 'background:var(--good);color:var(--surface)' : 'border:2px dashed var(--border)'), labelStyle: 'font-size:12px;color:var(--muted);' + (i === 6 ? 'font-weight:700;color:var(--text)' : '') }));
+    const TIPS = ['Ouvir 5 minutos por dia vale mais do que 1 hora no fim de semana.', 'Repita a frase em voz alta: falar fixa melhor do que só ler.', 'Errou? Anote o erro no Caderninho e revise amanhã.'];
+    const bonusDone = this.state.bonus;
+    return {
+      rootVars, mascotEmotion: this.props.mascotEmotion ?? 'happy', navSkills, navRef, navEx, navStatus, steps, stepsDone: this.state.done.filter(Boolean).length, doneMin, path, hub, tabs, quests, week,
+      goalBar: `height:100%;width:${Math.round(doneMin / 15 * 100)}%;background:var(--good)`,
+      chips: CH[this.state.tab] || [], isEssentials: this.state.tab === 'essenciais', notEssentials: this.state.tab !== 'essenciais',
+      coins: this.state.coins, themeOpen: this.state.themeOpen,
+      themeIcon: themeKey === 'light' ? 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2' : themeKey === 'dark' ? 'M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z' : 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z',
+      toggleThemeMenu: () => this.setState({ themeOpen: !this.state.themeOpen }),
+      setLight: () => this.setState({ theme: 'light', themeOpen: false }), setDark: () => this.setState({ theme: 'dark', themeOpen: false }), setPl: () => this.setState({ theme: 'pobre-lingo', themeOpen: false }),
+      bonusClaimed: bonusDone, bonusLabel: bonusDone ? 'Bônus resgatado' : 'Resgatar +5 XP do dia',
+      claimBonus: () => { if (!this.state.bonus) this.setState({ bonus: true }); },
+      revealed: this.state.revealed, hideMeaning: !this.state.revealed, revealLabel: this.state.revealed ? 'Ocultar significado' : 'Revelar significado',
+      toggleWord: () => this.setState({ revealed: !this.state.revealed }),
+      tip: TIPS[this.state.tipIdx % TIPS.length], nextTip: () => this.setState({ tipIdx: this.state.tipIdx + 1 }),
+      tipClaimed: this.state.tipClaimed, tipLabel: this.state.tipClaimed ? 'Resgatado!' : 'Entendi! (+5 PobreCoins)',
+      claimTip: () => { if (!this.state.tipClaimed) this.setState({ tipClaimed: true, coins: this.state.coins + 5 }); },
+      assistOpen: this.state.assist, assistLabel: this.state.assist ? 'Fechar assistente Pobrelingo' : 'Abrir assistente Pobrelingo',
+      toggleAssist: () => this.setState({ assist: !this.state.assist }),
+    };
+  }
+}
+</script>
+</body>
+</html>

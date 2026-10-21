@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Exercício mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 16px;box-sizing:border-box;border-radius:14px;font:500 16px Inter,system-ui,sans-serif;text-align:left;cursor:pointer;color:var(--text)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="{{rootVars}}">
+<div style="width:390px;height:844px;box-sizing:border-box;position:relative;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column">
+
+<header style="display:flex;align-items:center;gap:12px;padding:16px">
+<a href="Mobile.dc.html" aria-label="Sair da lição" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;color:var(--muted);text-decoration:none"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+<div role="progressbar" aria-label="Progresso da lição" aria-valuenow="{{pct}}" aria-valuemin="0" aria-valuemax="100" style="flex:1;height:10px;border-radius:999px;background:var(--surface2);overflow:hidden"><div style="{{barStyle}}"></div></div>
+<span style="font-size:13px;font-weight:600;color:var(--muted)">3 de 5</span>
+</header>
+
+<main style="flex:1;padding:8px 16px;display:flex;flex-direction:column;gap:20px;overflow-y:auto">
+<div style="display:flex;align-items:flex-end;gap:12px">
+<dc-import name="Pobrelingo" size="72" emotion="{{emotion}}" hint-size="72px,72px"></dc-import>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 14px;font-size:14px;color:var(--muted)">Escolha a frase correta.</div>
+</div>
+<h1 style="margin:0;font:700 22px Sora,Inter,sans-serif;letter-spacing:-0.02em;line-height:1.3">I ___ never been to London.</h1>
+
+<div role="radiogroup" aria-label="Opções" style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<button class="opt" type="button" role="radio" aria-checked="{{o.selected}}" onClick="{{o.pick}}" style="{{o.style}}">
+<span style="{{o.keyStyle}}">{{o.n}}</span>
+<span style="flex:1">{{o.text}}</span>
+<sc-if value="{{o.showOk}}" hint-placeholder-val="{{ false }}"><svg class="i" viewBox="0 0 24 24" style="color:var(--good)" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></sc-if>
+<sc-if value="{{o.showBad}}" hint-placeholder-val="{{ false }}"><svg class="i" viewBox="0 0 24 24" style="color:var(--bad)" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></sc-if>
+</button>
+</sc-for>
+</div>
+</main>
+
+<footer style="{{footStyle}}">
+<sc-if value="{{checked}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:2px">
+<b style="{{msgStyle}}">{{msg}}</b>
+<span style="font-size:14px;color:var(--text)">{{tip}}</span>
+</div>
+</sc-if>
+<button type="button" onClick="{{action}}" style="{{btnStyle}}">{{btnLabel}}</button>
+</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","default":"light","options":["light","dark"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: -1, checked: false };
+  }
+  renderVals() {
+    const dark = this.props.theme === 'dark';
+    const v = dark
+      ? { bg:'#060D0A', surface:'#0D1713', surface2:'#16231D', text:'#F4F8F6', muted:'#9DB0A8', border:'#243630', primary:'#34D399', onprimary:'#04100B', psoft:'#0F2A21', ptext:'#34D399', good:'#34D399', goodsoft:'#0F2A21', bad:'#F87171', badsoft:'#2A1313' }
+      : { bg:'#F6F8FB', surface:'#FFFFFF', surface2:'#EEF2F7', text:'#17202B', muted:'#5B6676', border:'#DFE5EC', primary:'#0A6ECC', onprimary:'#FFFFFF', psoft:'#E6F0FB', ptext:'#075AA8', good:'#12805C', goodsoft:'#E3F6EE', bad:'#B42318', badsoft:'#FDECEA' };
+    const rootVars = Object.keys(v).map((k) => `--${k}:${v[k]}`).join(';');
+    const { picked, checked } = this.state;
+    const correct = 1;
+    const texts = ['has', 'have', 'am', 'did'];
+    const options = texts.map((text, i) => {
+      const sel = picked === i;
+      const ok = checked && i === correct;
+      const bad = checked && sel && i !== correct;
+      let style = 'background:var(--surface);border:2px solid var(--border);';
+      let keyStyle = 'width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:var(--surface2);color:var(--muted);flex:none;';
+      if (ok) { style = 'background:var(--goodsoft);border:2px solid var(--good);'; keyStyle += 'background:var(--good);color:var(--surface);'; }
+      else if (bad) { style = 'background:var(--badsoft);border:2px solid var(--bad);'; keyStyle += 'background:var(--bad);color:var(--surface);'; }
+      else if (sel) { style = 'background:var(--psoft);border:2px solid var(--primary);'; keyStyle += 'background:var(--primary);color:var(--onprimary);'; }
+      return { text, n: i + 1, selected: sel, style, keyStyle, showOk: ok, showBad: bad, pick: () => { if (!this.state.checked) this.setState({ picked: i }); } };
+    });
+    const right = checked && picked === correct;
+    const base = 'display:flex;flex-direction:column;gap:12px;padding:16px;border-top:1px solid var(--border);';
+    const footStyle = base + (checked ? (right ? 'background:var(--goodsoft)' : 'background:var(--badsoft)') : 'background:var(--surface)');
+    const canAct = picked >= 0;
+    const btnStyle = 'min-height:52px;border-radius:12px;border:0;font:600 16px Inter,system-ui,sans-serif;cursor:' + (canAct ? 'pointer' : 'not-allowed') + ';' +
+      (!canAct ? 'background:var(--surface2);color:var(--muted)' : checked && !right ? 'background:var(--bad);color:var(--surface)' : checked ? 'background:var(--good);color:var(--surface)' : 'background:var(--primary);color:var(--onprimary)');
+    return {
+      rootVars, options, checked, footStyle, btnStyle,
+      emotion: checked ? (right ? 'excited' : 'neutral') : 'happy',
+      msg: right ? 'Muito bem!' : 'Quase lá.',
+      msgStyle: 'font:700 18px Sora,Inter,sans-serif;color:' + (right ? 'var(--good)' : 'var(--bad)'),
+      tip: right ? 'Com “I”, o presente perfeito usa have + particípio.' : 'Resposta certa: have. Com “I” usamos have, não has.',
+      btnLabel: checked ? 'Continuar' : 'Verificar',
+      pct: checked ? 80 : 60,
+      barStyle: 'height:100%;border-radius:999px;background:var(--primary);width:' + (checked ? '80%' : '60%'),
+      action: () => {
+        if (this.state.picked < 0) return;
+        if (!this.state.checked) this.setState({ checked: true });
+        else this.setState({ picked: -1, checked: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

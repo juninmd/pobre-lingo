@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Menu mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;box-sizing:border-box}
+.nav:hover{background:var(--surface2);color:var(--text)}
+.nav[aria-current="page"]{background:var(--psoft);color:var(--ptext);font-weight:600}
+.cap{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.grp{border:0;padding:0;margin:0}
+.grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 12px}
+.grp>summary::-webkit-details-marker{display:none}
+.tag{font-size:11px;font-weight:600;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:1px 8px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="{{rootVars}}">
+<div style="width:390px;height:844px;box-sizing:border-box;position:relative;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif">
+<div aria-hidden="true" style="position:absolute;inset:0;background:rgba(0,0,0,.45)"></div>
+<aside aria-label="Menu" style="position:absolute;top:0;bottom:0;left:0;width:316px;background:var(--surface);display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:8px;padding:12px 12px 8px 16px">
+<dc-import name="Pobrelingo" size="48" emotion="happy" animated="{{false}}" hint-size="48px,48px"></dc-import>
+<span style="flex:1;font:700 20px Sora,Inter,sans-serif;letter-spacing:-0.02em">Pobre Lingo</span>
+<a href="Mobile.dc.html" aria-label="Fechar menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--muted);border-radius:12px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+</div>
+<nav aria-label="Principal" style="flex:1;overflow-y:auto;padding:0 8px 8px">
+<details class="grp" open><summary><span class="cap">Principal</span></summary>
+<a class="nav" href="Mobile.dc.html" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/></svg>Minha Jornada</a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5"/></svg>Curso guiado</a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.700M21 4v5h-5"/></svg><span style="flex:1">Revisar</span><span class="tag">SRS</span></a>
+<a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="4"/><path d="M7 10v5M4.500 12.500h5"/></svg><span style="flex:1">Arcade</span><span class="tag">Fun</span></a>
+</details>
+<details class="grp" open><summary><span class="cap">Habilidades</span></summary>
+<sc-for list="{{skills}}" as="n" hint-placeholder-count="11"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>{{n}}</a></sc-for>
+</details>
+<details class="grp" open><summary><span class="cap">Referência</span></summary>
+<sc-for list="{{refs}}" as="n" hint-placeholder-count="3"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>{{n}}</a></sc-for>
+</details>
+<details class="grp"><summary><span class="cap">Exercícios</span><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px;color:var(--muted)" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+<sc-for list="{{exs}}" as="n" hint-placeholder-count="4"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>{{n}}</a></sc-for>
+</details>
+<details class="grp"><summary><span class="cap">Status</span><svg class="i" viewBox="0 0 24 24" style="width:18px;height:18px;color:var(--muted)" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+<sc-for list="{{status}}" as="n" hint-placeholder-count="3"><a class="nav" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>{{n}}</a></sc-for>
+</details>
+</nav>
+<div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)"><span style="width:8px;height:8px;border-radius:50%;background:var(--good)"></span>Sincronizado · funciona offline</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","default":"light","options":["light","dark","pobre-lingo"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const themes = {
+      light: { bg:'#F6F8FB', surface:'#FFFFFF', surface2:'#EEF2F7', text:'#17202B', muted:'#5B6676', border:'#DFE5EC', primary:'#0A6ECC', onprimary:'#FFFFFF', psoft:'#E6F0FB', ptext:'#075AA8', good:'#12805C' },
+      dark: { bg:'#12151B', surface:'#1B2029', surface2:'#252B37', text:'#EEF2F7', muted:'#A0AABA', border:'#323A49', primary:'#4C9CF6', onprimary:'#0A1220', psoft:'#16283F', ptext:'#7DB6FA', good:'#34C58A' },
+      'pobre-lingo': { bg:'#050A08', surface:'#0D1713', surface2:'#16231D', text:'#F4F8F6', muted:'#9DB0A8', border:'#243630', primary:'#34D399', onprimary:'#04100B', psoft:'#0F2A21', ptext:'#34D399', good:'#34D399' },
+    };
+    const v = themes[this.props.theme] || themes.light;
+    return {
+      rootVars: Object.keys(v).map((k) => `--${k}:${v[k]}`).join(';'),
+      skills: ['Leitura e escuta','Vocabulário','Escrita e ditado','Fluência','Pronúncia','Trilhas por objetivo','Tutor de conversa','Checkpoints','Leitor livre','Laboratório de escuta','Meu progresso'],
+      refs: ['Regras','Dicionário','Caderninho'],
+      exs: ['Ordenar Frases','Identificar Frases','Encontrar Erros','Interpretação'],
+      status: ['Teste de Nível','Conquistas','Configurações'],
+    };
+  }
+}
+</script>
+</body>
+</html>

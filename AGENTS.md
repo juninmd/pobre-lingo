@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-10-21] Spark-Frontend: UI improvements prototype
+- **Action:** Added `docs/ui-prototype/` (Claude Design canvas sources): Minha Jornada desktop/mobile, mobile menu, exercise, system panels and the existing pixel art mascot as a component. No app code changed.
+- **Note:** Every dashboard, header and sidebar feature is represented; implementing it in `src/` is a separate step.
+
 ### [2026-10-19] Jules-Architect / Bolt-Automation: PWA hardening and cloud progress sync
 - **Action:** Manifest gained `id`, `display_override` and shortcuts; Workbox cleans old caches. Added opt-in sync of the backup snapshot to `server/` (Node + Postgres, deployed from `juninmd/app-charts/pobre-lingo-api`). Client in `src/lib/cloudSync/`, UI in `CloudSyncCard`.
 - **Note:** `plsync_*` keys must stay outside `APP_STORAGE_PREFIXES`, or the sync code would leak into backup files. Never push an empty snapshot. The API needs the `pobre_lingo_api_database_password` key in `sops-master-secret` before the first deploy.

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Mascote Pobrelingo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+@keyframes plbob{0%,100%{transform:translateY(0)}50%{transform:translateY(1px)}}
+@keyframes plhop{0%,100%{transform:translateY(0)}40%{transform:translateY(-1px)}}
+.pl-bob{animation:plbob 1.6s steps(1) infinite}
+.pl-hop{animation:plhop .8s steps(1) infinite}
+@media (prefers-reduced-motion:reduce){.pl-bob,.pl-hop{animation:none}}
+</style>
+</helmet>
+<div style="width:{{px}}px;height:{{px}}px;display:inline-block">
+<svg viewBox="0 0 24 24" role="img" aria-label="{{title}}" shape-rendering="crispEdges" style="display:block;width:100%;height:100%;overflow:visible">
+<sc-for list="{{shadow}}" as="p" hint-placeholder-count="1"><path d="{{p.d}}" fill="{{p.fill}}"/></sc-for>
+<g class="{{bobClass}}">
+<sc-for list="{{body}}" as="p" hint-placeholder-count="20"><path d="{{p.d}}" fill="{{p.fill}}"/></sc-for>
+</g>
+<sc-for list="{{sparks}}" as="p" hint-placeholder-count="0"><path d="{{p.d}}" fill="{{p.fill}}"/></sc-for>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"size":{"editor":"int","default":96,"min":24,"max":240,"step":24},"emotion":{"editor":"enum","default":"happy","options":["happy","excited","neutral","winking"]},"animated":{"editor":"boolean","default":true},"title":{"editor":"text","default":"Pobrelingo, o mascote"},"$preview":{"width":96,"height":96}}'>
+class Component extends DCLogic {
+  renderVals() {
+    // Pixel art copied from src/components/mascot (pobrelingoArt.ts, pobrelingoFaces.ts).
+    const PALETTE = { O:'#12332a', G:'#3ccf6e', L:'#8df2a6', D:'#1f9a52', W:'#f6ffee', V:'#cdeccb', E:'#171a2b', H:'#ffffff', M:'#7a80b8', C:'#ff8aa1', B:'#ffb02e', K:'#d9641a', T:'#e8546e', A:'#f3c99a', P:'#fff1dc', Q:'#c58a55', Y:'#ffd84d', S:'#00000040' };
+    const layer = (x, y, ...rows) => ({ x, y, rows });
+    const SHADOW = layer(5, 23, 'SSSSSSSSSSSSSS');
+    const BODY = layer(0, 0,
+      '........................', '...........O............', '...........OO.O.........', '..........OLO.OO........',
+      '........OOOOOOOA........', '......OLLLGGGGAAAO......', '.....OLLGGGGGAPPAGO.....', '....OLLGGGGGAPQAAGGO....',
+      '...OLGGGGGGAAPAAGGGGO...', '..OGGGGGGGGAAAAGGGGGGO..', '..OGGGGGGGGGAAGGGGGGGO..', '..OGGGGGGGGGGGGGGGGGGO..',
+      '..OGGGGGGGGGGGGGGGGDGO..', '..OGGGGGGGGGGGGGGGGDGO..', '..OGCCGGGGGGGGGGGGCCGO..', '..OGGGGGGWWWWWWGGGGDGO..',
+      '...OGGGGWWWWWWWWGGDDO...', '...OGGGGWWWWWWWWGGDDO...', '....OGGGVWWWWWWVDDDO....', '.....OGGGVVVVVVDDDO.....',
+      '......OOGDWWWWDDOO......', '........OOOOOOOO........', '.......BBB....BBB.......', '.......K.K....K.K.......');
+    const WINGS_DOWN = [layer(3, 15, 'DDD', 'DDD', 'DD.', 'D..'), layer(18, 15, 'DDD', 'DDD', '.DD', '..D')];
+    const WINGS_UP = [layer(0, 8, '.OO.', 'ODDO', 'ODDO', 'ODDO', '.ODO', '..OO'), layer(20, 8, '.OO.', 'ODDO', 'ODDO', 'ODDO', 'ODO.', 'OO..')];
+    const SPARKLES = [layer(0, 3, '.Y.', 'YHY', '.Y.'), layer(20, 0, '.Y.', 'YHY', '.Y.')];
+    const eyes = (rows, y) => [layer(6, y, ...rows), layer(14, y, ...rows)];
+    const OPEN = ['.EE.', 'EHEE', 'EEEE', '.EE.'];
+    const SPARK = ['.EE.', 'EHEE', 'EEME', '.EE.'];
+    const SMALL = ['.EE.', '.EH.', '.EE.'];
+    const BEAK_CLOSED = layer(10, 13, 'BBBB', 'BBBB', '.KK.');
+    const BEAK_OPEN = layer(10, 13, 'BBBB', 'KTTK', '.BB.');
+    const BEAK_FLAT = layer(10, 13, 'BBBB', 'KKKK');
+    const FACES = {
+      happy: { open: eyes(OPEN, 10), fixed: [], beak: BEAK_CLOSED, wings: 'down', sparkles: false, bob: 'bob' },
+      excited: { open: eyes(SPARK, 10), fixed: [], beak: BEAK_OPEN, wings: 'up', sparkles: true, bob: 'hop' },
+      neutral: { open: eyes(SMALL, 12), fixed: [], beak: BEAK_FLAT, wings: 'down', sparkles: false, bob: 'bob' },
+      winking: { open: [layer(6, 10, ...OPEN)], fixed: [layer(14, 11, '.EE.', 'E..E')], beak: BEAK_CLOSED, wings: 'down', sparkles: false, bob: 'bob' },
+    };
+    const toPaths = (layers) => {
+      const out = [];
+      layers.forEach((l) => {
+        const paths = {};
+        l.rows.forEach((row, j) => {
+          let i = 0;
+          while (i < row.length) {
+            const k = row[i];
+            if (k === '.' || k === ' ') { i++; continue; }
+            let e = i + 1;
+            while (e < row.length && row[e] === k) e++;
+            paths[k] = (paths[k] || '') + `M${l.x + i} ${l.y + j}h${e - i}v1h-${e - i}z`;
+            i = e;
+          }
+        });
+        Object.keys(paths).forEach((k) => out.push({ d: paths[k], fill: PALETTE[k] }));
+      });
+      return out;
+    };
+    const face = FACES[this.props.emotion] || FACES.happy;
+    const size = Number(this.props.size ?? 96);
+    const animated = this.props.animated !== false;
+    return {
+      px: size,
+      title: this.props.title ?? 'Pobrelingo, o mascote',
+      shadow: toPaths([SHADOW]),
+      body: toPaths([BODY, ...(face.wings === 'up' ? WINGS_UP : WINGS_DOWN), ...face.fixed, ...face.open, face.beak]),
+      sparks: face.sparkles ? toPaths(SPARKLES) : [],
+      bobClass: animated ? 'pl-' + face.bob : '',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -31,7 +31,7 @@ export function UnitGroup({
 			{/* Unit Sticky Header */}
 			<div
 				className={cn(
-					"sticky top-0 z-20 py-4 px-3 -mx-3 sm:px-4 sm:-mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-xl",
+					"sticky top-0 z-20 py-4 px-3 -mx-3 sm:px-4 sm:-mx-4 mb-8 border-y transition-all duration-300 shadow-sm rounded-none md:rounded-2xl md:border-x backdrop-blur-md",
 					isActiveUnit
 						? "bg-card/95 border-primary/30 shadow-md shadow-primary/5"
 						: "bg-muted/95 border-border/40 grayscale",

@@ -3,6 +3,7 @@ import { readersA1_01 } from "./a1-01";
 import { readersA1_02 } from "./a1-02";
 import { readersA1_03 } from "./a1-03";
 import { readersA1_04 } from "./a1-04";
+import { readersA1_05 } from "./a1-05";
 import { readersA2_01 } from "./a2-01";
 import { readersA2_02 } from "./a2-02";
 import { readersA2_03 } from "./a2-03";
@@ -20,6 +21,7 @@ export const readersA1B1: GradedReader[] = [
 	...readersA1_02,
 	...readersA1_03,
 	...readersA1_04,
+	...readersA1_05,
 	...readersA2_01,
 	...readersA2_02,
 	...readersA2_03,

@@ -83,6 +83,10 @@ import { VRLearningWidget } from "./trends/VRLearningWidget";
 import { WellBeingWidget } from "./trends/WellBeingWidget";
 import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
 
+import { HeutagogyWidget } from "./trends/HeutagogyWidget";
+import { EduScrumWidget } from "./trends/EduScrumWidget";
+import { InvisibleLearningWidget } from "./trends/InvisibleLearningWidget";
+
 export function ImmersivePracticeSection() {
 	return (
 		<section
@@ -158,6 +162,9 @@ export function ImmersivePracticeSection() {
 					value="metodologias"
 					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
 				>
+					<HeutagogyWidget />
+					<EduScrumWidget />
+					<InvisibleLearningWidget />
 					<PhenomenonBasedLearningWidget />
 					<ActionOrientedApproachWidget />
 					<EclecticApproachWidget />

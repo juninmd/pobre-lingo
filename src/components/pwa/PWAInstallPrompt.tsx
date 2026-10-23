@@ -21,7 +21,7 @@ export const PWAInstallPrompt: FC<PWAInstallPromptProps> = ({ className }) => {
 		return (
 			<Card
 				className={cn(
-					"fixed bottom-mobile-nav left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96",
+					"fixed bottom-4 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96",
 					className,
 				)}
 			>
@@ -63,7 +63,7 @@ export const PWAInstallPrompt: FC<PWAInstallPromptProps> = ({ className }) => {
 	return (
 		<Card
 			className={cn(
-				"fixed bottom-mobile-nav left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96",
+				"fixed bottom-4 left-4 right-4 z-50 border-primary/20 bg-card shadow-lg lg:bottom-4 lg:left-auto lg:right-4 lg:w-96",
 				className,
 			)}
 		>

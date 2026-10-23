@@ -15,6 +15,10 @@ describe("InvisibleLearningWidget", () => {
 	it("renders the InvisibleLearningWidget component", () => {
 		render(<InvisibleLearningWidget />);
 		expect(screen.getByText("Aprendizagem Invisível")).toBeInTheDocument();
-		expect(screen.getByText("Integração das aprendizagens informais e não formais que ocorrem fora da sala de aula.")).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Integração das aprendizagens informais e não formais que ocorrem fora da sala de aula.",
+			),
+		).toBeInTheDocument();
 	});
 });

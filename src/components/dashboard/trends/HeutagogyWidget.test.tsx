@@ -14,7 +14,13 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("HeutagogyWidget", () => {
 	it("renders the HeutagogyWidget component", () => {
 		render(<HeutagogyWidget />);
-		expect(screen.getByText("Heutagogia (Aprendizagem Autodeterminada)")).toBeInTheDocument();
-		expect(screen.getByText("Foco em alunos definindo seus próprios caminhos e objetivos de aprendizado.")).toBeInTheDocument();
+		expect(
+			screen.getByText("Heutagogia (Aprendizagem Autodeterminada)"),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Foco em alunos definindo seus próprios caminhos e objetivos de aprendizado.",
+			),
+		).toBeInTheDocument();
 	});
 });

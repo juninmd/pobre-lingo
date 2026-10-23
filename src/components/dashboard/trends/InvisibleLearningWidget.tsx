@@ -11,7 +11,11 @@ export function InvisibleLearningWidget() {
 			actionText="Explorar"
 			content={
 				<div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-					<p>A fluência em inglês muitas vezes acontece de forma imperceptível por meio de jogos, redes sociais e consumo de mídia. Esta abordagem valoriza e captura esses momentos de imersão autêntica no cotidiano.</p>
+					<p>
+						A fluência em inglês muitas vezes acontece de forma imperceptível
+						por meio de jogos, redes sociais e consumo de mídia. Esta abordagem
+						valoriza e captura esses momentos de imersão autêntica no cotidiano.
+					</p>
 				</div>
 			}
 		/>

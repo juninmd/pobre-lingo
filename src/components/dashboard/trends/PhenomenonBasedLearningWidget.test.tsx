@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { PhenomenonBasedLearningWidget } from "./PhenomenonBasedLearningWidget";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { PhenomenonBasedLearningWidget } from "./PhenomenonBasedLearningWidget";
 
 // Mock the hooks
 vi.mock("@/contexts/GamificationContext", () => ({
@@ -53,6 +53,8 @@ describe("PhenomenonBasedLearningWidget", () => {
 			}),
 		);
 		expect(button).toBeDisabled();
-		expect(screen.getByRole("button", { name: "Concluído" })).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: "Concluído" }),
+		).toBeInTheDocument();
 	});
 });

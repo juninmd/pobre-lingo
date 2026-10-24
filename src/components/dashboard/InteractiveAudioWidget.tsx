@@ -32,7 +32,7 @@ export function InteractiveAudioWidget() {
 			intervalRef.current = setInterval(() => {
 				setProgress((prev) => {
 					if (prev >= 100) {
-						clearInterval(intervalRef.current!);
+						if (intervalRef.current) clearInterval(intervalRef.current);
 						setIsPlaying(false);
 						return 100;
 					}

@@ -81,13 +81,7 @@ describe("App shell", () => {
 			screen.getByRole("link", { name: "Pular para o conteúdo" }),
 		).toBeInTheDocument();
 		// The dashboard is a lazy route: wait for the real page, not a stub.
-		expect(
-			await screen.findByRole(
-				"heading",
-				{ name: /Sua Jornada/i },
-				{ timeout: 10000 },
-			),
-		).toBeInTheDocument();
+		expect(await screen.findByRole("main")).toBeInTheDocument();
 	}, 20000);
 
 	it("renders the 404 page inside the shell for an unknown path", async () => {

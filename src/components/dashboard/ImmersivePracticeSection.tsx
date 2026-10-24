@@ -6,13 +6,11 @@ import { PopCultureWidget } from "./PopCultureWidget";
 import { PracticeHub } from "./PracticeHub";
 import { RealWorldARWidget } from "./RealWorldARWidget";
 import { StorytellingWidget } from "./StorytellingWidget";
-import { GenAIWidget } from "./trends/GenAIWidget";
-import { PodcastingWidget } from "./trends/PodcastingWidget";
-import { PhenomenonBasedLearningWidget } from "./trends/PhenomenonBasedLearningWidget";
 import { ActionOrientedApproachWidget } from "./trends/ActionOrientedApproachWidget";
 import { AgenticLearningWidget } from "./trends/AgenticLearningWidget";
 import { AIEthicsWidget } from "./trends/AIEthicsWidget";
 import { AILanguagePartnerWidget } from "./trends/AILanguagePartnerWidget";
+import { AIPersonalizationWidget } from "./trends/AIPersonalizationWidget";
 import { AIPromptCraftingWidget } from "./trends/AIPromptCraftingWidget";
 import { AIStudyCoachWidget } from "./trends/AIStudyCoachWidget";
 import { AudioLingualWidget } from "./trends/AudioLingualWidget";
@@ -31,9 +29,11 @@ import { CriticalPedagogyWidget } from "./trends/CriticalPedagogyWidget";
 import { DDLWidget } from "./trends/DDLWidget";
 import { DEIBWidget } from "./trends/DEIBWidget";
 import { DecolonialELTWidget } from "./trends/DecolonialELTWidget";
+import { DigitalLiteracyWidget } from "./trends/DigitalLiteracyWidget";
 import { DirectMethodWidget } from "./trends/DirectMethodWidget";
 import { DogmeELTWidget } from "./trends/DogmeELTWidget";
 import { EclecticApproachWidget } from "./trends/EclecticApproachWidget";
+import { EduScrumWidget } from "./trends/EduScrumWidget";
 import { EdutainmentWidget } from "./trends/EdutainmentWidget";
 import { EFLPedagogyWidget } from "./trends/EFLPedagogyWidget";
 import { EMIWidget } from "./trends/EMIWidget";
@@ -42,15 +42,18 @@ import { ExperientialLearningWidget } from "./trends/ExperientialLearningWidget"
 import { FlippedClassroomWidget } from "./trends/FlippedClassroomWidget";
 import { FlippedLearning30Widget } from "./trends/FlippedLearning30Widget";
 import { GamificationWidget } from "./trends/GamificationWidget";
+import { GenAIWidget } from "./trends/GenAIWidget";
 import { GlobalCitizenshipWidget } from "./trends/GlobalCitizenshipWidget";
 import { GlobalEnglishesWidget } from "./trends/GlobalEnglishesWidget";
 import { GrammarTranslationWidget } from "./trends/GrammarTranslationWidget";
 import { GreenELTWidget } from "./trends/GreenELTWidget";
+import { HeutagogyWidget } from "./trends/HeutagogyWidget";
 import { HyFlexLearningWidget } from "./trends/HyFlexLearningWidget";
 import { ICCWidget } from "./trends/ICCWidget";
 import { ImmersiveStorytellingWidget } from "./trends/ImmersiveStorytellingWidget";
 import { InclusivePracticesWidget } from "./trends/InclusivePracticesWidget";
 import { InquiryBasedLearningWidget } from "./trends/InquiryBasedLearningWidget";
+import { InvisibleLearningWidget } from "./trends/InvisibleLearningWidget";
 import { LexicalApproachWidget } from "./trends/LexicalApproachWidget";
 import { MALLWidget } from "./trends/MALLWidget";
 import { MediationWidget } from "./trends/MediationWidget";
@@ -61,9 +64,12 @@ import { NanoLearningWidget } from "./trends/NanoLearningWidget";
 import { NaturalApproachWidget } from "./trends/NaturalApproachWidget";
 import { NeuroELTWidget } from "./trends/NeuroELTWidget";
 import { PBLWidget } from "./trends/PBLWidget";
+import { PhenomenonBasedLearningWidget } from "./trends/PhenomenonBasedLearningWidget";
 import { PlurilingualismWidget } from "./trends/PlurilingualismWidget";
+import { PodcastingWidget } from "./trends/PodcastingWidget";
 import { PPPWidget } from "./trends/PPPWidget";
 import { ProjectBasedLearningWidget } from "./trends/ProjectBasedLearningWidget";
+import { SDGsInELTWidget } from "./trends/SDGsInELTWidget";
 import { SELWidget } from "./trends/SELWidget";
 import { SilentWayWidget } from "./trends/SilentWayWidget";
 import { SocialMediaReelsWidget } from "./trends/SocialMediaReelsWidget";
@@ -82,10 +88,6 @@ import { VisualThinkingWidget } from "./trends/VisualThinkingWidget";
 import { VRLearningWidget } from "./trends/VRLearningWidget";
 import { WellBeingWidget } from "./trends/WellBeingWidget";
 import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
-
-import { HeutagogyWidget } from "./trends/HeutagogyWidget";
-import { EduScrumWidget } from "./trends/EduScrumWidget";
-import { InvisibleLearningWidget } from "./trends/InvisibleLearningWidget";
 
 export function ImmersivePracticeSection() {
 	return (
@@ -130,6 +132,8 @@ export function ImmersivePracticeSection() {
 					<CALLWidget />
 					<AIEthicsWidget />
 					<MicrocredentialsWidget />
+					<AIPersonalizationWidget />
+					<DigitalLiteracyWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -147,6 +151,7 @@ export function ImmersivePracticeSection() {
 					<TraumaInformedELTWidget />
 					<DecolonialELTWidget />
 					<CollaborativeLearningWidget />
+					<SDGsInELTWidget />
 				</TabsContent>
 
 				<TabsContent

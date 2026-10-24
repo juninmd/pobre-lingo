@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { GenAIWidget } from "./GenAIWidget";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { GenAIWidget } from "./GenAIWidget";
 
 // Mock the hooks
 vi.mock("@/contexts/GamificationContext", () => ({
@@ -20,8 +20,12 @@ vi.mock("@/lib/localDay", () => ({
 
 describe("GenAIWidget", () => {
 	it("renders title and description", () => {
-		vi.mocked(useGamification).mockReturnValue({ addXp: vi.fn() } as any);
-		vi.mocked(useNotifications).mockReturnValue({ notify: vi.fn() } as any);
+		vi.mocked(useGamification).mockReturnValue({
+			addXp: vi.fn(),
+		} as unknown as ReturnType<typeof useGamification>);
+		vi.mocked(useNotifications).mockReturnValue({
+			notify: vi.fn(),
+		} as unknown as ReturnType<typeof useGamification>);
 
 		render(<GenAIWidget />);
 
@@ -37,8 +41,12 @@ describe("GenAIWidget", () => {
 		const mockAddXp = vi.fn();
 		const mockNotify = vi.fn();
 
-		vi.mocked(useGamification).mockReturnValue({ addXp: mockAddXp } as any);
-		vi.mocked(useNotifications).mockReturnValue({ notify: mockNotify } as any);
+		vi.mocked(useGamification).mockReturnValue({
+			addXp: mockAddXp,
+		} as unknown as ReturnType<typeof useGamification>);
+		vi.mocked(useNotifications).mockReturnValue({
+			notify: mockNotify,
+		} as unknown as ReturnType<typeof useGamification>);
 
 		render(<GenAIWidget />);
 
@@ -53,6 +61,8 @@ describe("GenAIWidget", () => {
 			}),
 		);
 		expect(button).toBeDisabled();
-		expect(screen.getByRole("button", { name: "Concluído" })).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: "Concluído" }),
+		).toBeInTheDocument();
 	});
 });

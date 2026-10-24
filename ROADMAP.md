@@ -28,3 +28,6 @@ A robust, stable, and Antigravity-compliant project ready for scale.
 - [x] **Teaching Trends**: Added Project-Based Learning (PBL) and Data-Driven Learning (DDL) widgets to Dashboard.
 - [x] **Teaching Trends**: Added AI Study Coach (Structured Pedagogy) and Communicative Roleplay (CLT) widgets to Dashboard.
 - [x] **UI Trends**: Refined gamification visuals in Header (`HeaderStats.tsx`).
+
+## PWA & Backup Validation Update
+- [x] Refined Playwright UI interaction logic to correctly target interactive regions, overcoming hydration/overlapping click interception issues (October 2026).

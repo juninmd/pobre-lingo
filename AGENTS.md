@@ -31,10 +31,29 @@
 
 ## 📅 Session Logs
 
-### [2026-10-21] Jules-Architect: Validation of Interactive Journey Book (Re-Validation)
-- **Action:** Audited the codebase to address the prompt requesting the "Interactive Journey Book" timeline refactoring.
-- **Findings:** Verified that the `LessonMap` component had already been fully replaced by `LearningTimeline.tsx`. Verified that the requested E2E Playwright tests (`learning_timeline.spec.ts` and `journey.spec.ts`) exist and pass. Verified that the layout refactoring to unify navigation and remove `MobileNav` was already done.
-- **Next Steps:** As the requested state is already achieved, no structural code changes are required for this action.
+### [2026-10-21] Spark-Frontend: UI improvements prototype
+- **Action:** Added `docs/ui-prototype/` (Claude Design canvas sources): Minha Jornada desktop/mobile, mobile menu, exercise, system panels and the existing pixel art mascot as a component. No app code changed.
+- **Note:** Every dashboard, header and sidebar feature is represented; implementing it in `src/` is a separate step.
+
+### [2026-10-19] Jules-Architect / Bolt-Automation: PWA hardening and cloud progress sync
+- **Action:** Manifest gained `id`, `display_override` and shortcuts; Workbox cleans old caches. Added opt-in sync of the backup snapshot to `server/` (Node + Postgres, deployed from `juninmd/app-charts/pobre-lingo-api`). Client in `src/lib/cloudSync/`, UI in `CloudSyncCard`.
+- **Note:** `plsync_*` keys must stay outside `APP_STORAGE_PREFIXES`, or the sync code would leak into backup files. Never push an empty snapshot. The API needs the `pobre_lingo_api_database_password` key in `sops-master-secret` before the first deploy.
+
+### [2026-10-09] Spark-Frontend: Pixel art mascot
+- **Action:** Replaced the vector blob in `src/components/mascot/Pobrelingo.tsx` with a 24x24 pixel art bird. The art is data: `pobrelingoArt.ts` (palette, body, wings), `pobrelingoFaces.ts` (eyes and beaks per emotion), `pixelSprite.ts` (rows to SVG paths). Same props and the four emotions, plus `animated` and `title`.
+- **Note:** Show it at multiples of 24 (48, 72, 96, 120, 144) so every sprite pixel has the same size. Animations are `steps()` keyframes (`pl-*` in `globals.css`) and stop under the global reduced-motion rule. The SVG is sized inline on purpose: a parent `Button` squeezed the old mascot to 16px through `[&_svg]:size-4`.
+- **Action:** Follow-up to the #247 review: the reduced-motion still pose now shows both sparkles; the hop no longer clips the crest (`overflow: visible`); `decorative` hides the mascot from assistive tech in its four callers, which all have a label or text already; the sprite tests compare drawn cells and fills, and `mascotStyles.test.ts` reads `globals.css` for the motion contract.
+
+### [2026-10-09] Spark-Frontend / Bolt-Automation: UI audit, a11y fixes and dependency refresh
+- **Action:** Audited every route (desktop + mobile, light/dark/pobre-lingo) with axe-core plus an overflow and console check. Fixed: sidebar items painted `bg-primary` (`SidebarMenuButton` must stay a plain element, never wrap `Button`), WCAG AA contrast tokens, `Progress` never forwarding `value`, unnamed icon buttons, mobile horizontal scroll, clipped next-lesson CTA, word search (blank cells, no touch selection), `?scenario=` ignored by the conversation page.
+- **Action:** Updated every dependency to latest, majors included (TypeScript 7, vite-plugin-pwa 2, jest-dom 7, jsdom 30, @types/node 26, Biome 2.5). Tests load matchers via `@testing-library/jest-dom/vitest` (the bare import breaks Vitest 5 types).
+- **Note:** Do not use `[data-theme=pobre-lingo]:` as a Tailwind variant: v4 compiles it to an empty `:is()`, so those classes do nothing.
+- **Note:** e2e specs already failing before this session (stale after the Journey Book redesign): `virtual_immersion`, `study_flow` "jornada mostra a trilha", `benchmark_features` "painel", and the mobile "Atalhos" bottom-bar checks in `journey` / `learning_timeline`.
+
+### [2026-10-08] Jules-Architect: Validation of Interactive Journey Book
+- **Action:** Audited codebase for requested UI/UX refactoring (Interactive Journey Book).
+- **Findings:** The requested features (`LearningTimeline`, MobileNav visibility logic, removed START popups, gamified header, "Onde parei" bookmark, and associated Playwright tests) are already fully implemented and verified as passing.
+- **Next Steps:** Proceeding with standard validation checks and closing the session as the state is already compliant with the user's request.
 
 ### [2024-05-27] Jules-Architect: Interface Modernization & Trend Integration
 - **Action:** Researched 2024 English learning trends (British Council) and redesigned the `DashboardPage` layout to categorize widgets ("Imersão Digital & IA", "Conexão Humana & Social", "Nano-Learning & Cultura", "Metodologias Ativas").
@@ -69,13 +88,7 @@
 - **Findings:** Verified that the `LessonMap` component had already been fully replaced by `LearningTimeline.tsx`. Verified that the requested E2E Playwright tests (`learning_timeline.spec.ts` and `journey.spec.ts`) exist and pass. Verified that the layout refactoring to unify navigation and remove `MobileNav` was already done.
 - **Next Steps:** As the requested state is already achieved, no structural code changes are required for this action.
 
-## GitHub Actions — padrão obrigatório (@main)
-
-- Referencie as actions internas sempre pelo branch, nunca por SHA:
-  - `uses: juninmd/base-actions/<action>@main`
-  - `uses: juninmd/base-actions/.github/workflows/<arquivo>.yml@main`
-- Não fixe `@<sha>` em `juninmd/base-actions`: a atualização é centralizada no
-  `main` e passa a valer no próximo run.
-- PRs cujos checks não iniciam por billing/spending limit são mesclados pelo bot central
-  `juninmd/base-actions/.github/workflows/auto-merge-billing-blocked.yml`.
-  Para impedir o merge automático de um PR, aplique a label `do-not-merge`.
+### [2026-10-21] Jules-Architect: Validation of Interactive Journey Book (Re-Validation)
+- **Action:** Audited the codebase to address the prompt requesting the "Interactive Journey Book" timeline refactoring.
+- **Findings:** Verified that the `LessonMap` component had already been fully replaced by `LearningTimeline.tsx`. Verified that the requested E2E Playwright tests (`learning_timeline.spec.ts` and `journey.spec.ts`) exist and pass. Verified that the layout refactoring to unify navigation and remove `MobileNav` was already done.
+- **Next Steps:** As the requested state is already achieved, no structural code changes are required for this action.

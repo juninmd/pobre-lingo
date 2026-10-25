@@ -87,3 +87,15 @@
 - **Action:** Audited the codebase to address the prompt requesting the "Interactive Journey Book" timeline refactoring.
 - **Findings:** Verified that the `LessonMap` component had already been fully replaced by `LearningTimeline.tsx`. Verified that the requested E2E Playwright tests (`learning_timeline.spec.ts` and `journey.spec.ts`) exist and pass. Verified that the layout refactoring to unify navigation and remove `MobileNav` was already done.
 - **Next Steps:** As the requested state is already achieved, no structural code changes are required for this action.
+
+<!-- base-actions-main-policy -->
+## GitHub Actions — padrão obrigatório (@main)
+
+- Referencie as actions internas sempre pelo branch, nunca por SHA:
+  - `uses: juninmd/base-actions/<action>@main`
+  - `uses: juninmd/base-actions/.github/workflows/<arquivo>.yml@main`
+- Não fixe `@<sha>` em `juninmd/base-actions`: a atualização é centralizada no
+  `main` e passa a valer no próximo run.
+- PRs cujos checks não iniciam por billing/spending limit são mesclados pelo bot central
+  `juninmd/base-actions/.github/workflows/auto-merge-billing-blocked.yml`.
+  Para impedir o merge automático de um PR, aplique a label `do-not-merge`.

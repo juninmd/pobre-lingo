@@ -53,14 +53,17 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 			// Headers
 			if (line.startsWith("# ")) {
 				return (
-					<h2 key={index} className="text-xl font-bold mt-4 mb-2 text-primary">
+					<h2
+						key={`p-${index}`}
+						className="text-xl font-bold mt-4 mb-2 text-primary"
+					>
 						{line.replace("# ", "")}
 					</h2>
 				);
 			}
 			if (line.startsWith("### ")) {
 				return (
-					<h3 key={index} className="text-lg font-semibold mt-3 mb-1">
+					<h3 key={`p-${index}`} className="text-lg font-semibold mt-3 mb-1">
 						{line.replace("### ", "")}
 					</h3>
 				);
@@ -70,7 +73,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 			if (line.trim().startsWith("* ")) {
 				const text = line.trim().replace("* ", "");
 				return (
-					<div key={index} className="flex items-start gap-2 mb-1 ml-1">
+					<div key={`p-${index}`} className="flex items-start gap-2 mb-1 ml-1">
 						<div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
 						<span className="text-muted-foreground">{parseBold(text)}</span>
 					</div>
@@ -79,12 +82,15 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 			// Empty lines
 			if (line.trim() === "") {
-				return <div key={index} className="h-2" />;
+				return <div key={`p-${index}`} className="h-2" />;
 			}
 
 			// Paragraphs
 			return (
-				<p key={index} className="mb-2 text-muted-foreground leading-relaxed">
+				<p
+					key={`p-${index}`}
+					className="mb-2 text-muted-foreground leading-relaxed"
+				>
 					{parseBold(line)}
 				</p>
 			);
@@ -96,7 +102,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 		return parts.map((part, i) => {
 			if (part.startsWith("**") && part.endsWith("**")) {
 				return (
-					<strong key={i} className="font-bold text-foreground">
+					<strong key={`bold-${i}`} className="font-bold text-foreground">
 						{part.slice(2, -2)}
 					</strong>
 				);
@@ -150,7 +156,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 										(rule, idx) =>
 											rule && (
 												<Card
-													key={idx}
+													key={`rule-${idx}`}
 													className="overflow-hidden border-primary/20 shadow-sm"
 												>
 													<div className="bg-primary/5 p-4 border-b border-primary/10">
@@ -176,6 +182,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 															<Lightbulb className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
 															<div
 																className="text-sm text-muted-foreground leading-relaxed"
+																/* biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted content */
 																dangerouslySetInnerHTML={{
 																	__html: rule.explanation_pt,
 																}}
@@ -190,6 +197,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 																	Estrutura
 																</div>
 																<div
+																	/* biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted content */
 																	dangerouslySetInnerHTML={{
 																		__html: rule.structure_format_pt,
 																	}}
@@ -206,7 +214,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 															<div className="space-y-2">
 																{rule.examples.slice(0, 3).map((ex, i) => (
 																	<div
-																		key={i}
+																		key={`bold-${i}`}
 																		className="text-sm bg-green-50/50 dark:bg-green-950/10 p-2 rounded border border-green-100 dark:border-green-900/30"
 																	>
 																		<p className="font-medium">
@@ -229,6 +237,7 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 																</div>
 																<div
 																	className="text-sm text-muted-foreground"
+																	/* biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted content */
 																	dangerouslySetInnerHTML={{
 																		__html: rule.common_mistakes_pt,
 																	}}

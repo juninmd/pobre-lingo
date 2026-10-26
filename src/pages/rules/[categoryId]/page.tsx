@@ -22,7 +22,7 @@ import { getCategoryById } from "@/lib/grammarRules";
 export default function CategoryPage() {
 	const { categoryId } = useParams<{ categoryId: string }>();
 	const navigate = useNavigate();
-	const category = getCategoryById(categoryId!);
+	const category = getCategoryById(categoryId as string);
 	const { isStudied } = useStudiedRules();
 
 	if (!category) {

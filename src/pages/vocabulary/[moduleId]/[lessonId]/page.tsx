@@ -63,11 +63,11 @@ export default function LessonPage() {
 		);
 	}
 
-	const completed = isLessonCompleted(moduleId!, lessonId!);
+	const completed = isLessonCompleted(moduleId as string, lessonId as string);
 
 	const handleComplete = () => {
 		if (!completed) {
-			completeLesson(moduleId!, lessonId!, lesson.xpReward);
+			completeLesson(moduleId as string, lessonId as string, lesson.xpReward);
 			navigate("/", { replace: true });
 		}
 		navigate("/");
@@ -117,8 +117,8 @@ export default function LessonPage() {
 						key={lesson.id}
 						navigate={navigate}
 						xpReward={lesson.xpReward}
-						moduleId={moduleId!}
-						lessonId={lessonId!}
+						moduleId={moduleId as string}
+						lessonId={lessonId as string}
 						completeLesson={completeLesson}
 					/>
 				);
@@ -353,8 +353,8 @@ export default function LessonPage() {
 			<div className="max-w-4xl mx-auto">
 				{/* Barra de Progresso da Jornada Global */}
 				<LessonProgressBar
-					moduleId={moduleId!}
-					lessonId={lessonId!}
+					moduleId={moduleId as string}
+					lessonId={lessonId as string}
 					showCompleteButton={false} // Handled individually by components
 					className="mb-6"
 				/>

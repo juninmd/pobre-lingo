@@ -42,8 +42,8 @@ export default function RulePage() {
 	const lessonId = searchParams.get("lesson");
 	const isFromCurriculum = moduleId !== null && lessonId !== null;
 
-	const category = getCategoryById(categoryId!);
-	const rule = getRuleById(ruleId!);
+	const category = getCategoryById(categoryId as string);
+	const rule = getRuleById(ruleId as string);
 
 	// Função para falar o texto em inglês
 	const speak = (text: string) => {
@@ -151,16 +151,16 @@ export default function RulePage() {
 
 					<div className="flex items-center gap-2">
 						<Button
-							variant={isStudied(ruleId!) ? "default" : "outline"}
+							variant={isStudied(ruleId as string) ? "default" : "outline"}
 							size="sm"
-							onClick={() => toggleStudied(ruleId!)}
+							onClick={() => toggleStudied(ruleId as string)}
 							className={cn(
 								"flex items-center gap-2 transition-all",
-								isStudied(ruleId!) &&
+								isStudied(ruleId as string) &&
 									"bg-green-600 hover:bg-green-700 text-white",
 							)}
 						>
-							{isStudied(ruleId!) ? (
+							{isStudied(ruleId as string) ? (
 								<>
 									<CheckCircle2 className="h-4 w-4" />
 									<span className="sr-only sm:not-sr-only">Estudado</span>

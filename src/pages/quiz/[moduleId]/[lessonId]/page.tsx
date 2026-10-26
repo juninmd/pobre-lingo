@@ -59,7 +59,7 @@ export default function QuizLessonPage() {
 		);
 	}
 
-	const completed = isLessonCompleted(moduleId!, lessonId!);
+	const completed = isLessonCompleted(moduleId as string, lessonId as string);
 	const currentQ = questions[currentQuestion];
 	const progress = ((currentQuestion + 1) / questions.length) * 100;
 
@@ -116,7 +116,7 @@ export default function QuizLessonPage() {
 	const handleFinish = () => {
 		const score = calculateScore();
 		if (score.percentage >= 70 && !completed) {
-			completeLesson(moduleId!, lessonId!, lesson.xpReward);
+			completeLesson(moduleId as string, lessonId as string, lesson.xpReward);
 			setQuizCompleted(true);
 		} else {
 			navigate("/", { replace: true });
@@ -277,8 +277,8 @@ export default function QuizLessonPage() {
 			<div className="max-w-2xl mx-auto">
 				{/* Barra de Progresso da Jornada */}
 				<LessonProgressBar
-					moduleId={moduleId!}
-					lessonId={lessonId!}
+					moduleId={moduleId as string}
+					lessonId={lessonId as string}
 					showCompleteButton={false}
 					className="mb-6"
 				/>

@@ -56,6 +56,9 @@ import { MALLWidget } from "./trends/MALLWidget";
 import { MediationWidget } from "./trends/MediationWidget";
 import { MicrocredentialsWidget } from "./trends/MicrocredentialsWidget";
 import { MindfulWidget } from "./trends/MindfulWidget";
+import { SDGsInELTWidget } from "./trends/SDGsInELTWidget";
+import { AIPersonalizationWidget } from "./trends/AIPersonalizationWidget";
+import { DigitalLiteracyWidget } from "./trends/DigitalLiteracyWidget";
 import { MultimodalLearningWidget } from "./trends/MultimodalLearningWidget";
 import { NanoLearningWidget } from "./trends/NanoLearningWidget";
 import { NaturalApproachWidget } from "./trends/NaturalApproachWidget";
@@ -130,6 +133,8 @@ export function ImmersivePracticeSection() {
 					<CALLWidget />
 					<AIEthicsWidget />
 					<MicrocredentialsWidget />
+					<AIPersonalizationWidget />
+					<DigitalLiteracyWidget />
 				</TabsContent>
 
 				<TabsContent
@@ -141,6 +146,7 @@ export function ImmersivePracticeSection() {
 					<WellBeingWidget />
 					<GreenELTWidget />
 					<DEIBWidget />
+					<SDGsInELTWidget />
 					<CriticalPedagogyWidget />
 					<MindfulWidget />
 					<SELWidget />

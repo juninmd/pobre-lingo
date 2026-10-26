@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { SDGsInELTWidget } from "./SDGsInELTWidget";
 
 const mockAddXp = vi.fn();
@@ -18,7 +18,9 @@ describe("SDGsInELTWidget", () => {
 		render(<SDGsInELTWidget />);
 		expect(screen.getByText("SDGs in ELT")).toBeInTheDocument();
 		expect(
-			screen.getByText("Integre os Objetivos de Desenvolvimento Sustentável da ONU ao ensino de inglês."),
+			screen.getByText(
+				"Integre os Objetivos de Desenvolvimento Sustentável da ONU ao ensino de inglês.",
+			),
 		).toBeInTheDocument();
 	});
 

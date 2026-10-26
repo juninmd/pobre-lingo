@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { AIPersonalizationWidget } from "./AIPersonalizationWidget";
 
 const mockAddXp = vi.fn();
@@ -18,7 +18,9 @@ describe("AIPersonalizationWidget", () => {
 		render(<AIPersonalizationWidget />);
 		expect(screen.getByText("AI Personalization")).toBeInTheDocument();
 		expect(
-			screen.getByText("Utilize IA para personalizar o aprendizado de cada aluno."),
+			screen.getByText(
+				"Utilize IA para personalizar o aprendizado de cada aluno.",
+			),
 		).toBeInTheDocument();
 	});
 

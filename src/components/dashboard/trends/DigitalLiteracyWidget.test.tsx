@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { DigitalLiteracyWidget } from "./DigitalLiteracyWidget";
 
 const mockAddXp = vi.fn();
@@ -18,7 +18,9 @@ describe("DigitalLiteracyWidget", () => {
 		render(<DigitalLiteracyWidget />);
 		expect(screen.getByText("Digital & Media Literacy")).toBeInTheDocument();
 		expect(
-			screen.getByText("Desenvolva letramento digital e midiático em língua inglesa."),
+			screen.getByText(
+				"Desenvolva letramento digital e midiático em língua inglesa.",
+			),
 		).toBeInTheDocument();
 	});
 

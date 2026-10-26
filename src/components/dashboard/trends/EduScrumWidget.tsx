@@ -11,7 +11,12 @@ export function EduScrumWidget() {
 			actionText="Explorar"
 			content={
 				<div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-					<p>O uso de sprints, reuniões diárias (stand-ups) e retrospectivas no aprendizado de inglês incentiva a colaboração, responsabilidade e o acompanhamento transparente do progresso, preparando alunos para ambientes de trabalho modernos.</p>
+					<p>
+						O uso de sprints, reuniões diárias (stand-ups) e retrospectivas no
+						aprendizado de inglês incentiva a colaboração, responsabilidade e o
+						acompanhamento transparente do progresso, preparando alunos para
+						ambientes de trabalho modernos.
+					</p>
 				</div>
 			}
 		/>

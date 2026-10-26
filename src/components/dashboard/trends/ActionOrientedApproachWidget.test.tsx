@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { ActionOrientedApproachWidget } from "./ActionOrientedApproachWidget";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useNotifications } from "@/contexts/NotificationContext";
+import { ActionOrientedApproachWidget } from "./ActionOrientedApproachWidget";
 
 // Mock the hooks
 vi.mock("@/contexts/GamificationContext", () => ({
@@ -53,6 +53,8 @@ describe("ActionOrientedApproachWidget", () => {
 			}),
 		);
 		expect(button).toBeDisabled();
-		expect(screen.getByRole("button", { name: "Concluído" })).toBeInTheDocument();
+		expect(
+			screen.getByRole("button", { name: "Concluído" }),
+		).toBeInTheDocument();
 	});
 });

@@ -2,7 +2,14 @@ import pg from "pg";
 
 /** Contrato dos stores: get, put, remove, ping. */
 export function createPgStore(connectionString) {
-	const pool = new pg.Pool({ connectionString, max: 5 });
+	const pool = new pg.Pool({
+		connectionString,
+		max: 5,
+		// Sem timeout, uma requisição fica pendurada para sempre se o banco cair.
+		connectionTimeoutMillis: 5_000,
+	});
+	// Sem listener, um erro em cliente ocioso (ex.: Postgres reiniciou) derruba o processo.
+	pool.on("error", (error) => console.error("pg pool error", error));
 
 	const toRow = (row) => ({
 		data: row.data,

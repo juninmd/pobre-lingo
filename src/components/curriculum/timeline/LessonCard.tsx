@@ -83,7 +83,7 @@ export function LessonCard({
 		>
 			{/* Onde Parei Indicator */}
 			{isFirstActive && (
-				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-in fade-in slide-in-from-top-4 duration-500 whitespace-nowrap flex items-center gap-1.5">
+				<div className="absolute -top-3 left-10 md:left-14 z-20 bg-primary text-primary-foreground text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border-2 border-primary animate-bounce-short whitespace-nowrap flex items-center gap-1.5">
 					<BookOpen className="w-3 h-3" />
 					Onde parei
 				</div>

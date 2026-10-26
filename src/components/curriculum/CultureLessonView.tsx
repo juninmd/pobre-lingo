@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // For now, we will display a generic culture placeholder or use the lesson description as a prompt
 
 interface CultureLessonViewProps {
-	lesson: any; // Using any for simplicity here to accept the Lesson object
+	lesson: unknown; // Using any for simplicity here to accept the Lesson object
 	onComplete: () => void;
 	isCompleted: boolean;
 }

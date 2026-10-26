@@ -49,18 +49,24 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 	// Simple markdown parser
 	const renderContent = (content: string) => {
-		return content.split("\n").map((line, index) => {
+		return content.split("\n").map((line, _index) => {
 			// Headers
 			if (line.startsWith("# ")) {
 				return (
-					<h2 key={index} className="text-xl font-bold mt-4 mb-2 text-primary">
+					<h2
+						key={`rule-item-${crypto.randomUUID()}`}
+						className="text-xl font-bold mt-4 mb-2 text-primary"
+					>
 						{line.replace("# ", "")}
 					</h2>
 				);
 			}
 			if (line.startsWith("### ")) {
 				return (
-					<h3 key={index} className="text-lg font-semibold mt-3 mb-1">
+					<h3
+						key={`rule-item-${crypto.randomUUID()}`}
+						className="text-lg font-semibold mt-3 mb-1"
+					>
 						{line.replace("### ", "")}
 					</h3>
 				);
@@ -70,7 +76,10 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 			if (line.trim().startsWith("* ")) {
 				const text = line.trim().replace("* ", "");
 				return (
-					<div key={index} className="flex items-start gap-2 mb-1 ml-1">
+					<div
+						key={`rule-item-${crypto.randomUUID()}`}
+						className="flex items-start gap-2 mb-1 ml-1"
+					>
 						<div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
 						<span className="text-muted-foreground">{parseBold(text)}</span>
 					</div>
@@ -79,12 +88,15 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 			// Empty lines
 			if (line.trim() === "") {
-				return <div key={index} className="h-2" />;
+				return <div key={`rule-item-${crypto.randomUUID()}`} className="h-2" />;
 			}
 
 			// Paragraphs
 			return (
-				<p key={index} className="mb-2 text-muted-foreground leading-relaxed">
+				<p
+					key={`rule-item-${crypto.randomUUID()}`}
+					className="mb-2 text-muted-foreground leading-relaxed"
+				>
 					{parseBold(line)}
 				</p>
 			);
@@ -93,10 +105,13 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 	const parseBold = (text: string) => {
 		const parts = text.split(/(\*\*.*?\*\*)/g);
-		return parts.map((part, i) => {
+		return parts.map((part, _i) => {
 			if (part.startsWith("**") && part.endsWith("**")) {
 				return (
-					<strong key={i} className="font-bold text-foreground">
+					<strong
+						key={`rule-ex-${crypto.randomUUID()}`}
+						className="font-bold text-foreground"
+					>
 						{part.slice(2, -2)}
 					</strong>
 				);
@@ -147,10 +162,10 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 
 								<div className="grid gap-6">
 									{unitRules.map(
-										(rule, idx) =>
+										(rule, _idx) =>
 											rule && (
 												<Card
-													key={idx}
+													key={`unit-rule-${crypto.randomUUID()}`}
 													className="overflow-hidden border-primary/20 shadow-sm"
 												>
 													<div className="bg-primary/5 p-4 border-b border-primary/10">
@@ -204,9 +219,9 @@ export function GuidebookModal({ unit, trigger }: GuidebookModalProps) {
 																Exemplos
 															</div>
 															<div className="space-y-2">
-																{rule.examples.slice(0, 3).map((ex, i) => (
+																{rule.examples.slice(0, 3).map((ex, _i) => (
 																	<div
-																		key={i}
+																		key={`rule-ex-${crypto.randomUUID()}`}
 																		className="text-sm bg-green-50/50 dark:bg-green-950/10 p-2 rounded border border-green-100 dark:border-green-900/30"
 																	>
 																		<p className="font-medium">

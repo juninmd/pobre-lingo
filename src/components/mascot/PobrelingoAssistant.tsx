@@ -64,7 +64,7 @@ export function PobrelingoAssistant() {
 	return (
 		<div
 			className={cn(
-				"fixed bottom-mobile-nav right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none transition-transform duration-300",
+				"fixed bottom-4 right-4 z-40 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3 pointer-events-none transition-transform duration-300",
 				tucked && !isOpen && "max-md:translate-x-[calc(100%+1rem)]",
 			)}
 		>

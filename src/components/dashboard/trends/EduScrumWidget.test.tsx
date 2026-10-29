@@ -14,7 +14,13 @@ vi.mock("@/contexts/NotificationContext", () => ({
 describe("EduScrumWidget", () => {
 	it("renders the EduScrumWidget component", () => {
 		render(<EduScrumWidget />);
-		expect(screen.getByText("EduScrum & Metodologias Ágeis")).toBeInTheDocument();
-		expect(screen.getByText("Adaptação de frameworks ágeis para gerenciar a aprendizagem de idiomas de forma colaborativa.")).toBeInTheDocument();
+		expect(
+			screen.getByText("EduScrum & Metodologias Ágeis"),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				"Adaptação de frameworks ágeis para gerenciar a aprendizagem de idiomas de forma colaborativa.",
+			),
+		).toBeInTheDocument();
 	});
 });

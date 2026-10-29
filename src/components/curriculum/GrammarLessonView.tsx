@@ -96,7 +96,7 @@ export function GrammarLessonView({
 							<div className="grid gap-3">
 								{rule?.examples.map((ex, i) => (
 									<div
-										key={i}
+										key={`example-${i}`}
 										className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-md bg-muted/50 hover:bg-muted transition-colors"
 									>
 										<span className="font-medium text-lg">

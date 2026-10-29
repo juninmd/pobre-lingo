@@ -11,7 +11,12 @@ export function HeutagogyWidget() {
 			actionText="Explorar"
 			content={
 				<div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-					<p>No ensino de inglês moderno (2025+), a heutagogia empodera os aprendizes a irem além de trilhas pré-definidas, permitindo que explorem tópicos e desenvolvam competências de acordo com sua própria motivação, contexto e necessidades reais.</p>
+					<p>
+						No ensino de inglês moderno (2025+), a heutagogia empodera os
+						aprendizes a irem além de trilhas pré-definidas, permitindo que
+						explorem tópicos e desenvolvam competências de acordo com sua
+						própria motivação, contexto e necessidades reais.
+					</p>
 				</div>
 			}
 		/>

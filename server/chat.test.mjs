@@ -52,7 +52,7 @@ describe("chat do Lia", () => {
 		expect(call.body.messages[0].content).toContain("START the chat");
 	});
 
-	it("encerra com Bye! depois de alguns turnos", async () => {
+	it("encerra com Bye! Tchau! depois de alguns turnos", async () => {
 		replies.push("Nice, see you soon");
 		const turn = (content) => [
 			{ role: "user", content },
@@ -66,7 +66,7 @@ describe("chat do Lia", () => {
 		];
 		const data = await (await post("/v1/chat", { messages })).json();
 		expect(data.done).toBe(true);
-		expect(data.reply).toMatch(/Bye!$/);
+		expect(data.reply).toMatch(/Bye! Tchau!$/);
 	});
 
 	it("rejeita papel system vindo do cliente", async () => {
@@ -106,5 +106,39 @@ describe("chat sem chave", () => {
 		);
 		server.close();
 		expect(res.status).toBe(503);
+	});
+});
+
+describe("chat contra um LiteLLM HTTP de verdade (sem fetch simulado)", () => {
+	it("chama /chat/completions com cloud/auto e a chave Bearer", async () => {
+		const seen = [];
+		const litellm = createServer((req, res) => {
+			let raw = "";
+			req.on("data", (c) => (raw += c));
+			req.on("end", () => {
+				seen.push({
+					url: req.url,
+					auth: req.headers.authorization,
+					body: JSON.parse(raw),
+				});
+				res.setHeader("Content-Type", "application/json");
+				res.end(
+					JSON.stringify({
+						choices: [{ message: { content: "Hello! Do you like music?" } }],
+					}),
+				);
+			});
+		});
+		await new Promise((resolve) => litellm.listen(0, resolve));
+		const chat = createChat({
+			baseUrl: `http://127.0.0.1:${litellm.address().port}/v1`,
+			apiKey: "k-test",
+		});
+		const out = await chat.converse({ messages: [], level: "A2" });
+		litellm.close();
+		expect(out).toEqual({ reply: "Hello! Do you like music?", done: false });
+		expect(seen[0].url).toBe("/v1/chat/completions");
+		expect(seen[0].auth).toBe("Bearer k-test");
+		expect(seen[0].body.model).toBe("cloud/auto");
 	});
 });

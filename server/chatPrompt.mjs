@@ -29,7 +29,8 @@ export const CORRECT_SYSTEM = [
 /** Garante a despedida mesmo se o modelo esquecer. */
 export function ensureBye(reply) {
 	const text = reply.trim();
-	return /bye[!.]*$/i.test(text) ? text : `${text} Bye!`;
+	if (/tchau[!.]*$/i.test(text)) return text;
+	return `${text.replace(/\s*bye[!.]*$/i, "")} Bye! Tchau!`.trim();
 }
 
 export function parseCorrection(raw, original) {

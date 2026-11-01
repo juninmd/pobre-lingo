@@ -48,7 +48,7 @@ export default function BuddyPage() {
 			/>
 			<PageHeader
 				title="Conversa com a Lia"
-				description="Bate-papo curto: ela puxa assunto, corrige seu texto enquanto você digita e se despede com Bye!"
+				description="Bate-papo curto: ela puxa assunto, corrige seu texto enquanto você digita e se despede com Bye! Tchau!"
 				icon={MessageCircleHeart}
 			/>
 			{BUDDY_AVAILABLE ? (

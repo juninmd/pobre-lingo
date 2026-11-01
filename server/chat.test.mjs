@@ -142,3 +142,26 @@ describe("chat contra um LiteLLM HTTP de verdade (sem fetch simulado)", () => {
 		expect(seen[0].body.model).toBe("cloud/auto");
 	});
 });
+
+describe("content vazio (modelo de raciocínio sem orçamento)", () => {
+	it("tenta de novo com mais tokens", async () => {
+		const budgets = [];
+		const replies = ["", "Hi! Do you like pizza?"];
+		const chat = createChat({
+			baseUrl: "http://x/v1",
+			apiKey: "k",
+			fetchFn: async (_url, init) => {
+				budgets.push(JSON.parse(init.body).max_tokens);
+				return {
+					ok: true,
+					json: async () => ({
+						choices: [{ message: { content: replies.shift() } }],
+					}),
+				};
+			},
+		});
+		const out = await chat.converse({ messages: [], level: "A1" });
+		expect(out.reply).toBe("Hi! Do you like pizza?");
+		expect(budgets).toEqual([600, 1200]);
+	});
+});

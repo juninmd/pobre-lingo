@@ -60,6 +60,11 @@ export function createChat({
 		return String(data.choices?.[0]?.message?.content ?? "").trim();
 	};
 
+	// Modelos de raciocínio do pool cloud/auto gastam tokens pensando e podem devolver content vazio.
+	const completeNonEmpty = async (messages, maxTokens, temperature) =>
+		(await complete(messages, maxTokens, temperature)) ||
+		(await complete(messages, maxTokens * 2, temperature));
+
 	return {
 		enabled: Boolean(apiKey),
 		async converse({ messages, level }) {
@@ -67,7 +72,11 @@ export function createChat({
 			const system = { role: "system", content: buddySystem(level, userTurns) };
 			const kickoff =
 				userTurns === 0 ? [{ role: "user", content: "(start)" }] : [];
-			const raw = await complete([system, ...messages, ...kickoff], 160, 0.8);
+			const raw = await completeNonEmpty(
+				[system, ...messages, ...kickoff],
+				600,
+				0.8,
+			);
 			if (!raw) throw new Error("Resposta vazia");
 			const done = userTurns >= MAX_TURNS;
 			return { reply: done ? ensureBye(raw) : raw, done };
@@ -75,12 +84,12 @@ export function createChat({
 		async correct(text) {
 			const input = cleanText(text);
 			if (!input) return { corrected: "", note: "" };
-			const raw = await complete(
+			const raw = await completeNonEmpty(
 				[
 					{ role: "system", content: CORRECT_SYSTEM },
 					{ role: "user", content: input },
 				],
-				200,
+				500,
 				0,
 			);
 			return parseCorrection(raw, input);

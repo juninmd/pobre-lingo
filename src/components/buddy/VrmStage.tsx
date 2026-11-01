@@ -45,12 +45,12 @@ export function VrmStage({ modelUrl, speaking, mood }: Props) {
 			<canvas
 				ref={canvasRef}
 				role="img"
-				aria-label="Lia, sua parceira de conversa"
+				aria-label="Mika, sua parceira de conversa"
 				className={`h-full w-full ${state === "failed" ? "hidden" : ""}`}
 			/>
 			{state === "loading" && (
 				<p className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
-					Carregando a Lia…
+					Carregando a Mika…
 				</p>
 			)}
 			{state === "failed" && (

@@ -19,7 +19,7 @@ export default function BuddyPage() {
 	const chat = useBuddyChat(level, voice.speak);
 	const { start } = chat;
 
-	// A Lia sempre puxa assunto assim que a página abre.
+	// A Mika sempre puxa assunto assim que a página abre.
 	useEffect(() => {
 		if (BUDDY_AVAILABLE) start();
 	}, [start]);
@@ -43,11 +43,11 @@ export default function BuddyPage() {
 	return (
 		<PageContainer className="max-w-4xl mx-auto space-y-6">
 			<SEO
-				title="Conversa com a Lia"
-				description="Converse em inglês com a Lia, uma personagem 3D que corrige seu texto em tempo real e puxa assunto."
+				title="Conversa com a Mika"
+				description="Converse em inglês com a Mika, uma personagem 3D que corrige seu texto em tempo real e puxa assunto."
 			/>
 			<PageHeader
-				title="Conversa com a Lia"
+				title="Conversa com a Mika"
 				description="Bate-papo curto: ela puxa assunto, corrige seu texto enquanto você digita e se despede com Bye! Tchau!"
 				icon={MessageCircleHeart}
 			/>
@@ -83,7 +83,7 @@ export default function BuddyPage() {
 				</div>
 			) : (
 				<p className="text-sm text-muted-foreground">
-					A conversa com a Lia precisa da API do app, que está desligada nesta
+					A conversa com a Mika precisa da API do app, que está desligada nesta
 					versão.
 				</p>
 			)}

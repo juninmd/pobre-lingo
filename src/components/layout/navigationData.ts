@@ -49,7 +49,7 @@ export const navGroups: NavigationGroup[] = [
 			{ href: "/pronunciation", label: "Pronúncia", icon: Headphones },
 			{ href: "/tracks", label: "Trilhas por objetivo", icon: MapIcon },
 			{ href: "/tutor", label: "Tutor de conversa", icon: Bot },
-			{ href: "/buddy", label: "Conversa com a Lia", icon: MessageCircleHeart },
+			{ href: "/buddy", label: "Conversa com a Mika", icon: MessageCircleHeart },
 			{ href: "/checkpoints", label: "Checkpoints", icon: CheckSquare },
 			{ href: "/library", label: "Leitor livre", icon: LibraryBig },
 			{

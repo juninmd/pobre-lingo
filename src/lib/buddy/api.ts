@@ -22,7 +22,7 @@ async function post<T>(
 	return (await res.json()) as T;
 }
 
-/** Conversa com a Lia (LiteLLM cloud/auto, via a API do app). */
+/** Conversa com a Mika (LiteLLM cloud/auto, via a API do app). */
 export const chatWithBuddy = (
 	messages: BuddyMessage[],
 	level: string,

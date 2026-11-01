@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { tts } from "@/lib/tts";
 
-/** Fala as respostas da Lia (voz do navegador) e avisa quando está falando, para animar a boca. */
+/** Fala as respostas da Mika (voz do navegador) e avisa quando está falando, para animar a boca. */
 export function useBuddyVoice() {
 	const [speaking, setSpeaking] = useState(false);
 	const [muted, setMuted] = useState(false);

@@ -3,7 +3,7 @@
 English learning PWA with a pt-BR interface (grammar rules, exercises, games, dictionary, dashboard). Local-first: all progress lives in the browser's localStorage and works offline (installable PWA). Optionally it syncs to a small API (`server/`, Postgres in the k8s cluster) with no accounts: a secret sync code identifies the data.
 
 - **AI tutor**: runs in the browser. Uses Chrome's built-in Prompt API when available, otherwise the open model via WebLLM (WebGPU). See `src/lib/ai/selectProvider.ts`.
-- **Conversa com a Lia** (`/buddy`): personagem VRM 3D (three + `@pixiv/three-vrm`, chunk `three` carregado sob demanda) que puxa assunto, conversa ~4 turnos e se despede com "Bye! Tchau!", corrigindo o texto em tempo real. A IA é o LiteLLM (`cloud/auto`), acessado só pelo `server/` (`POST /v1/chat`, `POST /v1/correct`, limite por IP); a chave nunca vai ao navegador. Server env: `LITELLM_API_KEY` (obrigatória, sem ela as rotas dão 503), `LITELLM_BASE_URL` (padrão `http://litellm.ai.svc.cluster.local:4000/v1`), `LITELLM_MODEL` (padrão `cloud/auto`). Modelo VRM: `VITE_VRM_URL` em build (padrão: amostra do pixiv/three-vrm) ou upload na página; falha de WebGL/VRM cai no mascote pixel art.
+- **Conversa com a Mika** (`/buddy`): personagem VRM 3D (three + `@pixiv/three-vrm`, chunk `three` carregado sob demanda) que puxa assunto, conversa ~4 turnos e se despede com "Bye! Tchau!", corrigindo o texto em tempo real. A IA é o LiteLLM (`cloud/auto`), acessado só pelo `server/` (`POST /v1/chat`, `POST /v1/correct`, limite por IP); a chave nunca vai ao navegador. Server env: `LITELLM_API_KEY` (obrigatória, sem ela as rotas dão 503), `LITELLM_BASE_URL` (padrão `http://litellm.ai.svc.cluster.local:4000/v1`), `LITELLM_MODEL` (padrão `cloud/auto`). Modelo VRM: `VITE_VRM_URL` em build (padrão: amostra do pixiv/three-vrm) ou upload na página; falha de WebGL/VRM cai no mascote pixel art.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
 - **Deploy**: Netlify (`netlify.toml`, publishes `dist/`). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
@@ -54,7 +54,7 @@ Opt-in, from Settings > Sincronização na nuvem. The browser keeps working offl
 | GET | `/v1/progress` | `Authorization: Bearer <code>`; 404 if none |
 | PUT | `/v1/progress` | `{ data, baseVersion }`; 409 with `current` on version mismatch |
 | DELETE | `/v1/progress` | Removes the snapshot |
-| POST | `/v1/chat` | `{ messages, level }` -> `{ reply, done }`; empty `messages` makes Lia open the chat |
+| POST | `/v1/chat` | `{ messages, level }` -> `{ reply, done }`; empty `messages` makes Mika open the chat |
 | POST | `/v1/correct` | `{ text }` -> `{ corrected, note }` |
 
 Server tests run with the rest (`pnpm test:run`, `server/*.test.mjs`).

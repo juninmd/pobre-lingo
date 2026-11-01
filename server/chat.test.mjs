@@ -15,7 +15,7 @@ const fakeFetch = (replies) => async (url, init) => {
 	};
 };
 
-describe("chat do Lia", () => {
+describe("chat da Mika", () => {
 	let server;
 	let base;
 	const replies = [];
@@ -40,10 +40,10 @@ describe("chat do Lia", () => {
 		});
 
 	it("puxa assunto quando a conversa está vazia, usando cloud/auto", async () => {
-		replies.push("Hi! I'm Lia. What did you eat today?");
+		replies.push("Hi! I'm Mika. What did you eat today?");
 		const res = await post("/v1/chat", { messages: [], level: "A1" });
 		expect(await res.json()).toEqual({
-			reply: "Hi! I'm Lia. What did you eat today?",
+			reply: "Hi! I'm Mika. What did you eat today?",
 			done: false,
 		});
 		const call = calls.at(-1);

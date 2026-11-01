@@ -64,11 +64,11 @@ export function BuddyChat({
 					</p>
 				))}
 				{status === "thinking" && (
-					<p className="text-sm text-muted-foreground">Lia está digitando…</p>
+					<p className="text-sm text-muted-foreground">Mika está digitando…</p>
 				)}
 				{status === "error" && (
 					<p role="alert" className="text-sm text-destructive">
-						Não consegui falar com a Lia agora. Tente de novo em instantes.
+						Não consegui falar com a Mika agora. Tente de novo em instantes.
 					</p>
 				)}
 				<div ref={endRef} />
@@ -104,7 +104,7 @@ export function BuddyChat({
 							variant="outline"
 							size="icon"
 							onClick={onToggleMute}
-							aria-label={muted ? "Ligar a voz da Lia" : "Silenciar a Lia"}
+							aria-label={muted ? "Ligar a voz da Mika" : "Silenciar a Mika"}
 						>
 							{muted ? (
 								<VolumeX className="size-4" aria-hidden="true" />

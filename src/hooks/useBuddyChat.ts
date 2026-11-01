@@ -3,7 +3,7 @@ import { type BuddyMessage, chatWithBuddy } from "@/lib/buddy/api";
 
 export type BuddyStatus = "idle" | "thinking" | "ended" | "error";
 
-/** Conversa curta: a Lia abre o assunto e se despede com "Bye!". */
+/** Conversa curta: a Mika abre o assunto e se despede com "Bye!". */
 export function useBuddyChat(level: string, onReply?: (text: string) => void) {
 	const [messages, setMessages] = useState<BuddyMessage[]>([]);
 	const [status, setStatus] = useState<BuddyStatus>("idle");

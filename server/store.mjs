@@ -43,8 +43,7 @@ export function createPgStore(connectionString) {
 						ON CONFLICT DO NOTHING RETURNING data, version, updated_at`
 					: `UPDATE progress SET data = $2, version = version + 1, updated_at = now()
 						WHERE id = $1 AND version = $3 RETURNING data, version, updated_at`;
-			const params =
-				baseVersion === 0 ? [id, data] : [id, data, baseVersion];
+			const params = baseVersion === 0 ? [id, data] : [id, data, baseVersion];
 			const { rows } = await pool.query(sql, params);
 			if (rows[0]) return { ok: true, ...toRow(rows[0]) };
 			return { ok: false, current: await get(id) };

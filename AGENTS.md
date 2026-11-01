@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-11-01] Jules-Architect / Spark-Frontend: Conversa com a Mika (VRM + correção ao vivo)
+- **Action:** New page `/buddy`: VRM character (`components/buddy/vrmScene.ts`, lazy `three` chunk, excluded from the PWA precache) talks via browser TTS with lip-sync, chat with live spelling/grammar diff (`useLiveCorrection`, 700 ms debounce). Server proxies LiteLLM `cloud/auto` (`server/chat*.mjs`); system prompts live only on the server, the client sends just user/assistant turns.
+- **Note:** Mika always opens the chat and says "Bye! Tchau!" after `MAX_TURNS` (server enforces the goodbye). Deploy needs `LITELLM_API_KEY` in the API's secret (manifests are not in `app-charts` at this time).
+
 ### [2026-10-21] Spark-Frontend: UI improvements prototype
 - **Action:** Added `docs/ui-prototype/` (Claude Design canvas sources): Minha Jornada desktop/mobile, mobile menu, exercise, system panels and the existing pixel art mascot as a component. No app code changed.
 - **Note:** Every dashboard, header and sidebar feature is represented; implementing it in `src/` is a separate step.

@@ -55,6 +55,7 @@ const CheckpointsPage = lazy(() => import("./pages/CheckpointsPage"));
 const PronunciationPage = lazy(() => import("./pages/PronunciationPage"));
 const TracksPage = lazy(() => import("./pages/TracksPage"));
 const TutorPage = lazy(() => import("./pages/TutorPage"));
+const BuddyPage = lazy(() => import("./pages/BuddyPage"));
 const LibraryPage = lazy(() => import("./pages/LibraryPage"));
 const LibraryReaderPage = lazy(() => import("./pages/LibraryReaderPage"));
 const ListeningLabPage = lazy(() => import("./pages/ListeningLabPage"));
@@ -106,6 +107,7 @@ export const pageRoutes = [
 	{ path: "pronunciation", Component: PronunciationPage },
 	{ path: "tracks", Component: TracksPage },
 	{ path: "tutor", Component: TutorPage },
+	{ path: "buddy", Component: BuddyPage },
 	{ path: "library", Component: LibraryPage },
 	{ path: "library/:id", Component: LibraryReaderPage },
 	{ path: "listening-lab", Component: ListeningLabPage },

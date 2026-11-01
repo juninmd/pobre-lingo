@@ -1,3 +1,4 @@
+import { createChatRoutes } from "./chatRoutes.mjs";
 import { createRateLimiter } from "./rateLimit.mjs";
 import {
 	hashSyncKey,
@@ -16,12 +17,12 @@ const send = (res, status, body, headers = {}) => {
 	res.end(payload);
 };
 
-async function readJson(req) {
+async function readJson(req, maxBytes = MAX_BODY_BYTES) {
 	let size = 0;
 	const chunks = [];
 	for await (const chunk of req) {
 		size += chunk.length;
-		if (size > MAX_BODY_BYTES) return { tooLarge: true };
+		if (size > maxBytes) return { tooLarge: true };
 		chunks.push(chunk);
 	}
 	try {
@@ -32,15 +33,22 @@ async function readJson(req) {
 }
 
 /** Handler HTTP sem framework; o store é injetado (Postgres em produção). */
-export function createApp({ store, allowedOrigin = "*", rateLimit = 120 }) {
+export function createApp({
+	store,
+	chat,
+	allowedOrigin = "*",
+	rateLimit = 120,
+}) {
 	const allow = createRateLimiter({ limit: rateLimit, windowMs: 60_000 });
 	const cors = {
 		"Access-Control-Allow-Origin": allowedOrigin,
-		"Access-Control-Allow-Methods": "GET, PUT, DELETE, OPTIONS",
+		"Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
 		"Access-Control-Allow-Headers": "Authorization, Content-Type",
 		"Access-Control-Max-Age": "86400",
 		Vary: "Origin",
 	};
+
+	const chatRoutes = createChatRoutes({ chat, cors, send, readJson });
 
 	async function progress(req, res, id) {
 		if (req.method === "GET") {
@@ -60,7 +68,12 @@ export function createApp({ store, allowedOrigin = "*", rateLimit = 120 }) {
 		if (tooLarge) return send(res, 413, { error: "payload_too_large" }, cors);
 		const parsed = parseProgressBody(body);
 		if (parsed.error) {
-			return send(res, 400, { error: "invalid_body", detail: parsed.error }, cors);
+			return send(
+				res,
+				400,
+				{ error: "invalid_body", detail: parsed.error },
+				cors,
+			);
 		}
 		const result = await store.put(id, parsed.data, parsed.baseVersion);
 		if (result.ok) {
@@ -78,6 +91,7 @@ export function createApp({ store, allowedOrigin = "*", rateLimit = 120 }) {
 				await store.ping();
 				return send(res, 200, { ok: true });
 			}
+			if (await chatRoutes(req, res, pathname)) return;
 			if (pathname !== "/v1/progress") {
 				return send(res, 404, { error: "not_found" }, cors);
 			}

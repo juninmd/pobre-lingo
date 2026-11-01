@@ -77,6 +77,7 @@ export const tts = {
 		lang: string = "en-US",
 		rate: number = 1,
 		pitch: number = 1,
+		handlers?: { onStart?: () => void; onEnd?: () => void },
 	) => {
 		if (!("speechSynthesis" in window)) {
 			console.warn("Text-to-speech not supported");
@@ -90,6 +91,11 @@ export const tts = {
 		utterance.lang = lang;
 		utterance.rate = rate;
 		utterance.pitch = pitch;
+		if (handlers?.onStart) utterance.onstart = handlers.onStart;
+		if (handlers?.onEnd) {
+			utterance.onend = handlers.onEnd;
+			utterance.onerror = handlers.onEnd;
+		}
 
 		const voice = getBestVoice(lang);
 		if (voice) {

@@ -67,7 +67,11 @@ export default defineConfig({
 				// Abre o app offline em qualquer rota, mas nunca serve o index no lugar do cache de meta.
 				navigateFallbackDenylist: [/^\/__pobrelingo/],
 				// O motor de IA (~6 MB) só baixa para quem abrir o tutor.
-				globIgnores: ["**/web-llm-*.js", "**/webllm.worker-*.js"],
+				globIgnores: [
+					"**/web-llm-*.js",
+					"**/webllm.worker-*.js",
+					"**/three-*.js",
+				],
 				globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
 				runtimeCaching: [
 					{
@@ -118,6 +122,9 @@ export default defineConfig({
 						// Carregados sob demanda: fora do vendor para não pesar no primeiro acesso.
 						if (id.includes("@mlc-ai")) {
 							return "web-llm";
+						}
+						if (id.includes("three")) {
+							return "three";
 						}
 						if (id.includes("logrocket")) {
 							return "logrocket";

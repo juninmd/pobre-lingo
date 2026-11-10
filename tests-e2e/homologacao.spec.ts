@@ -61,7 +61,9 @@ const PERSONAS: Persona[] = [
 		id: 5,
 		nome: "Usuário abrindo a caixa de notificações no header",
 		rotas: ["/"],
-		esperado: /PobreLingo/i,
+		// Marcadores da própria tela inicial. "PobreLingo" sozinho só casava, no
+		// celular, com o convite de instalação, que agora monta depois (ocioso).
+		esperado: /Minha Jornada|Dias Seguidos|PobreLingo/i,
 		acao: async (page) => {
 			// Usuário novo cai no onboarding, que cobre a tela inteira.
 			await fecharOnboarding(page);
@@ -244,7 +246,11 @@ for (const persona of PERSONAS) {
 			for (const rota of persona.rotas) {
 				await page.goto(rota, { waitUntil: "domcontentloaded" });
 				// Espera o React montar: o loader some e o conteúdo aparece.
-				await expect(page.locator("#root")).not.toBeEmpty({ timeout: 20_000 });
+				// O index.html já traz uma casca estática dentro de #root: o app só montou
+				// quando ela sai de cena.
+				await expect(page.locator(".app-skeleton")).toHaveCount(0, {
+				timeout: 20_000,
+				});
 				await page.waitForTimeout(600);
 			}
 

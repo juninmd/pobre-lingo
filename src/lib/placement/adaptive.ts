@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "../curriculumData";
+import type { CEFRLevel } from "../cefr";
 import type { PlacementItem, PlacementSkill } from "./types";
 
 export const CEFR_ORDER: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];

@@ -2,7 +2,7 @@ import { TutorChat } from "@/components/tutor/TutorChat";
 import { TutorSetup } from "@/components/tutor/TutorSetup";
 import { useTutor } from "@/hooks/useTutor";
 import type { TutorScenario } from "@/lib/ai/tutorPrompt";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 
 type TutorSessionProps = { scenario: TutorScenario; level: CEFRLevel };
 

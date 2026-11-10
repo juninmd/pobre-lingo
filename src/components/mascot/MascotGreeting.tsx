@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 import { claimOncePerDay } from "@/lib/claimOncePerDay";
 import { cn } from "@/lib/utils";
 import { Pobrelingo } from "./Pobrelingo";
@@ -97,7 +97,7 @@ export function MascotGreeting({
 	return (
 		<Card
 			className={cn(
-				"border overflow-hidden relative",
+				"reveal border overflow-hidden relative",
 				currentStyles.card,
 				className,
 			)}

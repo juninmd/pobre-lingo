@@ -7,7 +7,7 @@ import {
 	type TutorScenario,
 } from "@/lib/ai/tutorPrompt";
 import type { AiProvider, ChatMessage, ProviderStatus } from "@/lib/ai/types";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 
 export type TutorTurn = ChatMessage & { tip?: string | null };
 

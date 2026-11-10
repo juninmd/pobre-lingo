@@ -29,7 +29,9 @@ const JOBS = [
 const browser = await chromium.launch();
 try {
 	for (const { file, size, svg, transparent = false } of JOBS) {
-		const page = await browser.newPage({ viewport: { width: size, height: size } });
+		const page = await browser.newPage({
+			viewport: { width: size, height: size },
+		});
 		await page.setContent(
 			`<style>html,body{margin:0;background:transparent}svg{display:block;width:${size}px;height:${size}px}</style>${svg}`,
 		);

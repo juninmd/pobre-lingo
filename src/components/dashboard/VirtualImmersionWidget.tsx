@@ -29,7 +29,7 @@ export function VirtualImmersionWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-purple-50/70 to-pink-50/70 dark:from-purple-950/30 dark:to-pink-950/30 border-purple-200/50 dark:border-purple-800/50 shadow-lg hover:shadow-purple-500/10">
+		<Card className="glass-card group bg-gradient-to-br from-purple-50/70 to-pink-50/70 dark:from-purple-950/30 dark:to-pink-950/30 border-purple-200/50 dark:border-purple-800/50 shadow-lg hover:shadow-purple-500/10">
 			<CardHeader className="pb-2 flex flex-row items-start justify-between">
 				<div>
 					<Badge

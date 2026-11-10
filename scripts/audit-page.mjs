@@ -37,8 +37,7 @@ async function auditar(nomeViewport, opcoesContexto) {
 		problemas.push({ severidade, tipo, detalhe });
 
 	page.on("pageerror", (e) => {
-		if (!RUIDO.test(e.message))
-			add("alta", "erro-js", e.message.slice(0, 300));
+		if (!RUIDO.test(e.message)) add("alta", "erro-js", e.message.slice(0, 300));
 	});
 	page.on("console", (m) => {
 		if (m.type() === "error" && !RUIDO.test(m.text()))
@@ -112,9 +111,11 @@ async function auditar(nomeViewport, opcoesContexto) {
 		// 4. Controles desabilitados que nunca liberam (sintoma de estado travado).
 		const desabilitados = await page.evaluate(() =>
 			Array.from(document.querySelectorAll("button[disabled]"))
-				.map((e) => (e.innerText || e.getAttribute("aria-label") || "")
-					.trim()
-					.slice(0, 50))
+				.map((e) =>
+					(e.innerText || e.getAttribute("aria-label") || "")
+						.trim()
+						.slice(0, 50),
+				)
 				.filter(Boolean)
 				.slice(0, 8),
 		);
@@ -140,8 +141,7 @@ async function auditar(nomeViewport, opcoesContexto) {
 					(i) => !i.hasAttribute("alt"),
 				).length,
 		);
-		if (imgSemAlt > 0)
-			add("media", "a11y", `${imgSemAlt} imagem(ns) sem alt`);
+		if (imgSemAlt > 0) add("media", "a11y", `${imgSemAlt} imagem(ns) sem alt`);
 	} catch (e) {
 		add("alta", "falha-navegacao", String(e.message).slice(0, 300));
 	} finally {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { canDoStatements, checkpointQuestions } from "@/lib/levelCheckpoints";
 import { CanDoChecklist } from "./CanDoChecklist";
 import { CheckpointQuiz } from "./CheckpointQuiz";

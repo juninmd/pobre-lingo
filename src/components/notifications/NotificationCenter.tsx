@@ -1,5 +1,3 @@
-import { formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import type { LucideIcon } from "lucide-react";
 import {
 	Bell,
@@ -27,6 +25,7 @@ import {
 	isSafeInternalHref,
 	type NotificationCategory,
 } from "@/lib/notifications";
+import { formatRelativeTime } from "@/lib/relativeTime";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_STYLES: Record<
@@ -194,10 +193,7 @@ export function NotificationCenter() {
 													{item.body}
 												</p>
 												<p className="text-[11px] uppercase tracking-wider text-muted-foreground/60 pt-0.5">
-													{formatDistanceToNow(new Date(item.createdAt), {
-														addSuffix: true,
-														locale: ptBR,
-													})}
+													{formatRelativeTime(new Date(item.createdAt))}
 												</p>
 											</div>
 											{!item.read && (

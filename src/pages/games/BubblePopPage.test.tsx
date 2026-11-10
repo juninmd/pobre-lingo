@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { press, tab } from "@/test/keyboard";
+import { press, tab } from "@/test-utils/keyboard";
 import BubblePopPage from "./BubblePopPage";
 
 const mocks = vi.hoisted(() => ({

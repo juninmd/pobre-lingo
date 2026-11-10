@@ -31,6 +31,15 @@
 
 ## 📅 Session Logs
 
+### [2026-11-10] Jules-Architect / Spark-Frontend / Bolt-Automation: Architecture, performance and UI pass
+- **Action:** `src/app/` now holds the shell (`AppProviders`, `Router`, `routes.ts`, `Layout`, `ShellExtras`); pages are all `<Name>Page.tsx` (no more `[param]/page.tsx`); `globals.css` split into `src/styles/`; Vite config split into `config/`. Removed 56 unused source files, the one-off scripts at the repo root and 9 unused dependencies (recharts, react-hook-form, react-day-picker, react-helmet-async, 4 Radix packages, playwright).
+- **Action:** First load: heavy data left the shell (see "Performance rules" in `README.md`), fonts are self-hosted, `index.html` paints a static shell, `public/boot.js` applies the saved theme and preloads the home chunk.
+- **Action:** Progress page has SVG charts (`src/components/charts/`); motion classes live in `src/styles/motion.css`.
+- **Note:** The site CSP has `script-src 'self'`: never add an inline `<script>` to `index.html`, extend `public/boot.js` instead.
+- **Note:** A CSS rule on `svg` beats the `shape-rendering="crispEdges"` attribute of the pixel mascot; do not set `shape-rendering` globally.
+- **Note:** Tests run with `pool: "vmThreads"`. `window.location` cannot be stubbed there: go through `lib/pageReload.ts` (`reloadPage`, `hardNavigate`) and mock that module.
+- **Note:** `src/lib/practice/*Extra.ts` (dictation, fluency, shadowing, writing prompts) are still not imported anywhere; left in place because they are content, not code.
+
 ### [2026-11-01] Jules-Architect / Spark-Frontend: Conversa com a Mika (VRM + correção ao vivo)
 - **Action:** New page `/buddy`: VRM character (`components/buddy/vrmScene.ts`, lazy `three` chunk, excluded from the PWA precache) talks via browser TTS with lip-sync, chat with live spelling/grammar diff (`useLiveCorrection`, 700 ms debounce). Server proxies LiteLLM `cloud/auto` (`server/chat*.mjs`); system prompts live only on the server, the client sends just user/assistant turns.
 - **Note:** Mika always opens the chat and says "Bye! Tchau!" after `MAX_TURNS` (server enforces the goodbye). Deploy needs `LITELLM_API_KEY` in the API's secret (manifests are not in `app-charts` at this time).

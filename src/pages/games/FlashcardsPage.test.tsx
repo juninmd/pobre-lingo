@@ -1,7 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { press, tab } from "@/test/keyboard";
+import { press, tab } from "@/test-utils/keyboard";
 import FlashcardsPage from "./FlashcardsPage";
 
 const mocks = vi.hoisted(() => ({

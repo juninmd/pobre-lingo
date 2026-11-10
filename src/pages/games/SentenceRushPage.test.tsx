@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
 	toast: vi.fn(),
 }));
 
-vi.mock("@/hooks/use-toast", () => ({
+vi.mock("@/hooks/useToast", () => ({
 	useToast: () => ({ toast: mocks.toast }),
 }));
 vi.mock("@/hooks/useActivityLog", () => ({

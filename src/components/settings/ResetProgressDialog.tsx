@@ -12,13 +12,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { collectAppStorage } from "@/lib/backup";
+import { hardNavigate } from "@/lib/pageReload";
 
 export function ResetProgressDialog() {
 	const handleReset = () => {
 		for (const key of Object.keys(collectAppStorage())) {
 			localStorage.removeItem(key);
 		}
-		window.location.href = "/";
+		hardNavigate("/");
 	};
 
 	return (

@@ -88,5 +88,3 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
 		</Dialog>
 	);
 }
-
-export { GlobalSearchTrigger } from "./GlobalSearchTrigger";

@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "./curriculumData";
+import type { CEFRLevel } from "./cefr";
 
 export type CoreWordPos = "noun" | "verb" | "adjective" | "adverb" | "function";
 

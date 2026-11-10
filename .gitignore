@@ -70,3 +70,7 @@ temp/
 /plan.txt
 /patch*.diff
 /scratch_*.json
+
+# python
+__pycache__/
+*.pyc

@@ -1,0 +1,147 @@
+/* Animações do app. Só `transform` e `opacity` (compostas na GPU, sem layout);
+   durações e curvas vêm das variáveis em base.css. A regra de movimento
+   reduzido (reduced-motion.css) desliga todas e mostra o estado final. */
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(-5px);
+	}
+
+	75% {
+		transform: translateX(5px);
+	}
+}
+
+.animate-shake {
+	animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes bounce-short {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-25%);
+	}
+}
+
+.animate-bounce-short {
+	animation: bounce-short 0.5s ease-in-out;
+}
+
+@keyframes float {
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+/* Entrada: sobe 10px e aparece. `--i` escalona irmãos (style={{ "--i": n }}). */
+@keyframes pl-rise {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}
+
+.reveal {
+	animation: pl-rise var(--dur-enter) var(--ease-out) both;
+	animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+/* Filhos diretos entram em sequência, sem precisar numerar cada um. */
+.reveal-stagger > * {
+	animation: pl-rise var(--dur-enter) var(--ease-out) both;
+}
+
+.reveal-stagger > :nth-child(2) {
+	animation-delay: 55ms;
+}
+
+.reveal-stagger > :nth-child(3) {
+	animation-delay: 110ms;
+}
+
+.reveal-stagger > :nth-child(4) {
+	animation-delay: 165ms;
+}
+
+.reveal-stagger > :nth-child(5) {
+	animation-delay: 220ms;
+}
+
+.reveal-stagger > :nth-child(n + 6) {
+	animation-delay: 275ms;
+}
+
+/* Barras e colunas crescem a partir da base. */
+@keyframes pl-grow-x {
+	from {
+		transform: scaleX(0);
+	}
+}
+
+@keyframes pl-grow-y {
+	from {
+		transform: scaleY(0);
+	}
+}
+
+.grow-x {
+	transform-origin: left center;
+	animation: pl-grow-x 700ms var(--ease-out) both;
+	animation-delay: calc(var(--i, 0) * 40ms);
+}
+
+.grow-y {
+	transform-box: fill-box;
+	transform-origin: center bottom;
+	animation: pl-grow-y 600ms var(--ease-out) both;
+	animation-delay: calc(var(--i, 0) * 30ms);
+}
+
+/* Barra de progresso: entra preenchendo e desliza quando o valor muda. O
+   quadro final é o próprio `transform` inline do indicador. */
+@keyframes pl-progress-in {
+	from {
+		transform: translateX(-100%);
+	}
+}
+
+.progress-fill {
+	transition: transform 500ms var(--ease-out);
+	animation: pl-progress-in 800ms var(--ease-out) both;
+}
+
+/* Traço de anel ou linha se desenhando (pathLength="1" no elemento). */
+@keyframes pl-draw {
+	from {
+		stroke-dashoffset: 1;
+	}
+}
+
+.draw-stroke {
+	animation: pl-draw 900ms var(--ease-out) both;
+}
+
+/* Estalo curto para selos e contadores que acabaram de mudar. */
+@keyframes pl-pop {
+	0% {
+		transform: scale(0.85);
+		opacity: 0;
+	}
+
+	60% {
+		transform: scale(1.06);
+	}
+}
+
+.pop-in {
+	animation: pl-pop 360ms var(--ease-out) both;
+}

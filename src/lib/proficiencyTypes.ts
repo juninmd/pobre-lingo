@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "./curriculumData";
+import type { CEFRLevel } from "./cefr";
 import type { PlacementSkill } from "./placement/types";
 
 export interface SkillReport {

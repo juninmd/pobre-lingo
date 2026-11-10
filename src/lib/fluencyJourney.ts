@@ -1,5 +1,5 @@
-import { LEVEL_VOCAB_TARGETS } from "@/lib/coreVocabulary";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
+import { LEVEL_VOCAB_TARGETS } from "@/lib/coreVocabularyMeta";
 import {
 	FLUENCY_LEVEL,
 	LEVEL_HOURS,

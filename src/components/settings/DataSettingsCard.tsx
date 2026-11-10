@@ -17,11 +17,10 @@ import {
 } from "@/lib/analyticsConsent";
 import { collectBackupData, parseBackup, restoreBackup } from "@/lib/backup";
 import { localDay } from "@/lib/localDay";
+import { hardNavigate } from "@/lib/pageReload";
 import { SKIPPED_NOTICE_MS, skippedMessage } from "@/lib/restoreNotice";
 
-const goHome = () => {
-	window.location.href = "/";
-};
+const goHome = () => hardNavigate("/");
 
 export function DataSettingsCard() {
 	const [exported, setExported] = useState(false);

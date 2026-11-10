@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 
 /**
  * Frases gravadas por falantes reais no Tatoeba (texto CC BY 2.0 FR; cada

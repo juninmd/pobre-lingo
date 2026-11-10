@@ -1,5 +1,5 @@
+import type { CEFRLevel } from "@/lib/cefr";
 import { coreVocabulary } from "@/lib/coreVocabulary";
-import type { CEFRLevel } from "@/lib/curriculumData";
 import { CEFR_ORDER } from "@/lib/levels";
 import { knownKeyFor, lookupWord } from "./lexicon";
 import type { WordToken } from "./tokenize";

@@ -1,0 +1,84 @@
+/* Casca estática do index.html: aparece assim que o CSS chega, antes do
+   JavaScript, nas mesmas medidas da casca real (barra lateral de 16rem e
+   cabeçalho de 4rem). O React a substitui ao montar. */
+.app-skeleton {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 4rem 1fr;
+	background: hsl(var(--background));
+	color: hsl(var(--foreground));
+	font-family: Sora, Inter, system-ui, sans-serif;
+}
+
+.app-skeleton__sidebar {
+	display: none;
+	grid-row: 1 / -1;
+	padding: 1.25rem 1rem;
+	background: hsl(var(--sidebar-background));
+	color: hsl(var(--sidebar-foreground));
+	border-right: 1px solid hsl(var(--sidebar-border));
+}
+
+.app-skeleton__brand {
+	font-size: 1.125rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+.app-skeleton__header {
+	display: flex;
+	align-items: center;
+	padding: 0 1rem;
+	border-bottom: 1px solid hsl(var(--border));
+}
+
+.app-skeleton__main {
+	display: grid;
+	align-content: start;
+	gap: 1rem;
+	padding: 1.5rem 1rem;
+	overflow: hidden;
+}
+
+.app-skeleton__block {
+	height: 8.5rem;
+	border-radius: 0.75rem;
+	background: hsl(var(--muted));
+	animation: pl-skeleton 1.4s ease-in-out infinite;
+}
+
+.app-skeleton__block:nth-child(2) {
+	animation-delay: 0.15s;
+}
+
+.app-skeleton__block:nth-child(3) {
+	height: 14rem;
+	animation-delay: 0.3s;
+}
+
+@keyframes pl-skeleton {
+	50% {
+		opacity: 0.55;
+	}
+}
+
+@media (min-width: 768px) {
+	.app-skeleton {
+		grid-template-columns: 16rem 1fr;
+	}
+
+	.app-skeleton__sidebar {
+		display: block;
+	}
+
+	/* No desktop a marca já está na barra lateral. */
+	.app-skeleton__header .app-skeleton__brand {
+		display: none;
+	}
+
+	.app-skeleton__main {
+		padding: 2rem;
+	}
+}

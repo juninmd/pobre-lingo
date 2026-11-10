@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 
 export interface LevelProfile {
 	focus: string;

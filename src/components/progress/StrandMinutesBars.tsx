@@ -1,14 +1,8 @@
 import { Link } from "react-router-dom";
+import { SERIES_BY_KIND } from "@/components/charts/chartSeries";
 import { Progress } from "@/components/ui/progress";
 import type { StrandKind } from "@/lib/fluencyStrands";
 import { STRAND_ROUTES } from "@/lib/fluencyStrands";
-
-const STRAND_LABELS: Record<StrandKind, string> = {
-	reading: "Leitura",
-	listening: "Escuta",
-	speaking: "Fala",
-	writing: "Escrita",
-};
 
 const STRAND_ORDER: StrandKind[] = [
 	"reading",
@@ -17,7 +11,7 @@ const STRAND_ORDER: StrandKind[] = [
 	"writing",
 ];
 
-/** Barras acessíveis (sem lib de gráfico) com os minutos por vertente na semana. */
+/** Minutos por vertente na semana, nas mesmas cores do gráfico diário. */
 export function StrandMinutesBars({
 	minutes,
 }: {
@@ -35,9 +29,14 @@ export function StrandMinutesBars({
 					<div className="flex items-center justify-between text-sm mb-1">
 						<Link
 							to={STRAND_ROUTES[kind]}
-							className="font-medium hover:underline"
+							className="flex items-center gap-2 font-medium hover:underline"
 						>
-							{STRAND_LABELS[kind]}
+							<span
+								aria-hidden="true"
+								className="h-2.5 w-2.5 rounded-[3px]"
+								style={{ background: SERIES_BY_KIND[kind].color }}
+							/>
+							{SERIES_BY_KIND[kind].label}
 						</Link>
 						<span className="text-muted-foreground tabular-nums">
 							{minutes[kind]} min
@@ -46,7 +45,8 @@ export function StrandMinutesBars({
 					<Progress
 						value={(minutes[kind] / max) * 100}
 						className="h-2"
-						aria-label={`${STRAND_LABELS[kind]}: ${minutes[kind]} minutos esta semana`}
+						indicatorColor={SERIES_BY_KIND[kind].color}
+						aria-label={`${SERIES_BY_KIND[kind].label}: ${minutes[kind]} minutos esta semana`}
 					/>
 				</li>
 			))}

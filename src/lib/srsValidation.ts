@@ -2,10 +2,19 @@
  * Validates cards read from localStorage. A card with an invalid date breaks the
  * scheduler (RangeError in toISOString), so it is dropped on read.
  */
-import { S_MIN, State } from "ts-fsrs";
 import { isSafeInternalHref } from "@/lib/safeHref";
 import type { CardSource, FsrsState, ReviewCard } from "@/lib/srsTypes";
 import { isRecord } from "@/lib/storageGuards";
+
+/**
+ * Limites do ts-fsrs copiados aqui para validar dados salvos sem importar a
+ * biblioteca: este arquivo roda na casca do app (contagem de revisões
+ * pendentes), e o agendador só baixa com a tela de revisão. O teste
+ * `srsValidation.test.ts` falha se algum deles divergir do pacote.
+ */
+export const FSRS_MIN_STABILITY = 0.001;
+export const FSRS_STATE_NEW = 0;
+export const FSRS_STATE_RELEARNING = 3;
 
 const SOURCES: readonly CardSource[] = [
 	"vocabulary",
@@ -35,8 +44,9 @@ const isDate = (v: unknown): v is string =>
 
 /** ts-fsrs rejects memory outside its minimums; only a fresh card may be all zeros. */
 function hasUsableMemory(state: number, stability: number, difficulty: number) {
-	if (state === State.New && stability === 0 && difficulty === 0) return true;
-	return stability >= S_MIN && difficulty >= 1;
+	if (state === FSRS_STATE_NEW && stability === 0 && difficulty === 0)
+		return true;
+	return stability >= FSRS_MIN_STABILITY && difficulty >= 1;
 }
 
 /**
@@ -50,8 +60,8 @@ function parseFsrs(value: unknown): FsrsState | undefined {
 		(typeof FSRS_NUMBERS)[number],
 		number
 	>;
-	if (!Number.isInteger(state) || state < State.New) return undefined;
-	if (state > State.Relearning) return undefined;
+	if (!Number.isInteger(state) || state < FSRS_STATE_NEW) return undefined;
+	if (state > FSRS_STATE_RELEARNING) return undefined;
 	if (!Number.isInteger(learning_steps) || learning_steps < 0) return undefined;
 	if (!hasUsableMemory(state, stability, difficulty)) return undefined;
 	for (const date of [value.last_review, value.due]) {

@@ -1,26 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { AppProviders } from "./app/AppProviders";
+import { Router } from "./app/Router";
 import { startAnalyticsIfConsented } from "./lib/analyticsConsent";
-import { Router } from "./Router";
 import "./globals.css";
-import { GamificationProvider } from "./contexts/GamificationContext";
-import { NotificationProvider } from "./contexts/NotificationContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 
 void startAnalyticsIfConsented();
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
-		<ThemeProvider>
-			{/* Notificações ficam acima da gamificação: conquistas e níveis publicam avisos. */}
-			<NotificationProvider>
-				<GamificationProvider>
-					<HelmetProvider>
-						<Router />
-					</HelmetProvider>
-				</GamificationProvider>
-			</NotificationProvider>
-		</ThemeProvider>
-	</React.StrictMode>,
+const root = document.getElementById("root");
+if (!root) throw new Error("Elemento #root ausente no index.html");
+
+createRoot(root).render(
+	<StrictMode>
+		<AppProviders>
+			<Router />
+		</AppProviders>
+	</StrictMode>,
 );

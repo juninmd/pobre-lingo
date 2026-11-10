@@ -4,6 +4,7 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 
 - **AI tutor**: runs in the browser. Uses Chrome's built-in Prompt API when available, otherwise the open model via WebLLM (WebGPU). See `src/lib/ai/selectProvider.ts`.
 - **Conversa com a Mika** (`/buddy`): personagem VRM 3D (three + `@pixiv/three-vrm`, chunk `three` carregado sob demanda) que puxa assunto, conversa ~4 turnos e se despede com "Bye! Tchau!", corrigindo o texto em tempo real. A IA é o LiteLLM (`cloud/auto`), acessado só pelo `server/` (`POST /v1/chat`, `POST /v1/correct`, limite por IP); a chave nunca vai ao navegador. Server env: `LITELLM_API_KEY` (obrigatória, sem ela as rotas dão 503), `LITELLM_BASE_URL` (padrão `http://litellm.ai.svc.cluster.local:4000/v1`), `LITELLM_MODEL` (padrão `cloud/auto`). Modelo VRM: `VITE_VRM_URL` em build (padrão: amostra do pixiv/three-vrm) ou upload na página; falha de WebGL/VRM cai no mascote pixel art.
+- **Fonts**: Inter and Sora are self-hosted variable fonts (`@fontsource-variable/*`, latin subsets, `src/styles/fonts.css`); no request to Google Fonts.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
 - **Deploy**: Netlify (`netlify.toml`, publishes `dist/`). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
@@ -29,7 +30,9 @@ Versions as declared in `package.json`:
 | `pnpm dev` | Vite dev server (default port, no custom `server` config) |
 | `pnpm build` | `vite build` to `dist/` (no separate `tsc` step) |
 | `pnpm preview` | Serve `dist/` |
-| `pnpm lint` | `biome check src/` |
+| `pnpm lint` | `biome check src/ config/` |
+| `pnpm typecheck` | `tsc --noEmit` |
+| `pnpm check` | typecheck, lint and tests in one go |
 | `pnpm test` | Vitest in watch mode |
 | `pnpm test:run` | Vitest, single run (used by CI) |
 
@@ -62,21 +65,26 @@ Server tests run with the rest (`pnpm test:run`, `server/*.test.mjs`).
 ## Layout
 
 ```
+index.html          static app shell (painted before JS) + boot.js
+public/boot.js      saved theme and home-route preload, before first paint (external: CSP forbids inline scripts)
+config/             build config split out of vite.config.ts: chunks.ts, pwa.ts, preloadHomeRoute.ts
 src/
-  main.tsx          entry; wraps the app in providers
-  Router.tsx        createBrowserRouter; mounts pageRoutes under Layout
-  pageRoutes.ts     route table: path -> lazy page component
-  pages/            route components (lazy-loaded)
-  components/       feature folders (dashboard, exercises, layout, ...); ui/ is vendored shadcn
-  contexts/         ThemeContext, GamificationContext, NotificationContext, ActiveLessonContext
-  hooks/            custom hooks (streaks, progress, SRS, tutor, ...)
+  main.tsx          entry; AppProviders + Router
+  app/              app shell: AppProviders, Router, routes.ts (route table), Layout, ShellExtras (lazy search, mascot, install prompt)
+  pages/            route components, one lazy chunk each; every file is `<Name>Page.tsx`
+  components/       feature folders (dashboard, charts, exercises, layout, ...); ui/ is vendored shadcn
+  contexts/         ThemeContext, GamificationContext, NotificationContext
+  hooks/            custom hooks (`useX.ts`)
   lib/              domain data, storage helpers, SRS, AI providers (lib/ai/), cloud sync (lib/cloudSync/)
+  styles/           globals.css imports these: tokens, base, surfaces, motion, mascot, skeleton, ...
+  test-utils/       shared test helpers
 server/             progress sync API (Node + Postgres), own package.json and Dockerfile
+scripts/            audit-page.mjs, capture-screens.mjs (before/after screenshots), generate-pwa-icons.mjs
 tests-e2e/          Playwright specs
 tests/              Vitest component tests (tests/components/)
 ```
 
-Unit tests are colocated as `*.test.ts(x)` under `src/` or in `tests/`. Vitest runs with jsdom and `src/setupTests.ts`. `tests/e2e/*.py` are standalone Python scripts; neither runner executes them.
+Unit tests are colocated as `*.test.ts(x)` under `src/` or in `tests/`. Vitest runs with jsdom (`pool: "vmThreads"`, one jsdom per worker) and `src/test-utils/setup.ts`. `tests/e2e/*.py` are standalone Python scripts; neither runner executes them.
 
 ## Conventions
 
@@ -90,6 +98,17 @@ Unit tests are colocated as `*.test.ts(x)` under `src/` or in `tests/`. Vitest r
 
 With `core.autocrlf=true`, `pnpm lint` reports many CRLF formatter errors on Windows. Judge a change by comparing the lint output against a clean `master`, not against zero errors.
 
+## Performance rules
+
+These keep the first load small; `pnpm build` prints chunk sizes to check them.
+
+- Heavy data stays out of the shell. `lib/cefr.ts` and `lib/coreVocabularyMeta.ts` hold the small constants; import `lib/curriculumData.ts`, `lib/coreVocabulary.ts` or `lib/grammarRules.ts` only from the page that renders that data, or load them with `import()` (see `hooks/useWordOfTheDay.ts`).
+- `lib/srsCards.ts` is the read side of the SRS (no `ts-fsrs`); the shell uses it to count due reviews. Scheduling lives in `lib/srs.ts`.
+- Vendor chunks are grouped by exact package name in `config/chunks.ts`. Only what the shell uses on every screen is grouped; the rest is left to the bundler.
+- Animate only `transform` and `opacity`, with the classes in `src/styles/motion.css` (`reveal`, `reveal-stagger`, `grow-x`, `grow-y`, `draw-stroke`, `pop-in`). The reduced-motion rule turns them all off.
+- No `backdrop-filter` or large `blur()` on repeated elements (cards, list rows).
+- Charts are plain SVG in `src/components/charts/`, drawn at the real pixel width. Series colours are the `--series-N` tokens, in fixed order, validated for colour-blind separation in both themes.
+
 ## Route table
 
-Add a page to `src/pageRoutes.ts` (path and lazy component), then add its nav entry in `src/components/layout/navigationData.ts`. Dynamic segments use `:param` (e.g. `rules/:categoryId`).
+Add a page to `src/app/routes.ts` (path and lazy component), then add its nav entry in `src/components/layout/navigationData.ts`. Dynamic segments use `:param` (e.g. `rules/:categoryId`).

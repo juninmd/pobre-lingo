@@ -11,7 +11,8 @@ const icon = (file: string, purpose: "any" | "maskable", size = "512x512") => ({
 	purpose,
 });
 
-export const pwaOptions: Partial<VitePWAOptions> = {
+/** `base`: caminho em que o app é servido ("/" ou "/pobre-lingo/"), já normalizado. */
+export const pwaOptions = (base: string): Partial<VitePWAOptions> => ({
 	registerType: "autoUpdate",
 	includeAssets: [
 		"favicon.svg",
@@ -30,15 +31,15 @@ export const pwaOptions: Partial<VitePWAOptions> = {
 		display: "standalone",
 		lang: "pt-BR",
 		orientation: "portrait",
-		id: "/",
-		scope: "/",
-		start_url: "/",
+		id: base,
+		scope: base,
+		start_url: base,
 		display_override: ["standalone", "minimal-ui"],
 		categories: ["education", "language"],
 		shortcuts: [
-			{ name: "Revisão de hoje", url: "/review", icons: shortcutIcon },
-			{ name: "Meu progresso", url: "/progress", icons: shortcutIcon },
-			{ name: "Tutor de IA", url: "/tutor", icons: shortcutIcon },
+			{ name: "Revisão de hoje", url: `${base}review`, icons: shortcutIcon },
+			{ name: "Meu progresso", url: `${base}progress`, icons: shortcutIcon },
+			{ name: "Tutor de IA", url: `${base}tutor`, icons: shortcutIcon },
 		],
 		icons: [
 			icon("pwa-192x192.png", "any", "192x192"),
@@ -52,9 +53,15 @@ export const pwaOptions: Partial<VitePWAOptions> = {
 		// Abre o app offline em qualquer rota, mas nunca serve o index no lugar do cache de meta.
 		navigateFallbackDenylist: [/^\/__pobrelingo/],
 		// O motor de IA (~6 MB) e o three só baixam para quem abrir o tutor ou a Mika.
-		globIgnores: ["**/web-llm-*.js", "**/webllm.worker-*.js", "**/three-*.js"],
+		globIgnores: [
+			"**/web-llm-*.js",
+			"**/webllm.worker-*.js",
+			"**/three-*.js",
+			// Cópia do index.html para o GitHub Pages (config/spaFallback.ts): o precache já tem o index.
+			"**/404.html",
+		],
 		// As fontes agora são do próprio app (woff2): entram no precache e valem offline.
 		globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
 	},
 	devOptions: { enabled: false },
-};
+});

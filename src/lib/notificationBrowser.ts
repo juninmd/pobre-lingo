@@ -1,5 +1,6 @@
 /** Browser notifications (Notification API); only fire with permission. */
 
+import { withBase } from "@/lib/baseUrl";
 import type { AppNotification } from "@/lib/notificationCatalog";
 import { isSafeInternalHref } from "@/lib/safeHref";
 
@@ -33,13 +34,14 @@ export function showBrowserNotification(item: AppNotification): void {
 	try {
 		const notification = new Notification(item.title, {
 			body: item.body,
-			icon: "/pwa-192x192.png",
-			badge: "/pwa-192x192.png",
+			icon: withBase("pwa-192x192.png"),
+			badge: withBase("pwa-192x192.png"),
 			tag: item.id,
 		});
 		notification.onclick = () => {
 			window.focus();
-			if (isSafeInternalHref(item.href)) window.location.href = item.href;
+			if (isSafeInternalHref(item.href))
+				window.location.href = withBase(item.href);
 			notification.close();
 		};
 	} catch (error) {

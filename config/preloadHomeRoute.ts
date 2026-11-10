@@ -2,7 +2,7 @@ import type { Plugin } from "vite";
 
 const APP_ENTRY = "src/main.tsx";
 const HOME_PAGE = "src/pages/DashboardPage.tsx";
-const BOOT_SCRIPT = '<script src="/boot.js"></script>';
+const BOOT_SCRIPT = /<script src="[^"]*boot\.js"><\/script>/;
 
 interface Chunk {
 	type: "chunk";
@@ -35,7 +35,8 @@ function closure(start: Chunk, chunks: Map<string, Chunk>): Set<string> {
  * nada de script inline (a CSP não permite). Os links entram logo antes da
  * tag do boot.js, para já existirem quando ele roda.
  */
-export function preloadHomeRoute(): Plugin {
+/** `base`: caminho em que o app é servido ("/" ou "/pobre-lingo/"), já normalizado. */
+export function preloadHomeRoute(base: string): Plugin {
 	return {
 		name: "pobrelingo:preload-home-route",
 		apply: "build",
@@ -58,13 +59,17 @@ export function preloadHomeRoute(): Plugin {
 				const already = closure(entry, chunks);
 				const hints = [...closure(home, chunks)]
 					.filter((fileName) => !already.has(fileName))
-					.map((fileName) => `<link rel="home-preload" href="/${fileName}" />`)
+					.map(
+						(fileName) =>
+							`<link rel="home-preload" href="${base}${fileName}" data-home="${base}" />`,
+					)
 					.join("\n    ");
-				if (!html.includes(BOOT_SCRIPT)) {
-					this.warn(`${BOOT_SCRIPT} não está no index.html: sem preload`);
+				const bootTag = html.match(BOOT_SCRIPT)?.[0];
+				if (!bootTag) {
+					this.warn("tag do boot.js não está no index.html: sem preload");
 					return html;
 				}
-				return html.replace(BOOT_SCRIPT, `${hints}\n    ${BOOT_SCRIPT}`);
+				return html.replace(bootTag, `${hints}\n    ${bootTag}`);
 			},
 		},
 	};

@@ -6,7 +6,7 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 - **Conversa com a Mika** (`/buddy`): personagem VRM 3D (three + `@pixiv/three-vrm`, chunk `three` carregado sob demanda) que puxa assunto, conversa ~4 turnos e se despede com "Bye! Tchau!", corrigindo o texto em tempo real. A IA é o LiteLLM (`cloud/auto`), acessado só pelo `server/` (`POST /v1/chat`, `POST /v1/correct`, limite por IP); a chave nunca vai ao navegador. Server env: `LITELLM_API_KEY` (obrigatória, sem ela as rotas dão 503), `LITELLM_BASE_URL` (padrão `http://litellm.ai.svc.cluster.local:4000/v1`), `LITELLM_MODEL` (padrão `cloud/auto`). Modelo VRM: `VITE_VRM_URL` em build (padrão: amostra do pixiv/three-vrm) ou upload na página; falha de WebGL/VRM cai no mascote pixel art.
 - **Fonts**: Inter and Sora are self-hosted variable fonts (`@fontsource-variable/*`, latin subsets, `src/styles/fonts.css`); no request to Google Fonts.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
-- **Deploy**: Netlify (`netlify.toml`, publishes `dist/`). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
+- **Deploy**: Netlify (`netlify.toml`, publishes `dist/`) and GitHub Pages (`.github/workflows/pages.yml`, see "GitHub Pages" below). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
 ## Stack
 
@@ -108,6 +108,17 @@ These keep the first load small; `pnpm build` prints chunk sizes to check them.
 - Animate only `transform` and `opacity`, with the classes in `src/styles/motion.css` (`reveal`, `reveal-stagger`, `grow-x`, `grow-y`, `draw-stroke`, `pop-in`). The reduced-motion rule turns them all off.
 - No `backdrop-filter` or large `blur()` on repeated elements (cards, list rows).
 - Charts are plain SVG in `src/components/charts/`, drawn at the real pixel width. Series colours are the `--series-N` tokens, in fixed order, validated for colour-blind separation in both themes.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` builds and publishes `dist/` on every push to `master` (and on demand) to `https://juninmd.github.io/pobre-lingo/`. One-time setup: **Settings > Pages > Build and deployment > Source: GitHub Actions**.
+
+- **Sub-path.** A project site lives under `/pobre-lingo/`, so the build takes `VITE_BASE` (default `/`, used by Netlify and local dev). The workflow gets it from `actions/configure-pages`, which returns an empty base when a custom domain is set. To try it locally: `VITE_BASE=/pobre-lingo/ pnpm build`.
+- **Everything that reaches the browser directly goes through the base**: the router gets `basename` (`src/lib/baseUrl.ts`), `hardNavigate` and the notification click add it, the service worker reads it from its own scope, and `config/pwa.ts` and `config/preloadHomeRoute.ts` take it as a parameter. New code must not write `window.location.href = "/x"` or `src="/x.png"`; use `withBase("/x")`.
+- **Deep links.** Pages has no rewrite rules, so `config/spaFallback.ts` copies `index.html` to `404.html`. A direct visit to `/pobre-lingo/review` gets that file (with HTTP status 404) and the router takes over. Netlify keeps using `public/_redirects`.
+- **Not available on Pages**: response headers. `public/_headers` (CSP, frame and referrer policies) only applies on Netlify, so the Pages site runs without the CSP.
+- **Cloud sync**: the API sends `Access-Control-Allow-Origin` from `ALLOWED_ORIGIN` (default `*`). If the cluster pins it to the Netlify origin, add `https://juninmd.github.io`.
+- `localStorage` is per origin, and every project site of the account shares `juninmd.github.io`. Keys are prefixed `pobrelingo_`, so there is no clash, but the data is shared with any other app on that origin.
 
 ## Route table
 

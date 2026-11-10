@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-11-10] Bolt-Automation: GitHub Pages
+- **Action:** `.github/workflows/pages.yml` deploys `dist/` to GitHub Pages under `/pobre-lingo/` (`VITE_BASE`). The router `basename`, `hardNavigate`, the notification click, `sw-reminders.js`, the manifest and the home preload all honour the base; `404.html` is the SPA fallback.
+- **Note:** Never hardcode `"/"`-rooted URLs for the browser (`window.location`, icons, `fetch`): use `withBase()` from `src/lib/baseUrl.ts`. Pages sends no headers, so the CSP in `public/_headers` does not apply there. Repo setting still needed: Pages source = GitHub Actions.
+
 ### [2026-11-10] Jules-Architect / Spark-Frontend / Bolt-Automation: Architecture, performance and UI pass
 - **Action:** `src/app/` now holds the shell (`AppProviders`, `Router`, `routes.ts`, `Layout`, `ShellExtras`); pages are all `<Name>Page.tsx` (no more `[param]/page.tsx`); `globals.css` split into `src/styles/`; Vite config split into `config/`. Removed 56 unused source files, the one-off scripts at the repo root and 9 unused dependencies (recharts, react-hook-form, react-day-picker, react-helmet-async, 4 Radix packages, playwright).
 - **Action:** First load: heavy data left the shell (see "Performance rules" in `README.md`), fonts are self-hosted, `index.html` paints a static shell, `public/boot.js` applies the saved theme and preloads the home chunk.

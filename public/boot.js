@@ -18,10 +18,12 @@
 	}
 
 	// 2. Na tela inicial, adianta os chunks dela. O build deixa a lista em
-	//    <link rel="home-preload"> inertes (config/preloadHomeRoute.ts); em
-	//    outras rotas eles ficam inertes e nada extra é baixado.
-	if (location.pathname !== "/") return;
+	//    <link rel="home-preload" data-home="<base>"> inertes
+	//    (config/preloadHomeRoute.ts); em outras rotas eles ficam inertes e
+	//    nada extra é baixado. `data-home` é a URL da tela inicial: "/" ou
+	//    "/pobre-lingo/" quando o app é servido num subcaminho.
 	for (const hint of document.querySelectorAll('link[rel="home-preload"]')) {
+		if (location.pathname !== hint.dataset.home) return;
 		const link = document.createElement("link");
 		link.rel = "modulepreload";
 		link.crossOrigin = "";

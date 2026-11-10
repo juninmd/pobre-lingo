@@ -1,0 +1,60 @@
+name: Deploy GitHub Pages
+
+# Publica o app em https://<usuário>.github.io/<repositório>/ a cada push na master.
+# Requer, uma única vez: Settings > Pages > Build and deployment > Source: GitHub Actions.
+# A Netlify continua servindo a raiz (netlify.toml); aqui o app sobe num subcaminho.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Um deploy por vez; um deploy em andamento não é cancelado no meio.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          cache: pnpm
+
+      # Devolve o subcaminho do site: "/pobre-lingo" ou "" se houver domínio próprio.
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+        env:
+          VITE_BASE: ${{ steps.pages.outputs.base_path }}/
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

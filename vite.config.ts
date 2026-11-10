@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import { defineConfig } from "vitest/config";
-import { manualChunks } from "./config/chunks";
+import { codeSplittingGroups } from "./config/chunks";
 import { preloadHomeRoute } from "./config/preloadHomeRoute";
 import { pwaOptions } from "./config/pwa";
 
@@ -13,8 +13,8 @@ export default defineConfig({
 		},
 	},
 	build: {
-		rollupOptions: {
-			output: { manualChunks },
+		rolldownOptions: {
+			output: { codeSplitting: { groups: codeSplittingGroups } },
 		},
 		chunkSizeWarningLimit: 800,
 	},

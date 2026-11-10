@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Tema salvo e preload da tela inicial, antes da primeira pintura. Externo por causa da
+         CSP. Fica antes do CSS e do JS para não esperar na fila deles; o build insere os
+         <link rel="home-preload"> logo antes desta tag (config/preloadHomeRoute.ts). -->
+    <script src="/boot.js"></script>
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0b6bcb" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -19,9 +24,6 @@
     <meta name="description" content="PobreLingo - Aprenda inglês de graça, do jeito certo." />
   </head>
   <body>
-    <!-- Tema salvo e preload da tela inicial, antes da primeira pintura. Externo por causa da CSP;
-         no início do body para os <link rel="home-preload"> do head já existirem. -->
-    <script src="/boot.js"></script>
     <div id="root">
       <!-- Casca estática: pinta antes do JavaScript; o React a substitui ao montar. -->
       <div class="app-skeleton">

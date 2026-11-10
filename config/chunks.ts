@@ -63,7 +63,7 @@ export function packageName(id: string): string | undefined {
 	return first.startsWith("@") ? `${first}/${second}` : first;
 }
 
-export function manualChunks(id: string): string | undefined {
+export function vendorChunk(id: string): string | undefined {
 	const name = packageName(id);
 	if (!name || PAGE_ONLY.has(name)) return undefined;
 	const exact = byPackage.get(name);
@@ -73,3 +73,24 @@ export function manualChunks(id: string): string | undefined {
 	}
 	return undefined;
 }
+
+/** Módulos do app com menos que isto, usados por muitas telas, vão juntos no chunk `common`. */
+const COMMON_MAX_MODULE_BYTES = 4096;
+const COMMON_MIN_SHARE_COUNT = 6;
+
+/**
+ * Grupos de `output.codeSplitting` do Rolldown (o `manualChunks` do Rollup
+ * está obsoleto nele). O segundo grupo junta utilitários pequenos e muito
+ * compartilhados: soltos, cada um virava um arquivo de 100 a 500 bytes e a
+ * tela inicial abria com dezenas de requisições minúsculas.
+ */
+export const codeSplittingGroups = [
+	{ name: vendorChunk, priority: 10 },
+	{
+		name: "common",
+		test: /[\\/]src[\\/]/,
+		priority: 1,
+		maxModuleSize: COMMON_MAX_MODULE_BYTES,
+		minShareCount: COMMON_MIN_SHARE_COUNT,
+	},
+];

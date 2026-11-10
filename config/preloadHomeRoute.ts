@@ -2,6 +2,7 @@ import type { Plugin } from "vite";
 
 const APP_ENTRY = "src/main.tsx";
 const HOME_PAGE = "src/pages/DashboardPage.tsx";
+const BOOT_SCRIPT = '<script src="/boot.js"></script>';
 
 interface Chunk {
 	type: "chunk";
@@ -31,8 +32,8 @@ function closure(start: Chunk, chunks: Map<string, Chunk>): Set<string> {
  * O build escreve a lista em `<link rel="home-preload">`, que o navegador
  * ignora; `public/boot.js` os converte em `modulepreload` só quando a URL é
  * "/". Assim as outras rotas não pagam por um chunk que não vão usar, e
- * nada de script inline (a CSP não permite). O boot.js fica no início do
- * `<body>`: quando roda, os links do `<head>` já existem.
+ * nada de script inline (a CSP não permite). Os links entram logo antes da
+ * tag do boot.js, para já existirem quando ele roda.
  */
 export function preloadHomeRoute(): Plugin {
 	return {
@@ -55,13 +56,15 @@ export function preloadHomeRoute(): Plugin {
 					return html;
 				}
 				const already = closure(entry, chunks);
-				return [...closure(home, chunks)]
+				const hints = [...closure(home, chunks)]
 					.filter((fileName) => !already.has(fileName))
-					.map((fileName) => ({
-						tag: "link",
-						attrs: { rel: "home-preload", href: `/${fileName}` },
-						injectTo: "head" as const,
-					}));
+					.map((fileName) => `<link rel="home-preload" href="/${fileName}" />`)
+					.join("\n    ");
+				if (!html.includes(BOOT_SCRIPT)) {
+					this.warn(`${BOOT_SCRIPT} não está no index.html: sem preload`);
+					return html;
+				}
+				return html.replace(BOOT_SCRIPT, `${hints}\n    ${BOOT_SCRIPT}`);
 			},
 		},
 	};

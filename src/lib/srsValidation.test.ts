@@ -78,3 +78,13 @@ describe("parseCard fsrs payload", () => {
 		}
 	});
 });
+
+describe("constantes copiadas do ts-fsrs", () => {
+	it("continuam iguais às do pacote", async () => {
+		const fsrs = await import("ts-fsrs");
+		const local = await import("./srsValidation");
+		expect(local.FSRS_MIN_STABILITY).toBe(fsrs.S_MIN);
+		expect(local.FSRS_STATE_NEW).toBe(fsrs.State.New);
+		expect(local.FSRS_STATE_RELEARNING).toBe(fsrs.State.Relearning);
+	});
+});

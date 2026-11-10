@@ -8,8 +8,9 @@ import { CoreWordCard } from "@/components/vocabulary/CoreWordCard";
 import { VocabStats } from "@/components/vocabulary/VocabStats";
 import { useKnownWords } from "@/hooks/useKnownWords";
 import { useSrs } from "@/hooks/useSrs";
-import { getWordsByLevel, LEVEL_ORDER } from "@/lib/coreVocabulary";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
+import { CEFR_LEVELS } from "@/lib/cefr";
+import { getWordsByLevel } from "@/lib/coreVocabulary";
 
 const PAGE_SIZE = 60;
 
@@ -54,7 +55,7 @@ export default function VocabularyVaultPage() {
 			/>
 
 			<div className="flex flex-wrap gap-2 mb-5">
-				{LEVEL_ORDER.map((item) => (
+				{CEFR_LEVELS.map((item) => (
 					<Button
 						key={item}
 						size="sm"

@@ -22,9 +22,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
-import { useToast } from "@/hooks/use-toast";
+import { useLessonFromUrl } from "@/hooks/useLessonFromUrl";
 import { useSrs } from "@/hooks/useSrs";
+import { useToast } from "@/hooks/useToast";
 import { triggerConfetti } from "@/lib/confetti";
 import {
 	type SentenceOrderingExercise,

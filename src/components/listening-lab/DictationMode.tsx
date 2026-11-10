@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useSrs } from "@/hooks/useSrs";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { dictationReviewCard } from "@/lib/dictationReview";
 import type { NativeSentence } from "@/lib/sources/tatoeba";
 import { type SpeechScore, scoreSpeech } from "@/lib/speechMatch";

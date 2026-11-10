@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CAN_DO_KEY, type CanDoState, readCanDo } from "@/lib/canDo";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 
 export function useCanDo() {

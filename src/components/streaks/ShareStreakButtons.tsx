@@ -2,7 +2,7 @@
 
 import { Copy, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 
 interface ShareStreakButtonsProps {
 	streak: number;

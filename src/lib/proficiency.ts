@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "./curriculumData";
+import type { CEFRLevel } from "./cefr";
 import { CEFR_ORDER } from "./levels";
 import { proficiencyProfiles } from "./proficiencyProfiles";
 import { proficiencyQuestions } from "./proficiencyQuestions";

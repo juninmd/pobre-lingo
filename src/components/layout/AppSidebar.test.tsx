@@ -5,7 +5,7 @@ import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 
 let mobile = true;
-vi.mock("@/hooks/use-mobile", () => ({ useIsMobile: () => mobile }));
+vi.mock("@/hooks/useIsMobile", () => ({ useIsMobile: () => mobile }));
 vi.mock("./NavMenu", () => ({ NavMenu: () => <nav>menu</nav> }));
 
 function Opener() {

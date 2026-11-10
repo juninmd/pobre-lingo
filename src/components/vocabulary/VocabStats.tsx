@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { LEVEL_VOCAB_TARGETS } from "@/lib/coreVocabulary";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
+import { LEVEL_VOCAB_TARGETS } from "@/lib/coreVocabularyMeta";
 
 type VocabStatsProps = {
 	level: CEFRLevel;

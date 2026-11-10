@@ -48,7 +48,7 @@ export function RightColumnWidgets() {
 	return (
 		<>
 			{/* Right Column: Quests & Tips */}
-			<div className="space-y-3 sm:space-y-4 md:space-y-6">
+			<div className="reveal-stagger space-y-3 sm:space-y-4 md:space-y-6">
 				{/* Smart Review */}
 				<SmartReviewWidget />
 

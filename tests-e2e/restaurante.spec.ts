@@ -93,7 +93,11 @@ for (const cliente of CLIENTES) {
 
 		try {
 			await page.goto(ROTA_RESTAURANTE, { waitUntil: "domcontentloaded" });
-			await expect(page.locator("#root")).not.toBeEmpty({ timeout: 20_000 });
+			// O index.html já traz uma casca estática dentro de #root: o app só montou
+			// quando ela sai de cena.
+			await expect(page.locator(".app-skeleton")).toHaveCount(0, {
+			timeout: 20_000,
+			});
 
 			// O garçom precisa abrir o atendimento.
 			await expect(page.getByText(/ready to order/i).first()).toBeVisible({

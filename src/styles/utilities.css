@@ -1,0 +1,28 @@
+@utility pb-safe {
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility perspective-1000 {
+	perspective: 1000px;
+}
+
+@utility preserve-3d {
+	transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+/* Seções abaixo da dobra: o navegador só calcula layout e pintura quando elas
+   se aproximam da tela. O tamanho reservado evita salto na barra de rolagem. */
+@utility defer-render {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 600px;
+}
+
+/* Pixel art sem interpolação ao ampliar. */
+@utility pixelated {
+	image-rendering: pixelated;
+}

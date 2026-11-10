@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGamification } from "@/contexts/GamificationContext";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 
 const PRACTICE_PHRASES = [
 	{ text: "I love learning English", translation: "Eu amo aprender inglês" },

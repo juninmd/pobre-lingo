@@ -21,9 +21,9 @@ Playwright e2e (`tests-e2e/`) builds and serves the production bundle on port 51
 
 ## Architecture
 
-### Routing (`src/pageRoutes.ts`, `src/Router.tsx`)
-- `src/pageRoutes.ts` is the route table: each entry maps a `path` to a lazy-loaded `Component`.
-- `src/Router.tsx` builds the browser router from that table, under `Layout`, with a Suspense fallback.
+### Routing (`src/app/routes.ts`, `src/app/Router.tsx`)
+- `src/app/routes.ts` is the route table: each entry maps a `path` to a lazy-loaded `Component`.
+- `src/app/Router.tsx` builds the browser router from that table, under `Layout`, with a Suspense fallback.
 - Pages live in `src/pages/`; dynamic segments use `:param` (e.g. `rules/[categoryId]` -> `rules/:categoryId`).
 
 ### Data Layer (static modules, no API)
@@ -40,7 +40,7 @@ Line counts from `wc -l`; these modules are exempt from the 150-line target.
 - `useLearningStreak()`: consecutive-day tracking
 - `useCurriculumProgress()`: XP, levels, lesson completion
 - `useBookmarkedRules()`: grammar rule favorites
-- `useToast()` (`use-toast.ts`): feedback notifications
+- `useToast()` (`useToast.ts`): feedback notifications
 
 ### Component Patterns
 Exercise components live in `src/components/exercises/` (see `SentenceOrdering.tsx`). Use `Card`, lucide icons and `useToast` for feedback.
@@ -54,7 +54,7 @@ Content carries Portuguese and English fields (`*_pt` / `*_en`), e.g. `title_pt`
 
 ### Styling
 - Use `cn()` from `src/lib/utils.ts` for className merging
-- Theme colors are CSS variables in `src/globals.css`
+- Theme colors are CSS variables in `src/styles/tokens.css`
 - Theme modes (`src/contexts/ThemeContext.tsx`): `light`, `dark`, `pobre-lingo`
 
 ### LocalStorage
@@ -71,8 +71,8 @@ import { getLocalStorageItem, setLocalStorageItem } from "@/lib/localStorage";
 **New exercise type**:
 1. Define the interface in `src/lib/exerciseData.ts`
 2. Create the component in `src/components/exercises/`
-3. Create the page in `src/pages/exercises/{name}/page.tsx`
-4. Add the route to `src/pageRoutes.ts` and the nav entry to `src/components/layout/navigationData.ts`
+3. Create the page in `src/pages/exercises/{Name}Page.tsx`
+4. Add the route to `src/app/routes.ts` and the nav entry to `src/components/layout/navigationData.ts`
 
 ## Don'ts
 - `npm`/`yarn`: use `pnpm`

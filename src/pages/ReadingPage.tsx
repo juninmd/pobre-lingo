@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { getWordCount, gradedReaders } from "@/lib/gradedReaders";
 import { cn } from "@/lib/utils";
 

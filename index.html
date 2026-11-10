@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tema salvo e preload da tela inicial, antes da primeira pintura. Externo por causa da
+         CSP. Fica antes do CSS e do JS para não esperar na fila deles; o build insere os
+         <link rel="home-preload"> logo antes desta tag (config/preloadHomeRoute.ts). -->
+    <script src="/boot.js"></script>
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0b6bcb" />
@@ -19,9 +19,27 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="mask-icon" href="/favicon.svg" color="#16a34a" />
+
+    <title>PobreLingo - Inglês Grátis</title>
+    <meta name="description" content="PobreLingo - Aprenda inglês de graça, do jeito certo." />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Casca estática: pinta antes do JavaScript; o React a substitui ao montar. -->
+      <div class="app-skeleton">
+        <div class="app-skeleton__sidebar">
+          <span class="app-skeleton__brand">PobreLingo</span>
+        </div>
+        <div class="app-skeleton__header">
+          <span class="app-skeleton__brand">PobreLingo</span>
+        </div>
+        <div class="app-skeleton__main" role="status" aria-label="Carregando o PobreLingo">
+          <div class="app-skeleton__block"></div>
+          <div class="app-skeleton__block"></div>
+          <div class="app-skeleton__block"></div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

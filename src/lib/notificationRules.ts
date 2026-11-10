@@ -11,7 +11,7 @@ import type {
 	NotificationPrefs,
 } from "@/lib/notificationCatalog";
 import { isSafeInternalHref } from "@/lib/safeHref";
-import { getDueCards, loadCards } from "@/lib/srs";
+import { getDueCards, loadCards } from "@/lib/srsCards";
 import { isNonNegativeNumber, isRecord } from "@/lib/storageGuards";
 
 const DAILY_GOAL = 5;

@@ -1,8 +1,8 @@
 import { Check, Lock, Play, Star } from "lucide-react";
 import { CefrBadge } from "@/components/common/CefrBadge";
 import { Button } from "@/components/ui/button";
+import { getCEFRLevel } from "@/lib/cefr";
 import type { Lesson, Module } from "@/lib/curriculumData";
-import { getCEFRLevel } from "@/lib/curriculumData";
 import { cn } from "@/lib/utils";
 
 interface LessonCardContentProps {

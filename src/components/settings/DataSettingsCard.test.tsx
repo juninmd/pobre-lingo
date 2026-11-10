@@ -2,6 +2,12 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
 import { localDay } from "@/lib/localDay";
+import { hardNavigate } from "@/lib/pageReload";
+
+vi.mock("@/lib/pageReload", () => ({
+	reloadPage: vi.fn(),
+	hardNavigate: vi.fn(),
+}));
 
 const CONSENT_KEY = "pobrelingo_analytics_consent";
 
@@ -47,19 +53,14 @@ describe("DataSettingsCard", () => {
 		beforeEach(() => {
 			hrefWrites.length = 0;
 			vi.useFakeTimers({ shouldAdvanceTime: true });
-			vi.stubGlobal("location", {
-				get href() {
-					return "http://localhost/settings";
-				},
-				set href(value: string) {
-					hrefWrites.push(value);
-				},
+			vi.mocked(hardNavigate).mockImplementation((href) => {
+				hrefWrites.push(href);
 			});
 			localStorage.setItem("pl_achievements", '["first_steps"]');
 		});
 		afterEach(() => {
 			vi.useRealTimers();
-			vi.unstubAllGlobals();
+			vi.mocked(hardNavigate).mockReset();
 		});
 
 		it("tells the user how many items were ignored before reloading", async () => {

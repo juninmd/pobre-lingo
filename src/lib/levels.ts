@@ -1,9 +1,5 @@
-import {
-	type CEFRLevel,
-	cefrConfig,
-	curriculumData,
-	getCEFRLevel,
-} from "./curriculumData";
+import { type CEFRLevel, cefrConfig, getCEFRLevel } from "./cefr";
+import { curriculumData } from "./curriculumData";
 
 export const CEFR_ORDER: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 

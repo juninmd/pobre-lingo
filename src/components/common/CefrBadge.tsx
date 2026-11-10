@@ -5,7 +5,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { type CEFRLevel, cefrConfig } from "@/lib/curriculumData";
+import { type CEFRLevel, cefrConfig } from "@/lib/cefr";
 import { cn } from "@/lib/utils";
 
 interface CefrBadgeProps {

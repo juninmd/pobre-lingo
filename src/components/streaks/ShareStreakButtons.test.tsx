@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ShareStreakButtons } from "@/components/streaks/ShareStreakButtons";
 
-vi.mock("@/hooks/use-toast", () => ({ useToast: () => ({ toast: vi.fn() }) }));
+vi.mock("@/hooks/useToast", () => ({ useToast: () => ({ toast: vi.fn() }) }));
 
 describe("ShareStreakButtons", () => {
 	afterEach(() => vi.restoreAllMocks());

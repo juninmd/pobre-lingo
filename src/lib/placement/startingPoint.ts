@@ -1,10 +1,5 @@
-import {
-	type CEFRLevel,
-	curriculumData,
-	getCEFRLevel,
-	type Lesson,
-	type Module,
-} from "../curriculumData";
+import { type CEFRLevel, getCEFRLevel } from "../cefr";
+import { curriculumData, type Lesson, type Module } from "../curriculumData";
 import { getLessonLink } from "../lessonLink";
 
 export interface StartingPoint {

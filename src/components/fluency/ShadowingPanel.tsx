@@ -1,7 +1,7 @@
 import { Mic, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { shadowingLines } from "@/lib/fluencyData";
 import { tts } from "@/lib/tts";
 

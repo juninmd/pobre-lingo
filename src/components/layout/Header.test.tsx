@@ -31,7 +31,7 @@ vi.mock("@/components/notifications/NotificationCenter", () => ({
 	),
 }));
 
-vi.mock("@/components/common/GlobalSearch", () => ({
+vi.mock("@/components/common/GlobalSearchTrigger", () => ({
 	GlobalSearchTrigger: () => (
 		<button type="button" data-testid="search-trigger">
 			Search

@@ -9,7 +9,7 @@ import {
 	parseWritingFeedback,
 	type WritingFeedback,
 } from "@/lib/ai/writingPrompt";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 
 type AiWritingFeedbackProps = { topic: string; text: string; level: CEFRLevel };
 

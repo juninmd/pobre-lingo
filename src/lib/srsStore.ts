@@ -1,4 +1,4 @@
-import { CARDS_KEY } from "@/lib/srs";
+import { CARDS_KEY } from "@/lib/srsCards";
 import type { ReviewCard } from "@/lib/srsTypes";
 import { parseCards } from "@/lib/srsValidation";
 

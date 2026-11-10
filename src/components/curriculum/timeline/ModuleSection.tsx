@@ -1,6 +1,6 @@
 import { CefrBadge } from "@/components/common/CefrBadge";
+import { getCEFRLevel } from "@/lib/cefr";
 import type { Module } from "@/lib/curriculumData";
-import { getCEFRLevel } from "@/lib/curriculumData";
 import { getIcon } from "@/lib/iconMap";
 import { cn } from "@/lib/utils";
 import { LessonCard } from "./LessonCard";

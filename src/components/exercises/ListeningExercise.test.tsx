@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { holdArrow, press, tab } from "@/test/keyboard";
+import { holdArrow, press, tab } from "@/test-utils/keyboard";
 import { ListeningExercise } from "./ListeningExercise";
 
 const mocks = vi.hoisted(() => ({
@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
 	completeLesson: vi.fn(),
 }));
 
-vi.mock("@/hooks/use-toast", () => ({
+vi.mock("@/hooks/useToast", () => ({
 	useToast: () => ({ toast: mocks.toast }),
 }));
 vi.mock("@/hooks/useCurriculumProgress", () => ({

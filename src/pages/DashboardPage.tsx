@@ -1,31 +1,29 @@
 import { Loader2 } from "lucide-react";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { SEO } from "@/components/common/SEO";
 import { LearningTimeline } from "@/components/curriculum/LearningTimeline";
 import { ContinueLearningCard } from "@/components/dashboard/ContinueLearningCard";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { FluencyJourneyCard } from "@/components/dashboard/FluencyJourneyCard";
-import { ImmersivePracticeSection } from "@/components/dashboard/ImmersivePracticeSection";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
+import { useIdleReady } from "@/hooks/useIdleReady";
+
+// Abaixo da dobra: chunk próprio, montado quando o navegador fica ocioso.
+const ImmersivePracticeSection = lazy(() =>
+	import("@/components/dashboard/ImmersivePracticeSection").then((module) => ({
+		default: module.ImmersivePracticeSection,
+	})),
+);
 
 export default function DashboardPage() {
+	const idle = useIdleReady();
+
 	return (
 		<PageContainer className="space-y-3 sm:space-y-6 lg:space-y-8 max-w-7xl mx-auto relative">
-			{/* Spatial UI / Glassmorphism Ambient Background */}
-			<div className="hidden md:block fixed inset-0 overflow-hidden pointer-events-none -z-10">
-				<div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/15 blur-[140px] animate-pulse-glow" />
-				<div
-					className="absolute top-[20%] -left-[15%] w-[40%] h-[40%] rounded-full bg-blue-500/15 blur-[120px] animate-pulse-glow"
-					style={{ animationDelay: "1s" }}
-				/>
-				<div
-					className="absolute bottom-[-15%] right-[10%] w-[60%] h-[40%] rounded-full bg-emerald-500/10 blur-[130px] animate-pulse-glow"
-					style={{ animationDelay: "2s" }}
-				/>
-			</div>
+			<div aria-hidden="true" className="ambient-backdrop hidden md:block" />
 
 			<SEO
 				title="Dashboard"
@@ -33,12 +31,11 @@ export default function DashboardPage() {
 			/>
 			<OnboardingModal />
 
-			{/* Welcome Greeting with Mascot */}
 			<MascotGreeting />
 			<DashboardStats />
 
 			<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-				<div className="min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
+				<div className="reveal-stagger min-w-0 lg:col-span-2 space-y-6 lg:space-y-8 flex flex-col">
 					<FluencyJourneyCard />
 					<ContinueLearningCard />
 					<section>
@@ -50,7 +47,13 @@ export default function DashboardPage() {
 							<LearningTimeline />
 						</Suspense>
 					</section>
-					<ImmersivePracticeSection />
+					<div className="defer-render">
+						{idle && (
+							<Suspense fallback={null}>
+								<ImmersivePracticeSection />
+							</Suspense>
+						)}
+					</div>
 				</div>
 				<RightColumnWidgets />
 			</div>

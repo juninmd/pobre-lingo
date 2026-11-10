@@ -65,7 +65,7 @@ export function CommunicativeRoleplayWidget() {
 	};
 
 	return (
-		<Card className="glass-card hover:animate-float group bg-gradient-to-br from-emerald-50/70 to-teal-50/70 dark:from-emerald-950/30 dark:to-teal-950/30 border-emerald-200/50 dark:border-teal-800/50 shadow-lg hover:shadow-emerald-500/10 relative overflow-hidden">
+		<Card className="glass-card group bg-gradient-to-br from-emerald-50/70 to-teal-50/70 dark:from-emerald-950/30 dark:to-teal-950/30 border-emerald-200/50 dark:border-teal-800/50 shadow-lg hover:shadow-emerald-500/10 relative overflow-hidden">
 			<div className="absolute -left-4 -top-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl" />
 			<CardHeader className="pb-2 flex flex-row items-start justify-between relative z-10">
 				<div>

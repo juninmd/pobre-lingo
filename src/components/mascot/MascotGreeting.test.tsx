@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { press, tab } from "@/test/keyboard";
+import { press, tab } from "@/test-utils/keyboard";
 import {
 	EVENING_LOCAL_DAY,
 	EVENING_UTC_DAY,
@@ -16,7 +16,7 @@ vi.mock("@/contexts/GamificationContext", () => ({
 vi.mock("@/contexts/ThemeContext", () => ({
 	useTheme: () => ({ theme: "light" }),
 }));
-vi.mock("@/hooks/use-toast", () => ({
+vi.mock("@/hooks/useToast", () => ({
 	useToast: () => ({ toast: mocks.toast }),
 }));
 

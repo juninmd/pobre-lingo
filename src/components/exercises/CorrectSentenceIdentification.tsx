@@ -17,9 +17,9 @@ import {
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
-import { useToast } from "@/hooks/use-toast";
+import { useLessonFromUrl } from "@/hooks/useLessonFromUrl";
 import { useSrs } from "@/hooks/useSrs";
+import { useToast } from "@/hooks/useToast";
 import {
 	type CorrectSentenceIdentificationChoice,
 	type CorrectSentenceIdentificationExercise,

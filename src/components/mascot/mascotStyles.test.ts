@@ -2,8 +2,10 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
-// jsdom does not load stylesheets, so the motion contract is read from the file (vitest runs at the project root).
-const css = readFileSync(resolve("src/globals.css"), "utf8");
+// jsdom does not load stylesheets, so the motion contract is read from the files (vitest runs at the project root).
+const css = ["mascot", "reduced-motion"]
+	.map((name) => readFileSync(resolve(`src/styles/${name}.css`), "utf8"))
+	.join("\n");
 
 /** Declarations of the rule whose selector is exactly `selector`. */
 function declarations(selector: string): string {

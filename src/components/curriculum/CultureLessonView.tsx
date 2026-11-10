@@ -2,13 +2,10 @@ import { CheckCircle2, Globe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-// Since we don't have a dedicated culture data file, we'll mock some content or reuse description
-// In a real app, this would fetch from a cultureData.ts
-// For now, we will display a generic culture placeholder or use the lesson description as a prompt
+import type { Lesson } from "@/lib/curriculumData";
 
 interface CultureLessonViewProps {
-	lesson: unknown; // Using any for simplicity here to accept the Lesson object
+	lesson: Lesson;
 	onComplete: () => void;
 	isCompleted: boolean;
 }

@@ -2,7 +2,8 @@ import { Check, Layers, RotateCcw, Volume2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BAND_LABELS, type CoreWord } from "@/lib/coreVocabulary";
+import type { CoreWord } from "@/lib/coreVocabulary";
+import { BAND_LABELS } from "@/lib/coreVocabularyMeta";
 import { tts } from "@/lib/tts";
 import { cn } from "@/lib/utils";
 

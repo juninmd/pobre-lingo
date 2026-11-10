@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGuidedCourse } from "@/hooks/useGuidedCourse";
-import { getWordsByLevel } from "@/lib/coreVocabulary";
+import { useWordOfTheDay } from "@/hooks/useWordOfTheDay";
 import { nextCourseLesson } from "@/lib/course/progress";
 import { tts } from "@/lib/tts";
 
@@ -12,8 +12,7 @@ export function WordOfTheDayWidget() {
 	const { progress } = useGuidedCourse();
 	const lesson = nextCourseLesson(progress);
 	const level = !lesson || lesson.level === "Pré-A1" ? "A1" : lesson.level;
-	const words = getWordsByLevel(level);
-	const word = words[Math.floor(Date.now() / 86400000) % words.length];
+	const word = useWordOfTheDay(level);
 	const [revealed, setRevealed] = useState(false);
 	const canSpeak = typeof window !== "undefined" && "speechSynthesis" in window;
 	useEffect(() => {
@@ -21,9 +20,22 @@ export function WordOfTheDayWidget() {
 			if (canSpeak) window.speechSynthesis.cancel();
 		};
 	}, [canSpeak]);
-	if (!word) return null;
+	if (word === null) return null;
+	if (!word) {
+		// Mesma altura do cartão pronto: o resto da coluna não pula quando ele chega.
+		return (
+			<Card aria-busy="true" className="min-h-[19rem]">
+				<CardHeader>
+					<CardTitle className="text-base flex items-center gap-2">
+						<BookOpen className="h-5 w-5 text-primary" /> Palavra do dia ·{" "}
+						{level}
+					</CardTitle>
+				</CardHeader>
+			</Card>
+		);
+	}
 	return (
-		<Card>
+		<Card className="min-h-[19rem]">
 			<CardHeader>
 				<CardTitle className="text-base flex items-center gap-2">
 					<BookOpen className="h-5 w-5 text-primary" /> Palavra do dia · {level}

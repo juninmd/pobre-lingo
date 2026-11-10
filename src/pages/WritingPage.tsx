@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { DictationExercise } from "@/components/exercises/DictationExercise";
 import { WritingPromptEditor } from "@/components/exercises/WritingPromptEditor";
 import { Button } from "@/components/ui/button";
-import type { CEFRLevel } from "@/lib/curriculumData";
+import type { CEFRLevel } from "@/lib/cefr";
 import { dictations, writingPrompts } from "@/lib/dictationData";
 
 export default function WritingPage() {

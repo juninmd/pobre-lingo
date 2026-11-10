@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "../curriculumData";
+import type { CEFRLevel } from "../cefr";
 
 export type PlacementSkill = "grammar" | "vocabulary" | "reading" | "listening";
 

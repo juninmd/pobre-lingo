@@ -3,8 +3,8 @@ import type React from "react";
 import { Link } from "react-router-dom";
 import { CefrBadge } from "@/components/common/CefrBadge";
 import { Button } from "@/components/ui/button";
-import { useLessonFromUrl } from "@/contexts/ActiveLessonContext";
-import { type CEFRLevel, getCEFRLevel } from "@/lib/curriculumData";
+import { useLessonFromUrl } from "@/hooks/useLessonFromUrl";
+import { type CEFRLevel, getCEFRLevel } from "@/lib/cefr";
 import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
@@ -37,7 +37,7 @@ export function PageHeader({
 	return (
 		<div
 			className={cn(
-				"relative mb-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border overflow-hidden",
+				"reveal relative mb-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border overflow-hidden",
 				className,
 			)}
 		>

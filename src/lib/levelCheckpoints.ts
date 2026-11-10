@@ -1,4 +1,4 @@
-import type { CEFRLevel } from "./curriculumData";
+import type { CEFRLevel } from "./cefr";
 
 export type CanDoStatement = { id: string; text: string };
 

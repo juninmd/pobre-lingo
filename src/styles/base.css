@@ -1,0 +1,48 @@
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	:root {
+		color-scheme: light;
+		/* Curvas e durações compartilhadas: toda animação do app sai daqui. */
+		--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+		--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+		--dur-fast: 140ms;
+		--dur-base: 220ms;
+		--dur-enter: 420ms;
+	}
+
+	.dark {
+		/* Controles nativos e barras de rolagem acompanham o tema escuro. */
+		color-scheme: dark;
+	}
+
+	html {
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	/* Nitidez do texto: suavização em tons de cinza, kerning e ligaduras
+	   ligados, e nada de negrito ou itálico sintetizado (fica borrado). */
+	body {
+		@apply bg-background text-foreground selection:bg-primary/30 selection:text-primary;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+		font-optical-sizing: auto;
+		font-synthesis: none;
+		font-kerning: normal;
+	}
+
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+}

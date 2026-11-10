@@ -6,7 +6,6 @@
  * rápido e o consolidado some do caminho. Persistido em localStorage.
  */
 
-import { getLocalStorageItem } from "@/lib/localStorage";
 import { capCards } from "@/lib/srsCap";
 import { scheduleCard } from "@/lib/srsScheduler";
 import {
@@ -14,11 +13,15 @@ import {
 	type NewCardInput,
 	type ReviewCard,
 } from "@/lib/srsTypes";
-import { parseCards } from "@/lib/srsValidation";
 
+export {
+	CARDS_KEY,
+	getDueCards,
+	getSrsStats,
+	loadCards,
+	type SrsStats,
+} from "@/lib/srsCards";
 export { previewInterval, scheduleCard } from "@/lib/srsScheduler";
-
-export const CARDS_KEY = "pobrelingo_srs_cards";
 
 /** Campo legado do SM-2, mantido para cards antigos e backups. */
 const DEFAULT_EASE_FACTOR = 2.5;
@@ -36,10 +39,6 @@ export {
 	GRADE_GOOD,
 	GRADE_HARD,
 } from "@/lib/srsTypes";
-
-export function loadCards(): ReviewCard[] {
-	return parseCards(getLocalStorageItem<unknown>(CARDS_KEY, []));
-}
 
 function createCard(input: NewCardInput, now: Date): ReviewCard {
 	return {
@@ -89,44 +88,4 @@ export function enrollCards(
 	const fresh = inputs.filter((input) => !known.has(input.id));
 	if (fresh.length === 0) return cards;
 	return capCards([...cards, ...fresh.map((input) => createCard(input, now))]);
-}
-
-/** Cards vencidos, mais atrasados primeiro. */
-export function getDueCards(
-	cards: ReviewCard[],
-	now: Date = new Date(),
-): ReviewCard[] {
-	const nowMs = now.getTime();
-	return cards
-		.filter((c) => new Date(c.dueAt).getTime() <= nowMs)
-		.sort((a, b) => new Date(a.dueAt).getTime() - new Date(b.dueAt).getTime());
-}
-
-export interface SrsStats {
-	total: number;
-	due: number;
-	/** Nunca respondidos com sucesso. */
-	learning: number;
-	/** Intervalo >= 21 dias: considerado memorizado. */
-	mature: number;
-	/** Próxima revisão agendada, se não houver nada vencido agora. */
-	nextDueAt: string | null;
-}
-
-export function getSrsStats(
-	cards: ReviewCard[],
-	now: Date = new Date(),
-): SrsStats {
-	const due = getDueCards(cards, now);
-	const upcoming = cards
-		.filter((c) => new Date(c.dueAt).getTime() > now.getTime())
-		.sort((a, b) => new Date(a.dueAt).getTime() - new Date(b.dueAt).getTime());
-
-	return {
-		total: cards.length,
-		due: due.length,
-		learning: cards.filter((c) => c.repetitions === 0).length,
-		mature: cards.filter((c) => c.intervalDays >= 21).length,
-		nextDueAt: upcoming[0]?.dueAt ?? null,
-	};
 }

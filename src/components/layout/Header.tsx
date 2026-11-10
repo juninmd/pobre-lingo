@@ -1,6 +1,6 @@
 import { GraduationCap, Menu, Moon, Sparkles, Sun } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { GlobalSearchTrigger } from "@/components/common/GlobalSearch";
+import { GlobalSearchTrigger } from "@/components/common/GlobalSearchTrigger";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
 import { Button } from "@/components/ui/button";
 import {

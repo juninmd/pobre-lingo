@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { useActivityLog } from "@/hooks/useActivityLog";
+import { useToast } from "@/hooks/useToast";
 import { fireConfetti } from "@/lib/confetti";
 import { dictionaryEntries } from "@/lib/dictionaryData";
 import {

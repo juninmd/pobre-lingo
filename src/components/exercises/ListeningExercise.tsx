@@ -13,8 +13,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
+import { useToast } from "@/hooks/useToast";
 import { getListeningExercisesForLesson } from "@/lib/exerciseData";
 import { tts } from "@/lib/tts";
 

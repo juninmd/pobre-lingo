@@ -31,6 +31,10 @@
 
 ## 📅 Session Logs
 
+### [2026-11-11] Spark-Frontend: Roda de Palavras
+- **Action:** New game `/games/word-wheel` (Arcade): drag across letters on a wheel (or type / tap + centre button) to find every word; dictionary words that fit count as bonus. Puzzles are data in `src/lib/wordWheel/puzzles*.ts` (a test checks every word fits its wheel); progress saved under `pobrelingo_word_wheel`. Arcade list moved to `components/arcade/arcadeGames.ts`.
+- **Note:** The wheel keeps the selected path in a ref (`useSyncedPath`): `pointerup` can arrive before the re-render of the last `pointermove`. Its CSS lives in `styles/word-wheel*.css`, imported by the page chunk only.
+
 ### [2026-11-10] Bolt-Automation: GitHub Pages
 - **Action:** `.github/workflows/pages.yml` deploys `dist/` to GitHub Pages under `/pobre-lingo/` (`VITE_BASE`). The router `basename`, `hardNavigate`, the notification click, `sw-reminders.js`, the manifest and the home preload all honour the base; `404.html` is the SPA fallback.
 - **Note:** Never hardcode `"/"`-rooted URLs for the browser (`window.location`, icons, `fetch`): use `withBase()` from `src/lib/baseUrl.ts`. Pages sends no headers, so the CSP in `public/_headers` does not apply there. Repo setting still needed: Pages source = GitHub Actions.

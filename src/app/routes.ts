@@ -37,6 +37,10 @@ export const pageRoutes = [
 		Component: page(() => import("@/pages/games/SentenceRushPage")),
 	},
 	{
+		path: "games/word-wheel",
+		Component: page(() => import("@/pages/games/WordWheelPage")),
+	},
+	{
 		path: "games/hangman",
 		Component: page(() => import("@/pages/games/HangmanPage")),
 	},

@@ -6,7 +6,7 @@ test.describe("Learning Timeline", () => {
 			window.localStorage.setItem("pobrelingo_onboarded", "true");
 		});
 		// Go to home page where the timeline is
-		await page.goto("/");
+		await page.goto("/learn");
 	});
 
 	test("should render the timeline structure", async ({ page }) => {

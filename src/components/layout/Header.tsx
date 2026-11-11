@@ -1,7 +1,8 @@
-import { GraduationCap, Menu, Moon, Sparkles, Sun } from "lucide-react";
+import { GraduationCap, Moon, Sparkles, Sun } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { GlobalSearchTrigger } from "@/components/common/GlobalSearchTrigger";
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+import { NAV_TABS } from "@/components/shell/navTabs";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -11,12 +12,11 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useGamification } from "@/contexts/GamificationContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCurriculumProgress } from "@/hooks/useCurriculumProgress";
 import { HeaderStats } from "./HeaderStats";
-import { allNavItems } from "./NavMenu";
+import { allNavItems } from "./navigationData";
 
 export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 	const { theme, setTheme } = useTheme();
@@ -26,6 +26,8 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 
 	// Determinar título da página atual
 	const getCurrentPageTitle = () => {
+		const tab = NAV_TABS.find((t) => t.href === location.pathname);
+		if (tab) return tab.label;
 		const currentItem = allNavItems.find(
 			(item) =>
 				location.pathname === item.href ||
@@ -37,20 +39,6 @@ export function Header({ onSearchOpen }: { onSearchOpen: () => void }) {
 	return (
 		<header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-1.5 sm:gap-3 md:gap-4 border-b bg-background/80 backdrop-blur-xl px-3 sm:px-4 md:px-6 glass supports-[backdrop-filter]:bg-background/70">
 			<div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-				<div className="block">
-					<SidebarTrigger asChild>
-						<Button
-							variant="ghost"
-							size="icon"
-							// The desktop column is persistent, so the trigger only opens the mobile drawer.
-							className="h-11 w-11 md:hidden text-muted-foreground hover:text-foreground transition-colors"
-						>
-							<Menu className="h-5 w-5" />
-							<span className="sr-only">Alternar menu</span>
-						</Button>
-					</SidebarTrigger>
-				</div>
-
 				<div className="md:hidden flex-shrink-0 flex items-center gap-2">
 					<div className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shadow-sm border border-primary/10 [data-theme=pobre-lingo]:bg-primary/20 [data-theme=pobre-lingo]:border-primary/30">
 						<GraduationCap className="h-5 w-5 text-primary" />

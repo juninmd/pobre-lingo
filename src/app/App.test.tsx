@@ -67,7 +67,7 @@ describe("App shell", () => {
 		expect(
 			await screen.findByRole(
 				"heading",
-				{ name: /Sua Jornada/i },
+				{ name: "Fila do dia" },
 				{ timeout: 10000 },
 			),
 		).toBeInTheDocument();

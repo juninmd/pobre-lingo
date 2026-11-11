@@ -1,0 +1,84 @@
+/* Barra de abas: respeita a área segura do celular; a pílula da aba ativa salta. */
+.tab-nav {
+	padding-bottom: env(safe-area-inset-bottom, 0px);
+	padding-left: env(safe-area-inset-left, 0px);
+	padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Flutuantes (mascote, convite de instalação) ficam acima da barra de abas no celular. */
+.above-tabbar {
+	bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+	.above-tabbar {
+		bottom: 1.5rem;
+	}
+}
+
+.tab-pill {
+	animation: pl-good 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@media (min-width: 768px) {
+	.tab-nav {
+		padding: 1.25rem 0;
+	}
+}
+
+/* Cartão do próximo passo: brilho suave nas cores da marca atrás do conteúdo. */
+.next-step {
+	background:
+		radial-gradient(
+			circle at 100% 0%,
+			hsl(var(--brand-gold) / 0.18),
+			transparent 45%
+		),
+		radial-gradient(
+			circle at 0% 100%,
+			hsl(var(--brand-violet) / 0.16),
+			transparent 50%
+		),
+		hsl(var(--card));
+}
+
+/* Miniatura da roda no destaque do Arcade: letras em órbita lenta. */
+.featured-wheel {
+	position: relative;
+	width: 11rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: conic-gradient(
+		hsl(var(--brand-violet) / 0.25),
+		hsl(var(--brand-aqua) / 0.25),
+		hsl(var(--brand-gold) / 0.25),
+		hsl(var(--brand-violet) / 0.25)
+	);
+	animation: pl-orbit 24s linear infinite;
+}
+
+.featured-wheel > span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: grid;
+	place-items: center;
+	width: 2.6rem;
+	height: 2.6rem;
+	margin: -1.3rem;
+	border-radius: 50%;
+	font:
+		800 1.15rem "Bricolage Grotesque",
+		Inter,
+		sans-serif;
+	color: hsl(var(--ink));
+	background: hsl(0 0% 100%);
+	box-shadow: 0 4px 0 hsl(var(--border));
+	transform: rotate(var(--a)) translateY(-4rem) rotate(calc(-1 * var(--a)));
+}
+
+@keyframes pl-orbit {
+	to {
+		rotate: 360deg;
+	}
+}

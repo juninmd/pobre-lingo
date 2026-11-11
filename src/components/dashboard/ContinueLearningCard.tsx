@@ -64,7 +64,7 @@ export function ContinueLearningCard() {
 	const ModuleIcon = getIcon(module.icon, BookOpen);
 
 	return (
-		<Card className="border-[3px] border-primary/30 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300 relative overflow-hidden group @container hover:scale-[1.02] active:scale-[0.98]">
+		<Card className="next-step lift rounded-3xl border-2 border-primary/25 bg-card relative overflow-hidden group @container">
 			{/* Shimmer effect */}
 			<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
 
@@ -84,8 +84,8 @@ export function ContinueLearningCard() {
 						{/* Content */}
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
-								<span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded text-[11px] sm:text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
-									A SEGUIR
+								<span className="eyebrow shrink-0 whitespace-nowrap">
+									Próximo passo
 								</span>
 								<p className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground truncate">
 									{module.title_pt}
@@ -116,8 +116,10 @@ export function ContinueLearningCard() {
 					>
 						<Link to={link} aria-label={`Começar agora: ${lesson.title_pt}`}>
 							<div className="absolute inset-0 bg-white/20 dark:bg-white/10 w-full h-full -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite] pointer-events-none" />
-							<Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current animate-pulse group-hover/btn:scale-125 transition-transform" />
-							<span className="text-sm sm:text-base">Começar Agora</span>
+							<Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current group-hover/btn:scale-125 transition-transform" />
+							<span className="text-sm sm:text-base">
+								Continuar de onde parei
+							</span>
 							<ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-1 group-hover/btn:translate-x-1.5 transition-transform" />
 						</Link>
 					</Button>

@@ -28,15 +28,7 @@ test('test_responsive_mobile', async ({ page, isMobile }) => {
 
     await page.goto('/');
 
-    // In mobile, "Menu principal" sidebar is hidden initially, trigger is a button
-    // Let's verify we can see the "Alternar menu" button
-    const menuBtn = page.getByRole('button', { name: /Alternar menu/i });
-    await expect(menuBtn).toBeVisible();
-
-    // Click the menu
-    await menuBtn.click();
-
-    // Now "Menu principal" should be visible
+    // No celular as quatro abas ficam numa barra fixa embaixo, sem menu escondido.
     await expect(page.getByRole('navigation', { name: /Menu principal/i })).toBeVisible();
 
     // Check for "Onde parei" indicator

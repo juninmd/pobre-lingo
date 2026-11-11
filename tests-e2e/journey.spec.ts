@@ -8,56 +8,45 @@ test.describe("Learning Journey - Interactive Book Interface", () => {
 		});
 	});
 
-	test("should render home with the persistent sidebar and no bottom bar on desktop", async ({
+	test("shows the four tabs as a rail on desktop", async ({
 		page,
 		isMobile,
 	}) => {
 		test.skip(isMobile, "Desktop only layout");
 		await page.goto("/");
 
-		// The sidebar uses a `<nav>` with aria-label="Menu principal"
-		const desktopNav = page.getByRole("navigation", { name: "Menu principal" });
-		await expect(desktopNav).toBeVisible();
-
-		// The header should have a menu trigger that is hidden on desktop via CSS,
-		// but Playwright checks visibility.
-		const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
-		await expect(sidebarTrigger).toBeHidden();
-
-		// O bottom nav legacy deve estar oculto ou removido (já foi removido na refatoração)
-		await expect(
-			page.getByRole("navigation", { name: "Atalhos" }),
-		).toBeHidden();
+		const nav = page.getByRole("navigation", { name: "Menu principal" });
+		await expect(nav).toBeVisible();
+		for (const tab of ["Hoje", "Aprender", "Jogar", "Eu"]) {
+			await expect(nav.getByRole("link", { name: tab })).toBeVisible();
+		}
+		const box = await nav.boundingBox();
+		expect(box?.width ?? 999).toBeLessThan(120);
+		await expect(page.getByRole("button", { name: "Alternar menu" })).toHaveCount(0);
 	});
 
-	test("should use a drawer behind the menu trigger on mobile", async ({
+	test("shows the four tabs as a bottom bar on mobile", async ({
 		page,
 		isMobile,
 	}) => {
 		test.skip(!isMobile, "Mobile only layout");
 		await page.goto("/");
 
-		const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
-		await expect(sidebarTrigger).toBeVisible();
+		const nav = page.getByRole("navigation", { name: "Menu principal" });
+		const viewport = page.viewportSize();
+		const box = await nav.boundingBox();
+		expect(box?.width).toBeGreaterThanOrEqual((viewport?.width ?? 0) - 1);
+		expect((box?.y ?? 0) + (box?.height ?? 0)).toBeGreaterThanOrEqual((viewport?.height ?? 0) - 1);
 
-		// Main content takes full width
-		const mainArea = page.locator("main").first();
-		const viewportWidth = page.viewportSize()?.width || 0;
-		const mainBox = await mainArea.boundingBox();
-		if (mainBox) {
-			expect(mainBox.width).toBeGreaterThanOrEqual(viewportWidth - 1);
-		}
-
-		await sidebarTrigger.click();
-		await expect(
-			page.getByRole("dialog").getByRole("link", { name: "Minha Jornada" }),
-		).toBeVisible();
+		await nav.getByRole("link", { name: "Aprender" }).click();
+		await expect(page).toHaveURL(/\/learn$/);
+		await expect(page.getByRole("heading", { name: "Sua Jornada" })).toBeVisible();
 	});
 
 	test("should display 'Onde parei' bookmark and navigate to active lesson", async ({
 		page,
 	}) => {
-		await page.goto("/");
+		await page.goto("/learn");
 
 		// Espera a timeline ser renderizada (substitui o antigo LessonMap)
 		const timeline = page.locator(".max-w-2xl").first();

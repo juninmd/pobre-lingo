@@ -1,6 +1,7 @@
 import {
 	AlertCircle,
 	Brain,
+	CircleDot,
 	Disc3,
 	GraduationCap,
 	Grid,
@@ -112,6 +113,18 @@ export const arcadeGames = [
 		difficulty: "Difícil",
 		cefr: "C1/C2",
 		xp: "Max 500 XP",
+	},
+	{
+		id: "bubble-pop",
+		title: "Bolhas",
+		description: "Estoure as bolhas que formam pares de inglês e português.",
+		icon: CircleDot,
+		color: "text-cyan-600",
+		bgColor: "bg-cyan-500/10",
+		href: "/games/bubble-pop",
+		difficulty: "Fácil",
+		cefr: "A1/A2",
+		xp: "50 XP",
 	},
 	{
 		id: "listening-challenge",

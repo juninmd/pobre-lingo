@@ -91,18 +91,20 @@ import { VirtualImmersionWidget } from "./VirtualImmersionWidget";
 
 export function ImmersivePracticeSection() {
 	return (
-		<section
-			aria-labelledby="immersive-practice-title"
-			className="space-y-4 mt-8"
-		>
-			<div className="flex items-center gap-2 mb-2">
-				<Sparkles className="h-6 w-6 text-primary animate-pulse" />
-				<h3
-					id="immersive-practice-title"
-					className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-				>
-					Tendências 2025 & Prática Imersiva
-				</h3>
+		<section aria-labelledby="immersive-practice-title" className="space-y-4">
+			<div className="flex flex-wrap items-end justify-between gap-2">
+				<div>
+					<p className="eyebrow flex items-center gap-1.5">
+						<Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+						Tendências e prática imersiva
+					</p>
+					<h2 id="immersive-practice-title" className="text-2xl font-extrabold">
+						Deck de métodos
+					</h2>
+				</div>
+				<p className="text-sm text-muted-foreground">
+					Escolha um tema e deslize as cartas.
+				</p>
 			</div>
 			<Tabs defaultValue="digital">
 				<TabsList className="flex flex-wrap gap-2 mb-4">
@@ -114,10 +116,7 @@ export function ImmersivePracticeSection() {
 					<TabsTrigger value="essenciais">Essenciais</TabsTrigger>
 				</TabsList>
 
-				<TabsContent
-					value="digital"
-					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-				>
+				<TabsContent value="digital" className="deck">
 					<GenAIWidget />
 					<TeacherpreneurshipWidget />
 					<AIPromptCraftingWidget />
@@ -136,10 +135,7 @@ export function ImmersivePracticeSection() {
 					<DigitalLiteracyWidget />
 				</TabsContent>
 
-				<TabsContent
-					value="social"
-					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
-				>
+				<TabsContent value="social" className="deck">
 					<InclusivePracticesWidget />
 					<GlobalCitizenshipWidget />
 					<WellBeingWidget />
@@ -154,19 +150,13 @@ export function ImmersivePracticeSection() {
 					<CollaborativeLearningWidget />
 				</TabsContent>
 
-				<TabsContent
-					value="cultura"
-					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-				>
+				<TabsContent value="cultura" className="deck">
 					<AuthenticMaterialsWidget />
 					<GlobalEnglishesWidget />
 					<ICCWidget />
 				</TabsContent>
 
-				<TabsContent
-					value="metodologias"
-					className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
-				>
+				<TabsContent value="metodologias" className="deck">
 					<HeutagogyWidget />
 					<EduScrumWidget />
 					<InvisibleLearningWidget />
@@ -217,10 +207,7 @@ export function ImmersivePracticeSection() {
 					<CRTWidget />
 				</TabsContent>
 
-				<TabsContent
-					value="interativas"
-					className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-				>
+				<TabsContent value="interativas" className="deck">
 					<PodcastingWidget />
 					<AdaptiveLearningWidget />
 					<RealWorldARWidget />

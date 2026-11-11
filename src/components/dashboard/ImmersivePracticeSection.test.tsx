@@ -60,7 +60,7 @@ describe("ImmersivePracticeSection", () => {
 		);
 
 		expect(
-			screen.getByText("Tendências 2025 & Prática Imersiva"),
+			screen.getByRole("heading", { name: "Deck de métodos" }),
 		).toBeInTheDocument();
 
 		// By default 'digital' tab is active

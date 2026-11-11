@@ -12,8 +12,13 @@
 @layer components {
 	/* Ficha tátil: sombra sólida mais escura que o fundo; desce ao toque. */
 	.press {
-		--press-shade: color-mix(in srgb, currentColor 0%, var(--press-color, hsl(var(--primary))) 100%);
-		box-shadow: 0 var(--press-depth) 0 color-mix(in srgb, var(--press-shade) 62%, black);
+		--press-shade: color-mix(
+			in srgb,
+			currentColor 0%,
+			var(--press-color, hsl(var(--primary))) 100%
+		);
+		box-shadow: 0 var(--press-depth) 0
+			color-mix(in srgb, var(--press-shade) 62%, black);
 		transition:
 			transform 120ms var(--ease-out),
 			box-shadow 120ms var(--ease-out),

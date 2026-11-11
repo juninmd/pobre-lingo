@@ -31,6 +31,12 @@
 
 ## 📅 Session Logs
 
+### [2026-11-11] Spark-Frontend / Jules-Architect: Pobre Lingo 2.0 (arcade de bolso)
+- **Action:** The 30-item sidebar became four tabs (`components/shell/TabNav.tsx`, `navTabs.ts`): Hoje (next step, daily queue, quests), Aprender (`/learn`: journey, skills, reference, method deck), Jogar (`/arcade`: Roda featured, minigames, drills), Eu (`/me`: profile, CEFR band, links to progress/achievements/test/settings). Hub cards come from `shell/hubData.ts` + `hubLinksPlayMe.ts`.
+- **Action:** New tokens (ink, gold, aqua, coral; `--gold`, `--press-depth`), fonts Bricolage Grotesque + Silkscreen (Sora removed), tactile `.press` buttons, `.deck` carousel for the trend widgets, `.lift` cards (`styles/arcade.css`, `styles/shell.css`).
+- **Note:** Every static route must appear in the ⌘K catalog (`common/searchData.ts`) and light a tab; `shell/coverage.test.ts` enforces it. Fixed floating UI on phones uses `.above-tabbar` so the bottom bar stays clickable.
+- **Note:** The journey (`LearningTimeline`, "Sua Jornada") now lives at `/learn`; the e2e specs `journey`, `learning_timeline`, `timeline`, `homologacao` and `test_home` were moved to the tabs. Playwright here needs `launchOptions.executablePath: /opt/pw-browsers/chromium` (installed browser build differs from the package).
+
 ### [2026-11-11] Spark-Frontend: Roda de Palavras
 - **Action:** New game `/games/word-wheel` (Arcade): drag across letters on a wheel (or type / tap + centre button) to find every word; dictionary words that fit count as bonus. Puzzles are data in `src/lib/wordWheel/puzzles*.ts` (a test checks every word fits its wheel); progress saved under `pobrelingo_word_wheel`. Arcade list moved to `components/arcade/arcadeGames.ts`.
 - **Note:** The wheel keeps the selected path in a ref (`useSyncedPath`): `pointerup` can arrive before the re-render of the last `pointermove`. Its CSS lives in `styles/word-wheel*.css`, imported by the page chunk only.

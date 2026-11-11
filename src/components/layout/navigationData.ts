@@ -33,7 +33,7 @@ export const navGroups: NavigationGroup[] = [
 	{
 		title: "Principal",
 		items: [
-			{ href: "/", label: "Minha Jornada", icon: MapIcon },
+			{ href: "/learn", label: "Minha Jornada", icon: MapIcon },
 			{ href: "/course", label: "Curso guiado", icon: GraduationCap },
 			{ href: "/review", label: "Revisar", icon: Brain, badge: "SRS" },
 			{ href: "/arcade", label: "Arcade", icon: Gamepad2, badge: "Fun" },

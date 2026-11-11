@@ -9,7 +9,7 @@
 	grid-template-rows: 4rem 1fr;
 	background: hsl(var(--background));
 	color: hsl(var(--foreground));
-	font-family: Sora, Inter, system-ui, sans-serif;
+	font-family: "Bricolage Grotesque", Inter, system-ui, sans-serif;
 }
 
 .app-skeleton__sidebar {

@@ -1,0 +1,122 @@
+/* Linguagem tátil da UI "arcade de bolso": títulos, fichas que afundam,
+   deck deslizante e as reações de acerto/erro/ganho. */
+@layer base {
+	h1,
+	h2,
+	h3 {
+		font-family: "Bricolage Grotesque", Inter, system-ui, sans-serif;
+		letter-spacing: -0.02em;
+	}
+}
+
+@layer components {
+	/* Ficha tátil: sombra sólida mais escura que o fundo; desce ao toque. */
+	.press {
+		--press-shade: color-mix(in srgb, currentColor 0%, var(--press-color, hsl(var(--primary))) 100%);
+		box-shadow: 0 var(--press-depth) 0 color-mix(in srgb, var(--press-shade) 62%, black);
+		transition:
+			transform 120ms var(--ease-out),
+			box-shadow 120ms var(--ease-out),
+			background-color 150ms;
+	}
+
+	.press:active:not(:disabled) {
+		transform: translateY(var(--press-depth));
+		box-shadow: 0 0 0 color-mix(in srgb, var(--press-shade) 62%, black);
+	}
+
+	.press-gold {
+		--press-color: hsl(var(--gold));
+	}
+
+	.press-muted {
+		--press-color: hsl(var(--border));
+	}
+
+	/* Cartão que reage ao ponteiro: sobe um pouco e ganha borda de marca. */
+	.lift {
+		transition:
+			transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+			border-color 200ms,
+			box-shadow 200ms;
+	}
+
+	@media (hover: hover) {
+		.lift:hover {
+			transform: translateY(-4px);
+			border-color: hsl(var(--primary) / 0.45);
+		}
+	}
+
+	/* Deck de métodos: cartas lado a lado que encaixam ao deslizar. */
+	.deck {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: min(20rem, 82%);
+		gap: 1rem;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		padding: 0.25rem 0.25rem 1rem;
+		scrollbar-width: thin;
+	}
+
+	.deck > * {
+		scroll-snap-align: start;
+		min-width: 0;
+	}
+
+	/* Números e selos em fonte pixel. */
+	.pixel-num {
+		font-family: Silkscreen, ui-monospace, monospace;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0.02em;
+	}
+
+	.eyebrow {
+		font-family: Silkscreen, ui-monospace, monospace;
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: hsl(var(--primary));
+	}
+}
+
+/* Reações: acerto salta, erro treme, ganho pula. */
+@keyframes pl-good {
+	0% {
+		transform: scale(0.85);
+	}
+	60% {
+		transform: scale(1.1);
+	}
+}
+
+@keyframes pl-bad {
+	20%,
+	60% {
+		transform: translateX(-6px);
+	}
+	40%,
+	80% {
+		transform: translateX(6px);
+	}
+}
+
+@keyframes pl-ring {
+	from {
+		stroke-dashoffset: 1;
+	}
+}
+
+.react-good {
+	animation: pl-good 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.react-bad {
+	animation: pl-bad 380ms both;
+}
+
+.ring-draw {
+	animation: pl-ring 1.2s var(--ease-out) both;
+}

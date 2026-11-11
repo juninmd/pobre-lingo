@@ -5,21 +5,22 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-[color,background-color,border-color,box-shadow,transform] duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold ring-offset-background transition-[color,background-color,border-color,box-shadow,transform] duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 	{
 		variants: {
 			variant: {
-				default: "bg-primary text-primary-foreground hover:bg-primary/90",
+				default:
+					"press bg-primary text-primary-foreground hover:bg-primary/90 active:scale-100",
 				destructive:
-					"bg-destructive text-destructive-foreground hover:bg-destructive/90",
+					"press [--press-color:hsl(var(--destructive))] bg-destructive text-destructive-foreground hover:bg-destructive/90 active:scale-100",
 				outline:
-					"border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+					"press press-muted border border-input bg-background hover:bg-accent hover:text-accent-foreground active:scale-100",
 				secondary:
 					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
 				ghost: "hover:bg-accent hover:text-accent-foreground",
 				link: "text-primary underline-offset-4 hover:underline",
 				gamified:
-					"bg-primary text-primary-foreground border-b-[6px] border-primary/60 hover:bg-primary/95 hover:brightness-110 active:border-b-0 active:mt-[6px] transition-all shadow-[0_4px_14px_0_rgba(var(--primary),0.39)]",
+					"press press-gold bg-gold text-gold-foreground font-bold hover:brightness-105 active:scale-100",
 			},
 			size: {
 				default: "h-10 px-4 py-2",

@@ -12,9 +12,10 @@ export default {
 		extend: {
 			fontFamily: {
 				body: ["Inter", "system-ui", "sans-serif"],
-				headline: ["Sora", "Inter", "system-ui", "sans-serif"],
+				headline: ["Bricolage Grotesque", "Inter", "system-ui", "sans-serif"],
 				sans: ["Inter", "system-ui", "sans-serif"],
-				display: ["Sora", "Inter", "system-ui", "sans-serif"],
+				display: ["Bricolage Grotesque", "Inter", "system-ui", "sans-serif"],
+				pixel: ["Silkscreen", "ui-monospace", "monospace"],
 				code: ["monospace"],
 			},
 			colors: {
@@ -56,6 +57,13 @@ export default {
 					aqua: "hsl(var(--brand-aqua))",
 					gold: "hsl(var(--brand-gold))",
 				},
+				gold: {
+					DEFAULT: "hsl(var(--gold))",
+					foreground: "hsl(var(--gold-foreground))",
+				},
+				aqua: "hsl(var(--aqua))",
+				coral: "hsl(var(--coral))",
+				ink: "hsl(var(--ink))",
 				chart: {
 					"1": "hsl(var(--chart-1))",
 					"2": "hsl(var(--chart-2))",

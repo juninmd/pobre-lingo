@@ -175,12 +175,9 @@ const PERSONAS: Persona[] = [
 		esperado: /.+/,
 		mobile: true,
 		acao: async (page) => {
-			const sidebarTrigger = page.getByRole('button', { name: 'Alternar menu' });
-			await expect(sidebarTrigger).toBeVisible();
-			await sidebarTrigger.click({ force: true });
-
-			const sidebarLink = page.getByRole('link', { name: 'Minha Jornada' });
-			await expect(sidebarLink).toBeVisible();
+			const nav = page.getByRole("navigation", { name: "Menu principal" });
+			await nav.getByRole("link", { name: "Aprender" }).click();
+			await expect(page.getByRole("heading", { name: "Sua Jornada" })).toBeVisible();
 		},
 	},
 	{

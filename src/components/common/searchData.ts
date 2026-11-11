@@ -1,5 +1,13 @@
 import { BookOpen, type LucideIcon } from "lucide-react";
+import { arcadeGames } from "@/components/arcade/arcadeGames";
 import { allNavItems } from "@/components/layout/navigationData";
+import {
+	LEARN_REFERENCE,
+	LEARN_SKILLS,
+	ME_LINKS,
+	PLAY_DRILLS,
+} from "@/components/shell/hubData";
+import { NAV_TABS } from "@/components/shell/navTabs";
 import { grammarCategories } from "@/lib/grammarRules";
 
 export interface SearchResult {
@@ -11,12 +19,29 @@ export interface SearchResult {
 	tags?: string[];
 	categoryName?: string;
 }
-export const navPages: SearchResult[] = allNavItems.map((item) => ({
-	type: "page",
-	title: item.label,
-	href: item.href,
-	icon: item.icon,
-}));
+/** Tudo o que tem tela: abas, menu antigo, jogos e treinos (sem repetir rota). */
+const pageEntries: SearchResult[] = [
+	...NAV_TABS.map((t) => ({ title: t.label, href: t.href, icon: t.icon })),
+	...allNavItems.map((i) => ({ title: i.label, href: i.href, icon: i.icon })),
+	...arcadeGames.map((g) => ({
+		title: g.title,
+		subtitle: g.description,
+		href: g.href,
+		icon: g.icon,
+	})),
+	...[...PLAY_DRILLS, ...LEARN_SKILLS, ...LEARN_REFERENCE, ...ME_LINKS].map(
+		(l) => ({
+			title: l.title,
+			subtitle: l.description,
+			href: l.href,
+			icon: l.icon,
+		}),
+	),
+].map((entry) => ({ ...entry, type: "page" as const }));
+
+export const navPages: SearchResult[] = pageEntries.filter(
+	(entry, i) => pageEntries.findIndex((e) => e.href === entry.href) === i,
+);
 
 export function getRuleSearchResults(): SearchResult[] {
 	return grammarCategories.flatMap((category) => [

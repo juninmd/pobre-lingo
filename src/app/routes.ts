@@ -1,45 +1,17 @@
 import { type ComponentType, lazy } from "react";
+import { gameRoutes } from "./gameRoutes";
 
-type PageModule = { default: ComponentType };
+export type PageModule = { default: ComponentType };
 
 /** Cada rota carrega a própria página sob demanda: um chunk por tela. */
 const page = (load: () => Promise<PageModule>) => lazy(load);
 
 export const pageRoutes = [
 	{ index: true, Component: page(() => import("@/pages/DashboardPage")) },
+	{ path: "learn", Component: page(() => import("@/pages/LearnPage")) },
+	{ path: "me", Component: page(() => import("@/pages/MePage")) },
 	{ path: "arcade", Component: page(() => import("@/pages/ArcadePage")) },
-	{
-		path: "games/bubble-pop",
-		Component: page(() => import("@/pages/games/BubblePopPage")),
-	},
-	{
-		path: "games/speed-match",
-		Component: page(() => import("@/pages/games/SpeedMatchPage")),
-	},
-	{
-		path: "games/memory-match",
-		Component: page(() => import("@/pages/games/MemoryMatchPage")),
-	},
-	{
-		path: "games/word-scramble",
-		Component: page(() => import("@/pages/games/WordScramblePage")),
-	},
-	{
-		path: "games/flashcards",
-		Component: page(() => import("@/pages/games/FlashcardsPage")),
-	},
-	{
-		path: "games/word-search",
-		Component: page(() => import("@/pages/games/WordSearchPage")),
-	},
-	{
-		path: "games/sentence-rush",
-		Component: page(() => import("@/pages/games/SentenceRushPage")),
-	},
-	{
-		path: "games/hangman",
-		Component: page(() => import("@/pages/games/HangmanPage")),
-	},
+	...gameRoutes(page),
 	{
 		path: "dictionary",
 		Component: page(() => import("@/pages/DictionaryPage")),

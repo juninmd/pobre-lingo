@@ -1,0 +1,70 @@
+import type { WordWheelPuzzle } from "./puzzles";
+
+/** Níveis A2-B1: rodas de 6 e 7 letras. */
+export const ADVANCED_PUZZLES: WordWheelPuzzle[] = [
+	{
+		id: "garden",
+		letters: "GARDEN",
+		cefr: "A2",
+		theme: "Ao ar livre",
+		words: {
+			garden: "jardim",
+			danger: "perigo",
+			grand: "grandioso",
+			read: "ler",
+			earn: "ganhar",
+			dear: "querido",
+			age: "idade",
+			red: "vermelho",
+		},
+	},
+	{
+		id: "dreams",
+		letters: "DREAMS",
+		cefr: "A2",
+		theme: "Sonhos",
+		words: {
+			dreams: "sonhos",
+			dream: "sonho",
+			made: "feito",
+			same: "mesmo",
+			arms: "braços",
+			mad: "bravo",
+			sea: "mar",
+			ear: "orelha",
+		},
+	},
+	{
+		id: "teacher",
+		letters: "TEACHER",
+		cefr: "B1",
+		theme: "Escola",
+		words: {
+			teacher: "professor",
+			cheat: "trapacear",
+			reach: "alcançar",
+			heart: "coração",
+			tree: "árvore",
+			each: "cada",
+			care: "cuidado",
+			race: "corrida",
+		},
+	},
+	{
+		id: "kitchen",
+		letters: "KITCHEN",
+		cefr: "B1",
+		theme: "Cozinha",
+		words: {
+			kitchen: "cozinha",
+			think: "pensar",
+			thick: "grosso",
+			chin: "queixo",
+			kite: "pipa",
+			knit: "tricotar",
+			nice: "legal",
+			hen: "galinha",
+			ten: "dez",
+		},
+	},
+];

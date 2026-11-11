@@ -1,0 +1,137 @@
+/* Roda de Palavras: carregado só pelo chunk da página. */
+.ww-page {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	max-width: 34rem;
+	margin-inline: auto;
+	padding-block: 1rem 2rem;
+}
+
+.ww-title {
+	font-family: "Bricolage Grotesque", Inter, system-ui, sans-serif;
+}
+
+.ww-chip {
+	border-radius: 999px;
+	padding: 0.35rem 0.85rem;
+	font-size: 0.8rem;
+	font-weight: 800;
+	color: hsl(var(--primary));
+	background: hsl(var(--primary) / 0.1);
+	border: 1px solid hsl(var(--primary) / 0.25);
+}
+
+.ww-meter {
+	height: 0.5rem;
+	border-radius: 999px;
+	background: hsl(var(--muted));
+	overflow: hidden;
+}
+
+.ww-meter > span {
+	display: block;
+	height: 100%;
+	transform-origin: left;
+	background: linear-gradient(
+		90deg,
+		hsl(var(--brand-violet)),
+		hsl(var(--brand-aqua))
+	);
+	transition: transform 600ms var(--ease-out);
+}
+
+.ww-slots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem 1rem;
+}
+
+.ww-word {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.2rem;
+}
+
+.ww-tile {
+	display: grid;
+	place-items: center;
+	width: 1.9rem;
+	height: 1.9rem;
+	border-radius: 0.5rem;
+	font-weight: 800;
+	font-size: 0.95rem;
+	background: hsl(var(--muted));
+	border: 1px solid hsl(var(--border));
+	transition:
+		background 300ms,
+		color 300ms;
+}
+
+.ww-tile.is-filled {
+	color: hsl(var(--primary-foreground));
+	background: hsl(var(--primary));
+	border-color: transparent;
+}
+
+.ww-word.is-done .ww-tile {
+	background: linear-gradient(
+		135deg,
+		hsl(var(--brand-violet)),
+		hsl(var(--primary))
+	);
+}
+
+.ww-word.is-fresh .ww-tile {
+	animation: ww-flip 520ms var(--ease-out) both;
+	animation-delay: calc(var(--i) * 60ms);
+}
+
+.ww-translation {
+	font-size: 0.7rem;
+	font-weight: 600;
+	color: hsl(var(--muted-foreground));
+}
+
+.ww-status {
+	min-height: 2.5rem;
+	display: grid;
+	place-items: center;
+	text-align: center;
+}
+
+.ww-draft {
+	padding: 0.3rem 1rem;
+	border-radius: 999px;
+	font-weight: 900;
+	font-size: 1.4rem;
+	letter-spacing: 0.25em;
+	color: hsl(var(--primary-foreground));
+	background: hsl(var(--primary));
+	animation: pl-pop 200ms var(--ease-out) both;
+}
+
+.ww-feedback {
+	padding: 0.35rem 1rem;
+	border-radius: 999px;
+	font-weight: 800;
+	animation: pl-pop 360ms var(--ease-out) both;
+}
+
+.ww-feedback.is-good {
+	color: hsl(150 80% 22%);
+	background: hsl(150 70% 90%);
+}
+
+.ww-feedback.is-bonus {
+	color: hsl(38 90% 22%);
+	background: hsl(45 95% 85%);
+}
+
+.ww-feedback.is-bad {
+	color: hsl(var(--destructive));
+	background: hsl(var(--destructive) / 0.1);
+	animation: ww-shake 380ms both;
+}

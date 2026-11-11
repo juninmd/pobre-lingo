@@ -4,7 +4,8 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 
 - **AI tutor**: runs in the browser. Uses Chrome's built-in Prompt API when available, otherwise the open model via WebLLM (WebGPU). See `src/lib/ai/selectProvider.ts`.
 - **Conversa com a Mika** (`/buddy`): personagem VRM 3D (three + `@pixiv/three-vrm`, chunk `three` carregado sob demanda) que puxa assunto, conversa ~4 turnos e se despede com "Bye! Tchau!", corrigindo o texto em tempo real. A IA é o LiteLLM (`cloud/auto`), acessado só pelo `server/` (`POST /v1/chat`, `POST /v1/correct`, limite por IP); a chave nunca vai ao navegador. Server env: `LITELLM_API_KEY` (obrigatória, sem ela as rotas dão 503), `LITELLM_BASE_URL` (padrão `http://litellm.ai.svc.cluster.local:4000/v1`), `LITELLM_MODEL` (padrão `cloud/auto`). Modelo VRM: `VITE_VRM_URL` em build (padrão: amostra do pixiv/three-vrm) ou upload na página; falha de WebGL/VRM cai no mascote pixel art.
-- **Fonts**: Inter and Sora are self-hosted variable fonts (`@fontsource-variable/*`, latin subsets, `src/styles/fonts.css`); no request to Google Fonts.
+- **Fonts**: Inter (text), Bricolage Grotesque (headings) and Silkscreen (pixel numbers and badges) are self-hosted (`@fontsource*`, latin subsets, `src/styles/fonts.css`); no request to Google Fonts.
+- **Navigation**: four tabs (`src/components/shell/navTabs.ts`): Hoje `/`, Aprender `/learn`, Jogar `/arcade`, Eu `/me`. A bottom bar on phones, a slim rail from `md` up; Ctrl/⌘+K searches every screen. `src/components/shell/coverage.test.ts` fails if a route has no way in.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
 - **Deploy**: Netlify (`netlify.toml`, publishes `dist/`) and GitHub Pages (`.github/workflows/pages.yml`, see "GitHub Pages" below). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 

@@ -7,8 +7,8 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		});
 	});
 
-	test("should render timeline on home", async ({ page }) => {
-		await page.goto("/");
+	test("should render timeline on the Aprender tab", async ({ page }) => {
+		await page.goto("/learn");
 
 		// Wait for the timeline container (use the top-level container)
 		const timelineContainer = page.locator(".w-full.max-w-2xl").first();
@@ -19,7 +19,7 @@ test.describe("Learning Timeline (Journey Book)", () => {
 	});
 
 	test("should show the 'Onde parei' bookmark on the active lesson", async ({ page }) => {
-		await page.goto("/");
+		await page.goto("/learn");
 
 		const timelineContainer = page.locator(".w-full.max-w-2xl").first();
 		await expect(timelineContainer).toBeVisible();
@@ -29,29 +29,17 @@ test.describe("Learning Timeline (Journey Book)", () => {
 		await expect(bookmark).toBeVisible();
 	});
 
-	test("should adapt layout for mobile devices with a drawer sidebar", async ({ page, isMobile }) => {
+	test("reaches the journey from the Aprender tab", async ({ page }) => {
 		await page.goto("/");
-
-		if (isMobile) {
-			// On mobile, the sidebar trigger should be visible
-			const sidebarTrigger = page.getByRole("button", { name: "Alternar menu" });
-			await expect(sidebarTrigger).toBeVisible();
-
-			// Click to open the drawer
-			await sidebarTrigger.click();
-
-			// The link should now be visible in the drawer
-			const mobileNav = page.getByRole("link", { name: "Minha Jornada" });
-			await expect(mobileNav).toBeVisible();
-		} else {
-			// On desktop, the sidebar navigation should be visible without opening a drawer
-			const desktopNav = page.getByRole("link", { name: "Minha Jornada" });
-			await expect(desktopNav).toBeVisible();
-		}
+		await page
+			.getByRole("navigation", { name: "Menu principal" })
+			.getByRole("link", { name: "Aprender" })
+			.click();
+		await expect(page.getByRole("heading", { name: "Sua Jornada" })).toBeVisible();
 	});
 
 	test("should display accurate lesson states: BLOQUEADO, DISPONÍVEL, CONCLUÍDO", async ({ page, isMobile }) => {
-		await page.goto("/");
+		await page.goto("/learn");
 
 		const timelineContainer = page.locator(".w-full.max-w-2xl").first();
 		await expect(timelineContainer).toBeVisible();
@@ -83,7 +71,7 @@ test.describe("Learning Timeline (Journey Book)", () => {
 	});
 
 	test("should navigate to the active lesson upon clicking the bookmark lesson", async ({ page }) => {
-		await page.goto("/");
+		await page.goto("/learn");
 
 		const timelineContainer = page.locator(".w-full.max-w-2xl").first();
 		await expect(timelineContainer).toBeVisible();

@@ -34,7 +34,7 @@ jobs:
 
       # Devolve o subcaminho do site: "/pobre-lingo" ou "" se houver domínio próprio.
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - run: pnpm install --frozen-lockfile
 
@@ -43,7 +43,7 @@ jobs:
         env:
           VITE_BASE: ${{ steps.pages.outputs.base_path }}/
 
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -55,4 +55,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

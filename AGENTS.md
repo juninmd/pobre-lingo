@@ -26,7 +26,7 @@
 
 ## 🤝 Interaction Protocol
 - Follow the **Plan -> Act -> Validate** cycle for every task.
-- Consult `README.md` for run, test, and layout commands; this file holds agent rules only.
+- Consult `README.md` (quick start) and `docs/development.md` (scripts, layout, rules); this file holds agent rules only.
 - Ensure to check if features are already implemented to avoid duplicate work and safely transition to completion when verifying existing states (e.g. Learning Timeline).
 
 ## 📅 Session Logs
@@ -47,7 +47,7 @@
 
 ### [2026-11-10] Jules-Architect / Spark-Frontend / Bolt-Automation: Architecture, performance and UI pass
 - **Action:** `src/app/` now holds the shell (`AppProviders`, `Router`, `routes.ts`, `Layout`, `ShellExtras`); pages are all `<Name>Page.tsx` (no more `[param]/page.tsx`); `globals.css` split into `src/styles/`; Vite config split into `config/`. Removed 56 unused source files, the one-off scripts at the repo root and 9 unused dependencies (recharts, react-hook-form, react-day-picker, react-helmet-async, 4 Radix packages, playwright).
-- **Action:** First load: heavy data left the shell (see "Performance rules" in `README.md`), fonts are self-hosted, `index.html` paints a static shell, `public/boot.js` applies the saved theme and preloads the home chunk.
+- **Action:** First load: heavy data left the shell (see "Performance rules" in `docs/development.md`), fonts are self-hosted, `index.html` paints a static shell, `public/boot.js` applies the saved theme and preloads the home chunk.
 - **Action:** Progress page has SVG charts (`src/components/charts/`); motion classes live in `src/styles/motion.css`.
 - **Note:** The site CSP has `script-src 'self'`: never add an inline `<script>` to `index.html`, extend `public/boot.js` instead.
 - **Note:** A CSS rule on `svg` beats the `shape-rendering="crispEdges"` attribute of the pixel mascot; do not set `shape-rendering` globally.

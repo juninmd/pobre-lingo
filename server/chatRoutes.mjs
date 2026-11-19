@@ -1,13 +1,30 @@
 import { parseChatBody } from "./chat.mjs";
 import { createRateLimiter } from "./rateLimit.mjs";
 
+/**
+ * IP do cliente. O proxy confiável acrescenta o IP que viu ao fim do X-Forwarded-For;
+ * a ponta esquerda é escrita pelo cliente e não vale como chave de limite.
+ */
+export function clientAddress(req, trustedProxyHops = 1) {
+	const hops = String(req.headers["x-forwarded-for"] ?? "")
+		.split(",")
+		.map((part) => part.trim())
+		.filter(Boolean);
+	const trusted = hops[hops.length - trustedProxyHops];
+	return trusted ?? req.socket.remoteAddress ?? "";
+}
+
 /** Rotas de conversa/correção; limite por IP porque não há login. */
-export function createChatRoutes({ chat, cors, send, readJson, limit = 40 }) {
+export function createChatRoutes({
+	chat,
+	cors,
+	send,
+	readJson,
+	limit = 40,
+	trustedProxyHops = 1,
+}) {
 	const allow = createRateLimiter({ limit, windowMs: 60_000 });
-	const clientIp = (req) =>
-		String(req.headers["x-forwarded-for"] ?? req.socket.remoteAddress ?? "")
-			.split(",")[0]
-			.trim();
+	const clientIp = (req) => clientAddress(req, trustedProxyHops);
 
 	return async (req, res, pathname) => {
 		if (pathname !== "/v1/chat" && pathname !== "/v1/correct") return false;

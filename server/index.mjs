@@ -10,6 +10,7 @@ const {
 	LITELLM_BASE_URL = "http://litellm.ai.svc.cluster.local:4000/v1",
 	LITELLM_API_KEY,
 	LITELLM_MODEL = "cloud/auto",
+	TRUSTED_PROXY_HOPS = "1",
 } = process.env;
 if (!DATABASE_URL) {
 	console.error("DATABASE_URL não definida");
@@ -26,7 +27,12 @@ const chat = createChat({
 });
 
 const server = createServer(
-	createApp({ store, chat, allowedOrigin: ALLOWED_ORIGIN }),
+	createApp({
+		store,
+		chat,
+		allowedOrigin: ALLOWED_ORIGIN,
+		trustedProxyHops: Math.max(1, Number(TRUSTED_PROXY_HOPS) || 1),
+	}),
 );
 server.listen(Number(PORT), () =>
 	console.log(`pobre-lingo-api na porta ${PORT}`),

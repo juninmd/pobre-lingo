@@ -50,7 +50,7 @@ Opt-in, from Settings > Sincronização na nuvem. The browser keeps working offl
 - `VITE_API_URL` (build time) sets the API base URL; defaults to `https://pobre-lingo-api.antonio-code.duckdns.org`. Set it to an empty string to hide the feature.
 - Client: `src/lib/cloudSync/` (`client.ts` HTTP, `engine.ts` reconcile/conflicts, `meta.ts` sync code and last-synced version). `useBackgroundSync` (mounted in `Layout`) syncs on open, on `online`, on focus and every 5 min. `plsync_*` keys are outside the backup prefixes on purpose.
 - Conflicts: a version number gives optimistic concurrency. If both sides changed, the user picks cloud or this device; an empty local state is never pushed.
-- Server: `server/` (Node 22, `pg`). Run with `DATABASE_URL=postgres://... node server/index.mjs` (`PORT`, `ALLOWED_ORIGIN` optional). Table `progress` is created on start; only the SHA-256 of the sync code is stored.
+- Server: `server/` (Node 22, `pg`). Run with `DATABASE_URL=postgres://... node server/index.mjs` (`PORT`, `ALLOWED_ORIGIN` optional; `TRUSTED_PROXY_HOPS`, default 1, is how many reverse proxies append to `X-Forwarded-For` and is used for the per-IP rate limit of `/v1/chat`). Table `progress` is created on start; only the SHA-256 of the sync code is stored.
 
 | Method | Path | Notes |
 |--------|------|-------|

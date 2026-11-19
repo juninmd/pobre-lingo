@@ -38,6 +38,7 @@ export function createApp({
 	chat,
 	allowedOrigin = "*",
 	rateLimit = 120,
+	trustedProxyHops = 1,
 }) {
 	const allow = createRateLimiter({ limit: rateLimit, windowMs: 60_000 });
 	const cors = {
@@ -48,7 +49,13 @@ export function createApp({
 		Vary: "Origin",
 	};
 
-	const chatRoutes = createChatRoutes({ chat, cors, send, readJson });
+	const chatRoutes = createChatRoutes({
+		chat,
+		cors,
+		send,
+		readJson,
+		trustedProxyHops,
+	});
 
 	async function progress(req, res, id) {
 		if (req.method === "GET") {

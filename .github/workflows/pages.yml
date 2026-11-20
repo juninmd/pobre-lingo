@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 # Publica o app em https://<usuário>.github.io/<repositório>/ a cada push na master.
 # Requer, uma única vez: Settings > Pages > Build and deployment > Source: GitHub Actions.
-# A Netlify continua servindo a raiz (netlify.toml); aqui o app sobe num subcaminho.
+# O app sobe num subcaminho do domínio github.io.
 
 on:
   push:

@@ -7,7 +7,7 @@ import { preloadHomeRoute } from "./config/preloadHomeRoute";
 import { pwaOptions } from "./config/pwa";
 import { spaFallback } from "./config/spaFallback";
 
-// Subcaminho de hospedagem (GitHub Pages: "/pobre-lingo/"); na Netlify, a raiz.
+// Subcaminho de hospedagem (GitHub Pages: "/pobre-lingo/"); em dev, a raiz.
 const base = normalizeBase(process.env.VITE_BASE);
 
 export default defineConfig({

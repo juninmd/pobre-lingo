@@ -1,5 +1,5 @@
 /**
- * Caminho em que o app é servido: "/" na Netlify e num domínio próprio,
+ * Caminho em que o app é servido: "/" em dev e num domínio próprio,
  * "/pobre-lingo/" num site de projeto do GitHub Pages. Vem de `VITE_BASE`.
  */
 export function normalizeBase(raw: string | undefined): string {

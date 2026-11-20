@@ -3,8 +3,7 @@ import { join } from "node:path";
 import type { Plugin } from "vite";
 
 /**
- * O GitHub Pages não tem regra de reescrita (a Netlify tem, em
- * public/_redirects): numa URL que não é arquivo, como /pobre-lingo/review,
+ * O GitHub Pages não tem regra de reescrita: numa URL que não é arquivo, como /pobre-lingo/review,
  * ele serve o `404.html`. Com uma cópia do index.html no lugar, o app abre e
  * o roteador resolve a rota.
  */

@@ -1,7 +1,7 @@
 # PobreLingo - AI Coding Agent Instructions
 
 ## Project Overview
-English learning PWA with a pt-BR UI: grammar rules, interactive exercises, dictionary, gamified streaks. **Client-side only**: no backend API, all progress in localStorage, AI tutor runs in the browser (Chrome Prompt API, falling back to WebLLM). Deployed on Netlify (`netlify.toml`, publishes `dist/`).
+English learning PWA with a pt-BR UI: grammar rules, interactive exercises, dictionary, gamified streaks. **Client-side only**: no backend API, all progress in localStorage, AI tutor runs in the browser (Chrome Prompt API, falling back to WebLLM). Deployed on GitHub Pages (`.github/workflows/pages.yml`, publishes `dist/`).
 
 ## Tech Stack
 - **Build**: Vite 8 + TypeScript 7 + React 19 | **Package Manager**: pnpm only (`packageManager` field; never npm/yarn)

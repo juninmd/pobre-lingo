@@ -46,9 +46,6 @@ firestore-debug.log
 dev-dist/
 dev_server.log
 
-# Local Netlify folder
-.netlify
-
 playwright-report/
 test-results/
 pnpm_output.log

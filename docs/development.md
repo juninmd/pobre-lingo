@@ -7,7 +7,7 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 - **Fonts**: Inter (text), Bricolage Grotesque (headings) and Silkscreen (pixel numbers and badges) are self-hosted (`@fontsource*`, latin subsets, `src/styles/fonts.css`); no request to Google Fonts.
 - **Navigation**: four tabs (`src/components/shell/navTabs.ts`): Hoje `/`, Aprender `/learn`, Jogar `/arcade`, Eu `/me`. A bottom bar on phones, a slim rail from `md` up; Ctrl/⌘+K searches every screen. `src/components/shell/coverage.test.ts` fails if a route has no way in.
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
-- **Deploy**: Netlify (`netlify.toml`, publishes `dist/`) and GitHub Pages (`.github/workflows/pages.yml`, see "GitHub Pages" below). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
+- **Deploy**: GitHub Pages (`.github/workflows/pages.yml`, see "GitHub Pages" below). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
 ## Stack
 
@@ -20,7 +20,7 @@ Versions as declared in `package.json`:
 - Tailwind CSS `^4.3.3`, Radix UI and shadcn-style components in `src/components/ui/`
 - `@mlc-ai/web-llm` `0.2.85` (pinned), `ts-fsrs` `5.4.2` (pinned)
 - Biome `2.5.15`, Vitest `^5.0.3`, jsdom `^30.1.2`, Playwright `^1.64.0`
-- Node 22.22.2 or newer (jsdom 30); Netlify builds with Node 22
+- Node 22.22.2 or newer (jsdom 30); CI builds with Node 22
 - Package manager: pnpm (`packageManager`: `pnpm@8.14.3`). Do not use npm or yarn.
 
 ## Scripts
@@ -114,11 +114,11 @@ These keep the first load small; `pnpm build` prints chunk sizes to check them.
 
 `.github/workflows/pages.yml` builds and publishes `dist/` on every push to `master` (and on demand) to `https://juninmd.github.io/pobre-lingo/`. One-time setup: **Settings > Pages > Build and deployment > Source: GitHub Actions**.
 
-- **Sub-path.** A project site lives under `/pobre-lingo/`, so the build takes `VITE_BASE` (default `/`, used by Netlify and local dev). The workflow gets it from `actions/configure-pages`, which returns an empty base when a custom domain is set. To try it locally: `VITE_BASE=/pobre-lingo/ pnpm build`.
+- **Sub-path.** A project site lives under `/pobre-lingo/`, so the build takes `VITE_BASE` (default `/`, used by local dev). The workflow gets it from `actions/configure-pages`, which returns an empty base when a custom domain is set. To try it locally: `VITE_BASE=/pobre-lingo/ pnpm build`.
 - **Everything that reaches the browser directly goes through the base**: the router gets `basename` (`src/lib/baseUrl.ts`), `hardNavigate` and the notification click add it, the service worker reads it from its own scope, and `config/pwa.ts` and `config/preloadHomeRoute.ts` take it as a parameter. New code must not write `window.location.href = "/x"` or `src="/x.png"`; use `withBase("/x")`.
-- **Deep links.** Pages has no rewrite rules, so `config/spaFallback.ts` copies `index.html` to `404.html`. A direct visit to `/pobre-lingo/review` gets that file (with HTTP status 404) and the router takes over. Netlify keeps using `public/_redirects`.
-- **Not available on Pages**: response headers. `public/_headers` (CSP, frame and referrer policies) only applies on Netlify, so the Pages site runs without the CSP.
-- **Cloud sync**: the API sends `Access-Control-Allow-Origin` from `ALLOWED_ORIGIN` (default `*`). If the cluster pins it to the Netlify origin, add `https://juninmd.github.io`.
+- **Deep links.** Pages has no rewrite rules, so `config/spaFallback.ts` copies `index.html` to `404.html`. A direct visit to `/pobre-lingo/review` gets that file (with HTTP status 404) and the router takes over.
+- **Not available on Pages**: response headers, so the site runs without CSP, frame and referrer policies.
+- **Cloud sync**: the API sends `Access-Control-Allow-Origin` from `ALLOWED_ORIGIN` (default `*`). If the cluster pins it to a previous origin, add `https://juninmd.github.io`.
 - `localStorage` is per origin, and every project site of the account shares `juninmd.github.io`. Keys are prefixed `pobrelingo_`, so there is no clash, but the data is shared with any other app on that origin.
 
 ## Route table

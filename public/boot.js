@@ -1,5 +1,5 @@
 // Roda antes da primeira pintura. Arquivo externo porque a CSP do site não
-// permite script inline (public/_headers).
+// permite script inline.
 (() => {
 	// 1. Tema salvo, para a casca não piscar em branco no tema escuro.
 	//    Mesma regra do ThemeProvider (src/contexts/ThemeContext.tsx).

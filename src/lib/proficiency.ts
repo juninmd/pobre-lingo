@@ -1,5 +1,6 @@
 import type { CEFRLevel } from "./cefr";
 import { CEFR_ORDER } from "./levels";
+import { localDayNumber } from "./localDay";
 import { proficiencyProfiles } from "./proficiencyProfiles";
 import { proficiencyQuestions } from "./proficiencyQuestions";
 import type { ProficiencyResult, SkillReport } from "./proficiencyTypes";
@@ -57,8 +58,7 @@ export function buildSkillReports(
 
 export function getDailyTip(level: CEFRLevel, now = new Date()) {
 	const tips = proficiencyProfiles[level].tips;
-	const day = Math.floor(now.getTime() / 86400000);
-	return tips[day % tips.length];
+	return tips[localDayNumber(now) % tips.length];
 }
 
 /** Requires evidence in every preceding band; this is a content recommendation only. */

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import type { CEFRLevel } from "@/lib/cefr";
 import type { CoreWord } from "@/lib/coreVocabularyTypes";
-
-const DAY_MS = 86_400_000;
+import { localDayNumber } from "@/lib/localDay";
 
 /**
  * Palavra do dia para o nível. O vocabulário (~450 kB) é importado sob
@@ -18,7 +17,7 @@ export function useWordOfTheDay(level: CEFRLevel): CoreWord | null | undefined {
 			.then(({ getWordsByLevel }) => {
 				if (!active) return;
 				const words = getWordsByLevel(level);
-				setWord(words[Math.floor(Date.now() / DAY_MS) % words.length] ?? null);
+				setWord(words[localDayNumber() % words.length] ?? null);
 			})
 			.catch(() => {
 				if (active) setWord(null);

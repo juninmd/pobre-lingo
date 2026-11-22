@@ -47,4 +47,21 @@ describe("createRateLimiter", () => {
 		expect(allow("active")).toBe(false);
 		expect(allow("new")).toBe(false);
 	});
+
+	it("ao lotar, despeja a chave livre mais antiga e nunca uma bloqueada", () => {
+		const allow = createRateLimiter({
+			limit: 1,
+			windowMs: 1000,
+			now: () => 0,
+			maxKeys: 3,
+		});
+		allow("blocked");
+		allow("blocked");
+		allow("free1");
+		allow("free2");
+		allow("x");
+		expect(allow("free2")).toBe(false);
+		expect(allow("blocked")).toBe(false);
+		expect(allow("free1")).toBe(true);
+	});
 });

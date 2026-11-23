@@ -5,6 +5,7 @@ import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { RightColumnWidgets } from "@/components/dashboard/RightColumnWidgets";
 import { MascotGreeting } from "@/components/mascot/MascotGreeting";
 import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
+import { DailySessionCard } from "@/components/today/DailySessionCard";
 import { TodayQueue } from "@/components/today/TodayQueue";
 
 /**
@@ -27,6 +28,7 @@ export default function DashboardPage() {
 
 			<div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
 				<div className="min-w-0 space-y-6 lg:col-span-2">
+					<DailySessionCard />
 					<TodayQueue />
 				</div>
 				<RightColumnWidgets />

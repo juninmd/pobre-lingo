@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { useIdleReady } from "@/hooks/useIdleReady";
+import { IS_DESKTOP } from "@/lib/platform";
 
 const GlobalSearch = lazy(() =>
 	import("@/components/common/GlobalSearch").then((module) => ({
@@ -9,6 +10,11 @@ const GlobalSearch = lazy(() =>
 const PobrelingoAssistant = lazy(() =>
 	import("@/components/mascot/PobrelingoAssistant").then((module) => ({
 		default: module.PobrelingoAssistant,
+	})),
+);
+const DesktopBridge = lazy(() =>
+	import("@/components/desktop/DesktopBridge").then((module) => ({
+		default: module.DesktopBridge,
 	})),
 );
 const PWAInstallPrompt = lazy(
@@ -41,6 +47,7 @@ export function ShellExtras({
 			{(searchLoaded || searchOpen) && (
 				<GlobalSearch open={searchOpen} onOpenChange={onSearchOpenChange} />
 			)}
+			{IS_DESKTOP && <DesktopBridge />}
 			{idle && <PWAInstallPrompt />}
 			{idle && <PobrelingoAssistant />}
 		</Suspense>

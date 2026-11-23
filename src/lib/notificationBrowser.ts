@@ -2,14 +2,19 @@
 
 import { routeHref, withBase } from "@/lib/baseUrl";
 import type { AppNotification } from "@/lib/notificationCatalog";
+import { sendDesktopNotification } from "@/lib/desktop/notify";
+import { IS_DESKTOP } from "@/lib/platform";
 import { isSafeInternalHref } from "@/lib/safeHref";
 
 export function browserNotificationsSupported(): boolean {
+	// Desktop: toast nativo do Windows, sem a permissão do navegador.
+	if (IS_DESKTOP) return true;
 	return typeof window !== "undefined" && "Notification" in window;
 }
 
 export function currentPermission(): NotificationPermission | "unsupported" {
 	if (!browserNotificationsSupported()) return "unsupported";
+	if (IS_DESKTOP) return "granted";
 	return Notification.permission;
 }
 
@@ -17,6 +22,7 @@ export async function requestBrowserPermission(): Promise<
 	NotificationPermission | "unsupported"
 > {
 	if (!browserNotificationsSupported()) return "unsupported";
+	if (IS_DESKTOP) return "granted";
 	try {
 		return await Notification.requestPermission();
 	} catch {
@@ -26,6 +32,11 @@ export async function requestBrowserPermission(): Promise<
 
 export function showBrowserNotification(item: AppNotification): void {
 	if (!browserNotificationsSupported()) return;
+	if (IS_DESKTOP) {
+		// Com a janela em foco o sino já dá retorno; escondida na bandeja, vale o toast.
+		if (!document.hasFocus()) void sendDesktopNotification(item.title, item.body);
+		return;
+	}
 	if (Notification.permission !== "granted") return;
 	// Notify only from a background tab: inside the app the bell already gives feedback.
 	if (typeof document !== "undefined" && document.visibilityState === "visible")

@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
 import { CloudSyncCard } from "@/components/settings/CloudSyncCard";
 import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
+import { StudyGoalCard } from "@/components/settings/StudyGoalCard";
 import { DesktopShellCard } from "@/components/settings/DesktopShellCard";
 import { DesktopUpdateCard } from "@/components/settings/DesktopUpdateCard";
 import { Button } from "@/components/ui/button";
@@ -217,6 +218,7 @@ export default function SettingsPage() {
 			</Card>
 
 			<CloudSyncCard />
+			<StudyGoalCard />
 			{IS_DESKTOP && <DesktopShellCard />}
 			{IS_DESKTOP && <DesktopUpdateCard />}
 			<DataSettingsCard />

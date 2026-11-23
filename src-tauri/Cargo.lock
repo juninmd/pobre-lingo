@@ -2432,6 +2432,7 @@ dependencies = [
 name = "pobre-lingo"
 version = "0.1.0"
 dependencies = [
+ "serde",
  "tauri",
  "tauri-build",
 ]

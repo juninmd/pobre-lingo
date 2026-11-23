@@ -1,4 +1,4 @@
-import { collectBackupData, restoreBackup } from "@/lib/backup";
+import { collectBackupData, parseBackup, restoreBackup } from "@/lib/backup";
 import { ApiError, type RemoteProgress, type SyncClient } from "./client";
 import { hashData, loadMeta, saveMeta } from "./meta";
 
@@ -28,7 +28,10 @@ async function push(
 }
 
 function pull(remote: RemoteProgress): SyncOutcome {
-	const restored = restoreBackup(remote.data);
+	// Dados da nuvem passam pela mesma validação de um arquivo de backup.
+	const parsed = parseBackup(JSON.stringify(remote.data));
+	if (!parsed.ok) return { status: "error", offline: false };
+	const restored = restoreBackup(parsed.entries, localStorage, parsed.skipped);
 	if (!restored.ok) return { status: "error", offline: false };
 	saveMeta({ version: remote.version, hash: hashData(collectBackupData()) });
 	return { status: "pulled" };

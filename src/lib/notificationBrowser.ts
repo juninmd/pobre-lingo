@@ -1,6 +1,6 @@
 /** Browser notifications (Notification API); only fire with permission. */
 
-import { withBase } from "@/lib/baseUrl";
+import { routeHref, withBase } from "@/lib/baseUrl";
 import type { AppNotification } from "@/lib/notificationCatalog";
 import { isSafeInternalHref } from "@/lib/safeHref";
 
@@ -41,7 +41,7 @@ export function showBrowserNotification(item: AppNotification): void {
 		notification.onclick = () => {
 			window.focus();
 			if (isSafeInternalHref(item.href))
-				window.location.href = withBase(item.href);
+				window.location.href = routeHref(item.href);
 			notification.close();
 		};
 	} catch (error) {

@@ -71,3 +71,7 @@ temp/
 # python
 __pycache__/
 *.pyc
+
+# tauri
+/src-tauri/target/
+/src-tauri/gen/

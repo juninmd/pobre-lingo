@@ -9,6 +9,21 @@ English learning PWA with a pt-BR interface (grammar rules, exercises, games, di
 - **Analytics**: LogRocket, started only with user consent (`src/lib/analyticsConsent.ts`).
 - **Deploy**: GitHub Pages (`.github/workflows/pages.yml`, see "GitHub Pages" below). The API image is built by `.github/workflows/api-image.yml`; its manifests live in `juninmd/app-charts` (`pobre-lingo-api/`).
 
+## Desktop (Tauri 2, Windows)
+
+App desktop em `src-tauri/` (Rust), mesmo front do site. Pré-requisitos: Rust estável e o WebView2 (já vem no Windows 11).
+
+| Command | What it does |
+|---------|--------------|
+| `pnpm tauri dev` | Abre o app com o Vite em `--mode desktop` (porta 5173) |
+| `pnpm build:desktop` | `vite build --mode desktop` para `dist/` |
+| `pnpm tauri build` | Instalador NSIS (por usuário, sem admin) |
+
+- **Modo desktop** (`src/lib/platform.ts`, `config/target.ts`): base sempre `/` (ignora `VITE_BASE`), sem service worker/manifest/404.html, roteador por hash (`createHashRouter`) porque o Tauri não reescreve rotas, e sem convite de instalação do PWA. Para navegar a uma rota fora do React Router use `routeHref()`, nunca `withBase()` direto.
+- **CSP**: fica em `src-tauri/tauri.conf.json` (`app.security.csp`). Toda API nova chamada pelo front precisa entrar no `connect-src`.
+- **Dados**: o localStorage do WebView2 é de outra origem que o do site. Para trazer o progresso, exporte o backup no site e importe no app (Ajustes > Dados).
+- Código nativo e imports de `@tauri-apps/*` ficam isolados e carregados com `import()` dinâmico atrás de `IS_DESKTOP`, para o bundle web não carregar nada do Tauri.
+
 ## Stack
 
 Versions as declared in `package.json`:

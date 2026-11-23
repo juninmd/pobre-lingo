@@ -25,6 +25,8 @@ pnpm test:run     # vitest run
 pnpm check        # typecheck + lint + test:run
 ```
 
+Desktop (Tauri, Windows): `pnpm tauri dev`, `pnpm build:desktop`, `pnpm tauri build`; see `docs/development.md`.
+
 CI `verify.yml` runs `tsc --noEmit`, `biome lint src/`, `build`, and `test:run`. Playwright specs have no npm script; run them with `npx playwright test`.
 
 ## Structure
@@ -47,6 +49,7 @@ CI `verify.yml` runs `tsc --noEmit`, `biome lint src/`, `build`, and `test:run`.
 ## Gotchas
 
 - **Routes**: every static route must appear in the ⌘K catalog (`src/components/common/searchData.ts`) and light a tab. `src/components/shell/coverage.test.ts` enforces it.
+- **Desktop**: `--mode desktop` (`IS_DESKTOP`) usa base `/`, roteador por hash e sem PWA. Rotas fora do React Router: `routeHref()`. CSP do app fica em `src-tauri/tauri.conf.json`.
 - **Base path**: the app is served under `/pobre-lingo/` on GitHub Pages (`VITE_BASE`). Never hardcode `/`-rooted URLs; use `withBase()` from `src/lib/baseUrl.ts`. Pages sends no headers, so there is no CSP there. The Pages source must be GitHub Actions.
 - **CSP**: the app CSP has `script-src 'self'`. Never add an inline `<script>` to `index.html`; extend `public/boot.js`.
 - **Tests**: `window.location` cannot be stubbed under `vmThreads`. Go through `src/lib/pageReload.ts` (`reloadPage`, `hardNavigate`) and mock that module. Load matchers from `@testing-library/jest-dom/vitest`.

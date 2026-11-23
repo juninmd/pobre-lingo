@@ -10,6 +10,9 @@
     "typecheck": "tsc --noEmit",
     "check": "pnpm typecheck && pnpm lint && pnpm test:run",
     "preview": "vite preview",
+    "dev:desktop": "vite --mode desktop --port 5173 --strictPort",
+    "build:desktop": "vite build --mode desktop",
+    "tauri": "tauri",
     "test": "vitest",
     "test:run": "vitest run"
   },
@@ -53,6 +56,7 @@
     "@biomejs/biome": "2.5.15",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/postcss": "^4.3.3",
+    "@tauri-apps/cli": "^2",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",

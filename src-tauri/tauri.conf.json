@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Pobre Lingo",
+  "version": "0.1.0",
+  "identifier": "com.juninmd.pobrelingo",
+  "build": {
+    "beforeDevCommand": "pnpm dev:desktop",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "pnpm build:desktop",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Pobre Lingo",
+        "width": 1100,
+        "height": 760,
+        "minWidth": 420,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.logr-in.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; worker-src 'self' blob:; connect-src 'self' ipc: http://ipc.localhost https://pobre-lingo-api.antonio-code.duckdns.org https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://api.tatoeba.org https://simple.wikipedia.org https://*.logr-in.com https://*.lr-in.com https://*.logrocket.io"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": [
+          "PortugueseBR",
+          "English"
+        ]
+      }
+    }
+  }
+}

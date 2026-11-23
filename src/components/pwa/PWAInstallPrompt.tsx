@@ -3,6 +3,7 @@ import type { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
+import { IS_DESKTOP } from "@/lib/platform";
 import { cn } from "@/lib/utils";
 
 interface PWAInstallPromptProps {
@@ -13,8 +14,8 @@ export const PWAInstallPrompt: FC<PWAInstallPromptProps> = ({ className }) => {
 	const { isInstallable, isIOS, isInstalled, promptInstall, dismissPrompt } =
 		usePWAInstall();
 
-	// Don't show if already installed
-	if (isInstalled) return null;
+	// Já instalado, ou rodando como app desktop: não há o que instalar.
+	if (isInstalled || IS_DESKTOP) return null;
 
 	// Show iOS instructions
 	if (isIOS && !isInstalled) {

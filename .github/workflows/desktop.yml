@@ -1,0 +1,42 @@
+name: Desktop
+
+# Valida o app Tauri (Windows): build do front em modo desktop e cargo check.
+# Release assinada e auto-update vêm em outro PR.
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "src-tauri/**"
+      - "config/**"
+      - "src/**"
+      - "vite.config.ts"
+      - "package.json"
+      - ".github/workflows/desktop.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - uses: pnpm/action-setup@v6
+
+    - name: Use Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22.x
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build (desktop mode)
+      run: pnpm run build:desktop
+
+    - name: Cargo check
+      run: cargo check --manifest-path src-tauri/Cargo.toml --locked

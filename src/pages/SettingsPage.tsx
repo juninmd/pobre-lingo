@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { SEO } from "@/components/common/SEO";
 import { CloudSyncCard } from "@/components/settings/CloudSyncCard";
 import { DataSettingsCard } from "@/components/settings/DataSettingsCard";
+import { DesktopUpdateCard } from "@/components/settings/DesktopUpdateCard";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -22,6 +23,7 @@ import {
 	CATEGORY_LABELS,
 	type NotificationCategory,
 } from "@/lib/notifications";
+import { IS_DESKTOP } from "@/lib/platform";
 import { setStreakReminder } from "@/lib/streakReminder";
 import { cn } from "@/lib/utils";
 
@@ -214,6 +216,7 @@ export default function SettingsPage() {
 			</Card>
 
 			<CloudSyncCard />
+			{IS_DESKTOP && <DesktopUpdateCard />}
 			<DataSettingsCard />
 		</PageContainer>
 	);

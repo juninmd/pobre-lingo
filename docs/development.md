@@ -20,6 +20,7 @@ App desktop em `src-tauri/` (Rust), mesmo front do site. Pré-requisitos: Rust e
 | `pnpm tauri build` | Instalador NSIS (por usuário, sem admin) |
 
 - **Modo desktop** (`src/lib/platform.ts`, `config/target.ts`): base sempre `/` (ignora `VITE_BASE`), sem service worker/manifest/404.html, roteador por hash (`createHashRouter`) porque o Tauri não reescreve rotas, e sem convite de instalação do PWA. Para navegar a uma rota fora do React Router use `routeHref()`, nunca `withBase()` direto.
+- **Auto-update e release**: `tauri-plugin-updater` lê `latest.json` do último release do GitHub e confere a assinatura (chave pública em `tauri.conf.json`; a privada nunca entra no repo). Para publicar: alinhe a versão em `package.json`, `src-tauri/Cargo.toml` e `tauri.conf.json`, e empurre a tag `vX.Y.Z`; `release-desktop.yml` gera o instalador e o `latest.json`. Requer o segredo `TAURI_SIGNING_PRIVATE_KEY`. A UI fica em Ajustes (`DesktopUpdateCard`) e só instala com confirmação.
 - **CSP**: fica em `src-tauri/tauri.conf.json` (`app.security.csp`). Toda API nova chamada pelo front precisa entrar no `connect-src`.
 - **Dados**: o localStorage do WebView2 é de outra origem que o do site. Para trazer o progresso, exporte o backup no site e importe no app (Ajustes > Dados).
 - Código nativo e imports de `@tauri-apps/*` ficam isolados e carregados com `import()` dinâmico atrás de `IS_DESKTOP`, para o bundle web não carregar nada do Tauri.

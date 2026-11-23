@@ -10,6 +10,7 @@ export type Recognition = {
 	interimResults: boolean;
 	maxAlternatives: number;
 	onresult: ((event: RecognitionResultEvent) => void) | null;
+	onstart?: (() => void) | null;
 	onend: (() => void) | null;
 	onerror: (() => void) | null;
 	start(): void;
@@ -18,6 +19,9 @@ export type Recognition = {
 };
 
 type RecognitionCtor = new () => Recognition;
+
+/** Sem `onstart` neste prazo, o reconhecimento não está funcionando (ex.: WebView2). */
+export const START_TIMEOUT_MS = 4000;
 
 export function getRecognitionCtor(): RecognitionCtor | undefined {
 	const scope = window as unknown as {
@@ -31,7 +35,8 @@ export function getRecognitionCtor(): RecognitionCtor | undefined {
 export function useSpeechInput(onTranscript: (text: string) => void) {
 	const recognitionRef = useRef<Recognition | null>(null);
 	const [listening, setListening] = useState(false);
-	const supported = typeof window !== "undefined" && !!getRecognitionCtor();
+	const [broken, setBroken] = useState(false);
+	const supported = typeof window !== "undefined" && !!getRecognitionCtor() && !broken;
 
 	useEffect(() => () => recognitionRef.current?.stop(), []);
 
@@ -50,9 +55,20 @@ export function useSpeechInput(onTranscript: (text: string) => void) {
 			const transcript = event.results[0]?.[0]?.transcript ?? "";
 			if (transcript) onTranscript(transcript);
 		};
-		recognition.onend = () => setListening(false);
-		recognition.onerror = () => setListening(false);
 		recognitionRef.current = recognition;
+		// Alguns ambientes expõem a API mas nunca iniciam: desiste e esconde o microfone.
+		const watchdog = setTimeout(() => {
+			recognition.abort();
+			setListening(false);
+			setBroken(true);
+		}, START_TIMEOUT_MS);
+		recognition.onstart = () => clearTimeout(watchdog);
+		const finish = () => {
+			clearTimeout(watchdog);
+			setListening(false);
+		};
+		recognition.onend = finish;
+		recognition.onerror = finish;
 		recognition.start();
 		setListening(true);
 	}, [listening, onTranscript]);

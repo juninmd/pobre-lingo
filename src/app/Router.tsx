@@ -2,11 +2,13 @@ import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 import {
 	createBrowserRouter,
+	createHashRouter,
 	Navigate,
 	type RouteObject,
 	RouterProvider,
 } from "react-router-dom";
 import { ROUTER_BASENAME } from "@/lib/baseUrl";
+import { IS_DESKTOP } from "@/lib/platform";
 import { RouteError } from "../components/layout/RouteError";
 import Layout from "./Layout";
 import { pageRoutes } from "./routes";
@@ -51,8 +53,9 @@ let browserRouter: ReturnType<typeof createBrowserRouter> | undefined;
 
 export function Router() {
 	// Created on first render, not on import, so tests can reuse `appRoutes`.
-	browserRouter ??= createBrowserRouter(appRoutes, {
-		basename: ROUTER_BASENAME,
-	});
+	// Desktop (Tauri) não reescreve rotas para o index.html: usa hash.
+	browserRouter ??= IS_DESKTOP
+		? createHashRouter(appRoutes)
+		: createBrowserRouter(appRoutes, { basename: ROUTER_BASENAME });
 	return <RouterProvider router={browserRouter} />;
 }

@@ -1,4 +1,5 @@
 import { withBase } from "@/lib/baseUrl";
+import { IS_DESKTOP } from "@/lib/platform";
 
 /**
  * Costuras para teste: o jsdom não deixa trocar `window.location`, então quem
@@ -11,5 +12,11 @@ export const reloadPage = () => window.location.reload();
  * Recebe um caminho interno ("/") e acrescenta a base do site.
  */
 export const hardNavigate = (href: string) => {
+	if (IS_DESKTOP) {
+		// Roteador por hash: trocar o hash não recarrega, então recarrega em seguida.
+		window.location.hash = href;
+		window.location.reload();
+		return;
+	}
 	window.location.href = withBase(href);
 };

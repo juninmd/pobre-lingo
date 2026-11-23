@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CaptureDialog } from "@/components/desktop/CaptureDialog";
+import { StudyFirstGate } from "@/components/desktop/StudyFirstGate";
 import { desktopInvoke } from "@/lib/desktop/invoke";
 import { listenDesktop } from "@/lib/desktop/events";
 import { normalizeCapture } from "@/lib/desktop/capture";
@@ -49,6 +50,12 @@ export function DesktopBridge() {
 		return () => clearInterval(id);
 	}, []);
 
-	if (captured === null) return null;
-	return <CaptureDialog initialText={captured} onClose={() => setCaptured(null)} />;
+	return (
+		<>
+			<StudyFirstGate />
+			{captured !== null && (
+				<CaptureDialog initialText={captured} onClose={() => setCaptured(null)} />
+			)}
+		</>
+	);
 }

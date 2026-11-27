@@ -35,7 +35,9 @@ export function DesktopUpdateCard() {
 	const install = async (update: UpdateInfo) => {
 		setPhase({ kind: "installing", percent: null });
 		try {
-			await update.install((percent) => setPhase({ kind: "installing", percent }));
+			await update.install((percent) =>
+				setPhase({ kind: "installing", percent }),
+			);
 		} catch {
 			setPhase({ kind: "error" });
 		}
@@ -53,7 +55,9 @@ export function DesktopUpdateCard() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="space-y-3" aria-live="polite">
-				{phase.kind === "current" && <p className="text-sm">Você está na versão mais recente.</p>}
+				{phase.kind === "current" && (
+					<p className="text-sm">Você está na versão mais recente.</p>
+				)}
 				{phase.kind === "error" && (
 					<p role="alert" className="text-sm text-destructive">
 						Não foi possível verificar agora. Confira a conexão e tente de novo.
@@ -61,7 +65,9 @@ export function DesktopUpdateCard() {
 				)}
 				{phase.kind === "available" && (
 					<div className="space-y-2">
-						<p className="text-sm font-medium">Versão {phase.update.version} disponível.</p>
+						<p className="text-sm font-medium">
+							Versão {phase.update.version} disponível.
+						</p>
 						{phase.update.notes && (
 							<p className="whitespace-pre-line text-xs text-muted-foreground">
 								{phase.update.notes}
@@ -74,7 +80,8 @@ export function DesktopUpdateCard() {
 				)}
 				{phase.kind === "installing" && (
 					<p className="text-sm">
-						Baixando{phase.percent === null ? "…" : ` ${phase.percent}%`}. O app reinicia ao terminar.
+						Baixando{phase.percent === null ? "…" : ` ${phase.percent}%`}. O app
+						reinicia ao terminar.
 					</p>
 				)}
 				{(phase.kind === "idle" ||

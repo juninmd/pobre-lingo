@@ -12,7 +12,8 @@ function log(entries: [number, StudyKind, number][]) {
 	let l = emptyStudyLog();
 	for (const [offset, kind, minutes] of entries) {
 		// addStudySeconds limita cada registro a 120 s: soma em blocos.
-		for (let i = 0; i < minutes * 30; i++) l = addStudySeconds(l, kind, 2, day(offset));
+		for (let i = 0; i < minutes * 30; i++)
+			l = addStudySeconds(l, kind, 2, day(offset));
 	}
 	return l;
 }
@@ -28,7 +29,11 @@ describe("clampGoal", () => {
 
 describe("minutesToday", () => {
 	it("sums every strand for the local day only", () => {
-		const l = log([[0, "reading", 4], [0, "speaking", 3], [1, "reading", 50]]);
+		const l = log([
+			[0, "reading", 4],
+			[0, "speaking", 3],
+			[1, "reading", 50],
+		]);
 		expect(minutesToday(l, NOW)).toBe(7);
 	});
 });
@@ -41,7 +46,12 @@ describe("weekSplit", () => {
 	});
 	it("flags low production and ignores 'study'", () => {
 		const s = weekSplit(
-			log([[0, "reading", 30], [1, "listening", 20], [2, "speaking", 5], [2, "study", 90]]),
+			log([
+				[0, "reading", 30],
+				[1, "listening", 20],
+				[2, "speaking", 5],
+				[2, "study", 90],
+			]),
 			NOW,
 		);
 		expect(s.productionMin).toBe(5);
@@ -50,7 +60,11 @@ describe("weekSplit", () => {
 	});
 	it("is fine at or above the target and ignores days older than a week", () => {
 		const s = weekSplit(
-			log([[0, "reading", 20], [1, "speaking", 12], [8, "reading", 500]]),
+			log([
+				[0, "reading", 20],
+				[1, "speaking", 12],
+				[8, "reading", 500],
+			]),
 			NOW,
 		);
 		expect(s.lowProduction).toBe(false);

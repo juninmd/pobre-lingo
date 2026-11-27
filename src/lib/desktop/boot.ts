@@ -32,7 +32,8 @@ export async function bootDesktop(): Promise<boolean> {
 		);
 		if (decision === "restore" && info.state) {
 			const parsed = parseBackup(info.state);
-			if (parsed.ok) restoreBackup(parsed.entries, localStorage, parsed.skipped);
+			if (parsed.ok)
+				restoreBackup(parsed.entries, localStorage, parsed.skipped);
 		}
 		startSnapshots();
 		return decision === "first-run";

@@ -2,7 +2,13 @@ import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { START_TIMEOUT_MS, useSpeechInput } from "./useSpeechInput";
 
-type Fake = { onstart?: () => void; onend: (() => void) | null; start: () => void; abort: () => void; stop: () => void };
+type Fake = {
+	onstart?: () => void;
+	onend: (() => void) | null;
+	start: () => void;
+	abort: () => void;
+	stop: () => void;
+};
 let instances: Fake[] = [];
 let startsOnStart = false;
 
@@ -28,11 +34,15 @@ describe("useSpeechInput watchdog", () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
 		instances = [];
-		(window as unknown as { webkitSpeechRecognition: unknown }).webkitSpeechRecognition = FakeRecognition;
+		(
+			window as unknown as { webkitSpeechRecognition: unknown }
+		).webkitSpeechRecognition = FakeRecognition;
 	});
 	afterEach(() => {
 		vi.useRealTimers();
-		(window as unknown as { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition = undefined;
+		(
+			window as unknown as { webkitSpeechRecognition?: unknown }
+		).webkitSpeechRecognition = undefined;
 	});
 
 	it("hides the mic when recognition never starts", () => {

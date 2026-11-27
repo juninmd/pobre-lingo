@@ -9,7 +9,10 @@ export function normalizeCapture(raw: string): string | null {
 }
 
 /** Card de revisão para uma palavra ou frase capturada fora do app. */
-export function buildCaptureCard(front: string, back: string): NewCardInput | null {
+export function buildCaptureCard(
+	front: string,
+	back: string,
+): NewCardInput | null {
 	const cleanFront = normalizeCapture(front);
 	const cleanBack = normalizeCapture(back);
 	if (!cleanFront || !cleanBack) return null;

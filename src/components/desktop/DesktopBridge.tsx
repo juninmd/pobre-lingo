@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CaptureDialog } from "@/components/desktop/CaptureDialog";
 import { StudyFirstGate } from "@/components/desktop/StudyFirstGate";
-import { desktopInvoke } from "@/lib/desktop/invoke";
-import { listenDesktop } from "@/lib/desktop/events";
 import { normalizeCapture } from "@/lib/desktop/capture";
+import { listenDesktop } from "@/lib/desktop/events";
+import { desktopInvoke } from "@/lib/desktop/invoke";
 import { isSafeInternalHref } from "@/lib/safeHref";
 import { getDueCards, loadCards } from "@/lib/srsCards";
 
@@ -43,7 +43,9 @@ export function DesktopBridge() {
 	useEffect(() => {
 		const push = () => {
 			const count = getDueCards(loadCards()).length;
-			void desktopInvoke<void>("set_due_count", { count }).catch(() => undefined);
+			void desktopInvoke<void>("set_due_count", { count }).catch(
+				() => undefined,
+			);
 		};
 		push();
 		const id = setInterval(push, DUE_TICK_MS);
@@ -54,7 +56,10 @@ export function DesktopBridge() {
 		<>
 			<StudyFirstGate />
 			{captured !== null && (
-				<CaptureDialog initialText={captured} onClose={() => setCaptured(null)} />
+				<CaptureDialog
+					initialText={captured}
+					onClose={() => setCaptured(null)}
+				/>
 			)}
 		</>
 	);

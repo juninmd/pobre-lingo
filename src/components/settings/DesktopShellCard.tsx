@@ -69,8 +69,8 @@ export function DesktopShellCard() {
 				{voice === "missing" && (
 					<p role="status" className="rounded-xl bg-muted/40 p-3 text-xs">
 						Nenhuma voz em inglês instalada no Windows, então o áudio das
-						palavras sairá com a pronúncia errada. Instale em Configurações
-						do Windows &gt; Hora e idioma &gt; Idioma e região &gt; English &gt;
+						palavras sairá com a pronúncia errada. Instale em Configurações do
+						Windows &gt; Hora e idioma &gt; Idioma e região &gt; English &gt;
 						Opções de idioma &gt; Fala.
 					</p>
 				)}

@@ -36,7 +36,8 @@ export function useSpeechInput(onTranscript: (text: string) => void) {
 	const recognitionRef = useRef<Recognition | null>(null);
 	const [listening, setListening] = useState(false);
 	const [broken, setBroken] = useState(false);
-	const supported = typeof window !== "undefined" && !!getRecognitionCtor() && !broken;
+	const supported =
+		typeof window !== "undefined" && !!getRecognitionCtor() && !broken;
 
 	useEffect(() => () => recognitionRef.current?.stop(), []);
 

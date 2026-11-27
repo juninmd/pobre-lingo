@@ -29,6 +29,17 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 const THEMES: readonly Theme[] = ["dark", "light", "pobre-lingo"];
 
+/**
+ * Tema do Sonido para cada tema do app. O claro usa a pele clara; os dois
+ * escuros usam `canto` (azul-noite), e a ponte de tokens em
+ * `styles/sonido-bridge.css` troca as cores pelas do PobreLingo.
+ */
+const SONIDO_THEME: Record<Theme, "light" | "canto"> = {
+	light: "light",
+	dark: "canto",
+	"pobre-lingo": "canto",
+};
+
 /** Storage may be blocked or hold a stale/edited value: never trust it. */
 function readTheme(storageKey: string, fallback: Theme): Theme {
 	try {
@@ -53,12 +64,13 @@ export function ThemeProvider({
 		const root = window.document.documentElement;
 
 		root.classList.remove("light", "dark", "pobre-lingo");
+		// `data-theme` é do Sonido; a identidade do PobreLingo fica nas classes
+		// (`dark`, `pobre-lingo`), que os tokens do app continuam lendo.
+		root.setAttribute("data-theme", SONIDO_THEME[theme]);
 
 		if (theme === "pobre-lingo") {
-			root.setAttribute("data-theme", "pobre-lingo");
-			root.classList.add("dark"); // PobreLingo is a dark navy theme
+			root.classList.add("dark", "pobre-lingo");
 		} else {
-			root.removeAttribute("data-theme");
 			root.classList.add(theme);
 		}
 	}, [theme]);

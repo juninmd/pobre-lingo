@@ -84,7 +84,7 @@
 		--series-5: #d55181;
 	}
 
-	[data-theme="pobre-lingo"] {
+	.pobre-lingo {
 		--background: 160 30% 4.5%;
 		/* Pure Deep Emerald-Black */
 		--foreground: 160 10% 98%;

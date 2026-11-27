@@ -23,7 +23,11 @@ export const withBase = (path: string) => joinBase(BASE_URL, path);
  * URL para navegar a uma rota interna. O desktop usa roteador por hash (o Tauri
  * não reescreve rotas para o index.html); o site usa caminho com a base.
  */
-export function joinRoute(desktop: boolean, base: string, path: string): string {
+export function joinRoute(
+	desktop: boolean,
+	base: string,
+	path: string,
+): string {
 	return desktop ? `#/${path.replace(/^\/+/, "")}` : joinBase(base, path);
 }
 

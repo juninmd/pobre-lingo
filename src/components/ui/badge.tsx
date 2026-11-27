@@ -1,36 +1,78 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import {
+	Badge as SonidoBadge,
+	type BadgeProps as SonidoBadgeProps,
+} from "@juninmd/sonido";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const badgeVariants = cva(
-	"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-	{
-		variants: {
-			variant: {
-				default:
-					"border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-				secondary:
-					"border-transparent bg-muted text-muted-foreground hover:bg-muted/80",
-				destructive:
-					"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-				outline: "text-foreground",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-		},
-	},
-);
+export type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
 
-export interface BadgeProps
-	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof badgeVariants> {}
+export type BadgeTone = NonNullable<SonidoBadgeProps["tone"]>;
+export type BadgeAppearance = NonNullable<SonidoBadgeProps["appearance"]>;
 
-function Badge({ className, variant, ...props }: BadgeProps) {
-	return (
-		<div className={cn(badgeVariants({ variant }), className)} {...props} />
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+	variant?: BadgeVariant;
+	/** Tom do Sonido; quando informado, vence o mapeamento de `variant`. */
+	tone?: BadgeTone;
+	/** `count` é o bloco compacto de 10px para contadores. */
+	appearance?: BadgeAppearance;
+	dot?: boolean;
+	live?: boolean;
+}
+
+const VARIANT_TONE: Record<BadgeVariant, BadgeTone> = {
+	default: "accent",
+	secondary: "neutral",
+	destructive: "danger",
+	outline: "neutral",
+};
+
+const VARIANT_APPEARANCE: Record<BadgeVariant, BadgeAppearance> = {
+	default: "solid",
+	secondary: "soft",
+	destructive: "solid",
+	outline: "soft",
+};
+
+/** Classes da pílula do Sonido, para quem monta o próprio elemento. */
+export function badgeVariants({
+	variant = "default",
+	className,
+}: {
+	variant?: BadgeVariant;
+	className?: string;
+} = {}) {
+	return cn(
+		"sn-badge",
+		`sn-badge--${VARIANT_TONE[variant]}`,
+		`sn-badge--${VARIANT_APPEARANCE[variant]}`,
+		variant === "outline" && "bg-transparent",
+		className,
 	);
 }
 
-export { Badge, badgeVariants };
+/**
+ * Adaptador do `Badge` do Sonido. O app usava `variant` para categoria e
+ * `className` para cor; os dois continuam valendo.
+ */
+export function Badge({
+	className,
+	variant = "default",
+	tone,
+	appearance,
+	dot,
+	live,
+	...props
+}: BadgeProps) {
+	return (
+		<SonidoBadge
+			tone={tone ?? VARIANT_TONE[variant]}
+			appearance={appearance ?? VARIANT_APPEARANCE[variant]}
+			dot={dot}
+			live={live}
+			className={cn(variant === "outline" && "bg-transparent", className)}
+			{...props}
+		/>
+	);
+}

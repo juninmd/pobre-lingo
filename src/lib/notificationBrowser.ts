@@ -1,8 +1,8 @@
 /** Browser notifications (Notification API); only fire with permission. */
 
 import { routeHref, withBase } from "@/lib/baseUrl";
-import type { AppNotification } from "@/lib/notificationCatalog";
 import { sendDesktopNotification } from "@/lib/desktop/notify";
+import type { AppNotification } from "@/lib/notificationCatalog";
 import { IS_DESKTOP } from "@/lib/platform";
 import { isSafeInternalHref } from "@/lib/safeHref";
 
@@ -34,7 +34,8 @@ export function showBrowserNotification(item: AppNotification): void {
 	if (!browserNotificationsSupported()) return;
 	if (IS_DESKTOP) {
 		// Com a janela em foco o sino já dá retorno; escondida na bandeja, vale o toast.
-		if (!document.hasFocus()) void sendDesktopNotification(item.title, item.body);
+		if (!document.hasFocus())
+			void sendDesktopNotification(item.title, item.body);
 		return;
 	}
 	if (Notification.permission !== "granted") return;

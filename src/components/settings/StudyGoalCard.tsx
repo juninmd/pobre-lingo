@@ -72,7 +72,11 @@ export function StudyGoalCard() {
 								adiar 30 min, no máximo 2 vezes por dia.
 							</p>
 						</div>
-						<Switch id="study-first" checked={first} onCheckedChange={changeFirst} />
+						<Switch
+							id="study-first"
+							checked={first}
+							onCheckedChange={changeFirst}
+						/>
 					</div>
 				)}
 			</CardContent>

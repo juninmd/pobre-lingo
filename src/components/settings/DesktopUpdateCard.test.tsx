@@ -11,7 +11,9 @@ vi.mock("@/lib/desktop/updater", async (original) => ({
 }));
 
 const clickCheck = () =>
-	fireEvent.click(screen.getByRole("button", { name: "Verificar atualizações" }));
+	fireEvent.click(
+		screen.getByRole("button", { name: "Verificar atualizações" }),
+	);
 
 describe("DesktopUpdateCard", () => {
 	it("reports when already up to date", async () => {
@@ -39,6 +41,8 @@ describe("DesktopUpdateCard", () => {
 		render(<DesktopUpdateCard />);
 		clickCheck();
 		expect(await screen.findByRole("alert")).toBeTruthy();
-		expect(screen.getByRole("button", { name: "Verificar atualizações" })).toBeTruthy();
+		expect(
+			screen.getByRole("button", { name: "Verificar atualizações" }),
+		).toBeTruthy();
 	});
 });

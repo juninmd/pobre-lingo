@@ -15,7 +15,8 @@ export function useEnglishVoiceStatus(): VoiceStatus {
 		const synth = window.speechSynthesis;
 		const read = () => {
 			const voices = synth.getVoices();
-			if (voices.length > 0) setStatus(hasEnglishVoice(voices) ? "ok" : "missing");
+			if (voices.length > 0)
+				setStatus(hasEnglishVoice(voices) ? "ok" : "missing");
 		};
 		read();
 		synth.addEventListener("voiceschanged", read);

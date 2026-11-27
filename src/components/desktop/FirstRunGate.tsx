@@ -27,7 +27,11 @@ export function FirstRunGate({ children }: { children: ReactNode }) {
 		if (!file) return;
 		const parsed = parseBackup(await file.text().catch(() => ""));
 		if (!parsed.ok) return setError(parsed.error);
-		const restored = restoreBackup(parsed.entries, localStorage, parsed.skipped);
+		const restored = restoreBackup(
+			parsed.entries,
+			localStorage,
+			parsed.skipped,
+		);
 		if (!restored.ok) return setError(restored.error);
 		await finish();
 	};
@@ -40,7 +44,8 @@ export function FirstRunGate({ children }: { children: ReactNode }) {
 					<CardTitle>Traga seu progresso</CardTitle>
 					<CardDescription>
 						O app desktop guarda seus dados em arquivo. O progresso do site não
-						vem sozinho: exporte um backup em Ajustes &gt; Seus dados e importe aqui.
+						vem sozinho: exporte um backup em Ajustes &gt; Seus dados e importe
+						aqui.
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="flex flex-col gap-3">

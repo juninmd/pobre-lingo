@@ -46,7 +46,11 @@ describe("createSnapshotter", () => {
 			.fn<(json: string) => Promise<void>>()
 			.mockRejectedValueOnce(new Error("disk"))
 			.mockResolvedValue(undefined);
-		const s = createSnapshotter({ collect: () => ({ pl_xp: "1" }), hash, write });
+		const s = createSnapshotter({
+			collect: () => ({ pl_xp: "1" }),
+			hash,
+			write,
+		});
 		expect(await s.flush()).toBe(false);
 		expect(await s.flush()).toBe(true);
 	});

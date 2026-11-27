@@ -21,8 +21,12 @@ describe("studyFirst", () => {
 
 	it("hides during a snooze and returns after it", () => {
 		const s = snooze(on, T);
-		expect(shouldShowGate(s, new Date(T.getTime() + SNOOZE_MS - 1), false)).toBe(false);
-		expect(shouldShowGate(s, new Date(T.getTime() + SNOOZE_MS), false)).toBe(true);
+		expect(
+			shouldShowGate(s, new Date(T.getTime() + SNOOZE_MS - 1), false),
+		).toBe(false);
+		expect(shouldShowGate(s, new Date(T.getTime() + SNOOZE_MS), false)).toBe(
+			true,
+		);
 	});
 
 	it("allows at most 2 snoozes per day and resets the next day", () => {
@@ -38,6 +42,8 @@ describe("studyFirst", () => {
 	it("starting a session does not spend a snooze", () => {
 		const s = startSession(snooze(on, T), T);
 		expect(s.snoozes).toBe(1);
-		expect(shouldShowGate(s, new Date(T.getTime() + 60 * 60_000), false)).toBe(false);
+		expect(shouldShowGate(s, new Date(T.getTime() + 60 * 60_000), false)).toBe(
+			false,
+		);
 	});
 });

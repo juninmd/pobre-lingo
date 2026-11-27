@@ -1,0 +1,111 @@
+/* Ponte entre os tokens do PobreLingo e o Sonido.
+   O app continua dono da paleta (tema claro, escuro e esmeralda); o design
+   system só recebe os mesmos valores nos nomes `--sn-*`. O arquivo é importado
+   em `globals.css` dentro da camada `sonido`, depois de `sonido.css`, então as
+   utilities de cada tela ainda vencem. */
+
+:root,
+:root[data-theme] {
+	--sn-color-bg: hsl(var(--background));
+	--sn-color-surface: hsl(var(--card));
+	--sn-color-surface-2: hsl(var(--secondary));
+	--sn-color-surface-hover: hsl(var(--muted));
+	--sn-color-border: hsl(var(--border));
+	--sn-color-border-soft: hsl(var(--border));
+
+	--sn-color-text: hsl(var(--foreground));
+	--sn-color-text-dim: hsl(var(--muted-foreground));
+	--sn-color-text-faint: hsl(var(--muted-foreground));
+	--sn-color-on-accent: hsl(var(--primary-foreground));
+	--sn-color-on-danger: hsl(var(--destructive-foreground));
+	--sn-color-on-tint: hsl(var(--gold-foreground));
+
+	--sn-color-accent: hsl(var(--primary));
+	--sn-color-accent-2: hsl(var(--accent));
+	--sn-color-aqua: hsl(var(--aqua));
+	--sn-color-gold: hsl(var(--gold));
+	--sn-color-success: hsl(var(--aqua));
+	--sn-color-warning: hsl(var(--gold));
+	--sn-color-danger: hsl(var(--destructive));
+
+	/* O gradiente do Sonido é fixo (coral → violeta); aqui ele nasce da
+	   dupla de marca do app para os botões primários não trocarem de cor. */
+	--sn-gradient: linear-gradient(
+		135deg,
+		hsl(var(--primary)),
+		hsl(var(--accent))
+	);
+	--sn-gradient-soft: linear-gradient(
+		135deg,
+		hsl(var(--primary) / 0.14),
+		hsl(var(--primary) / 0.04)
+	);
+	--sn-sig-1: hsl(var(--gold));
+	--sn-sig-2: hsl(var(--primary));
+	--sn-sig-3: hsl(var(--aqua));
+
+	--sn-shadow-card:
+		0 1px 1px hsl(220 30% 10% / 0.04), 0 2px 6px -1px hsl(220 30% 10% / 0.05);
+	--sn-shadow-glow: 0 10px 30px -12px hsl(var(--primary) / 0.45);
+	--sn-ring: 0 0 0 4px hsl(var(--ring) / 0.28);
+
+	--sn-radius-sm: calc(var(--radius) - 0.5rem);
+	--sn-radius: var(--radius);
+	--sn-radius-lg: calc(var(--radius) + 0.25rem);
+
+	--sn-font: "Inter", system-ui, sans-serif;
+	--sn-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+}
+
+:root.dark {
+	--sn-shadow-card:
+		0 1px 0 hsl(0 0% 100% / 0.03) inset, 0 2px 8px -2px hsl(0 0% 0% / 0.5);
+}
+
+/* O app cuida do ritmo interno do card com os próprios wrappers; o `gap` do
+   Sonido (12px) somaria espaço entre cabeçalho e corpo. */
+.sn-card.pl-card {
+	gap: 0;
+}
+
+/* O `.glass-card` do app continua com a elevação no hover; sem isso a
+   superfície do Sonido (mesma camada, declarada antes) venceria. */
+.sn-card.glass-card:hover {
+	border-color: hsl(var(--primary) / 0.28);
+	box-shadow:
+		0 1px 1px hsl(220 30% 10% / 0.04),
+		0 10px 24px -8px hsl(var(--primary) / 0.22);
+	transform: translateY(-2px);
+}
+
+/* O app depende do tamanho de 16px nos ícones dos botões; o Sonido não
+   define tamanho de svg. Utilities como `h-5 w-5` continuam vencendo. */
+.sn-button--press {
+	--sn-btn-press: color-mix(in srgb, hsl(var(--primary)) 55%, black);
+}
+
+.sn-button__label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: 100%;
+}
+
+.sn-button > svg,
+.sn-button__label > svg {
+	flex: none;
+	width: 1rem;
+	height: 1rem;
+}
+
+/* Variante `gamified` do app: ouro + sombra tátil, agora no Button do
+   Sonido. O className vence o `sn-button--primary`. */
+.sn-button.pl-button--gamified {
+	--sn-btn-bg: hsl(var(--gold));
+	--sn-btn-fg: hsl(var(--gold-foreground));
+	--sn-btn-press: color-mix(in srgb, hsl(var(--gold)) 55%, black);
+}
+
+.sn-button.pl-button--gamified:hover:not(:disabled, [aria-disabled="true"]) {
+	box-shadow: 0 6px 18px -8px hsl(var(--gold) / 0.7);
+}

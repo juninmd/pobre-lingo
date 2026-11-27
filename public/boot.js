@@ -4,17 +4,24 @@
 	// 1. Tema salvo, para a casca não piscar em branco no tema escuro.
 	//    Mesma regra do ThemeProvider (src/contexts/ThemeContext.tsx).
 	const root = document.documentElement;
+	// `data-theme` é a pele do Sonido; as classes guardam o tema do app.
+	const SONIDO_THEME = {
+		light: "light",
+		dark: "canto",
+		"pobre-lingo": "canto",
+	};
 	let theme = "light";
 	try {
 		theme = localStorage.getItem("vite-ui-theme") || "light";
 	} catch {
 		// Armazenamento bloqueado: segue no tema claro.
 	}
+	if (theme !== "dark" && theme !== "pobre-lingo") theme = "light";
+	root.setAttribute("data-theme", SONIDO_THEME[theme]);
 	if (theme === "pobre-lingo") {
-		root.setAttribute("data-theme", "pobre-lingo");
-		root.classList.add("dark");
+		root.classList.add("dark", "pobre-lingo");
 	} else {
-		root.classList.add(theme === "dark" ? "dark" : "light");
+		root.classList.add(theme);
 	}
 
 	// 2. Na tela inicial, adianta os chunks dela. O build deixa a lista em

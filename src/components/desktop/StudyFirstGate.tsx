@@ -66,12 +66,15 @@ export function StudyFirstGate() {
 				<DialogHeader>
 					<DialogTitle>Inglês primeiro</DialogTitle>
 					<DialogDescription>
-						Sua meta de {loadGoalMinutes()} minutos de hoje ainda não foi cumprida.
+						Sua meta de {loadGoalMinutes()} minutos de hoje ainda não foi
+						cumprida.
 					</DialogDescription>
 				</DialogHeader>
 				<DialogFooter>
 					<Button variant="outline" disabled={left === 0} onClick={postpone}>
-						{left === 0 ? "Sem adiamentos hoje" : `Adiar 30 min (${left} restantes)`}
+						{left === 0
+							? "Sem adiamentos hoje"
+							: `Adiar 30 min (${left} restantes)`}
 					</Button>
 					<Button onClick={start}>Começar agora</Button>
 				</DialogFooter>

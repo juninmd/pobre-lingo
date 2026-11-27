@@ -52,7 +52,12 @@ export function snooze(s: StudyFirstState, now: Date): StudyFirstState {
 /** "Começar agora": dá 2 h para estudar sem gastar um adiamento. */
 export function startSession(s: StudyFirstState, now: Date): StudyFirstState {
 	const used = sameDay(s, now) ? s.snoozes : 0;
-	return { ...s, day: dayKey(now), snoozes: used, until: now.getTime() + START_GRACE_MS };
+	return {
+		...s,
+		day: dayKey(now),
+		snoozes: used,
+		until: now.getTime() + START_GRACE_MS,
+	};
 }
 
 export const loadStudyFirst = (): StudyFirstState => ({

@@ -1,42 +1,94 @@
+import {
+	Button as SonidoButton,
+	type ButtonProps as SonidoButtonProps,
+} from "@juninmd/sonido";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold ring-offset-background transition-[color,background-color,border-color,box-shadow,transform] duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-	{
-		variants: {
-			variant: {
-				default:
-					"press bg-primary text-primary-foreground hover:bg-primary/90 active:scale-100",
-				destructive:
-					"press [--press-color:hsl(var(--destructive))] bg-destructive text-destructive-foreground hover:bg-destructive/90 active:scale-100",
-				outline:
-					"press press-muted border border-input bg-background hover:bg-accent hover:text-accent-foreground active:scale-100",
-				secondary:
-					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
-				ghost: "hover:bg-accent hover:text-accent-foreground",
-				link: "text-primary underline-offset-4 hover:underline",
-				gamified:
-					"press press-gold bg-gold text-gold-foreground font-bold hover:brightness-105 active:scale-100",
-			},
-			size: {
-				default: "h-10 px-4 py-2",
-				sm: "h-9 rounded-md px-3",
-				lg: "h-11 rounded-md px-8",
-				icon: "h-10 w-10",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-			size: "default",
-		},
-	},
-);
+export type ButtonVariant =
+	| "default"
+	| "destructive"
+	| "outline"
+	| "secondary"
+	| "ghost"
+	| "link"
+	| "gamified";
 
-export interface ButtonProps extends VariantProps<typeof buttonVariants> {
+export type ButtonSize = "default" | "xs" | "sm" | "lg" | "icon";
+export type ButtonAppearance = "solid" | "outline";
+
+/** Nomes que o app já usava → variantes publicadas pelo Sonido. */
+const SONIDO_VARIANT: Record<ButtonVariant, SonidoButtonProps["variant"]> = {
+	default: "primary",
+	destructive: "danger",
+	outline: "secondary",
+	secondary: "secondary",
+	ghost: "ghost",
+	link: "link",
+	gamified: "primary",
+};
+
+const SONIDO_SIZE: Record<ButtonSize, SonidoButtonProps["size"]> = {
+	default: "md",
+	xs: "xs",
+	sm: "sm",
+	lg: "lg",
+	icon: "icon",
+};
+
+const VARIANT_CLASS: Record<ButtonVariant, string> = {
+	default: "sn-button--primary",
+	destructive: "sn-button--danger",
+	outline: "sn-button--secondary sn-button--outline",
+	secondary: "sn-button--secondary",
+	ghost: "sn-button--ghost",
+	link: "sn-button--link",
+	gamified: "sn-button--primary sn-button--press pl-button--gamified",
+};
+
+const SIZE_CLASS: Partial<Record<ButtonSize, string>> = {
+	xs: "sn-button--xs",
+	sm: "sn-button--sm",
+	lg: "sn-button--lg",
+	icon: "sn-button--icon",
+};
+
+interface ButtonVariantOptions {
+	variant?: ButtonVariant | null;
+	size?: ButtonSize | null;
+	appearance?: ButtonAppearance | null;
+	className?: string;
+}
+
+/**
+ * Classes do botão do Sonido. Exportada porque `AlertDialogAction` e
+ * `AlertDialogCancel` montam o próprio elemento e só reaproveitam o visual.
+ */
+export function buttonVariants({
+	variant = "default",
+	size = "default",
+	appearance,
+	className,
+}: ButtonVariantOptions = {}) {
+	const variantName = variant ?? "default";
+	const sizeName = size ?? "default";
+	return cn(
+		"sn-button",
+		VARIANT_CLASS[variantName],
+		SIZE_CLASS[sizeName],
+		(appearance ?? (variantName === "outline" ? "outline" : "solid")) ===
+			"outline" && "sn-button--outline",
+		className,
+	);
+}
+
+export interface ButtonProps {
+	variant?: ButtonVariant;
+	size?: ButtonSize;
+	/** `outline` = só borda e texto na cor do tom, como o antigo `outline`. */
+	appearance?: ButtonAppearance;
 	asChild?: boolean;
 }
 
@@ -52,38 +104,59 @@ export interface ButtonAsLinkProps
 
 export type PolymorphicButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
+/**
+ * Adaptador fino do `Button` do Sonido. Mantém a API do app (`asChild`,
+ * `href`, `gamified`, `size="default"`), o `type="button"` padrão e o link
+ * que perde `href` quando desabilitado.
+ */
 const Button = React.forwardRef<
 	HTMLButtonElement | HTMLAnchorElement,
 	PolymorphicButtonProps
->(({ className, variant, size, asChild = false, ...props }, ref) => {
-	const Comp = asChild
-		? Slot
-		: (props as ButtonAsLinkProps).href
-			? "a"
-			: "button";
+>(
+	(
+		{ className, variant, size, appearance, asChild = false, ...props },
+		ref,
+	) => {
+		if (asChild) {
+			return (
+				<Slot
+					ref={ref as React.Ref<HTMLElement>}
+					className={buttonVariants({ variant, size, appearance, className })}
+					{...(props as React.HTMLAttributes<HTMLElement>)}
+				/>
+			);
+		}
 
-	if (Comp === "a") {
-		const { href, ...rest } = props as ButtonAsLinkProps;
+		const sonidoProps = {
+			className: cn(variant === "gamified" && "pl-button--gamified", className),
+			variant: SONIDO_VARIANT[variant ?? "default"],
+			size: SONIDO_SIZE[size ?? "default"],
+			appearance: appearance ?? (variant === "outline" ? "outline" : "solid"),
+			press: variant === "gamified",
+		};
+
+		if ("href" in props && props.href) {
+			const { href, type: _type, ...rest } = props as ButtonAsLinkProps;
+			return (
+				<SonidoButton
+					{...sonidoProps}
+					ref={ref as React.Ref<HTMLAnchorElement>}
+					href={href}
+					{...(rest as unknown as SonidoButtonProps)}
+				/>
+			);
+		}
+
+		const { type = "button", ...rest } = props as ButtonAsButtonProps;
 		return (
-			<Comp
-				className={cn(buttonVariants({ variant, size, className }))}
-				ref={ref as React.ForwardedRef<HTMLAnchorElement>}
-				href={href}
-				{...rest}
+			<SonidoButton
+				{...sonidoProps}
+				type={type}
+				{...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
 			/>
 		);
-	}
-
-	const { type = "button", ...rest } = props as ButtonAsButtonProps;
-	return (
-		<Comp
-			className={cn(buttonVariants({ variant, size, className }))}
-			ref={ref as React.ForwardedRef<HTMLButtonElement>}
-			type={type}
-			{...rest}
-		/>
-	);
-});
+	},
+);
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button };

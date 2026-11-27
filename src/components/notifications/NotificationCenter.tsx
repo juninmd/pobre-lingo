@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	Popover,
@@ -78,12 +79,13 @@ export function NotificationCenter() {
 				>
 					<Bell className={cn("h-5 w-5", unreadCount > 0 && "text-primary")} />
 					{unreadCount > 0 && (
-						<span
+						<Badge
+							appearance="count"
 							aria-hidden="true"
-							className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-600 text-[11px] font-bold text-white flex items-center justify-center shadow-sm ring-2 ring-background tabular-nums"
+							className="absolute -top-0.5 -right-0.5 min-w-[1.05rem] h-[1.05rem] px-1 rounded-full bg-red-600 text-[11px] font-bold text-white shadow-sm ring-2 ring-background tabular-nums"
 						>
 							{badgeCount}
-						</span>
+						</Badge>
 					)}
 				</Button>
 			</PopoverTrigger>

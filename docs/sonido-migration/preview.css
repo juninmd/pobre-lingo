@@ -1,0 +1,157 @@
+/* Página de comparação: layout próprio, cores e tipografia dos tokens do app. */
+body {
+	margin: 0;
+}
+
+.pv-page {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 36px 28px 52px;
+	color: hsl(var(--foreground));
+	font-family: "Inter", system-ui, sans-serif;
+}
+
+.pv-head {
+	padding-bottom: 22px;
+	border-bottom: 1px solid hsl(var(--border) / 0.7);
+}
+
+.pv-kicker {
+	margin: 0 0 6px;
+	color: hsl(var(--primary));
+	font-size: 11px;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.pv-head h1 {
+	margin: 0;
+	font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+	font-size: 2rem;
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1.1;
+}
+
+.pv-head p {
+	max-width: 62ch;
+	margin: 8px 0 0;
+	color: hsl(var(--muted-foreground));
+	font-size: 14px;
+	line-height: 1.55;
+}
+
+.pv-row {
+	display: grid;
+	gap: 14px;
+	padding: 30px 0 8px;
+	border-bottom: 1px solid hsl(var(--border) / 0.45);
+}
+
+.pv-row__head h2 {
+	margin: 0;
+	font-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+	font-size: 1.15rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+
+.pv-row__head p {
+	margin: 3px 0 0;
+	color: hsl(var(--muted-foreground));
+	font-size: 12.5px;
+}
+
+.pv-cols {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+}
+
+.pv-col {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	padding: 16px;
+	border: 1px solid hsl(var(--border) / 0.8);
+	border-radius: 14px;
+	background: hsl(var(--card) / 0.55);
+}
+
+.pv-col--before {
+	border-style: dashed;
+}
+
+.pv-col h3 {
+	margin: 0 0 14px;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: hsl(var(--muted-foreground));
+}
+
+.pv-col--after h3 {
+	color: hsl(var(--primary));
+}
+
+.pv-stage {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 12px;
+	justify-content: center;
+	min-height: 84px;
+}
+
+.pv-file {
+	margin-top: 16px;
+	color: hsl(var(--muted-foreground) / 0.85);
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 10.5px;
+}
+
+.pv-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.pv-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.pv-note {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin: 0;
+	color: hsl(var(--muted-foreground));
+	font-size: 11px;
+}
+
+.pv-progress {
+	display: grid;
+	gap: 5px;
+}
+
+.pv-progress__label {
+	display: flex;
+	justify-content: space-between;
+	color: hsl(var(--muted-foreground));
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.pv-foot {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding-top: 26px;
+	color: hsl(var(--muted-foreground));
+	font-size: 12px;
+}

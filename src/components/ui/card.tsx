@@ -1,17 +1,29 @@
+import { Card as SonidoCard } from "@juninmd/sonido";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+
+/**
+ * Superfície do `Card` do Sonido (`surface="solid"`, sem padding próprio).
+ * Cabeçalho, corpo e rodapé continuam wrappers de layout do app: o Sonido os
+ * publica com tipografia e `display:flex` próprios, que mudariam telas que já
+ * dependem do padding e da ordem atuais.
+ */
+// O `Card` do Sonido é uma função sem `forwardRef` nos tipos, mas o React 19
+// entrega `ref` como prop e o componente repassa o resto ao `<div>`.
+const CardWithRef = SonidoCard as unknown as React.ForwardRefExoticComponent<
+	React.ComponentProps<typeof SonidoCard> & React.RefAttributes<HTMLDivElement>
+>;
 
 const Card = React.forwardRef<
 	HTMLDivElement,
 	React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-	<div
+	<CardWithRef
 		ref={ref}
-		className={cn(
-			"rounded-lg border bg-card text-card-foreground shadow-sm",
-			className,
-		)}
+		surface="solid"
+		padding="none"
+		className={cn("pl-card", className)}
 		{...props}
 	/>
 ));

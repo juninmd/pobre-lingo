@@ -1,7 +1,7 @@
 /* Ajustes exclusivos do tema "pobre-lingo" (esmeralda escuro). */
 @layer components {
 	/* Add a more luxurious background for PobreLingo */
-	[data-theme="pobre-lingo"] body {
+	.pobre-lingo body {
 		background:
 			radial-gradient(
 				circle at 0% 0%,
@@ -18,7 +18,7 @@
 	}
 
 	/* Sidebar Active Highlight Metallic Effect */
-	[data-theme="pobre-lingo"] .sidebar-active {
+	.pobre-lingo .sidebar-active {
 		background: linear-gradient(
 			to right,
 			hsla(158, 82%, 52%, 0.1) 0%,
@@ -31,20 +31,20 @@
 		@apply shadow-sm shadow-primary/5 rounded-l-none rounded-r-xl;
 	}
 
-	[data-theme="pobre-lingo"] .sidebar-menu-btn {
+	.pobre-lingo .sidebar-menu-btn {
 		transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 		border: 1px solid transparent;
 		@apply rounded-xl;
 	}
 
-	[data-theme="pobre-lingo"] .sidebar-menu-btn:hover {
+	.pobre-lingo .sidebar-menu-btn:hover {
 		background: hsla(160, 15%, 12%, 0.5);
 		border-color: hsla(160, 15%, 20%, 0.4);
 		transform: translateX(2px);
 		color: hsl(var(--foreground));
 	}
 
-	[data-theme="pobre-lingo"] .sidebar-menu-btn.sidebar-active {
+	.pobre-lingo .sidebar-menu-btn.sidebar-active {
 		background: linear-gradient(
 			135deg,
 			hsla(158, 82%, 52%, 0.12) 0%,
@@ -59,33 +59,32 @@
 	}
 
 	/* PobreLingo custom premium card effects */
-	[data-theme="pobre-lingo"] .glass-card:hover {
+	.pobre-lingo .glass-card:hover {
 		border-color: hsla(158, 82%, 52%, 0.35);
 		box-shadow: 0 12px 30px -10px hsla(158, 82%, 52%, 0.18);
 	}
 
 	/* Form shapes and transition refinements for PobreLingo */
-	[data-theme="pobre-lingo"] input,
-	[data-theme="pobre-lingo"] textarea,
-	[data-theme="pobre-lingo"] select {
+	.pobre-lingo input,
+	.pobre-lingo textarea,
+	.pobre-lingo select {
 		transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 		border-radius: 0.75rem;
 	}
 
-	[data-theme="pobre-lingo"] input:focus,
-	[data-theme="pobre-lingo"] textarea:focus,
-	[data-theme="pobre-lingo"] select:focus {
+	.pobre-lingo input:focus,
+	.pobre-lingo textarea:focus,
+	.pobre-lingo select:focus {
 		border-color: hsl(158, 82%, 52%);
 		box-shadow: 0 0 0 2px hsla(158, 82%, 52%, 0.15);
 	}
 
-	[data-theme="pobre-lingo"]
-		button:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
+	.pobre-lingo button:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
 		border-radius: 0.75rem;
 		transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 	}
 
-	[data-theme="pobre-lingo"]
+	.pobre-lingo
 		button:active:not(.sidebar-trigger):not([data-sidebar="trigger"]) {
 		transform: scale(0.97);
 	}

@@ -1,5 +1,11 @@
+/* Ordem fixa: o Sonido fica acima dos componentes do app (para herdar a pele do
+   design system) e abaixo das utilities (para o className de cada tela ainda
+   mandar). A ponte de tokens vem depois do Sonido, dentro da mesma camada. */
+@layer theme, base, components, sonido, utilities;
+
 /* Só `src/` gera classes: sem isso o Tailwind varre docs/, scripts e o que mais houver na raiz. */
 @import "tailwindcss" source(".");
+@import "@juninmd/sonido/styles.css" layer(sonido);
 @import "./styles/fonts.css";
 @import "./styles/tokens.css";
 @import "./styles/base.css";
@@ -12,5 +18,6 @@
 @import "./styles/shell.css";
 @import "./styles/skeleton.css";
 @import "./styles/reduced-motion.css";
+@import "./styles/sonido-bridge.css" layer(sonido);
 
 @config "../tailwind.config.ts";

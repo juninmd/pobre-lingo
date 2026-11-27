@@ -1,3 +1,4 @@
+import { EmptyState } from "@juninmd/sonido";
 import {
 	BookMarked,
 	Brain,
@@ -72,13 +73,12 @@ export default function NotebookPage() {
 			/>
 
 			{entries.length === 0 ? (
-				<div className="text-center py-20 text-muted-foreground space-y-3">
-					<BookMarked className="w-12 h-12 mx-auto opacity-30" />
-					<p className="text-lg font-medium">Nenhuma palavra salva ainda.</p>
-					<p className="text-sm">
-						No Dicionário, clique no ícone de marcador para salvar uma palavra.
-					</p>
-				</div>
+				<EmptyState
+					className="py-20"
+					icon={<BookMarked className="w-6 h-6 opacity-70" />}
+					title="Nenhuma palavra salva ainda."
+					description="No Dicionário, clique no ícone de marcador para salvar uma palavra."
+				/>
 			) : (
 				<Tabs defaultValue="lista">
 					<TabsList className="mb-6">
